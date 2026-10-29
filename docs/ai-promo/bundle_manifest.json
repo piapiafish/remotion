@@ -1,0 +1,23 @@
+{
+  "bundle_type": "extended_with_references",
+  "source_archive": "MultiAgent-3D-Promo-Studio.zip",
+  "created_date": "2026-10-09",
+  "materials": {
+    "docs": [
+      "00_从这里开始.md",
+      "01_需求与问题总结.md",
+      "02_后续执行计划_V3.md",
+      "03_智能构图引擎技术设计.md",
+      "04_页面结构与交互规范.md",
+      "05_AI源码分析_录屏指导_模板系统.md",
+      "06_Remotion与风格系统分工.md",
+      "07_视频案例拆解与设计规则.md",
+      "08_验收清单与测试计划.md",
+      "09_来源授权与版本说明.md"
+    ],
+    "ui_design_screenshots": 4,
+    "reference_videos": 2,
+    "video_reference_keyframes": 7
+  },
+  "technical_note": "Bundle adds docs/screenshots/videos only; no Composition Engine implementation implied."
+}

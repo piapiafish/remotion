@@ -1,0 +1,26 @@
+[
+  {
+    "file": "iphone-17-pro.glb",
+    "bytes": 5112556,
+    "sha256": "d7089ce39b8e09fe857ab41bc9105e39beb72171bbd8b7e81008afb7e0ad0c4c",
+    "matchesUpstreamAssetIndex": true
+  },
+  {
+    "file": "iphone-17-pro-max.glb",
+    "bytes": 15309824,
+    "sha256": "cc32d7479d48f93b320a36cb70fd8354b4f6eb3f939304f65b54f9803a557d17",
+    "matchesUpstreamAssetIndex": true
+  },
+  {
+    "file": "pixel-9-pro-xl.glb",
+    "bytes": 9903744,
+    "sha256": "f885feb957a3f86e4836af7c7d3100b769cf21a150f4b32f521076b229109684",
+    "matchesUpstreamAssetIndex": true
+  },
+  {
+    "file": "galaxy-s26-ultra.glb",
+    "bytes": 2293996,
+    "sha256": "6355b5b819b89a2d77b52c9e2802d6e89098f5bfb98b3fbb0948fa92c81a07a0",
+    "matchesUpstreamAssetIndex": true
+  }
+]

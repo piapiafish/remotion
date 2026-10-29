@@ -1,0 +1,27 @@
+﻿P0 项目环境检测：只检测，不安装，不修改系统设置。
+时间：2026-10-29 19:46:48
+检测目录：D:\remotion\MultiAgent-3D-Promo-Studio
+系统架构：AMD64
+
+[已找到] VS Code：D:\Microsoft VS Code\bin\code.cmd
+[待确认] Node.js：未找到可用路径，可能未安装或未配置 PATH。
+[待确认] npm：未找到可用路径，可能未安装或未配置 PATH。
+[已找到] Python：D:\Python310\python.exe
+[已找到] Chrome/Edge/Chromium：C:\Program Files\Google\Chrome\Application\chrome.exe
+[待确认] FFmpeg：未找到可用路径，可能未安装或未配置 PATH。
+[待确认] FFprobe：未找到可用路径，可能未安装或未配置 PATH。
+[已找到] Git（建议）：C:\Program Files\Git\cmd\git.exe
+Git 版本：git version 2.54.0.windows.1
+浏览器文件版本：156.0.8078.73
+Python 3.10.6：D:\Python310\python.exe；可发现 Playwright 模块：False
+Python 3.11.5：D:\Anaconda3\python.exe；可发现 Playwright 模块：False
+[提示] 已找到可尝试复用的 Python；本次完整实测版本系列为 3.12，最终以依赖安装和 agent:doctor 为准。
+
+[项目文件] 项目根 package.json：True
+[项目文件] 根项目依赖：False
+[项目文件] Remotion 依赖：False
+[项目文件] 项目 Python 环境：False
+[项目文件] iPhone GLB：True
+
+说明：已找到不等于完整渲染已通过；浏览器 WebGL 与成片需要后续 agent:doctor / agent:p0 验证。
+软件若显示待确认，请先把本报告发回，不必马上重复下载安装。
