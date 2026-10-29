@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "assets": [
+    {
+      "id": "screen",
+      "kind": "video",
+      "uri": "assets/demo.mp4"
+    },
+    {
+      "id": "music",
+      "kind": "audio",
+      "uri": "assets/music-demo.mp3"
+    }
+  ],
+  "shots": [
+    {
+      "shotId": "shot-001",
+      "deviceId": "iphone-17-pro",
+      "screenAssetId": "screen",
+      "durationFrames": 150,
+      "template": "hero-tilt",
+      "motion": "hero-reveal",
+      "screenFit": "contain",
+      "screenOffsetFrames": 0,
+      "background": "#0b1020"
+    },
+    {
+      "shotId": "shot-002",
+      "deviceId": "iphone-17-pro",
+      "screenAssetId": "screen",
+      "durationFrames": 150,
+      "template": "hero-straight",
+      "motion": "spin-y-360",
+      "screenFit": "contain",
+      "screenOffsetFrames": 0,
+      "background": "#101827"
+    },
+    {
+      "shotId": "shot-003",
+      "deviceId": "iphone-17-pro",
+      "screenAssetId": "screen",
+      "durationFrames": 150,
+      "template": "low-hero",
+      "motion": "tilt-in",
+      "screenFit": "contain",
+      "screenOffsetFrames": 0,
+      "background": "#0b1020"
+    }
+  ],
+  "overlays": [
+    {
+      "kind": "title",
+      "text": "智能分析",
+      "startFrame": 18,
+      "durationFrames": 120
+    },
+    {
+      "kind": "subtitle",
+      "text": "自动规划",
+      "startFrame": 168,
+      "durationFrames": 120
+    },
+    {
+      "kind": "tagline",
+      "text": "精彩呈现",
+      "startFrame": 318,
+      "durationFrames": 120
+    }
+  ],
+  "audio": [
+    {
+      "assetId": "music",
+      "volume": 0.22
+    }
+  ],
+  "projectPolicy": {
+    "maxRetries": 2,
+    "renderQuality": "standard",
+    "allowPngFallback": true,
+    "review": true
+  },
+  "reasoning": "本地确定性导演模板；可修改分镜后再次运行",
+  "plannerMode": "deterministic (OPENAI_API_KEY not set)"
+}

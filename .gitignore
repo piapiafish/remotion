@@ -34,8 +34,6 @@ phones/
 # Multi-Agent local renders, secrets and automation uploads
 output/**
 !output/.gitkeep
-work/**
-!work/.gitkeep
 public/__automation__/
 remotion-compositor/node_modules/
 remotion-compositor/public/media/*
