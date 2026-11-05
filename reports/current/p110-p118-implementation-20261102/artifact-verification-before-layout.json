@@ -1,0 +1,184 @@
+{
+  "date": "2026-11-02T23:53:06.793036+08:00",
+  "status": "PASS",
+  "checks": {
+    "encodedFramesMatchReferences": true,
+    "staticMotionBlurDoesNotBlurWholeImage": true,
+    "textOnlyPngHasTransparentBackgroundAndVisibleText": true,
+    "depthOfFieldBlursFarObjectMore": true,
+    "titleStaysCrisp": true,
+    "temporalSamplesRepeatExactly": true
+  },
+  "frameComparisons": [
+    {
+      "frame": 0,
+      "region": "full",
+      "ssim": 0.992161,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 0,
+      "region": "title",
+      "ssim": 0.991485,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 0,
+      "region": "right-screen",
+      "ssim": 0.984374,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "region": "full",
+      "ssim": 0.994177,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "region": "title",
+      "ssim": 0.994749,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "region": "right-screen",
+      "ssim": 0.986769,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "full",
+      "ssim": 0.993788,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "title",
+      "ssim": 0.993437,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "right-screen",
+      "ssim": 0.986778,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "full",
+      "ssim": 0.994088,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "title",
+      "ssim": 0.99418,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "right-screen",
+      "ssim": 0.988598,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 90,
+      "region": "full",
+      "ssim": 0.994083,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 90,
+      "region": "title",
+      "ssim": 0.994102,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 90,
+      "region": "right-screen",
+      "ssim": 0.988821,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "full",
+      "ssim": 0.994141,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "title",
+      "ssim": 0.994142,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "right-screen",
+      "ssim": 0.988952,
+      "exitCode": 0,
+      "status": "PASS"
+    }
+  ],
+  "minimumByRegion": {
+    "full": 0.992161,
+    "title": 0.991485,
+    "right-screen": 0.984374
+  },
+  "staticBlurComparison": {
+    "ssim": 0.999781,
+    "exitCode": 0
+  },
+  "transparentTitle": {
+    "minimum": 0,
+    "maximum": 255,
+    "visiblePixels": 2523
+  },
+  "depthOfFieldSharpness": {
+    "near": {
+      "normal": 256.95423748612814,
+      "withDof": 207.6594922414968,
+      "ratio": 0.8081574924511896,
+      "roi": [
+        180,
+        50,
+        415,
+        490
+      ]
+    },
+    "far": {
+      "normal": 342.1075154295702,
+      "withDof": 7.996750232126277,
+      "ratio": 0.02337496217259387,
+      "roi": [
+        520,
+        90,
+        725,
+        450
+      ]
+    }
+  },
+  "titlePixels": {
+    "whitePixels": 3104,
+    "unchanged": 3100,
+    "fraction": 0.9987113402061856
+  },
+  "seconds": 3.86
+}

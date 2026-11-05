@@ -1,0 +1,6 @@
+{
+  "status": "ENVIRONMENT_BLOCKED",
+  "reason": "Browser/Playwright probe exceeded 55 seconds before completing",
+  "cleanupExitCode": 1,
+  "exitCode": null
+}

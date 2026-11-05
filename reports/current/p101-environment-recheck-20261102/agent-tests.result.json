@@ -1,0 +1,4 @@
+{
+  "Command": "npm.cmd run agent:test",
+  "ExitCode": 0
+}

@@ -1,0 +1,18 @@
+PASS ten-cycles-remove-all-object-nodes-and-decoders
+FAIL repeated-entry-has-bounded-gpu-resource-counts
+SCENARIO FAIL resources Error: repeated-entry-has-bounded-gpu-resource-counts
+PASS offline-restores-all-media-clocks-layers-and-anchors
+PASS offline-solid-glyphs-and-contact-restore
+PASS missing-source-identifies-both-references-without-masking-cache
+PASS rebind-repairs-one-clip-without-overwriting-other-clock
+PASS rebind-is-undoable
+PASS actual-multivideo-effects-1080p30-120-frame-export
+PASS all-boundary-references-use-formal-export-preparation
+SCENARIO FAIL exports TimeoutError: page.waitForEvent: Timeout 420000ms exceeded while waiting for event "download"
+=========================== logs ===========================
+waiting for event "download"
+============================================================
+SCENARIO FAIL cancel TimeoutError: page.waitForFunction: Timeout 20000ms exceeded.
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"resources","status":"FAIL","error":"Error: repeated-entry-has-bounded-gpu-resource-counts"},{"name":"restore","status":"PASS"},{"name":"exports","status":"FAIL","error":"TimeoutError: page.waitForEvent: Timeout 420000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"},{"name":"cancel","status":"FAIL","error":"TimeoutError: page.waitForFunction: Timeout 20000ms exceeded."}],"checks":11}

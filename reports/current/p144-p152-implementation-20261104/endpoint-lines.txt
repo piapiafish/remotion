@@ -1,0 +1,10 @@
+PASS both-disjoint-intervals-pack
+PASS playback-overlap-keeps-separate-rows
+PASS start-clamps-one-frame-before-stop
+PASS near-play-handles-no-longer-cover-each-other
+PASS start-can-be-grabbed-again-after-release
+PASS stop-can-be-grabbed-independently
+PASS one-frame-blue-endpoints-are-separated
+PASS blue-start-can-be-reopened
+PASS key-delete-button-is-prominent
+PASS key-properties-open

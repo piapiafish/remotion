@@ -1,0 +1,300 @@
+{
+  "date": "2026-11-02T17:53:53.727066+08:00",
+  "status": "PASS",
+  "version": "P1-07-09-20261102",
+  "target": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "packageApplied": true,
+  "functionalChecks": "PASS",
+  "sourceIntegrity": "PASS",
+  "historyPreserved": {
+    "previousLogEntriesPreserved": true,
+    "P101ToP106RowsPreserved": true,
+    "P106AndPriorReportsPreserved": true,
+    "P101EnvironmentRecordPreserved": true
+  },
+  "installation": {
+    "steps": [
+      {
+        "step": "preflight",
+        "exitCode": 0,
+        "result": {
+          "status": "READY",
+          "pending_files": 159,
+          "target": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio"
+        }
+      },
+      {
+        "step": "install",
+        "exitCode": 0,
+        "result": {
+          "status": "APPLIED",
+          "installed": 159,
+          "backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p10709-before-20261102-174227-421716",
+          "receipt": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p107-p109-20261102\\writeback-receipt.json"
+        }
+      },
+      {
+        "step": "repeat-check",
+        "exitCode": 0,
+        "result": {
+          "status": "ALREADY_APPLIED",
+          "pending_files": 0
+        }
+      }
+    ],
+    "verifiedFiles": 159,
+    "testBackupRestoreMap": {}
+  },
+  "commands": {
+    "frontend-tests": {
+      "date": "2026-11-02T09:43:30.303846+00:00",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "npm.cmd",
+        "test"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "exitCode": 0,
+      "seconds": 2.656,
+      "log": "frontend-tests.txt",
+      "status": "PASS"
+    },
+    "build": {
+      "date": "2026-11-02T09:43:28.201932+00:00",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "npm.cmd",
+        "run",
+        "build"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "exitCode": 0,
+      "seconds": 5.015,
+      "log": "build.txt",
+      "status": "PASS"
+    },
+    "lint": {
+      "date": "2026-11-02T09:43:27.893128+00:00",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "exitCode": 0,
+      "seconds": 0.688,
+      "log": "lint.txt",
+      "status": "PASS"
+    },
+    "lint-runtime": {
+      "date": "2026-11-02T09:45:00.983034+00:00",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "npm.cmd",
+        "exec",
+        "--",
+        "oxlint",
+        "src",
+        "services",
+        "packages",
+        "remotion-compositor/src",
+        "scripts",
+        "vite.config.ts"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "exitCode": 0,
+      "seconds": 1.75,
+      "log": "lint-runtime.txt",
+      "status": "PASS"
+    },
+    "agent-tests": {
+      "date": "2026-11-02T09:43:29.339145+00:00",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "npm.cmd",
+        "run",
+        "agent:test"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "exitCode": 0,
+      "seconds": 1.86,
+      "log": "agent-tests.txt",
+      "status": "PASS"
+    },
+    "frame-comparison": {
+      "date": "2026-11-02T09:47:28.084455+00:00",
+      "command": [
+        ".venv/Scripts/python.exe",
+        "reports/current/p107-p109-writeback-20261102/verify-export.py"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "exitCode": 0,
+      "seconds": 8.578,
+      "log": "frame-comparison.txt",
+      "status": "PASS"
+    }
+  },
+  "frontend": {
+    "files": 32,
+    "passed": 325
+  },
+  "agentAPI": {
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "allWarnings": 25,
+    "runtimeWarnings": 14,
+    "newWarnings": 0,
+    "exitCode": 0
+  },
+  "browserSuites": {
+    "export-errors": {
+      "status": "PASS",
+      "checks": 38,
+      "failed": 0,
+      "pageErrors": [],
+      "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+      "runner": {
+        "date": "2026-11-02T09:44:28.920099+00:00",
+        "status": "PASS",
+        "phase": "errors",
+        "commands": [
+          [
+            "D:\\Node.js\\node.EXE",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "52331",
+            "--strictPort"
+          ],
+          [
+            "D:\\Node.js\\node.EXE",
+            "scripts/test-stage-one.cjs"
+          ]
+        ],
+        "baseUrl": "http://127.0.0.1:52331",
+        "capabilities": {
+          "ok": true,
+          "planning": "offline",
+          "schemaVersion": "0.1.0"
+        },
+        "exitCode": 0,
+        "serverStopped": true,
+        "seconds": 23.234
+      }
+    },
+    "media-regression": {
+      "status": "PASS",
+      "checks": 62,
+      "failed": 0,
+      "pageErrors": [],
+      "method": "Actual local Vite HTTP/TCP in Chrome without route interception; UI edits, isolated contexts, portable archives and actual MP4 downloads.",
+      "runner": {
+        "date": "2026-11-02T09:45:20.705404+00:00",
+        "status": "PASS",
+        "phase": "media",
+        "commands": [
+          [
+            "D:\\Node.js\\node.EXE",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "59184",
+            "--strictPort"
+          ],
+          [
+            "D:\\Node.js\\node.EXE",
+            "scripts/test-media-project.cjs"
+          ]
+        ],
+        "baseUrl": "http://127.0.0.1:59184",
+        "capabilities": {
+          "ok": true,
+          "planning": "offline",
+          "schemaVersion": "0.1.0"
+        },
+        "exitCode": 0,
+        "serverStopped": true,
+        "seconds": 71.063
+      }
+    },
+    "generic-model": {
+      "status": "PASS",
+      "checks": 2,
+      "failed": 0,
+      "pageErrors": [],
+      "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+      "runner": {
+        "date": "2026-11-02T09:46:49.793625+00:00",
+        "status": "PASS",
+        "phase": "models",
+        "commands": [
+          [
+            "D:\\Node.js\\node.EXE",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "49195",
+            "--strictPort"
+          ],
+          [
+            "D:\\Node.js\\node.EXE",
+            "scripts/test-stage-one.cjs"
+          ]
+        ],
+        "baseUrl": "http://127.0.0.1:49195",
+        "capabilities": {
+          "ok": true,
+          "planning": "offline",
+          "schemaVersion": "0.1.0"
+        },
+        "exitCode": 0,
+        "serverStopped": true,
+        "seconds": 11.0
+      }
+    }
+  },
+  "frameComparison": {
+    "status": "PASS",
+    "frames": 19,
+    "comparisons": 40,
+    "minimumFull": 0.99367,
+    "minimumScreen": 0.982241
+  },
+  "preservedExistingPreviewProcess": 50948,
+  "humanAcceptance": "PENDING",
+  "documentation": {
+    "command": ".venv/Scripts/python.exe scripts/check-project-docs.py",
+    "exitCode": 0,
+    "status": "PASS",
+    "markdownFiles": 104,
+    "currentErrors": 0,
+    "historicalWarnings": 238,
+    "oldRootReportRestored": true
+  },
+  "notRun": [
+    "30/60 second exports",
+    "Additional model download/import",
+    "All-five-model browser suite",
+    "Full legacy P1-03..05 42-check browser suite",
+    "Clip joining/music tests",
+    "Final user acceptance"
+  ],
+  "priorInterruptedReportsPreserved": true
+}

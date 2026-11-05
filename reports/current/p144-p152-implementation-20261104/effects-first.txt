@@ -1,0 +1,9 @@
+SCENARIO FAIL effects Error: locator.fill: Error: Malformed value
+Call log:
+[2m  - waiting for getByLabel('景深强度', { exact: true })[22m
+[2m    - locator resolved to <input min="0" max="1" step="0.01" value="0.5" type="range" aria-label="景深强度"/>[22m
+[2m    - fill(".65")[22m
+[2m  - attempting fill action[22m
+[2m    - waiting for element to be visible, enabled and editable[22m
+
+SCENARIO FAIL exports Error: ENOENT: no such file or directory, open 'D:\remotion\p0\MultiAgent-3D-Promo-Studio\reports\current\p144-p152-implementation-20261104\effects-first\delivery.json'

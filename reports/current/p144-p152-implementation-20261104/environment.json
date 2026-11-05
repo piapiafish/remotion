@@ -1,0 +1,6 @@
+{
+  "node": "v24.22.2",
+  "python": "Python 3.10.6",
+  "ffprobe": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+  "chrome": "156.0.8078.80"
+}

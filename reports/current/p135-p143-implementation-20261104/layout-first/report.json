@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-04T12:34:51.924Z",
+  "checks": [
+    {
+      "name": "escape-stops-held-camera-key-and-restores-gesture",
+      "status": "FAIL"
+    },
+    {
+      "name": "recorder-layout-1366x768",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-layout-1920x1080",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-layout-1000x800",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-at-125-percent-display-scale",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "keyboard-focus",
+      "status": "FAIL",
+      "error": "Error: escape-stops-held-camera-key-and-restores-gesture"
+    },
+    {
+      "name": "layout",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T12:34:52.369Z",
+      "url": "http://127.0.0.1:61585/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:34:52.851Z",
+      "url": "http://127.0.0.1:61585/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:34:53.499Z",
+      "url": "http://127.0.0.1:61585/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:34:57.943Z",
+      "url": "http://127.0.0.1:61585/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:34:58.423Z",
+      "url": "http://127.0.0.1:61585/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:34:59.117Z",
+      "url": "http://127.0.0.1:61585/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:35:00.633Z",
+      "url": "http://127.0.0.1:61585/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T12:35:05.450Z",
+      "url": "http://127.0.0.1:61585/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:35:05.938Z",
+      "url": "http://127.0.0.1:61585/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:35:06.612Z",
+      "url": "http://127.0.0.1:61585/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:35:07.991Z",
+      "url": "http://127.0.0.1:61585/?automation=1#camera"
+    }
+  ]
+}

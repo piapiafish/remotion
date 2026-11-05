@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-02T00:38:04.942512+00:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "method": "Python Playwright and actual Vite HTTP/TCP, without request interception or offline route fulfillment.",
+  "checks": [
+    {
+      "name": "real Vite HTTP and studio API capabilities respond",
+      "status": "PASS",
+      "capabilities": {
+        "ok": true,
+        "planning": "offline",
+        "schemaVersion": "0.1.0"
+      }
+    },
+    {
+      "name": "Python Playwright loads editor through real localhost TCP",
+      "status": "PASS"
+    },
+    {
+      "name": "real GLB, decoder and WebGL scene become ready over HTTP",
+      "status": "PASS",
+      "ready": {
+        "ready": true,
+        "deviceCount": 1
+      }
+    },
+    {
+      "name": "page imports JSON and saves through the real Vite studio plugin",
+      "status": "PASS"
+    },
+    {
+      "name": "saved independent storyboard bytes match submitted JSON",
+      "status": "PASS"
+    },
+    {
+      "name": "browser downloads matching JSON over HTTP",
+      "status": "PASS"
+    },
+    {
+      "name": "real TCP API continues to reject foreign origins",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "status": "FAIL",
+  "commands": [
+    {
+      "command": [
+        "D:\\Node.js\\node.EXE",
+        "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51832",
+        "--strictPort"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "log": "vite-start.txt"
+    },
+    {
+      "command": [
+        "D:\\Node.js\\node.EXE",
+        "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "51832",
+        "--strictPort"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "log": "vite-restart.txt"
+    }
+  ],
+  "baseUrl": "http://127.0.0.1:51832",
+  "browser": "156.0.8078.76",
+  "savedSession": {
+    "id": "1cd7415c-b048-4837-9d62-6fca33b7ebca",
+    "path": "work/studio/1cd7415c-b048-4837-9d62-6fca33b7ebca/storyboard.json",
+    "outputPath": "output/studio/1cd7415c-b048-4837-9d62-6fca33b7ebca",
+    "status": "READY"
+  },
+  "error": "Page.reload: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n  - waiting for navigation until \"networkidle\"\n",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p101-environment-recheck-20261102\\verify-local-service.py\", line 133, in <module>\n    page.reload(wait_until='networkidle', timeout=60000)\n  File \"D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9097, in reload\n    self._sync(self._impl_obj.reload(timeout=timeout, waitUntil=wait_until))\n  File \"D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n  File \"D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\lib\\site-packages\\playwright\\_impl\\_page.py\", line 560, in reload\n    await self._channel.send(\n  File \"D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n  File \"D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.Error: Page.reload: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n  - waiting for navigation until \"networkidle\"\n\n",
+  "serverStopped": true
+}

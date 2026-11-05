@@ -1,0 +1,14 @@
+PASS one-phone-has-three-independent-clips
+PASS repeated-source-deduplicates-by-content
+PASS overlapping-video-expands-only-its-object-row
+PASS nonoverlapping-videos-auto-share-one-row
+PASS two-intervals-edit-independently
+PASS pause-holds-identical-decoded-screen
+PASS moving-video-up-changes-composited-screen
+PASS layer-undo-preserves-all-clip-times
+PASS blue-handle-only-changes-visibility
+PASS orange-handle-only-changes-play-window
+PASS version-four-saves-all-clips-and-fonts
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"media","status":"PASS"}],"checks":13}

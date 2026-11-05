@@ -1,0 +1,152 @@
+{
+  "date": "2026-11-05T16:50:28.602568+08:00",
+  "originalFeedbackToNewCases": {
+    "A02": [
+      "X01"
+    ],
+    "A03": [
+      "X02"
+    ],
+    "B02": [
+      "X03"
+    ],
+    "B03": [
+      "X04"
+    ],
+    "C03": [
+      "X05"
+    ],
+    "C04": [
+      "X18"
+    ],
+    "D01": [
+      "X08",
+      "X09"
+    ],
+    "D04": [
+      "X10"
+    ],
+    "F01": [
+      "X07",
+      "X14"
+    ],
+    "F02": [
+      "X15"
+    ],
+    "F03": [
+      "X14",
+      "X17"
+    ],
+    "F04": [
+      "X16"
+    ],
+    "G03": [
+      "X19",
+      "X21"
+    ],
+    "H01": [
+      "X22",
+      "X27"
+    ],
+    "H03": [
+      "X24"
+    ],
+    "J01": [
+      "X25",
+      "X26"
+    ]
+  },
+  "passedExcluded": [
+    "A01",
+    "B01",
+    "B04",
+    "B05",
+    "C01",
+    "C02",
+    "D02",
+    "D03",
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "G01",
+    "H02",
+    "H04",
+    "I01",
+    "I02",
+    "I03",
+    "J02",
+    "J03",
+    "K01",
+    "K02",
+    "K03"
+  ],
+  "blankWaived": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05",
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "N01",
+    "N02",
+    "N03",
+    "O01",
+    "O02",
+    "P01",
+    "P02",
+    "Q01",
+    "Q02",
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "G02": "Optional detailed explanation only, not counted as new feature acceptance",
+  "optional": "Save/reopen/export of new fields only; does not restore original L-R suite",
+  "latestConversationCases": {
+    "inPlaceScale": [
+      "X06"
+    ],
+    "truePresence": [
+      "X07"
+    ],
+    "multipleVideoDualRanges": [
+      "X08",
+      "X09",
+      "X11",
+      "X12",
+      "X13"
+    ],
+    "onePlayheadAndTimelineLayout": [
+      "X01",
+      "X14",
+      "X17",
+      "X27"
+    ],
+    "stackedKeyHitPriority": [
+      "X15"
+    ],
+    "cameraKeyboardAndRecorder": [
+      "X18",
+      "X19"
+    ],
+    "cameraSegmentsAndDelete": [
+      "X20",
+      "X21"
+    ],
+    "solidSelectionAndGround": [
+      "X23"
+    ],
+    "textDepthOfField": [
+      "X25",
+      "X26"
+    ]
+  }
+}

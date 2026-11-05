@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-02T15:51:27.901Z",
+  "checks": [
+    {
+      "name": "template-first",
+      "status": "PASS"
+    },
+    {
+      "name": "two-object-timeline-rows",
+      "status": "PASS"
+    },
+    {
+      "name": "text-and-phones-in-one-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "no-placeholder-panels",
+      "status": "PASS"
+    },
+    {
+      "name": "depth-render-produced",
+      "status": "PASS"
+    },
+    {
+      "name": "temporal-sampling-is-repeatable",
+      "status": "PASS"
+    },
+    {
+      "name": "temporal-render-produced",
+      "status": "PASS"
+    },
+    {
+      "name": "effect-presentation-keeps-scene",
+      "status": "PASS",
+      "detail": {
+        "before": 24059233,
+        "after": 24059233,
+        "error": 0
+      }
+    },
+    {
+      "name": "preview-restored-after-export",
+      "status": "PASS",
+      "detail": {
+        "alphaSum": 24059233
+      }
+    },
+    {
+      "name": "page-no-exceptions",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS"
+}

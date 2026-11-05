@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-03T11:58:06.603Z",
+  "checks": [
+    {
+      "name": "legacy-orientation-preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "orientation-buttons-removed",
+      "status": "PASS"
+    },
+    {
+      "name": "empty-lane-continuous-scrub",
+      "status": "PASS"
+    },
+    {
+      "name": "scrub-does-not-edit-document-or-selection",
+      "status": "PASS"
+    },
+    {
+      "name": "ruler-continuous-scrub",
+      "status": "PASS"
+    },
+    {
+      "name": "playhead-grip-can-drag",
+      "status": "PASS"
+    },
+    {
+      "name": "scrolled-timeline-maps-real-content-coordinates",
+      "status": "PASS"
+    },
+    {
+      "name": "floor-fixed-and-other-device-independent",
+      "status": "PASS",
+      "detail": {
+        "ground": -1.5005773088488468,
+        "after": -1.5005773088488468,
+        "otherUnchanged": true,
+        "bottom": -1.4985773088488468,
+        "gap": 0.002
+      }
+    },
+    {
+      "name": "scale-and-downward-motion-stop-at-floor",
+      "status": "PASS",
+      "detail": {
+        "ground": -1.5005773088488468,
+        "after": -1.5005773088488468,
+        "otherUnchanged": true,
+        "bottom": -1.4985773088488468,
+        "gap": 0.002
+      }
+    },
+    {
+      "name": "contact-and-scale-undo-together",
+      "status": "PASS"
+    },
+    {
+      "name": "intermediate-frames-and-720-turn-stay-above-ground",
+      "status": "PASS",
+      "detail": {
+        "min": 0.0020000000000000018,
+        "rotation": 12.566370614359172
+      }
+    },
+    {
+      "name": "fixed-ground-and-legacy-orientation-survive-fresh-session",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "timeline-ground",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

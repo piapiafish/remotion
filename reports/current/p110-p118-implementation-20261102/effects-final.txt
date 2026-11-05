@@ -1,0 +1,10 @@
+PASS template-first
+PASS two-object-timeline-rows
+PASS text-and-phones-in-one-timeline
+PASS no-placeholder-panels
+PASS depth-render-produced
+PASS temporal-sampling-is-repeatable
+PASS temporal-render-produced
+PASS effect-presentation-keeps-scene
+PASS preview-restored-after-export
+PASS page-no-exceptions

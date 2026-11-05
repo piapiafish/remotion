@@ -1,0 +1,1207 @@
+--- a/.gitignore
++++ b/.gitignore
+@@ -44,3 +44,4 @@
+ .env.*
+ __pycache__/
+ *.pyc
++.venv/
+--- a/.oxlintrc.json
++++ b/.oxlintrc.json
+@@ -1,6 +1,7 @@
+ {
+   "$schema": "./node_modules/oxlint/configuration_schema.json",
+   "plugins": ["react", "typescript", "oxc"],
++  "ignorePatterns": ["public/draco/**"],
+   "rules": {
+     "react/rules-of-hooks": "error",
+     "react/only-export-components": ["warn", { "allowConstantExport": true }]
+--- a/DEMO_WINDOWS.bat
++++ b/DEMO_WINDOWS.bat
+@@ -1,7 +1,7 @@
+ @echo off
+ chcp 65001>nul
+ cd /d "%~dp0"
+-call npm run agent:plan -- --brief "一款让日常工作更智能、更高效的产品" --media assets/demo.mp4 --shots 3
++call npm run agent:plan -- --offline --brief "一款让日常工作更智能、更高效的产品" --media assets/demo.mp4 --shots 3 --width 540 --height 960 --fps 30
+ if errorlevel 1 goto failed
+ call npm run agent:validate
+ if errorlevel 1 goto failed
+--- a/SETUP_WINDOWS.bat
++++ b/SETUP_WINDOWS.bat
+@@ -5,14 +5,17 @@
+ call npm ci
+ if errorlevel 1 goto failed
+ echo Installing Python Playwright...
+-python -m pip install playwright
++python -m pip install -r services\render-worker\requirements.txt
++if errorlevel 1 goto failed
++python -m playwright install chromium
+ if errorlevel 1 goto failed
+ echo Installing Remotion compositor...
+ pushd remotion-compositor
+-call npm install
++call npm ci
+ if errorlevel 1 (popd & goto failed)
+ popd
+ call npm run agent:doctor
++if errorlevel 1 goto failed
+ pause
+ exit /b 0
+ :failed
+--- a/package.json
++++ b/package.json
+@@ -10,13 +10,14 @@
+     "build": "tsc -b && vite build",
+     "lint": "oxlint",
+     "preview": "vite preview",
+-    "test": "vitest run",
+-    "test:watch": "vitest",
++    "test": "vitest run src",
++    "test:watch": "vitest src",
+     "agent:plan": "node services/agent-orchestrator/cli.mjs plan",
+     "agent:render": "node services/agent-orchestrator/cli.mjs render",
+     "agent:validate": "node services/agent-orchestrator/cli.mjs validate",
+     "agent:test": "node --test tests/*.test.mjs",
+-    "agent:doctor": "node scripts/doctor.mjs"
++    "agent:doctor": "node scripts/doctor.mjs",
++    "agent:p0": "node scripts/p0-smoke.mjs"
+   },
+   "dependencies": {
+     "@react-three/drei": "^10.7.8",
+--- a/remotion-compositor/src/Film.tsx
++++ b/remotion-compositor/src/Film.tsx
+@@ -4,13 +4,13 @@
+ type Shot={src:string;durationFrames:number;shotId:string};
+ type Overlay={kind:'title'|'subtitle'|'tagline';text:string;startFrame:number;durationFrames:number};
+ export type FilmProps={canvas:{width:number;height:number;fps:number};shots:Shot[];overlays:Overlay[];audio:{src:string;volume:number}|null};
+-const TextOverlay:React.FC<{overlay:Overlay}>=({overlay})=>{
++const TextOverlay:React.FC<{overlay:Overlay;scale:number}>=({overlay,scale})=>{
+  const frame=useCurrentFrame();
+  const enter=interpolate(frame,[0,12],[0,1],{extrapolateLeft:'clamp',extrapolateRight:'clamp'});
+  const exit=interpolate(frame,[Math.max(0,overlay.durationFrames-10),overlay.durationFrames],[1,0],{extrapolateLeft:'clamp',extrapolateRight:'clamp'});
+  const title=overlay.kind==='title';const emphasis=overlay.kind==='tagline';
+- return <AbsoluteFill style={{justifyContent:title?'flex-start':'flex-end',alignItems:'center',padding:36,paddingTop:title?'10%':0,paddingBottom:title?0:emphasis?'13%':'8%',pointerEvents:'none',opacity:Math.min(enter,exit),transform:`translateY(${(1-enter)*30}px)`}}>
+-   <div style={{maxWidth:'92%',textAlign:'center',color:'#ffffff',fontSize:title?64:emphasis?58:45,fontWeight:title?850:720,lineHeight:1.25,letterSpacing:1.5,textShadow:'0 3px 24px rgba(0,0,0,.85)',padding:'12px 25px',borderRadius:16,background:'rgba(4,10,22,.46)',fontFamily:'Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif'}}>{overlay.text}</div>
++ return <AbsoluteFill style={{justifyContent:title?'flex-start':'flex-end',alignItems:'center',padding:36*scale,paddingTop:title?'10%':0,paddingBottom:title?0:emphasis?'13%':'8%',pointerEvents:'none',opacity:Math.min(enter,exit),transform:`translateY(${(1-enter)*30*scale}px)`}}>
++   <div style={{maxWidth:'92%',textAlign:'center',color:'#ffffff',fontSize:(title?64:emphasis?58:45)*scale,fontWeight:title?850:720,lineHeight:1.25,letterSpacing:1.5*scale,textShadow:`0 ${3*scale}px ${24*scale}px rgba(0,0,0,.85)`,padding:`${12*scale}px ${25*scale}px`,borderRadius:16*scale,background:'rgba(4,10,22,.46)',fontFamily:'Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif'}}>{overlay.text}</div>
+  </AbsoluteFill>;
+ };
+ export const PromoFilm:React.FC<FilmProps>=({canvas,shots,overlays,audio})=>{
+@@ -19,7 +19,7 @@
+    {shots.map(shot=>{const at=start;start+=shot.durationFrames;return <Sequence key={shot.shotId} from={at} durationInFrames={shot.durationFrames} name={shot.shotId}>
+      <AbsoluteFill><OffthreadVideo src={staticFile(shot.src)} muted style={{width:'100%',height:'100%',objectFit:'cover'}} /></AbsoluteFill>
+    </Sequence>})}
+-   {overlays.map((overlay,i)=><Sequence key={`${i}-${overlay.startFrame}`} from={overlay.startFrame} durationInFrames={overlay.durationFrames}><TextOverlay overlay={overlay}/></Sequence>)}
++   {overlays.map((overlay,i)=><Sequence key={`${i}-${overlay.startFrame}`} from={overlay.startFrame} durationInFrames={overlay.durationFrames}><TextOverlay overlay={overlay} scale={canvas.width/1080}/></Sequence>)}
+    {audio&&<Audio src={staticFile(audio.src)} volume={Math.max(0,Math.min(audio.volume,1))}/>}
+  </AbsoluteFill>;
+ };
+--- a/scripts/doctor.mjs
++++ b/scripts/doctor.mjs
+@@ -1,4 +1,4 @@
+-import {existsSync,readFileSync,statSync} from 'node:fs';import {spawnSync} from 'node:child_process';
++import {existsSync,readFileSync} from 'node:fs';import {spawnSync} from 'node:child_process';
+ import path from 'node:path';import {fileURLToPath} from 'node:url';
+ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+ const checks=[];
+@@ -9,8 +9,14 @@
+ check('FFprobe',cmd('ffprobe',['-version'])!=='not found',cmd('ffprobe',['-version']));
+ const models=['iphone-17-pro','iphone-17-pro-max','pixel-9-pro-xl','galaxy-s26-ultra'];
+ for(const model of models){const f=path.join(root,'public/devices',model+'.glb');let ok=false;let txt='missing';if(existsSync(f)){const buf=readFileSync(f);ok=buf.subarray(0,4).toString('ascii')==='glTF'&&buf.readUInt32LE(8)===buf.length;txt=`${(buf.length/1048576).toFixed(2)} MiB ${ok?'valid GLB header':'bad binary'}`};check(model,ok,txt)}
+-const dirs=['node_modules','remotion-compositor/node_modules'];
+-for(const dir of dirs)check(dir,existsSync(path.join(root,dir)),existsSync(path.join(root,dir))?'installed':'npm dependencies not installed');
+-const python=process.platform==='win32'?'python':'python3';
+-check('Python Playwright',spawnSync(python,['-c','import playwright.sync_api'],{encoding:'utf8'}).status===0,'python -m pip install playwright');
++for(const entry of ['node_modules/vite/bin/vite.js','remotion-compositor/node_modules/@remotion/cli/remotion-cli.js',
++ 'public/draco/draco_wasm_wrapper.js','public/draco/draco_decoder.wasm',
++ ...['studio','city','sunset','warehouse'].map(name=>`public/environments/${name}.hdr`)]){
++ check(entry,existsSync(path.join(root,entry)),existsSync(path.join(root,entry))?'present':'missing');
++}
++const python=process.env.PYTHON||(process.platform==='win32'?'python':'python3');
++const pyVersion=spawnSync(python,['--version'],{encoding:'utf8'});
++check('Python',pyVersion.status===0,(pyVersion.stdout||pyVersion.stderr||pyVersion.error?.message||'not found').trim());
++const browser=spawnSync(python,[path.join(root,'services/render-worker/worker.py'),'--doctor'],{encoding:'utf8',timeout:45000,env:{...process.env,PYTHONUTF8:'1',NODE_BINARY:process.execPath}});
++check('Playwright browser + WebGL2',browser.status===0,browser.status===0?browser.stdout.trim():(browser.stderr||browser.error?.message||'Failed').slice(-1800));
+ const fine=checks.every(x=>x.ok);console.log(JSON.stringify({checkedAt:new Date().toISOString(),checks},null,2));if(!fine)process.exitCode=1;
+--- a/scripts/p0-smoke.mjs
++++ b/scripts/p0-smoke.mjs
+@@ -0,0 +1,43 @@
++#!/usr/bin/env node
++// Real rendering smoke test. All subprocesses use executable argument arrays.
++import {spawnSync} from 'node:child_process';
++import {readFile,mkdir,writeFile} from 'node:fs/promises';
++import path from 'node:path';
++import {fileURLToPath} from 'node:url';
++const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
++const out=path.join(root,'output','p0-smoke');
++const cli=path.join(root,'services/agent-orchestrator/cli.mjs');
++await mkdir(out,{recursive:true});
++const commands=[];
++function run(program,args){
++ console.log(`\n> ${program} ${args.join(' ')}`);
++ const result=spawnSync(program,args,{cwd:root,env:process.env,encoding:'utf8',maxBuffer:16*1024*1024});
++ process.stdout.write(result.stdout||'');process.stderr.write(result.stderr||'');
++ commands.push({program,args,exitCode:result.status});
++ if(result.status!==0)throw new Error(result.error?.message||`Process exited ${result.status}`);
++}
++const agent=(...args)=>run(process.execPath,[cli,...args]);
++const single=path.join(root,'work/p0-single.json');
++const film=path.join(root,'work/p0-film.json');
++let status='ERROR';
++try{
++ run(process.execPath,['scripts/doctor.mjs']);
++ const common=['--offline','--brief','智能分析；自动规划；精彩呈现','--media','assets/demo.mp4','--width','540','--height','960','--fps','30'];
++ agent('plan',...common,'--shots','1','--output',single);
++ agent('validate','--storyboard',single);
++ agent('render','--storyboard',single,'--out',path.join(out,'single'),'--compose','false');
++ if(process.argv.includes('--force-png'))agent('render','--storyboard',single,'--out',path.join(out,'png-fallback'),'--compose','false','--force-png');
++ agent('plan',...common,'--shots','3','--output',film);
++ agent('validate','--storyboard',film);
++ const filmDir=path.join(out,'film');
++ agent('render','--storyboard',film,'--out',filmDir);
++ const report=JSON.parse(await readFile(path.join(filmDir,'render-report.json'),'utf8'));
++ if(report.status!=='DONE'||report.compositor!=='remotion'||!report.final.audio)throw new Error('Remotion/audio composition did not pass');
++ run('ffmpeg',['-v','error','-i',path.join(filmDir,'final.mp4'),'-f','null','-']);
++ agent('render','--storyboard',film,'--out',filmDir);
++ const cached=JSON.parse(await readFile(path.join(filmDir,'render-report.json'),'utf8'));
++ if(cached.jobs.some(job=>job.status!=='CACHED'))throw new Error('Repeated render did not reuse all shot caches');
++ if(process.argv.includes('--models'))run(process.env.PYTHON||(process.platform==='win32'?'python':'python3'),['scripts/p0-visual.py','--out',path.join(out,'models')]);
++ status='DONE';console.log('\nP0 smoke passed: real single MP4, 3 shots, Remotion + audio, full decoding and cache reuse. Review screenshots for visual quality.');
++}catch(error){console.error(error);process.exitCode=1}
++finally{await writeFile(path.join(out,'smoke-report.json'),JSON.stringify({status,commands},null,2)+'\n')}
+--- a/scripts/p0-visual.py
++++ b/scripts/p0-visual.py
+@@ -0,0 +1,122 @@
++#!/usr/bin/env python3
++"""Real browser/GLB/VideoTexture check. Saves previews; does not synthesize video."""
++import argparse
++import base64
++import hashlib
++import importlib.util
++import json
++from pathlib import Path
++import shutil
++import subprocess
++
++ROOT = Path(__file__).resolve().parents[1]
++spec = importlib.util.spec_from_file_location('worker', ROOT / 'services/render-worker/worker.py')
++worker = importlib.util.module_from_spec(spec)
++spec.loader.exec_module(worker)
++
++AUDIT = r'''async time => {
++ const {getExportContext}=await import('/src/export/renderer.ts');
++ const {seekScreenVideos}=await import('/src/media/screenVideo.ts');
++ const ctx=getExportContext();ctx.setFrameloop('never');
++ try {
++  ctx.applyAt(time);await seekScreenVideos(time);
++  const devices=[];
++  ctx.scene.traverse(group=>{
++   if(group.userData.deviceIndex===undefined)return;
++   let meshCount=0,display=null;
++   group.traverse(mesh=>{
++    if(!mesh.isMesh)return;meshCount++;
++    const map=mesh.material?.uniforms?.map?.value;
++    if(map?.isVideoTexture){
++     const video=map.image;
++     const canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;
++     const c=canvas.getContext('2d');c.drawImage(video,0,0);
++     const data=c.getImageData(0,0,canvas.width,canvas.height).data;
++     // Sample the actual decoder's pixels, not only its currentTime property.
++     let checksum=2166136261;for(const value of data)checksum=Math.imul(checksum^value,16777619);
++     display={currentTime:video.currentTime,readyState:video.readyState,width:video.videoWidth,height:video.videoHeight,pixelChecksum:checksum>>>0,
++       uvMin:mesh.material.uniforms.uUvMin.value.toArray(),uvSpan:mesh.material.uniforms.uUvSpan.value.toArray()};
++    }
++   });
++   devices.push({index:group.userData.deviceIndex,meshCount,display,position:group.position.toArray(),rotation:group.rotation.toArray().slice(0,3),scale:group.scale.x});
++  });
++  return devices;
++ } finally{ctx.setFrameloop('always')}
++}'''
++
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument('--out', default='output/p0/models')
++    parser.add_argument('--port', type=int, default=5181)
++    a = parser.parse_args()
++    out = (ROOT / a.out).resolve(); out.mkdir(parents=True, exist_ok=True)
++    public = ROOT / 'public/__automation__/p0-visual'
++    public.mkdir(parents=True, exist_ok=True)
++    shutil.copyfile(ROOT / 'assets/demo.mp4', public / 'screen.mp4')
++    models = ['iphone-17-pro','iphone-17-pro-max','pixel-9-pro-xl','galaxy-s26-ultra']
++    report = {'status': 'RUNNING', 'models': [], 'errors': []}
++    from playwright.sync_api import sync_playwright
++    with (out / 'vite.log').open('w') as log:
++        server = subprocess.Popen(worker.vite_command(a.port), cwd=ROOT, stdout=log, stderr=log)
++        try:
++            url = f'http://127.0.0.1:{a.port}/'
++            worker.wait_for_server(url, server)
++            with sync_playwright() as pw:
++                browser = pw.chromium.launch(**worker.browser_options())
++                report['browser'] = browser.version
++                try:
++                    page = browser.new_page(viewport={'width': 1280, 'height': 1000})
++                    page.on('pageerror', lambda e: report['errors'].append(str(e)))
++                    # Normal editor also uses local HDR lighting, without automation mode.
++                    page.goto(url, wait_until='networkidle')
++                    page.wait_for_function('window.__mockup?.scene.children.some(o=>o.isGroup)', timeout=30000)
++                    page.screenshot(path=str(out / 'editor.png'))
++                    report['editorStarted'] = True
++                    for model in models:
++                        page.goto(url + '?automation=1', wait_until='networkidle')
++                        shot = {'shotId': model, 'deviceId': model, 'screenAssetId': 'screen', 'durationFrames': 150,
++                                'template': 'hero-straight', 'motion': 'hero-reveal', 'screenFit': 'contain',
++                                'screenOffsetFrames': 0, 'background': '#0b1020'}
++                        project = json.loads(worker.run([worker.node_command(), 'services/compiler/compile-cli.mjs'], input=json.dumps({
++                            'canvas': {'width': 540, 'height': 960, 'fps': 30}, 'shot': shot,
++                            'assetInfo': {'width': 480, 'height': 960, 'duration': 8, 'kind': 'video'},
++                            'publicUrl': '/__automation__/p0-visual/screen.mp4'})).stdout)
++                        ready = page.evaluate('async p=>await window.__PROMO_BRIDGE__.loadProject(p)', project)
++                        result = {'id': model, 'ready': ready, 'samples': []}
++                        hashes = {}
++                        for frame in [0, 75, 149, 75]:
++                            data = page.evaluate('async f=>await window.__PROMO_BRIDGE__.previewFrame(f)', frame)
++                            pixels = base64.b64decode(data.split(',', 1)[1])
++                            sha = hashlib.sha256(pixels).hexdigest()
++                            if frame in hashes:
++                                result['sameTimeRepeatIdentical'] = sha == hashes[frame]
++                            else:
++                                hashes[frame] = sha
++                                (out / f'{model}-{frame:03}.png').write_bytes(pixels)
++                                audit = page.evaluate(AUDIT, frame / 30)
++                                result['samples'].append({'frame': frame, 'pngSha256': sha, 'scene': audit})
++                                if not audit or not audit[0]['display'] or abs(audit[0]['display']['currentTime'] - frame / 30) > .0001:
++                                    raise RuntimeError(f'VIDEO_NOT_SYNCHRONIZED: {model} frame {frame}')
++                        if not result.get('sameTimeRepeatIdentical'):
++                            raise RuntimeError(f'NONDETERMINISTIC_PREVIEW: {model}')
++                        if len(set(x['scene'][0]['display']['pixelChecksum'] for x in result['samples'])) < 2:
++                            raise RuntimeError(f'SCREEN_PIXELS_FROZEN: {model}')
++                        report['models'].append(result)
++                        print(f'[OK] {model}: GLB + live VideoTexture + 0/75/149 frames + repeat determinism', flush=True)
++                    report['status'] = 'DONE' if not report['errors'] else 'ERROR'
++                    if report['errors']:
++                        raise RuntimeError('Browser errors: ' + str(report['errors']))
++                finally:
++                    browser.close()
++        except Exception as e:
++            report['status'] = 'ERROR'; report['error'] = str(e)
++            raise
++        finally:
++            (out / 'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf8')
++            server.terminate()
++            try: server.wait(timeout=6)
++            except subprocess.TimeoutExpired: server.kill(); server.wait()
++            shutil.rmtree(public, ignore_errors=True)
++
++if __name__ == '__main__':
++    main()
+--- a/scripts/remotion-loopback.cjs
++++ b/scripts/remotion-loopback.cjs
+@@ -0,0 +1,16 @@
++// Remotion 4.0.300 enumerates host interfaces even for a local render. Some
++// containers deny that read. Use only the already-known IPv4 loopback there;
++// no permissions, network access, or dependency files are modified.
++const os = require('node:os');
++
++function readInterfaces(read, warn = console.warn) {
++  try { return read(); }
++  catch (error) {
++    if (error.syscall !== 'uv_interface_addresses' || ![1, 13].includes(error.errno)) throw error;
++    warn('REMOTION_LOCAL_LOOPBACK: interface enumeration unavailable; using IPv4 localhost.');
++    return {lo: [{address:'127.0.0.1',netmask:'255.0.0.0',family:'IPv4',mac:'00:00:00:00:00:00',internal:true,cidr:'127.0.0.1/8'}]};
++  }
++}
++const original = os.networkInterfaces.bind(os);
++os.networkInterfaces = () => readInterfaces(original);
++module.exports = {readInterfaces};
+--- a/services/agent-orchestrator/audio.mjs
++++ b/services/agent-orchestrator/audio.mjs
+@@ -0,0 +1,27 @@
++import {spawnSync} from 'node:child_process';
++import {copyFile} from 'node:fs/promises';
++import path from 'node:path';
++
++function run(args){
++ const p=spawnSync('ffmpeg',args,{encoding:'utf8',maxBuffer:4*1024*1024});
++ if(p.status!==0)throw Object.assign(new Error(p.error?.message||p.stderr),{code:'AUDIO_PREPARATION_FAILED'});
++ return p.stderr;
++}
++export function measureVolume(file){
++ const log=run(['-hide_banner','-i',file,'-vn','-af','volumedetect','-f','null','-']);
++ const mean=Number(log.match(/mean_volume:\s*(-?[\d.]+) dB/)?.[1]);
++ const peak=Number(log.match(/max_volume:\s*(-?[\d.]+) dB/)?.[1]);
++ if(!Number.isFinite(mean)||!Number.isFinite(peak))throw Object.assign(new Error('Soundtrack is silent or has no decodable audio'),{code:'AUDIO_SILENT_OR_INVALID'});
++ return {meanDb:mean,peakDb:peak};
++}
++export async function prepareSoundtrack(source,base){
++ const original=measureVolume(source);
++ // The bundled demo measures -50.2 dB mean before the DSL's 0.22 volume:
++ // copying it directly made a technically valid but almost inaudible track.
++ // Only lift exceptionally quiet inputs; preserve normal mastered music.
++ const gainDb=original.meanDb < -35 ? Math.max(0,Math.min(-20-original.meanDb,-1-original.peakDb)) : 0;
++ const file=base+(gainDb>0?'.wav':path.extname(source));
++ if(gainDb>0)run(['-y','-v','error','-i',source,'-vn','-af',`volume=${gainDb}dB`,'-ar','48000','-c:a','pcm_s16le',file]);
++ else await copyFile(source,file);
++ return {file,audit:{source,original,gainDb,prepared:measureVolume(file),note:'Original asset unchanged; constant gain only for inputs below -35 dB mean. DSL volume is applied afterward by Remotion.'}};
++}
+--- a/services/agent-orchestrator/cache.mjs
++++ b/services/agent-orchestrator/cache.mjs
+@@ -0,0 +1,25 @@
++import {readFile, readdir} from 'node:fs/promises';
++import {createHash} from 'node:crypto';
++import path from 'node:path';
++
++// Include rendering code and dependency versions, not just the compiler/bridge.
++export async function engineFingerprint(root) {
++ const files=['package-lock.json','services/compiler/compile.mjs','services/compiler/compile-cli.mjs','services/render-worker/worker.py'];
++ async function visit(dir){
++  for(const item of await readdir(path.join(root,dir),{withFileTypes:true})){
++   const name=path.posix.join(dir,item.name);
++   if(item.isDirectory()) await visit(name);
++   else if(/\.(ts|tsx)$/.test(name)&&!name.includes('.test.')) files.push(name);
++  }
++ }
++ await visit('src');
++ const hash=createHash('sha256');
++ for(const name of files.sort()) hash.update(name).update(await readFile(path.join(root,name)));
++ return hash.digest('hex');
++}
++
++export async function shotFingerprint({shot,canvas,quality,engine,source,model,forcePng=false,allowPngFallback=true}) {
++ const hash=createHash('sha256').update(JSON.stringify({shot,canvas,quality,engine,forcePng,allowPngFallback}));
++ hash.update(await readFile(source)).update(await readFile(model));
++ return hash.digest('hex');
++}
+--- a/services/agent-orchestrator/cli.mjs
++++ b/services/agent-orchestrator/cli.mjs
+@@ -1,27 +1,27 @@
+ #!/usr/bin/env node
+ import {readFile,writeFile,mkdir,copyFile,stat,realpath} from 'node:fs/promises';
+-import {existsSync,createWriteStream} from 'node:fs';
++import {existsSync} from 'node:fs';
+ import path from 'node:path';import {fileURLToPath} from 'node:url';
+-import {spawn,spawnSync} from 'node:child_process';
+-import {createHash} from 'node:crypto';
++import {spawn} from 'node:child_process';
+ import {validateStoryboard,assertStoryboard,safeAssetUri} from '../../packages/video-schema/index.mjs';
+-import {planWithModel} from './planner.mjs';import {inspectMedia} from './critic.mjs';import {callTool,TOOLS} from './tools.mjs';
++import {planWithModel,deterministicPlan} from './planner.mjs';import {inspectMedia} from './critic.mjs';import {callTool,TOOLS} from './tools.mjs';
++import {engineFingerprint,shotFingerprint} from './cache.mjs';
++import {prepareSoundtrack} from './audio.mjs';
+ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+ if(existsSync(path.join(root,'.env')) && typeof process.loadEnvFile==='function') process.loadEnvFile(path.join(root,'.env'));
+ function options(args){const out={};for(let i=0;i<args.length;i++){if(args[i].startsWith('--')){const k=args[i].slice(2);out[k]=args[i+1]?.startsWith('--')?true:args[++i]??true;}}return out;}
+ function err(code,message){const e=new Error(message);e.code=code;return e;}
+ async function json(file,obj){await mkdir(path.dirname(file),{recursive:true});await writeFile(file,JSON.stringify(obj,null,2)+'\n');}
+ async function run(program,args,{cwd=root,env=process.env}={}){return new Promise((resolve,reject)=>{
+- const child=spawn(program,args,{cwd,env,stdio:['ignore','pipe','pipe'],shell:process.platform==='win32' && /\.cmd$/i.test(program)});
++ const child=spawn(program,args,{cwd,env,stdio:['ignore','pipe','pipe'],shell:false});
+  let tail='';
+  child.stdout?.on('data',chunk=>process.stdout.write(chunk));
+  child.stderr?.on('data',chunk=>{process.stderr.write(chunk);tail=(tail+chunk.toString()).slice(-2200)});
+  child.once('error',reject);
+  child.once('close',c=>c===0?resolve():reject(err('PROCESS_FAILED',`${program} exited ${c}: ${tail.trim()}`)));
+  });}
+-async function probe(file){const p=spawnSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',file],{encoding:'utf8'});if(p.status)throw err('PROBE_FAILED',`ffprobe failed: ${p.stderr}`);const d=JSON.parse(p.stdout);const stream=d.streams.find(x=>x.codec_type==='video');if(!stream)throw err('MEDIA_NOT_VIDEO',`No video stream: ${file}`);return {width:stream.width,height:stream.height,duration:Number(d.format?.duration||stream.duration||5)};}
+ function resolveAsset(uri){if(!safeAssetUri(uri)) throw err('ASSET_PATH_UNSAFE',`Unsafe relative asset path: ${uri}`);const resolved=path.resolve(root,uri);if(!resolved.startsWith(root+path.sep))throw err('ASSET_PATH_UNSAFE',uri);return resolved;}
+-async function plan(opt){const storyboard=await planWithModel({brief:opt.brief||'展示产品的智能、流畅与效率',media:opt.media||'assets/demo.mp4',music:opt.music==='none'?null:opt.music||'assets/music-demo.mp3',deviceId:opt.device||'iphone-17-pro',seconds:Number(opt.seconds||5),shots:Number(opt.shots||3),width:Number(opt.width||1080),height:Number(opt.height||1920),fps:Number(opt.fps||30)});const file=path.resolve(root,opt.output||'work/storyboard.json');await json(file,storyboard);console.log(`STORYBOARD: ${file} (${storyboard.shots.length} shots)`);}
++async function plan(opt){const planner=opt.offline?deterministicPlan:planWithModel;const storyboard=await planner({brief:opt.brief||'展示产品的智能、流畅与效率',media:opt.media||'assets/demo.mp4',music:opt.music==='none'?null:opt.music||'assets/music-demo.mp3',deviceId:opt.device||'iphone-17-pro',seconds:Number(opt.seconds||5),shots:Number(opt.shots||3),width:Number(opt.width||1080),height:Number(opt.height||1920),fps:Number(opt.fps||30)});const file=path.resolve(root,opt.output||'work/storyboard.json');await json(file,storyboard);console.log(`STORYBOARD: ${file} (${storyboard.shots.length} shots)`);}
+ async function render(opt){const file=path.resolve(root,opt.storyboard||'work/storyboard.json');const board=assertStoryboard(JSON.parse(await readFile(file,'utf8')));
+  const dir=path.resolve(root,opt.out||'output');await mkdir(dir,{recursive:true});const logFile=path.join(dir,'render-report.json');const report={schemaVersion:board.schemaVersion,startedAt:new Date().toISOString(),status:'RUNNING',jobs:[],warnings:[]};
+  async function writeReport(){await json(logFile,report)};
+@@ -29,26 +29,34 @@
+  try{
+   for(const asset of board.assets){const full=resolveAsset(asset.uri);if(!existsSync(full))throw err('ASSET_MISSING',`Not found: ${full}`);const actual=await stat(full);if(!actual.isFile())throw err('ASSET_NOT_FILE',full);if(!(await realpath(full)).startsWith(root+path.sep)) throw err('ASSET_PATH_UNSAFE','Symlink points outside project');}
+   const shotDir=path.join(dir,'shots');await mkdir(shotDir,{recursive:true});
++  const engine=await engineFingerprint(root);
+   for(const shot of board.shots){
+    const job={id:shot.shotId,status:'PENDING',startedAt:new Date().toISOString()};report.jobs.push(job);await writeReport();
+    const output=path.join(shotDir,shot.shotId+'.mp4');
+    const asset=board.assets.find(a=>a.id===shot.screenAssetId);const full=resolveAsset(asset.uri);
+-   const fingerprint=createHash('sha256').update(JSON.stringify({shot,canvas:board.canvas,quality:board.projectPolicy?.renderQuality||'standard',engineVersion:'0.1.0'})).update(await readFile(full)).update(await readFile(path.join(root,'services/compiler/compile.mjs'))).update(await readFile(path.join(root,'src/automation/bridge.ts'))).digest('hex');
++   const quality=board.projectPolicy?.renderQuality||'standard';
++   const forcePng=!!opt['force-png'];const allowPngFallback=board.projectPolicy?.allowPngFallback!==false;
++   const fingerprint=await shotFingerprint({shot,canvas:board.canvas,quality,engine,source:full,model:path.join(root,'public/devices',shot.deviceId+'.glb'),forcePng,allowPngFallback});
+    const stamp=path.join(shotDir,shot.shotId+'.sha256');
+-   if(existsSync(output)&&existsSync(stamp)&&(await readFile(stamp,'utf8')).trim()===fingerprint&&inspectMedia(output).ok){job.status='CACHED';job.output=output;continue;}
++   const spec={expectedWidth:board.canvas.width,expectedHeight:board.canvas.height,expectedFps:board.canvas.fps,expectedSeconds:shot.durationFrames/board.canvas.fps};
++   if(existsSync(output)&&existsSync(stamp)&&(await readFile(stamp,'utf8')).trim()===fingerprint&&inspectMedia(output,spec).ok){job.status='CACHED';job.output=output;await writeReport();continue;}
+    job.status='RENDERING';await writeReport();
+    const py=process.env.PYTHON|| (process.platform==='win32'?'python':'python3');
+-   const args=['services/render-worker/worker.py','--shot',JSON.stringify(shot),'--canvas',JSON.stringify(board.canvas),'--asset',full,'--output',output,'--job',shot.shotId,'--quality',board.projectPolicy?.renderQuality||'standard'];
+-   await run(py,args);const check=inspectMedia(output,{minSeconds:shot.durationFrames/board.canvas.fps-0.25});
++   // JSON goes through a UTF-8 file, never through cmd.exe quoting on Windows.
++   const jobFile=path.join(shotDir,shot.shotId+'.job.json');
++   await json(jobFile,{shot,canvas:board.canvas,asset:full,output,job:shot.shotId,quality,forcePng,allowPngFallback});
++   await run(py,['services/render-worker/worker.py','--job-file',jobFile],{env:{...process.env,NODE_BINARY:process.execPath,PYTHONUTF8:'1'}});const check=inspectMedia(output,spec);
+    if(!check.ok)throw err(check.error,JSON.stringify(check));
+    job.status='DONE';job.quality=check;job.output=output;await writeFile(stamp,fingerprint+'\n');await writeReport();
+   }
+   report.status='SHOTS_DONE'; await writeReport();
+-  if(opt.compose==='false'){console.log(`Rendered shots: ${shotDir}`);return;}
++  if(opt.compose==='false'){report.finishedAt=new Date().toISOString();await writeReport();console.log(`Rendered shots: ${shotDir}`);return;}
+   const video=path.join(dir,'final.mp4');
+-  await compose(board,dir,video,opt);
+-  const review=inspectMedia(video,{minSeconds:board.shots.reduce((n,s)=>n+s.durationFrames,0)/board.canvas.fps-0.5});
+-  report.final=review;report.status=review.ok?'DONE':'REVIEW_FAILED';report.finishedAt=new Date().toISOString();await writeReport();
++  report.compositor=await compose(board,dir,video,opt);
++  const review=inspectMedia(video,{expectedWidth:board.canvas.width,expectedHeight:board.canvas.height,expectedFps:board.canvas.fps,expectedSeconds:board.shots.reduce((n,s)=>n+s.durationFrames,0)/board.canvas.fps,requireAudio:!!board.audio?.length});
++  report.final=review;report.status=review.ok?(report.compositor==='remotion'?'DONE':'COMPATIBILITY_ONLY'):'REVIEW_FAILED';report.finishedAt=new Date().toISOString();await writeReport();
++  if(report.compositor!=='remotion')report.warnings.push('FFmpeg compatibility output: subtitles not rendered; P0 full composition has NOT passed.');
++  await writeReport();
+   if(!review.ok) throw err('FINAL_QA_FAILED',JSON.stringify(review));
+   console.log(`FINISHED: ${video}`);
+  }catch(e){for(const job of report.jobs)if(job.status==='RENDERING')job.status='FAILED';report.status='ERROR';report.error={code:e.code||'EXECUTION_FAILED',message:String(e.message||e)};report.finishedAt=new Date().toISOString();await writeReport();throw e;}
+@@ -57,17 +65,20 @@
+  const compositor=path.join(root,'remotion-compositor');
+  const assetDir=path.join(compositor,'public','media');await mkdir(assetDir,{recursive:true});
+  const clips=[];for(const shot of board.shots){const name=`${shot.shotId}.mp4`;await copyFile(path.join(dir,'shots',name),path.join(assetDir,name));clips.push({src:`media/${name}`,durationFrames:shot.durationFrames,shotId:shot.shotId});}
+- let audio=null;const audioRef=board.audio?.[0];if(audioRef){const a=board.assets.find(x=>x.id===audioRef.assetId);if(a){const ext=path.extname(a.uri).toLowerCase();await copyFile(resolveAsset(a.uri),path.join(assetDir,'soundtrack'+ext));audio={src:`media/soundtrack${ext}`,volume:audioRef.volume??.2};}}
++ let audio=null;const audioRef=board.audio?.[0];if(audioRef){const a=board.assets.find(x=>x.id===audioRef.assetId);if(a){const prepared=await prepareSoundtrack(resolveAsset(a.uri),path.join(assetDir,'soundtrack'));audio={src:`media/${path.basename(prepared.file)}`,volume:audioRef.volume??.2};await json(path.join(dir,'audio-preparation.json'),prepared.audit);}}
+  const props={canvas:board.canvas,shots:clips,overlays:board.overlays||[],audio};const propsPath=path.join(dir,'film.remotion.json');await json(propsPath,props);
+- const compositorCli=path.join(compositor,'node_modules','.bin',process.platform==='win32'?'remotion.cmd':'remotion');
+- if(opt.compositor==='ffmpeg' || !existsSync(compositorCli)){
+-  console.warn('Remotion not installed or ffmpeg selected: using FFmpeg concat as compatibility fallback. For titles and music install Remotion.');
++ const compositorCli=path.join(compositor,'node_modules','@remotion','cli','remotion-cli.js');
++ if(opt.compositor!=='ffmpeg'&&!existsSync(compositorCli))throw err('REMOTION_MISSING','Run npm ci in remotion-compositor. Explicit --compositor ffmpeg only tests compatibility, without subtitles.');
++ if(opt.compositor==='ffmpeg'){
++  console.warn('FFmpeg compatibility mode: subtitles are not rendered. This is not a full P0 composition.');
+   const list=path.join(dir,'shots.txt');await writeFile(list,clips.map(c=>`file '${path.join(dir,'shots',c.shotId+'.mp4').replaceAll('\\','/').replaceAll("'","'\\''")}'`).join('\n')+'\n');
+-  const args=['-y','-f','concat','-safe','0','-i',list];if(audio){args.push('-stream_loop','-1','-i',resolveAsset(board.assets.find(x=>x.id===audioRef.assetId).uri));}
++  const args=['-y','-f','concat','-safe','0','-i',list];if(audio){args.push('-stream_loop','-1','-i',path.join(compositor,'public',audio.src));}
+   args.push('-map','0:v:0');if(audio) args.push('-map','1:a:0');args.push('-c:v','libx264','-pix_fmt','yuv420p','-r',String(board.canvas.fps),'-movflags','+faststart');if(audio)args.push('-c:a','aac','-b:a','192k','-shortest');else args.push('-an');args.push(output);
+-  await run('ffmpeg',args);return;
++  await run('ffmpeg',args);return 'ffmpeg';
+  }
+- await run(compositorCli,['render','src/index.ts','PromoFilm',output,`--props=${propsPath}`,'--log=error'],{cwd:compositor});
++ const args=['--require',path.join(root,'scripts/remotion-loopback.cjs'),compositorCli,'render','src/index.ts','PromoFilm',output,`--props=${propsPath}`,'--log=error',`--concurrency=${process.env.REMOTION_CONCURRENCY||2}`];
++ if(process.env.CHROME_PATH)args.push(`--browser-executable=${process.env.CHROME_PATH}`);
++ await run(process.execPath,args,{cwd:compositor});return 'remotion';
+ }
+ async function main(){const [cmd,...args]=process.argv.slice(2);const opt=options(args);if(cmd==='tool'){console.log(JSON.stringify(await callTool(opt.name,JSON.parse(opt.input||'{}')),null,2));return;}if(cmd==='plan')return plan(opt);if(cmd==='render')return render(opt);if(cmd==='validate'){const b=JSON.parse(await readFile(path.resolve(root,opt.storyboard||'work/storyboard.json'),'utf8'));const v=validateStoryboard(b);console.log(JSON.stringify(v,null,2));if(!v.ok)process.exitCode=1;return;}if(cmd==='inspect'){console.log(JSON.stringify(inspectMedia(path.resolve(root,opt.file)),null,2));return;}
+  console.log('Agent tools: '+TOOLS.join(', ')); console.log('Commands:\n  node services/agent-orchestrator/cli.mjs plan --brief "产品描述" --media assets/demo.mp4 --shots 3\n  node services/agent-orchestrator/cli.mjs validate --storyboard work/storyboard.json\n  node services/agent-orchestrator/cli.mjs render --storyboard work/storyboard.json --out output [--compositor ffmpeg]\n  node services/agent-orchestrator/cli.mjs inspect --file output/final.mp4');
+--- a/services/agent-orchestrator/critic.mjs
++++ b/services/agent-orchestrator/critic.mjs
+@@ -1,12 +1,17 @@
+ import {spawnSync} from 'node:child_process';
+ import {statSync,existsSync} from 'node:fs';
+-export function inspectMedia(file,{minSeconds=0.1}={}){
++export function inspectMedia(file,{minSeconds=0.1,expectedWidth,expectedHeight,expectedFps,expectedSeconds,requireAudio=false}={}){
+  if(!existsSync(file)) return {ok:false,error:'OUTPUT_MISSING',file};
+  const bytes=statSync(file).size; if(bytes<1024) return {ok:false,error:'OUTPUT_TOO_SMALL',file,bytes};
+- const probe=spawnSync('ffprobe',['-v','error','-show_entries','format=duration:stream=codec_name,width,height,codec_type','-of','json',file],{encoding:'utf8'});
++ const probe=spawnSync('ffprobe',['-v','error','-show_entries','format=duration:stream=codec_name,width,height,codec_type,avg_frame_rate,nb_frames','-of','json',file],{encoding:'utf8'});
+  if(probe.status!==0) return {ok:false,error:'FFPROBE_FAILED',details:probe.stderr};
+  const info=JSON.parse(probe.stdout);const duration=Number(info.format?.duration)||0;
+  const video=info.streams?.find(s=>s.codec_type==='video');
+  if(!video || !video.width || !video.height || duration<minSeconds) return {ok:false,error:'INVALID_VIDEO',duration,info};
+- return {ok:true,bytes,duration,width:video.width,height:video.height,codec:video.codec_name,file};
++ const [n,d]=String(video.avg_frame_rate||'0/1').split('/').map(Number);const fps=n/d;
++ const audio=info.streams.some(s=>s.codec_type==='audio');
++ if((expectedWidth&&video.width!==expectedWidth)||(expectedHeight&&video.height!==expectedHeight)||
++    (expectedFps&&Math.abs(fps-expectedFps)>.01)||(expectedSeconds&&Math.abs(duration-expectedSeconds)>.15)||
++    (requireAudio&&!audio)) return {ok:false,error:'OUTPUT_SPEC_MISMATCH',info,duration,fps,audio};
++ return {ok:true,bytes,duration,width:video.width,height:video.height,fps,frames:Number(video.nb_frames)||null,audio,codec:video.codec_name,file};
+ }
+--- a/services/render-worker/requirements.txt
++++ b/services/render-worker/requirements.txt
+@@ -0,0 +1 @@
++playwright==1.58.0
+--- a/services/render-worker/worker.py
++++ b/services/render-worker/worker.py
+@@ -13,7 +13,43 @@
+ from pathlib import Path
+ ROOT = Path(__file__).resolve().parents[2]
+ 
++def node_command():
++    node = os.environ.get('NODE_BINARY') or shutil.which('node')
++    if not node:
++        raise RuntimeError('NODE_MISSING: install Node.js 22+')
++    return node
++
++def vite_command(port):
++    # Invoke the JS entry point directly. Windows cannot Popen npm.cmd without
++    # cmd.exe, which would re-interpret quotes and special characters.
++    return [node_command(), str(ROOT / 'node_modules/vite/bin/vite.js'),
++            '--host', '127.0.0.1', '--port', str(port), '--strictPort']
++
++def extract_frames(archive, destination, count):
++    expected = [f'frame_{i:04d}.png' for i in range(count)]
++    with zipfile.ZipFile(archive) as z:
++        names = z.namelist()
++        if sorted(names) != sorted(expected) or any(x.file_size == 0 for x in z.infolist()):
++            raise RuntimeError('INVALID_FRAME_SEQUENCE: expected consecutive nonempty frame_0000.png files')
++        # A previous failed export must not leave extra frames in the new clip.
++        shutil.rmtree(destination, ignore_errors=True)
++        destination.mkdir(parents=True)
++        z.extractall(destination)
++
++def verify_output(file, canvas, count):
++    result = json.loads(run(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(file)]).stdout)
++    video = next((s for s in result['streams'] if s['codec_type'] == 'video'), {})
++    fps = video.get('avg_frame_rate', '0/1').split('/')
++    rate = float(fps[0]) / max(1, float(fps[-1]))
++    duration = float(result.get('format', {}).get('duration', 0))
++    if (video.get('width') != canvas['width'] or video.get('height') != canvas['height'] or
++            abs(rate - canvas['fps']) > .01 or abs(duration - count / canvas['fps']) > .15 or
++            int(video.get('nb_frames', 0)) != count):
++        raise RuntimeError('OUTPUT_SPEC_MISMATCH: ' + json.dumps(result))
++    return result
++
+ def run(args, **kwargs):
++    kwargs.setdefault('encoding', 'utf8')
+     proc = subprocess.run(args, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, **kwargs)
+     if proc.returncode:
+         raise RuntimeError(f"{' '.join(map(str, args))}\n{proc.stderr[-2500:]}")
+@@ -26,6 +62,29 @@
+         if candidate and Path(candidate).is_file():
+             return candidate
+     return None
++
++def browser_options():
++    options = {'headless': True, 'timeout': 30000, 'args': ['--no-sandbox', '--enable-webgl', '--use-gl=angle',
++               '--enable-unsafe-swiftshader', '--disable-dev-shm-usage']}
++    chrome = detect_browser()
++    if os.environ.get('CHROME_PATH') and chrome != os.environ['CHROME_PATH']:
++        raise RuntimeError('CHROME_PATH does not point to an existing browser executable')
++    if chrome:
++        options['executable_path'] = chrome
++    return options
++
++def browser_doctor():
++    from playwright.sync_api import sync_playwright
++    with sync_playwright() as playwright:
++        browser = playwright.chromium.launch(**browser_options())
++        try:
++            page = browser.new_page()
++            supported = page.evaluate('!!document.createElement("canvas").getContext("webgl2")')
++            print(json.dumps({'browser': browser.version, 'path': detect_browser() or 'Playwright managed', 'webgl2': supported}))
++            if not supported:
++                raise RuntimeError('WEBGL2_UNAVAILABLE')
++        finally:
++            browser.close()
+ 
+ def wait_for_server(url, process, limit=65):
+     started = time.monotonic()
+@@ -42,9 +101,24 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser()
++    parser.add_argument('--doctor', action='store_true')
++    parser.add_argument('--job-file')
++    parser.add_argument('--force-png', action='store_true')
++    parser.add_argument('--no-png-fallback', action='store_true')
+     for flag in ('shot', 'canvas', 'asset', 'output', 'job', 'quality'):
+-        parser.add_argument('--' + flag, required=True)
++        parser.add_argument('--' + flag)
+     a = parser.parse_args()
++    if a.doctor:
++        browser_doctor()
++        return
++    if a.job_file:
++        job = json.loads(Path(a.job_file).read_text(encoding='utf8'))
++        for key in ('shot', 'canvas', 'asset', 'output', 'job', 'quality'):
++            setattr(a, key, json.dumps(job[key]) if key in ('shot', 'canvas') else job[key])
++        a.force_png = job.get('forcePng', a.force_png)
++        a.no_png_fallback = not job.get('allowPngFallback', not a.no_png_fallback)
++    if any(getattr(a, key) is None for key in ('shot', 'canvas', 'asset', 'output', 'job', 'quality')):
++        parser.error('provide --job-file, or all six original job flags')
+     shot = json.loads(a.shot)
+     canvas = json.loads(a.canvas)
+     try:
+@@ -52,6 +126,8 @@
+     except ImportError as e:
+         raise RuntimeError('Run: python -m pip install playwright') from e
+     source = Path(a.asset).resolve()
++    if not source.is_file():
++        raise RuntimeError(f'ASSET_MISSING: {source}')
+     out = Path(a.output).resolve()
+     out.parent.mkdir(parents=True, exist_ok=True)
+     job_name = ''.join(c for c in a.job if c.isalnum() or c in ('-', '_'))[:64]
+@@ -79,40 +155,48 @@
+         raise RuntimeError('MEDIA_NOT_VIDEO')
+     info = {'width': stream['width'], 'height': stream['height'], 'duration': float(metadata.get('format', {}).get('duration') or 1), 'kind': 'video'}
+     public_url = f'/__automation__/{job_name}/{media.name}'
+-    compiled = run(['node', 'services/compiler/compile-cli.mjs'], input=json.dumps({'canvas': canvas, 'shot': shot, 'assetInfo': info, 'publicUrl': public_url}))
++    compiled = run([node_command(), 'services/compiler/compile-cli.mjs'], input=json.dumps({'canvas': canvas, 'shot': shot, 'assetInfo': info, 'publicUrl': public_url}))
+     project = json.loads(compiled.stdout)
+     out.with_suffix('.project.json').write_text(json.dumps(project, ensure_ascii=False, indent=2), encoding='utf8')
+     port = int(os.environ.get('PROMO_PORT', '5178'))
+     url = f'http://127.0.0.1:{port}/?automation=1'
+-    npm_command = 'npm.cmd' if os.name == 'nt' else 'npm'
+-    server = subprocess.Popen([npm_command, 'run', 'dev', '--', '--host', '127.0.0.1', '--port', str(port), '--strictPort'],
+-                              cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
++    diagnostics = {'status': 'RUNNING', 'shotId': shot['shotId'], 'frameCount': shot['durationFrames'], 'forcePng': a.force_png}
++    temporary = out.with_name(out.stem + '.partial.mp4')
++    server_log = out.with_suffix('.vite.log').open('w', encoding='utf8')
++    server = subprocess.Popen(vite_command(port), cwd=ROOT, stdout=server_log, stderr=subprocess.STDOUT)
+     try:
+         wait_for_server(url, server)
+         with sync_playwright() as playwright:
+             chrome_path = detect_browser()
+-            kwargs = {'headless': True, 'args': ['--no-sandbox', '--enable-webgl', '--use-gl=angle',
+-                       '--enable-unsafe-swiftshader', '--disable-dev-shm-usage']}
+-            if chrome_path:
+-                kwargs['executable_path'] = chrome_path
+-            browser = playwright.chromium.launch(**kwargs)
++            browser = playwright.chromium.launch(**browser_options())
++            diagnostics['browser'] = {'version': browser.version, 'path': chrome_path or 'Playwright managed Chromium'}
+             try:
+                 context = browser.new_context(accept_downloads=True, viewport={'width': min(canvas['width'], 1600),
+                                                   'height': min(canvas['height'], 1200)}, device_scale_factor=1)
+                 page = context.new_page()
+                 errors = []
+                 page.on('pageerror', lambda exc: errors.append(str(exc)))
++                page.on('console', lambda msg: print(f'Browser {msg.type}: {msg.text}', flush=True) if msg.type == 'error' else None)
++                page.on('requestfailed', lambda request: print(f'Request failed: {request.url}: {request.failure}', flush=True))
+                 page.goto(url, wait_until='domcontentloaded', timeout=60000)
+                 page.wait_for_function('!!window.__PROMO_BRIDGE__', timeout=30000)
+                 result = page.evaluate('async p => await window.__PROMO_BRIDGE__.loadProject(p)', project)
++                diagnostics['ready'] = result
+                 print(f'Model ready: {result}', flush=True)
+                 preview = page.evaluate('async () => await window.__PROMO_BRIDGE__.previewFrame(0)')
+                 out.with_suffix('.preview.png').write_bytes(base64.b64decode(preview.split(',', 1)[1]))
+                 try:
++                    if a.force_png:
++                        raise RuntimeError('PNG fallback explicitly requested for regression verification')
+                     with page.expect_download(timeout=600000) as pending:
+                         page.evaluate('async v => await window.__PROMO_BRIDGE__.renderDownload(v.name,v.quality)', {'name': out.name, 'quality': a.quality})
+-                    pending.value.save_as(str(out))
++                    pending.value.save_as(str(temporary))
++                    diagnostics['exportPath'] = 'webcodecs-mp4'
+                 except Exception as err:
++                    if a.no_png_fallback:
++                        raise
++                    diagnostics['fallbackReason'] = str(err)
++                    diagnostics['exportPath'] = 'png-ffmpeg'
+                     print(f'MP4 encoder unavailable: {err}\nTrying PNG frame sequence fallback.', file=sys.stderr, flush=True)
+                     archive = out.with_suffix('.frames.zip')
+                     with page.expect_download(timeout=600000) as pending:
+@@ -120,24 +204,31 @@
+                     pending.value.save_as(str(archive))
+                     frames = out.parent / (job_name + '-frames')
+                     frames.mkdir(parents=True, exist_ok=True)
+-                    with zipfile.ZipFile(archive) as z:
+-                        for entry in z.infolist():
+-                            if not entry.filename.startswith('frame_') or not entry.filename.endswith('.png') or '/' in entry.filename or '..' in entry.filename:
+-                                raise RuntimeError('Unsafe PNG sequence name')
+-                        z.extractall(frames)
+-                    run(['ffmpeg', '-y', '-framerate', str(canvas['fps']), '-i', str(frames / 'frame_%04d.png'),
+-                         '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(out)])
++                    extract_frames(archive, frames, shot['durationFrames'])
++                    run(['ffmpeg', '-y', '-framerate', str(canvas['fps']), '-start_number', '0', '-i', str(frames / 'frame_%04d.png'),
++                         '-frames:v', str(shot['durationFrames']), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(temporary)])
+                 if errors:
+-                    print('Browser errors: ' + '\n'.join(errors[-3:]), file=sys.stderr)
++                    raise RuntimeError('BROWSER_ERRORS: ' + '\n'.join(errors[-3:]))
++                diagnostics['ffprobe'] = verify_output(temporary, canvas, shot['durationFrames'])
++                temporary.replace(out)
++                diagnostics['status'] = 'DONE'
+                 context.close()
+             finally:
+                 browser.close()
++    except Exception as exc:
++        diagnostics['status'] = 'ERROR'
++        diagnostics['error'] = str(exc)
++        raise
+     finally:
++        out.with_suffix('.render.json').write_text(json.dumps(diagnostics, ensure_ascii=False, indent=2), encoding='utf8')
++        temporary.unlink(missing_ok=True)
+         server.terminate()
+         try:
+             server.wait(timeout=6)
+         except subprocess.TimeoutExpired:
+             server.kill()
++            server.wait()
++        server_log.close()
+         shutil.rmtree(public, ignore_errors=True)
+ 
+ if __name__ == '__main__':
+--- a/src/automation/bridge.ts
++++ b/src/automation/bridge.ts
+@@ -4,7 +4,7 @@
+ import { loadBackdrop } from '../export/backdrop'
+ import { exportVideo, supportedVideoFormats } from '../export/video'
+ import { exportPngSequence } from '../export/sequence'
+-import { exportStillPng } from '../export/still'
++import { beginFrameExport } from '../export/frameRenderer'
+ import { useProjectStore } from '../store/project'
+ import { hasScreenVideos, seekScreenVideos, waitForScreenVideosReady } from '../media/screenVideo'
+ import type { Project } from '../store/schema'
+@@ -28,13 +28,21 @@
+  while(performance.now()-started<timeoutMs){
+   const ctx=getExportContext();
+   if(ctx){
+-   let hasDevice=false;
++   const readyDevices=new Set<number>();
+    ctx.scene.traverse(obj=>{
+      if(obj.userData?.deviceIndex !== undefined){
+-       obj.traverse(inner=>{if('isMesh' in inner && inner.isMesh) hasDevice=true})
++       const device=useProjectStore.getState().project.devices[obj.userData.deviceIndex]
++       obj.traverse(inner=>{
++         if(!('isMesh' in inner) || !inner.isMesh)return
++         const material=(inner as import('three').Mesh).material as import('three').ShaderMaterial
++         // A body mesh or an orphaned video registration does not prove that
++         // the display has its live VideoTexture attached.
++         if(!device?.screen || (material.uniforms?.map?.value?.image &&
++            (device.screen.kind!=='video' || material.uniforms.map.value.isVideoTexture)))readyDevices.add(obj.userData.deviceIndex)
++       })
+      }
+    })
+-   if(hasDevice){
++   if(readyDevices.size===useProjectStore.getState().project.devices.length){
+      const needsVideo=useProjectStore.getState().project.devices.some(d=>d.screen?.kind==='video')
+      const videosReady=needsVideo ? (hasScreenVideos() && await waitForScreenVideosReady(750)) : true
+      if(videosReady){
+@@ -62,10 +70,16 @@
+  const p=useProjectStore.getState().project
+  const ctx=getExportContext();if(!ctx)throw new Error('RENDER_CONTEXT_MISSING')
+  const t=Math.max(0,Math.min(frameIndex,p.duration*p.fps-1))/p.fps
+- ctx.applyAt(t)
+- if(hasScreenVideos())await seekScreenVideos(t)
+  const params=await commonParams(quality)
+- const blob=await exportStillPng(params)
++ // Freeze preview before the asynchronous seek. SceneDriver would otherwise
++ // overwrite the requested pose/video with the paused UI playhead mid-seek.
++ const exporter=beginFrameExport(params)
++ let blob:Blob
++ try{
++   ctx.applyAt(t)
++   if(hasScreenVideos())await seekScreenVideos(t)
++   blob=await exporter.renderFrame().convertToBlob({type:'image/png'})
++ }finally{exporter.dispose()}
+  const base64=await new Promise<string>((resolve,reject)=>{const f=new FileReader();f.onload=()=>resolve(String(f.result));f.onerror=()=>reject(f.error);f.readAsDataURL(blob)})
+  return base64
+ }
+--- a/src/media/screenVideo.test.ts
++++ b/src/media/screenVideo.test.ts
+@@ -1,5 +1,6 @@
+-import { describe, expect, it } from 'vitest'
+-import { screenTimeAt } from './screenVideo'
++import { afterEach, describe, expect, it, vi } from 'vitest'
++import type * as THREE from 'three'
++import { createScreenVideo, hasScreenVideos, screenTimeAt, seekScreenVideos, type ScreenVideo } from './screenVideo'
+ 
+ /*
+  * The one expression the whole video feature rests on (§8.3):
+@@ -37,3 +38,51 @@
+     expect(screenTimeAt(-5, 10)).toBe(0)
+   })
+ })
++
++describe('exact export video seek', () => {
++  let entry: ScreenVideo | null = null
++  class FakeVideo extends EventTarget {
++    src = ''; muted = false; playsInline = false; loop = false; preload = ''; crossOrigin = ''
++    paused = true; readyState = 2; seeking = false; currentTime = 0; error = null
++    pause() { this.paused = true }
++    load() {}
++    removeAttribute() {}
++  }
++  function video() {
++    const el = new FakeVideo()
++    vi.stubGlobal('document', { createElement: () => el })
++    vi.stubGlobal('HTMLMediaElement', { HAVE_METADATA: 1, HAVE_CURRENT_DATA: 2 })
++    entry = createScreenVideo('/test.mp4', 8, { capabilities: { getMaxAnisotropy: () => 1 } } as THREE.WebGLRenderer)
++    return el
++  }
++  afterEach(() => { entry?.dispose(); entry = null; vi.unstubAllGlobals(); vi.useRealTimers() })
++
++  it('waits for seeked and uploads exactly the requested frame', async () => {
++    const el = video()
++    const pending = seekScreenVideos(1.25)
++    expect(el.currentTime).toBe(1.25)
++    el.dispatchEvent(new Event('seeked'))
++    await pending
++    expect(entry!.texture.version).toBeGreaterThan(0)
++  })
++  it('fails instead of encoding a stale frame after a timeout', async () => {
++    vi.useFakeTimers(); video()
++    const check = expect(seekScreenVideos(2, 20)).rejects.toThrow('SCREEN_VIDEO_SEEK_TIMEOUT')
++    await vi.advanceTimersByTimeAsync(21); await check
++  })
++  it('rejects an unready decoder', async () => {
++    const el = video(); el.readyState = 0
++    await expect(seekScreenVideos(0)).rejects.toThrow('SCREEN_VIDEO_NOT_READY')
++  })
++  it('rejects a decoder error', async () => {
++    const el = video(); const check = expect(seekScreenVideos(2)).rejects.toThrow('SCREEN_VIDEO_DECODE_FAILED')
++    el.dispatchEvent(new Event('error')); await check
++  })
++  it('holds the final decodable frame and removes disposed registrations', async () => {
++    const el = video(); const pending = seekScreenVideos(100)
++    expect(el.currentTime).toBeLessThan(8)
++    expect(el.currentTime).toBeGreaterThan(7.99)
++    el.dispatchEvent(new Event('seeked')); await pending
++    entry!.dispose(); expect(hasScreenVideos()).toBe(false)
++  })
++})
+--- a/src/media/screenVideo.ts
++++ b/src/media/screenVideo.ts
+@@ -138,36 +138,41 @@
+  * repeated a dozen times and then a jump.
+  *
+  * A seek that never completes must not hang the export, so each one races a
+- * timeout: a stale frame is a far better outcome than a progress bar that
+- * stops at 40%.
++ * timeout. Never silently encode a stale frame as a successful export.
+  */
+ export async function seekScreenVideos(t: number, timeoutMs = 2000): Promise<void> {
+   await Promise.all([...registry].map((entry) => seekOne(entry, t, timeoutMs)))
+ }
+ 
+ function seekOne({ el, texture, duration }: ScreenVideo, t: number, timeoutMs: number) {
+-  const want = screenTimeAt(t, duration)
++  const want = Math.min(screenTimeAt(t, duration), Math.max(0, duration - 1e-6))
+ 
+-  return new Promise<void>((resolve) => {
+-    if (el.readyState < HTMLMediaElement.HAVE_METADATA) return resolve()
++  return new Promise<void>((resolve, reject) => {
++    if (el.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return reject(new Error('SCREEN_VIDEO_NOT_READY'))
+     if (!el.paused) el.pause()
+ 
+     // Already there — seeking to the current time fires no event, so this
+     // would otherwise wait for the timeout on every duplicated frame.
+-    if (Math.abs(el.currentTime - want) < 1e-4) {
++    if (!el.seeking && Math.abs(el.currentTime - want) < 1e-4) {
+       texture.needsUpdate = true
+       return resolve()
+     }
+ 
+-    const done = () => {
++    const cleanup = () => {
+       clearTimeout(timer)
+       el.removeEventListener('seeked', done)
++      el.removeEventListener('error', failed)
++    }
++    const done = () => {
++      cleanup()
+       texture.needsUpdate = true
+       resolve()
+     }
+-    const timer = setTimeout(done, timeoutMs)
++    const failed = () => {cleanup();reject(new Error(`SCREEN_VIDEO_DECODE_FAILED: ${el.error?.message || el.src}`))}
++    const timer = setTimeout(() => {cleanup();reject(new Error(`SCREEN_VIDEO_SEEK_TIMEOUT: ${want.toFixed(6)}s`))}, timeoutMs)
+     el.addEventListener('seeked', done, { once: true })
+-    el.currentTime = want
++    el.addEventListener('error', failed, { once: true })
++    try{el.currentTime = want}catch(error){cleanup();reject(error)}
+   })
+ }
+ 
+--- a/src/media/useScreenVideo.ts
++++ b/src/media/useScreenVideo.ts
+@@ -0,0 +1,22 @@
++import { useEffect, useState } from 'react'
++import type * as THREE from 'three'
++import type { MediaRef } from '../store/schema'
++import { createScreenVideo, type ScreenVideo } from './screenVideo'
++
++/** Browser/decoder resources belong to an effect, not render-time useMemo.
++ * StrictMode replays effects and may discard memo results: creating here
++ * ensures the visible texture is live and disposed registrations cannot leak.
++ */
++export function useScreenVideo(screen: MediaRef | null, renderer: THREE.WebGLRenderer) {
++  const [video, setVideo] = useState<ScreenVideo | null>(null)
++  useEffect(() => {
++    if (screen?.kind !== 'video') {
++      setVideo(null)
++      return
++    }
++    const next = createScreenVideo(screen.url, screen.duration ?? 0, renderer)
++    setVideo(next)
++    return () => next.dispose()
++  }, [screen, renderer])
++  return video
++}
+--- a/src/scene/Device.tsx
++++ b/src/scene/Device.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useMemo } from 'react'
++import { useMemo } from 'react'
+ import * as THREE from 'three'
+ import { useThree } from '@react-three/fiber'
+ import { roundedRectBodyGeometry, roundedRectPlaneGeometry } from './geometry'
+@@ -6,7 +6,7 @@
+ import { coverCropRepeatOffset, fitPlaneSize } from './screenFit'
+ import { prepareScreenTexture } from './materials/screenTexture'
+ import type { MaterialOverride } from '../devices/manifest'
+-import { createScreenVideo } from '../media/screenVideo'
++import { useScreenVideo } from '../media/useScreenVideo'
+ import type { MediaRef, ScreenFit } from '../store/schema'
+ 
+ // Procedural phone: 1 unit = 10cm, iPhone-ish proportions (~1.47 units tall).
+@@ -122,14 +122,7 @@
+     return prepareScreenTexture(new THREE.TextureLoader().load(screen.url), gl)
+   }, [screen, gl])
+ 
+-  const video = useMemo(
+-    () =>
+-      screen?.kind === 'video'
+-        ? createScreenVideo(screen.url, screen.duration ?? 0, gl)
+-        : null,
+-    [screen, gl],
+-  )
+-  useEffect(() => () => video?.dispose(), [video])
++  const video = useScreenVideo(screen, gl)
+ 
+   return image ?? video?.texture ?? null
+ }
+--- a/src/scene/GltfDevice.tsx
++++ b/src/scene/GltfDevice.tsx
+@@ -11,7 +11,7 @@
+   resolveScreenUv,
+ } from './materials/screenMaterial'
+ import { prepareScreenTexture } from './materials/screenTexture'
+-import { createScreenVideo } from '../media/screenVideo'
++import { useScreenVideo } from '../media/useScreenVideo'
+ import type { MediaRef, ScreenFit } from '../store/schema'
+ import type { MaterialOverride } from '../devices/manifest'
+ 
+@@ -106,14 +106,7 @@
+    * is who advances it: the element registers itself with `screenVideo`,
+    * which the preview loop nudges and the export loop seeks exactly (§8.3).
+    */
+-  const video = useMemo(
+-    () =>
+-      screen?.kind === 'video'
+-        ? createScreenVideo(screen.url, screen.duration ?? 0, gl)
+-        : null,
+-    [screen, gl],
+-  )
+-  useEffect(() => () => video?.dispose(), [video])
++  const video = useScreenVideo(screen, gl)
+ 
+   const screenTexture = imageTexture ?? video?.texture ?? null
+ 
+@@ -176,4 +169,6 @@
+   return <primitive object={cloned} />
+ }
+ 
++// All bundled GLBs use Draco. Never fetch its decoder from a third-party CDN.
++useGLTF.setDecoderPath('/draco/')
+ useGLTF.preload('/devices/iphone-17-pro.glb')
+--- a/src/scene/Stage.tsx
++++ b/src/scene/Stage.tsx
+@@ -55,7 +55,6 @@
+ }
+ 
+ export function Stage() {
+-  const automationMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('automation')
+   const project = useProjectStore((s) => s.project)
+   const devices = project.devices
+   const environment = useProjectStore((s) => s.project.environment)
+@@ -157,22 +156,12 @@
+       <SceneDriver deviceRefs={deviceRefs} orbitingRef={orbitingRef} />
+ 
+       <Suspense fallback={null}>
+-        {automationMode ? (
+-          <>
+-            {/* Offline deterministic fallback: drei Environment presets fetch remote HDRIs. */}
+-            <ambientLight intensity={1.5} />
+-            <hemisphereLight args={['#ffffff','#606878',2.1]} />
+-            <directionalLight position={[-3,5,6]} intensity={3} />
+-            <directionalLight position={[3,1,-4]} intensity={1.3} />
+-          </>
+-        ) : (
+           <Environment
+-            preset={environment.hdri}
++            files={`/environments/${environment.hdri}.hdr`}
+             environmentIntensity={environment.intensity}
+             environmentRotation={[0, environment.rotation, 0]}
+             background={false}
+           />
+-        )}
+ 
+         {/* Image-based lighting only (§6.3) — this light casts shadow, contributes no illumination. */}
+         {/* Higher and closer to overhead than the original [2, 4, 3]: a low
+--- a/src/scene/materials/screenMaterial.test.ts
++++ b/src/scene/materials/screenMaterial.test.ts
+@@ -1,6 +1,13 @@
+ import { describe, expect, it } from 'vitest'
+ import * as THREE from 'three'
+-import { applyColorway } from './screenMaterial'
++import { applyColorway, createScreenShaderMaterial } from './screenMaterial'
++
++it('decodes sRGB video pixels once while leaving sRGB image decoding to the GPU', () => {
++  const video = new THREE.VideoTexture({} as HTMLVideoElement)
++  const image = new THREE.Texture()
++  expect(createScreenShaderMaterial(video).defines.SCREEN_VIDEO).toBe(1)
++  expect(createScreenShaderMaterial(image).defines.SCREEN_VIDEO).toBe(0)
++})
+ 
+ function buildModel() {
+   // Mirrors how a cloned GLTF scene looks: several meshes sharing one
+--- a/src/scene/materials/screenMaterial.ts
++++ b/src/scene/materials/screenMaterial.ts
+@@ -19,6 +19,9 @@
+  */
+ export function createScreenShaderMaterial(texture: THREE.Texture) {
+   return new THREE.ShaderMaterial({
++    // Three uploads video as RGBA8 rather than sRGB8. Match its built-in
++    // map_fragment decode, otherwise our custom shader brightens video twice.
++    defines: { SCREEN_VIDEO: (texture as THREE.VideoTexture).isVideoTexture ? 1 : 0 },
+     /*
+      * Double-sided, because which way a screen plane's normals point is an
+      * authoring accident. The iPhone 17 Pro Max's OLED mesh faces INTO the
+@@ -64,6 +67,9 @@
+         vec2 base = (vUv - uUvMin) / uUvSpan;
+         vec2 uv = base * uRepeat + uOffset;
+         vec3 sampled = texture2D(map, clamp(uv, 0.0, 1.0)).rgb;
++        #if SCREEN_VIDEO
++          sampled = sRGBTransferEOTF(vec4(sampled, 1.0)).rgb;
++        #endif
+         // Outside the image is letterbox, not a smeared edge pixel.
+         bvec2 lo = lessThan(uv, vec2(0.0));
+         bvec2 hi = greaterThan(uv, vec2(1.0));
+--- a/tests/audio.test.mjs
++++ b/tests/audio.test.mjs
+@@ -0,0 +1,21 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {mkdtemp,rm,readFile} from 'node:fs/promises';
++import path from 'node:path';
++import os from 'node:os';
++import {prepareSoundtrack,measureVolume} from '../services/agent-orchestrator/audio.mjs';
++test('quiet bundled music becomes audible without changing the source or clipping',async()=>{
++ const dir=await mkdtemp(path.join(os.tmpdir(),'promo-audio-'));
++ const source=path.resolve('assets/music-demo.mp3');const original=await readFile(source);
++ try{
++  const result=await prepareSoundtrack(source,path.join(dir,'soundtrack'));
++  assert.ok(result.audit.original.meanDb < -40);
++  assert.ok(result.audit.gainDb > 20);
++  assert.ok(Math.abs(result.audit.prepared.meanDb+20)<.3);
++  assert.ok(result.audit.prepared.peakDb < -1);
++  assert.deepEqual(await readFile(source),original);
++  const normal=await prepareSoundtrack(result.file,path.join(dir,'normal'));
++  assert.equal(normal.audit.gainDb,0);
++  assert.deepEqual(measureVolume(normal.file),result.audit.prepared);
++ }finally{await rm(dir,{recursive:true,force:true})}
++});
+--- a/tests/cache.test.mjs
++++ b/tests/cache.test.mjs
+@@ -0,0 +1,25 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {mkdtemp,writeFile,rm} from 'node:fs/promises';
++import os from 'node:os';
++import path from 'node:path';
++import {deterministicPlan} from '../services/agent-orchestrator/planner.mjs';
++import {shotFingerprint} from '../services/agent-orchestrator/cache.mjs';
++
++test('shot cache tracks media/model/engine/pose, while subtitle-only edits keep it reusable',async()=>{
++ const dir=await mkdtemp(path.join(os.tmpdir(),'promo-cache-'));
++ try{
++  const source=path.join(dir,'screen.mp4'),model=path.join(dir,'phone.glb');
++  await writeFile(source,'original-media');await writeFile(model,'original-model');
++  const board=deterministicPlan();
++  const args={shot:board.shots[0],canvas:board.canvas,quality:'standard',engine:'v1',source,model};
++  const first=await shotFingerprint(args);
++  board.overlays[0].text='字幕修改不应重渲 3D';
++  assert.equal(await shotFingerprint(args),first);
++  assert.notEqual(await shotFingerprint({...args,engine:'v2'}),first);
++  assert.notEqual(await shotFingerprint({...args,shot:{...args.shot,motion:'none'}}),first);
++  assert.notEqual(await shotFingerprint({...args,forcePng:true}),first);
++  await writeFile(model,'updated-model');assert.notEqual(await shotFingerprint(args),first);
++  await writeFile(model,'original-model');await writeFile(source,'updated-media');assert.notEqual(await shotFingerprint(args),first);
++ }finally{await rm(dir,{recursive:true,force:true})}
++});
+--- a/tests/errors.test.mjs
++++ b/tests/errors.test.mjs
+@@ -0,0 +1,36 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {mkdtemp,writeFile,readFile,rm} from 'node:fs/promises';
++import path from 'node:path';
++import os from 'node:os';
++import {spawnSync} from 'node:child_process';
++import {fileURLToPath} from 'node:url';
++import {deterministicPlan} from '../services/agent-orchestrator/planner.mjs';
++import {inspectMedia} from '../services/agent-orchestrator/critic.mjs';
++const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
++
++test('missing asset fails with a readable report and no output MP4',async()=>{
++ const dir=await mkdtemp(path.join(os.tmpdir(),'promo-errors-'));
++ try{
++  const board=deterministicPlan({media:'assets/p0-deliberately-missing.mp4',shots:1});
++  const file=path.join(dir,'storyboard 中文 & spaces.json');await writeFile(file,JSON.stringify(board));
++  const p=spawnSync(process.execPath,['services/agent-orchestrator/cli.mjs','render','--storyboard',file,'--out',dir],{cwd:root,encoding:'utf8'});
++  assert.equal(p.status,1);assert.match(p.stderr,/ASSET_MISSING/);
++  const report=JSON.parse(await readFile(path.join(dir,'render-report.json'),'utf8'));
++  assert.equal(report.status,'ERROR');assert.equal(report.error.code,'ASSET_MISSING');
++ }finally{await rm(dir,{recursive:true,force:true})}
++});
++test('illegal device exits before starting any renderer',async()=>{
++ const dir=await mkdtemp(path.join(os.tmpdir(),'promo-errors-'));
++ try{
++  const board=deterministicPlan({shots:1});board.shots[0].deviceId='nonexistent-phone';
++  const file=path.join(dir,'bad-device.json');await writeFile(file,JSON.stringify(board));
++  const p=spawnSync(process.execPath,['services/agent-orchestrator/cli.mjs','render','--storyboard',file,'--out',dir],{cwd:root,encoding:'utf8'});
++  assert.equal(p.status,1);assert.match(p.stderr,/INVALID_STORYBOARD/);assert.match(p.stderr,/Unknown real GLB device/);
++ }finally{await rm(dir,{recursive:true,force:true})}
++});
++test('real ffprobe inspection rejects incorrect resolution/fps/audio expectations',()=>{
++ const file=path.join(root,'assets/demo.mp4');
++ assert.equal(inspectMedia(file,{expectedWidth:480,expectedHeight:960,expectedFps:30,expectedSeconds:8}).ok,true);
++ for(const spec of [{expectedWidth:540},{expectedFps:60},{requireAudio:true}])assert.equal(inspectMedia(file,spec).error,'OUTPUT_SPEC_MISMATCH');
++});
+--- a/tests/remotion-local.test.mjs
++++ b/tests/remotion-local.test.mjs
+@@ -0,0 +1,12 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {createRequire} from 'node:module';
++const {readInterfaces}=createRequire(import.meta.url)('../scripts/remotion-loopback.cjs');
++test('Remotion keeps readable interfaces and falls back only on denied enumeration',()=>{
++ const normal={eth0:[]};assert.equal(readInterfaces(()=>normal),normal);
++ const denied=Object.assign(new Error('denied'),{errno:1,syscall:'uv_interface_addresses'});
++ const local=readInterfaces(()=>{throw denied},()=>{});
++ assert.equal(local.lo[0].address,'127.0.0.1');assert.equal(local.lo[0].internal,true);
++ const unknown=new Error('unrelated failure');
++ assert.throws(()=>readInterfaces(()=>{throw unknown}),error=>error===unknown);
++});
+--- a/tests/worker_test.py
++++ b/tests/worker_test.py
+@@ -0,0 +1,43 @@
++"""No browser needed: validate Windows-safe launch and fallback frame handling."""
++import importlib.util
++from pathlib import Path
++import tempfile
++import unittest
++from unittest.mock import patch
++import zipfile
++
++ROOT = Path(__file__).resolve().parents[1]
++spec = importlib.util.spec_from_file_location('worker', ROOT / 'services/render-worker/worker.py')
++worker = importlib.util.module_from_spec(spec)
++spec.loader.exec_module(worker)
++
++class WorkerTests(unittest.TestCase):
++    def test_vite_uses_node_entrypoint_without_cmd_shell(self):
++        with patch.dict('os.environ', {'NODE_BINARY': r'C:\Program Files\Node\node.exe'}):
++            args = worker.vite_command(5178)
++            self.assertEqual(args[0], r'C:\Program Files\Node\node.exe')
++            self.assertTrue(args[1].endswith('vite/bin/vite.js'))
++            self.assertEqual(args[-1], '--strictPort')
++            self.assertFalse(any(x.endswith('.cmd') for x in args))
++
++    def test_consecutive_zero_based_frames_replace_stale_directory(self):
++        with tempfile.TemporaryDirectory() as folder:
++            root = Path(folder); dest = root / 'frames'; dest.mkdir()
++            (dest / 'frame_9999.png').write_bytes(b'stale')
++            archive = root / 'frames.zip'
++            with zipfile.ZipFile(archive, 'w') as z:
++                for i in range(3): z.writestr(f'frame_{i:04d}.png', b'PNG')
++            worker.extract_frames(archive, dest, 3)
++            self.assertEqual(sorted(p.name for p in dest.iterdir()), [f'frame_{i:04d}.png' for i in range(3)])
++
++    def test_missing_or_unsafe_or_empty_frames_fail(self):
++        for names in [['frame_0001.png'], ['../frame_0000.png'], ['frame_0000.png', 'frame_0000.png'], ['frame_0000.png']]:
++            with self.subTest(names=names), tempfile.TemporaryDirectory() as folder:
++                root = Path(folder)
++                with zipfile.ZipFile(root / 'bad.zip', 'w') as z:
++                    for name in names: z.writestr(name, b'' if len(names) == 1 and name == 'frame_0000.png' else b'PNG')
++                with self.assertRaisesRegex(RuntimeError, 'INVALID_FRAME_SEQUENCE'):
++                    worker.extract_frames(root / 'bad.zip', root / 'frames', 1)
++
++if __name__ == '__main__':
++    unittest.main()

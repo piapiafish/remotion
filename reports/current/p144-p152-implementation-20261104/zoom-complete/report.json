@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-04T14:27:24.658Z",
+  "checks": [
+    {
+      "name": "native-browser-125-percent-zoom-applied",
+      "status": "PASS",
+      "detail": {
+        "innerWidth": 1280,
+        "innerHeight": 800,
+        "dpr": 1.25,
+        "viewport": 1,
+        "screenWidth": 1600,
+        "board": 308,
+        "timeline": 206,
+        "overflow": false
+      }
+    },
+    {
+      "name": "native-zoom-editor-is-usable",
+      "status": "PASS",
+      "detail": {
+        "innerWidth": 1280,
+        "innerHeight": 800,
+        "dpr": 1.25,
+        "viewport": 1,
+        "screenWidth": 1600,
+        "board": 308,
+        "timeline": 206,
+        "overflow": false
+      }
+    },
+    {
+      "name": "display-scale-125-editor-is-usable",
+      "status": "PASS",
+      "detail": {
+        "dpr": 1.25,
+        "board": 276,
+        "timeline": 206
+      }
+    }
+  ],
+  "scenarios": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "navigation": [
+    {
+      "time": "2026-11-04T14:27:27.761Z",
+      "url": "http://127.0.0.1:50657/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:27:28.225Z",
+      "url": "http://127.0.0.1:50657/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:27:28.867Z",
+      "url": "http://127.0.0.1:50657/?automation=1#editor"
+    }
+  ]
+}

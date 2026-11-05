@@ -1,0 +1,138 @@
+# 当前架构与数据流
+
+更新：2026-11-04（P1-35～43 已实施，最终人工验收待补）。本文描述实际源码与边界；开发顺序只看 [工作计划](../IMPLEMENTATION_ROADMAP.md)。
+
+## P1-35～43：多视频与运行场景生命周期
+
+保存与迁移使用版本 4，继续读取 1/2/3。DeviceInstance.screenClips 保存稳定 clipId、MediaRef、displayRange、playback（源 in/out、作品 start/stop、loop/rate）、fit 和数组层序；首项在屏幕前层。mediaRefs/stripRuntimeFields/导入校验/缺失提示收集所有片段，重复源字节只写同一个 media/ 条目。视频导入以内容 SHA-256 命名，独立片段仍有独立解码器和时钟。旧单视频迁成等效片段，followObjectRange 保留随对象/作品延长的旧行为；明确调整蓝色端点后才冻结片段显示区间。单独改填充不重写旧循环。
+
+useMultiScreen 注册 prepare/paint/ready 管线，按对象及片段活动区间预热/释放实例视频，画入复用 CanvasTexture 后接入原屏幕 UV/颜色修正。视频先按 stop 限定进度，再做源出点限制；显示范围和播放范围独立。预览同步和精确 seek 调用同一准备/合成入口，暂停且画面无变化时复用屏幕画布。帧导出及效果子采样先应用该时刻场景，再等待活动模型/媒体并精确定位；不把未来对象都挂在运行场景中。
+
+objectPresence 保存节点原父级，在公共 applySceneState/applySolidPose 路径真实 remove/add，实例 ID、文档数组和 React/模型缓存保留。solidInstances 在场景外登记字形，避免遍历场景时找不到已移出的文字。默认整段对象也遵守作品末尾右开区间。贴纸退出绘制与命中层。手柄/选框复用并随有效选择移出或恢复；释放独立手柄几何，防止重复出入场导致计数增长。这是运行场景移除，不是全部素材/内存立即归零。
+
+实体文字和手机共用 DeviceControls 代理、三轴手柄和编辑标记排除。editorPointer 分配原生手柄与 R3F 对象事件，防止点击手柄选到其后的手机。solidBounds 以当前字形、厚度、逐轴旋转和缩放计算最低点；字体内容键防止旧边界用于新内容，临时 bounds revision 只刷新数值界面，不写工程或撤销。solidPose、直接拖动和数值共享触地结果；贴纸继续使用二维坐标。
+
+scaleAnchor 保存手机初始放置世界点。缩放操作按 A+(C−A)×(s'/s) 写入耦合的原生位置/缩放姿态，再沿用触地限制；滚轮、数值及选中姿态使用同一路径。新建/复制/模板显式建立锚点，旧工程缺省在首次新缩放编辑时取首姿态，不在打开时重写旧轨道。选中同刻下层按其身份采样编辑，其他层保留。
+
+TimelineObjectRow 把对象范围放在整行背景，按视频显示交集和稳定层序排布；无交集可共行，复杂交叠先保层序。关键帧覆盖并优先命中，拖动期间冻结分行，松开后重排。cameraMotion/useCameraKeyboard 按时间差实现 WASD、前后和左右环绕；焦点守卫、失焦停止与 Esc/按键重复抑制保持手势边界。CameraRecorder 复用原录制会话，准备新画布后启用开始按钮，速度/状态/布局属于临时 UI。
+
+当前操作见 [新版指南](THIRD_FEEDBACK_GUIDE.md)，实际范围与晚期专项修正见 [实施报告](../reports/current/p135-p143-implementation-20261104/README.md)。下方旧章节与本节冲突时，以本节为准。
+
+## P1-26～34：显示区间、独立姿态与实体文字（2026-11-04）
+
+当前工程读写版本增加 3，旧 1/2 继续迁移。DeviceInstance/TextObject 的可选 displayRange 控制左闭右开的活动范围；缺省随工程全长，显式范围不随延长自动扩展。sampleTimeline 输出可见状态，公共 applySceneState 控制绘制、阴影和命中；字体和手机在导出也使用相同时间采样。粗条整体移动同步移动原生键和视频起点，裁切仅改范围。
+
+每个姿态可有 poseId，标量键保留对应身份、order 和初始姿态标记。旧键按同刻聚合，移动时补身份；同刻叠放按 ID 选择/移动/删除，不能用时间替代身份。采样临时选择同属性的上层键，不删除底层数据，不产生零时长插值；欧拉周数保留。普通同刻数值编辑仍是更新当前键。对象/文字设置尊重所选姿态，其他层保持。
+
+ScreenPlayback 增加可选 rate，缺省 1 倍；videoTimeAt 同时用于预览、精确定位与导出，软同步在目标倍速附近校正。UI 移除循环，新编辑单次播放，旧循环未编辑时保持。useScreenVideo 按对象活动范围及 0.5 秒预热窗回收实例视频解码器和 VideoTexture；共享 GLB、工程素材及模型实例继续保留。导出会话唤醒需要的资源，等待解码与材质提交后再开始，准备阶段支持取消；本地 bridge 截图和成片入口复用该会话，避免跳到尚未解码的未来片段。
+
+cameraSession 仅保存临时视角与录制草稿。普通静态构图使用原轨道；已有动画的自由查看不写动画。相机专页锁对象选择，倒计时后按作品时钟采集位置/观察点/FOV，录制中其他对象继续播放，采用时一次替换录制区间的相机轨道，范围外键保持并支持整体撤销。SceneDriver 仍是预览与导出的公共应用入口。
+
+贴纸继续用二维 textOverlay，按 back/front 在三维场景前后合成。实体用本地 OpenType 字形轮廓生成真实挤出几何；solidGeometry 生成单位厚度几何，solidPose 按统一轨道调整 XYZ、旋转、缩放、透明度及厚度，参与灯光、深度、阴影和运动采样。字体请求/几何就绪与当前文字键匹配，避免异步旧字形用于新内容。保存时嵌入所用字符的轮廓子集及 OFL 许可证；运行时对象不进入 JSON。实体首版固定常规字重，暂不支持的字形明确报错。
+
+新操作见 [本次指南](SECOND_FEEDBACK_GUIDE.md)，实际证据见 [实施报告](../reports/current/p126-p134-implementation-20261104/README.md)。下方旧章节保留历史模块背景，冲突处以本节为准。
+
+## P1-19～25：首批反馈修正
+
+时间轴的对象行空白、播放头小柄和秒尺均接入指针捕获和连续定位；关键帧单独拥有改时手势，记录起始滚动位置，在滚动后按内容坐标换算。定位不写文档或撤销。取消、失焦与释放结束相应手势。
+
+store/replacement.ts 保存应用内文档替换的临时继续动作；ReplacementDialog 提供保存、不保存、取消，使用 inert 与键盘守卫阻止背后编辑。saveProject 返回 saved/downloaded/cancelled/failed；保存后继续优先通过文件选择器取得可写句柄，完成 write/close 后才执行替换，普通下载回退保留用户确认。文档引用和 documentEpoch 校验阻止过期继续动作替换新工程；素材缺失确认仍是独立流程。
+
+EnvironmentConfig.groundY 保存固定世界地面。新建/打开工程和本地 bridge 入口调用 ensureFixedGround，仅在缺少字段时按旧场景推导一次；后续设备、时长或轨道编辑保留它。deviceBounds.ts 计算设备旋转包围盒在世界 Y 方向的范围，旧内层 landscape 朝向按模型修正坐标变换纳入；接触余量为 0.002 场景单位。sampleTimeline 对所有时刻的姿态应用同一触地约束，编辑入口将受限位置写回原生轨道，从而支持预览、效果子采样、导出和手势撤销。旧工程关键帧保留，迁移后的触地限制可能修正极少数低于地面的旧中间姿态。没有增加物理引擎或重力。
+
+视频预览对小幅时钟漂移使用有限播放速率校正，主动跳时/循环/持续大偏差才定位；正在定位时不重复覆盖，暂停拖动保留最新请求，精确导出清除预览待处理请求。播放中的效果采样使用当前解码帧和两次姿态采样；暂停及导出仍精确等待各个曝光时刻，过期暂停预览被取消且不回显。预览画布在低 DPI 下采用至少 1.5 倍采样，以 1 倍为下限，按 2 倍与约 320 万像素目标控制采样；大窗口预算不足时允许降到 1 倍。横竖按钮已移除，旧 orientation 字段继续读取，新手机默认竖向，复制保留原姿态。
+
+以上是当前修正实现；下方 P1-01～18 章节保留此前形成的模块说明，冲突处以本节为准。验证与人工边界见 [本轮报告](../reports/current/p119-p125-implementation-20261103/README.md)。
+
+## 工程组成
+
+| 目录 / 入口 | 实际职责 |
+| --- | --- |
+| src/App.tsx、ui/ | 人工编辑界面、预览画布、参数区、时间轴和导出操作 |
+| src/store/schema.ts、project.ts、history.ts | JSON 工程、活动设备/播放头等临时状态、文档操作与撤销 |
+| src/timeline/ | TrackSet、标量关键帧、预设、模板、运动 JSON 编译和绝对时间采样 |
+| src/scene/、devices/ | 多设备场景、GLB/程序模型、屏幕材质、相机、光照及模型元数据 |
+| src/media/、store/persist.ts | 图片/录屏、统一媒体时钟、OPFS/IndexedDB、.mockup ZIP |
+| src/export/ | 共享逐帧渲染、背景合成/降采样、PNG/序列/WebCodecs 编码 |
+| src/automation/bridge.ts | localhost 且 ?automation=1 时启用的自动化桥接，目前 loadProject 限单设备 |
+| packages/video-schema/、services/compiler/ | 旧 Video DSL 验证及转换为原生 Project / TrackSet |
+| services/studio-api/、agent-orchestrator/、render-worker/ | Vite 本地保存/队列、旧分镜规划、缓存、无头渲染与 FFmpeg 回退 |
+| remotion-compositor/ | 独立整片合成工程，处理片段、字幕和音乐；有独立 package.json |
+
+## 人工编辑与统一动画
+
+UI 操作 → Zustand 文档更新与 history → Project.devices[].transform / camera.tracks → sampleTimeline(project, t) → SceneState → applySceneState → Three.js 场景。
+
+SceneDriver 在预览中选择时间并应用状态；导出用帧号 / fps 选择时间，调用相同采样与场景应用。导出录屏时等待精确 seek。不要建立导出专用动画或另一份 AI 运行状态。
+
+TrackSet 的每个通道为标量关键帧，例如 position.y、rotation.y、scale。单帧代表静态值，多帧代表动画。setValueAt 对静态轨道只改原值；新时间轴按对象聚合同一时刻的属性键，支持整体改时、删除和过渡。显式添加对象关键帧后，animationEnabled 记录动画意图，首次不会补片尾键；后续新时刻调姿态时记录整组键。普通静态编辑保留原语义。旧标量 API 的补锚点行为保留给兼容调用。旋转按 XYZ 欧拉值采样，0→360° 与 0→720° 必须保留整周运动。
+
+设备始终是列表，每台独立保存模型、颜色、屏幕素材和变换。activeObject 使用 kind / instanceId，null 表示未选对象；activeDevice 是旧设备操作的索引适配，不代表必须选中第一台。列表变化与撤销/重做按实例校正选择。设备列表与选择在一次更新中提交，设备按钮操作各自形成一次撤销；切换设备会结束上一个参数手势的合并。参数面板对暂时失效的选择作保护。人工编辑器支持多设备，自动化桥接与运动计划的单设备限制只属于对应入口。
+
+新增/复制的初始放置由 src/store/devicePlacement.ts 按当前播放头采样的镜头、画幅和模型 bodySize 选择屏幕平面内偏移；只平移新设备的位置键，不修改旧设备或相机。复制保留原动画时间/缓动/插值及素材。拥挤或原设备过宽时采用可见性优先的有限候选，不代表整段动画自动避碰。
+
+## 本轮编辑操作
+
+timeline/editing.ts 以 camera 或设备 instanceId 和标量通道定位操作，统一处理显式加键、同时间覆盖、改时与静态回退。关键帧选择、画布工具及编辑手势为临时 UI 状态，不进入 Project。store 的 beginEditGesture/endEditGesture 保存手势起点，支持任意时长的一次撤销和取消恢复；原离散操作继续沿用 history。
+
+画布点选沿设备父 Group 选择实例。DeviceControls 使用独立代理 Group 接收变换，转换为现有 store 操作；SceneDriver 仍从同一个 sampleTimeline 驱动实际设备。代理旋转选择靠近上一值的等价欧拉分支，以保留累计周数，缩放回写为单个等比标量。相机 Orbit 模式独立启用，平移目标点也写入原相机轨道。
+
+编辑选择框和变换手柄标记 editorOnly。公共 frameRenderer 在实际渲染期间隐藏标记对象并在 finally 恢复，因此静帧、缩略图、PNG 序列和视频共用同一排除逻辑。
+
+预设默认作用于指定设备实例，store 使用当前活动实例。PRESET_CHANNELS 声明写入通道，Start/Length 声明替换的关键帧范围；外部键继续连接到新边界，其他设备和通道保留。Orbit 使用起点采样的实际相机与目标点，只生成相机位置键，不改镜头、目标轨道或设备。
+
+## 素材与工程
+
+MediaRef 保存媒体 ID、类型、尺寸、视频时长和会话 object URL，Blob 在 OPFS 或 IndexedDB。每个 DeviceInstance 可有 screenPlayback：源入点 in、出点 out、镜头内起播时间 start、loop；旧工程缺省为完整源视频、0 秒起播、无循环。src/media/videoTiming.ts 的 videoTimeAt 是预览和逐帧导出的统一时间映射。每个实例注册独立 ScreenVideo，编辑时序只更新映射，不重建解码器；暂停拖动精确跟随，播放中容许有限漂移。
+
+.mockup 包含 project.json、设备及背景媒体字节，序列化去除 URL 与 missing 运行字段。打开前校验根结构、轨道/时序和素材解码；缺失包内字节时，在写入素材前列出设备/背景并确认是否继续，取消保持当前工程及撤销历史。继续后保留 missing 引用并提示重新绑定，不从当前浏览器缓存静默补齐；重新绑定较短录屏会提示已收缩的时序范围。媒体 ID 冲突且字节不同时分配新 ID，失败清理本次新增字节/URL；不自动清理当前工程或撤销历史需要的旧媒体。存储事务以 commit 完成为成功。
+
+store 的 savedFingerprint 记录最近成功打开/发起下载的文档，播放头、选择、工具和提示不计入修改状态。documentEpoch 在替换文档时递增，阻止旧上传写入重新打开的同 ID 设备。新建/打开有丢弃确认，beforeunload 提供浏览器离开提醒；自动草稿未实现。格式版本 2 保存文字、效果和显式动画记录；旧版本 1 工程仍可迁移，版本 2 允许纯文字和空场景。错误与结果由共用反馈条显示。操作说明见 [录屏与工程指南](MEDIA_PROJECT_GUIDE.md)。
+
+背景是 CSS 预览/导出合成层；导出通过 backdrop painter 与透明场景合成。改动背景类型时须同时核对预览、序列、静帧和视频，不能仅修改 Canvas 样式。
+
+## 已有两种自动化入口
+
+phone-motion/1 → 校验 → motionPlan 编译 → 原生 TrackSet，随后共用人工预览和导出。Project.motionPlan 只保存说明，不保存第二份执行轨迹。当前生成是固定模拟，导入会替换为单台设备并清空屏幕；尚不满足第二阶段的上下文局部编辑要求。协议见 [PHONE_MOTION_PLAN.md](PHONE_MOTION_PLAN.md)。
+
+旧 Video DSL → schema 校验 → compiler → localhost bridge / Playwright → 原引擎逐镜头导出 → Remotion / 兼容合成 → 成片与报告。Vite plugin 的 /__studio__ 本地 API 把 work/studio 与 output/studio 接到旧 CLI；静态部署和 vite preview 不提供这套磁盘/进程能力。用法见 [AUTOMATED_STORYBOARD_FLOW.md](AUTOMATED_STORYBOARD_FLOW.md)。
+
+人工 .mockup、运动 JSON 和旧分镜没有完整双向同步。第二阶段应优先复用文档操作并局部更新；第三阶段通过第二阶段的能力生成可编辑镜头。上述未来要求以工作计划为准。
+
+## 容易回归的约束
+
+- GLB 屏幕按材质标识匹配；不同模型的朝向、UV、可见屏幕开口和修正变换由 manifest 明确配置。
+- 修改颜色前克隆共享材质，防止一台设备改变其他实例或加载缓存。
+- 屏幕色彩空间、contain/cover、边框遮挡与视频旋转都需要真实素材检查。
+- 导出时暂停预览渲染并在 finally 恢复；降采样、GPU 限制和编码支持须按实际参数验证。
+- 用真实正背面和旋转视频判断模型质感，不凭模型名称推测摄像头是否缺失。
+
+完整历史测量、失败与修复背景保存在 [原 CONTEXT](../reports/archive/pre-20261101/CONTEXT.md)，历史产品规格在 [mockup-app-spec.md](reference/mockup-app-spec.md)。其中旧里程碑、机器路径和完成数不作为当前状态。
+
+## P1-07～09 导出与模型更新
+
+export/session.ts 管理唯一用户导出占用，预检工程/素材与已提交的模型及屏幕纹理；App 的 inert 和快捷键守卫避免导出期间修改活动场景。exportError.ts 保存发生环节和原始原因，对异步步骤提供取消与超时；VideoEncoder 配置、输出回调错误与 flush 均进入清理路径，frameRenderer 在初始化失败和结束时恢复预览并释放本次画布。PNG/视频均沿用原 sampleTimeline、applySceneState、screenVideo 映射，未引入第二套动画。
+
+背景读取失败不再静默丢弃图片，位图在用户导出结束后释放。仍须区分浏览器下载交接和实际磁盘保存。
+
+Generic Phone 的 ShapeGeometry 平面 UV 显式按几何宽高归一化；四个 GLB 的既有模型数据及 manifest 未修改。多镜头演示通过独立 scripts/join-clips.py 调用 FFmpeg，未新增编辑器字幕、音轨或多镜头状态。
+
+以上实现已正式应用到 D 盘；本机复核见 [应用报告](../reports/current/p107-p109-writeback-20261102/README.md)，原工作副本、环境中断与边界保留在 [原包报告](../reports/current/p107-p109-20261102/README.md)。
+
+## P1-10～18：新手入口与对象渲染
+
+App 的 templates/editor 页面状态控制独立模板页和编辑器；返回模板页不立即替换文档，再选模板复用未保存确认。打开已有工程直接进入编辑器。主侧栏只有对象/环境，导出与模拟助手按需打开。MotionFilmstrip 不再挂载，未建立另一份执行计划。
+
+ObjectPanel 使用设备列表和新增 Project.texts 提供统一对象视图。设备数据路径保留；文字是二维画面对象，拥有独立 TrackSet、内容和样式。objectEditing.ts 聚合键时刻，并对当前姿态包含的属性统一改时/删除；底层仍是逐轴标量轨道。旧工程不按新界面重排关键帧，旋转累计周数保留。
+
+画布按按下位置和选择状态分配事件：直接点选/拖动对象，空白取消选择后环绕相机；选中对象时画布滚轮缩放该对象，未选时沿相机观察方向调整距离。不可见手柄、隐藏材质与宽泛 Line 命中不阻挡空白选择。相机操作继续写入真实轨道。
+
+textOverlay.ts 为预览 Canvas 和导出共用二维排版/绘制。标题在背景和三维场景完成后叠加，默认不参与场景景深/动态模糊；使用归一化画面坐标、相对 1080 高度的字号、二维旋转/缩放/透明度。文字进入工程保存，字体就绪在导出前等待，DOM 命中层只用于编辑选择，不进入成片。
+
+EffectsDriver 接管预览最终绘制，sceneEffects.ts 提供共享景深与曝光采样。景深先正常渲染/复制颜色，再采样深度，按焦距进行两次方向模糊，保留原屏幕色彩与透明。动态模糊在确定的曝光时刻重采样设备、相机和录屏并累积；预览播放用 2 次，暂停/导出使用设置的 2/4/8 次。媒体采样期间禁止普通预览同步抢占解码器；切换导出时取消并等待预览采样结束。
+
+FrameExporter.renderAt 在同一链路完成效果、缩小、背景与标题；静帧、视频、PNG 序列和本地桥接都可传 Project 使用该路径。旧不带 Project 的渲染探针继续支持。效果关闭、尺寸变化、导出取消/失败释放复用缓冲；导出恢复后的预览按渲染版本及尺寸失效缓存，避免尺寸重置后留空白。
+
+GltfDevice 的克隆与屏幕引用在同一次 memo 中建立；替换后的屏幕材质保留原名称，避免多实例挂载/重放时丢掉绑定或被配色流程误处理。场景与解码器就绪仍在真实导出前核对。
+
+Vite 只忽略 reports/output/work/update-backups/.venv 的文件监听，不影响读取它们；避免 Windows 对正在下载的报告视频触发 EBUSY 并终止本地服务。src 和配置仍正常热更新。验证及适用范围见 [实施报告](../reports/current/p110-p118-implementation-20261102/README.md)。

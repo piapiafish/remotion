@@ -1,0 +1,40 @@
+import type { DeviceInstance, DisplayRange, ScreenClip, ScreenPlayback } from '../store/schema'
+import { displayRange } from '../timeline/displayRange'
+import { normalizePlayback } from './videoTiming'
+export type ClipPatch=Omit<Partial<ScreenClip>,'playback'> & {playback?:Partial<ScreenPlayback>}
+export function deviceClips(device:DeviceInstance,duration:number):ScreenClip[] {
+  if(device.screenClips)return device.screenClips.map(c=>c.followObjectRange?{...c,displayRange:displayRange(device,duration)}:c)
+  if(device.screen?.kind!=='video')return []
+  const playback=normalizePlayback(device.screen.duration??0,device.screenPlayback)
+  return [{clipId:'legacy-'+device.instanceId,name:'屏幕视频',followObjectRange:true,media:device.screen,displayRange:displayRange(device,duration),playback,fit:device.screenFit}]
+}
+export function withClips(device:DeviceInstance,clips:ScreenClip[]):DeviceInstance {
+  return {...device,screenClips:clips,screen:device.screen?.kind==='video'?null:device.screen,screenPlayback:undefined}
+}
+export function clipEnd(clip:ScreenClip){return clip.playback.stop??clip.playback.start+(clip.playback.out-clip.playback.in)/(clip.playback.rate??1)}
+export function clipPlayback(clip:ScreenClip):ScreenPlayback {return clip.playback.loop&&clip.playback.stop===undefined?clip.playback:{...clip.playback,stop:clipEnd(clip)}}
+export function clipVisible(clip:ScreenClip,t:number){return t>=clip.displayRange.start-1e-9&&t<clip.displayRange.end-1e-9}
+export function clipError(clip:ScreenClip,fps:number):string|null {
+  const r=clip.displayRange,p=clip.playback,min=1/fps
+  if(!Number.isFinite(r.start)||!Number.isFinite(r.end)||r.start<0||r.end-r.start<min-1e-8)return '视频显示结束必须比开始至少晚一帧，且时间不能为负。'
+  if(!Number.isFinite(p.start)||p.start<0)return '播放开始时间不能小于 0 秒。'
+  if(!Number.isFinite(clipEnd(clip))||clipEnd(clip)-p.start<min-1e-8)return '暂停时刻必须比播放开始至少晚一帧。'
+  if(!Number.isFinite(p.in)||p.in<0)return '原视频开始位置不能小于 0 秒。'
+  if(!Number.isFinite(p.out)||p.out<=p.in)return '视频结束位置必须晚于开始位置。'
+  if(p.out>(clip.media.duration??0)+1e-6)return '结束位置超过素材长度 '+(clip.media.duration??0).toFixed(2)+' 秒。'
+  if(p.rate!==undefined&&(!Number.isFinite(p.rate)||p.rate<.25||p.rate>4))return '播放速度必须在 0.25～4 倍之间。'
+  return null
+}
+const intersects=(a:DisplayRange,b:DisplayRange)=>a.start<b.end-1e-9&&b.start<a.end-1e-9
+/** Array order is screen depth. Reuse lanes while preserving every overlapping pair's order. */
+export function packClips(clips:ScreenClip[]) {
+  const rows=new Map<string,number>(),lanes:ScreenClip[][]=[]
+  clips.forEach((clip,i)=>{
+    let minimum=0
+    for(const above of clips.slice(0,i))if(intersects(above.displayRange,clip.displayRange))minimum=Math.max(minimum,(rows.get(above.clipId)??0)+1)
+    let row=minimum
+    while(lanes[row]?.some(other=>intersects(other.displayRange,clip.displayRange)))row++
+    ;(lanes[row]??=[]).push(clip);rows.set(clip.clipId,row)
+  })
+  return {rows,count:Math.max(1,lanes.length)}
+}

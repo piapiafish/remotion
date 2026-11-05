@@ -1,0 +1,69 @@
+[
+  {
+    "name": "authoritative-preflight",
+    "command": [
+      "C:\\Python315\\python.exe",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\delivery\\apply_p101.py",
+      "--check"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"status\": \"READY\", \"project\": \"D:\\\\remotion\\\\p0\\\\MultiAgent-3D-Promo-Studio\", \"filesToWrite\": 56, \"checkOnly\": true}\n",
+    "stderr": ""
+  },
+  {
+    "name": "snapshot-apply",
+    "command": [
+      "C:\\Python315\\python.exe",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\delivery\\apply_p101.py",
+      "--project",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\project"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-audit-20261101-174757\\\\project\", \"filesToWrite\": 56, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-audit-20261101-174757\\\\project\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-audit-20261101-174757\\\\project\\\\reports\\\\archive\\\\p101-before-20261101-180801-326748\", \"files\": 56, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-audit-20261101-174757\\\\project\\\\reports\\\\current\\\\p101-20261101\\\\writeback-receipt.json\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "snapshot-idempotence",
+    "command": [
+      "C:\\Python315\\python.exe",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\delivery\\apply_p101.py",
+      "--project",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\project"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"status\": \"ALREADY_APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-audit-20261101-174757\\\\project\", \"filesToWrite\": 0, \"checkOnly\": false}\n",
+    "stderr": ""
+  },
+  {
+    "name": "doc-links",
+    "command": [
+      "C:\\Python315\\python.exe",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\project\\scripts\\check-project-docs.py"
+    ],
+    "exitCode": 0,
+    "stdout": "{\n  \"date\": \"2026-11-01T18:08:01.918168+08:00\",\n  \"markdownFilesChecked\": 67,\n  \"errors\": [],\n  \"historicalLinkWarnings\": [\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/DEVELOPMENT_LOG.md\",\n      \"line\": 3,\n      \"target\": \"reports/archive/README.md\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/DEVELOPMENT_LOG.md\",\n      \"line\": 28,\n      \"target\": \"reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/ISSUES_LOG.md\",\n      \"line\": 15,\n      \"target\": \"reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/ISSUES_LOG.md\",\n      \"line\": 30,\n      \"target\": \"docs/ARCHITECTURE.md\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/ISSUES_LOG.md\",\n      \"line\": 30,\n      \"target\": \"reports/archive/pre-20261101/CONTEXT.md\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 9,\n      \"target\": \"../archive/pre-20261101/original-documents.zip\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 9,\n      \"target\": \"file-organization.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 10,\n      \"target\": \"document-check.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 11,\n      \"target\": \"document-check.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 12,\n      \"target\": \"frontend-tests.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 13,\n      \"target\": \"build.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 14,\n      \"target\": \"lint.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 15,\n      \"target\": \"agent-tests.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 19,\n      \"target\": \"results.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 19,\n      \"target\": \"agent-tests-sandbox.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 23,\n      \"target\": \"../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 23,\n      \"target\": \"../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 25,\n      \"target\": \"../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-180801-326748/reports/current/README.md\",\n      \"line\": 27,\n      \"target\": \"../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md\"\n    }\n  ],\n  \"integrity\": {\n    \"status\": \"NOT_RUN\"\n  },\n  \"status\": \"PASS\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "audit-script-syntax",
+    "command": [
+      "node",
+      "--check",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\project\\scripts\\audit-p1-01.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "audit-script-lint",
+    "command": [
+      "node",
+      "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\project\\node_modules\\oxlint\\bin\\oxlint",
+      "scripts/audit-p1-01.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

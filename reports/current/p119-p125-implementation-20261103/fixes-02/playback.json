@@ -1,0 +1,8775 @@
+{
+  "frames": [
+    {
+      "index": 2,
+      "now": 3348.3,
+      "mediaTime": 0.1,
+      "presentedFrames": 4,
+      "timeline": 0.10180000001192095
+    },
+    {
+      "index": 0,
+      "now": 3348.3,
+      "mediaTime": 0.068056,
+      "presentedFrames": 10,
+      "timeline": 0.10180000001192095
+    },
+    {
+      "index": 0,
+      "now": 3366.5,
+      "mediaTime": 0.076833,
+      "presentedFrames": 11,
+      "timeline": 0.1211999999880791
+    },
+    {
+      "index": 0,
+      "now": 3378.6,
+      "mediaTime": 0.092822,
+      "presentedFrames": 13,
+      "timeline": 0.13669999998807908
+    },
+    {
+      "index": 2,
+      "now": 3378.6,
+      "mediaTime": 0.133333,
+      "presentedFrames": 5,
+      "timeline": 0.13669999998807908
+    },
+    {
+      "index": 0,
+      "now": 3384.7,
+      "mediaTime": 0.101133,
+      "presentedFrames": 14,
+      "timeline": 0.1461999999880791
+    },
+    {
+      "index": 0,
+      "now": 3396.8,
+      "mediaTime": 0.109567,
+      "presentedFrames": 15,
+      "timeline": 0.16250000000000003
+    },
+    {
+      "index": 0,
+      "now": 3402.8,
+      "mediaTime": 0.117867,
+      "presentedFrames": 16,
+      "timeline": 0.16730000001192097
+    },
+    {
+      "index": 0,
+      "now": 3408.9,
+      "mediaTime": 0.126167,
+      "presentedFrames": 17,
+      "timeline": 0.17250000000000004
+    },
+    {
+      "index": 2,
+      "now": 3408.9,
+      "mediaTime": 0.166667,
+      "presentedFrames": 6,
+      "timeline": 0.17250000000000004
+    },
+    {
+      "index": 0,
+      "now": 3427.1,
+      "mediaTime": 0.1431,
+      "presentedFrames": 19,
+      "timeline": 0.18250000000000005
+    },
+    {
+      "index": 0,
+      "now": 3445.3,
+      "mediaTime": 0.159522,
+      "presentedFrames": 21,
+      "timeline": 0.20609999996423728
+    },
+    {
+      "index": 2,
+      "now": 3445.3,
+      "mediaTime": 0.2,
+      "presentedFrames": 7,
+      "timeline": 0.20609999996423728
+    },
+    {
+      "index": 0,
+      "now": 3463.4,
+      "mediaTime": 0.176489,
+      "presentedFrames": 23,
+      "timeline": 0.22430000001192102
+    },
+    {
+      "index": 0,
+      "now": 3475.7,
+      "mediaTime": 0.192867,
+      "presentedFrames": 25,
+      "timeline": 0.23639999997615824
+    },
+    {
+      "index": 2,
+      "now": 3481.6,
+      "mediaTime": 0.233333,
+      "presentedFrames": 8,
+      "timeline": 0.2425000000000001
+    },
+    {
+      "index": 0,
+      "now": 3493.8,
+      "mediaTime": 0.201056,
+      "presentedFrames": 26,
+      "timeline": 0.25639999997615825
+    },
+    {
+      "index": 0,
+      "now": 3499.8,
+      "mediaTime": 0.209644,
+      "presentedFrames": 27,
+      "timeline": 0.26180000001192105
+    },
+    {
+      "index": 0,
+      "now": 3511.9,
+      "mediaTime": 0.226511,
+      "presentedFrames": 29,
+      "timeline": 0.27280000001192106
+    },
+    {
+      "index": 2,
+      "now": 3511.9,
+      "mediaTime": 0.266667,
+      "presentedFrames": 9,
+      "timeline": 0.27280000001192106
+    },
+    {
+      "index": 0,
+      "now": 3530.2,
+      "mediaTime": 0.243289,
+      "presentedFrames": 31,
+      "timeline": 0.29100000000000015
+    },
+    {
+      "index": 0,
+      "now": 3542.2,
+      "mediaTime": 0.259867,
+      "presentedFrames": 33,
+      "timeline": 0.30309999996423737
+    },
+    {
+      "index": 2,
+      "now": 3548.3,
+      "mediaTime": 0.3,
+      "presentedFrames": 10,
+      "timeline": 0.30919999998807923
+    },
+    {
+      "index": 0,
+      "now": 3560.4,
+      "mediaTime": 0.268,
+      "presentedFrames": 34,
+      "timeline": 0.3213000000119211
+    },
+    {
+      "index": 0,
+      "now": 3572.5,
+      "mediaTime": 0.284911,
+      "presentedFrames": 36,
+      "timeline": 0.3333999999761583
+    },
+    {
+      "index": 2,
+      "now": 3578.6,
+      "mediaTime": 0.333333,
+      "presentedFrames": 11,
+      "timeline": 0.3395000000000002
+    },
+    {
+      "index": 0,
+      "now": 3578.6,
+      "mediaTime": 0.293367,
+      "presentedFrames": 37,
+      "timeline": 0.3395000000000002
+    },
+    {
+      "index": 0,
+      "now": 3590.7,
+      "mediaTime": 0.301567,
+      "presentedFrames": 38,
+      "timeline": 0.35169999998807927
+    },
+    {
+      "index": 0,
+      "now": 3602.8,
+      "mediaTime": 0.318367,
+      "presentedFrames": 40,
+      "timeline": 0.3636999999880793
+    },
+    {
+      "index": 0,
+      "now": 3615,
+      "mediaTime": 0.326411,
+      "presentedFrames": 41,
+      "timeline": 0.37589999997615836
+    },
+    {
+      "index": 2,
+      "now": 3615,
+      "mediaTime": 0.366667,
+      "presentedFrames": 12,
+      "timeline": 0.37589999997615836
+    },
+    {
+      "index": 0,
+      "now": 3633.2,
+      "mediaTime": 0.343267,
+      "presentedFrames": 43,
+      "timeline": 0.39400000000000024
+    },
+    {
+      "index": 0,
+      "now": 3639.3,
+      "mediaTime": 0.351778,
+      "presentedFrames": 44,
+      "timeline": 0.4026999999880793
+    },
+    {
+      "index": 2,
+      "now": 3639.3,
+      "mediaTime": 0.4,
+      "presentedFrames": 13,
+      "timeline": 0.4026999999880793
+    },
+    {
+      "index": 0,
+      "now": 3645.4,
+      "mediaTime": 0.360289,
+      "presentedFrames": 45,
+      "timeline": 0.4096999999880793
+    },
+    {
+      "index": 0,
+      "now": 3657.4,
+      "mediaTime": 0.367922,
+      "presentedFrames": 46,
+      "timeline": 0.42119999998807933
+    },
+    {
+      "index": 0,
+      "now": 3663.4,
+      "mediaTime": 0.376378,
+      "presentedFrames": 47,
+      "timeline": 0.4265999999642375
+    },
+    {
+      "index": 0,
+      "now": 3675.7,
+      "mediaTime": 0.385022,
+      "presentedFrames": 48,
+      "timeline": 0.4363999999761584
+    },
+    {
+      "index": 0,
+      "now": 3681.7,
+      "mediaTime": 0.392833,
+      "presentedFrames": 49,
+      "timeline": 0.4425999999642375
+    },
+    {
+      "index": 2,
+      "now": 3681.7,
+      "mediaTime": 0.433333,
+      "presentedFrames": 14,
+      "timeline": 0.4425999999642375
+    },
+    {
+      "index": 0,
+      "now": 3693.8,
+      "mediaTime": 0.409656,
+      "presentedFrames": 51,
+      "timeline": 0.4545999999642375
+    },
+    {
+      "index": 0,
+      "now": 3711.9,
+      "mediaTime": 0.426556,
+      "presentedFrames": 53,
+      "timeline": 0.47280000001192124
+    },
+    {
+      "index": 2,
+      "now": 3711.9,
+      "mediaTime": 0.466667,
+      "presentedFrames": 15,
+      "timeline": 0.47280000001192124
+    },
+    {
+      "index": 0,
+      "now": 3724.1,
+      "mediaTime": 0.434922,
+      "presentedFrames": 54,
+      "timeline": 0.48980000001192125
+    },
+    {
+      "index": 0,
+      "now": 3730.1,
+      "mediaTime": 0.451656,
+      "presentedFrames": 56,
+      "timeline": 0.49380000001192126
+    },
+    {
+      "index": 0,
+      "now": 3748.4,
+      "mediaTime": 0.460022,
+      "presentedFrames": 57,
+      "timeline": 0.5090999999642375
+    },
+    {
+      "index": 2,
+      "now": 3748.4,
+      "mediaTime": 0.5,
+      "presentedFrames": 16,
+      "timeline": 0.5090999999642375
+    },
+    {
+      "index": 0,
+      "now": 3754.5,
+      "mediaTime": 0.468267,
+      "presentedFrames": 58,
+      "timeline": 0.5175000000000003
+    },
+    {
+      "index": 0,
+      "now": 3760.5,
+      "mediaTime": 0.476511,
+      "presentedFrames": 59,
+      "timeline": 0.5253999999761584
+    },
+    {
+      "index": 0,
+      "now": 3772.6,
+      "mediaTime": 0.485089,
+      "presentedFrames": 60,
+      "timeline": 0.5375000000000002
+    },
+    {
+      "index": 2,
+      "now": 3772.6,
+      "mediaTime": 0.533333,
+      "presentedFrames": 17,
+      "timeline": 0.5375000000000002
+    },
+    {
+      "index": 0,
+      "now": 3778.6,
+      "mediaTime": 0.493411,
+      "presentedFrames": 61,
+      "timeline": 0.5425000000000002
+    },
+    {
+      "index": 0,
+      "now": 3784.7,
+      "mediaTime": 0.502044,
+      "presentedFrames": 62,
+      "timeline": 0.5473999999761583
+    },
+    {
+      "index": 0,
+      "now": 3796.8,
+      "mediaTime": 0.510256,
+      "presentedFrames": 63,
+      "timeline": 0.5601999999880791
+    },
+    {
+      "index": 0,
+      "now": 3802.8,
+      "mediaTime": 0.518467,
+      "presentedFrames": 64,
+      "timeline": 0.5638999999761581
+    },
+    {
+      "index": 2,
+      "now": 3809,
+      "mediaTime": 0.566667,
+      "presentedFrames": 18,
+      "timeline": 0.571199999988079
+    },
+    {
+      "index": 0,
+      "now": 3821.1,
+      "mediaTime": 0.535522,
+      "presentedFrames": 66,
+      "timeline": 0.582699999988079
+    },
+    {
+      "index": 0,
+      "now": 3827.1,
+      "mediaTime": 0.543156,
+      "presentedFrames": 67,
+      "timeline": 0.590699999988079
+    },
+    {
+      "index": 0,
+      "now": 3839.3,
+      "mediaTime": 0.551611,
+      "presentedFrames": 68,
+      "timeline": 0.6000999999642371
+    },
+    {
+      "index": 2,
+      "now": 3839.3,
+      "mediaTime": 0.6,
+      "presentedFrames": 19,
+      "timeline": 0.6000999999642371
+    },
+    {
+      "index": 0,
+      "now": 3845.3,
+      "mediaTime": 0.559933,
+      "presentedFrames": 69,
+      "timeline": 0.6079999999999999
+    },
+    {
+      "index": 0,
+      "now": 3857.5,
+      "mediaTime": 0.567978,
+      "presentedFrames": 70,
+      "timeline": 0.6185999999642371
+    },
+    {
+      "index": 0,
+      "now": 3869.5,
+      "mediaTime": 0.584656,
+      "presentedFrames": 72,
+      "timeline": 0.630399999976158
+    },
+    {
+      "index": 0,
+      "now": 3881.6,
+      "mediaTime": 0.593133,
+      "presentedFrames": 73,
+      "timeline": 0.6424999999999998
+    },
+    {
+      "index": 2,
+      "now": 3881.6,
+      "mediaTime": 0.633333,
+      "presentedFrames": 20,
+      "timeline": 0.6424999999999998
+    },
+    {
+      "index": 0,
+      "now": 3893.8,
+      "mediaTime": 0.609844,
+      "presentedFrames": 75,
+      "timeline": 0.6546999999880789
+    },
+    {
+      "index": 0,
+      "now": 3906,
+      "mediaTime": 0.6182,
+      "presentedFrames": 76,
+      "timeline": 0.6681999999880789
+    },
+    {
+      "index": 2,
+      "now": 3906,
+      "mediaTime": 0.666667,
+      "presentedFrames": 21,
+      "timeline": 0.6681999999880789
+    },
+    {
+      "index": 0,
+      "now": 3918.1,
+      "mediaTime": 0.626422,
+      "presentedFrames": 77,
+      "timeline": 0.6759999999999998
+    },
+    {
+      "index": 0,
+      "now": 3924.1,
+      "mediaTime": 0.634933,
+      "presentedFrames": 78,
+      "timeline": 0.6888000000119208
+    },
+    {
+      "index": 0,
+      "now": 3948.4,
+      "mediaTime": 0.660111,
+      "presentedFrames": 81,
+      "timeline": 0.6963000000119207
+    },
+    {
+      "index": 2,
+      "now": 3948.4,
+      "mediaTime": 0.7,
+      "presentedFrames": 22,
+      "timeline": 0.6963000000119207
+    },
+    {
+      "index": 0,
+      "now": 3966.5,
+      "mediaTime": 0.676756,
+      "presentedFrames": 83,
+      "timeline": 0.716599999964237
+    },
+    {
+      "index": 0,
+      "now": 3984.7,
+      "mediaTime": 0.701589,
+      "presentedFrames": 86,
+      "timeline": 0.737599999964237
+    },
+    {
+      "index": 2,
+      "now": 3984.7,
+      "mediaTime": 0.733333,
+      "presentedFrames": 23,
+      "timeline": 0.737599999964237
+    },
+    {
+      "index": 0,
+      "now": 3996.8,
+      "mediaTime": 0.710233,
+      "presentedFrames": 87,
+      "timeline": 0.7530999999642369
+    },
+    {
+      "index": 0,
+      "now": 4009,
+      "mediaTime": 0.726633,
+      "presentedFrames": 89,
+      "timeline": 0.7665999999642369
+    },
+    {
+      "index": 2,
+      "now": 4009,
+      "mediaTime": 0.766667,
+      "presentedFrames": 24,
+      "timeline": 0.7665999999642369
+    },
+    {
+      "index": 0,
+      "now": 4021.1,
+      "mediaTime": 0.734789,
+      "presentedFrames": 90,
+      "timeline": 0.7784999999999996
+    },
+    {
+      "index": 0,
+      "now": 4039.2,
+      "mediaTime": 0.751989,
+      "presentedFrames": 92,
+      "timeline": 0.7928000000119205
+    },
+    {
+      "index": 2,
+      "now": 4039.2,
+      "mediaTime": 0.8,
+      "presentedFrames": 25,
+      "timeline": 0.7928000000119205
+    },
+    {
+      "index": 0,
+      "now": 4045.3,
+      "mediaTime": 0.759956,
+      "presentedFrames": 93,
+      "timeline": 0.8073000000119205
+    },
+    {
+      "index": 0,
+      "now": 4063.5,
+      "mediaTime": 0.776689,
+      "presentedFrames": 95,
+      "timeline": 0.8168000000119204
+    },
+    {
+      "index": 0,
+      "now": 4075.6,
+      "mediaTime": 0.801544,
+      "presentedFrames": 98,
+      "timeline": 0.8354999999999995
+    },
+    {
+      "index": 2,
+      "now": 4075.6,
+      "mediaTime": 0.833333,
+      "presentedFrames": 26,
+      "timeline": 0.8354999999999995
+    },
+    {
+      "index": 2,
+      "now": 4112,
+      "mediaTime": 0.866667,
+      "presentedFrames": 27,
+      "timeline": 0.8726999999880786
+    },
+    {
+      "index": 2,
+      "now": 4142.3,
+      "mediaTime": 0.9,
+      "presentedFrames": 28,
+      "timeline": 0.9060999999642366
+    },
+    {
+      "index": 2,
+      "now": 4172.6,
+      "mediaTime": 0.933333,
+      "presentedFrames": 29,
+      "timeline": 0.9351999999880785
+    },
+    {
+      "index": 0,
+      "now": 4203.1,
+      "mediaTime": 0.919667,
+      "presentedFrames": 99,
+      "timeline": 0.9610999999642366
+    },
+    {
+      "index": 2,
+      "now": 4209,
+      "mediaTime": 0.966667,
+      "presentedFrames": 30,
+      "timeline": 0.9715999999642365
+    },
+    {
+      "index": 0,
+      "now": 4221.1,
+      "mediaTime": 0.9354,
+      "presentedFrames": 101,
+      "timeline": 0.9804999999999993
+    },
+    {
+      "index": 0,
+      "now": 4233.3,
+      "mediaTime": 0.943378,
+      "presentedFrames": 102,
+      "timeline": 0.9978000000119202
+    },
+    {
+      "index": 0,
+      "now": 4245.4,
+      "mediaTime": 0.961022,
+      "presentedFrames": 104,
+      "timeline": 1.0060999999642364
+    },
+    {
+      "index": 2,
+      "now": 4245.4,
+      "mediaTime": 1,
+      "presentedFrames": 31,
+      "timeline": 1.0060999999642364
+    },
+    {
+      "index": 0,
+      "now": 4257.4,
+      "mediaTime": 0.969244,
+      "presentedFrames": 105,
+      "timeline": 1.0206999999880781
+    },
+    {
+      "index": 0,
+      "now": 4263.5,
+      "mediaTime": 0.977644,
+      "presentedFrames": 106,
+      "timeline": 1.0265999999642363
+    },
+    {
+      "index": 0,
+      "now": 4269.6,
+      "mediaTime": 0.985756,
+      "presentedFrames": 107,
+      "timeline": 1.0336999999880783
+    },
+    {
+      "index": 2,
+      "now": 4275.7,
+      "mediaTime": 1.033333,
+      "presentedFrames": 32,
+      "timeline": 1.0388999999761572
+    },
+    {
+      "index": 0,
+      "now": 4287.8,
+      "mediaTime": 1.002956,
+      "presentedFrames": 109,
+      "timeline": 1.048699999988078
+    },
+    {
+      "index": 0,
+      "now": 4293.8,
+      "mediaTime": 1.011556,
+      "presentedFrames": 110,
+      "timeline": 1.0568000000119198
+    },
+    {
+      "index": 0,
+      "now": 4306,
+      "mediaTime": 1.019033,
+      "presentedFrames": 111,
+      "timeline": 1.070599999964236
+    },
+    {
+      "index": 2,
+      "now": 4306,
+      "mediaTime": 1.066667,
+      "presentedFrames": 33,
+      "timeline": 1.070599999964236
+    },
+    {
+      "index": 0,
+      "now": 4312,
+      "mediaTime": 1.027744,
+      "presentedFrames": 112,
+      "timeline": 1.0756999999880779
+    },
+    {
+      "index": 0,
+      "now": 4324.2,
+      "mediaTime": 1.035689,
+      "presentedFrames": 113,
+      "timeline": 1.086899999976157
+    },
+    {
+      "index": 0,
+      "now": 4330.2,
+      "mediaTime": 1.043922,
+      "presentedFrames": 114,
+      "timeline": 1.0948000000119198
+    },
+    {
+      "index": 0,
+      "now": 4336.2,
+      "mediaTime": 1.052633,
+      "presentedFrames": 115,
+      "timeline": 1.100499999999999
+    },
+    {
+      "index": 2,
+      "now": 4348.4,
+      "mediaTime": 1.1,
+      "presentedFrames": 34,
+      "timeline": 1.1093000000119198
+    },
+    {
+      "index": 0,
+      "now": 4354.5,
+      "mediaTime": 1.060856,
+      "presentedFrames": 116,
+      "timeline": 1.115399999976157
+    },
+    {
+      "index": 0,
+      "now": 4360.5,
+      "mediaTime": 1.071289,
+      "presentedFrames": 117,
+      "timeline": 1.121399999976157
+    },
+    {
+      "index": 0,
+      "now": 4366.5,
+      "mediaTime": 1.077556,
+      "presentedFrames": 118,
+      "timeline": 1.128599999964236
+    },
+    {
+      "index": 0,
+      "now": 4378.6,
+      "mediaTime": 1.094078,
+      "presentedFrames": 120,
+      "timeline": 1.1394999999999988
+    },
+    {
+      "index": 2,
+      "now": 4378.6,
+      "mediaTime": 1.133333,
+      "presentedFrames": 35,
+      "timeline": 1.1394999999999988
+    },
+    {
+      "index": 0,
+      "now": 4396.9,
+      "mediaTime": 1.110978,
+      "presentedFrames": 122,
+      "timeline": 1.157699999988078
+    },
+    {
+      "index": 0,
+      "now": 4409,
+      "mediaTime": 1.119389,
+      "presentedFrames": 123,
+      "timeline": 1.1698000000119197
+    },
+    {
+      "index": 2,
+      "now": 4415.1,
+      "mediaTime": 1.166667,
+      "presentedFrames": 36,
+      "timeline": 1.175899999976157
+    },
+    {
+      "index": 0,
+      "now": 4421.1,
+      "mediaTime": 1.127611,
+      "presentedFrames": 124,
+      "timeline": 1.1819999999999988
+    },
+    {
+      "index": 0,
+      "now": 4427.1,
+      "mediaTime": 1.135833,
+      "presentedFrames": 125,
+      "timeline": 1.1893999999761569
+    },
+    {
+      "index": 0,
+      "now": 4433.3,
+      "mediaTime": 1.144511,
+      "presentedFrames": 126,
+      "timeline": 1.197599999964236
+    },
+    {
+      "index": 0,
+      "now": 4439.4,
+      "mediaTime": 1.152611,
+      "presentedFrames": 127,
+      "timeline": 1.2044999999999988
+    },
+    {
+      "index": 2,
+      "now": 4439.4,
+      "mediaTime": 1.2,
+      "presentedFrames": 37,
+      "timeline": 1.2044999999999988
+    },
+    {
+      "index": 0,
+      "now": 4445.3,
+      "mediaTime": 1.160922,
+      "presentedFrames": 128,
+      "timeline": 1.2091999999880778
+    },
+    {
+      "index": 0,
+      "now": 4457.4,
+      "mediaTime": 1.170711,
+      "presentedFrames": 129,
+      "timeline": 1.2223000000119195
+    },
+    {
+      "index": 0,
+      "now": 4463.6,
+      "mediaTime": 1.177333,
+      "presentedFrames": 130,
+      "timeline": 1.2283000000119195
+    },
+    {
+      "index": 0,
+      "now": 4475.7,
+      "mediaTime": 1.185767,
+      "presentedFrames": 131,
+      "timeline": 1.2339999999999987
+    },
+    {
+      "index": 2,
+      "now": 4475.7,
+      "mediaTime": 1.233333,
+      "presentedFrames": 38,
+      "timeline": 1.2339999999999987
+    },
+    {
+      "index": 0,
+      "now": 4481.7,
+      "mediaTime": 1.1942,
+      "presentedFrames": 132,
+      "timeline": 1.2433999999761567
+    },
+    {
+      "index": 0,
+      "now": 4487.9,
+      "mediaTime": 1.202367,
+      "presentedFrames": 133,
+      "timeline": 1.2503000000119195
+    },
+    {
+      "index": 0,
+      "now": 4499.9,
+      "mediaTime": 1.210733,
+      "presentedFrames": 134,
+      "timeline": 1.2608000000119195
+    },
+    {
+      "index": 0,
+      "now": 4506,
+      "mediaTime": 1.219211,
+      "presentedFrames": 135,
+      "timeline": 1.2668999999761568
+    },
+    {
+      "index": 2,
+      "now": 4506,
+      "mediaTime": 1.266667,
+      "presentedFrames": 39,
+      "timeline": 1.2668999999761568
+    },
+    {
+      "index": 0,
+      "now": 4512,
+      "mediaTime": 1.227689,
+      "presentedFrames": 136,
+      "timeline": 1.2736999999880776
+    },
+    {
+      "index": 0,
+      "now": 4530.2,
+      "mediaTime": 1.244089,
+      "presentedFrames": 138,
+      "timeline": 1.2908999999761566
+    },
+    {
+      "index": 0,
+      "now": 4542.4,
+      "mediaTime": 1.2607,
+      "presentedFrames": 140,
+      "timeline": 1.3031999999880775
+    },
+    {
+      "index": 2,
+      "now": 4548.4,
+      "mediaTime": 1.3,
+      "presentedFrames": 40,
+      "timeline": 1.3093000000119193
+    },
+    {
+      "index": 0,
+      "now": 4560.6,
+      "mediaTime": 1.269367,
+      "presentedFrames": 141,
+      "timeline": 1.3214999999999983
+    },
+    {
+      "index": 0,
+      "now": 4566.6,
+      "mediaTime": 1.278033,
+      "presentedFrames": 142,
+      "timeline": 1.3285999999642355
+    },
+    {
+      "index": 0,
+      "now": 4572.6,
+      "mediaTime": 1.286989,
+      "presentedFrames": 143,
+      "timeline": 1.3373999999761563
+    },
+    {
+      "index": 2,
+      "now": 4572.6,
+      "mediaTime": 1.333333,
+      "presentedFrames": 41,
+      "timeline": 1.3373999999761563
+    },
+    {
+      "index": 0,
+      "now": 4584.8,
+      "mediaTime": 1.302756,
+      "presentedFrames": 145,
+      "timeline": 1.3448000000119191
+    },
+    {
+      "index": 0,
+      "now": 4596.9,
+      "mediaTime": 1.310811,
+      "presentedFrames": 146,
+      "timeline": 1.358999999999998
+    },
+    {
+      "index": 0,
+      "now": 4602.9,
+      "mediaTime": 1.319189,
+      "presentedFrames": 147,
+      "timeline": 1.366199999988077
+    },
+    {
+      "index": 2,
+      "now": 4609,
+      "mediaTime": 1.366667,
+      "presentedFrames": 42,
+      "timeline": 1.371499999999998
+    },
+    {
+      "index": 0,
+      "now": 4615.1,
+      "mediaTime": 1.327756,
+      "presentedFrames": 148,
+      "timeline": 1.3784999999999978
+    },
+    {
+      "index": 0,
+      "now": 4627.2,
+      "mediaTime": 1.336322,
+      "presentedFrames": 149,
+      "timeline": 1.3863000000119188
+    },
+    {
+      "index": 0,
+      "now": 4633.3,
+      "mediaTime": 1.344544,
+      "presentedFrames": 150,
+      "timeline": 1.394899999976156
+    },
+    {
+      "index": 0,
+      "now": 4639.3,
+      "mediaTime": 1.3532,
+      "presentedFrames": 151,
+      "timeline": 1.4018000000119188
+    },
+    {
+      "index": 2,
+      "now": 4639.3,
+      "mediaTime": 1.4,
+      "presentedFrames": 43,
+      "timeline": 1.4018000000119188
+    },
+    {
+      "index": 0,
+      "now": 4651.4,
+      "mediaTime": 1.361856,
+      "presentedFrames": 152,
+      "timeline": 1.412499999999998
+    },
+    {
+      "index": 0,
+      "now": 4657.5,
+      "mediaTime": 1.369756,
+      "presentedFrames": 153,
+      "timeline": 1.421300000011919
+    },
+    {
+      "index": 0,
+      "now": 4669.6,
+      "mediaTime": 1.386389,
+      "presentedFrames": 155,
+      "timeline": 1.4300999999642352
+    },
+    {
+      "index": 2,
+      "now": 4675.7,
+      "mediaTime": 1.433333,
+      "presentedFrames": 44,
+      "timeline": 1.4413999999761562
+    },
+    {
+      "index": 0,
+      "now": 4681.8,
+      "mediaTime": 1.394722,
+      "presentedFrames": 156,
+      "timeline": 1.4468999999761563
+    },
+    {
+      "index": 0,
+      "now": 4699.9,
+      "mediaTime": 1.410844,
+      "presentedFrames": 158,
+      "timeline": 1.460699999988077
+    },
+    {
+      "index": 0,
+      "now": 4712,
+      "mediaTime": 1.427644,
+      "presentedFrames": 160,
+      "timeline": 1.4729999999999979
+    },
+    {
+      "index": 2,
+      "now": 4712,
+      "mediaTime": 1.466667,
+      "presentedFrames": 45,
+      "timeline": 1.4729999999999979
+    },
+    {
+      "index": 0,
+      "now": 4730.2,
+      "mediaTime": 1.444067,
+      "presentedFrames": 162,
+      "timeline": 1.4910999999642351
+    },
+    {
+      "index": 0,
+      "now": 4742.4,
+      "mediaTime": 1.452489,
+      "presentedFrames": 163,
+      "timeline": 1.503199999988077
+    },
+    {
+      "index": 2,
+      "now": 4742.4,
+      "mediaTime": 1.5,
+      "presentedFrames": 46,
+      "timeline": 1.503199999988077
+    },
+    {
+      "index": 0,
+      "now": 4754.5,
+      "mediaTime": 1.469578,
+      "presentedFrames": 165,
+      "timeline": 1.5153000000119188
+    },
+    {
+      "index": 0,
+      "now": 4772.7,
+      "mediaTime": 1.485889,
+      "presentedFrames": 167,
+      "timeline": 1.5334999999999979
+    },
+    {
+      "index": 2,
+      "now": 4778.8,
+      "mediaTime": 1.533333,
+      "presentedFrames": 47,
+      "timeline": 1.539899999976156
+    },
+    {
+      "index": 0,
+      "now": 4778.8,
+      "mediaTime": 1.494044,
+      "presentedFrames": 168,
+      "timeline": 1.539899999976156
+    },
+    {
+      "index": 0,
+      "now": 4790.8,
+      "mediaTime": 1.502733,
+      "presentedFrames": 169,
+      "timeline": 1.5516999999880767
+    },
+    {
+      "index": 0,
+      "now": 4797,
+      "mediaTime": 1.511111,
+      "presentedFrames": 170,
+      "timeline": 1.5578999999761558
+    },
+    {
+      "index": 0,
+      "now": 4809,
+      "mediaTime": 1.5191,
+      "presentedFrames": 171,
+      "timeline": 1.5701999999880767
+    },
+    {
+      "index": 2,
+      "now": 4815.2,
+      "mediaTime": 1.566667,
+      "presentedFrames": 48,
+      "timeline": 1.5759999999999976
+    },
+    {
+      "index": 0,
+      "now": 4821.2,
+      "mediaTime": 1.527811,
+      "presentedFrames": 172,
+      "timeline": 1.5819999999999976
+    },
+    {
+      "index": 0,
+      "now": 4833.3,
+      "mediaTime": 1.544167,
+      "presentedFrames": 174,
+      "timeline": 1.5941999999880767
+    },
+    {
+      "index": 0,
+      "now": 4839.3,
+      "mediaTime": 1.552411,
+      "presentedFrames": 175,
+      "timeline": 1.602099999964235
+    },
+    {
+      "index": 2,
+      "now": 4839.3,
+      "mediaTime": 1.6,
+      "presentedFrames": 49,
+      "timeline": 1.602099999964235
+    },
+    {
+      "index": 0,
+      "now": 4857.5,
+      "mediaTime": 1.569689,
+      "presentedFrames": 177,
+      "timeline": 1.617599999964235
+    },
+    {
+      "index": 0,
+      "now": 4863.6,
+      "mediaTime": 1.577878,
+      "presentedFrames": 178,
+      "timeline": 1.6261999999880767
+    },
+    {
+      "index": 0,
+      "now": 4869.6,
+      "mediaTime": 1.5866,
+      "presentedFrames": 179,
+      "timeline": 1.6314999999999977
+    },
+    {
+      "index": 0,
+      "now": 4875.7,
+      "mediaTime": 1.5943,
+      "presentedFrames": 180,
+      "timeline": 1.6386999999880767
+    },
+    {
+      "index": 2,
+      "now": 4875.7,
+      "mediaTime": 1.633333,
+      "presentedFrames": 50,
+      "timeline": 1.6386999999880767
+    },
+    {
+      "index": 0,
+      "now": 4887.8,
+      "mediaTime": 1.602867,
+      "presentedFrames": 181,
+      "timeline": 1.6504999999999976
+    },
+    {
+      "index": 0,
+      "now": 4893.9,
+      "mediaTime": 1.610822,
+      "presentedFrames": 182,
+      "timeline": 1.6558000000119186
+    },
+    {
+      "index": 0,
+      "now": 4906.1,
+      "mediaTime": 1.619344,
+      "presentedFrames": 183,
+      "timeline": 1.668099999964235
+    },
+    {
+      "index": 2,
+      "now": 4906.1,
+      "mediaTime": 1.666667,
+      "presentedFrames": 51,
+      "timeline": 1.668099999964235
+    },
+    {
+      "index": 0,
+      "now": 4918.1,
+      "mediaTime": 1.627867,
+      "presentedFrames": 184,
+      "timeline": 1.6784999999999977
+    },
+    {
+      "index": 0,
+      "now": 4930.3,
+      "mediaTime": 1.644378,
+      "presentedFrames": 186,
+      "timeline": 1.6881999999880768
+    },
+    {
+      "index": 0,
+      "now": 4936.4,
+      "mediaTime": 1.652544,
+      "presentedFrames": 187,
+      "timeline": 1.6981999999880768
+    },
+    {
+      "index": 0,
+      "now": 4942.4,
+      "mediaTime": 1.660844,
+      "presentedFrames": 188,
+      "timeline": 1.706599999964235
+    },
+    {
+      "index": 2,
+      "now": 4942.4,
+      "mediaTime": 1.7,
+      "presentedFrames": 52,
+      "timeline": 1.706599999964235
+    },
+    {
+      "index": 0,
+      "now": 4954.5,
+      "mediaTime": 1.669322,
+      "presentedFrames": 189,
+      "timeline": 1.7148000000119186
+    },
+    {
+      "index": 0,
+      "now": 4966.6,
+      "mediaTime": 1.677456,
+      "presentedFrames": 190,
+      "timeline": 1.7256999999880767
+    },
+    {
+      "index": 0,
+      "now": 4984.8,
+      "mediaTime": 1.685967,
+      "presentedFrames": 191,
+      "timeline": 1.7365999999642348
+    },
+    {
+      "index": 2,
+      "now": 4984.8,
+      "mediaTime": 1.733333,
+      "presentedFrames": 53,
+      "timeline": 1.7365999999642348
+    },
+    {
+      "index": 0,
+      "now": 4997,
+      "mediaTime": 1.710244,
+      "presentedFrames": 193,
+      "timeline": 1.7568999999761556
+    },
+    {
+      "index": 0,
+      "now": 5021.2,
+      "mediaTime": 1.735467,
+      "presentedFrames": 195,
+      "timeline": 1.7688000000119184
+    },
+    {
+      "index": 2,
+      "now": 5021.2,
+      "mediaTime": 1.766667,
+      "presentedFrames": 54,
+      "timeline": 1.7688000000119184
+    },
+    {
+      "index": 0,
+      "now": 5051.6,
+      "mediaTime": 1.751956,
+      "presentedFrames": 196,
+      "timeline": 1.8061999999880765
+    },
+    {
+      "index": 2,
+      "now": 5051.6,
+      "mediaTime": 1.8,
+      "presentedFrames": 55,
+      "timeline": 1.8061999999880765
+    },
+    {
+      "index": 0,
+      "now": 5075.8,
+      "mediaTime": 1.777111,
+      "presentedFrames": 197,
+      "timeline": 1.8298000000119183
+    },
+    {
+      "index": 2,
+      "now": 5075.8,
+      "mediaTime": 1.833333,
+      "presentedFrames": 56,
+      "timeline": 1.8298000000119183
+    },
+    {
+      "index": 0,
+      "now": 5087.9,
+      "mediaTime": 1.7941,
+      "presentedFrames": 198,
+      "timeline": 1.8435999999642345
+    },
+    {
+      "index": 0,
+      "now": 5112.1,
+      "mediaTime": 1.818844,
+      "presentedFrames": 199,
+      "timeline": 1.8710999999642346
+    },
+    {
+      "index": 2,
+      "now": 5112.1,
+      "mediaTime": 1.866667,
+      "presentedFrames": 57,
+      "timeline": 1.8710999999642346
+    },
+    {
+      "index": 0,
+      "now": 5124.2,
+      "mediaTime": 1.827089,
+      "presentedFrames": 200,
+      "timeline": 1.8813999999761555
+    },
+    {
+      "index": 0,
+      "now": 5130.3,
+      "mediaTime": 1.8438,
+      "presentedFrames": 201,
+      "timeline": 1.8919999999999972
+    },
+    {
+      "index": 2,
+      "now": 5142.4,
+      "mediaTime": 1.9,
+      "presentedFrames": 58,
+      "timeline": 1.9085999999642342
+    },
+    {
+      "index": 0,
+      "now": 5166.7,
+      "mediaTime": 1.869067,
+      "presentedFrames": 203,
+      "timeline": 1.9150999999642342
+    },
+    {
+      "index": 2,
+      "now": 5178.8,
+      "mediaTime": 1.933333,
+      "presentedFrames": 59,
+      "timeline": 1.9348999999761551
+    },
+    {
+      "index": 0,
+      "now": 5178.8,
+      "mediaTime": 1.893633,
+      "presentedFrames": 204,
+      "timeline": 1.9348999999761551
+    },
+    {
+      "index": 0,
+      "now": 5209.1,
+      "mediaTime": 1.919156,
+      "presentedFrames": 205,
+      "timeline": 1.9739999999999969
+    },
+    {
+      "index": 2,
+      "now": 5209.1,
+      "mediaTime": 1.966667,
+      "presentedFrames": 60,
+      "timeline": 1.9739999999999969
+    },
+    {
+      "index": 0,
+      "now": 5215.2,
+      "mediaTime": 1.927167,
+      "presentedFrames": 206,
+      "timeline": 1.9788000000119177
+    },
+    {
+      "index": 0,
+      "now": 5221.2,
+      "mediaTime": 1.9356,
+      "presentedFrames": 207,
+      "timeline": 1.9859999999999967
+    },
+    {
+      "index": 0,
+      "now": 5227.3,
+      "mediaTime": 1.943878,
+      "presentedFrames": 208,
+      "timeline": 1.9903000000119175
+    },
+    {
+      "index": 0,
+      "now": 5239.4,
+      "mediaTime": 1.952322,
+      "presentedFrames": 209,
+      "timeline": 2.000599999964234
+    },
+    {
+      "index": 2,
+      "now": 5239.4,
+      "mediaTime": 2,
+      "presentedFrames": 61,
+      "timeline": 2.000599999964234
+    },
+    {
+      "index": 0,
+      "now": 5263.7,
+      "mediaTime": 1.977133,
+      "presentedFrames": 210,
+      "timeline": 2.0276999999880756
+    },
+    {
+      "index": 0,
+      "now": 5275.8,
+      "mediaTime": 1.985467,
+      "presentedFrames": 211,
+      "timeline": 2.0355999999642336
+    },
+    {
+      "index": 2,
+      "now": 5275.8,
+      "mediaTime": 2.033333,
+      "presentedFrames": 62,
+      "timeline": 2.0355999999642336
+    },
+    {
+      "index": 0,
+      "now": 5281.8,
+      "mediaTime": 1.993967,
+      "presentedFrames": 212,
+      "timeline": 2.0435999999642336
+    },
+    {
+      "index": 0,
+      "now": 5287.9,
+      "mediaTime": 2.002144,
+      "presentedFrames": 213,
+      "timeline": 2.0520999999642338
+    },
+    {
+      "index": 0,
+      "now": 5293.9,
+      "mediaTime": 2.010578,
+      "presentedFrames": 214,
+      "timeline": 2.058399999976155
+    },
+    {
+      "index": 0,
+      "now": 5306.1,
+      "mediaTime": 2.019011,
+      "presentedFrames": 215,
+      "timeline": 2.072199999988076
+    },
+    {
+      "index": 2,
+      "now": 5306.1,
+      "mediaTime": 2.066667,
+      "presentedFrames": 63,
+      "timeline": 2.072199999988076
+    },
+    {
+      "index": 0,
+      "now": 5312.1,
+      "mediaTime": 2.027444,
+      "presentedFrames": 216,
+      "timeline": 2.0781999999880756
+    },
+    {
+      "index": 0,
+      "now": 5330.3,
+      "mediaTime": 2.043878,
+      "presentedFrames": 218,
+      "timeline": 2.091099999964234
+    },
+    {
+      "index": 0,
+      "now": 5342.4,
+      "mediaTime": 2.060656,
+      "presentedFrames": 220,
+      "timeline": 2.103199999988076
+    },
+    {
+      "index": 2,
+      "now": 5348.5,
+      "mediaTime": 2.1,
+      "presentedFrames": 64,
+      "timeline": 2.109399999976155
+    },
+    {
+      "index": 0,
+      "now": 5354.5,
+      "mediaTime": 2.069044,
+      "presentedFrames": 221,
+      "timeline": 2.117099999964234
+    },
+    {
+      "index": 0,
+      "now": 5360.6,
+      "mediaTime": 2.077433,
+      "presentedFrames": 222,
+      "timeline": 2.121499999999997
+    },
+    {
+      "index": 0,
+      "now": 5378.8,
+      "mediaTime": 2.093911,
+      "presentedFrames": 224,
+      "timeline": 2.139699999988076
+    },
+    {
+      "index": 2,
+      "now": 5378.8,
+      "mediaTime": 2.133333,
+      "presentedFrames": 65,
+      "timeline": 2.139699999988076
+    },
+    {
+      "index": 0,
+      "now": 5390.9,
+      "mediaTime": 2.102278,
+      "presentedFrames": 225,
+      "timeline": 2.151699999988076
+    },
+    {
+      "index": 0,
+      "now": 5397,
+      "mediaTime": 2.110644,
+      "presentedFrames": 226,
+      "timeline": 2.158800000011918
+    },
+    {
+      "index": 0,
+      "now": 5403,
+      "mediaTime": 2.119011,
+      "presentedFrames": 227,
+      "timeline": 2.1663000000119177
+    },
+    {
+      "index": 2,
+      "now": 5409.1,
+      "mediaTime": 2.166667,
+      "presentedFrames": 66,
+      "timeline": 2.1743000000119177
+    },
+    {
+      "index": 0,
+      "now": 5415.2,
+      "mediaTime": 2.127378,
+      "presentedFrames": 228,
+      "timeline": 2.1814999999999967
+    },
+    {
+      "index": 0,
+      "now": 5433.4,
+      "mediaTime": 2.144289,
+      "presentedFrames": 230,
+      "timeline": 2.1943000000119173
+    },
+    {
+      "index": 0,
+      "now": 5439.4,
+      "mediaTime": 2.152411,
+      "presentedFrames": 231,
+      "timeline": 2.2013999999761547
+    },
+    {
+      "index": 2,
+      "now": 5439.4,
+      "mediaTime": 2.2,
+      "presentedFrames": 67,
+      "timeline": 2.2013999999761547
+    },
+    {
+      "index": 0,
+      "now": 5451.5,
+      "mediaTime": 2.160889,
+      "presentedFrames": 232,
+      "timeline": 2.2134999999999962
+    },
+    {
+      "index": 0,
+      "now": 5463.7,
+      "mediaTime": 2.177233,
+      "presentedFrames": 234,
+      "timeline": 2.2229999999999963
+    },
+    {
+      "index": 0,
+      "now": 5469.7,
+      "mediaTime": 2.185644,
+      "presentedFrames": 235,
+      "timeline": 2.231300000011917
+    },
+    {
+      "index": 2,
+      "now": 5475.7,
+      "mediaTime": 2.233333,
+      "presentedFrames": 68,
+      "timeline": 2.2366999999880752
+    },
+    {
+      "index": 0,
+      "now": 5481.8,
+      "mediaTime": 2.194056,
+      "presentedFrames": 236,
+      "timeline": 2.2446999999880752
+    },
+    {
+      "index": 0,
+      "now": 5494,
+      "mediaTime": 2.202322,
+      "presentedFrames": 237,
+      "timeline": 2.256300000011917
+    },
+    {
+      "index": 0,
+      "now": 5500,
+      "mediaTime": 2.210589,
+      "presentedFrames": 238,
+      "timeline": 2.2629999999999963
+    },
+    {
+      "index": 0,
+      "now": 5506,
+      "mediaTime": 2.218856,
+      "presentedFrames": 239,
+      "timeline": 2.267599999964234
+    },
+    {
+      "index": 2,
+      "now": 5506,
+      "mediaTime": 2.266667,
+      "presentedFrames": 69,
+      "timeline": 2.267599999964234
+    },
+    {
+      "index": 0,
+      "now": 5512.2,
+      "mediaTime": 2.227411,
+      "presentedFrames": 240,
+      "timeline": 2.2734999999999967
+    },
+    {
+      "index": 0,
+      "now": 5524.4,
+      "mediaTime": 2.235856,
+      "presentedFrames": 241,
+      "timeline": 2.285199999988076
+    },
+    {
+      "index": 0,
+      "now": 5536.4,
+      "mediaTime": 2.2523,
+      "presentedFrames": 243,
+      "timeline": 2.297199999988076
+    },
+    {
+      "index": 2,
+      "now": 5548.5,
+      "mediaTime": 2.3,
+      "presentedFrames": 70,
+      "timeline": 2.3093999999761547
+    },
+    {
+      "index": 0,
+      "now": 5554.6,
+      "mediaTime": 2.268956,
+      "presentedFrames": 245,
+      "timeline": 2.3153999999761545
+    },
+    {
+      "index": 0,
+      "now": 5572.7,
+      "mediaTime": 2.2773,
+      "presentedFrames": 246,
+      "timeline": 2.333699999988075
+    },
+    {
+      "index": 0,
+      "now": 5578.8,
+      "mediaTime": 2.294189,
+      "presentedFrames": 248,
+      "timeline": 2.3395999999642334
+    },
+    {
+      "index": 2,
+      "now": 5578.8,
+      "mediaTime": 2.333333,
+      "presentedFrames": 71,
+      "timeline": 2.3395999999642334
+    },
+    {
+      "index": 0,
+      "now": 5597.1,
+      "mediaTime": 2.302511,
+      "presentedFrames": 249,
+      "timeline": 2.3578999999761545
+    },
+    {
+      "index": 0,
+      "now": 5609.1,
+      "mediaTime": 2.319144,
+      "presentedFrames": 250,
+      "timeline": 2.369999999999996
+    },
+    {
+      "index": 2,
+      "now": 5615.2,
+      "mediaTime": 2.366667,
+      "presentedFrames": 72,
+      "timeline": 2.375999999999996
+    },
+    {
+      "index": 0,
+      "now": 5633.5,
+      "mediaTime": 2.344389,
+      "presentedFrames": 251,
+      "timeline": 2.394399999976154
+    },
+    {
+      "index": 0,
+      "now": 5639.4,
+      "mediaTime": 2.352322,
+      "presentedFrames": 252,
+      "timeline": 2.401599999964233
+    },
+    {
+      "index": 2,
+      "now": 5639.4,
+      "mediaTime": 2.4,
+      "presentedFrames": 73,
+      "timeline": 2.401599999964233
+    },
+    {
+      "index": 0,
+      "now": 5645.5,
+      "mediaTime": 2.360667,
+      "presentedFrames": 253,
+      "timeline": 2.4083999999761536
+    },
+    {
+      "index": 0,
+      "now": 5663.7,
+      "mediaTime": 2.377533,
+      "presentedFrames": 254,
+      "timeline": 2.4258999999761532
+    },
+    {
+      "index": 0,
+      "now": 5675.9,
+      "mediaTime": 2.394133,
+      "presentedFrames": 256,
+      "timeline": 2.436599999964232
+    },
+    {
+      "index": 2,
+      "now": 5675.9,
+      "mediaTime": 2.433333,
+      "presentedFrames": 74,
+      "timeline": 2.436599999964232
+    },
+    {
+      "index": 0,
+      "now": 5700.1,
+      "mediaTime": 2.410811,
+      "presentedFrames": 257,
+      "timeline": 2.460899999976153
+    },
+    {
+      "index": 2,
+      "now": 5706.1,
+      "mediaTime": 2.466667,
+      "presentedFrames": 75,
+      "timeline": 2.4676999999880738
+    },
+    {
+      "index": 0,
+      "now": 5718.3,
+      "mediaTime": 2.435789,
+      "presentedFrames": 258,
+      "timeline": 2.477099999964232
+    },
+    {
+      "index": 0,
+      "now": 5736.4,
+      "mediaTime": 2.4527,
+      "presentedFrames": 260,
+      "timeline": 2.4966999999880737
+    },
+    {
+      "index": 2,
+      "now": 5742.5,
+      "mediaTime": 2.5,
+      "presentedFrames": 76,
+      "timeline": 2.5038000000119154
+    },
+    {
+      "index": 0,
+      "now": 5754.6,
+      "mediaTime": 2.469367,
+      "presentedFrames": 261,
+      "timeline": 2.518599999964232
+    },
+    {
+      "index": 0,
+      "now": 5766.8,
+      "mediaTime": 2.477344,
+      "presentedFrames": 262,
+      "timeline": 2.524399999976153
+    },
+    {
+      "index": 0,
+      "now": 5772.8,
+      "mediaTime": 2.486367,
+      "presentedFrames": 263,
+      "timeline": 2.5348000000119155
+    },
+    {
+      "index": 2,
+      "now": 5772.8,
+      "mediaTime": 2.533333,
+      "presentedFrames": 77,
+      "timeline": 2.5348000000119155
+    },
+    {
+      "index": 0,
+      "now": 5778.8,
+      "mediaTime": 2.494022,
+      "presentedFrames": 264,
+      "timeline": 2.5421999999880738
+    },
+    {
+      "index": 0,
+      "now": 5791,
+      "mediaTime": 2.502422,
+      "presentedFrames": 265,
+      "timeline": 2.5504999999999947
+    },
+    {
+      "index": 0,
+      "now": 5797,
+      "mediaTime": 2.510822,
+      "presentedFrames": 266,
+      "timeline": 2.558199999988074
+    },
+    {
+      "index": 0,
+      "now": 5803.1,
+      "mediaTime": 2.519089,
+      "presentedFrames": 267,
+      "timeline": 2.566699999988074
+    },
+    {
+      "index": 2,
+      "now": 5809.2,
+      "mediaTime": 2.566667,
+      "presentedFrames": 78,
+      "timeline": 2.574699999988074
+    },
+    {
+      "index": 0,
+      "now": 5815.3,
+      "mediaTime": 2.527522,
+      "presentedFrames": 268,
+      "timeline": 2.580399999976153
+    },
+    {
+      "index": 0,
+      "now": 5839.4,
+      "mediaTime": 2.544256,
+      "presentedFrames": 269,
+      "timeline": 2.6003000000119156
+    },
+    {
+      "index": 2,
+      "now": 5839.4,
+      "mediaTime": 2.6,
+      "presentedFrames": 79,
+      "timeline": 2.6003000000119156
+    },
+    {
+      "index": 0,
+      "now": 5851.5,
+      "mediaTime": 2.560833,
+      "presentedFrames": 270,
+      "timeline": 2.6161999999880736
+    },
+    {
+      "index": 0,
+      "now": 5857.6,
+      "mediaTime": 2.569289,
+      "presentedFrames": 271,
+      "timeline": 2.6218999999761525
+    },
+    {
+      "index": 0,
+      "now": 5869.8,
+      "mediaTime": 2.5858,
+      "presentedFrames": 272,
+      "timeline": 2.6336999999880732
+    },
+    {
+      "index": 2,
+      "now": 5875.9,
+      "mediaTime": 2.633333,
+      "presentedFrames": 80,
+      "timeline": 2.641199999988073
+    },
+    {
+      "index": 0,
+      "now": 5888,
+      "mediaTime": 2.594356,
+      "presentedFrames": 273,
+      "timeline": 2.648099999964231
+    },
+    {
+      "index": 0,
+      "now": 5918.2,
+      "mediaTime": 2.627411,
+      "presentedFrames": 275,
+      "timeline": 2.672899999976152
+    },
+    {
+      "index": 2,
+      "now": 5918.2,
+      "mediaTime": 2.666667,
+      "presentedFrames": 81,
+      "timeline": 2.672899999976152
+    },
+    {
+      "index": 0,
+      "now": 5930.3,
+      "mediaTime": 2.644333,
+      "presentedFrames": 276,
+      "timeline": 2.6861999999880726
+    },
+    {
+      "index": 2,
+      "now": 5942.5,
+      "mediaTime": 2.7,
+      "presentedFrames": 82,
+      "timeline": 2.6995999999642306
+    },
+    {
+      "index": 0,
+      "now": 5954.6,
+      "mediaTime": 2.669222,
+      "presentedFrames": 277,
+      "timeline": 2.7131999999880723
+    },
+    {
+      "index": 0,
+      "now": 5972.8,
+      "mediaTime": 2.685911,
+      "presentedFrames": 279,
+      "timeline": 2.722800000011914
+    },
+    {
+      "index": 2,
+      "now": 5972.8,
+      "mediaTime": 2.733333,
+      "presentedFrames": 83,
+      "timeline": 2.722800000011914
+    },
+    {
+      "index": 0,
+      "now": 5978.8,
+      "mediaTime": 2.694256,
+      "presentedFrames": 280,
+      "timeline": 2.7403999999761512
+    },
+    {
+      "index": 0,
+      "now": 5997,
+      "mediaTime": 2.710922,
+      "presentedFrames": 281,
+      "timeline": 2.759199999988072
+    },
+    {
+      "index": 0,
+      "now": 6015.2,
+      "mediaTime": 2.727656,
+      "presentedFrames": 283,
+      "timeline": 2.766199999988072
+    },
+    {
+      "index": 2,
+      "now": 6015.2,
+      "mediaTime": 2.766667,
+      "presentedFrames": 84,
+      "timeline": 2.766199999988072
+    },
+    {
+      "index": 0,
+      "now": 6033.4,
+      "mediaTime": 2.744389,
+      "presentedFrames": 285,
+      "timeline": 2.782399999976151
+    },
+    {
+      "index": 0,
+      "now": 6045.5,
+      "mediaTime": 2.7529,
+      "presentedFrames": 286,
+      "timeline": 2.803499999999993
+    },
+    {
+      "index": 2,
+      "now": 6045.5,
+      "mediaTime": 2.8,
+      "presentedFrames": 85,
+      "timeline": 2.803499999999993
+    },
+    {
+      "index": 0,
+      "now": 6075.9,
+      "mediaTime": 2.786033,
+      "presentedFrames": 288,
+      "timeline": 2.8294999999999932
+    },
+    {
+      "index": 2,
+      "now": 6075.9,
+      "mediaTime": 2.833333,
+      "presentedFrames": 86,
+      "timeline": 2.8294999999999932
+    },
+    {
+      "index": 0,
+      "now": 6087.9,
+      "mediaTime": 2.802656,
+      "presentedFrames": 289,
+      "timeline": 2.843899999976151
+    },
+    {
+      "index": 0,
+      "now": 6100,
+      "mediaTime": 2.810978,
+      "presentedFrames": 290,
+      "timeline": 2.858499999999993
+    },
+    {
+      "index": 2,
+      "now": 6112.2,
+      "mediaTime": 2.866667,
+      "presentedFrames": 87,
+      "timeline": 2.8709999999999933
+    },
+    {
+      "index": 0,
+      "now": 6112.2,
+      "mediaTime": 2.827756,
+      "presentedFrames": 291,
+      "timeline": 2.8709999999999933
+    },
+    {
+      "index": 0,
+      "now": 6124.4,
+      "mediaTime": 2.835889,
+      "presentedFrames": 292,
+      "timeline": 2.886499999999993
+    },
+    {
+      "index": 2,
+      "now": 6148.6,
+      "mediaTime": 2.9,
+      "presentedFrames": 88,
+      "timeline": 2.9094999999999933
+    },
+    {
+      "index": 0,
+      "now": 6154.6,
+      "mediaTime": 2.861622,
+      "presentedFrames": 293,
+      "timeline": 2.9153999999761515
+    },
+    {
+      "index": 0,
+      "now": 6166.8,
+      "mediaTime": 2.877567,
+      "presentedFrames": 294,
+      "timeline": 2.927599999964231
+    },
+    {
+      "index": 0,
+      "now": 6172.8,
+      "mediaTime": 2.886489,
+      "presentedFrames": 295,
+      "timeline": 2.933899999976152
+    },
+    {
+      "index": 2,
+      "now": 6172.8,
+      "mediaTime": 2.933333,
+      "presentedFrames": 89,
+      "timeline": 2.933899999976152
+    },
+    {
+      "index": 0,
+      "now": 6191.1,
+      "mediaTime": 2.902989,
+      "presentedFrames": 296,
+      "timeline": 2.953099999964231
+    },
+    {
+      "index": 0,
+      "now": 6197.1,
+      "mediaTime": 2.9109,
+      "presentedFrames": 297,
+      "timeline": 2.9598000000119145
+    },
+    {
+      "index": 2,
+      "now": 6209.2,
+      "mediaTime": 2.966667,
+      "presentedFrames": 90,
+      "timeline": 2.9723000000119146
+    },
+    {
+      "index": 0,
+      "now": 6215.3,
+      "mediaTime": 2.928322,
+      "presentedFrames": 298,
+      "timeline": 2.977899999976152
+    },
+    {
+      "index": 0,
+      "now": 6227.4,
+      "mediaTime": 2.944878,
+      "presentedFrames": 300,
+      "timeline": 2.9881999999880726
+    },
+    {
+      "index": 0,
+      "now": 6239.4,
+      "mediaTime": 2.953211,
+      "presentedFrames": 301,
+      "timeline": 3.002599999964231
+    },
+    {
+      "index": 2,
+      "now": 6239.4,
+      "mediaTime": 3,
+      "presentedFrames": 91,
+      "timeline": 3.002599999964231
+    },
+    {
+      "index": 0,
+      "now": 6245.6,
+      "mediaTime": 2.961889,
+      "presentedFrames": 302,
+      "timeline": 3.007099999964231
+    },
+    {
+      "index": 0,
+      "now": 6257.7,
+      "mediaTime": 2.970567,
+      "presentedFrames": 303,
+      "timeline": 3.016800000011915
+    },
+    {
+      "index": 0,
+      "now": 6263.8,
+      "mediaTime": 2.978433,
+      "presentedFrames": 304,
+      "timeline": 3.0249999999999937
+    },
+    {
+      "index": 0,
+      "now": 6269.7,
+      "mediaTime": 2.987489,
+      "presentedFrames": 305,
+      "timeline": 3.031699999988073
+    },
+    {
+      "index": 2,
+      "now": 6275.8,
+      "mediaTime": 3.033333,
+      "presentedFrames": 92,
+      "timeline": 3.037399999976152
+    },
+    {
+      "index": 0,
+      "now": 6281.9,
+      "mediaTime": 2.994656,
+      "presentedFrames": 306,
+      "timeline": 3.0449999999999937
+    },
+    {
+      "index": 0,
+      "now": 6294.1,
+      "mediaTime": 3.011922,
+      "presentedFrames": 307,
+      "timeline": 3.0549999999999935
+    },
+    {
+      "index": 0,
+      "now": 6312.2,
+      "mediaTime": 3.028578,
+      "presentedFrames": 309,
+      "timeline": 3.0705999999642306
+    },
+    {
+      "index": 2,
+      "now": 6312.2,
+      "mediaTime": 3.066667,
+      "presentedFrames": 93,
+      "timeline": 3.0705999999642306
+    },
+    {
+      "index": 2,
+      "now": 6342.5,
+      "mediaTime": 3.1,
+      "presentedFrames": 94,
+      "timeline": 3.107899999976152
+    },
+    {
+      "index": 2,
+      "now": 6372.8,
+      "mediaTime": 3.133333,
+      "presentedFrames": 95,
+      "timeline": 3.1344999999999934
+    },
+    {
+      "index": 0,
+      "now": 6409.2,
+      "mediaTime": 3.119911,
+      "presentedFrames": 310,
+      "timeline": 3.1699999999999937
+    },
+    {
+      "index": 2,
+      "now": 6415.3,
+      "mediaTime": 3.166667,
+      "presentedFrames": 96,
+      "timeline": 3.1760999999642308
+    },
+    {
+      "index": 0,
+      "now": 6427.4,
+      "mediaTime": 3.136322,
+      "presentedFrames": 311,
+      "timeline": 3.1898999999761517
+    },
+    {
+      "index": 0,
+      "now": 6433.4,
+      "mediaTime": 3.144756,
+      "presentedFrames": 312,
+      "timeline": 3.1953999999761518
+    },
+    {
+      "index": 0,
+      "now": 6439.5,
+      "mediaTime": 3.153189,
+      "presentedFrames": 313,
+      "timeline": 3.2021999999880726
+    },
+    {
+      "index": 2,
+      "now": 6439.5,
+      "mediaTime": 3.2,
+      "presentedFrames": 97,
+      "timeline": 3.2021999999880726
+    },
+    {
+      "index": 0,
+      "now": 6445.6,
+      "mediaTime": 3.161967,
+      "presentedFrames": 314,
+      "timeline": 3.2086999999880725
+    },
+    {
+      "index": 0,
+      "now": 6451.6,
+      "mediaTime": 3.169733,
+      "presentedFrames": 315,
+      "timeline": 3.215399999976152
+    },
+    {
+      "index": 0,
+      "now": 6463.8,
+      "mediaTime": 3.1787,
+      "presentedFrames": 316,
+      "timeline": 3.228899999976152
+    },
+    {
+      "index": 0,
+      "now": 6475.9,
+      "mediaTime": 3.186344,
+      "presentedFrames": 317,
+      "timeline": 3.234699999988073
+    },
+    {
+      "index": 2,
+      "now": 6475.9,
+      "mediaTime": 3.233333,
+      "presentedFrames": 98,
+      "timeline": 3.234699999988073
+    },
+    {
+      "index": 0,
+      "now": 6482,
+      "mediaTime": 3.194967,
+      "presentedFrames": 318,
+      "timeline": 3.2451999999880727
+    },
+    {
+      "index": 0,
+      "now": 6487.9,
+      "mediaTime": 3.203133,
+      "presentedFrames": 319,
+      "timeline": 3.2508000000119144
+    },
+    {
+      "index": 0,
+      "now": 6506.2,
+      "mediaTime": 3.2205,
+      "presentedFrames": 321,
+      "timeline": 3.2669999999999937
+    },
+    {
+      "index": 2,
+      "now": 6512.3,
+      "mediaTime": 3.266667,
+      "presentedFrames": 99,
+      "timeline": 3.2731999999880728
+    },
+    {
+      "index": 0,
+      "now": 6512.3,
+      "mediaTime": 3.228444,
+      "presentedFrames": 322,
+      "timeline": 3.2731999999880728
+    },
+    {
+      "index": 0,
+      "now": 6524.4,
+      "mediaTime": 3.236611,
+      "presentedFrames": 323,
+      "timeline": 3.288800000011914
+    },
+    {
+      "index": 0,
+      "now": 6530.5,
+      "mediaTime": 3.244778,
+      "presentedFrames": 324,
+      "timeline": 3.2943999999761515
+    },
+    {
+      "index": 0,
+      "now": 6542.5,
+      "mediaTime": 3.253167,
+      "presentedFrames": 325,
+      "timeline": 3.3010999999642308
+    },
+    {
+      "index": 2,
+      "now": 6542.5,
+      "mediaTime": 3.3,
+      "presentedFrames": 100,
+      "timeline": 3.3010999999642308
+    },
+    {
+      "index": 0,
+      "now": 6548.6,
+      "mediaTime": 3.261378,
+      "presentedFrames": 326,
+      "timeline": 3.3106999999880724
+    },
+    {
+      "index": 0,
+      "now": 6566.8,
+      "mediaTime": 3.278467,
+      "presentedFrames": 328,
+      "timeline": 3.3276999999880723
+    },
+    {
+      "index": 0,
+      "now": 6572.8,
+      "mediaTime": 3.286678,
+      "presentedFrames": 329,
+      "timeline": 3.335300000011914
+    },
+    {
+      "index": 2,
+      "now": 6572.8,
+      "mediaTime": 3.333333,
+      "presentedFrames": 101,
+      "timeline": 3.335300000011914
+    },
+    {
+      "index": 0,
+      "now": 6585,
+      "mediaTime": 3.294889,
+      "presentedFrames": 330,
+      "timeline": 3.3479999999999936
+    },
+    {
+      "index": 0,
+      "now": 6597.1,
+      "mediaTime": 3.311833,
+      "presentedFrames": 332,
+      "timeline": 3.3579999999999934
+    },
+    {
+      "index": 0,
+      "now": 6609.2,
+      "mediaTime": 3.320133,
+      "presentedFrames": 333,
+      "timeline": 3.3701999999880727
+    },
+    {
+      "index": 2,
+      "now": 6609.2,
+      "mediaTime": 3.366667,
+      "presentedFrames": 102,
+      "timeline": 3.3701999999880727
+    },
+    {
+      "index": 0,
+      "now": 6621.3,
+      "mediaTime": 3.336522,
+      "presentedFrames": 335,
+      "timeline": 3.382599999964231
+    },
+    {
+      "index": 0,
+      "now": 6627.4,
+      "mediaTime": 3.344856,
+      "presentedFrames": 336,
+      "timeline": 3.3908000000119145
+    },
+    {
+      "index": 0,
+      "now": 6645.6,
+      "mediaTime": 3.353033,
+      "presentedFrames": 337,
+      "timeline": 3.4063999999761516
+    },
+    {
+      "index": 2,
+      "now": 6645.6,
+      "mediaTime": 3.4,
+      "presentedFrames": 103,
+      "timeline": 3.4063999999761516
+    },
+    {
+      "index": 0,
+      "now": 6651.6,
+      "mediaTime": 3.361744,
+      "presentedFrames": 338,
+      "timeline": 3.4133000000119145
+    },
+    {
+      "index": 0,
+      "now": 6657.6,
+      "mediaTime": 3.370011,
+      "presentedFrames": 339,
+      "timeline": 3.4199999999999937
+    },
+    {
+      "index": 0,
+      "now": 6669.8,
+      "mediaTime": 3.386744,
+      "presentedFrames": 341,
+      "timeline": 3.430599999964231
+    },
+    {
+      "index": 2,
+      "now": 6675.9,
+      "mediaTime": 3.433333,
+      "presentedFrames": 104,
+      "timeline": 3.4378000000119147
+    },
+    {
+      "index": 0,
+      "now": 6682,
+      "mediaTime": 3.395044,
+      "presentedFrames": 342,
+      "timeline": 3.4456999999880726
+    },
+    {
+      "index": 0,
+      "now": 6688.1,
+      "mediaTime": 3.403344,
+      "presentedFrames": 343,
+      "timeline": 3.4531999999880725
+    },
+    {
+      "index": 0,
+      "now": 6700.1,
+      "mediaTime": 3.411778,
+      "presentedFrames": 344,
+      "timeline": 3.465699999988072
+    },
+    {
+      "index": 0,
+      "now": 6706.2,
+      "mediaTime": 3.420211,
+      "presentedFrames": 345,
+      "timeline": 3.46959999996423
+    },
+    {
+      "index": 2,
+      "now": 6706.2,
+      "mediaTime": 3.466667,
+      "presentedFrames": 105,
+      "timeline": 3.46959999996423
+    },
+    {
+      "index": 0,
+      "now": 6718.3,
+      "mediaTime": 3.428644,
+      "presentedFrames": 346,
+      "timeline": 3.476199999988072
+    },
+    {
+      "index": 0,
+      "now": 6724.4,
+      "mediaTime": 3.437078,
+      "presentedFrames": 347,
+      "timeline": 3.485800000011914
+    },
+    {
+      "index": 0,
+      "now": 6730.4,
+      "mediaTime": 3.445256,
+      "presentedFrames": 348,
+      "timeline": 3.493199999988072
+    },
+    {
+      "index": 0,
+      "now": 6736.4,
+      "mediaTime": 3.453622,
+      "presentedFrames": 349,
+      "timeline": 3.500699999988072
+    },
+    {
+      "index": 2,
+      "now": 6742.6,
+      "mediaTime": 3.5,
+      "presentedFrames": 106,
+      "timeline": 3.507300000011914
+    },
+    {
+      "index": 0,
+      "now": 6748.6,
+      "mediaTime": 3.461522,
+      "presentedFrames": 350,
+      "timeline": 3.514699999988072
+    },
+    {
+      "index": 0,
+      "now": 6754.7,
+      "mediaTime": 3.469989,
+      "presentedFrames": 351,
+      "timeline": 3.519399999976151
+    },
+    {
+      "index": 0,
+      "now": 6766.8,
+      "mediaTime": 3.478456,
+      "presentedFrames": 352,
+      "timeline": 3.531699999988072
+    },
+    {
+      "index": 0,
+      "now": 6772.8,
+      "mediaTime": 3.486922,
+      "presentedFrames": 353,
+      "timeline": 3.5365999999642304
+    },
+    {
+      "index": 2,
+      "now": 6772.8,
+      "mediaTime": 3.533333,
+      "presentedFrames": 107,
+      "timeline": 3.5365999999642304
+    },
+    {
+      "index": 0,
+      "now": 6784.9,
+      "mediaTime": 3.495067,
+      "presentedFrames": 354,
+      "timeline": 3.546300000011914
+    },
+    {
+      "index": 0,
+      "now": 6797.1,
+      "mediaTime": 3.511356,
+      "presentedFrames": 356,
+      "timeline": 3.557999999999993
+    },
+    {
+      "index": 0,
+      "now": 6809.3,
+      "mediaTime": 3.5199,
+      "presentedFrames": 357,
+      "timeline": 3.5700999999642304
+    },
+    {
+      "index": 2,
+      "now": 6809.3,
+      "mediaTime": 3.566667,
+      "presentedFrames": 108,
+      "timeline": 3.5700999999642304
+    },
+    {
+      "index": 0,
+      "now": 6815.2,
+      "mediaTime": 3.528756,
+      "presentedFrames": 358,
+      "timeline": 3.5784999999999934
+    },
+    {
+      "index": 0,
+      "now": 6821.4,
+      "mediaTime": 3.537133,
+      "presentedFrames": 359,
+      "timeline": 3.5865999999642306
+    },
+    {
+      "index": 0,
+      "now": 6839.6,
+      "mediaTime": 3.553656,
+      "presentedFrames": 361,
+      "timeline": 3.6004999999999936
+    },
+    {
+      "index": 2,
+      "now": 6839.6,
+      "mediaTime": 3.6,
+      "presentedFrames": 109,
+      "timeline": 3.6004999999999936
+    },
+    {
+      "index": 0,
+      "now": 6851.7,
+      "mediaTime": 3.5618,
+      "presentedFrames": 362,
+      "timeline": 3.6154999999999933
+    },
+    {
+      "index": 0,
+      "now": 6857.8,
+      "mediaTime": 3.570711,
+      "presentedFrames": 363,
+      "timeline": 3.6223999999761514
+    },
+    {
+      "index": 0,
+      "now": 6863.8,
+      "mediaTime": 3.578756,
+      "presentedFrames": 364,
+      "timeline": 3.627300000011914
+    },
+    {
+      "index": 0,
+      "now": 6876,
+      "mediaTime": 3.587133,
+      "presentedFrames": 365,
+      "timeline": 3.6368999999761513
+    },
+    {
+      "index": 2,
+      "now": 6876,
+      "mediaTime": 3.633333,
+      "presentedFrames": 110,
+      "timeline": 3.6368999999761513
+    },
+    {
+      "index": 0,
+      "now": 6882.1,
+      "mediaTime": 3.603711,
+      "presentedFrames": 367,
+      "timeline": 3.6465999999642302
+    },
+    {
+      "index": 0,
+      "now": 6894.1,
+      "mediaTime": 3.611911,
+      "presentedFrames": 368,
+      "timeline": 3.655699999988072
+    },
+    {
+      "index": 0,
+      "now": 6906.2,
+      "mediaTime": 3.619689,
+      "presentedFrames": 369,
+      "timeline": 3.6710999999642304
+    },
+    {
+      "index": 2,
+      "now": 6906.2,
+      "mediaTime": 3.666667,
+      "presentedFrames": 111,
+      "timeline": 3.6710999999642304
+    },
+    {
+      "index": 0,
+      "now": 6918.3,
+      "mediaTime": 3.628678,
+      "presentedFrames": 370,
+      "timeline": 3.6775999999642304
+    },
+    {
+      "index": 0,
+      "now": 6930.5,
+      "mediaTime": 3.645189,
+      "presentedFrames": 372,
+      "timeline": 3.690899999976151
+    },
+    {
+      "index": 0,
+      "now": 6942.6,
+      "mediaTime": 3.653611,
+      "presentedFrames": 373,
+      "timeline": 3.702999999999993
+    },
+    {
+      "index": 2,
+      "now": 6942.6,
+      "mediaTime": 3.7,
+      "presentedFrames": 112,
+      "timeline": 3.702999999999993
+    },
+    {
+      "index": 0,
+      "now": 6954.7,
+      "mediaTime": 3.670444,
+      "presentedFrames": 375,
+      "timeline": 3.7125999999642305
+    },
+    {
+      "index": 0,
+      "now": 6966.9,
+      "mediaTime": 3.678789,
+      "presentedFrames": 376,
+      "timeline": 3.7253000000119143
+    },
+    {
+      "index": 2,
+      "now": 6979,
+      "mediaTime": 3.733333,
+      "presentedFrames": 113,
+      "timeline": 3.7343999999761515
+    },
+    {
+      "index": 0,
+      "now": 6979,
+      "mediaTime": 3.687133,
+      "presentedFrames": 377,
+      "timeline": 3.7343999999761515
+    },
+    {
+      "index": 0,
+      "now": 6997.2,
+      "mediaTime": 3.712044,
+      "presentedFrames": 380,
+      "timeline": 3.749800000011914
+    },
+    {
+      "index": 0,
+      "now": 7015.4,
+      "mediaTime": 3.728744,
+      "presentedFrames": 382,
+      "timeline": 3.766899999976151
+    },
+    {
+      "index": 2,
+      "now": 7015.4,
+      "mediaTime": 3.766667,
+      "presentedFrames": 114,
+      "timeline": 3.766899999976151
+    },
+    {
+      "index": 0,
+      "now": 7027.5,
+      "mediaTime": 3.736922,
+      "presentedFrames": 383,
+      "timeline": 3.7835999999642302
+    },
+    {
+      "index": 0,
+      "now": 7039.5,
+      "mediaTime": 3.753456,
+      "presentedFrames": 385,
+      "timeline": 3.79809999996423
+    },
+    {
+      "index": 2,
+      "now": 7039.5,
+      "mediaTime": 3.8,
+      "presentedFrames": 115,
+      "timeline": 3.79809999996423
+    },
+    {
+      "index": 0,
+      "now": 7057.7,
+      "mediaTime": 3.769478,
+      "presentedFrames": 387,
+      "timeline": 3.810399999976151
+    },
+    {
+      "index": 0,
+      "now": 7076,
+      "mediaTime": 3.786311,
+      "presentedFrames": 388,
+      "timeline": 3.82709999996423
+    },
+    {
+      "index": 2,
+      "now": 7076,
+      "mediaTime": 3.833333,
+      "presentedFrames": 116,
+      "timeline": 3.82709999996423
+    },
+    {
+      "index": 0,
+      "now": 7088,
+      "mediaTime": 3.802933,
+      "presentedFrames": 390,
+      "timeline": 3.84409999996423
+    },
+    {
+      "index": 0,
+      "now": 7106.2,
+      "mediaTime": 3.8199,
+      "presentedFrames": 391,
+      "timeline": 3.8678999999761507
+    },
+    {
+      "index": 2,
+      "now": 7106.2,
+      "mediaTime": 3.866667,
+      "presentedFrames": 117,
+      "timeline": 3.8678999999761507
+    },
+    {
+      "index": 0,
+      "now": 7112.3,
+      "mediaTime": 3.827978,
+      "presentedFrames": 392,
+      "timeline": 3.877399999976151
+    },
+    {
+      "index": 0,
+      "now": 7124.4,
+      "mediaTime": 3.839156,
+      "presentedFrames": 393,
+      "timeline": 3.887699999988072
+    },
+    {
+      "index": 0,
+      "now": 7142.6,
+      "mediaTime": 3.852911,
+      "presentedFrames": 394,
+      "timeline": 3.9026999999880716
+    },
+    {
+      "index": 2,
+      "now": 7142.6,
+      "mediaTime": 3.9,
+      "presentedFrames": 118,
+      "timeline": 3.9026999999880716
+    },
+    {
+      "index": 0,
+      "now": 7148.7,
+      "mediaTime": 3.861144,
+      "presentedFrames": 395,
+      "timeline": 3.9110999999642297
+    },
+    {
+      "index": 0,
+      "now": 7154.8,
+      "mediaTime": 3.871722,
+      "presentedFrames": 396,
+      "timeline": 3.9179999999999926
+    },
+    {
+      "index": 0,
+      "now": 7160.8,
+      "mediaTime": 3.878,
+      "presentedFrames": 397,
+      "timeline": 3.9236999999880715
+    },
+    {
+      "index": 2,
+      "now": 7179,
+      "mediaTime": 3.933333,
+      "presentedFrames": 119,
+      "timeline": 3.939899999976151
+    },
+    {
+      "index": 0,
+      "now": 7179,
+      "mediaTime": 3.894711,
+      "presentedFrames": 398,
+      "timeline": 3.939899999976151
+    },
+    {
+      "index": 0,
+      "now": 7197.2,
+      "mediaTime": 3.911244,
+      "presentedFrames": 400,
+      "timeline": 3.95809999996423
+    },
+    {
+      "index": 0,
+      "now": 7203.2,
+      "mediaTime": 3.919744,
+      "presentedFrames": 401,
+      "timeline": 3.9641999999880717
+    },
+    {
+      "index": 2,
+      "now": 7209.3,
+      "mediaTime": 3.966667,
+      "presentedFrames": 120,
+      "timeline": 3.9724999999999926
+    },
+    {
+      "index": 0,
+      "now": 7215.3,
+      "mediaTime": 3.927911,
+      "presentedFrames": 402,
+      "timeline": 3.9778000000119134
+    },
+    {
+      "index": 0,
+      "now": 7227.5,
+      "mediaTime": 3.944544,
+      "presentedFrames": 404,
+      "timeline": 3.9883000000119133
+    },
+    {
+      "index": 0,
+      "now": 7245.6,
+      "mediaTime": 3.953656,
+      "presentedFrames": 405,
+      "timeline": 4.006499999999993
+    },
+    {
+      "index": 2,
+      "now": 7245.6,
+      "mediaTime": 4,
+      "presentedFrames": 121,
+      "timeline": 4.006499999999993
+    },
+    {
+      "index": 0,
+      "now": 7257.7,
+      "mediaTime": 3.971356,
+      "presentedFrames": 407,
+      "timeline": 4.018599999964231
+    },
+    {
+      "index": 0,
+      "now": 7269.8,
+      "mediaTime": 3.978389,
+      "presentedFrames": 408,
+      "timeline": 4.0308999999761514
+    },
+    {
+      "index": 2,
+      "now": 7282,
+      "mediaTime": 4.033333,
+      "presentedFrames": 122,
+      "timeline": 4.042899999976152
+    },
+    {
+      "index": 0,
+      "now": 7288.1,
+      "mediaTime": 4.004144,
+      "presentedFrames": 410,
+      "timeline": 4.048999999999994
+    },
+    {
+      "index": 0,
+      "now": 7300.2,
+      "mediaTime": 4.011622,
+      "presentedFrames": 411,
+      "timeline": 4.061199999988074
+    },
+    {
+      "index": 2,
+      "now": 7312.3,
+      "mediaTime": 4.066667,
+      "presentedFrames": 123,
+      "timeline": 4.073199999988074
+    },
+    {
+      "index": 0,
+      "now": 7318.4,
+      "mediaTime": 4.027956,
+      "presentedFrames": 412,
+      "timeline": 4.083300000011916
+    },
+    {
+      "index": 0,
+      "now": 7324.4,
+      "mediaTime": 4.036933,
+      "presentedFrames": 413,
+      "timeline": 4.088599999964233
+    },
+    {
+      "index": 0,
+      "now": 7330.5,
+      "mediaTime": 4.045222,
+      "presentedFrames": 414,
+      "timeline": 4.093999999999995
+    },
+    {
+      "index": 0,
+      "now": 7342.7,
+      "mediaTime": 4.0537,
+      "presentedFrames": 415,
+      "timeline": 4.103599999964232
+    },
+    {
+      "index": 2,
+      "now": 7342.7,
+      "mediaTime": 4.1,
+      "presentedFrames": 124,
+      "timeline": 4.103599999964232
+    },
+    {
+      "index": 0,
+      "now": 7348.7,
+      "mediaTime": 4.062067,
+      "presentedFrames": 416,
+      "timeline": 4.113300000011916
+    },
+    {
+      "index": 0,
+      "now": 7360.8,
+      "mediaTime": 4.070267,
+      "presentedFrames": 417,
+      "timeline": 4.120699999988075
+    },
+    {
+      "index": 0,
+      "now": 7366.9,
+      "mediaTime": 4.078467,
+      "presentedFrames": 418,
+      "timeline": 4.128699999988075
+    },
+    {
+      "index": 0,
+      "now": 7372.9,
+      "mediaTime": 4.0871,
+      "presentedFrames": 419,
+      "timeline": 4.135899999976154
+    },
+    {
+      "index": 2,
+      "now": 7372.9,
+      "mediaTime": 4.133333,
+      "presentedFrames": 125,
+      "timeline": 4.135899999976154
+    },
+    {
+      "index": 0,
+      "now": 7385,
+      "mediaTime": 4.0953,
+      "presentedFrames": 420,
+      "timeline": 4.148999999999996
+    },
+    {
+      "index": 0,
+      "now": 7391.1,
+      "mediaTime": 4.103367,
+      "presentedFrames": 421,
+      "timeline": 4.155699999988075
+    },
+    {
+      "index": 0,
+      "now": 7397.2,
+      "mediaTime": 4.1121,
+      "presentedFrames": 422,
+      "timeline": 4.1628000000119165
+    },
+    {
+      "index": 0,
+      "now": 7403.2,
+      "mediaTime": 4.120222,
+      "presentedFrames": 423,
+      "timeline": 4.1691999999880744
+    },
+    {
+      "index": 2,
+      "now": 7409.3,
+      "mediaTime": 4.166667,
+      "presentedFrames": 126,
+      "timeline": 4.174599999964233
+    },
+    {
+      "index": 0,
+      "now": 7415.4,
+      "mediaTime": 4.128622,
+      "presentedFrames": 424,
+      "timeline": 4.178399999976154
+    },
+    {
+      "index": 0,
+      "now": 7421.5,
+      "mediaTime": 4.137389,
+      "presentedFrames": 425,
+      "timeline": 4.185699999988075
+    },
+    {
+      "index": 0,
+      "now": 7427.5,
+      "mediaTime": 4.145389,
+      "presentedFrames": 426,
+      "timeline": 4.191699999988075
+    },
+    {
+      "index": 0,
+      "now": 7439.6,
+      "mediaTime": 4.153744,
+      "presentedFrames": 427,
+      "timeline": 4.202800000011917
+    },
+    {
+      "index": 2,
+      "now": 7439.6,
+      "mediaTime": 4.2,
+      "presentedFrames": 127,
+      "timeline": 4.202800000011917
+    },
+    {
+      "index": 0,
+      "now": 7451.7,
+      "mediaTime": 4.163278,
+      "presentedFrames": 428,
+      "timeline": 4.2158000000119165
+    },
+    {
+      "index": 0,
+      "now": 7457.7,
+      "mediaTime": 4.170678,
+      "presentedFrames": 429,
+      "timeline": 4.221499999999995
+    },
+    {
+      "index": 0,
+      "now": 7463.9,
+      "mediaTime": 4.178789,
+      "presentedFrames": 430,
+      "timeline": 4.2253000000119165
+    },
+    {
+      "index": 0,
+      "now": 7476,
+      "mediaTime": 4.187222,
+      "presentedFrames": 431,
+      "timeline": 4.239300000011917
+    },
+    {
+      "index": 2,
+      "now": 7476,
+      "mediaTime": 4.233333,
+      "presentedFrames": 128,
+      "timeline": 4.239300000011917
+    },
+    {
+      "index": 0,
+      "now": 7482.1,
+      "mediaTime": 4.195944,
+      "presentedFrames": 432,
+      "timeline": 4.2478000000119165
+    },
+    {
+      "index": 0,
+      "now": 7494.2,
+      "mediaTime": 4.212011,
+      "presentedFrames": 433,
+      "timeline": 4.2573000000119166
+    },
+    {
+      "index": 0,
+      "now": 7506.2,
+      "mediaTime": 4.2203,
+      "presentedFrames": 434,
+      "timeline": 4.266899999976154
+    },
+    {
+      "index": 2,
+      "now": 7506.2,
+      "mediaTime": 4.266667,
+      "presentedFrames": 129,
+      "timeline": 4.266899999976154
+    },
+    {
+      "index": 0,
+      "now": 7512.3,
+      "mediaTime": 4.229178,
+      "presentedFrames": 435,
+      "timeline": 4.275199999988075
+    },
+    {
+      "index": 0,
+      "now": 7524.4,
+      "mediaTime": 4.237033,
+      "presentedFrames": 436,
+      "timeline": 4.288399999976154
+    },
+    {
+      "index": 0,
+      "now": 7530.6,
+      "mediaTime": 4.245578,
+      "presentedFrames": 437,
+      "timeline": 4.292699999988075
+    },
+    {
+      "index": 0,
+      "now": 7536.5,
+      "mediaTime": 4.254011,
+      "presentedFrames": 438,
+      "timeline": 4.2986999999880755
+    },
+    {
+      "index": 2,
+      "now": 7542.6,
+      "mediaTime": 4.3,
+      "presentedFrames": 130,
+      "timeline": 4.306099999964234
+    },
+    {
+      "index": 0,
+      "now": 7548.7,
+      "mediaTime": 4.262278,
+      "presentedFrames": 439,
+      "timeline": 4.310800000011917
+    },
+    {
+      "index": 0,
+      "now": 7566.9,
+      "mediaTime": 4.2788,
+      "presentedFrames": 441,
+      "timeline": 4.327699999988075
+    },
+    {
+      "index": 0,
+      "now": 7579,
+      "mediaTime": 4.287533,
+      "presentedFrames": 442,
+      "timeline": 4.339999999999996
+    },
+    {
+      "index": 2,
+      "now": 7579,
+      "mediaTime": 4.333333,
+      "presentedFrames": 131,
+      "timeline": 4.339999999999996
+    },
+    {
+      "index": 0,
+      "now": 7591.1,
+      "mediaTime": 4.303833,
+      "presentedFrames": 444,
+      "timeline": 4.351999999999996
+    },
+    {
+      "index": 0,
+      "now": 7597.3,
+      "mediaTime": 4.312222,
+      "presentedFrames": 445,
+      "timeline": 4.3581999999880745
+    },
+    {
+      "index": 0,
+      "now": 7609.3,
+      "mediaTime": 4.320611,
+      "presentedFrames": 446,
+      "timeline": 4.370099999964232
+    },
+    {
+      "index": 2,
+      "now": 7615.4,
+      "mediaTime": 4.366667,
+      "presentedFrames": 132,
+      "timeline": 4.376399999976153
+    },
+    {
+      "index": 0,
+      "now": 7615.4,
+      "mediaTime": 4.329111,
+      "presentedFrames": 447,
+      "timeline": 4.376399999976153
+    },
+    {
+      "index": 0,
+      "now": 7621.4,
+      "mediaTime": 4.337367,
+      "presentedFrames": 448,
+      "timeline": 4.383499999999994
+    },
+    {
+      "index": 0,
+      "now": 7633.6,
+      "mediaTime": 4.345622,
+      "presentedFrames": 449,
+      "timeline": 4.394599999964232
+    },
+    {
+      "index": 0,
+      "now": 7639.6,
+      "mediaTime": 4.353989,
+      "presentedFrames": 450,
+      "timeline": 4.403999999999995
+    },
+    {
+      "index": 2,
+      "now": 7639.6,
+      "mediaTime": 4.4,
+      "presentedFrames": 133,
+      "timeline": 4.403999999999995
+    },
+    {
+      "index": 0,
+      "now": 7651.8,
+      "mediaTime": 4.362122,
+      "presentedFrames": 451,
+      "timeline": 4.409999999999995
+    },
+    {
+      "index": 0,
+      "now": 7663.9,
+      "mediaTime": 4.3788,
+      "presentedFrames": 453,
+      "timeline": 4.424699999988074
+    },
+    {
+      "index": 0,
+      "now": 7676,
+      "mediaTime": 4.387189,
+      "presentedFrames": 454,
+      "timeline": 4.436899999976154
+    },
+    {
+      "index": 2,
+      "now": 7676,
+      "mediaTime": 4.433333,
+      "presentedFrames": 134,
+      "timeline": 4.436899999976154
+    },
+    {
+      "index": 0,
+      "now": 7682,
+      "mediaTime": 4.395778,
+      "presentedFrames": 455,
+      "timeline": 4.446699999988074
+    },
+    {
+      "index": 0,
+      "now": 7688,
+      "mediaTime": 4.404244,
+      "presentedFrames": 456,
+      "timeline": 4.453599999964233
+    },
+    {
+      "index": 0,
+      "now": 7700.3,
+      "mediaTime": 4.412222,
+      "presentedFrames": 457,
+      "timeline": 4.464199999988075
+    },
+    {
+      "index": 0,
+      "now": 7712.5,
+      "mediaTime": 4.428967,
+      "presentedFrames": 459,
+      "timeline": 4.473199999988076
+    },
+    {
+      "index": 2,
+      "now": 7712.5,
+      "mediaTime": 4.466667,
+      "presentedFrames": 135,
+      "timeline": 4.473199999988076
+    },
+    {
+      "index": 0,
+      "now": 7730.5,
+      "mediaTime": 4.445433,
+      "presentedFrames": 461,
+      "timeline": 4.492099999964235
+    },
+    {
+      "index": 0,
+      "now": 7736.6,
+      "mediaTime": 4.453633,
+      "presentedFrames": 462,
+      "timeline": 4.499300000011918
+    },
+    {
+      "index": 2,
+      "now": 7742.6,
+      "mediaTime": 4.5,
+      "presentedFrames": 136,
+      "timeline": 4.504800000011918
+    },
+    {
+      "index": 0,
+      "now": 7754.7,
+      "mediaTime": 4.462233,
+      "presentedFrames": 463,
+      "timeline": 4.5165999999642334
+    },
+    {
+      "index": 0,
+      "now": 7760.9,
+      "mediaTime": 4.478944,
+      "presentedFrames": 465,
+      "timeline": 4.527599999964234
+    },
+    {
+      "index": 0,
+      "now": 7779,
+      "mediaTime": 4.495578,
+      "presentedFrames": 467,
+      "timeline": 4.537199999988076
+    },
+    {
+      "index": 2,
+      "now": 7779,
+      "mediaTime": 4.533333,
+      "presentedFrames": 137,
+      "timeline": 4.537199999988076
+    },
+    {
+      "index": 0,
+      "now": 7791.1,
+      "mediaTime": 4.503767,
+      "presentedFrames": 468,
+      "timeline": 4.552199999988075
+    },
+    {
+      "index": 0,
+      "now": 7797.2,
+      "mediaTime": 4.512589,
+      "presentedFrames": 469,
+      "timeline": 4.560399999976155
+    },
+    {
+      "index": 0,
+      "now": 7809.3,
+      "mediaTime": 4.520544,
+      "presentedFrames": 470,
+      "timeline": 4.569199999988076
+    },
+    {
+      "index": 2,
+      "now": 7809.3,
+      "mediaTime": 4.566667,
+      "presentedFrames": 138,
+      "timeline": 4.569199999988076
+    },
+    {
+      "index": 0,
+      "now": 7815.3,
+      "mediaTime": 4.528933,
+      "presentedFrames": 471,
+      "timeline": 4.577300000011918
+    },
+    {
+      "index": 0,
+      "now": 7821.4,
+      "mediaTime": 4.537322,
+      "presentedFrames": 472,
+      "timeline": 4.585399999976155
+    },
+    {
+      "index": 0,
+      "now": 7827.4,
+      "mediaTime": 4.545711,
+      "presentedFrames": 473,
+      "timeline": 4.591099999964234
+    },
+    {
+      "index": 0,
+      "now": 7839.6,
+      "mediaTime": 4.5541,
+      "presentedFrames": 474,
+      "timeline": 4.6018000000119175
+    },
+    {
+      "index": 2,
+      "now": 7839.6,
+      "mediaTime": 4.6,
+      "presentedFrames": 139,
+      "timeline": 4.6018000000119175
+    },
+    {
+      "index": 0,
+      "now": 7857.9,
+      "mediaTime": 4.570967,
+      "presentedFrames": 476,
+      "timeline": 4.6184999999999965
+    },
+    {
+      "index": 0,
+      "now": 7870,
+      "mediaTime": 4.579389,
+      "presentedFrames": 477,
+      "timeline": 4.628300000011917
+    },
+    {
+      "index": 0,
+      "now": 7882.1,
+      "mediaTime": 4.595756,
+      "presentedFrames": 479,
+      "timeline": 4.640599999964233
+    },
+    {
+      "index": 2,
+      "now": 7882.1,
+      "mediaTime": 4.633333,
+      "presentedFrames": 140,
+      "timeline": 4.640599999964233
+    },
+    {
+      "index": 0,
+      "now": 7888.2,
+      "mediaTime": 4.604189,
+      "presentedFrames": 480,
+      "timeline": 4.649300000011917
+    },
+    {
+      "index": 0,
+      "now": 7894.2,
+      "mediaTime": 4.6125,
+      "presentedFrames": 481,
+      "timeline": 4.656999999999996
+    },
+    {
+      "index": 0,
+      "now": 7906.3,
+      "mediaTime": 4.620811,
+      "presentedFrames": 482,
+      "timeline": 4.6720999999642325
+    },
+    {
+      "index": 2,
+      "now": 7906.3,
+      "mediaTime": 4.666667,
+      "presentedFrames": 141,
+      "timeline": 4.6720999999642325
+    },
+    {
+      "index": 0,
+      "now": 7924.6,
+      "mediaTime": 4.637378,
+      "presentedFrames": 484,
+      "timeline": 4.677800000011916
+    },
+    {
+      "index": 0,
+      "now": 7942.6,
+      "mediaTime": 4.654056,
+      "presentedFrames": 486,
+      "timeline": 4.696199999988075
+    },
+    {
+      "index": 2,
+      "now": 7942.6,
+      "mediaTime": 4.7,
+      "presentedFrames": 142,
+      "timeline": 4.696199999988075
+    },
+    {
+      "index": 0,
+      "now": 7948.7,
+      "mediaTime": 4.662311,
+      "presentedFrames": 487,
+      "timeline": 4.712399999976154
+    },
+    {
+      "index": 0,
+      "now": 7954.7,
+      "mediaTime": 4.670567,
+      "presentedFrames": 488,
+      "timeline": 4.719599999964233
+    },
+    {
+      "index": 0,
+      "now": 7966.9,
+      "mediaTime": 4.679222,
+      "presentedFrames": 489,
+      "timeline": 4.726199999988075
+    },
+    {
+      "index": 0,
+      "now": 7973,
+      "mediaTime": 4.687156,
+      "presentedFrames": 490,
+      "timeline": 4.734099999964233
+    },
+    {
+      "index": 2,
+      "now": 7973,
+      "mediaTime": 4.733333,
+      "presentedFrames": 143,
+      "timeline": 4.734099999964233
+    },
+    {
+      "index": 0,
+      "now": 7985.1,
+      "mediaTime": 4.695622,
+      "presentedFrames": 491,
+      "timeline": 4.748599999964233
+    },
+    {
+      "index": 0,
+      "now": 7997.2,
+      "mediaTime": 4.712278,
+      "presentedFrames": 493,
+      "timeline": 4.755199999988075
+    },
+    {
+      "index": 0,
+      "now": 8009.4,
+      "mediaTime": 4.720756,
+      "presentedFrames": 494,
+      "timeline": 4.767199999988074
+    },
+    {
+      "index": 2,
+      "now": 8009.4,
+      "mediaTime": 4.766667,
+      "presentedFrames": 144,
+      "timeline": 4.767199999988074
+    },
+    {
+      "index": 0,
+      "now": 8015.4,
+      "mediaTime": 4.728922,
+      "presentedFrames": 495,
+      "timeline": 4.777399999976153
+    },
+    {
+      "index": 0,
+      "now": 8027.5,
+      "mediaTime": 4.745533,
+      "presentedFrames": 497,
+      "timeline": 4.786199999988074
+    },
+    {
+      "index": 0,
+      "now": 8039.7,
+      "mediaTime": 4.753978,
+      "presentedFrames": 498,
+      "timeline": 4.797199999988075
+    },
+    {
+      "index": 2,
+      "now": 8039.7,
+      "mediaTime": 4.8,
+      "presentedFrames": 145,
+      "timeline": 4.797199999988075
+    },
+    {
+      "index": 0,
+      "now": 8051.8,
+      "mediaTime": 4.762422,
+      "presentedFrames": 499,
+      "timeline": 4.808800000011916
+    },
+    {
+      "index": 0,
+      "now": 8057.9,
+      "mediaTime": 4.771033,
+      "presentedFrames": 500,
+      "timeline": 4.8188999999761535
+    },
+    {
+      "index": 0,
+      "now": 8070,
+      "mediaTime": 4.786656,
+      "presentedFrames": 502,
+      "timeline": 4.830699999988074
+    },
+    {
+      "index": 2,
+      "now": 8082,
+      "mediaTime": 4.833333,
+      "presentedFrames": 146,
+      "timeline": 4.842999999999995
+    },
+    {
+      "index": 0,
+      "now": 8088.2,
+      "mediaTime": 4.803444,
+      "presentedFrames": 504,
+      "timeline": 4.849099999964232
+    },
+    {
+      "index": 0,
+      "now": 8094.2,
+      "mediaTime": 4.811533,
+      "presentedFrames": 505,
+      "timeline": 4.855099999964232
+    },
+    {
+      "index": 0,
+      "now": 8106.3,
+      "mediaTime": 4.819967,
+      "presentedFrames": 506,
+      "timeline": 4.868199999988074
+    },
+    {
+      "index": 2,
+      "now": 8106.3,
+      "mediaTime": 4.866667,
+      "presentedFrames": 147,
+      "timeline": 4.868199999988074
+    },
+    {
+      "index": 0,
+      "now": 8124.6,
+      "mediaTime": 4.836633,
+      "presentedFrames": 508,
+      "timeline": 4.885399999976153
+    },
+    {
+      "index": 0,
+      "now": 8136.7,
+      "mediaTime": 4.853222,
+      "presentedFrames": 510,
+      "timeline": 4.8973999999761535
+    },
+    {
+      "index": 2,
+      "now": 8142.7,
+      "mediaTime": 4.9,
+      "presentedFrames": 148,
+      "timeline": 4.9038999999761534
+    },
+    {
+      "index": 0,
+      "now": 8154.8,
+      "mediaTime": 4.869978,
+      "presentedFrames": 512,
+      "timeline": 4.915699999988074
+    },
+    {
+      "index": 0,
+      "now": 8166.9,
+      "mediaTime": 4.878167,
+      "presentedFrames": 513,
+      "timeline": 4.927899999976153
+    },
+    {
+      "index": 0,
+      "now": 8179,
+      "mediaTime": 4.886567,
+      "presentedFrames": 514,
+      "timeline": 4.939999999999994
+    },
+    {
+      "index": 2,
+      "now": 8179,
+      "mediaTime": 4.933333,
+      "presentedFrames": 149,
+      "timeline": 4.939999999999994
+    },
+    {
+      "index": 0,
+      "now": 8185.1,
+      "mediaTime": 4.894844,
+      "presentedFrames": 515,
+      "timeline": 4.946699999988073
+    },
+    {
+      "index": 0,
+      "now": 8197.2,
+      "mediaTime": 4.912033,
+      "presentedFrames": 517,
+      "timeline": 4.957999999999995
+    },
+    {
+      "index": 0,
+      "now": 8209.3,
+      "mediaTime": 4.919956,
+      "presentedFrames": 518,
+      "timeline": 4.970399999976152
+    },
+    {
+      "index": 2,
+      "now": 8215.4,
+      "mediaTime": 4.966667,
+      "presentedFrames": 150,
+      "timeline": 4.976300000011915
+    },
+    {
+      "index": 0,
+      "now": 8221.5,
+      "mediaTime": 4.936889,
+      "presentedFrames": 520,
+      "timeline": 4.982300000011915
+    },
+    {
+      "index": 0,
+      "now": 8227.6,
+      "mediaTime": 4.945233,
+      "presentedFrames": 521,
+      "timeline": 4.991099999964232
+    },
+    {
+      "index": 0,
+      "now": 8245.7,
+      "mediaTime": 4.961622,
+      "presentedFrames": 523,
+      "timeline": 5.0055999999642316
+    },
+    {
+      "index": 2,
+      "now": 8245.7,
+      "mediaTime": 5,
+      "presentedFrames": 151,
+      "timeline": 5.0055999999642316
+    },
+    {
+      "index": 0,
+      "now": 8264,
+      "mediaTime": 4.979544,
+      "presentedFrames": 525,
+      "timeline": 5.024499999999994
+    },
+    {
+      "index": 0,
+      "now": 8276.1,
+      "mediaTime": 4.987378,
+      "presentedFrames": 526,
+      "timeline": 5.040599999964232
+    },
+    {
+      "index": 2,
+      "now": 8276.1,
+      "mediaTime": 5.033333,
+      "presentedFrames": 152,
+      "timeline": 5.040599999964232
+    },
+    {
+      "index": 0,
+      "now": 8282.1,
+      "mediaTime": 4.9955,
+      "presentedFrames": 527,
+      "timeline": 5.046800000011915
+    },
+    {
+      "index": 0,
+      "now": 8288.2,
+      "mediaTime": 5.004422,
+      "presentedFrames": 528,
+      "timeline": 5.052199999988074
+    },
+    {
+      "index": 0,
+      "now": 8306.4,
+      "mediaTime": 5.020644,
+      "presentedFrames": 530,
+      "timeline": 5.067199999988073
+    },
+    {
+      "index": 2,
+      "now": 8312.5,
+      "mediaTime": 5.066667,
+      "presentedFrames": 153,
+      "timeline": 5.0733000000119155
+    },
+    {
+      "index": 0,
+      "now": 8312.5,
+      "mediaTime": 5.029022,
+      "presentedFrames": 531,
+      "timeline": 5.0733000000119155
+    },
+    {
+      "index": 0,
+      "now": 8330.6,
+      "mediaTime": 5.045744,
+      "presentedFrames": 533,
+      "timeline": 5.091699999988074
+    },
+    {
+      "index": 0,
+      "now": 8342.7,
+      "mediaTime": 5.053778,
+      "presentedFrames": 534,
+      "timeline": 5.103499999999995
+    },
+    {
+      "index": 2,
+      "now": 8348.7,
+      "mediaTime": 5.1,
+      "presentedFrames": 154,
+      "timeline": 5.1095999999642325
+    },
+    {
+      "index": 0,
+      "now": 8354.8,
+      "mediaTime": 5.070656,
+      "presentedFrames": 536,
+      "timeline": 5.115800000011916
+    },
+    {
+      "index": 0,
+      "now": 8366.9,
+      "mediaTime": 5.078889,
+      "presentedFrames": 537,
+      "timeline": 5.127800000011916
+    },
+    {
+      "index": 2,
+      "now": 8373,
+      "mediaTime": 5.133333,
+      "presentedFrames": 155,
+      "timeline": 5.135899999976154
+    },
+    {
+      "index": 0,
+      "now": 8385.1,
+      "mediaTime": 5.095889,
+      "presentedFrames": 539,
+      "timeline": 5.1459999999999955
+    },
+    {
+      "index": 0,
+      "now": 8391.2,
+      "mediaTime": 5.104089,
+      "presentedFrames": 540,
+      "timeline": 5.1548000000119165
+    },
+    {
+      "index": 0,
+      "now": 8403.3,
+      "mediaTime": 5.112289,
+      "presentedFrames": 541,
+      "timeline": 5.164099999964233
+    },
+    {
+      "index": 0,
+      "now": 8415.5,
+      "mediaTime": 5.128889,
+      "presentedFrames": 543,
+      "timeline": 5.176300000011918
+    },
+    {
+      "index": 2,
+      "now": 8415.5,
+      "mediaTime": 5.166667,
+      "presentedFrames": 156,
+      "timeline": 5.176300000011918
+    },
+    {
+      "index": 0,
+      "now": 8427.6,
+      "mediaTime": 5.145689,
+      "presentedFrames": 545,
+      "timeline": 5.188300000011918
+    },
+    {
+      "index": 0,
+      "now": 8439.7,
+      "mediaTime": 5.154078,
+      "presentedFrames": 546,
+      "timeline": 5.201300000011918
+    },
+    {
+      "index": 2,
+      "now": 8439.7,
+      "mediaTime": 5.2,
+      "presentedFrames": 157,
+      "timeline": 5.201300000011918
+    },
+    {
+      "index": 0,
+      "now": 8458,
+      "mediaTime": 5.170711,
+      "presentedFrames": 548,
+      "timeline": 5.218599999964234
+    },
+    {
+      "index": 0,
+      "now": 8463.9,
+      "mediaTime": 5.179167,
+      "presentedFrames": 549,
+      "timeline": 5.227999999999997
+    },
+    {
+      "index": 0,
+      "now": 8476,
+      "mediaTime": 5.187522,
+      "presentedFrames": 550,
+      "timeline": 5.236599999964234
+    },
+    {
+      "index": 2,
+      "now": 8476,
+      "mediaTime": 5.233333,
+      "presentedFrames": 158,
+      "timeline": 5.236599999964234
+    },
+    {
+      "index": 0,
+      "now": 8482.1,
+      "mediaTime": 5.195878,
+      "presentedFrames": 551,
+      "timeline": 5.245399999976155
+    },
+    {
+      "index": 0,
+      "now": 8488.2,
+      "mediaTime": 5.204233,
+      "presentedFrames": 552,
+      "timeline": 5.252699999988076
+    },
+    {
+      "index": 0,
+      "now": 8506.4,
+      "mediaTime": 5.220778,
+      "presentedFrames": 554,
+      "timeline": 5.267099999964234
+    },
+    {
+      "index": 2,
+      "now": 8506.4,
+      "mediaTime": 5.266667,
+      "presentedFrames": 159,
+      "timeline": 5.267099999964234
+    },
+    {
+      "index": 0,
+      "now": 8518.5,
+      "mediaTime": 5.229156,
+      "presentedFrames": 555,
+      "timeline": 5.2826999999880755
+    },
+    {
+      "index": 0,
+      "now": 8524.6,
+      "mediaTime": 5.236878,
+      "presentedFrames": 556,
+      "timeline": 5.288999999999996
+    },
+    {
+      "index": 0,
+      "now": 8536.6,
+      "mediaTime": 5.254589,
+      "presentedFrames": 558,
+      "timeline": 5.296399999976154
+    },
+    {
+      "index": 2,
+      "now": 8542.8,
+      "mediaTime": 5.3,
+      "presentedFrames": 160,
+      "timeline": 5.304800000011917
+    },
+    {
+      "index": 0,
+      "now": 8548.9,
+      "mediaTime": 5.262867,
+      "presentedFrames": 559,
+      "timeline": 5.3103000000119165
+    },
+    {
+      "index": 0,
+      "now": 8554.9,
+      "mediaTime": 5.271144,
+      "presentedFrames": 560,
+      "timeline": 5.316399999976154
+    },
+    {
+      "index": 0,
+      "now": 8567,
+      "mediaTime": 5.2791,
+      "presentedFrames": 561,
+      "timeline": 5.332899999976155
+    },
+    {
+      "index": 0,
+      "now": 8573,
+      "mediaTime": 5.287511,
+      "presentedFrames": 562,
+      "timeline": 5.3379999999999965
+    },
+    {
+      "index": 2,
+      "now": 8573,
+      "mediaTime": 5.333333,
+      "presentedFrames": 161,
+      "timeline": 5.3379999999999965
+    },
+    {
+      "index": 0,
+      "now": 8579.1,
+      "mediaTime": 5.295722,
+      "presentedFrames": 563,
+      "timeline": 5.342499999999997
+    },
+    {
+      "index": 0,
+      "now": 8591.2,
+      "mediaTime": 5.3044,
+      "presentedFrames": 564,
+      "timeline": 5.355899999976155
+    },
+    {
+      "index": 0,
+      "now": 8597.3,
+      "mediaTime": 5.312433,
+      "presentedFrames": 565,
+      "timeline": 5.360099999964234
+    },
+    {
+      "index": 0,
+      "now": 8603.3,
+      "mediaTime": 5.320767,
+      "presentedFrames": 566,
+      "timeline": 5.366699999988076
+    },
+    {
+      "index": 2,
+      "now": 8609.4,
+      "mediaTime": 5.366667,
+      "presentedFrames": 162,
+      "timeline": 5.370800000011918
+    },
+    {
+      "index": 0,
+      "now": 8615.4,
+      "mediaTime": 5.3291,
+      "presentedFrames": 567,
+      "timeline": 5.3778999999761545
+    },
+    {
+      "index": 0,
+      "now": 8621.5,
+      "mediaTime": 5.337556,
+      "presentedFrames": 568,
+      "timeline": 5.3838000000119175
+    },
+    {
+      "index": 0,
+      "now": 8627.6,
+      "mediaTime": 5.345822,
+      "presentedFrames": 569,
+      "timeline": 5.389800000011918
+    },
+    {
+      "index": 0,
+      "now": 8639.7,
+      "mediaTime": 5.354433,
+      "presentedFrames": 570,
+      "timeline": 5.404499999999997
+    },
+    {
+      "index": 2,
+      "now": 8639.7,
+      "mediaTime": 5.4,
+      "presentedFrames": 163,
+      "timeline": 5.404499999999997
+    },
+    {
+      "index": 0,
+      "now": 8645.8,
+      "mediaTime": 5.3626,
+      "presentedFrames": 571,
+      "timeline": 5.410699999988076
+    },
+    {
+      "index": 0,
+      "now": 8657.9,
+      "mediaTime": 5.371033,
+      "presentedFrames": 572,
+      "timeline": 5.422599999964233
+    },
+    {
+      "index": 0,
+      "now": 8670,
+      "mediaTime": 5.387411,
+      "presentedFrames": 574,
+      "timeline": 5.431099999964233
+    },
+    {
+      "index": 2,
+      "now": 8682.2,
+      "mediaTime": 5.433333,
+      "presentedFrames": 164,
+      "timeline": 5.442899999976154
+    },
+    {
+      "index": 0,
+      "now": 8682.2,
+      "mediaTime": 5.395889,
+      "presentedFrames": 575,
+      "timeline": 5.442899999976154
+    },
+    {
+      "index": 0,
+      "now": 8694.3,
+      "mediaTime": 5.404678,
+      "presentedFrames": 576,
+      "timeline": 5.452199999988075
+    },
+    {
+      "index": 0,
+      "now": 8700.4,
+      "mediaTime": 5.4132,
+      "presentedFrames": 577,
+      "timeline": 5.461499999999996
+    },
+    {
+      "index": 0,
+      "now": 8706.4,
+      "mediaTime": 5.421211,
+      "presentedFrames": 578,
+      "timeline": 5.4685999999642325
+    },
+    {
+      "index": 2,
+      "now": 8706.4,
+      "mediaTime": 5.466667,
+      "presentedFrames": 165,
+      "timeline": 5.4685999999642325
+    },
+    {
+      "index": 0,
+      "now": 8718.5,
+      "mediaTime": 5.429511,
+      "presentedFrames": 579,
+      "timeline": 5.482599999964233
+    },
+    {
+      "index": 0,
+      "now": 8724.6,
+      "mediaTime": 5.437811,
+      "presentedFrames": 580,
+      "timeline": 5.487599999964233
+    },
+    {
+      "index": 0,
+      "now": 8730.6,
+      "mediaTime": 5.446233,
+      "presentedFrames": 581,
+      "timeline": 5.493300000011916
+    },
+    {
+      "index": 0,
+      "now": 8736.6,
+      "mediaTime": 5.454544,
+      "presentedFrames": 582,
+      "timeline": 5.500499999999995
+    },
+    {
+      "index": 2,
+      "now": 8742.7,
+      "mediaTime": 5.5,
+      "presentedFrames": 166,
+      "timeline": 5.506099999964232
+    },
+    {
+      "index": 0,
+      "now": 8748.9,
+      "mediaTime": 5.463944,
+      "presentedFrames": 583,
+      "timeline": 5.511699999988074
+    },
+    {
+      "index": 0,
+      "now": 8754.9,
+      "mediaTime": 5.470367,
+      "presentedFrames": 584,
+      "timeline": 5.515999999999995
+    },
+    {
+      "index": 0,
+      "now": 8773.1,
+      "mediaTime": 5.488433,
+      "presentedFrames": 586,
+      "timeline": 5.5338999999761525
+    },
+    {
+      "index": 2,
+      "now": 8773.1,
+      "mediaTime": 5.533333,
+      "presentedFrames": 167,
+      "timeline": 5.5338999999761525
+    },
+    {
+      "index": 0,
+      "now": 8791.3,
+      "mediaTime": 5.504344,
+      "presentedFrames": 588,
+      "timeline": 5.551999999999994
+    },
+    {
+      "index": 0,
+      "now": 8803.3,
+      "mediaTime": 5.512744,
+      "presentedFrames": 589,
+      "timeline": 5.564300000011915
+    },
+    {
+      "index": 0,
+      "now": 8809.4,
+      "mediaTime": 5.521144,
+      "presentedFrames": 590,
+      "timeline": 5.570300000011915
+    },
+    {
+      "index": 2,
+      "now": 8809.4,
+      "mediaTime": 5.566667,
+      "presentedFrames": 168,
+      "timeline": 5.570300000011915
+    },
+    {
+      "index": 0,
+      "now": 8815.5,
+      "mediaTime": 5.529544,
+      "presentedFrames": 591,
+      "timeline": 5.576599999964231
+    },
+    {
+      "index": 0,
+      "now": 8821.5,
+      "mediaTime": 5.538467,
+      "presentedFrames": 592,
+      "timeline": 5.583599999964231
+    },
+    {
+      "index": 0,
+      "now": 8827.5,
+      "mediaTime": 5.546111,
+      "presentedFrames": 593,
+      "timeline": 5.590199999988073
+    },
+    {
+      "index": 0,
+      "now": 8845.9,
+      "mediaTime": 5.563011,
+      "presentedFrames": 595,
+      "timeline": 5.6065999999642315
+    },
+    {
+      "index": 2,
+      "now": 8845.9,
+      "mediaTime": 5.6,
+      "presentedFrames": 169,
+      "timeline": 5.6065999999642315
+    },
+    {
+      "index": 0,
+      "now": 8864,
+      "mediaTime": 5.579411,
+      "presentedFrames": 597,
+      "timeline": 5.624800000011915
+    },
+    {
+      "index": 0,
+      "now": 8876.1,
+      "mediaTime": 5.587922,
+      "presentedFrames": 598,
+      "timeline": 5.637599999964231
+    },
+    {
+      "index": 2,
+      "now": 8876.1,
+      "mediaTime": 5.633333,
+      "presentedFrames": 170,
+      "timeline": 5.637599999964231
+    },
+    {
+      "index": 0,
+      "now": 8882.2,
+      "mediaTime": 5.596944,
+      "presentedFrames": 599,
+      "timeline": 5.645399999976152
+    },
+    {
+      "index": 0,
+      "now": 8888.2,
+      "mediaTime": 5.604933,
+      "presentedFrames": 600,
+      "timeline": 5.651300000011915
+    },
+    {
+      "index": 0,
+      "now": 8900.4,
+      "mediaTime": 5.613067,
+      "presentedFrames": 601,
+      "timeline": 5.663599999964231
+    },
+    {
+      "index": 0,
+      "now": 8906.4,
+      "mediaTime": 5.622578,
+      "presentedFrames": 602,
+      "timeline": 5.671099999964231
+    },
+    {
+      "index": 2,
+      "now": 8906.4,
+      "mediaTime": 5.666667,
+      "presentedFrames": 171,
+      "timeline": 5.671099999964231
+    },
+    {
+      "index": 0,
+      "now": 8912.5,
+      "mediaTime": 5.629744,
+      "presentedFrames": 603,
+      "timeline": 5.676300000011915
+    },
+    {
+      "index": 0,
+      "now": 8930.6,
+      "mediaTime": 5.646144,
+      "presentedFrames": 605,
+      "timeline": 5.688199999988074
+    },
+    {
+      "index": 0,
+      "now": 8942.7,
+      "mediaTime": 5.654811,
+      "presentedFrames": 606,
+      "timeline": 5.700699999988074
+    },
+    {
+      "index": 2,
+      "now": 8942.7,
+      "mediaTime": 5.7,
+      "presentedFrames": 172,
+      "timeline": 5.700699999988074
+    },
+    {
+      "index": 0,
+      "now": 8948.8,
+      "mediaTime": 5.663267,
+      "presentedFrames": 607,
+      "timeline": 5.712899999976153
+    },
+    {
+      "index": 0,
+      "now": 8961,
+      "mediaTime": 5.672011,
+      "presentedFrames": 608,
+      "timeline": 5.719699999988074
+    },
+    {
+      "index": 0,
+      "now": 8966.9,
+      "mediaTime": 5.679933,
+      "presentedFrames": 609,
+      "timeline": 5.730199999988074
+    },
+    {
+      "index": 0,
+      "now": 8985.2,
+      "mediaTime": 5.695522,
+      "presentedFrames": 611,
+      "timeline": 5.737499999999995
+    },
+    {
+      "index": 2,
+      "now": 8985.2,
+      "mediaTime": 5.733333,
+      "presentedFrames": 173,
+      "timeline": 5.737499999999995
+    },
+    {
+      "index": 0,
+      "now": 8997.4,
+      "mediaTime": 5.712733,
+      "presentedFrames": 613,
+      "timeline": 5.754099999964232
+    },
+    {
+      "index": 0,
+      "now": 9015.5,
+      "mediaTime": 5.728867,
+      "presentedFrames": 615,
+      "timeline": 5.774599999964233
+    },
+    {
+      "index": 2,
+      "now": 9015.5,
+      "mediaTime": 5.766667,
+      "presentedFrames": 174,
+      "timeline": 5.774599999964233
+    },
+    {
+      "index": 0,
+      "now": 9027.7,
+      "mediaTime": 5.745322,
+      "presentedFrames": 617,
+      "timeline": 5.783599999964233
+    },
+    {
+      "index": 0,
+      "now": 9039.7,
+      "mediaTime": 5.7542,
+      "presentedFrames": 618,
+      "timeline": 5.797399999976154
+    },
+    {
+      "index": 2,
+      "now": 9039.7,
+      "mediaTime": 5.8,
+      "presentedFrames": 175,
+      "timeline": 5.797399999976154
+    },
+    {
+      "index": 0,
+      "now": 9057.9,
+      "mediaTime": 5.771233,
+      "presentedFrames": 620,
+      "timeline": 5.8116999999880745
+    },
+    {
+      "index": 0,
+      "now": 9064,
+      "mediaTime": 5.778922,
+      "presentedFrames": 621,
+      "timeline": 5.826399999976154
+    },
+    {
+      "index": 0,
+      "now": 9076.1,
+      "mediaTime": 5.787233,
+      "presentedFrames": 622,
+      "timeline": 5.835899999976154
+    },
+    {
+      "index": 2,
+      "now": 9076.1,
+      "mediaTime": 5.833333,
+      "presentedFrames": 176,
+      "timeline": 5.835899999976154
+    },
+    {
+      "index": 0,
+      "now": 9082.1,
+      "mediaTime": 5.795544,
+      "presentedFrames": 623,
+      "timeline": 5.846800000011917
+    },
+    {
+      "index": 0,
+      "now": 9088.2,
+      "mediaTime": 5.803856,
+      "presentedFrames": 624,
+      "timeline": 5.851199999988075
+    },
+    {
+      "index": 0,
+      "now": 9106.5,
+      "mediaTime": 5.820833,
+      "presentedFrames": 626,
+      "timeline": 5.867300000011917
+    },
+    {
+      "index": 2,
+      "now": 9112.5,
+      "mediaTime": 5.866667,
+      "presentedFrames": 177,
+      "timeline": 5.873300000011917
+    },
+    {
+      "index": 0,
+      "now": 9124.7,
+      "mediaTime": 5.837478,
+      "presentedFrames": 628,
+      "timeline": 5.885499999999996
+    },
+    {
+      "index": 0,
+      "now": 9136.8,
+      "mediaTime": 5.845922,
+      "presentedFrames": 629,
+      "timeline": 5.897599999964234
+    },
+    {
+      "index": 0,
+      "now": 9142.8,
+      "mediaTime": 5.855089,
+      "presentedFrames": 630,
+      "timeline": 5.903599999964234
+    },
+    {
+      "index": 2,
+      "now": 9142.8,
+      "mediaTime": 5.9,
+      "presentedFrames": 178,
+      "timeline": 5.903599999964234
+    },
+    {
+      "index": 0,
+      "now": 9148.9,
+      "mediaTime": 5.863033,
+      "presentedFrames": 631,
+      "timeline": 5.911499999999997
+    },
+    {
+      "index": 0,
+      "now": 9161.1,
+      "mediaTime": 5.871944,
+      "presentedFrames": 632,
+      "timeline": 5.921999999999997
+    },
+    {
+      "index": 0,
+      "now": 9167,
+      "mediaTime": 5.879878,
+      "presentedFrames": 633,
+      "timeline": 5.931099999964235
+    },
+    {
+      "index": 0,
+      "now": 9179.2,
+      "mediaTime": 5.888378,
+      "presentedFrames": 634,
+      "timeline": 5.939499999999997
+    },
+    {
+      "index": 2,
+      "now": 9179.2,
+      "mediaTime": 5.933333,
+      "presentedFrames": 179,
+      "timeline": 5.939499999999997
+    },
+    {
+      "index": 0,
+      "now": 9185.2,
+      "mediaTime": 5.8967,
+      "presentedFrames": 635,
+      "timeline": 5.947999999999997
+    },
+    {
+      "index": 0,
+      "now": 9197.4,
+      "mediaTime": 5.913133,
+      "presentedFrames": 637,
+      "timeline": 5.958899999976155
+    },
+    {
+      "index": 0,
+      "now": 9209.4,
+      "mediaTime": 5.921856,
+      "presentedFrames": 638,
+      "timeline": 5.971499999999997
+    },
+    {
+      "index": 2,
+      "now": 9209.4,
+      "mediaTime": 5.966667,
+      "presentedFrames": 180,
+      "timeline": 5.971499999999997
+    },
+    {
+      "index": 0,
+      "now": 9215.5,
+      "mediaTime": 5.929767,
+      "presentedFrames": 639,
+      "timeline": 5.979099999964235
+    },
+    {
+      "index": 0,
+      "now": 9221.7,
+      "mediaTime": 5.938533,
+      "presentedFrames": 640,
+      "timeline": 5.984800000011918
+    },
+    {
+      "index": 0,
+      "now": 9239.8,
+      "mediaTime": 5.954889,
+      "presentedFrames": 642,
+      "timeline": 6.000800000011918
+    },
+    {
+      "index": 2,
+      "now": 9239.8,
+      "mediaTime": 6,
+      "presentedFrames": 181,
+      "timeline": 6.000800000011918
+    },
+    {
+      "index": 0,
+      "now": 9251.9,
+      "mediaTime": 5.963344,
+      "presentedFrames": 643,
+      "timeline": 6.017499999999997
+    },
+    {
+      "index": 0,
+      "now": 9257.9,
+      "mediaTime": 5.971667,
+      "presentedFrames": 644,
+      "timeline": 6.022399999976155
+    },
+    {
+      "index": 0,
+      "now": 9264,
+      "mediaTime": 5.980422,
+      "presentedFrames": 645,
+      "timeline": 6.027800000011918
+    },
+    {
+      "index": 0,
+      "now": 9282.3,
+      "mediaTime": 5.996633,
+      "presentedFrames": 647,
+      "timeline": 6.043099999964234
+    },
+    {
+      "index": 2,
+      "now": 9282.3,
+      "mediaTime": 6.033333,
+      "presentedFrames": 182,
+      "timeline": 6.043099999964234
+    },
+    {
+      "index": 0,
+      "now": 9294.3,
+      "mediaTime": 6.004944,
+      "presentedFrames": 648,
+      "timeline": 6.0551999999880755
+    },
+    {
+      "index": 0,
+      "now": 9306.5,
+      "mediaTime": 6.013611,
+      "presentedFrames": 649,
+      "timeline": 6.067300000011918
+    },
+    {
+      "index": 2,
+      "now": 9312.5,
+      "mediaTime": 6.066667,
+      "presentedFrames": 183,
+      "timeline": 6.073300000011918
+    },
+    {
+      "index": 0,
+      "now": 9318.6,
+      "mediaTime": 6.030589,
+      "presentedFrames": 651,
+      "timeline": 6.079399999976156
+    },
+    {
+      "index": 0,
+      "now": 9324.6,
+      "mediaTime": 6.038189,
+      "presentedFrames": 652,
+      "timeline": 6.085399999976156
+    },
+    {
+      "index": 0,
+      "now": 9336.8,
+      "mediaTime": 6.046544,
+      "presentedFrames": 653,
+      "timeline": 6.097699999988077
+    },
+    {
+      "index": 0,
+      "now": 9342.8,
+      "mediaTime": 6.055556,
+      "presentedFrames": 654,
+      "timeline": 6.103699999988077
+    },
+    {
+      "index": 2,
+      "now": 9342.8,
+      "mediaTime": 6.1,
+      "presentedFrames": 184,
+      "timeline": 6.103699999988077
+    },
+    {
+      "index": 0,
+      "now": 9349,
+      "mediaTime": 6.063344,
+      "presentedFrames": 655,
+      "timeline": 6.110899999976156
+    },
+    {
+      "index": 0,
+      "now": 9354.9,
+      "mediaTime": 6.0716,
+      "presentedFrames": 656,
+      "timeline": 6.117599999964235
+    },
+    {
+      "index": 0,
+      "now": 9373.1,
+      "mediaTime": 6.0883,
+      "presentedFrames": 658,
+      "timeline": 6.133999999999999
+    },
+    {
+      "index": 2,
+      "now": 9379.3,
+      "mediaTime": 6.133333,
+      "presentedFrames": 185,
+      "timeline": 6.139999999999999
+    },
+    {
+      "index": 0,
+      "now": 9391.3,
+      "mediaTime": 6.105167,
+      "presentedFrames": 660,
+      "timeline": 6.152099999964236
+    },
+    {
+      "index": 0,
+      "now": 9397.3,
+      "mediaTime": 6.113156,
+      "presentedFrames": 661,
+      "timeline": 6.158300000011919
+    },
+    {
+      "index": 0,
+      "now": 9415.5,
+      "mediaTime": 6.129889,
+      "presentedFrames": 663,
+      "timeline": 6.176499999999997
+    },
+    {
+      "index": 2,
+      "now": 9415.5,
+      "mediaTime": 6.166667,
+      "presentedFrames": 186,
+      "timeline": 6.176499999999997
+    },
+    {
+      "index": 0,
+      "now": 9427.7,
+      "mediaTime": 6.138378,
+      "presentedFrames": 664,
+      "timeline": 6.188399999976156
+    },
+    {
+      "index": 0,
+      "now": 9433.8,
+      "mediaTime": 6.146656,
+      "presentedFrames": 665,
+      "timeline": 6.194599999964234
+    },
+    {
+      "index": 2,
+      "now": 9446,
+      "mediaTime": 6.2,
+      "presentedFrames": 187,
+      "timeline": 6.206800000011918
+    },
+    {
+      "index": 0,
+      "now": 9451.9,
+      "mediaTime": 6.163167,
+      "presentedFrames": 667,
+      "timeline": 6.212899999976155
+    },
+    {
+      "index": 0,
+      "now": 9458,
+      "mediaTime": 6.171244,
+      "presentedFrames": 668,
+      "timeline": 6.220999999999997
+    },
+    {
+      "index": 0,
+      "now": 9464,
+      "mediaTime": 6.1797,
+      "presentedFrames": 669,
+      "timeline": 6.227399999976155
+    },
+    {
+      "index": 0,
+      "now": 9482.2,
+      "mediaTime": 6.196533,
+      "presentedFrames": 671,
+      "timeline": 6.2399999999999975
+    },
+    {
+      "index": 2,
+      "now": 9482.2,
+      "mediaTime": 6.233333,
+      "presentedFrames": 188,
+      "timeline": 6.2399999999999975
+    },
+    {
+      "index": 0,
+      "now": 9488.3,
+      "mediaTime": 6.205167,
+      "presentedFrames": 672,
+      "timeline": 6.249399999976156
+    },
+    {
+      "index": 0,
+      "now": 9500.4,
+      "mediaTime": 6.213256,
+      "presentedFrames": 673,
+      "timeline": 6.261999999999998
+    },
+    {
+      "index": 2,
+      "now": 9512.5,
+      "mediaTime": 6.266667,
+      "presentedFrames": 189,
+      "timeline": 6.273300000011918
+    },
+    {
+      "index": 0,
+      "now": 9512.5,
+      "mediaTime": 6.221733,
+      "presentedFrames": 674,
+      "timeline": 6.273300000011918
+    },
+    {
+      "index": 0,
+      "now": 9518.6,
+      "mediaTime": 6.230211,
+      "presentedFrames": 675,
+      "timeline": 6.280999999999997
+    },
+    {
+      "index": 0,
+      "now": 9530.7,
+      "mediaTime": 6.246278,
+      "presentedFrames": 677,
+      "timeline": 6.291599999964235
+    },
+    {
+      "index": 0,
+      "now": 9536.8,
+      "mediaTime": 6.254656,
+      "presentedFrames": 678,
+      "timeline": 6.299699999988077
+    },
+    {
+      "index": 2,
+      "now": 9542.8,
+      "mediaTime": 6.3,
+      "presentedFrames": 190,
+      "timeline": 6.307300000011918
+    },
+    {
+      "index": 0,
+      "now": 9548.9,
+      "mediaTime": 6.2633,
+      "presentedFrames": 679,
+      "timeline": 6.314099999964235
+    },
+    {
+      "index": 0,
+      "now": 9561,
+      "mediaTime": 6.271944,
+      "presentedFrames": 680,
+      "timeline": 6.3243000000119185
+    },
+    {
+      "index": 0,
+      "now": 9567.1,
+      "mediaTime": 6.280222,
+      "presentedFrames": 681,
+      "timeline": 6.329699999988077
+    },
+    {
+      "index": 0,
+      "now": 9573.2,
+      "mediaTime": 6.288622,
+      "presentedFrames": 682,
+      "timeline": 6.334199999988077
+    },
+    {
+      "index": 2,
+      "now": 9573.2,
+      "mediaTime": 6.333333,
+      "presentedFrames": 191,
+      "timeline": 6.334199999988077
+    },
+    {
+      "index": 0,
+      "now": 9591.3,
+      "mediaTime": 6.305478,
+      "presentedFrames": 684,
+      "timeline": 6.352199999988077
+    },
+    {
+      "index": 0,
+      "now": 9597.4,
+      "mediaTime": 6.313167,
+      "presentedFrames": 685,
+      "timeline": 6.359399999976156
+    },
+    {
+      "index": 0,
+      "now": 9609.5,
+      "mediaTime": 6.321833,
+      "presentedFrames": 686,
+      "timeline": 6.373800000011919
+    },
+    {
+      "index": 2,
+      "now": 9609.5,
+      "mediaTime": 6.366667,
+      "presentedFrames": 192,
+      "timeline": 6.373800000011919
+    },
+    {
+      "index": 0,
+      "now": 9615.6,
+      "mediaTime": 6.329889,
+      "presentedFrames": 687,
+      "timeline": 6.381099999964235
+    },
+    {
+      "index": 0,
+      "now": 9627.7,
+      "mediaTime": 6.338478,
+      "presentedFrames": 688,
+      "timeline": 6.386599999964234
+    },
+    {
+      "index": 0,
+      "now": 9639.8,
+      "mediaTime": 6.346789,
+      "presentedFrames": 689,
+      "timeline": 6.400599999964235
+    },
+    {
+      "index": 2,
+      "now": 9645.9,
+      "mediaTime": 6.4,
+      "presentedFrames": 193,
+      "timeline": 6.406699999988077
+    },
+    {
+      "index": 0,
+      "now": 9651.9,
+      "mediaTime": 6.363244,
+      "presentedFrames": 691,
+      "timeline": 6.413199999988077
+    },
+    {
+      "index": 0,
+      "now": 9664.1,
+      "mediaTime": 6.380089,
+      "presentedFrames": 693,
+      "timeline": 6.424800000011918
+    },
+    {
+      "index": 0,
+      "now": 9676.2,
+      "mediaTime": 6.388156,
+      "presentedFrames": 694,
+      "timeline": 6.436999999999997
+    },
+    {
+      "index": 2,
+      "now": 9676.2,
+      "mediaTime": 6.433333,
+      "presentedFrames": 194,
+      "timeline": 6.436999999999997
+    },
+    {
+      "index": 0,
+      "now": 9682.2,
+      "mediaTime": 6.396378,
+      "presentedFrames": 695,
+      "timeline": 6.444499999999997
+    },
+    {
+      "index": 0,
+      "now": 9688.2,
+      "mediaTime": 6.404878,
+      "presentedFrames": 696,
+      "timeline": 6.450199999988076
+    },
+    {
+      "index": 0,
+      "now": 9700.4,
+      "mediaTime": 6.414289,
+      "presentedFrames": 697,
+      "timeline": 6.4628999999761545
+    },
+    {
+      "index": 0,
+      "now": 9706.5,
+      "mediaTime": 6.421478,
+      "presentedFrames": 698,
+      "timeline": 6.470599999964233
+    },
+    {
+      "index": 2,
+      "now": 9706.5,
+      "mediaTime": 6.466667,
+      "presentedFrames": 195,
+      "timeline": 6.470599999964233
+    },
+    {
+      "index": 0,
+      "now": 9718.6,
+      "mediaTime": 6.429744,
+      "presentedFrames": 699,
+      "timeline": 6.478699999988075
+    },
+    {
+      "index": 0,
+      "now": 9724.6,
+      "mediaTime": 6.438511,
+      "presentedFrames": 700,
+      "timeline": 6.485899999976154
+    },
+    {
+      "index": 0,
+      "now": 9730.7,
+      "mediaTime": 6.446544,
+      "presentedFrames": 701,
+      "timeline": 6.4933999999761545
+    },
+    {
+      "index": 0,
+      "now": 9742.8,
+      "mediaTime": 6.455156,
+      "presentedFrames": 702,
+      "timeline": 6.506199999988075
+    },
+    {
+      "index": 2,
+      "now": 9742.8,
+      "mediaTime": 6.5,
+      "presentedFrames": 196,
+      "timeline": 6.506199999988075
+    },
+    {
+      "index": 0,
+      "now": 9749,
+      "mediaTime": 6.462144,
+      "presentedFrames": 703,
+      "timeline": 6.511399999976154
+    },
+    {
+      "index": 0,
+      "now": 9761.1,
+      "mediaTime": 6.470689,
+      "presentedFrames": 704,
+      "timeline": 6.521899999976154
+    },
+    {
+      "index": 0,
+      "now": 9767,
+      "mediaTime": 6.479089,
+      "presentedFrames": 705,
+      "timeline": 6.527899999976154
+    },
+    {
+      "index": 2,
+      "now": 9773.2,
+      "mediaTime": 6.533333,
+      "presentedFrames": 197,
+      "timeline": 6.534399999976154
+    },
+    {
+      "index": 0,
+      "now": 9779.3,
+      "mediaTime": 6.487322,
+      "presentedFrames": 706,
+      "timeline": 6.540199999988075
+    },
+    {
+      "index": 0,
+      "now": 9791.4,
+      "mediaTime": 6.504233,
+      "presentedFrames": 708,
+      "timeline": 6.5523000000119165
+    },
+    {
+      "index": 0,
+      "now": 9803.5,
+      "mediaTime": 6.520744,
+      "presentedFrames": 710,
+      "timeline": 6.564399999976154
+    },
+    {
+      "index": 2,
+      "now": 9809.5,
+      "mediaTime": 6.566667,
+      "presentedFrames": 198,
+      "timeline": 6.5704999999999965
+    },
+    {
+      "index": 0,
+      "now": 9815.6,
+      "mediaTime": 6.529156,
+      "presentedFrames": 711,
+      "timeline": 6.577999999999997
+    },
+    {
+      "index": 0,
+      "now": 9827.7,
+      "mediaTime": 6.545844,
+      "presentedFrames": 713,
+      "timeline": 6.5885999999642335
+    },
+    {
+      "index": 0,
+      "now": 9846,
+      "mediaTime": 6.554111,
+      "presentedFrames": 714,
+      "timeline": 6.606699999988076
+    },
+    {
+      "index": 2,
+      "now": 9846,
+      "mediaTime": 6.6,
+      "presentedFrames": 199,
+      "timeline": 6.606699999988076
+    },
+    {
+      "index": 0,
+      "now": 9858.1,
+      "mediaTime": 6.570978,
+      "presentedFrames": 716,
+      "timeline": 6.618800000011919
+    },
+    {
+      "index": 0,
+      "now": 9864.1,
+      "mediaTime": 6.579344,
+      "presentedFrames": 717,
+      "timeline": 6.624999999999997
+    },
+    {
+      "index": 0,
+      "now": 9882.3,
+      "mediaTime": 6.5959,
+      "presentedFrames": 719,
+      "timeline": 6.643099999964235
+    },
+    {
+      "index": 2,
+      "now": 9882.3,
+      "mediaTime": 6.633333,
+      "presentedFrames": 200,
+      "timeline": 6.643099999964235
+    },
+    {
+      "index": 0,
+      "now": 9894.4,
+      "mediaTime": 6.612667,
+      "presentedFrames": 721,
+      "timeline": 6.65530000001192
+    },
+    {
+      "index": 2,
+      "now": 9906.4,
+      "mediaTime": 6.666667,
+      "presentedFrames": 201,
+      "timeline": 6.66980000001192
+    },
+    {
+      "index": 0,
+      "now": 9912.5,
+      "mediaTime": 6.620878,
+      "presentedFrames": 722,
+      "timeline": 6.676099999964236
+    },
+    {
+      "index": 0,
+      "now": 9918.6,
+      "mediaTime": 6.6294,
+      "presentedFrames": 723,
+      "timeline": 6.68130000001192
+    },
+    {
+      "index": 0,
+      "now": 9930.7,
+      "mediaTime": 6.645989,
+      "presentedFrames": 725,
+      "timeline": 6.690099999964236
+    },
+    {
+      "index": 0,
+      "now": 9942.9,
+      "mediaTime": 6.654467,
+      "presentedFrames": 726,
+      "timeline": 6.701399999976156
+    },
+    {
+      "index": 2,
+      "now": 9942.9,
+      "mediaTime": 6.7,
+      "presentedFrames": 202,
+      "timeline": 6.701399999976156
+    },
+    {
+      "index": 0,
+      "now": 9967.1,
+      "mediaTime": 6.679244,
+      "presentedFrames": 729,
+      "timeline": 6.715099999964235
+    },
+    {
+      "index": 2,
+      "now": 9985.3,
+      "mediaTime": 6.733333,
+      "presentedFrames": 203,
+      "timeline": 6.735399999976156
+    },
+    {
+      "index": 0,
+      "now": 9985.3,
+      "mediaTime": 6.695978,
+      "presentedFrames": 731,
+      "timeline": 6.735399999976156
+    },
+    {
+      "index": 0,
+      "now": 9997.4,
+      "mediaTime": 6.713578,
+      "presentedFrames": 733,
+      "timeline": 6.752599999964235
+    },
+    {
+      "index": 0,
+      "now": 10015.6,
+      "mediaTime": 6.729756,
+      "presentedFrames": 735,
+      "timeline": 6.775699999988077
+    },
+    {
+      "index": 2,
+      "now": 10015.6,
+      "mediaTime": 6.766667,
+      "presentedFrames": 204,
+      "timeline": 6.775699999988077
+    },
+    {
+      "index": 0,
+      "now": 10021.6,
+      "mediaTime": 6.738156,
+      "presentedFrames": 736,
+      "timeline": 6.7849999999999975
+    },
+    {
+      "index": 0,
+      "now": 10039.9,
+      "mediaTime": 6.7467,
+      "presentedFrames": 737,
+      "timeline": 6.793300000011919
+    },
+    {
+      "index": 2,
+      "now": 10039.9,
+      "mediaTime": 6.8,
+      "presentedFrames": 205,
+      "timeline": 6.793300000011919
+    },
+    {
+      "index": 0,
+      "now": 10058,
+      "mediaTime": 6.771689,
+      "presentedFrames": 740,
+      "timeline": 6.810699999988077
+    },
+    {
+      "index": 0,
+      "now": 10070.3,
+      "mediaTime": 6.788478,
+      "presentedFrames": 742,
+      "timeline": 6.827999999999998
+    },
+    {
+      "index": 2,
+      "now": 10082.3,
+      "mediaTime": 6.833333,
+      "presentedFrames": 206,
+      "timeline": 6.843399999976156
+    },
+    {
+      "index": 0,
+      "now": 10082.3,
+      "mediaTime": 6.797078,
+      "presentedFrames": 743,
+      "timeline": 6.843399999976156
+    },
+    {
+      "index": 0,
+      "now": 10094.4,
+      "mediaTime": 6.805378,
+      "presentedFrames": 744,
+      "timeline": 6.853699999988077
+    },
+    {
+      "index": 0,
+      "now": 10106.5,
+      "mediaTime": 6.8138,
+      "presentedFrames": 745,
+      "timeline": 6.865599999964235
+    },
+    {
+      "index": 2,
+      "now": 10106.5,
+      "mediaTime": 6.866667,
+      "presentedFrames": 207,
+      "timeline": 6.865599999964235
+    },
+    {
+      "index": 0,
+      "now": 10112.7,
+      "mediaTime": 6.829844,
+      "presentedFrames": 746,
+      "timeline": 6.877300000011919
+    },
+    {
+      "index": 0,
+      "now": 10124.7,
+      "mediaTime": 6.838311,
+      "presentedFrames": 747,
+      "timeline": 6.8833000000119196
+    },
+    {
+      "index": 0,
+      "now": 10130.7,
+      "mediaTime": 6.847056,
+      "presentedFrames": 748,
+      "timeline": 6.893199999988077
+    },
+    {
+      "index": 0,
+      "now": 10142.9,
+      "mediaTime": 6.855133,
+      "presentedFrames": 749,
+      "timeline": 6.903899999976157
+    },
+    {
+      "index": 2,
+      "now": 10142.9,
+      "mediaTime": 6.9,
+      "presentedFrames": 208,
+      "timeline": 6.903899999976157
+    },
+    {
+      "index": 0,
+      "now": 10155,
+      "mediaTime": 6.864056,
+      "presentedFrames": 750,
+      "timeline": 6.915800000011919
+    },
+    {
+      "index": 0,
+      "now": 10167.1,
+      "mediaTime": 6.880833,
+      "presentedFrames": 752,
+      "timeline": 6.927999999999999
+    },
+    {
+      "index": 0,
+      "now": 10179.3,
+      "mediaTime": 6.888689,
+      "presentedFrames": 753,
+      "timeline": 6.940099999964237
+    },
+    {
+      "index": 2,
+      "now": 10179.3,
+      "mediaTime": 6.933333,
+      "presentedFrames": 209,
+      "timeline": 6.940099999964237
+    },
+    {
+      "index": 0,
+      "now": 10185.3,
+      "mediaTime": 6.897289,
+      "presentedFrames": 754,
+      "timeline": 6.94780000001192
+    },
+    {
+      "index": 0,
+      "now": 10191.4,
+      "mediaTime": 6.905289,
+      "presentedFrames": 755,
+      "timeline": 6.9550999999642364
+    },
+    {
+      "index": 0,
+      "now": 10203.6,
+      "mediaTime": 6.913678,
+      "presentedFrames": 756,
+      "timeline": 6.964399999976158
+    },
+    {
+      "index": 0,
+      "now": 10209.6,
+      "mediaTime": 6.922067,
+      "presentedFrames": 757,
+      "timeline": 6.9725
+    },
+    {
+      "index": 2,
+      "now": 10209.6,
+      "mediaTime": 6.966667,
+      "presentedFrames": 210,
+      "timeline": 6.9725
+    },
+    {
+      "index": 0,
+      "now": 10215.6,
+      "mediaTime": 6.930267,
+      "presentedFrames": 758,
+      "timeline": 6.979
+    },
+    {
+      "index": 0,
+      "now": 10227.7,
+      "mediaTime": 6.938467,
+      "presentedFrames": 759,
+      "timeline": 6.992399999976159
+    },
+    {
+      "index": 0,
+      "now": 10233.8,
+      "mediaTime": 6.9473,
+      "presentedFrames": 760,
+      "timeline": 6.997000000000001
+    },
+    {
+      "index": 0,
+      "now": 10246,
+      "mediaTime": 6.963789,
+      "presentedFrames": 762,
+      "timeline": 7.006800000011922
+    },
+    {
+      "index": 2,
+      "now": 10246,
+      "mediaTime": 7,
+      "presentedFrames": 211,
+      "timeline": 7.006800000011922
+    },
+    {
+      "index": 0,
+      "now": 10258,
+      "mediaTime": 6.972144,
+      "presentedFrames": 763,
+      "timeline": 7.020500000000001
+    },
+    {
+      "index": 0,
+      "now": 10264.2,
+      "mediaTime": 6.979344,
+      "presentedFrames": 764,
+      "timeline": 7.030300000011922
+    },
+    {
+      "index": 0,
+      "now": 10276.1,
+      "mediaTime": 6.988744,
+      "presentedFrames": 765,
+      "timeline": 7.037300000011921
+    },
+    {
+      "index": 2,
+      "now": 10276.1,
+      "mediaTime": 7.033333,
+      "presentedFrames": 212,
+      "timeline": 7.037300000011921
+    },
+    {
+      "index": 0,
+      "now": 10282.3,
+      "mediaTime": 6.997178,
+      "presentedFrames": 766,
+      "timeline": 7.0455000000000005
+    },
+    {
+      "index": 0,
+      "now": 10294.4,
+      "mediaTime": 7.005444,
+      "presentedFrames": 767,
+      "timeline": 7.055800000011922
+    },
+    {
+      "index": 0,
+      "now": 10300.4,
+      "mediaTime": 7.013467,
+      "presentedFrames": 768,
+      "timeline": 7.061300000011921
+    },
+    {
+      "index": 2,
+      "now": 10306.5,
+      "mediaTime": 7.066667,
+      "presentedFrames": 213,
+      "timeline": 7.068899999976159
+    },
+    {
+      "index": 0,
+      "now": 10312.5,
+      "mediaTime": 7.030489,
+      "presentedFrames": 769,
+      "timeline": 7.0768000000119216
+    },
+    {
+      "index": 0,
+      "now": 10324.7,
+      "mediaTime": 7.039267,
+      "presentedFrames": 770,
+      "timeline": 7.08969999998808
+    },
+    {
+      "index": 0,
+      "now": 10336.8,
+      "mediaTime": 7.046911,
+      "presentedFrames": 771,
+      "timeline": 7.097599999964238
+    },
+    {
+      "index": 0,
+      "now": 10342.9,
+      "mediaTime": 7.055778,
+      "presentedFrames": 772,
+      "timeline": 7.103800000011922
+    },
+    {
+      "index": 2,
+      "now": 10342.9,
+      "mediaTime": 7.1,
+      "presentedFrames": 214,
+      "timeline": 7.103800000011922
+    },
+    {
+      "index": 0,
+      "now": 10349,
+      "mediaTime": 7.063556,
+      "presentedFrames": 773,
+      "timeline": 7.11119999998808
+    },
+    {
+      "index": 0,
+      "now": 10355,
+      "mediaTime": 7.072156,
+      "presentedFrames": 774,
+      "timeline": 7.1180999999642385
+    },
+    {
+      "index": 0,
+      "now": 10367.1,
+      "mediaTime": 7.080611,
+      "presentedFrames": 775,
+      "timeline": 7.12969999998808
+    },
+    {
+      "index": 0,
+      "now": 10379.3,
+      "mediaTime": 7.088844,
+      "presentedFrames": 776,
+      "timeline": 7.140099999964238
+    },
+    {
+      "index": 2,
+      "now": 10379.3,
+      "mediaTime": 7.133333,
+      "presentedFrames": 215,
+      "timeline": 7.140099999964238
+    },
+    {
+      "index": 0,
+      "now": 10385.4,
+      "mediaTime": 7.096456,
+      "presentedFrames": 777,
+      "timeline": 7.146300000011921
+    },
+    {
+      "index": 0,
+      "now": 10391.4,
+      "mediaTime": 7.104822,
+      "presentedFrames": 778,
+      "timeline": 7.1536999999880795
+    },
+    {
+      "index": 0,
+      "now": 10397.4,
+      "mediaTime": 7.113189,
+      "presentedFrames": 779,
+      "timeline": 7.16119999998808
+    },
+    {
+      "index": 0,
+      "now": 10409.6,
+      "mediaTime": 7.121556,
+      "presentedFrames": 780,
+      "timeline": 7.170300000011921
+    },
+    {
+      "index": 2,
+      "now": 10409.6,
+      "mediaTime": 7.166667,
+      "presentedFrames": 216,
+      "timeline": 7.170300000011921
+    },
+    {
+      "index": 0,
+      "now": 10421.7,
+      "mediaTime": 7.138089,
+      "presentedFrames": 782,
+      "timeline": 7.182399999976158
+    },
+    {
+      "index": 0,
+      "now": 10427.8,
+      "mediaTime": 7.146044,
+      "presentedFrames": 783,
+      "timeline": 7.188699999988079
+    },
+    {
+      "index": 0,
+      "now": 10439.8,
+      "mediaTime": 7.154722,
+      "presentedFrames": 784,
+      "timeline": 7.203099999964237
+    },
+    {
+      "index": 2,
+      "now": 10439.8,
+      "mediaTime": 7.2,
+      "presentedFrames": 217,
+      "timeline": 7.203099999964237
+    },
+    {
+      "index": 0,
+      "now": 10451.9,
+      "mediaTime": 7.162867,
+      "presentedFrames": 785,
+      "timeline": 7.217300000011921
+    },
+    {
+      "index": 0,
+      "now": 10458,
+      "mediaTime": 7.171478,
+      "presentedFrames": 786,
+      "timeline": 7.2240999999642375
+    },
+    {
+      "index": 0,
+      "now": 10470.3,
+      "mediaTime": 7.187856,
+      "presentedFrames": 788,
+      "timeline": 7.23
+    },
+    {
+      "index": 2,
+      "now": 10476.2,
+      "mediaTime": 7.233333,
+      "presentedFrames": 218,
+      "timeline": 7.239599999964238
+    },
+    {
+      "index": 0,
+      "now": 10482.3,
+      "mediaTime": 7.196333,
+      "presentedFrames": 789,
+      "timeline": 7.245199999988079
+    },
+    {
+      "index": 0,
+      "now": 10488.4,
+      "mediaTime": 7.204811,
+      "presentedFrames": 790,
+      "timeline": 7.2525
+    },
+    {
+      "index": 0,
+      "now": 10500.4,
+      "mediaTime": 7.212689,
+      "presentedFrames": 791,
+      "timeline": 7.263199999988079
+    },
+    {
+      "index": 0,
+      "now": 10512.7,
+      "mediaTime": 7.229667,
+      "presentedFrames": 793,
+      "timeline": 7.272300000011921
+    },
+    {
+      "index": 2,
+      "now": 10512.7,
+      "mediaTime": 7.266667,
+      "presentedFrames": 219,
+      "timeline": 7.272300000011921
+    },
+    {
+      "index": 0,
+      "now": 10524.8,
+      "mediaTime": 7.2378,
+      "presentedFrames": 794,
+      "timeline": 7.288399999976157
+    },
+    {
+      "index": 0,
+      "now": 10530.8,
+      "mediaTime": 7.246256,
+      "presentedFrames": 795,
+      "timeline": 7.29580000001192
+    },
+    {
+      "index": 0,
+      "now": 10549,
+      "mediaTime": 7.263322,
+      "presentedFrames": 797,
+      "timeline": 7.3076999999880785
+    },
+    {
+      "index": 2,
+      "now": 10549,
+      "mediaTime": 7.3,
+      "presentedFrames": 220,
+      "timeline": 7.3076999999880785
+    },
+    {
+      "index": 0,
+      "now": 10555,
+      "mediaTime": 7.271422,
+      "presentedFrames": 798,
+      "timeline": 7.316599999964237
+    },
+    {
+      "index": 0,
+      "now": 10567.2,
+      "mediaTime": 7.280222,
+      "presentedFrames": 799,
+      "timeline": 7.328
+    },
+    {
+      "index": 2,
+      "now": 10573.3,
+      "mediaTime": 7.333333,
+      "presentedFrames": 221,
+      "timeline": 7.335800000011921
+    },
+    {
+      "index": 0,
+      "now": 10579.3,
+      "mediaTime": 7.287722,
+      "presentedFrames": 800,
+      "timeline": 7.343199999988079
+    },
+    {
+      "index": 0,
+      "now": 10585.3,
+      "mediaTime": 7.2965,
+      "presentedFrames": 801,
+      "timeline": 7.350199999988079
+    },
+    {
+      "index": 0,
+      "now": 10591.4,
+      "mediaTime": 7.304589,
+      "presentedFrames": 802,
+      "timeline": 7.356099999964237
+    },
+    {
+      "index": 0,
+      "now": 10597.4,
+      "mediaTime": 7.313033,
+      "presentedFrames": 803,
+      "timeline": 7.359899999976158
+    },
+    {
+      "index": 0,
+      "now": 10615.7,
+      "mediaTime": 7.329611,
+      "presentedFrames": 805,
+      "timeline": 7.376399999976159
+    },
+    {
+      "index": 2,
+      "now": 10615.7,
+      "mediaTime": 7.366667,
+      "presentedFrames": 222,
+      "timeline": 7.376399999976159
+    },
+    {
+      "index": 0,
+      "now": 10627.8,
+      "mediaTime": 7.3379,
+      "presentedFrames": 806,
+      "timeline": 7.388599999964238
+    },
+    {
+      "index": 0,
+      "now": 10633.9,
+      "mediaTime": 7.345933,
+      "presentedFrames": 807,
+      "timeline": 7.39469999998808
+    },
+    {
+      "index": 0,
+      "now": 10639.9,
+      "mediaTime": 7.3544,
+      "presentedFrames": 808,
+      "timeline": 7.402500000000001
+    },
+    {
+      "index": 2,
+      "now": 10639.9,
+      "mediaTime": 7.4,
+      "presentedFrames": 223,
+      "timeline": 7.402500000000001
+    },
+    {
+      "index": 0,
+      "now": 10658.1,
+      "mediaTime": 7.3711,
+      "presentedFrames": 810,
+      "timeline": 7.4188999999761585
+    },
+    {
+      "index": 0,
+      "now": 10664.2,
+      "mediaTime": 7.379511,
+      "presentedFrames": 811,
+      "timeline": 7.425199999988079
+    },
+    {
+      "index": 0,
+      "now": 10676.2,
+      "mediaTime": 7.387922,
+      "presentedFrames": 812,
+      "timeline": 7.439199999988079
+    },
+    {
+      "index": 2,
+      "now": 10676.2,
+      "mediaTime": 7.433333,
+      "presentedFrames": 224,
+      "timeline": 7.439199999988079
+    },
+    {
+      "index": 0,
+      "now": 10688.3,
+      "mediaTime": 7.404478,
+      "presentedFrames": 814,
+      "timeline": 7.44919999998808
+    },
+    {
+      "index": 0,
+      "now": 10694.4,
+      "mediaTime": 7.412756,
+      "presentedFrames": 815,
+      "timeline": 7.45619999998808
+    },
+    {
+      "index": 2,
+      "now": 10712.6,
+      "mediaTime": 7.466667,
+      "presentedFrames": 225,
+      "timeline": 7.4735000000000005
+    },
+    {
+      "index": 0,
+      "now": 10712.6,
+      "mediaTime": 7.421033,
+      "presentedFrames": 816,
+      "timeline": 7.4735000000000005
+    },
+    {
+      "index": 0,
+      "now": 10724.8,
+      "mediaTime": 7.437733,
+      "presentedFrames": 818,
+      "timeline": 7.485599999964238
+    },
+    {
+      "index": 0,
+      "now": 10736.9,
+      "mediaTime": 7.454522,
+      "presentedFrames": 820,
+      "timeline": 7.497899999976159
+    },
+    {
+      "index": 2,
+      "now": 10749,
+      "mediaTime": 7.5,
+      "presentedFrames": 226,
+      "timeline": 7.5098999999761595
+    },
+    {
+      "index": 0,
+      "now": 10755,
+      "mediaTime": 7.472267,
+      "presentedFrames": 822,
+      "timeline": 7.516000000000002
+    },
+    {
+      "index": 0,
+      "now": 10767.2,
+      "mediaTime": 7.479567,
+      "presentedFrames": 823,
+      "timeline": 7.531199999988081
+    },
+    {
+      "index": 2,
+      "now": 10773.3,
+      "mediaTime": 7.533333,
+      "presentedFrames": 227,
+      "timeline": 7.535000000000002
+    },
+    {
+      "index": 0,
+      "now": 10785.4,
+      "mediaTime": 7.4963,
+      "presentedFrames": 825,
+      "timeline": 7.546199999988081
+    },
+    {
+      "index": 0,
+      "now": 10797.5,
+      "mediaTime": 7.513244,
+      "presentedFrames": 827,
+      "timeline": 7.558300000011923
+    },
+    {
+      "index": 0,
+      "now": 10809.7,
+      "mediaTime": 7.521644,
+      "presentedFrames": 828,
+      "timeline": 7.5725000000000025
+    },
+    {
+      "index": 2,
+      "now": 10809.7,
+      "mediaTime": 7.566667,
+      "presentedFrames": 228,
+      "timeline": 7.5725000000000025
+    },
+    {
+      "index": 0,
+      "now": 10815.7,
+      "mediaTime": 7.530044,
+      "presentedFrames": 829,
+      "timeline": 7.578199999988081
+    },
+    {
+      "index": 0,
+      "now": 10827.9,
+      "mediaTime": 7.546133,
+      "presentedFrames": 831,
+      "timeline": 7.5885000000000025
+    },
+    {
+      "index": 2,
+      "now": 10840,
+      "mediaTime": 7.6,
+      "presentedFrames": 229,
+      "timeline": 7.600800000011923
+    },
+    {
+      "index": 0,
+      "now": 10852.1,
+      "mediaTime": 7.562967,
+      "presentedFrames": 833,
+      "timeline": 7.613000000000002
+    },
+    {
+      "index": 0,
+      "now": 10858.2,
+      "mediaTime": 7.571067,
+      "presentedFrames": 834,
+      "timeline": 7.620000000000002
+    },
+    {
+      "index": 0,
+      "now": 10864.2,
+      "mediaTime": 7.580689,
+      "presentedFrames": 835,
+      "timeline": 7.628199999988081
+    },
+    {
+      "index": 0,
+      "now": 10882.4,
+      "mediaTime": 7.596567,
+      "presentedFrames": 837,
+      "timeline": 7.642000000000002
+    },
+    {
+      "index": 2,
+      "now": 10882.4,
+      "mediaTime": 7.633333,
+      "presentedFrames": 230,
+      "timeline": 7.642000000000002
+    },
+    {
+      "index": 0,
+      "now": 10888.4,
+      "mediaTime": 7.6046,
+      "presentedFrames": 838,
+      "timeline": 7.64959999996424
+    },
+    {
+      "index": 0,
+      "now": 10900.6,
+      "mediaTime": 7.612867,
+      "presentedFrames": 839,
+      "timeline": 7.665000000000002
+    },
+    {
+      "index": 0,
+      "now": 10912.7,
+      "mediaTime": 7.629622,
+      "presentedFrames": 841,
+      "timeline": 7.673199999988081
+    },
+    {
+      "index": 2,
+      "now": 10912.7,
+      "mediaTime": 7.666667,
+      "presentedFrames": 231,
+      "timeline": 7.673199999988081
+    },
+    {
+      "index": 0,
+      "now": 10924.9,
+      "mediaTime": 7.638722,
+      "presentedFrames": 842,
+      "timeline": 7.682300000011923
+    },
+    {
+      "index": 0,
+      "now": 10930.9,
+      "mediaTime": 7.646778,
+      "presentedFrames": 843,
+      "timeline": 7.693599999964239
+    },
+    {
+      "index": 0,
+      "now": 10949.1,
+      "mediaTime": 7.662644,
+      "presentedFrames": 845,
+      "timeline": 7.701599999964239
+    },
+    {
+      "index": 2,
+      "now": 10949.1,
+      "mediaTime": 7.7,
+      "presentedFrames": 232,
+      "timeline": 7.701599999964239
+    },
+    {
+      "index": 0,
+      "now": 10967.2,
+      "mediaTime": 7.6798,
+      "presentedFrames": 847,
+      "timeline": 7.71989999997616
+    },
+    {
+      "index": 0,
+      "now": 10973.2,
+      "mediaTime": 7.687822,
+      "presentedFrames": 848,
+      "timeline": 7.734699999988082
+    },
+    {
+      "index": 2,
+      "now": 10973.2,
+      "mediaTime": 7.733333,
+      "presentedFrames": 233,
+      "timeline": 7.734699999988082
+    },
+    {
+      "index": 0,
+      "now": 10985.5,
+      "mediaTime": 7.696578,
+      "presentedFrames": 849,
+      "timeline": 7.74209999996424
+    },
+    {
+      "index": 0,
+      "now": 11003.6,
+      "mediaTime": 7.721889,
+      "presentedFrames": 852,
+      "timeline": 7.75709999996424
+    },
+    {
+      "index": 2,
+      "now": 11015.7,
+      "mediaTime": 7.766667,
+      "presentedFrames": 234,
+      "timeline": 7.772300000011923
+    },
+    {
+      "index": 0,
+      "now": 11015.7,
+      "mediaTime": 7.730944,
+      "presentedFrames": 853,
+      "timeline": 7.772300000011923
+    },
+    {
+      "index": 0,
+      "now": 11027.8,
+      "mediaTime": 7.738744,
+      "presentedFrames": 854,
+      "timeline": 7.78739999997616
+    },
+    {
+      "index": 0,
+      "now": 11039.9,
+      "mediaTime": 7.7476,
+      "presentedFrames": 855,
+      "timeline": 7.796099999964239
+    },
+    {
+      "index": 2,
+      "now": 11039.9,
+      "mediaTime": 7.8,
+      "presentedFrames": 235,
+      "timeline": 7.796099999964239
+    },
+    {
+      "index": 0,
+      "now": 11046,
+      "mediaTime": 7.755844,
+      "presentedFrames": 856,
+      "timeline": 7.808800000011923
+    },
+    {
+      "index": 0,
+      "now": 11064.2,
+      "mediaTime": 7.781078,
+      "presentedFrames": 859,
+      "timeline": 7.81789999997616
+    },
+    {
+      "index": 0,
+      "now": 11076.3,
+      "mediaTime": 7.788967,
+      "presentedFrames": 860,
+      "timeline": 7.831300000011923
+    },
+    {
+      "index": 2,
+      "now": 11076.3,
+      "mediaTime": 7.833333,
+      "presentedFrames": 236,
+      "timeline": 7.831300000011923
+    },
+    {
+      "index": 0,
+      "now": 11094.5,
+      "mediaTime": 7.805311,
+      "presentedFrames": 862,
+      "timeline": 7.84839999997616
+    },
+    {
+      "index": 0,
+      "now": 11100.6,
+      "mediaTime": 7.814011,
+      "presentedFrames": 863,
+      "timeline": 7.864099999964239
+    },
+    {
+      "index": 0,
+      "now": 11106.6,
+      "mediaTime": 7.822167,
+      "presentedFrames": 864,
+      "timeline": 7.872800000011923
+    },
+    {
+      "index": 2,
+      "now": 11106.6,
+      "mediaTime": 7.866667,
+      "presentedFrames": 237,
+      "timeline": 7.872800000011923
+    },
+    {
+      "index": 0,
+      "now": 11112.8,
+      "mediaTime": 7.830767,
+      "presentedFrames": 865,
+      "timeline": 7.877199999988081
+    },
+    {
+      "index": 0,
+      "now": 11124.9,
+      "mediaTime": 7.838944,
+      "presentedFrames": 866,
+      "timeline": 7.887599999964239
+    },
+    {
+      "index": 0,
+      "now": 11130.9,
+      "mediaTime": 7.847367,
+      "presentedFrames": 867,
+      "timeline": 7.895800000011923
+    },
+    {
+      "index": 0,
+      "now": 11143,
+      "mediaTime": 7.855789,
+      "presentedFrames": 868,
+      "timeline": 7.90659999996424
+    },
+    {
+      "index": 2,
+      "now": 11143,
+      "mediaTime": 7.9,
+      "presentedFrames": 238,
+      "timeline": 7.90659999996424
+    },
+    {
+      "index": 0,
+      "now": 11155.1,
+      "mediaTime": 7.871789,
+      "presentedFrames": 870,
+      "timeline": 7.915899999976161
+    },
+    {
+      "index": 0,
+      "now": 11167.3,
+      "mediaTime": 7.881511,
+      "presentedFrames": 871,
+      "timeline": 7.928199999988082
+    },
+    {
+      "index": 0,
+      "now": 11173.4,
+      "mediaTime": 7.888589,
+      "presentedFrames": 872,
+      "timeline": 7.935899999976161
+    },
+    {
+      "index": 2,
+      "now": 11173.4,
+      "mediaTime": 7.933333,
+      "presentedFrames": 239,
+      "timeline": 7.935899999976161
+    },
+    {
+      "index": 0,
+      "now": 11179.4,
+      "mediaTime": 7.896878,
+      "presentedFrames": 873,
+      "timeline": 7.940500000000003
+    },
+    {
+      "index": 0,
+      "now": 11197.5,
+      "mediaTime": 7.905778,
+      "presentedFrames": 874,
+      "timeline": 7.958500000000003
+    },
+    {
+      "index": 0,
+      "now": 11209.7,
+      "mediaTime": 7.922444,
+      "presentedFrames": 876,
+      "timeline": 7.970500000000003
+    },
+    {
+      "index": 2,
+      "now": 11215.8,
+      "mediaTime": 7.966667,
+      "presentedFrames": 240,
+      "timeline": 7.9765999999642405
+    },
+    {
+      "index": 0,
+      "now": 11221.8,
+      "mediaTime": 7.9307,
+      "presentedFrames": 877,
+      "timeline": 7.982599999964241
+    },
+    {
+      "index": 0,
+      "now": 11233.9,
+      "mediaTime": 7.9485,
+      "presentedFrames": 879,
+      "timeline": 7.994699999988082
+    },
+    {
+      "index": 0,
+      "now": 11240,
+      "mediaTime": 7.955789,
+      "presentedFrames": 880,
+      "timeline": 8.000899999976161
+    },
+    {
+      "index": 0,
+      "now": 11252,
+      "mediaTime": 7.964344,
+      "presentedFrames": 881,
+      "timeline": 8.015399999976161
+    },
+    {
+      "index": 0,
+      "now": 11258.2,
+      "mediaTime": 7.9729,
+      "presentedFrames": 882,
+      "timeline": 8.020399999976162
+    },
+    {
+      "index": 0,
+      "now": 11270.2,
+      "mediaTime": 7.981456,
+      "presentedFrames": 883,
+      "timeline": 8.031599999964241
+    },
+    {
+      "index": 0,
+      "now": 11282.3,
+      "mediaTime": 7.998067,
+      "presentedFrames": 885,
+      "timeline": 8.043099999964241
+    },
+    {
+      "index": 0,
+      "now": 11294.5,
+      "mediaTime": 8.006133,
+      "presentedFrames": 886,
+      "timeline": 8.055199999988083
+    },
+    {
+      "index": 2,
+      "now": 11294.5,
+      "mediaTime": 7.966667,
+      "presentedFrames": 241,
+      "timeline": 8.055199999988083
+    },
+    {
+      "index": 0,
+      "now": 11306.6,
+      "mediaTime": 8.023378,
+      "presentedFrames": 888,
+      "timeline": 8.067500000000004
+    },
+    {
+      "index": 0,
+      "now": 11318.7,
+      "mediaTime": 8.031122,
+      "presentedFrames": 889,
+      "timeline": 8.079599999964241
+    },
+    {
+      "index": 0,
+      "now": 11330.8,
+      "mediaTime": 8.039311,
+      "presentedFrames": 890,
+      "timeline": 8.091699999988084
+    },
+    {
+      "index": 0,
+      "now": 11336.9,
+      "mediaTime": 8.0475,
+      "presentedFrames": 891,
+      "timeline": 8.098000000000004
+    },
+    {
+      "index": 0,
+      "now": 11343,
+      "mediaTime": 8.055689,
+      "presentedFrames": 892,
+      "timeline": 8.105500000000005
+    },
+    {
+      "index": 0,
+      "now": 11349,
+      "mediaTime": 8.064389,
+      "presentedFrames": 893,
+      "timeline": 8.111699999988083
+    },
+    {
+      "index": 0,
+      "now": 11361.1,
+      "mediaTime": 8.072711,
+      "presentedFrames": 894,
+      "timeline": 8.122000000000005
+    },
+    {
+      "index": 0,
+      "now": 11373.3,
+      "mediaTime": 8.089156,
+      "presentedFrames": 896,
+      "timeline": 8.134099999964244
+    },
+    {
+      "index": 0,
+      "now": 11391.6,
+      "mediaTime": 8.106278,
+      "presentedFrames": 898,
+      "timeline": 8.152300000011927
+    },
+    {
+      "index": 0,
+      "now": 11403.6,
+      "mediaTime": 8.114356,
+      "presentedFrames": 899,
+      "timeline": 8.164399999976164
+    },
+    {
+      "index": 0,
+      "now": 11415.7,
+      "mediaTime": 8.131178,
+      "presentedFrames": 901,
+      "timeline": 8.176599999964242
+    },
+    {
+      "index": 0,
+      "now": 11433.9,
+      "mediaTime": 8.139367,
+      "presentedFrames": 902,
+      "timeline": 8.194699999988083
+    },
+    {
+      "index": 0,
+      "now": 11440,
+      "mediaTime": 8.147556,
+      "presentedFrames": 903,
+      "timeline": 8.202699999988083
+    },
+    {
+      "index": 0,
+      "now": 11446,
+      "mediaTime": 8.156222,
+      "presentedFrames": 904,
+      "timeline": 8.210000000000003
+    },
+    {
+      "index": 0,
+      "now": 11452.1,
+      "mediaTime": 8.163944,
+      "presentedFrames": 905,
+      "timeline": 8.215800000011923
+    },
+    {
+      "index": 0,
+      "now": 11464.2,
+      "mediaTime": 8.180011,
+      "presentedFrames": 907,
+      "timeline": 8.22509999996424
+    },
+    {
+      "index": 0,
+      "now": 11482.4,
+      "mediaTime": 8.196422,
+      "presentedFrames": 909,
+      "timeline": 8.243199999988082
+    },
+    {
+      "index": 0,
+      "now": 11488.5,
+      "mediaTime": 8.205489,
+      "presentedFrames": 910,
+      "timeline": 8.251099999964241
+    },
+    {
+      "index": 0,
+      "now": 11506.6,
+      "mediaTime": 8.213422,
+      "presentedFrames": 911,
+      "timeline": 8.267399999976162
+    },
+    {
+      "index": 0,
+      "now": 11518.8,
+      "mediaTime": 8.230167,
+      "presentedFrames": 913,
+      "timeline": 8.279699999988082
+    },
+    {
+      "index": 0,
+      "now": 11530.9,
+      "mediaTime": 8.247011,
+      "presentedFrames": 915,
+      "timeline": 8.291899999976161
+    },
+    {
+      "index": 0,
+      "now": 11543,
+      "mediaTime": 8.2555,
+      "presentedFrames": 916,
+      "timeline": 8.306099999964239
+    },
+    {
+      "index": 0,
+      "now": 11549.1,
+      "mediaTime": 8.263733,
+      "presentedFrames": 917,
+      "timeline": 8.31169999998808
+    },
+    {
+      "index": 0,
+      "now": 11561.2,
+      "mediaTime": 8.271967,
+      "presentedFrames": 918,
+      "timeline": 8.322099999964239
+    },
+    {
+      "index": 0,
+      "now": 11573.3,
+      "mediaTime": 8.2802,
+      "presentedFrames": 919,
+      "timeline": 8.334199999988082
+    },
+    {
+      "index": 0,
+      "now": 11579.4,
+      "mediaTime": 8.288667,
+      "presentedFrames": 920,
+      "timeline": 8.340199999988082
+    },
+    {
+      "index": 0,
+      "now": 11585.4,
+      "mediaTime": 8.305811,
+      "presentedFrames": 922,
+      "timeline": 8.34939999997616
+    },
+    {
+      "index": 0,
+      "now": 11597.6,
+      "mediaTime": 8.3141,
+      "presentedFrames": 923,
+      "timeline": 8.358500000000003
+    },
+    {
+      "index": 0,
+      "now": 11603.6,
+      "mediaTime": 8.321656,
+      "presentedFrames": 924,
+      "timeline": 8.366500000000002
+    },
+    {
+      "index": 0,
+      "now": 11615.7,
+      "mediaTime": 8.330322,
+      "presentedFrames": 925,
+      "timeline": 8.37939999997616
+    },
+    {
+      "index": 0,
+      "now": 11627.9,
+      "mediaTime": 8.338878,
+      "presentedFrames": 926,
+      "timeline": 8.388800000011923
+    },
+    {
+      "index": 0,
+      "now": 11639.9,
+      "mediaTime": 8.348222,
+      "presentedFrames": 927,
+      "timeline": 8.401000000000002
+    },
+    {
+      "index": 0,
+      "now": 11646.1,
+      "mediaTime": 8.354978,
+      "presentedFrames": 928,
+      "timeline": 8.40769999998808
+    },
+    {
+      "index": 0,
+      "now": 11652.2,
+      "mediaTime": 8.363922,
+      "presentedFrames": 929,
+      "timeline": 8.413699999988081
+    },
+    {
+      "index": 0,
+      "now": 11664.3,
+      "mediaTime": 8.371722,
+      "presentedFrames": 930,
+      "timeline": 8.425099999964239
+    },
+    {
+      "index": 0,
+      "now": 11676.3,
+      "mediaTime": 8.393322,
+      "presentedFrames": 932,
+      "timeline": 8.437199999988081
+    },
+    {
+      "index": 0,
+      "now": 11682.5,
+      "mediaTime": 8.397833,
+      "presentedFrames": 933,
+      "timeline": 8.443300000011924
+    },
+    {
+      "index": 0,
+      "now": 11700.6,
+      "mediaTime": 8.413656,
+      "presentedFrames": 935,
+      "timeline": 8.461599999964239
+    },
+    {
+      "index": 0,
+      "now": 11712.7,
+      "mediaTime": 8.422022,
+      "presentedFrames": 936,
+      "timeline": 8.47389999997616
+    },
+    {
+      "index": 0,
+      "now": 11724.9,
+      "mediaTime": 8.439378,
+      "presentedFrames": 938,
+      "timeline": 8.48569999998808
+    },
+    {
+      "index": 0,
+      "now": 11743,
+      "mediaTime": 8.455178,
+      "presentedFrames": 940,
+      "timeline": 8.50389999997616
+    },
+    {
+      "index": 0,
+      "now": 11749.1,
+      "mediaTime": 8.463533,
+      "presentedFrames": 941,
+      "timeline": 8.510000000000002
+    },
+    {
+      "index": 0,
+      "now": 11761.3,
+      "mediaTime": 8.472322,
+      "presentedFrames": 942,
+      "timeline": 8.522099999964238
+    },
+    {
+      "index": 0,
+      "now": 11779.4,
+      "mediaTime": 8.488767,
+      "presentedFrames": 944,
+      "timeline": 8.540300000011923
+    },
+    {
+      "index": 0,
+      "now": 11785.5,
+      "mediaTime": 8.496922,
+      "presentedFrames": 945,
+      "timeline": 8.54639999997616
+    },
+    {
+      "index": 0,
+      "now": 11791.5,
+      "mediaTime": 8.505722,
+      "presentedFrames": 946,
+      "timeline": 8.553199999988081
+    },
+    {
+      "index": 0,
+      "now": 11797.6,
+      "mediaTime": 8.513833,
+      "presentedFrames": 947,
+      "timeline": 8.55889999997616
+    },
+    {
+      "index": 0,
+      "now": 11815.8,
+      "mediaTime": 8.531289,
+      "presentedFrames": 949,
+      "timeline": 8.57659999996424
+    },
+    {
+      "index": 0,
+      "now": 11828,
+      "mediaTime": 8.539511,
+      "presentedFrames": 950,
+      "timeline": 8.58889999997616
+    },
+    {
+      "index": 0,
+      "now": 11846,
+      "mediaTime": 8.555922,
+      "presentedFrames": 952,
+      "timeline": 8.606800000011921
+    },
+    {
+      "index": 0,
+      "now": 11858.2,
+      "mediaTime": 8.572289,
+      "presentedFrames": 954,
+      "timeline": 8.619
+    },
+    {
+      "index": 0,
+      "now": 11870.3,
+      "mediaTime": 8.580589,
+      "presentedFrames": 955,
+      "timeline": 8.631199999988079
+    },
+    {
+      "index": 0,
+      "now": 11876.4,
+      "mediaTime": 8.588744,
+      "presentedFrames": 956,
+      "timeline": 8.637199999988079
+    },
+    {
+      "index": 0,
+      "now": 11882.5,
+      "mediaTime": 8.597144,
+      "presentedFrames": 957,
+      "timeline": 8.644399999976159
+    },
+    {
+      "index": 0,
+      "now": 11888.5,
+      "mediaTime": 8.605444,
+      "presentedFrames": 958,
+      "timeline": 8.652300000011921
+    },
+    {
+      "index": 0,
+      "now": 11900.7,
+      "mediaTime": 8.613633,
+      "presentedFrames": 959,
+      "timeline": 8.664099999964238
+    },
+    {
+      "index": 0,
+      "now": 11906.7,
+      "mediaTime": 8.622033,
+      "presentedFrames": 960,
+      "timeline": 8.668599999964238
+    },
+    {
+      "index": 0,
+      "now": 11924.8,
+      "mediaTime": 8.639056,
+      "presentedFrames": 962,
+      "timeline": 8.68569999998808
+    },
+    {
+      "index": 0,
+      "now": 11937,
+      "mediaTime": 8.647144,
+      "presentedFrames": 963,
+      "timeline": 8.6925
+    },
+    {
+      "index": 0,
+      "now": 11949.1,
+      "mediaTime": 8.663656,
+      "presentedFrames": 965,
+      "timeline": 8.70769999998808
+    },
+    {
+      "index": 0,
+      "now": 11955.2,
+      "mediaTime": 8.672078,
+      "presentedFrames": 966,
+      "timeline": 8.717199999988079
+    },
+    {
+      "index": 0,
+      "now": 11967.3,
+      "mediaTime": 8.680844,
+      "presentedFrames": 967,
+      "timeline": 8.724599999964237
+    },
+    {
+      "index": 0,
+      "now": 11979.4,
+      "mediaTime": 8.689122,
+      "presentedFrames": 968,
+      "timeline": 8.735099999964238
+    },
+    {
+      "index": 0,
+      "now": 11991.5,
+      "mediaTime": 8.705378,
+      "presentedFrames": 970,
+      "timeline": 8.749800000011922
+    },
+    {
+      "index": 0,
+      "now": 11997.6,
+      "mediaTime": 8.714689,
+      "presentedFrames": 971,
+      "timeline": 8.7605
+    },
+    {
+      "index": 0,
+      "now": 12009.8,
+      "mediaTime": 8.722644,
+      "presentedFrames": 972,
+      "timeline": 8.7685
+    },
+    {
+      "index": 0,
+      "now": 12027.9,
+      "mediaTime": 8.739644,
+      "presentedFrames": 974,
+      "timeline": 8.777099999964237
+    },
+    {
+      "index": 0,
+      "now": 12046.1,
+      "mediaTime": 8.755967,
+      "presentedFrames": 976,
+      "timeline": 8.79739999997616
+    },
+    {
+      "index": 0,
+      "now": 12058.2,
+      "mediaTime": 8.772111,
+      "presentedFrames": 978,
+      "timeline": 8.8145
+    },
+    {
+      "index": 0,
+      "now": 12076.4,
+      "mediaTime": 8.789378,
+      "presentedFrames": 980,
+      "timeline": 8.83619999998808
+    },
+    {
+      "index": 0,
+      "now": 12088.5,
+      "mediaTime": 8.806044,
+      "presentedFrames": 982,
+      "timeline": 8.849000000000002
+    },
+    {
+      "index": 0,
+      "now": 12100.6,
+      "mediaTime": 8.813822,
+      "presentedFrames": 983,
+      "timeline": 8.863000000000001
+    },
+    {
+      "index": 0,
+      "now": 12106.7,
+      "mediaTime": 8.8222,
+      "presentedFrames": 984,
+      "timeline": 8.870500000000002
+    },
+    {
+      "index": 0,
+      "now": 12124.9,
+      "mediaTime": 8.839222,
+      "presentedFrames": 986,
+      "timeline": 8.885599999964239
+    },
+    {
+      "index": 0,
+      "now": 12143.1,
+      "mediaTime": 8.855911,
+      "presentedFrames": 988,
+      "timeline": 8.90389999997616
+    },
+    {
+      "index": 0,
+      "now": 12149.2,
+      "mediaTime": 8.8641,
+      "presentedFrames": 989,
+      "timeline": 8.911500000000002
+    },
+    {
+      "index": 0,
+      "now": 12161.2,
+      "mediaTime": 8.872889,
+      "presentedFrames": 990,
+      "timeline": 8.926300000011922
+    },
+    {
+      "index": 0,
+      "now": 12167.3,
+      "mediaTime": 8.8812,
+      "presentedFrames": 991,
+      "timeline": 8.930599999964238
+    },
+    {
+      "index": 0,
+      "now": 12179.5,
+      "mediaTime": 8.889144,
+      "presentedFrames": 992,
+      "timeline": 8.940300000011922
+    },
+    {
+      "index": 0,
+      "now": 12185.5,
+      "mediaTime": 8.897089,
+      "presentedFrames": 993,
+      "timeline": 8.947300000011921
+    },
+    {
+      "index": 0,
+      "now": 12191.5,
+      "mediaTime": 8.905644,
+      "presentedFrames": 994,
+      "timeline": 8.954199999988079
+    },
+    {
+      "index": 0,
+      "now": 12197.6,
+      "mediaTime": 8.913722,
+      "presentedFrames": 995,
+      "timeline": 8.95919999998808
+    },
+    {
+      "index": 0,
+      "now": 12209.7,
+      "mediaTime": 8.922567,
+      "presentedFrames": 996,
+      "timeline": 8.973500000000001
+    },
+    {
+      "index": 0,
+      "now": 12215.8,
+      "mediaTime": 8.9308,
+      "presentedFrames": 997,
+      "timeline": 8.978099999964238
+    },
+    {
+      "index": 0,
+      "now": 12221.9,
+      "mediaTime": 8.938789,
+      "presentedFrames": 998,
+      "timeline": 8.98369999998808
+    },
+    {
+      "index": 0,
+      "now": 12234.1,
+      "mediaTime": 8.947667,
+      "presentedFrames": 999,
+      "timeline": 8.9975
+    },
+    {
+      "index": 0,
+      "now": 12240,
+      "mediaTime": 8.955611,
+      "presentedFrames": 1000,
+      "timeline": 9.005300000011921
+    },
+    {
+      "index": 0,
+      "now": 12252.1,
+      "mediaTime": 8.963556,
+      "presentedFrames": 1001,
+      "timeline": 9.012899999976158
+    },
+    {
+      "index": 0,
+      "now": 12258.2,
+      "mediaTime": 8.972422,
+      "presentedFrames": 1002,
+      "timeline": 9.022599999964237
+    },
+    {
+      "index": 0,
+      "now": 12264.2,
+      "mediaTime": 8.980711,
+      "presentedFrames": 1003,
+      "timeline": 9.029599999964237
+    },
+    {
+      "index": 0,
+      "now": 12276.4,
+      "mediaTime": 8.989211,
+      "presentedFrames": 1004,
+      "timeline": 9.0365
+    },
+    {
+      "index": 0,
+      "now": 12282.6,
+      "mediaTime": 8.997011,
+      "presentedFrames": 1005,
+      "timeline": 9.047300000011921
+    },
+    {
+      "index": 0,
+      "now": 12288.5,
+      "mediaTime": 9.0056,
+      "presentedFrames": 1006,
+      "timeline": 9.052099999964238
+    },
+    {
+      "index": 0,
+      "now": 12306.7,
+      "mediaTime": 9.022667,
+      "presentedFrames": 1008,
+      "timeline": 9.072199999988081
+    },
+    {
+      "index": 0,
+      "now": 12318.9,
+      "mediaTime": 9.030956,
+      "presentedFrames": 1009,
+      "timeline": 9.08259999996424
+    },
+    {
+      "index": 0,
+      "now": 12331,
+      "mediaTime": 9.047389,
+      "presentedFrames": 1011,
+      "timeline": 9.091800000011924
+    },
+    {
+      "index": 0,
+      "now": 12343.1,
+      "mediaTime": 9.056233,
+      "presentedFrames": 1012,
+      "timeline": 9.105699999988081
+    },
+    {
+      "index": 0,
+      "now": 12349.2,
+      "mediaTime": 9.064333,
+      "presentedFrames": 1013,
+      "timeline": 9.112599999964239
+    },
+    {
+      "index": 0,
+      "now": 12355.2,
+      "mediaTime": 9.072622,
+      "presentedFrames": 1014,
+      "timeline": 9.117500000000001
+    },
+    {
+      "index": 0,
+      "now": 12373.4,
+      "mediaTime": 9.089144,
+      "presentedFrames": 1016,
+      "timeline": 9.134300000011923
+    },
+    {
+      "index": 0,
+      "now": 12385.5,
+      "mediaTime": 9.097444,
+      "presentedFrames": 1017,
+      "timeline": 9.147599999964239
+    },
+    {
+      "index": 0,
+      "now": 12397.6,
+      "mediaTime": 9.105744,
+      "presentedFrames": 1018,
+      "timeline": 9.15839999997616
+    },
+    {
+      "index": 0,
+      "now": 12403.7,
+      "mediaTime": 9.114778,
+      "presentedFrames": 1019,
+      "timeline": 9.164500000000002
+    },
+    {
+      "index": 0,
+      "now": 12409.7,
+      "mediaTime": 9.122456,
+      "presentedFrames": 1020,
+      "timeline": 9.172099999964239
+    },
+    {
+      "index": 0,
+      "now": 12421.9,
+      "mediaTime": 9.1396,
+      "presentedFrames": 1022,
+      "timeline": 9.182699999988081
+    },
+    {
+      "index": 0,
+      "now": 12434,
+      "mediaTime": 9.147633,
+      "presentedFrames": 1023,
+      "timeline": 9.198300000011923
+    },
+    {
+      "index": 0,
+      "now": 12440,
+      "mediaTime": 9.155667,
+      "presentedFrames": 1024,
+      "timeline": 9.20459999996424
+    },
+    {
+      "index": 0,
+      "now": 12452.3,
+      "mediaTime": 9.164011,
+      "presentedFrames": 1025,
+      "timeline": 9.213000000000003
+    },
+    {
+      "index": 0,
+      "now": 12458.3,
+      "mediaTime": 9.172356,
+      "presentedFrames": 1026,
+      "timeline": 9.219500000000004
+    },
+    {
+      "index": 0,
+      "now": 12470.4,
+      "mediaTime": 9.1807,
+      "presentedFrames": 1027,
+      "timeline": 9.231199999988082
+    },
+    {
+      "index": 0,
+      "now": 12482.5,
+      "mediaTime": 9.197411,
+      "presentedFrames": 1029,
+      "timeline": 9.24339999997616
+    },
+    {
+      "index": 0,
+      "now": 12488.5,
+      "mediaTime": 9.206167,
+      "presentedFrames": 1030,
+      "timeline": 9.24959999996424
+    },
+    {
+      "index": 0,
+      "now": 12500.6,
+      "mediaTime": 9.2145,
+      "presentedFrames": 1031,
+      "timeline": 9.264599999964238
+    },
+    {
+      "index": 0,
+      "now": 12512.9,
+      "mediaTime": 9.222578,
+      "presentedFrames": 1032,
+      "timeline": 9.273599999964238
+    },
+    {
+      "index": 0,
+      "now": 12518.9,
+      "mediaTime": 9.230878,
+      "presentedFrames": 1033,
+      "timeline": 9.280000000000001
+    },
+    {
+      "index": 0,
+      "now": 12524.9,
+      "mediaTime": 9.240667,
+      "presentedFrames": 1034,
+      "timeline": 9.290000000000001
+    },
+    {
+      "index": 0,
+      "now": 12531,
+      "mediaTime": 9.246544,
+      "presentedFrames": 1035,
+      "timeline": 9.297
+    },
+    {
+      "index": 0,
+      "now": 12543.1,
+      "mediaTime": 9.255811,
+      "presentedFrames": 1036,
+      "timeline": 9.306599999964238
+    },
+    {
+      "index": 0,
+      "now": 12549.1,
+      "mediaTime": 9.2644,
+      "presentedFrames": 1037,
+      "timeline": 9.3115
+    },
+    {
+      "index": 0,
+      "now": 12561.3,
+      "mediaTime": 9.272322,
+      "presentedFrames": 1038,
+      "timeline": 9.32219999998808
+    },
+    {
+      "index": 0,
+      "now": 12573.4,
+      "mediaTime": 9.289122,
+      "presentedFrames": 1040,
+      "timeline": 9.334199999988078
+    },
+    {
+      "index": 0,
+      "now": 12591.6,
+      "mediaTime": 9.306156,
+      "presentedFrames": 1042,
+      "timeline": 9.352399999976157
+    },
+    {
+      "index": 0,
+      "now": 12597.6,
+      "mediaTime": 9.313856,
+      "presentedFrames": 1043,
+      "timeline": 9.359499999999999
+    },
+    {
+      "index": 0,
+      "now": 12615.8,
+      "mediaTime": 9.330856,
+      "presentedFrames": 1045,
+      "timeline": 9.376099999964236
+    },
+    {
+      "index": 0,
+      "now": 12628,
+      "mediaTime": 9.338867,
+      "presentedFrames": 1046,
+      "timeline": 9.39080000001192
+    },
+    {
+      "index": 0,
+      "now": 12646.1,
+      "mediaTime": 9.355944,
+      "presentedFrames": 1048,
+      "timeline": 9.406999999999998
+    },
+    {
+      "index": 0,
+      "now": 12652.2,
+      "mediaTime": 9.364367,
+      "presentedFrames": 1049,
+      "timeline": 9.414699999988077
+    },
+    {
+      "index": 0,
+      "now": 12658.3,
+      "mediaTime": 9.3726,
+      "presentedFrames": 1050,
+      "timeline": 9.419800000011918
+    },
+    {
+      "index": 0,
+      "now": 12670.4,
+      "mediaTime": 9.380833,
+      "presentedFrames": 1051,
+      "timeline": 9.431199999988076
+    },
+    {
+      "index": 0,
+      "now": 12676.5,
+      "mediaTime": 9.389278,
+      "presentedFrames": 1052,
+      "timeline": 9.440199999988076
+    },
+    {
+      "index": 0,
+      "now": 12688.6,
+      "mediaTime": 9.405689,
+      "presentedFrames": 1054,
+      "timeline": 9.448999999999996
+    },
+    {
+      "index": 0,
+      "now": 12700.7,
+      "mediaTime": 9.414422,
+      "presentedFrames": 1055,
+      "timeline": 9.458699999988076
+    },
+    {
+      "index": 0,
+      "now": 12706.8,
+      "mediaTime": 9.422722,
+      "presentedFrames": 1056,
+      "timeline": 9.469899999976155
+    },
+    {
+      "index": 0,
+      "now": 12718.9,
+      "mediaTime": 9.431022,
+      "presentedFrames": 1057,
+      "timeline": 9.476800000011918
+    },
+    {
+      "index": 0,
+      "now": 12724.9,
+      "mediaTime": 9.439322,
+      "presentedFrames": 1058,
+      "timeline": 9.487499999999997
+    },
+    {
+      "index": 0,
+      "now": 12731.1,
+      "mediaTime": 9.447622,
+      "presentedFrames": 1059,
+      "timeline": 9.494899999976155
+    },
+    {
+      "index": 0,
+      "now": 12743.1,
+      "mediaTime": 9.455922,
+      "presentedFrames": 1060,
+      "timeline": 9.507199999988076
+    },
+    {
+      "index": 0,
+      "now": 12749.2,
+      "mediaTime": 9.4649,
+      "presentedFrames": 1061,
+      "timeline": 9.512999999999996
+    },
+    {
+      "index": 0,
+      "now": 12755.3,
+      "mediaTime": 9.472733,
+      "presentedFrames": 1062,
+      "timeline": 9.521800000011917
+    },
+    {
+      "index": 0,
+      "now": 12767.4,
+      "mediaTime": 9.481144,
+      "presentedFrames": 1063,
+      "timeline": 9.532599999964233
+    },
+    {
+      "index": 0,
+      "now": 12773.4,
+      "mediaTime": 9.489689,
+      "presentedFrames": 1064,
+      "timeline": 9.537499999999996
+    },
+    {
+      "index": 0,
+      "now": 12785.6,
+      "mediaTime": 9.497567,
+      "presentedFrames": 1065,
+      "timeline": 9.548099999964233
+    },
+    {
+      "index": 0,
+      "now": 12791.7,
+      "mediaTime": 9.505878,
+      "presentedFrames": 1066,
+      "timeline": 9.552599999964233
+    },
+    {
+      "index": 0,
+      "now": 12797.6,
+      "mediaTime": 9.514567,
+      "presentedFrames": 1067,
+      "timeline": 9.558800000011917
+    },
+    {
+      "index": 0,
+      "now": 12809.8,
+      "mediaTime": 9.5226,
+      "presentedFrames": 1068,
+      "timeline": 9.570800000011918
+    },
+    {
+      "index": 0,
+      "now": 12815.9,
+      "mediaTime": 9.531189,
+      "presentedFrames": 1069,
+      "timeline": 9.576899999976154
+    },
+    {
+      "index": 0,
+      "now": 12822,
+      "mediaTime": 9.5393,
+      "presentedFrames": 1070,
+      "timeline": 9.583599999964234
+    },
+    {
+      "index": 0,
+      "now": 12834.1,
+      "mediaTime": 9.547056,
+      "presentedFrames": 1071,
+      "timeline": 9.594899999976155
+    },
+    {
+      "index": 0,
+      "now": 12846.1,
+      "mediaTime": 9.556222,
+      "presentedFrames": 1072,
+      "timeline": 9.606999999999998
+    },
+    {
+      "index": 0,
+      "now": 12852.4,
+      "mediaTime": 9.564611,
+      "presentedFrames": 1073,
+      "timeline": 9.613199999988076
+    },
+    {
+      "index": 0,
+      "now": 12858.3,
+      "mediaTime": 9.572544,
+      "presentedFrames": 1074,
+      "timeline": 9.619499999999997
+    },
+    {
+      "index": 0,
+      "now": 12870.5,
+      "mediaTime": 9.580922,
+      "presentedFrames": 1075,
+      "timeline": 9.631300000011917
+    },
+    {
+      "index": 0,
+      "now": 12876.4,
+      "mediaTime": 9.590222,
+      "presentedFrames": 1076,
+      "timeline": 9.638399999976155
+    },
+    {
+      "index": 0,
+      "now": 12882.5,
+      "mediaTime": 9.598133,
+      "presentedFrames": 1077,
+      "timeline": 9.646800000011918
+    },
+    {
+      "index": 0,
+      "now": 12894.7,
+      "mediaTime": 9.606333,
+      "presentedFrames": 1078,
+      "timeline": 9.654399999976155
+    },
+    {
+      "index": 0,
+      "now": 12918.9,
+      "mediaTime": 9.630678,
+      "presentedFrames": 1080,
+      "timeline": 9.678800000011918
+    },
+    {
+      "index": 0,
+      "now": 12931,
+      "mediaTime": 9.639089,
+      "presentedFrames": 1081,
+      "timeline": 9.687599999964235
+    },
+    {
+      "index": 0,
+      "now": 12943.2,
+      "mediaTime": 9.655767,
+      "presentedFrames": 1083,
+      "timeline": 9.702300000011919
+    },
+    {
+      "index": 0,
+      "now": 12949.3,
+      "mediaTime": 9.6725,
+      "presentedFrames": 1085,
+      "timeline": 9.710999999999999
+    },
+    {
+      "index": 0,
+      "now": 12979.5,
+      "mediaTime": 9.689456,
+      "presentedFrames": 1087,
+      "timeline": 9.739599999964234
+    },
+    {
+      "index": 0,
+      "now": 12997.8,
+      "mediaTime": 9.714556,
+      "presentedFrames": 1090,
+      "timeline": 9.750599999964233
+    },
+    {
+      "index": 0,
+      "now": 13016,
+      "mediaTime": 9.730911,
+      "presentedFrames": 1092,
+      "timeline": 9.767499999999997
+    },
+    {
+      "index": 0,
+      "now": 13021.9,
+      "mediaTime": 9.739089,
+      "presentedFrames": 1093,
+      "timeline": 9.782999999999996
+    },
+    {
+      "index": 0,
+      "now": 13034.2,
+      "mediaTime": 9.7476,
+      "presentedFrames": 1094,
+      "timeline": 9.794899999976154
+    },
+    {
+      "index": 0,
+      "now": 13046.1,
+      "mediaTime": 9.7556,
+      "presentedFrames": 1095,
+      "timeline": 9.806099999964234
+    },
+    {
+      "index": 0,
+      "now": 13064.4,
+      "mediaTime": 9.780644,
+      "presentedFrames": 1098,
+      "timeline": 9.818800000011917
+    },
+    {
+      "index": 0,
+      "now": 13088.6,
+      "mediaTime": 9.806078,
+      "presentedFrames": 1101,
+      "timeline": 9.843599999964233
+    },
+    {
+      "index": 0,
+      "now": 13100.8,
+      "mediaTime": 9.814256,
+      "presentedFrames": 1102,
+      "timeline": 9.857999999999997
+    },
+    {
+      "index": 0,
+      "now": 13106.8,
+      "mediaTime": 9.822778,
+      "presentedFrames": 1103,
+      "timeline": 9.869899999976155
+    },
+    {
+      "index": 0,
+      "now": 13112.8,
+      "mediaTime": 9.8313,
+      "presentedFrames": 1104,
+      "timeline": 9.876899999976155
+    },
+    {
+      "index": 0,
+      "now": 13125,
+      "mediaTime": 9.841344,
+      "presentedFrames": 1105,
+      "timeline": 9.890499999999996
+    },
+    {
+      "index": 0,
+      "now": 13137.1,
+      "mediaTime": 9.848311,
+      "presentedFrames": 1106,
+      "timeline": 9.897199999988075
+    },
+    {
+      "index": 0,
+      "now": 13143.1,
+      "mediaTime": 9.8565,
+      "presentedFrames": 1107,
+      "timeline": 9.905599999964233
+    },
+    {
+      "index": 0,
+      "now": 13149.2,
+      "mediaTime": 9.865211,
+      "presentedFrames": 1108,
+      "timeline": 9.911800000011917
+    },
+    {
+      "index": 0,
+      "now": 13167.4,
+      "mediaTime": 9.881344,
+      "presentedFrames": 1110,
+      "timeline": 9.927599999964235
+    },
+    {
+      "index": 0,
+      "now": 13179.5,
+      "mediaTime": 9.889689,
+      "presentedFrames": 1111,
+      "timeline": 9.941899999976156
+    },
+    {
+      "index": 0,
+      "now": 13185.6,
+      "mediaTime": 9.897911,
+      "presentedFrames": 1112,
+      "timeline": 9.948899999976156
+    },
+    {
+      "index": 0,
+      "now": 13197.7,
+      "mediaTime": 9.914678,
+      "presentedFrames": 1114,
+      "timeline": 9.958599999964234
+    },
+    {
+      "index": 0,
+      "now": 13215.9,
+      "mediaTime": 9.931389,
+      "presentedFrames": 1116,
+      "timeline": 9.976800000011918
+    },
+    {
+      "index": 0,
+      "now": 13222,
+      "mediaTime": 9.939822,
+      "presentedFrames": 1117,
+      "timeline": 9.982999999999997
+    },
+    {
+      "index": 0,
+      "now": 13240.2,
+      "mediaTime": 9.947878,
+      "presentedFrames": 1118,
+      "timeline": 10.000999999999996
+    },
+    {
+      "index": 0,
+      "now": 13252.3,
+      "mediaTime": 9.964522,
+      "presentedFrames": 1120,
+      "timeline": 10.013099999964233
+    },
+    {
+      "index": 0,
+      "now": 13264.4,
+      "mediaTime": 9.973289,
+      "presentedFrames": 1121,
+      "timeline": 10.025300000011917
+    },
+    {
+      "index": 0,
+      "now": 13276.5,
+      "mediaTime": 9.989622,
+      "presentedFrames": 1123,
+      "timeline": 10.037399999976154
+    },
+    {
+      "index": 0,
+      "now": 13288.7,
+      "mediaTime": 10.006322,
+      "presentedFrames": 1125,
+      "timeline": 10.049499999999997
+    },
+    {
+      "index": 0,
+      "now": 13300.8,
+      "mediaTime": 10.014533,
+      "presentedFrames": 1126,
+      "timeline": 10.063399999976154
+    },
+    {
+      "index": 0,
+      "now": 13306.8,
+      "mediaTime": 10.022744,
+      "presentedFrames": 1127,
+      "timeline": 10.068699999988075
+    },
+    {
+      "index": 0,
+      "now": 13312.9,
+      "mediaTime": 10.030956,
+      "presentedFrames": 1128,
+      "timeline": 10.075099999964234
+    },
+    {
+      "index": 0,
+      "now": 13325,
+      "mediaTime": 10.039389,
+      "presentedFrames": 1129,
+      "timeline": 10.085899999976155
+    },
+    {
+      "index": 0,
+      "now": 13343.2,
+      "mediaTime": 10.056033,
+      "presentedFrames": 1131,
+      "timeline": 10.103999999999997
+    },
+    {
+      "index": 0,
+      "now": 13349.2,
+      "mediaTime": 10.064811,
+      "presentedFrames": 1132,
+      "timeline": 10.110099999964234
+    },
+    {
+      "index": 0,
+      "now": 13367.5,
+      "mediaTime": 10.081022,
+      "presentedFrames": 1134,
+      "timeline": 10.128199999988077
+    },
+    {
+      "index": 0,
+      "now": 13379.5,
+      "mediaTime": 10.089478,
+      "presentedFrames": 1135,
+      "timeline": 10.140599999964234
+    },
+    {
+      "index": 0,
+      "now": 13385.6,
+      "mediaTime": 10.097933,
+      "presentedFrames": 1136,
+      "timeline": 10.146399999976154
+    },
+    {
+      "index": 0,
+      "now": 13391.7,
+      "mediaTime": 10.105789,
+      "presentedFrames": 1137,
+      "timeline": 10.153999999999996
+    },
+    {
+      "index": 0,
+      "now": 13397.8,
+      "mediaTime": 10.114311,
+      "presentedFrames": 1138,
+      "timeline": 10.161099999964234
+    },
+    {
+      "index": 0,
+      "now": 13415.9,
+      "mediaTime": 10.130822,
+      "presentedFrames": 1140,
+      "timeline": 10.176899999976154
+    },
+    {
+      "index": 0,
+      "now": 13428.1,
+      "mediaTime": 10.138978,
+      "presentedFrames": 1141,
+      "timeline": 10.188899999976154
+    },
+    {
+      "index": 0,
+      "now": 13440.1,
+      "mediaTime": 10.147633,
+      "presentedFrames": 1142,
+      "timeline": 10.200899999976155
+    },
+    {
+      "index": 0,
+      "now": 13452.3,
+      "mediaTime": 10.164022,
+      "presentedFrames": 1144,
+      "timeline": 10.213300000011918
+    },
+    {
+      "index": 0,
+      "now": 13458.4,
+      "mediaTime": 10.172544,
+      "presentedFrames": 1145,
+      "timeline": 10.220800000011918
+    },
+    {
+      "index": 0,
+      "now": 13470.4,
+      "mediaTime": 10.181067,
+      "presentedFrames": 1146,
+      "timeline": 10.233099999964235
+    },
+    {
+      "index": 0,
+      "now": 13476.5,
+      "mediaTime": 10.189033,
+      "presentedFrames": 1147,
+      "timeline": 10.238300000011918
+    },
+    {
+      "index": 0,
+      "now": 13488.7,
+      "mediaTime": 10.205411,
+      "presentedFrames": 1149,
+      "timeline": 10.249499999999996
+    },
+    {
+      "index": 0,
+      "now": 13506.9,
+      "mediaTime": 10.222056,
+      "presentedFrames": 1151,
+      "timeline": 10.267800000011917
+    },
+    {
+      "index": 0,
+      "now": 13525.1,
+      "mediaTime": 10.238822,
+      "presentedFrames": 1153,
+      "timeline": 10.285899999976154
+    },
+    {
+      "index": 0,
+      "now": 13543.2,
+      "mediaTime": 10.255822,
+      "presentedFrames": 1155,
+      "timeline": 10.303999999999997
+    },
+    {
+      "index": 0,
+      "now": 13555.4,
+      "mediaTime": 10.263689,
+      "presentedFrames": 1156,
+      "timeline": 10.316300000011918
+    },
+    {
+      "index": 0,
+      "now": 13561.5,
+      "mediaTime": 10.272467,
+      "presentedFrames": 1157,
+      "timeline": 10.322399999976154
+    },
+    {
+      "index": 0,
+      "now": 13573.5,
+      "mediaTime": 10.280422,
+      "presentedFrames": 1158,
+      "timeline": 10.334300000011918
+    },
+    {
+      "index": 0,
+      "now": 13579.5,
+      "mediaTime": 10.288778,
+      "presentedFrames": 1159,
+      "timeline": 10.341099999964234
+    },
+    {
+      "index": 0,
+      "now": 13591.7,
+      "mediaTime": 10.297133,
+      "presentedFrames": 1160,
+      "timeline": 10.352800000011918
+    },
+    {
+      "index": 0,
+      "now": 13912.9,
+      "mediaTime": 10.622811,
+      "presentedFrames": 1161,
+      "timeline": 10.676699999988074
+    },
+    {
+      "index": 0,
+      "now": 14016,
+      "mediaTime": 10.732456,
+      "presentedFrames": 1162,
+      "timeline": 10.776999999999992
+    },
+    {
+      "index": 0,
+      "now": 14058.4,
+      "mediaTime": 10.773511,
+      "presentedFrames": 1163,
+      "timeline": 10.81999999999999
+    },
+    {
+      "index": 0,
+      "now": 14076.5,
+      "mediaTime": 10.789011,
+      "presentedFrames": 1165,
+      "timeline": 10.831199999988069
+    },
+    {
+      "index": 0,
+      "now": 14082.7,
+      "mediaTime": 10.797444,
+      "presentedFrames": 1166,
+      "timeline": 10.847899999976148
+    },
+    {
+      "index": 0,
+      "now": 14088.7,
+      "mediaTime": 10.805589,
+      "presentedFrames": 1167,
+      "timeline": 10.854899999976148
+    },
+    {
+      "index": 0,
+      "now": 14107,
+      "mediaTime": 10.813911,
+      "presentedFrames": 1168,
+      "timeline": 10.86769999998807
+    },
+    {
+      "index": 0,
+      "now": 14119,
+      "mediaTime": 10.830556,
+      "presentedFrames": 1170,
+      "timeline": 10.879800000011912
+    },
+    {
+      "index": 0,
+      "now": 14125.1,
+      "mediaTime": 10.838878,
+      "presentedFrames": 1171,
+      "timeline": 10.88599999999999
+    },
+    {
+      "index": 0,
+      "now": 14143.3,
+      "mediaTime": 10.855767,
+      "presentedFrames": 1173,
+      "timeline": 10.90419999998807
+    },
+    {
+      "index": 0,
+      "now": 14149.4,
+      "mediaTime": 10.864344,
+      "presentedFrames": 1174,
+      "timeline": 10.91019999998807
+    },
+    {
+      "index": 0,
+      "now": 14155.4,
+      "mediaTime": 10.8721,
+      "presentedFrames": 1175,
+      "timeline": 10.916899999976149
+    },
+    {
+      "index": 0,
+      "now": 14173.6,
+      "mediaTime": 10.8901,
+      "presentedFrames": 1177,
+      "timeline": 10.934399999976149
+    },
+    {
+      "index": 0,
+      "now": 14185.7,
+      "mediaTime": 10.897467,
+      "presentedFrames": 1178,
+      "timeline": 10.94669999998807
+    },
+    {
+      "index": 0,
+      "now": 14191.7,
+      "mediaTime": 10.905867,
+      "presentedFrames": 1179,
+      "timeline": 10.95399999999999
+    },
+    {
+      "index": 0,
+      "now": 14197.8,
+      "mediaTime": 10.914389,
+      "presentedFrames": 1180,
+      "timeline": 10.960899999976148
+    },
+    {
+      "index": 0,
+      "now": 14209.9,
+      "mediaTime": 10.923778,
+      "presentedFrames": 1181,
+      "timeline": 10.973699999988067
+    },
+    {
+      "index": 0,
+      "now": 14222.1,
+      "mediaTime": 10.932,
+      "presentedFrames": 1182,
+      "timeline": 10.986699999988067
+    },
+    {
+      "index": 0,
+      "now": 14228.1,
+      "mediaTime": 10.940478,
+      "presentedFrames": 1183,
+      "timeline": 10.991499999999988
+    },
+    {
+      "index": 0,
+      "now": 14240.3,
+      "mediaTime": 10.948433,
+      "presentedFrames": 1184,
+      "timeline": 11.001099999964225
+    },
+    {
+      "index": 0,
+      "now": 14252.4,
+      "mediaTime": 10.965744,
+      "presentedFrames": 1186,
+      "timeline": 11.013199999988066
+    },
+    {
+      "index": 0,
+      "now": 14264.5,
+      "mediaTime": 10.973878,
+      "presentedFrames": 1187,
+      "timeline": 11.025300000011908
+    },
+    {
+      "index": 0,
+      "now": 14270.6,
+      "mediaTime": 10.982489,
+      "presentedFrames": 1188,
+      "timeline": 11.031399999976145
+    },
+    {
+      "index": 0,
+      "now": 14276.6,
+      "mediaTime": 10.990989,
+      "presentedFrames": 1189,
+      "timeline": 11.038199999988066
+    },
+    {
+      "index": 0,
+      "now": 14288.8,
+      "mediaTime": 10.9985,
+      "presentedFrames": 1190,
+      "timeline": 11.049699999988066
+    },
+    {
+      "index": 0,
+      "now": 14294.8,
+      "mediaTime": 11.006944,
+      "presentedFrames": 1191,
+      "timeline": 11.055699999988066
+    },
+    {
+      "index": 0,
+      "now": 14300.8,
+      "mediaTime": 11.015222,
+      "presentedFrames": 1192,
+      "timeline": 11.062899999976146
+    },
+    {
+      "index": 0,
+      "now": 14312.9,
+      "mediaTime": 11.0245,
+      "presentedFrames": 1193,
+      "timeline": 11.07830000001191
+    },
+    {
+      "index": 0,
+      "now": 14319,
+      "mediaTime": 11.031989,
+      "presentedFrames": 1194,
+      "timeline": 11.083800000011909
+    },
+    {
+      "index": 0,
+      "now": 14331.1,
+      "mediaTime": 11.040511,
+      "presentedFrames": 1195,
+      "timeline": 11.091999999999988
+    },
+    {
+      "index": 0,
+      "now": 14343.3,
+      "mediaTime": 11.057011,
+      "presentedFrames": 1197,
+      "timeline": 11.104099999964225
+    },
+    {
+      "index": 0,
+      "now": 14349.3,
+      "mediaTime": 11.065767,
+      "presentedFrames": 1198,
+      "timeline": 11.110199999988067
+    },
+    {
+      "index": 0,
+      "now": 14367.5,
+      "mediaTime": 11.082422,
+      "presentedFrames": 1200,
+      "timeline": 11.128399999976146
+    },
+    {
+      "index": 0,
+      "now": 14379.6,
+      "mediaTime": 11.090433,
+      "presentedFrames": 1201,
+      "timeline": 11.140399999976145
+    },
+    {
+      "index": 0,
+      "now": 14391.8,
+      "mediaTime": 11.097833,
+      "presentedFrames": 1202,
+      "timeline": 11.152599999964224
+    },
+    {
+      "index": 0,
+      "now": 14403.9,
+      "mediaTime": 11.114767,
+      "presentedFrames": 1203,
+      "timeline": 11.164699999988066
+    },
+    {
+      "index": 0,
+      "now": 14416,
+      "mediaTime": 11.131778,
+      "presentedFrames": 1205,
+      "timeline": 11.176899999976145
+    },
+    {
+      "index": 0,
+      "now": 14428.2,
+      "mediaTime": 11.1397,
+      "presentedFrames": 1206,
+      "timeline": 11.188899999976146
+    },
+    {
+      "index": 0,
+      "now": 14434.2,
+      "mediaTime": 11.148533,
+      "presentedFrames": 1207,
+      "timeline": 11.195099999964224
+    },
+    {
+      "index": 0,
+      "now": 14440.3,
+      "mediaTime": 11.156067,
+      "presentedFrames": 1208,
+      "timeline": 11.201499999999987
+    },
+    {
+      "index": 0,
+      "now": 14452.3,
+      "mediaTime": 11.164511,
+      "presentedFrames": 1209,
+      "timeline": 11.216599999964224
+    },
+    {
+      "index": 0,
+      "now": 14458.4,
+      "mediaTime": 11.173722,
+      "presentedFrames": 1210,
+      "timeline": 11.220999999999986
+    },
+    {
+      "index": 0,
+      "now": 14476.6,
+      "mediaTime": 11.189922,
+      "presentedFrames": 1212,
+      "timeline": 11.237499999999986
+    },
+    {
+      "index": 0,
+      "now": 14488.8,
+      "mediaTime": 11.206556,
+      "presentedFrames": 1214,
+      "timeline": 11.249599999964223
+    },
+    {
+      "index": 0,
+      "now": 14500.9,
+      "mediaTime": 11.214389,
+      "presentedFrames": 1215,
+      "timeline": 11.262199999988065
+    },
+    {
+      "index": 0,
+      "now": 14506.9,
+      "mediaTime": 11.223122,
+      "presentedFrames": 1216,
+      "timeline": 11.269599999964223
+    },
+    {
+      "index": 0,
+      "now": 14513,
+      "mediaTime": 11.2314,
+      "presentedFrames": 1217,
+      "timeline": 11.276599999964223
+    },
+    {
+      "index": 0,
+      "now": 14531.2,
+      "mediaTime": 11.239533,
+      "presentedFrames": 1218,
+      "timeline": 11.292099999964222
+    },
+    {
+      "index": 0,
+      "now": 14543.3,
+      "mediaTime": 11.255967,
+      "presentedFrames": 1220,
+      "timeline": 11.304199999988064
+    },
+    {
+      "index": 0,
+      "now": 14555.4,
+      "mediaTime": 11.264811,
+      "presentedFrames": 1221,
+      "timeline": 11.316199999988065
+    },
+    {
+      "index": 0,
+      "now": 14561.5,
+      "mediaTime": 11.272933,
+      "presentedFrames": 1222,
+      "timeline": 11.322399999976144
+    },
+    {
+      "index": 0,
+      "now": 14573.6,
+      "mediaTime": 11.289156,
+      "presentedFrames": 1224,
+      "timeline": 11.334499999999986
+    },
+    {
+      "index": 0,
+      "now": 14585.7,
+      "mediaTime": 11.297478,
+      "presentedFrames": 1225,
+      "timeline": 11.346599999964223
+    },
+    {
+      "index": 0,
+      "now": 14591.8,
+      "mediaTime": 11.305656,
+      "presentedFrames": 1226,
+      "timeline": 11.354099999964223
+    },
+    {
+      "index": 0,
+      "now": 14603.9,
+      "mediaTime": 11.314056,
+      "presentedFrames": 1227,
+      "timeline": 11.364699999988066
+    },
+    {
+      "index": 0,
+      "now": 14609.9,
+      "mediaTime": 11.3219,
+      "presentedFrames": 1228,
+      "timeline": 11.370800000011908
+    },
+    {
+      "index": 0,
+      "now": 14616,
+      "mediaTime": 11.330178,
+      "presentedFrames": 1229,
+      "timeline": 11.376899999976144
+    },
+    {
+      "index": 0,
+      "now": 14622,
+      "mediaTime": 11.338578,
+      "presentedFrames": 1230,
+      "timeline": 11.384199999988065
+    },
+    {
+      "index": 0,
+      "now": 14640.3,
+      "mediaTime": 11.347256,
+      "presentedFrames": 1231,
+      "timeline": 11.400899999976144
+    },
+    {
+      "index": 0,
+      "now": 14652.4,
+      "mediaTime": 11.363967,
+      "presentedFrames": 1233,
+      "timeline": 11.413300000011906
+    },
+    {
+      "index": 0,
+      "now": 14664.5,
+      "mediaTime": 11.380567,
+      "presentedFrames": 1235,
+      "timeline": 11.425399999976143
+    },
+    {
+      "index": 0,
+      "now": 14676.6,
+      "mediaTime": 11.388722,
+      "presentedFrames": 1236,
+      "timeline": 11.437499999999986
+    },
+    {
+      "index": 0,
+      "now": 14694.8,
+      "mediaTime": 11.405489,
+      "presentedFrames": 1237,
+      "timeline": 11.455699999988065
+    },
+    {
+      "index": 0,
+      "now": 14876.7,
+      "mediaTime": 11.589656,
+      "presentedFrames": 1238,
+      "timeline": 11.641699999988061
+    },
+    {
+      "index": 0,
+      "now": 14931.2,
+      "mediaTime": 11.641711,
+      "presentedFrames": 1239,
+      "timeline": 11.692399999976137
+    },
+    {
+      "index": 0,
+      "now": 14937.2,
+      "mediaTime": 11.648822,
+      "presentedFrames": 1240,
+      "timeline": 11.7013000000119
+    },
+    {
+      "index": 0,
+      "now": 14979.6,
+      "mediaTime": 11.690078,
+      "presentedFrames": 1241,
+      "timeline": 11.738399999976135
+    },
+    {
+      "index": 0,
+      "now": 14985.8,
+      "mediaTime": 11.698044,
+      "presentedFrames": 1242,
+      "timeline": 11.747699999988056
+    },
+    {
+      "index": 0,
+      "now": 14991.8,
+      "mediaTime": 11.7066,
+      "presentedFrames": 1243,
+      "timeline": 11.755199999988056
+    },
+    {
+      "index": 0,
+      "now": 15016,
+      "mediaTime": 11.732478,
+      "presentedFrames": 1246,
+      "timeline": 11.770300000011897
+    },
+    {
+      "index": 0,
+      "now": 15028.2,
+      "mediaTime": 11.7408,
+      "presentedFrames": 1247,
+      "timeline": 11.785699999988054
+    },
+    {
+      "index": 0,
+      "now": 15034.3,
+      "mediaTime": 11.748111,
+      "presentedFrames": 1248,
+      "timeline": 11.797599999964213
+    },
+    {
+      "index": 0,
+      "now": 15046.3,
+      "mediaTime": 11.757322,
+      "presentedFrames": 1249,
+      "timeline": 11.805199999988055
+    },
+    {
+      "index": 0,
+      "now": 15052.4,
+      "mediaTime": 11.765444,
+      "presentedFrames": 1250,
+      "timeline": 11.815499999999975
+    },
+    {
+      "index": 0,
+      "now": 15058.4,
+      "mediaTime": 11.773811,
+      "presentedFrames": 1251,
+      "timeline": 11.822999999999976
+    },
+    {
+      "index": 0,
+      "now": 15076.7,
+      "mediaTime": 11.789989,
+      "presentedFrames": 1253,
+      "timeline": 11.836399999976134
+    },
+    {
+      "index": 0,
+      "now": 15082.8,
+      "mediaTime": 11.798811,
+      "presentedFrames": 1254,
+      "timeline": 11.844899999976134
+    },
+    {
+      "index": 0,
+      "now": 15100.9,
+      "mediaTime": 11.814956,
+      "presentedFrames": 1256,
+      "timeline": 11.861999999999975
+    },
+    {
+      "index": 0,
+      "now": 15113,
+      "mediaTime": 11.823978,
+      "presentedFrames": 1257,
+      "timeline": 11.873999999999974
+    },
+    {
+      "index": 0,
+      "now": 15125.2,
+      "mediaTime": 11.840289,
+      "presentedFrames": 1259,
+      "timeline": 11.885999999999973
+    },
+    {
+      "index": 0,
+      "now": 15143.3,
+      "mediaTime": 11.857522,
+      "presentedFrames": 1261,
+      "timeline": 11.90409999996421
+    },
+    {
+      "index": 0,
+      "now": 15155.5,
+      "mediaTime": 11.8655,
+      "presentedFrames": 1262,
+      "timeline": 11.91639999997613
+    },
+    {
+      "index": 0,
+      "now": 15167.7,
+      "mediaTime": 11.882656,
+      "presentedFrames": 1264,
+      "timeline": 11.928300000011893
+    },
+    {
+      "index": 0,
+      "now": 15179.7,
+      "mediaTime": 11.891578,
+      "presentedFrames": 1265,
+      "timeline": 11.943300000011893
+    },
+    {
+      "index": 0,
+      "now": 15185.8,
+      "mediaTime": 11.899033,
+      "presentedFrames": 1266,
+      "timeline": 11.947999999999972
+    },
+    {
+      "index": 0,
+      "now": 15204,
+      "mediaTime": 11.915656,
+      "presentedFrames": 1268,
+      "timeline": 11.96489999997613
+    },
+    {
+      "index": 0,
+      "now": 15216.1,
+      "mediaTime": 11.932289,
+      "presentedFrames": 1270,
+      "timeline": 11.976999999999972
+    },
+    {
+      "index": 0,
+      "now": 15228.3,
+      "mediaTime": 11.940389,
+      "presentedFrames": 1271,
+      "timeline": 11.989099999964209
+    },
+    {
+      "index": 0,
+      "now": 15240.4,
+      "mediaTime": 11.948867,
+      "presentedFrames": 1272,
+      "timeline": 12.001199999988051
+    },
+    {
+      "index": 0,
+      "now": 15246.4,
+      "mediaTime": 11.957711,
+      "presentedFrames": 1273,
+      "timeline": 12.007300000011893
+    },
+    {
+      "index": 0,
+      "now": 15258.6,
+      "mediaTime": 11.973556,
+      "presentedFrames": 1275,
+      "timeline": 12.019399999976132
+    },
+    {
+      "index": 0,
+      "now": 15276.7,
+      "mediaTime": 11.9911,
+      "presentedFrames": 1277,
+      "timeline": 12.037599999964211
+    },
+    {
+      "index": 0,
+      "now": 15288.9,
+      "mediaTime": 11.999944,
+      "presentedFrames": 1278,
+      "timeline": 12.049599999964212
+    },
+    {
+      "index": 0,
+      "now": 15301,
+      "mediaTime": 12.015567,
+      "presentedFrames": 1280,
+      "timeline": 12.061800000011896
+    },
+    {
+      "index": 0,
+      "now": 15319.3,
+      "mediaTime": 12.032544,
+      "presentedFrames": 1282,
+      "timeline": 12.079999999999975
+    },
+    {
+      "index": 0,
+      "now": 15331.3,
+      "mediaTime": 12.040467,
+      "presentedFrames": 1283,
+      "timeline": 12.092199999988054
+    },
+    {
+      "index": 0,
+      "now": 15343.4,
+      "mediaTime": 12.058567,
+      "presentedFrames": 1285,
+      "timeline": 12.104300000011897
+    },
+    {
+      "index": 0,
+      "now": 15355.5,
+      "mediaTime": 12.073022,
+      "presentedFrames": 1287,
+      "timeline": 12.116999999999974
+    },
+    {
+      "index": 0,
+      "now": 15367.6,
+      "mediaTime": 12.089689,
+      "presentedFrames": 1289,
+      "timeline": 12.127599999964211
+    },
+    {
+      "index": 0,
+      "now": 15386,
+      "mediaTime": 12.099078,
+      "presentedFrames": 1290,
+      "timeline": 12.141699999988052
+    },
+    {
+      "index": 0,
+      "now": 15391.9,
+      "mediaTime": 12.107089,
+      "presentedFrames": 1291,
+      "timeline": 12.154300000011894
+    },
+    {
+      "index": 0,
+      "now": 15404,
+      "mediaTime": 12.114933,
+      "presentedFrames": 1292,
+      "timeline": 12.161699999988052
+    },
+    {
+      "index": 0,
+      "now": 15416.1,
+      "mediaTime": 12.131822,
+      "presentedFrames": 1294,
+      "timeline": 12.175999999999974
+    },
+    {
+      "index": 0,
+      "now": 15422.3,
+      "mediaTime": 12.139433,
+      "presentedFrames": 1295,
+      "timeline": 12.184800000011894
+    },
+    {
+      "index": 0,
+      "now": 15434.3,
+      "mediaTime": 12.149056,
+      "presentedFrames": 1296,
+      "timeline": 12.198699999988053
+    },
+    {
+      "index": 0,
+      "now": 15482.7,
+      "mediaTime": 12.1815,
+      "presentedFrames": 1300,
+      "timeline": 12.213199999988053
+    }
+  ],
+  "status": [
+    {
+      "time": 12.213199,
+      "paused": true,
+      "seeking": true,
+      "readyState": 1,
+      "duration": 18.084467,
+      "rate": 1,
+      "corrections": 0
+    },
+    {
+      "time": 7.999999,
+      "paused": true,
+      "seeking": false,
+      "readyState": 4,
+      "duration": 8,
+      "rate": 1,
+      "corrections": 0
+    }
+  ],
+  "time": 12.213199999988053,
+  "canvas": {
+    "width": 1605,
+    "height": 902,
+    "css": {
+      "x": 20,
+      "y": 100.0625,
+      "width": 1070,
+      "height": 601.875,
+      "top": 100.0625,
+      "right": 1090,
+      "bottom": 701.9375,
+      "left": 20
+    }
+  }
+}

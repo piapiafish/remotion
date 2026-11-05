@@ -1,0 +1,243 @@
+{
+  "status": "PASS",
+  "backupFiles": 224,
+  "changedExistingFiles": [
+    "DEVELOPMENT_LOG.md",
+    "docs/ARCHITECTURE.md",
+    "docs/BEGINNER_GUIDE.md",
+    "docs/SECOND_FEEDBACK_GUIDE.md",
+    "docs/TESTING.md",
+    "IMPLEMENTATION_ROADMAP.md",
+    "ISSUES_LOG.md",
+    "README.md",
+    "reports/current/README.md",
+    "scripts/test-second-regression.cjs",
+    "src/App.css",
+    "src/automation/bridge.ts",
+    "src/export/frameRenderer.ts",
+    "src/export/sceneReady.ts",
+    "src/export/session.ts",
+    "src/media/loadMedia.ts",
+    "src/media/screenVideo.ts",
+    "src/media/useScreenVideo.ts",
+    "src/media/videoTiming.ts",
+    "src/scene/applySceneState.ts",
+    "src/scene/Device.tsx",
+    "src/scene/DeviceControls.tsx",
+    "src/scene/DeviceInstanceView.tsx",
+    "src/scene/GltfDevice.tsx",
+    "src/scene/SceneDriver.tsx",
+    "src/scene/sceneEffects.ts",
+    "src/scene/solidFont.ts",
+    "src/scene/solidPose.ts",
+    "src/scene/SolidText.tsx",
+    "src/scene/Stage.tsx",
+    "src/scene/textOverlay.ts",
+    "src/store/cameraSession.ts",
+    "src/store/persist.ts",
+    "src/store/persistSafety.test.ts",
+    "src/store/project.ts",
+    "src/store/projectValidation.ts",
+    "src/store/schema.ts",
+    "src/timeline/displayRange.ts",
+    "src/timeline/motionPlan.test.ts",
+    "src/timeline/sample.test.ts",
+    "src/timeline/sample.ts",
+    "src/ui/Artboard/Artboard.tsx",
+    "src/ui/Artboard/TextOverlay.tsx",
+    "src/ui/Artboard/useCameraKeyboard.ts",
+    "src/ui/Camera/CameraRecorder.tsx",
+    "src/ui/ExportDialog/ExportDialog.tsx",
+    "src/ui/Feedback/ProjectFeedback.tsx",
+    "src/ui/Inspector/DeviceSection.tsx",
+    "src/ui/Inspector/TextSettings.tsx",
+    "src/ui/Inspector/VideoTimingControls.tsx",
+    "src/ui/Timeline/TimelineBar.tsx",
+    "人工核验清单.md"
+  ],
+  "newSourceScriptDocsFiles": [
+    "docs/THIRD_FEEDBACK_GUIDE.md",
+    "scripts/test-third-feedback.cjs",
+    "src/media/screenClips.ts",
+    "src/media/useMultiScreen.ts",
+    "src/scene/cameraMotion.ts",
+    "src/scene/editorPointer.ts",
+    "src/scene/objectPresence.ts",
+    "src/scene/solidBounds.ts",
+    "src/scene/solidInstances.ts",
+    "src/store/scaleAnchor.ts",
+    "src/timeline/thirdFeedback.test.ts",
+    "src/ui/Inspector/ScreenContent.tsx",
+    "src/ui/Timeline/TimelineObjectRow.tsx"
+  ],
+  "protectedFiles": [
+    {
+      "path": "AGENTS.md",
+      "sha256Before": "54feb9fa685bd34311213339a543066595c61615204ba8d8397894a2c8b14143",
+      "sha256After": "54feb9fa685bd34311213339a543066595c61615204ba8d8397894a2c8b14143",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "人工核验清单.md",
+      "sha256Before": "26562bd9e3b8f2a5431255cb5455c046fc890c18ad5493fc7a60ae10bc6f4a54",
+      "sha256After": "7fdd2103c0612e92a55be5cd26b99c0ffd828f9dd0736280879e99181e1c3c4f",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "package.json",
+      "sha256Before": "8ce0d3b0ba4f16574d5334921b4b5df1b155d1e31823c8abbe95a774f82f77f9",
+      "sha256After": "8ce0d3b0ba4f16574d5334921b4b5df1b155d1e31823c8abbe95a774f82f77f9",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256Before": "df940ff7bec3a9d5e26c616eb1493a49addfa5300a174cbd09f28901a8284f4a",
+      "sha256After": "df940ff7bec3a9d5e26c616eb1493a49addfa5300a174cbd09f28901a8284f4a",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "current_plan.md",
+      "sha256Before": "fe966368fe6ca9d3bb6b1d123863de49bc340888cfc9fb7e67ef73dce8c0bf29",
+      "sha256After": "fe966368fe6ca9d3bb6b1d123863de49bc340888cfc9fb7e67ef73dce8c0bf29",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "CONTEXT.md",
+      "sha256Before": "3cc72346570c6d0222407dad4f39addf3187379f0da80faa7f4d21931ea5c7d2",
+      "sha256After": "3cc72346570c6d0222407dad4f39addf3187379f0da80faa7f4d21931ea5c7d2",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "docs/WORK_PLAN.md",
+      "sha256Before": "7fbbd3e037757e003d454e3b6593d6856e7f0115e2cf6c284d899bda0e1588d9",
+      "sha256After": "7fbbd3e037757e003d454e3b6593d6856e7f0115e2cf6c284d899bda0e1588d9",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "AI_PROMO_START_HERE.md",
+      "sha256Before": "1ecb3878f45f84cd83a023a0dee3454a034c9b8511709891a2d84f139c3b13c6",
+      "sha256After": "1ecb3878f45f84cd83a023a0dee3454a034c9b8511709891a2d84f139c3b13c6",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "ASSETS.md",
+      "sha256Before": "5ed708d1ab34a0d36742bde567ae70bd86ecccbaf008ba819d6ffd8d746fa670",
+      "sha256After": "5ed708d1ab34a0d36742bde567ae70bd86ecccbaf008ba819d6ffd8d746fa670",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256Before": "48514ad74bc2d8ce209c0bf4ca75eea0ff11798979647f5c11dc00f426403b08",
+      "sha256After": "48514ad74bc2d8ce209c0bf4ca75eea0ff11798979647f5c11dc00f426403b08",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "LICENSE",
+      "sha256Before": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "sha256After": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "baseline": "plan-before"
+    },
+    {
+      "path": "reports/current/document-check.json",
+      "sha256Before": "f966ec9011923bf590ed96d3241e3712af61006f51b11015211d51db11ee8f9f",
+      "sha256After": "f966ec9011923bf590ed96d3241e3712af61006f51b11015211d51db11ee8f9f",
+      "baseline": "implementation-before"
+    },
+    {
+      "path": "public/fonts/NotoSansCJKsc-Regular.otf",
+      "sha256Before": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "sha256After": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "baseline": "plan-before"
+    },
+    {
+      "path": "public/fonts/OFL.txt",
+      "sha256Before": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+      "sha256After": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+      "baseline": "plan-before"
+    }
+  ],
+  "changedProtectedFiles": [
+    "人工核验清单.md"
+  ],
+  "runtimeChangedAfterMainBrowser": [
+    "src/store/project.ts",
+    "src/timeline/thirdFeedback.test.ts",
+    "src/ui/Artboard/useCameraKeyboard.ts"
+  ],
+  "lateFixVerification": {
+    "src/ui/Artboard/useCameraKeyboard.ts": "layout-verified/report.json",
+    "src/store/project.ts": "legacy-fit-complete/report.json",
+    "src/timeline/thirdFeedback.test.ts": "tests-complete.result.json"
+  },
+  "lateChangesAreOnlyVerifiedInteractions": true,
+  "dependenciesChanged": false,
+  "manualChecklistUnchanged": false,
+  "newFileFormat": 4,
+  "externalChangesPreserved": [
+    {
+      "path": "人工核验清单.md",
+      "sha256AtStart": "26562bd9e3b8f2a5431255cb5455c046fc890c18ad5493fc7a60ae10bc6f4a54",
+      "sha256Observed": "7fdd2103c0612e92a55be5cd26b99c0ffd828f9dd0736280879e99181e1c3c4f",
+      "lastWriteTimeObserved": "2026-11-04T19:52:18.096481+08:00",
+      "writtenByThisTask": false,
+      "action": "Current bytes retained; no overwrite, restore or feedback reclassification"
+    }
+  ],
+  "manualChecklistWrittenByTask": false,
+  "unexpectedProtectedChanges": [],
+  "backupOriginalFilesVerified": 224,
+  "changedBackupFiles": [],
+  "modifiedByTaskExistingFiles": [
+    "DEVELOPMENT_LOG.md",
+    "docs/ARCHITECTURE.md",
+    "docs/BEGINNER_GUIDE.md",
+    "docs/SECOND_FEEDBACK_GUIDE.md",
+    "docs/TESTING.md",
+    "IMPLEMENTATION_ROADMAP.md",
+    "ISSUES_LOG.md",
+    "README.md",
+    "reports/current/README.md",
+    "scripts/test-second-regression.cjs",
+    "src/App.css",
+    "src/automation/bridge.ts",
+    "src/export/frameRenderer.ts",
+    "src/export/sceneReady.ts",
+    "src/export/session.ts",
+    "src/media/loadMedia.ts",
+    "src/media/screenVideo.ts",
+    "src/media/useScreenVideo.ts",
+    "src/media/videoTiming.ts",
+    "src/scene/applySceneState.ts",
+    "src/scene/Device.tsx",
+    "src/scene/DeviceControls.tsx",
+    "src/scene/DeviceInstanceView.tsx",
+    "src/scene/GltfDevice.tsx",
+    "src/scene/SceneDriver.tsx",
+    "src/scene/sceneEffects.ts",
+    "src/scene/solidFont.ts",
+    "src/scene/solidPose.ts",
+    "src/scene/SolidText.tsx",
+    "src/scene/Stage.tsx",
+    "src/scene/textOverlay.ts",
+    "src/store/cameraSession.ts",
+    "src/store/persist.ts",
+    "src/store/persistSafety.test.ts",
+    "src/store/project.ts",
+    "src/store/projectValidation.ts",
+    "src/store/schema.ts",
+    "src/timeline/displayRange.ts",
+    "src/timeline/motionPlan.test.ts",
+    "src/timeline/sample.test.ts",
+    "src/timeline/sample.ts",
+    "src/ui/Artboard/Artboard.tsx",
+    "src/ui/Artboard/TextOverlay.tsx",
+    "src/ui/Artboard/useCameraKeyboard.ts",
+    "src/ui/Camera/CameraRecorder.tsx",
+    "src/ui/ExportDialog/ExportDialog.tsx",
+    "src/ui/Feedback/ProjectFeedback.tsx",
+    "src/ui/Inspector/DeviceSection.tsx",
+    "src/ui/Inspector/TextSettings.tsx",
+    "src/ui/Inspector/VideoTimingControls.tsx",
+    "src/ui/Timeline/TimelineBar.tsx"
+  ]
+}

@@ -1,0 +1,3 @@
+PASS native-browser-125-percent-zoom-applied
+PASS native-zoom-editor-is-usable
+PASS display-scale-125-editor-is-usable

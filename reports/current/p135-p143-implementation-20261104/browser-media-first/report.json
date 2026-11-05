@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-04T11:28:05.796Z",
+  "checks": [
+    {
+      "name": "one-phone-has-three-independent-clips",
+      "status": "PASS"
+    },
+    {
+      "name": "repeated-source-deduplicates-by-content",
+      "status": "PASS"
+    },
+    {
+      "name": "overlapping-video-expands-only-its-object-row",
+      "status": "PASS"
+    },
+    {
+      "name": "nonoverlapping-videos-auto-share-one-row",
+      "status": "PASS"
+    },
+    {
+      "name": "two-intervals-edit-independently",
+      "status": "PASS"
+    },
+    {
+      "name": "pause-holds-identical-decoded-screen",
+      "status": "PASS"
+    },
+    {
+      "name": "moving-video-up-changes-composited-screen",
+      "status": "PASS"
+    },
+    {
+      "name": "layer-undo-preserves-all-clip-times",
+      "status": "PASS"
+    },
+    {
+      "name": "blue-handle-only-changes-visibility",
+      "status": "PASS",
+      "detail": {
+        "dt": 0.18399264029438822
+      }
+    },
+    {
+      "name": "orange-handle-only-changes-play-window",
+      "status": "PASS"
+    },
+    {
+      "name": "version-four-saves-all-clips-and-fonts",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "media",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

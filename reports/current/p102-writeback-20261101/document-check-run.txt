@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-01T20:05:02.877705+08:00",
+  "markdownFilesChecked": 72,
+  "errors": [],
+  "historicalLinkWarnings": [
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/DEVELOPMENT_LOG.md",
+      "line": 3,
+      "target": "reports/archive/README.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/DEVELOPMENT_LOG.md",
+      "line": 28,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/ISSUES_LOG.md",
+      "line": 15,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/ISSUES_LOG.md",
+      "line": 30,
+      "target": "reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 38,
+      "target": "PHONE_MOTION_PLAN.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 40,
+      "target": "AUTOMATED_STORYBOARD_FLOW.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 52,
+      "target": "../reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 52,
+      "target": "reference/mockup-app-spec.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 9,
+      "target": "../archive/pre-20261101/original-documents.zip"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 9,
+      "target": "file-organization.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 12,
+      "target": "frontend-tests.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 13,
+      "target": "build.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 14,
+      "target": "lint.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 15,
+      "target": "agent-tests.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 19,
+      "target": "results.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 19,
+      "target": "agent-tests-sandbox.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 23,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 23,
+      "target": "../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 25,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 27,
+      "target": "../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md"
+    }
+  ],
+  "integrity": {
+    "status": "NOT_RUN"
+  },
+  "status": "PASS"
+}

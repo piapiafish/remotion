@@ -1,0 +1,15 @@
+PASS E01-ordinary-edits-stay-static
+PASS E02-pose-animation-has-correct-two-second-midpoint
+PASS E03-retiming-fills-the-new-six-second-span
+PASS E04-hold-and-exit-remain-separate
+PASS E05-multi-turn-rotation-survives-save-and-nonuniform-keys
+PASS G01-device-preset-keeps-other-object-unchanged
+PASS H02-sticker-position-and-opacity-remain-animated
+PASS H04-pure-text-and-portrait-project-reopen
+PASS I01-four-background-types-still-render-and-save
+PASS I02-environment-controls-still-apply
+PASS I03-effects-remain-opt-in
+PASS I03-effect-change-undo-restores-settings
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"authoring-regression","status":"PASS"}],"checks":14}

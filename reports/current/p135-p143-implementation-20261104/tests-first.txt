@@ -1,0 +1,206 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/scene/materials/screenMaterial.test.ts (0 test)
+ ❯ src/scene/materials/screenUv.test.ts (0 test)
+ ❯ src/timeline/secondFeedback.test.ts (0 test)
+ ❯ src/export/exportLifecycle.test.ts (0 test)
+ ❯ src/timeline/sample.test.ts (0 test)
+ ❯ src/scene/solidFont.test.ts (0 test)
+ ❯ src/export/exportReadiness.test.ts (0 test)
+ ❯ src/scene/sceneEffects.test.ts (0 test)
+ ❯ src/media/screenVideo.test.ts (0 test)
+ ❯ src/store/deviceLifecycle.test.ts (0 test)
+ ❯ src/store/keyframeEditing.test.ts (0 test)
+ ❯ src/store/history.test.ts (0 test)
+ ❯ src/scene/editorInteraction.test.ts (0 test)
+ ❯ src/timeline/objectEditing.test.ts (0 test)
+ ❯ src/timeline/templates.test.ts (0 test)
+ ❯ src/timeline/motionPlan.test.ts (0 test)
+ ❯ src/store/persistSafety.test.ts (0 test)
+ ❯ src/scene/fixedGround.test.ts (0 test)
+ ❯ src/timeline/scopedPresets.test.ts (0 test)
+ ❯ src/export/downsample.test.ts (0 test)
+ ❯ src/scene/materials/screenOrientation.test.ts (0 test)
+ ❯ src/scene/geometryUv.test.ts (0 test)
+ ❯ src/export/screenCoverageScene.test.ts (0 test)
+ ❯ src/store/saveDestination.test.ts (0 test)
+ ❯ src/export/exportSize.test.ts (0 test)
+ ❯ src/export/rendererCleanup.test.ts (0 test)
+ ❯ src/devices/manifest.test.ts (0 test)
+ ❯ src/export/video.test.ts (0 test)
+ ❯ src/ui/Inspector/DeviceSection.test.ts (0 test)
+ ❯ src/store/deviceTransform.test.ts (0 test)
+ ❯ src/export/backdrop.test.ts (0 test)
+ ❯ src/scene/screenFit.test.ts (0 test)
+ ❯ src/export/sequence.test.ts (0 test)
+ ❯ src/media/videoTiming.test.ts (0 test)
+ ❯ src/scene/groundPlane.test.ts (0 test)
+ ❯ src/export/screenCoverage.test.ts (0 test)
+ ❯ src/export/frameRenderer.test.ts (0 test)
+ ❯ src/store/exportPreferences.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 38 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/devices/manifest.test.ts [ src/devices/manifest.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614228-3oxzzgadb5v' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\101ee851b7a26891cb9cd939cdd53cd8d29c4c2f'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/38]⎯
+
+ FAIL  src/export/backdrop.test.ts [ src/export/backdrop.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614237-mn6l0sf4o1j' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\c43f5f9f5ec8160d5cc5e05c4a359bece4f2dd1e'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/38]⎯
+
+ FAIL  src/export/downsample.test.ts [ src/export/downsample.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614180-de906aim2kr' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\2f2f91e13e3ae1a0b9d850a407bd97c781c63082'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/38]⎯
+
+ FAIL  src/export/exportLifecycle.test.ts [ src/export/exportLifecycle.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613370-u8jpb7lmdd' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\99f3bb548ea47864fb87c5575b31644d17b5751a'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/38]⎯
+
+ FAIL  src/export/exportReadiness.test.ts [ src/export/exportReadiness.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613373-v8j1y4tpzu' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\15476a76f51c3b70d8e858867d071a1f40ff5c9a'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/38]⎯
+
+ FAIL  src/export/exportSize.test.ts [ src/export/exportSize.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614227-ky4zb0x5unl' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\c02ed8e2884094e18c4f49be389af2e3fe2ba815'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/38]⎯
+
+ FAIL  src/export/frameRenderer.test.ts [ src/export/frameRenderer.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614314-c637ramt8p' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\bc40f839969a59f770a5d352475177886f3baa19'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/38]⎯
+
+ FAIL  src/export/rendererCleanup.test.ts [ src/export/rendererCleanup.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614230-9br451imwkl' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\fde031df2b9a6a2a45210c619761f39f1a11b377'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/38]⎯
+
+ FAIL  src/export/screenCoverage.test.ts [ src/export/screenCoverage.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614303-3er471r4dob' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\d8ced8b0d141915dc92019eed6501018e093ca5b'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/38]⎯
+
+ FAIL  src/export/screenCoverageScene.test.ts [ src/export/screenCoverageScene.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614196-sbr6xbldbwg' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\83ba7928460e939c78e66cbeeda32e527678b4f9'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/38]⎯
+
+ FAIL  src/export/sequence.test.ts [ src/export/sequence.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614233-fot6nifugl' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\574a3c7329a188a2eebb99e1fdf41246044b6093'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/38]⎯
+
+ FAIL  src/export/video.test.ts [ src/export/video.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614231-ugzw7n3h2z' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\ce4b294417c129b1ede17a39de5f6e3f9a90325b'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/38]⎯
+
+ FAIL  src/media/screenVideo.test.ts [ src/media/screenVideo.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613376-lpzfg2w2el' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\5cfd165257301ed0eae057f2363f822021f3e34f'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/38]⎯
+
+ FAIL  src/media/videoTiming.test.ts [ src/media/videoTiming.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614235-sp72kn18oi' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\f88756f56d008363920894443ceded2f0827384d'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/38]⎯
+
+ FAIL  src/timeline/motionPlan.test.ts [ src/timeline/motionPlan.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613409-yfsl04udx8m' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\329a49fb0c1a8d2aa97a4484ea88a690a4f05ce3'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/38]⎯
+
+ FAIL  src/timeline/objectEditing.test.ts [ src/timeline/objectEditing.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613401-2x1td1jtozx' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\fee48cab3765b5b96e8b14b3cf190000d34caa68'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/38]⎯
+
+ FAIL  src/timeline/sample.test.ts [ src/timeline/sample.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613372-zhhtmftmsfq' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\0010290bdbb5462f5df84cc228642214c2dba364'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/38]⎯
+
+ FAIL  src/timeline/scopedPresets.test.ts [ src/timeline/scopedPresets.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613560-dobwsye0134' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\8d5b645a860f28900f9ab0d21414e8198da2a7f0'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/38]⎯
+
+ FAIL  src/timeline/secondFeedback.test.ts [ src/timeline/secondFeedback.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613361-gtdy3aceuys' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\eec527f177f4583f0f61d21913f5099c8baf514c'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/38]⎯
+
+ FAIL  src/timeline/templates.test.ts [ src/timeline/templates.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613407-s7rldveu99n' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\482a250283271693cec1a29bd98575ca447f4307'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/38]⎯
+
+ FAIL  src/scene/editorInteraction.test.ts [ src/scene/editorInteraction.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613387-27o5a5ptwqr' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\c7eec5e10af5f7d9e5ada7dd3ce91fa3d9dc8284'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/38]⎯
+
+ FAIL  src/scene/fixedGround.test.ts [ src/scene/fixedGround.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613500-s8a3immiyl' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\1a72d4056f3c3fe38432e0cf5c54e31715ab9247'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/38]⎯
+
+ FAIL  src/scene/geometryUv.test.ts [ src/scene/geometryUv.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614183-r4d6d11g51' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\5e5248d63efa9cef1b2e88b9df41643950b521c4'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/38]⎯
+
+ FAIL  src/scene/groundPlane.test.ts [ src/scene/groundPlane.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614238-ercgt2lsm7i' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\65089079baf9e0c4044869a964b2be42a150f121'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/38]⎯
+
+ FAIL  src/scene/sceneEffects.test.ts [ src/scene/sceneEffects.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613388-2l47ud6b6ej' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\941705733dea30409a875fd78814036cc8a0a538'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/38]⎯
+
+ FAIL  src/scene/screenFit.test.ts [ src/scene/screenFit.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614235-cc9w776xl0m' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\dccd4753504bc0a2ab895d34368bfb48986658db'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/38]⎯
+
+ FAIL  src/scene/solidFont.test.ts [ src/scene/solidFont.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613375-q3infwxrr5o' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\57ea6ce61690172b121367510f204227f335b2a4'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/38]⎯
+
+ FAIL  src/store/deviceLifecycle.test.ts [ src/store/deviceLifecycle.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613385-pj0uhagb1he' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\88855dfc4d2273461c4f7834222d0321e6d4bf10'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/38]⎯
+
+ FAIL  src/store/deviceTransform.test.ts [ src/store/deviceTransform.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614232-80x8betd1ps' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\b0d427dc7e60f4cb06698051fb662194fa8287a4'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/38]⎯
+
+ FAIL  src/store/exportPreferences.test.ts [ src/store/exportPreferences.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614356-ulxoa9z3o6g' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\0854ef9f46c4bc2b3f334d2c0f60bcdc52e86d5f'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/38]⎯
+
+ FAIL  src/store/history.test.ts [ src/store/history.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613404-y4kdldoef1i' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\fa9f8779890faad87eff347eebfea922a4ff6163'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/38]⎯
+
+ FAIL  src/store/keyframeEditing.test.ts [ src/store/keyframeEditing.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613403-7tkkmatvpj' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\0c95a6c70f1ab2fc019a403c4f3dfe8a89ff6362'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/38]⎯
+
+ FAIL  src/store/persistSafety.test.ts [ src/store/persistSafety.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613506-eunes3kcfrp' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\0e9dac328131a37868ab5404bfa8d077393252aa'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/38]⎯
+
+ FAIL  src/store/saveDestination.test.ts [ src/store/saveDestination.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614195-ka9nv6ydobs' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\190f102730bdbe7dbc4ea05ae68938c95b512e7a'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/38]⎯
+
+ FAIL  src/scene/materials/screenMaterial.test.ts [ src/scene/materials/screenMaterial.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613348-y9ef9a3wluh' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\245f8c22dc344d3beaa68cfd1e0f76e41cecb106'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/38]⎯
+
+ FAIL  src/scene/materials/screenOrientation.test.ts [ src/scene/materials/screenOrientation.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614179-h4echub2bro' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\ee5f5e22a4c2ada2ca10714abcab809e279f97c0'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/38]⎯
+
+ FAIL  src/scene/materials/screenUv.test.ts [ src/scene/materials/screenUv.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790613352-dqrd6uexam' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\e2e73b78b59b5f2bf3b1f574644da8d427bbda6d'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/38]⎯
+
+ FAIL  src/ui/Inspector/DeviceSection.test.ts [ src/ui/Inspector/DeviceSection.test.ts ]
+Error: EPERM: operation not permitted, rename 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\.tmp-1793790614231-2mp4q9b654b' -> 'C:\Users\20153\AppData\Local\Packages\sandbox.{9caf222d-c900-4671-bd90-39dfa46d436c}\AC\Temp\AyTpzY5UQ_mrEEnD8EQr4\ssr\284f705cce67b4b6d34db0aa8f8c8cfa9dcec9ab'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/38]⎯
+
+
+ Test Files  38 failed (38)
+      Tests  no tests
+   Start at  19:10:12
+   Duration  1.99s (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 3ms)
+

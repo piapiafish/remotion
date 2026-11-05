@@ -1,0 +1,229 @@
+import { DEVICE_LIST, getManifest } from '../devices/manifest'
+import { EASE_LINEAR, EASE_OUT, EASE_SMOOTH } from './easing'
+import { keyTimes, staticTrack, staticVec3 } from './tracks'
+import { sampleTimeline } from './sample'
+import type { DeviceId, EaseHandle, Project, TrackSet, Vec3 } from '../store/schema'
+
+export const MOTION_PLAN_SCHEMA = 'phone-motion/1'
+type MotionEase = 'linear' | 'smooth' | 'ease-out'
+export type MotionFrame = {
+  t: number
+  position: Vec3
+  rotationDeg: Vec3
+  scale: number
+  description: string
+  ease: MotionEase
+}
+export type MotionPlan = {
+  schema: typeof MOTION_PLAN_SCHEMA
+  title: string
+  brief: string
+  deviceId: DeviceId
+  duration: number
+  fps: 30 | 60
+  /** Defaults to legacy per-segment easing for existing imported plans. */
+  interpolation?: 'continuous' | 'eased'
+  canvas: { width: number; height: number }
+  camera: { position: Vec3; target: Vec3; fov: number }
+  keyframes: MotionFrame[]
+}
+
+const easeHandles: Record<MotionEase, EaseHandle> = {
+  linear: EASE_LINEAR, smooth: EASE_SMOOTH, 'ease-out': EASE_OUT,
+}
+const DEG = Math.PI / 180
+const realDevices = new Set(DEVICE_LIST.filter(d => d.glb).map(d => d.id))
+const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v)
+
+function number(v: unknown, min: number, max: number, field: string): number {
+  if (typeof v !== 'number' || !Number.isFinite(v) || v < min || v > max) {
+    throw new Error(`${field} 必须是 ${min}～${max} 之间的有限数值。`)
+  }
+  return v
+}
+function vector(v: unknown, limit: number, field: string): Vec3 {
+  if (!Array.isArray(v) || v.length !== 3) throw new Error(`${field} 必须是 [x, y, z]。`)
+  return v.map((n, i) => number(n, -limit, limit, `${field}[${i}]`)) as Vec3
+}
+function text(v: unknown, fallback: string, max: number): string {
+  return typeof v === 'string' ? v.trim().slice(0, max) : fallback
+}
+
+/** Validate before touching the document. This format never loads media or executes code. */
+export function validateMotionPlan(input: unknown): MotionPlan {
+  if (!object(input) || input.schema !== MOTION_PLAN_SCHEMA) {
+    throw new Error(`请使用 schema: "${MOTION_PLAN_SCHEMA}" 的手机运动计划，包含 keyframes；旧 Video DSL 请在下方旧版入口使用。`)
+  }
+  if (!realDevices.has(input.deviceId as DeviceId)) throw new Error('deviceId 必须是已有的真实手机模型。')
+  const duration = number(input.duration, 0.1, 120, 'duration（秒）')
+  if (input.fps !== 30 && input.fps !== 60) throw new Error('fps 必须是 30 或 60。')
+  if (input.interpolation !== undefined && input.interpolation !== 'continuous' && input.interpolation !== 'eased') {
+    throw new Error('interpolation 仅支持 continuous / eased。')
+  }
+  if (!object(input.canvas)) throw new Error('缺少 canvas.width / height。')
+  const width = number(input.canvas.width, 256, 3840, 'canvas.width')
+  const height = number(input.canvas.height, 256, 3840, 'canvas.height')
+  if (!Number.isInteger(width) || !Number.isInteger(height)) throw new Error('画布宽高必须是整数。')
+  if (!object(input.camera)) throw new Error('缺少 camera.position / target / fov。')
+  const camera = {
+    position: vector(input.camera.position, 50, 'camera.position'),
+    target: vector(input.camera.target, 20, 'camera.target'),
+    fov: number(input.camera.fov, 10, 100, 'camera.fov'),
+  }
+  if (Math.hypot(...camera.position.map((v, i) => v - camera.target[i])) < 0.1) {
+    throw new Error('相机位置不能与观察目标重合。')
+  }
+  if (!Array.isArray(input.keyframes) || input.keyframes.length < 2 || input.keyframes.length > 241) {
+    throw new Error('keyframes 需要 2～241 个关键帧。')
+  }
+  let previous = -1
+  const keyframes = input.keyframes.map((value, i): MotionFrame => {
+    const field = `keyframes[${i}]`
+    if (!object(value)) throw new Error(`${field} 必须是对象。`)
+    const t = number(value.t, 0, duration, `${field}.t`)
+    if (t <= previous) throw new Error('关键帧时间必须严格递增，不能重复。')
+    if (i === 0 && t !== 0) throw new Error('第一个关键帧必须从 0 秒开始。')
+    previous = t
+    const ease = value.ease ?? 'smooth'
+    if (ease !== 'linear' && ease !== 'smooth' && ease !== 'ease-out') throw new Error(`${field}.ease 仅支持 linear / smooth / ease-out。`)
+    return {
+      t, position: vector(value.position, 20, `${field}.position`),
+      rotationDeg: vector(value.rotationDeg, 3600, `${field}.rotationDeg`),
+      scale: number(value.scale, 0.05, 5, `${field}.scale`),
+      description: text(value.description, '手机运动', 160), ease,
+    }
+  })
+  return {
+    schema: MOTION_PLAN_SCHEMA, title: text(input.title, '手机运动计划', 80),
+    brief: text(input.brief, '', 1000), deviceId: input.deviceId as DeviceId,
+    duration, fps: input.fps, canvas: { width, height }, camera, keyframes,
+    ...(input.interpolation ? { interpolation: input.interpolation } : {}),
+  }
+}
+
+/** Accept a single AI response object, including fenced JSON and explanatory prose. */
+export function parseMotionPlan(source: string): MotionPlan {
+  if (!source.trim()) throw new Error('请粘贴运动计划 JSON，或选择本地 JSON 文件。')
+  if (new TextEncoder().encode(source).length > 1024 * 1024) throw new Error('运动计划不能超过 1 MiB。')
+  const cleaned = source.replace(/^\uFEFF/, '').trim()
+  try { return validateMotionPlan(JSON.parse(cleaned)) }
+  catch (error) { if (!(error instanceof SyntaxError)) throw error }
+  const candidates: unknown[] = []
+  let start = -1, depth = 0, quoted = false, escaped = false
+  for (let i = 0; i < cleaned.length; i++) {
+    const c = cleaned[i]
+    if (start < 0) { if (c === '{') { start = i; depth = 1 }; continue }
+    if (quoted) {
+      if (escaped) escaped = false
+      else if (c === '\\') escaped = true
+      else if (c === '"') quoted = false
+    } else if (c === '"') quoted = true
+    else if (c === '{') depth++
+    else if (c === '}' && --depth === 0) {
+      try { candidates.push(JSON.parse(cleaned.slice(start, i + 1))) } catch { /* Ignore prose braces. */ }
+      start = -1
+      if (candidates.length > 20) throw new Error('请只保留一份运动计划。')
+    }
+  }
+  const plans = candidates.filter(v => object(v) && v.schema === MOTION_PLAN_SCHEMA)
+  if (plans.length !== 1) throw new Error('请提供一份完整的 phone-motion/1 JSON 运动计划。')
+  return validateMotionPlan(plans[0])
+}
+
+/** Compile to the existing Euler/scalar tracks: preview, scrub, edit and export share them. */
+export function applyMotionPlan(project: Project, input: unknown): Project {
+  const plan = validateMotionPlan(input)
+  const tracks: TrackSet = {}
+  for (const [prefix, field, factor] of [
+    ['position', 'position', 1], ['rotation', 'rotationDeg', DEG],
+  ] as const) {
+    for (const [i, axis] of ['x', 'y', 'z'].entries()) {
+      tracks[`${prefix}.${axis}`] = {
+        ...(plan.interpolation === 'continuous' ? { interpolation: 'continuous' as const } : {}),
+        keys: plan.keyframes.map(k => ({ t: k.t, v: k[field][i] * factor, ease: easeHandles[k.ease] })),
+      }
+    }
+  }
+  tracks.scale = {
+    ...(plan.interpolation === 'continuous' ? { interpolation: 'continuous' as const } : {}),
+    keys: plan.keyframes.map(k => ({ t: k.t, v: k.scale, ease: easeHandles[k.ease] })),
+  }
+  const existing = project.devices[0]
+  return {
+    ...project, name: plan.title, duration: plan.duration, fps: plan.fps, output: plan.canvas,
+    devices: [{
+      instanceId: existing?.instanceId ?? crypto.randomUUID(), id: plan.deviceId,
+      colorway: existing?.id === plan.deviceId ? existing.colorway : getManifest(plan.deviceId).colorways[0].id,
+      orientation: 'portrait', screen: null, screenFit: 'contain', transform: tracks,
+    }],
+    camera: {
+      fov: plan.camera.fov, preset: null,
+      tracks: { ...staticVec3('position', plan.camera.position), ...staticVec3('target', plan.camera.target), fov: staticTrack(plan.camera.fov) },
+    },
+    motionPlan: { title: plan.title, brief: plan.brief, cues: plan.keyframes.map(k => ({ t: k.t, description: k.description })) },
+  }
+}
+
+/** Remove AI motion without deleting the phone, its finish, or the scene look. */
+export function clearMotionPlan(project: Project): Project {
+  if (!project.motionPlan) return project
+  const { motionPlan: _plan, ...rest } = project
+  const camera = sampleTimeline(project, 0).camera
+  return {
+    ...rest,
+    devices: project.devices.map((device, index) => index !== 0 ? device : {
+      ...device,
+      transform: { ...staticVec3('position', [0, 0, 0]), ...staticVec3('rotation', [0, 0, 0]), scale: staticTrack(1) },
+    }),
+    camera: { ...project.camera, fov: camera.fov, tracks: {
+      ...staticVec3('position', camera.position), ...staticVec3('target', camera.target), fov: staticTrack(camera.fov),
+    } },
+  }
+}
+
+/** Mock AI response. Intentionally deterministic; future AI returns the same JSON contract. */
+export function generateMockMotionPlan(brief: string, deviceId: DeviceId, canvas: Project['output']): MotionPlan {
+  const poses: [Vec3, Vec3, number, string][] = [
+    [[-.3, -.12, 0], [8, -38, -8], .85, '手机从左下方倾斜入场'],
+    [[-.16, -.04, 0], [5, -25, -5], .92, '向画面中央移动，缓慢抬起'],
+    [[0, .02, 0], [2, -12, -2], 1, '回到中央，转向正面'],
+    [[0, .06, 0], [0, 0, 0], 1, '正面悬停，展示完整机身'],
+    [[.1, .08, 0], [-2, 12, 2], 1, '向右轻移，开始平稳旋转'],
+    [[.18, .06, 0], [-3, 42, 3], .99, '继续转动，露出侧面厚度'],
+    [[.2, .03, 0], [-2, 84, 2], .98, '经过侧面，保持连续转速'],
+    [[.13, .01, 0], [-1, 132, 1], .97, '从侧面连续转向背部'],
+    [[0, 0, 0], [0, 180, 0], .94, '背部朝向镜头'],
+    [[-.13, .01, 0], [1, 228, -1], .97, '向左移动，继续转动'],
+    [[-.2, .03, 0], [2, 276, -2], .98, '经过另一侧边缘'],
+    [[-.1, .04, 0], [1, 324, -1], .99, '转回正面，开始平稳减速'],
+    [[0, 0, 0], [0, 360, 0], 1, '完成一周旋转，正面定格'],
+    [[0, .04, .02], [-2, 360, 1], 1.02, '保持正面，轻微上浮'],
+    [[0, .02, .01], [-1, 360, .5], 1.01, '缓慢回落，收拢姿态'],
+    [[0, 0, 0], [0, 360, 0], 1, '正面居中，平稳收尾'],
+  ]
+  const size = getManifest(deviceId).bodySize
+  // Keep the mock's full body in frame in both portrait and landscape canvases.
+  const halfHeight = Math.max(size[1] * .72, (size[0] * .75 + .35) / (canvas.width / canvas.height))
+  const distance = Math.max(3.8, halfHeight / Math.tan(15 * DEG) + .25)
+  return validateMotionPlan({
+    schema: MOTION_PLAN_SCHEMA, title: '手机运动 · 入场、旋转与悬停', brief, deviceId,
+    duration: 15, fps: 30, interpolation: 'continuous', canvas, camera: { position: [0, 0, distance], target: [0, 0, 0], fov: 30 },
+    keyframes: poses.map(([position, rotationDeg, scale, description], t) => ({
+      t, position, rotationDeg, scale, description, ease: t >= 5 && t <= 10 ? 'linear' : 'smooth',
+    })),
+  })
+}
+
+/** Every whole second AND every explicit fractional keyframe, on the same time axis. */
+export function motionTimelineFrames(project: Project) {
+  const times = new Set<number>([0, project.duration])
+  for (let t = 1; t < project.duration; t++) times.add(t)
+  const explicit = new Set([...keyTimes(project.devices[0]?.transform ?? {}), ...keyTimes(project.camera.tracks)])
+  for (const t of explicit) if (t >= 0 && t <= project.duration) times.add(t)
+  for (const cue of project.motionPlan?.cues ?? []) if (cue.t <= project.duration) times.add(cue.t)
+  return [...times].sort((a, b) => a - b).map(t => {
+    const cues = project.motionPlan?.cues ?? []
+    const cue = cues.findLast(c => c.t <= t)
+    return { t, isKey: explicit.has(t), description: cue?.description ?? '手机姿态预览', state: sampleTimeline(project, t).devices[0] }
+  })
+}

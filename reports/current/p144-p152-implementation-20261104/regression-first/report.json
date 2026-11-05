@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-04T14:20:20.009Z",
+  "checks": [
+    {
+      "name": "text-field-keeps-wasd-input",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-restores-temporary-camera",
+      "status": "FAIL"
+    },
+    {
+      "name": "recorder-start-visible-1920x1080",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-start-visible-1366x768",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-start-visible-1000x800",
+      "status": "PASS"
+    },
+    {
+      "name": "recording-auto-stops-exactly-at-segment-end",
+      "status": "PASS",
+      "detail": {
+        "end": 3.5,
+        "max": 3.5
+      }
+    },
+    {
+      "name": "rerecord-retains-id-and-other-segment",
+      "status": "PASS"
+    },
+    {
+      "name": "rerecord-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "deleting-all-segments-restores-static-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "two-deletes-can-both-be-undone",
+      "status": "PASS"
+    },
+    {
+      "name": "version-four-camera-migration-preserves-sampled-curve",
+      "status": "PASS"
+    },
+    {
+      "name": "old-multivideo-fonts-and-effects-retained",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel-restores-editing-session",
+      "status": "PASS"
+    },
+    {
+      "name": "retry-after-cancel-exports-real-sixty-frames",
+      "status": "PASS"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "focus",
+      "status": "FAIL",
+      "error": "Error: escape-restores-temporary-camera"
+    },
+    {
+      "name": "camera-boundaries",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T14:20:20.470Z",
+      "url": "http://127.0.0.1:61617/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:20:20.942Z",
+      "url": "http://127.0.0.1:61617/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:20:21.658Z",
+      "url": "http://127.0.0.1:61617/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:20:24.270Z",
+      "url": "http://127.0.0.1:61617/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:20:24.701Z",
+      "url": "http://127.0.0.1:61617/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:20:25.402Z",
+      "url": "http://127.0.0.1:61617/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:20:26.618Z",
+      "url": "http://127.0.0.1:61617/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T14:20:33.240Z",
+      "url": "http://127.0.0.1:61617/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:20:33.705Z",
+      "url": "http://127.0.0.1:61617/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:20:34.207Z",
+      "url": "http://127.0.0.1:61617/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:20:34.911Z",
+      "url": "http://127.0.0.1:61617/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:20:36.133Z",
+      "url": "http://127.0.0.1:61617/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:20:36.601Z",
+      "url": "http://127.0.0.1:61617/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:20:37.302Z",
+      "url": "http://127.0.0.1:61617/?automation=1#editor"
+    }
+  ]
+}

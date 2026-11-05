@@ -1,0 +1,13 @@
+PASS: real Vite HTTP and studio API capabilities respond
+PYTHON_PLAYWRIGHT_DRIVER_STARTING
+PYTHON_PLAYWRIGHT_DRIVER_READY
+PASS: Python Playwright loads editor through real localhost TCP
+PASS: real GLB, decoder and WebGL scene become ready over HTTP
+PASS: page imports JSON and saves through the real Vite studio plugin
+PASS: saved independent storyboard bytes match submitted JSON
+PASS: browser downloads matching JSON over HTTP
+PASS: real TCP API continues to reject foreign origins
+PASS: Vite restart restores disk-saved plan and page selection
+PASS: no unhandled browser errors or missing HTTP resources
+PASS: existing default storyboard remains unchanged
+{"status": "PASS", "checks": 10, "serverStopped": true}

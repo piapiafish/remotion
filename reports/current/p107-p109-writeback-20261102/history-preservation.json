@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": {
+    "previousLogEntriesPreserved": true,
+    "P101ToP106RowsPreserved": true,
+    "P106AndPriorReportsPreserved": true,
+    "P101EnvironmentRecordPreserved": true
+  }
+}

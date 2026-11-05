@@ -1,0 +1,1351 @@
+{
+  "date": "2026-11-04T12:22:46.898Z",
+  "checks": [
+    {
+      "name": "two-real-models-ready",
+      "status": "PASS"
+    },
+    {
+      "name": "solid-selected-outline-and-axis-controls",
+      "status": "PASS"
+    },
+    {
+      "name": "solid-cannot-cross-fixed-floor",
+      "status": "PASS"
+    },
+    {
+      "name": "empty-object-row-is-compact",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-really-removed-from-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-reattaches-at-start",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-removed-at-exclusive-end",
+      "status": "PASS"
+    },
+    {
+      "name": "one-phone-has-three-independent-clips",
+      "status": "PASS"
+    },
+    {
+      "name": "repeated-source-deduplicates-by-content",
+      "status": "PASS"
+    },
+    {
+      "name": "overlapping-video-expands-only-its-object-row",
+      "status": "PASS"
+    },
+    {
+      "name": "nonoverlapping-videos-auto-share-one-row",
+      "status": "PASS"
+    },
+    {
+      "name": "two-intervals-edit-independently",
+      "status": "PASS"
+    },
+    {
+      "name": "pause-holds-identical-decoded-screen",
+      "status": "PASS"
+    },
+    {
+      "name": "moving-video-up-changes-composited-screen",
+      "status": "PASS"
+    },
+    {
+      "name": "layer-undo-preserves-all-clip-times",
+      "status": "PASS"
+    },
+    {
+      "name": "blue-handle-only-changes-visibility",
+      "status": "PASS",
+      "detail": {
+        "dt": 0.18399264029438822
+      }
+    },
+    {
+      "name": "orange-handle-only-changes-play-window",
+      "status": "PASS"
+    },
+    {
+      "name": "version-four-saves-all-clips-and-fonts",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed-initial-anchor-procedural-phone",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "pose": {
+            "position": [
+              0.23999999999999994,
+              0.3,
+              0
+            ],
+            "rotation": [
+              0,
+              0.25,
+              0
+            ],
+            "scale": 0.92,
+            "visible": true
+          },
+          "anchor": [
+            -0.46,
+            0,
+            0
+          ],
+          "device": {
+            "instanceId": "e7ccc24b-5019-4864-a784-346e00b718f7",
+            "id": "procedural-phone",
+            "colorway": "graphite",
+            "orientation": "portrait",
+            "screen": null,
+            "screenFit": "contain",
+            "transform": {
+              "position.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.23999999999999994,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.3,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.25,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "scale": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.92,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "scaleAnchor": [
+              -0.46,
+              0,
+              0
+            ],
+            "name": "手机 A"
+          }
+        },
+        "after": {
+          "position": [
+            0.09063950274658733,
+            0.235988358319966,
+            0
+          ],
+          "rotation": [
+            0,
+            0.25,
+            0
+          ],
+          "scale": 0.7236976321812292,
+          "visible": true
+        },
+        "expected": 0.09063950274658733
+      }
+    },
+    {
+      "name": "scale-one-undo-procedural-phone",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed-initial-anchor-iphone-17-pro",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "pose": {
+            "position": [
+              0.23999999999999994,
+              0.3,
+              0
+            ],
+            "rotation": [
+              0,
+              0.25,
+              0
+            ],
+            "scale": 0.92,
+            "visible": true
+          },
+          "anchor": [
+            -0.46,
+            0,
+            0
+          ],
+          "device": {
+            "instanceId": "e7ccc24b-5019-4864-a784-346e00b718f7",
+            "id": "iphone-17-pro",
+            "colorway": "original-blue",
+            "orientation": "portrait",
+            "screen": null,
+            "screenFit": "contain",
+            "transform": {
+              "position.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.23999999999999994,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.3,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.25,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "scale": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.92,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "scaleAnchor": [
+              -0.46,
+              0,
+              0
+            ],
+            "name": "手机 A"
+          }
+        },
+        "after": {
+          "position": [
+            0.09063950274658733,
+            0.235988358319966,
+            0
+          ],
+          "rotation": [
+            0,
+            0.25,
+            0
+          ],
+          "scale": 0.7236976321812292,
+          "visible": true
+        },
+        "expected": 0.09063950274658733
+      }
+    },
+    {
+      "name": "scale-one-undo-iphone-17-pro",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed-initial-anchor-iphone-17-pro-max",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "pose": {
+            "position": [
+              0.23999999999999994,
+              0.3,
+              0
+            ],
+            "rotation": [
+              0,
+              0.25,
+              0
+            ],
+            "scale": 0.92,
+            "visible": true
+          },
+          "anchor": [
+            -0.46,
+            0,
+            0
+          ],
+          "device": {
+            "instanceId": "e7ccc24b-5019-4864-a784-346e00b718f7",
+            "id": "iphone-17-pro-max",
+            "colorway": "cosmic-orange",
+            "orientation": "portrait",
+            "screen": null,
+            "screenFit": "contain",
+            "transform": {
+              "position.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.23999999999999994,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.3,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.25,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "scale": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.92,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "scaleAnchor": [
+              -0.46,
+              0,
+              0
+            ],
+            "name": "手机 A"
+          }
+        },
+        "after": {
+          "position": [
+            0.09063950274658733,
+            0.235988358319966,
+            0
+          ],
+          "rotation": [
+            0,
+            0.25,
+            0
+          ],
+          "scale": 0.7236976321812292,
+          "visible": true
+        },
+        "expected": 0.09063950274658733
+      }
+    },
+    {
+      "name": "scale-one-undo-iphone-17-pro-max",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed-initial-anchor-pixel-9-pro-xl",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "pose": {
+            "position": [
+              0.23999999999999994,
+              0.3,
+              0
+            ],
+            "rotation": [
+              0,
+              0.25,
+              0
+            ],
+            "scale": 0.92,
+            "visible": true
+          },
+          "anchor": [
+            -0.46,
+            0,
+            0
+          ],
+          "device": {
+            "instanceId": "e7ccc24b-5019-4864-a784-346e00b718f7",
+            "id": "pixel-9-pro-xl",
+            "colorway": "obsidian",
+            "orientation": "portrait",
+            "screen": null,
+            "screenFit": "contain",
+            "transform": {
+              "position.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.23999999999999994,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.3,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.25,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "scale": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.92,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "scaleAnchor": [
+              -0.46,
+              0,
+              0
+            ],
+            "name": "手机 A"
+          }
+        },
+        "after": {
+          "position": [
+            0.09063950274658733,
+            0.235988358319966,
+            0
+          ],
+          "rotation": [
+            0,
+            0.25,
+            0
+          ],
+          "scale": 0.7236976321812292,
+          "visible": true
+        },
+        "expected": 0.09063950274658733
+      }
+    },
+    {
+      "name": "scale-one-undo-pixel-9-pro-xl",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed-initial-anchor-galaxy-s26-ultra",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "pose": {
+            "position": [
+              0.23999999999999994,
+              0.3,
+              0
+            ],
+            "rotation": [
+              0,
+              0.25,
+              0
+            ],
+            "scale": 0.92,
+            "visible": true
+          },
+          "anchor": [
+            -0.46,
+            0,
+            0
+          ],
+          "device": {
+            "instanceId": "e7ccc24b-5019-4864-a784-346e00b718f7",
+            "id": "galaxy-s26-ultra",
+            "colorway": "titanium",
+            "orientation": "portrait",
+            "screen": null,
+            "screenFit": "contain",
+            "transform": {
+              "position.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.23999999999999994,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.3,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "position.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.x": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.y": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.25,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "rotation.z": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "scale": {
+                "keys": [
+                  {
+                    "t": 0,
+                    "v": 0.92,
+                    "ease": [
+                      0.33,
+                      0,
+                      0.15,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "scaleAnchor": [
+              -0.46,
+              0,
+              0
+            ],
+            "name": "手机 A"
+          }
+        },
+        "after": {
+          "position": [
+            0.09063950274658733,
+            0.235988358319966,
+            0
+          ],
+          "rotation": [
+            0,
+            0.25,
+            0
+          ],
+          "scale": 0.7236976321812292,
+          "visible": true
+        },
+        "expected": 0.09063950274658733
+      }
+    },
+    {
+      "name": "scale-one-undo-galaxy-s26-ultra",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-extruded-glyph-never-crosses-ground",
+      "status": "PASS",
+      "detail": {
+        "min": -0.43832499547004716,
+        "ground": -0.7012
+      }
+    },
+    {
+      "name": "solid-z-axis-responds-to-real-mouse-drag",
+      "status": "PASS",
+      "detail": {
+        "axis": {
+          "x": 657.5667106390379,
+          "y": 210.05599975245033
+        },
+        "before": 0,
+        "after": 0.40799364141866273
+      }
+    },
+    {
+      "name": "overlap-drags-key-before-video",
+      "status": "PASS"
+    },
+    {
+      "name": "selected-key-keeps-arrow-focus",
+      "status": "PASS"
+    },
+    {
+      "name": "object-base-edge-controls-existence",
+      "status": "PASS"
+    },
+    {
+      "name": "object-label-has-large-colored-hit-area",
+      "status": "PASS"
+    },
+    {
+      "name": "object-label-remains-visible-while-scrolling",
+      "status": "PASS",
+      "detail": {
+        "sticky": {
+          "x": 12,
+          "y": 744,
+          "width": 140,
+          "height": 98
+        },
+        "scroll": {
+          "x": 0,
+          "y": 714,
+          "width": 1270,
+          "height": 250
+        }
+      }
+    },
+    {
+      "name": "compact-page-does-not-overflow-horizontally",
+      "status": "PASS"
+    },
+    {
+      "name": "wasd-pans-camera-at-faster-default-speed",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard-pan-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "arrow-left-orbits-around-scene-center",
+      "status": "PASS"
+    },
+    {
+      "name": "arrow-up-moves-forward",
+      "status": "PASS"
+    },
+    {
+      "name": "countdown-keeps-playhead-still",
+      "status": "PASS"
+    },
+    {
+      "name": "new-camera-keys-produce-continuous-recorded-track",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-keeps-objects-locked",
+      "status": "PASS"
+    },
+    {
+      "name": "compact-recorder-adopt-remains-visible",
+      "status": "PASS"
+    },
+    {
+      "name": "recording-can-be-adopted-and-undone",
+      "status": "PASS"
+    },
+    {
+      "name": "adopt-one-undo-restores-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "ten-cycles-remove-all-object-nodes-and-decoders",
+      "status": "PASS",
+      "detail": [
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        }
+      ]
+    },
+    {
+      "name": "repeated-entry-has-bounded-gpu-resource-counts",
+      "status": "PASS",
+      "detail": [
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        }
+      ]
+    },
+    {
+      "name": "arbitrary-export-time-restores-future-object-and-video",
+      "status": "PASS"
+    },
+    {
+      "name": "offline-restores-all-media-clocks-layers-and-anchors",
+      "status": "PASS"
+    },
+    {
+      "name": "offline-solid-glyphs-and-contact-restore",
+      "status": "PASS"
+    },
+    {
+      "name": "missing-source-identifies-both-references-without-masking-cache",
+      "status": "PASS"
+    },
+    {
+      "name": "rebind-repairs-one-clip-without-overwriting-other-clock",
+      "status": "PASS"
+    },
+    {
+      "name": "rebind-is-undoable",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-multivideo-effects-1080p30-120-frame-export",
+      "status": "PASS"
+    },
+    {
+      "name": "all-boundary-references-use-formal-export-preparation",
+      "status": "PASS"
+    },
+    {
+      "name": "single-30-second-900-frame-export",
+      "status": "PASS",
+      "detail": {
+        "project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p135-p143-implementation-20261104\\browser-verified\\third-feedback-30s.mockup"
+      }
+    },
+    {
+      "name": "cancel-releases-multiple-decoder-export-session",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-two-second-retry-after-cancel",
+      "status": "PASS"
+    },
+    {
+      "name": "editing-restored-after-retry",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "smoke",
+      "status": "PASS"
+    },
+    {
+      "name": "media",
+      "status": "PASS"
+    },
+    {
+      "name": "authoring",
+      "status": "PASS"
+    },
+    {
+      "name": "timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "camera",
+      "status": "PASS"
+    },
+    {
+      "name": "resources",
+      "status": "PASS"
+    },
+    {
+      "name": "restore",
+      "status": "PASS"
+    },
+    {
+      "name": "exports",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T12:22:47.349Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:22:47.835Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:22:48.494Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:23:00.262Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:23:00.761Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:23:01.409Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:23:25.019Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:23:25.516Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:23:26.204Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:23:39.102Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:23:39.609Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:23:40.273Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:23:44.017Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:23:44.513Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:23:45.163Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:23:47.575Z",
+      "url": "http://127.0.0.1:63879/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T12:23:54.822Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:23:56.634Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:23:57.175Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:23:57.907Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:24:10.072Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:24:10.624Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:24:11.340Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:24:18.254Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:24:18.758Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:24:19.467Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:27:56.620Z",
+      "url": "http://127.0.0.1:63879/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:27:57.116Z",
+      "url": "http://127.0.0.1:63879/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:27:57.833Z",
+      "url": "http://127.0.0.1:63879/?automation=1#editor"
+    }
+  ]
+}

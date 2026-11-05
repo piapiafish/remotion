@@ -1,0 +1,13 @@
+FAIL D02-legacy-time-boundaries-remain-correct
+SCENARIO FAIL media-regression Error: D02-legacy-time-boundaries-remain-correct
+PASS E01-ordinary-edits-stay-static
+FAIL E02-pose-animation-has-correct-two-second-midpoint
+SCENARIO FAIL authoring-regression Error: E02-pose-animation-has-correct-two-second-midpoint
+FAIL G02-numeric-instructions-preserve-before-range-and-position
+SCENARIO FAIL g02 Error: G02-numeric-instructions-preserve-before-range-and-position
+PASS solid-and-sticker-both-support-front-back-placement
+PASS transparent-output-with-solid-and-phone-renders
+PASS compact-window-controls-remain-usable
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"media-regression","status":"FAIL","error":"Error: D02-legacy-time-boundaries-remain-correct"},{"name":"authoring-regression","status":"FAIL","error":"Error: E02-pose-animation-has-correct-two-second-midpoint"},{"name":"g02","status":"FAIL","error":"Error: G02-numeric-instructions-preserve-before-range-and-position"},{"name":"occlusion","status":"PASS"}],"checks":9}

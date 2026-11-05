@@ -1,0 +1,16 @@
+PASS solid-is-offered-as-focus-target
+PASS stickers-start-clear
+PASS sticker-depth-setting-saved-in-project
+PASS sticker-dof-changes-real-canvas-pixels
+PASS deleting-solid-focus-retains-effective-distance
+PASS version-five-contains-segments-fonts-clips-and-sticker-depth
+PASS fresh-session-restores-segments-and-effects
+PASS editor-layout-1920x1080
+PASS editor-layout-1366x768
+PASS editor-layout-1000x800
+PASS rerecord-uses-chosen-segment-window
+PASS discard-rerecord-keeps-old-project
+SCENARIO FAIL exports TimeoutError: locator.click: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: '视频', exact: true })[22m
+

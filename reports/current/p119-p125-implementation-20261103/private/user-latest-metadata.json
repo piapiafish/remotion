@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-11-03T20:07:49.897978+08:00",
+  "fileLastWrite": "2026-11-03T19:32:40.421654+08:00",
+  "sha256": "54a260de007d4d66eec6d22f9218fabfaace067201a2e89ba18483bd9bcafce1",
+  "bytes": 37831995,
+  "duration": 18.084467,
+  "floor": -1.5005773088488468,
+  "effects": {
+    "depthOfField": {
+      "enabled": false,
+      "focusDevice": null,
+      "distance": 3.2,
+      "strength": 0.5
+    },
+    "motionBlur": {
+      "enabled": false,
+      "strength": 0.5,
+      "samples": 4
+    }
+  },
+  "screens": [
+    {
+      "kind": "image",
+      "width": 1000,
+      "height": 969,
+      "duration": null
+    },
+    {
+      "kind": "video",
+      "width": 720,
+      "height": 1584,
+      "duration": 15.159167
+    },
+    {
+      "kind": "video",
+      "width": 720,
+      "height": 1584,
+      "duration": 18.084467
+    }
+  ]
+}

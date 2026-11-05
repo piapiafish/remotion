@@ -1,0 +1,33 @@
+PASS fixed-initial-anchor-procedural-phone
+PASS scale-one-undo-procedural-phone
+PASS fixed-initial-anchor-iphone-17-pro
+PASS scale-one-undo-iphone-17-pro
+PASS fixed-initial-anchor-iphone-17-pro-max
+PASS scale-one-undo-iphone-17-pro-max
+PASS fixed-initial-anchor-pixel-9-pro-xl
+PASS scale-one-undo-pixel-9-pro-xl
+PASS fixed-initial-anchor-galaxy-s26-ultra
+PASS scale-one-undo-galaxy-s26-ultra
+SCENARIO FAIL authoring Error: page.evaluate: TypeError: Failed to resolve module specifier 'three'
+    at eval (eval at evaluate (:290:30), <anonymous>:1:24)
+    at UtilityScript.evaluate (<anonymous>:292:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PASS overlap-drags-key-before-video
+PASS selected-key-keeps-arrow-focus
+PASS object-base-edge-controls-existence
+PASS object-label-has-large-colored-hit-area
+PASS object-label-remains-visible-while-scrolling
+PASS compact-page-does-not-overflow-horizontally
+PASS wasd-pans-camera-at-faster-default-speed
+PASS keyboard-pan-is-one-undo
+PASS arrow-left-orbits-around-scene-center
+PASS arrow-up-moves-forward
+PASS countdown-keeps-playhead-still
+PASS new-camera-keys-produce-continuous-recorded-track
+PASS recorder-keeps-objects-locked
+PASS compact-recorder-adopt-remains-visible
+PASS recording-can-be-adopted-and-undone
+PASS adopt-one-undo-restores-camera
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"authoring","status":"FAIL","error":"Error: page.evaluate: TypeError: Failed to resolve module specifier 'three'\n    at eval (eval at evaluate (:290:30), <anonymous>:1:24)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"},{"name":"timeline","status":"PASS"},{"name":"camera","status":"PASS"}],"checks":28}

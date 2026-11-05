@@ -1,0 +1,190 @@
+{
+  "date": "2026-11-01T11:15:51.186285+00:00",
+  "officialProjectWritten": false,
+  "commands": [
+    {
+      "name": "portable-browser-script-syntax",
+      "command": [
+        "node",
+        "--check",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\payload\\scripts\\test-device-lifecycle.cjs"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-browser-script-lint",
+      "command": [
+        "node",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\project\\node_modules\\oxlint\\bin\\oxlint",
+        "scripts/test-device-lifecycle.cjs"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\payload",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "official-read-only-preflight",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\apply_p102.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"READY\", \"project\": \"D:\\\\remotion\\\\p0\\\\MultiAgent-3D-Promo-Studio\", \"filesToWrite\": 112, \"checkOnly\": true}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "install-onto-original-project-copy",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\apply_p102.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-install"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-install\", \"filesToWrite\": 112, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-install\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-install\\\\reports\\\\archive\\\\p102-before-20261101-191552-393020\", \"files\": 112, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-install\\\\reports\\\\current\\\\p102-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "same-version-is-idempotent",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\apply_p102.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-install"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"ALREADY_APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-install\", \"filesToWrite\": 0, \"checkOnly\": false}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "project-document-links",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-install\\scripts\\check-project-docs.py"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-install",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\n  \"date\": \"2026-11-01T19:15:53.294541+08:00\",\n  \"markdownFilesChecked\": 71,\n  \"errors\": [],\n  \"historicalLinkWarnings\": [\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/DEVELOPMENT_LOG.md\",\n      \"line\": 3,\n      \"target\": \"reports/archive/README.md\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/DEVELOPMENT_LOG.md\",\n      \"line\": 28,\n      \"target\": \"reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/ISSUES_LOG.md\",\n      \"line\": 15,\n      \"target\": \"reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/ISSUES_LOG.md\",\n      \"line\": 30,\n      \"target\": \"reports/archive/pre-20261101/CONTEXT.md\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/docs/ARCHITECTURE.md\",\n      \"line\": 38,\n      \"target\": \"PHONE_MOTION_PLAN.md\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/docs/ARCHITECTURE.md\",\n      \"line\": 40,\n      \"target\": \"AUTOMATED_STORYBOARD_FLOW.md\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/docs/ARCHITECTURE.md\",\n      \"line\": 52,\n      \"target\": \"../reports/archive/pre-20261101/CONTEXT.md\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/docs/ARCHITECTURE.md\",\n      \"line\": 52,\n      \"target\": \"reference/mockup-app-spec.md\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 9,\n      \"target\": \"../archive/pre-20261101/original-documents.zip\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 9,\n      \"target\": \"file-organization.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 10,\n      \"target\": \"document-check.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 11,\n      \"target\": \"document-check.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 12,\n      \"target\": \"frontend-tests.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 13,\n      \"target\": \"build.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 14,\n      \"target\": \"lint.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 15,\n      \"target\": \"agent-tests.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 19,\n      \"target\": \"results.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 19,\n      \"target\": \"agent-tests-sandbox.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 23,\n      \"target\": \"../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 23,\n      \"target\": \"../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 25,\n      \"target\": \"../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p102-before-20261101-191552-393020/reports/current/README.md\",\n      \"line\": 27,\n      \"target\": \"../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md\"\n    }\n  ],\n  \"integrity\": {\n    \"status\": \"NOT_RUN\"\n  },\n  \"status\": \"PASS\"\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "install-prior-0",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-upgrade-0"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\", \"filesToWrite\": 57, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\\\\reports\\\\archive\\\\p101-before-20261101-191553-443111\", \"files\": 57, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\\\\reports\\\\current\\\\p101-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "upgrade-prior-0",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\apply_p102.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-upgrade-0"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\", \"filesToWrite\": 59, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\\\\reports\\\\archive\\\\p102-before-20261101-191553-893233\", \"files\": 59, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-0\\\\reports\\\\current\\\\p102-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "install-prior-1",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-upgrade-1"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\", \"filesToWrite\": 59, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\\\\reports\\\\archive\\\\p101-before-20261101-191554-390285\", \"files\": 59, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\\\\reports\\\\current\\\\p101-plan-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "upgrade-prior-1",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\apply_p102.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-upgrade-1"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\", \"filesToWrite\": 57, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\\\\reports\\\\archive\\\\p102-before-20261101-191554-848515\", \"files\": 57, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p102-20261101-4dizbre0\\\\verify-upgrade-1\\\\reports\\\\current\\\\p102-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "preserve-unknown-source-edit",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\delivery\\apply_p102.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\verify-install"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR: Project file changed since the audit; preserving it: src/store/project.ts\n",
+      "status": "PASS"
+    }
+  ],
+  "checks": {
+    "original_backups": {
+      "status": "PASS",
+      "files": 9
+    },
+    "document_links": {
+      "status": "PASS",
+      "markdown_files": 71,
+      "errors": [],
+      "historical_warning_count": 22
+    },
+    "unknown_source_edits_preserved": "PASS",
+    "official_source_integrity": {
+      "status": "PASS",
+      "files": 274,
+      "mismatches": []
+    },
+    "p101_original_evidence": {
+      "status": "PASS",
+      "files": 52
+    },
+    "task_state": "P1-02 pending human acceptance; next P1-03; phase one not accepted"
+  },
+  "status": "PASS"
+}

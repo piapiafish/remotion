@@ -1,0 +1,245 @@
+{
+  "date": "2026-11-02T09:44:30.062Z",
+  "phase": "errors",
+  "url": "http://127.0.0.1:52331",
+  "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+  "checks": [
+    {
+      "id": "configure-has-visible-cause-and-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "configure-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "configure-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "configure-retry-downloads-valid-file",
+      "status": "PASS"
+    },
+    {
+      "id": "encode-has-visible-cause-and-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "encode-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0.03639999997615819,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "encode-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "encode-retry-downloads-valid-file",
+      "status": "PASS"
+    },
+    {
+      "id": "flush-has-visible-cause-and-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "flush-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0.04219999998807919,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "flush-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "flush-retry-downloads-valid-file",
+      "status": "PASS"
+    },
+    {
+      "id": "render-has-visible-cause-and-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "render-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0.042399999976158315,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "render-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "render-retry-downloads-valid-file",
+      "status": "PASS"
+    },
+    {
+      "id": "allocation-has-visible-cause-and-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "allocation-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0.036399999976158386,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "allocation-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "allocation-retry-downloads-valid-file",
+      "status": "PASS"
+    },
+    {
+      "id": "output-has-visible-cause-and-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "output-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0.06100000000000029,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "output-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "output-retry-downloads-valid-file",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-during-stalled-flush-restores-editor",
+      "status": "PASS"
+    },
+    {
+      "id": "decode-error-is-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "decode-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "decode-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "seek-error-is-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "seek-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0.01229999995231636,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "seek-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-interrupts-pending-seek",
+      "status": "PASS",
+      "milliseconds": 41
+    },
+    {
+      "id": "editor-controls-locked-during-export",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-resources-and-document-restored",
+      "status": "PASS",
+      "after": {
+        "playing": false,
+        "playhead": 0,
+        "active": false,
+        "busy": false,
+        "ratio": 1,
+        "width": 1068,
+        "height": 601
+      }
+    },
+    {
+      "id": "cancel-preview-plays",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-followed-by-successful-export",
+      "status": "PASS"
+    },
+    {
+      "id": "no-encoder-offers-png-fallback",
+      "status": "PASS"
+    },
+    {
+      "id": "png-fallback-contains-all-frames",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.76"
+}

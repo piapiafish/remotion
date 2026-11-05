@@ -1,0 +1,30 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/store/keyframeEditing.test.ts (14 tests | 1 failed) 26ms
+     × supports existing camera target and fov channels 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/store/keyframeEditing.test.ts > manual scalar keyframe editing > supports existing camera target and fov channels
+TypeError: Cannot read properties of undefined (reading 'v')
+ ❯ src/store/keyframeEditing.test.ts:45:67
+     43|     const camera = { kind: 'camera' } as const
+     44|     s().setPlayhead(1); s().addTimelineKey(camera, 'target.x'); s().se…
+     45|     expect(targetTracks(s().project, camera)?.['target.x'].keys[1].v).…
+       |                                                                   ^
+     46|     s().addTimelineKey(camera, 'fov'); s().setTimelineKeyValue(45)
+     47|     expect(sampleTimeline(s().project, 1).camera.fov).toBe(45)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 39 passed (40)
+      Tests  1 failed | 461 passed (462)
+   Start at  22:10:15
+   Duration  2.67s (transform 14.95s, setup 0ms, import 26.32s, tests 1.47s, environment 3ms)
+

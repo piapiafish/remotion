@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-04T14:09:03.285Z",
+  "checks": [],
+  "scenarios": [
+    {
+      "name": "effects",
+      "status": "FAIL",
+      "error": "Error: locator.fill: Error: Malformed value\nCall log:\n\u001b[2m  - waiting for getByLabel('景深强度', { exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <input min=\"0\" max=\"1\" step=\"0.01\" value=\"0.5\" type=\"range\" aria-label=\"景深强度\"/>\u001b[22m\n\u001b[2m    - fill(\".65\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n"
+    },
+    {
+      "name": "exports",
+      "status": "FAIL",
+      "error": "Error: ENOENT: no such file or directory, open 'D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p144-p152-implementation-20261104\\effects-first\\delivery.json'"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T14:09:03.662Z",
+      "url": "http://127.0.0.1:49866/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:09:04.146Z",
+      "url": "http://127.0.0.1:49866/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:09:04.796Z",
+      "url": "http://127.0.0.1:49866/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:09:09.761Z",
+      "url": "http://127.0.0.1:49866/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:09:10.246Z",
+      "url": "http://127.0.0.1:49866/?automation=1#templates"
+    }
+  ]
+}

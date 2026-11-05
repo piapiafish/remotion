@@ -1,0 +1,19 @@
+{
+  "schema": "phone-motion/1",
+  "title": "手机运动示例 · 入场与完整旋转",
+  "brief": "先让手机入场，旋转一周，最后正面停留；不需要应用录屏。",
+  "deviceId": "iphone-17-pro",
+  "duration": 10,
+  "fps": 30,
+  "interpolation": "continuous",
+  "canvas": { "width": 1080, "height": 1920 },
+  "camera": { "position": [0, 0, 4.5], "target": [0, 0, 0], "fov": 30 },
+  "keyframes": [
+    { "t": 0, "position": [-0.3, -0.12, 0], "rotationDeg": [8, -38, -8], "scale": 0.85, "description": "从左下方倾斜进入", "ease": "smooth" },
+    { "t": 2, "position": [0, 0, 0], "rotationDeg": [0, 0, 0], "scale": 1, "description": "正面居中，开始完整旋转", "ease": "linear" },
+    { "t": 5, "position": [0.15, 0.05, 0], "rotationDeg": [0, 180, 0], "scale": 1, "description": "展示手机背面", "ease": "linear" },
+    { "t": 8, "position": [0, 0, 0], "rotationDeg": [0, 360, 0], "scale": 1, "description": "完成一周旋转，回到正面", "ease": "smooth" },
+    { "t": 9, "position": [0, 0.08, 0], "rotationDeg": [-3, 360, 2], "scale": 1.03, "description": "保持正面，轻轻上浮", "ease": "smooth" },
+    { "t": 10, "position": [0, 0, 0], "rotationDeg": [0, 360, 0], "scale": 1, "description": "正面悬停收尾", "ease": "smooth" }
+  ]
+}

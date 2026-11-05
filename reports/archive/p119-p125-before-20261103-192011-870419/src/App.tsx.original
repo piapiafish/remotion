@@ -1,0 +1,45 @@
+import { useEffect, useState } from 'react'
+import { TopBar } from './ui/TopBar/TopBar'
+import { Artboard } from './ui/Artboard/Artboard'
+import { TimelineBar } from './ui/Timeline/TimelineBar'
+import { ObjectPanel } from './ui/Inspector/ObjectPanel'
+import { EnvironmentPanel } from './ui/Inspector/EnvironmentPanel'
+import { TemplatePage } from './ui/Templates/TemplatePage'
+import { ExportControls } from './ui/ExportDialog/ExportDialog'
+import { AgentPanel } from './ui/AgentPanel/AgentPanel'
+import { ProjectFeedback } from './ui/Feedback/ProjectFeedback'
+import { useProjectStore } from './store/project'
+import { useShortcuts } from './app/useShortcuts'
+import { useUnsavedChanges } from './app/useUnsavedChanges'
+import { useExportSession } from './export/session'
+import './App.css'
+
+function App() {
+  const busy = useExportSession(s=>s.busy), page = useProjectStore(s=>s.editorPage)
+  const mode = useProjectStore(s=>s.editorMode)
+  const [panel,setPanel] = useState<'objects'|'environment'>('objects')
+  const [dialog,setDialog] = useState<'export'|'assistant'|null>(null)
+  useShortcuts(); useUnsavedChanges()
+  useEffect(()=>{
+    const navigate = () => { const hash=location.hash; if(hash==='#templates' || hash==='#editor') useProjectStore.getState().setEditorPage(hash==='#editor'?'editor':'templates') }
+    window.addEventListener('popstate',navigate)
+    return ()=>window.removeEventListener('popstate',navigate)
+  },[])
+  useEffect(()=>{ if(location.hash!=='#'+page) history.pushState(null,'','#'+page) },[page])
+  useEffect(()=>{
+    const key=(e:KeyboardEvent)=>{if(e.key==='Escape'&&!useExportSession.getState().busy)setDialog(null)}
+    window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)
+  },[])
+  return <div className="app beginner-studio">
+    <ProjectFeedback/>
+    {page==='templates'?<TemplatePage/>:<>
+      <div inert={busy}><TopBar onExport={()=>setDialog('export')} onAssistant={()=>setDialog('assistant')}/></div>
+      <div className="app-body">
+        <main inert={busy} className={mode==='movie'?'stage-zone with-timeline':'stage-zone'}><Artboard/>{mode==='movie'&&<TimelineBar/>}</main>
+        <aside inert={busy} className="panel"><div className="panel-tabs" role="tablist" aria-label="设置板块"><button role="tab" aria-selected={panel==='objects'} onClick={()=>setPanel('objects')}>对象</button><button role="tab" aria-selected={panel==='environment'} onClick={()=>setPanel('environment')}>环境</button></div><div className="panel-content">{panel==='objects'?<ObjectPanel/>:<EnvironmentPanel/>}</div></aside>
+      </div>
+    </>}
+    {dialog&&page==='editor'&&<div className="dialog-shade" onClick={()=>{if(!busy)setDialog(null)}}><section role="dialog" aria-modal="true" aria-label={dialog==='export'?'导出作品':'动画助手（模拟）'} className="studio-dialog" onClick={e=>e.stopPropagation()}><header><h2>{dialog==='export'?'导出作品':'动画助手（模拟）'}</h2><button className="ghost-btn" disabled={busy} onClick={()=>setDialog(null)} aria-label="关闭面板">关闭</button></header>{dialog==='export'?<ExportControls/>:<AgentPanel/>}</section></div>}
+  </div>
+}
+export default App

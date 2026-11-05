@@ -1,0 +1,129 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createDefaultProject, createDevice } from './defaults'
+import { useProjectStore as useStore } from './project'
+import { emptyHistory, resetCoalescing } from './history'
+import { sampleTimeline } from '../timeline/sample'
+import { EASE_LINEAR, EASE_OUT } from '../timeline/easing'
+import { targetTracks, type TrackTarget } from '../timeline/editing'
+
+const s = () => useStore.getState()
+const target = (): TrackTarget => ({ kind: 'device', instanceId: s().project.devices[0].instanceId })
+const track = (c = 'position.x') => s().project.devices[0].transform[c]
+beforeEach(() => {
+  s().endEditGesture(true)
+  resetCoalescing()
+  const p = createDefaultProject()
+  useStore.setState({ project: { ...p, devices: [p.devices[0], createDevice()] }, history: emptyHistory,
+    playhead: 0, activeDevice: 0, playing: false, keySelection: null })
+})
+describe('manual scalar keyframe editing', () => {
+  it('keeps ordinary numbers static until explicitly activated', () => {
+    s().setPlayhead(2); s().setDevicePosition([1, 0, 0])
+    expect(track().keys).toHaveLength(1)
+    s().addTimelineKey(target(), 'position.x')
+    expect(track().keys.map(k => k.t)).toEqual([0, 2])
+    s().setDevicePosition([2, 0, 0])
+    expect(sampleTimeline(s().project, 0).devices[0].position[0]).toBe(1)
+    expect(sampleTimeline(s().project, 2).devices[0].position[0]).toBe(2)
+  })
+  it('activates at zero using an identical end anchor', () => {
+    s().addTimelineKey(target(), 'rotation.y')
+    expect(track('rotation.y').keys.map(k => [k.t, k.v])).toEqual([[0, 0], [4, 0]])
+    expect(track().keys).toHaveLength(1)
+  })
+  it('edits only the selected channel and instance', () => {
+    const other = s().project.devices[1]
+    const camera = s().project.camera
+    s().addTimelineKey(target(), 'position.x'); s().setTimelineKeyValue(0.8)
+    expect(s().project.devices[1]).toBe(other)
+    expect(s().project.camera).toBe(camera)
+    expect(track('position.y').keys).toHaveLength(1)
+  })
+  it('supports existing camera target and fov channels', () => {
+    const camera = { kind: 'camera' } as const
+    s().setPlayhead(1); s().addTimelineKey(camera, 'target.x'); s().setTimelineKeyValue(0.6)
+    expect(targetTracks(s().project, camera)?.['target.x'].keys[1].v).toBe(0.6)
+    s().addTimelineKey(camera, 'fov'); s().setTimelineKeyValue(45)
+    expect(sampleTimeline(s().project, 1).camera.fov).toBe(45)
+    expect(track().keys).toHaveLength(1)
+  })
+  it('preserves multiple Euler revolutions through sampling and JSON', () => {
+    s().addTimelineKey(target(), 'rotation.y')
+    s().selectKey({ target: target(), channel: 'rotation.y', t: 0 }); s().setTimelineKeyEase(EASE_LINEAR)
+    s().selectKey({ target: target(), channel: 'rotation.y', t: 4 }); s().setTimelineKeyValue(4 * Math.PI)
+    const p = JSON.parse(JSON.stringify(s().project))
+    expect(sampleTimeline(p, 1).devices[0].rotation[1]).toBeCloseTo(Math.PI)
+    expect(sampleTimeline(p, 4).devices[0].rotation[1]).toBeCloseTo(4 * Math.PI)
+  })
+  it('replaces an occupied key without duplicate times', () => {
+    s().addTimelineKey(target(), 'position.x')
+    s().selectKey({ target: target(), channel: 'position.x', t: 4 }); s().setTimelineKeyValue(2)
+    s().moveTimelineKey({ target: target(), channel: 'position.x', t: 4 }, 0)
+    expect(track().keys).toHaveLength(1)
+    expect(track().keys[0].v).toBe(2)
+  })
+  it('restores a collided key when a drag moves back, then undoes the entire gesture', () => {
+    s().addTimelineKey(target(), 'position.x')
+    s().selectKey({ target: target(), channel: 'position.x', t: 4 }); s().setTimelineKeyValue(2)
+    const before = s().project
+    const sel = { target: target(), channel: 'position.x', t: 4 }
+    s().beginEditGesture(); s().moveTimelineKey(sel, 0); s().moveTimelineKey(sel, 3); s().endEditGesture()
+    expect(track().keys.map(k => k.t)).toEqual([0, 3])
+    s().undo(); expect(s().project).toBe(before)
+    s().redo(); expect(track().keys.map(k => k.t)).toEqual([0, 3])
+  })
+  it('keeps a long gesture as one undo and separates consecutive gestures', () => {
+    const clock = vi.spyOn(Date, 'now')
+    clock.mockReturnValue(1000)
+    const original = s().project
+    s().beginEditGesture(); s().setDevicePosition([1, 0, 0])
+    clock.mockReturnValue(6000); s().setDevicePosition([2, 0, 0]); s().endEditGesture()
+    s().beginEditGesture(); s().setDevicePosition([3, 0, 0]); s().endEditGesture()
+    s().undo(); expect(sampleTimeline(s().project, 0).devices[0].position[0]).toBe(2)
+    s().undo(); expect(s().project).toBe(original)
+    clock.mockRestore()
+  })
+  it('cancels a gesture without changing undo history', () => {
+    const original = s().project, history = s().history
+    s().beginEditGesture(); s().setDevicePosition([1, 0, 0]); s().endEditGesture(true)
+    expect(s().project).toBe(original); expect(s().history).toBe(history)
+    expect(s().editingGesture).toBe(false)
+  })
+  it('holds the remaining value after deletion and preserves the final value on last-key deletion', () => {
+    s().addTimelineKey(target(), 'position.x')
+    s().selectKey({ target: target(), channel: 'position.x', t: 4 }); s().setTimelineKeyValue(2)
+    s().selectKey({ target: target(), channel: 'position.x', t: 0 }); s().deleteTimelineKey()
+    expect(track().keys).toHaveLength(1); expect(track().keys[0].v).toBe(2)
+    s().selectKey({ target: target(), channel: 'position.x', t: 0 }); s().deleteTimelineKey()
+    expect(sampleTimeline(s().project, 3).devices[0].position[0]).toBe(2)
+  })
+  it('changes easing without altering values, and makes it effective on continuous tracks', () => {
+    s().addTimelineKey(target(), 'position.x')
+    const p = s().project, d = p.devices[0]
+    useStore.setState({ project: { ...p, devices: [{ ...d, transform: { ...d.transform, 'position.x': { ...track(), interpolation: 'continuous' } } }, p.devices[1]] } })
+    s().setTimelineKeyEase(EASE_OUT)
+    expect(track().interpolation).toBeUndefined()
+    expect(track().keys[0].ease).toEqual(EASE_OUT)
+    expect(track().keys.map(k => k.v)).toEqual([0, 0])
+  })
+  it('clears stale selection on device switch, undo and document replacement', () => {
+    s().addTimelineKey(target(), 'position.x'); expect(s().keySelection).not.toBeNull()
+    s().setActiveDevice(1); expect(s().keySelection).toBeNull()
+    s().setActiveDevice(0); s().addTimelineKey(target(), 'position.x'); s().undo()
+    expect(s().keySelection).toBeNull()
+    s().newProject(); expect(s().keySelection).toBeNull()
+  })
+  it('rejects invalid channels, instances, times and values', () => {
+    const original = s().project
+    s().addTimelineKey(target(), 'not.a.channel')
+    s().addTimelineKey({ kind: 'device', instanceId: 'missing' }, 'position.x')
+    s().setTimelineKeyValue(NaN); s().moveTimelineKey({ target: target(), channel: 'position.x', t: 0 }, NaN)
+    expect(s().project).toBe(original)
+  })
+  it('clamps key moves to the project bounds', () => {
+    s().addTimelineKey(target(), 'position.x')
+    s().moveTimelineKey({ target: target(), channel: 'position.x', t: 4 }, 100)
+    expect(track().keys.at(-1)?.t).toBe(4)
+    s().setPlayhead(Infinity); expect(Number.isFinite(s().playhead)).toBe(true)
+  })
+})

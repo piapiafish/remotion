@@ -1,0 +1,1 @@
+{"status":"DIAGNOSED","observations":[{"name":"empty-lane-drag","expected":6.4,"actual":2.400000101831335,"productStatus":"FAIL"},{"name":"floor-follows-one-device-edit","before":-1.5005773088488468,"after":-1.5005773088488468,"productStatus":"PASS"},{"name":"unsaved-dialog","nativeConfirm":null,"customThreeOptions":0}],"frames":1069,"seeks":1}

@@ -1,0 +1,402 @@
+{
+  "capturedAt": "2026-11-03T17:43:24.450937+08:00",
+  "source": "人工核验清单.md",
+  "sourceSha256": "f48f554455eaf62a10e182062042f0914d7a1ca912d112c2e15ea716c6fa53f6",
+  "counts": {
+    "PASS": 6,
+    "FAIL": 5,
+    "UNFILLED": 54
+  },
+  "items": [
+    {
+      "id": "A01",
+      "title": "A01 确认运行的是新版",
+      "status": "PASS",
+      "verbatimResult": "结果：√ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "A02",
+      "title": "A02 建立统一核验工程",
+      "status": "FAIL",
+      "verbatimResult": "结果：□ 通过　√ 不通过　□ 未执行／阻塞　　证据／问题：__时间轴无法拖动______"
+    },
+    {
+      "id": "A03",
+      "title": "A03 返回模板及取消替换",
+      "status": "FAIL",
+      "verbatimResult": "结果：□ 通过　√ 不通过　□ 未执行／阻塞　　证据／问题：____未保存提示的卡片不够明确，应该出现保存任务并打开新任务、不保存任务并打开新任务、取消打开三个选项____"
+    },
+    {
+      "id": "B01",
+      "title": "B01 两台手机各自设置",
+      "status": "PASS",
+      "verbatimResult": "结果：√ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "B02",
+      "title": "B02 导入两份不同录屏",
+      "status": "FAIL",
+      "verbatimResult": "结果：□ 通过　√不通过　□ 未执行／阻塞　　证据／问题：__当视频中出现大幅度变动时，手机上会出现明显的卡顿，会重复变动的画面；并且当手机模型处于默认的大小时，屏幕素材会出现模糊的情况，放大后才变的清晰______"
+    },
+    {
+      "id": "B03",
+      "title": "B03 完整显示、裁切和横竖向",
+      "status": "FAIL",
+      "verbatimResult": "结果：□ 通过　√ 不通过　□ 未执行／阻塞　　证据／问题：_这个让手机横向的按键直接删掉吧，用旋转功能代替就可以了_______"
+    },
+    {
+      "id": "B04",
+      "title": "B04 新增、复制与删除",
+      "status": "PASS",
+      "verbatimResult": "结果：√ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "B05",
+      "title": "B05 旧崩溃路径与撤销粒度",
+      "status": "PASS",
+      "verbatimResult": "结果：√ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "C01",
+      "title": "C01 点选与卡片联动",
+      "status": "PASS",
+      "verbatimResult": "结果：√ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "C02",
+      "title": "C02 滚轮归属",
+      "status": "PASS",
+      "verbatimResult": "结果：√ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "C03",
+      "title": "C03 移动、旋转及数值精调",
+      "status": "FAIL",
+      "verbatimResult": "结果：□ 通过　√ 不通过　□ 未执行／阻塞　　证据／问题：__各个手机之间的屏幕阴影是不独立的，比如我放大某一个手机，那么其他手机的影子也会跟着变化；然后地面应该是固定的，不能因为手机往下，底部地面就跟着向下移动，手机最低只能到地面______"
+    },
+    {
+      "id": "C04",
+      "title": "C04 相机拖动与手势撤销",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "D01",
+      "title": "D01 设置独立录屏时序",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "D02",
+      "title": "D02 逐个核对时间边界",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "D03",
+      "title": "D03 同素材也能独立播放",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "D04",
+      "title": "D04 非法输入、复制、替换和匹配长度",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "E01",
+      "title": "E01 确认静态编辑不会偷偷做动画",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "E02",
+      "title": "E02 制作两秒完整姿态动画",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "E03",
+      "title": "E03 把两秒动画拉长为六秒",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "E04",
+      "title": "E04 停留、退场和缓动",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "E05",
+      "title": "E05 一周、两周与非等间隔键",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "F01",
+      "title": "F01 多对象同时可见和密集键易选",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "F02",
+      "title": "F02 精确改时、跨滚动和同帧合并",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "F03",
+      "title": "F03 删除整组、静态回退与撤销",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "F04",
+      "title": "F04 键盘和输入框不抢操作",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "G01",
+      "title": "G01 给第二台应用独立预设",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "G02",
+      "title": "G02 保护范围外键及无关属性",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "G03",
+      "title": "G03 单独制作相机运动",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "H01",
+      "title": "H01 文字输入与排版",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "H02",
+      "title": "H02 文字位置、缩放、旋转和淡入",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "H03",
+      "title": "H03 标题层级和相机独立",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "H04",
+      "title": "H04 纯文字、画幅变化和恢复",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "I01",
+      "title": "I01 四种背景",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "I02",
+      "title": "I02 灯光、阴影和机身颜色",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "I03",
+      "title": "I03 效果默认值和设置撤销",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "J01",
+      "title": "J01 前后景交换对焦",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "J02",
+      "title": "J02 焦点跟随、固定距离和删除",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "J03",
+      "title": "J03 景深输出与关闭恢复",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "K01",
+      "title": "K01 静止与运动分别检查",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "K02",
+      "title": "K02 跳时可重复及质量差异",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "K03",
+      "title": "K03 录屏边界和两效果组合",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "L01",
+      "title": "L01 完整工程进入全新会话",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "L02",
+      "title": "L02 打开旧版工程",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "L03",
+      "title": "L03 未保存提醒",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "L04",
+      "title": "L04 损坏工程不会覆盖当前作品",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "L05",
+      "title": "L05 缺失素材、重绑及较短视频",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "M01",
+      "title": "M01 静帧 PNG 和编辑标记",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "M02",
+      "title": "M02 完整 MP4",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "M03",
+      "title": "M03 四种效果组合输出",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "M04",
+      "title": "M04 导出中取消与恢复",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "M05",
+      "title": "M05 PNG 序列与连续导出",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "N01",
+      "title": "N01 自己的 30 秒样本",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "N02",
+      "title": "N02 60 秒扩展检查",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "N03",
+      "title": "N03 最终自用作品",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "O01",
+      "title": "O01 逐一审阅五个现有机型",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "O02",
+      "title": "O02 同型号实例与保存回归",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "P01",
+      "title": "P01 中文覆盖与操作可发现性",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "P02",
+      "title": "P02 不同窗口与缩放",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "Q01",
+      "title": "Q01 拼接两段镜头",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "Q02",
+      "title": "Q02 添加本地音乐及确认边界",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "R01",
+      "title": "R01 存储读写失败和保存中修改",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "R02",
+      "title": "R02 上传或打开期间切换工程",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "R03",
+      "title": "R03 编码器异常与无编码器回退",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "R04",
+      "title": "R04 素材定位、渲染及超时取消",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    },
+    {
+      "id": "R05",
+      "title": "R05 字体、效果能力和兼容边界",
+      "status": "UNFILLED",
+      "verbatimResult": "结果：□ 通过　□ 不通过　□ 未执行／阻塞　　证据／问题：________"
+    }
+  ]
+}

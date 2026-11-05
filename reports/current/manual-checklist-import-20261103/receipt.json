@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-03T16:32:45.370567+08:00",
+  "requestedLink": "https://chatgpt.com/library?file_id=libfile_f5ac589c784881918d5974163a5c8f8c&account_id=personal",
+  "remoteAccess": "UNREADABLE_CACHE_MISS",
+  "remoteIdentityVerified": false,
+  "sourcePath": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p1-all-manual-steps-20261102\\阶段一人工核验清单-20261102.md",
+  "sourceSha256": "f941fa8f596d30216b8cad0a1c76edc392d5b56b841ee0b6af8beabc71b86d5b",
+  "destinationPath": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\人工核验清单.md",
+  "destinationSha256": "183ad388c3128e9f0a560125b50cd5a481e2e3c17a9386f22750ecbda394c6cc",
+  "sourceUnchanged": true,
+  "changes": {
+    "localLinkPrefixConversions": 16,
+    "checklistTextOtherwiseUnchanged": true
+  },
+  "scenes": 65,
+  "unfilledHumanResults": 65,
+  "localLinks": [
+    {
+      "path": "reports/current/p110-p118-implementation-20261102/workflow-final/beginner-scene.mockup",
+      "exists": true
+    },
+    {
+      "path": "reports/current/p110-p118-implementation-20261102/workflow-final/bad.mockup",
+      "exists": true
+    },
+    {
+      "path": "reports/current/p107-p109-writeback-20261102/media-regression/04-missing.mockup",
+      "exists": true
+    },
+    {
+      "path": "reports/current/p107-p109-writeback-20261102/media-regression/08-missing-background.mockup",
+      "exists": true
+    },
+    {
+      "path": "reports/current/p106-writeback-20261102/browser/01-dual-timed.mockup",
+      "exists": true
+    },
+    {
+      "path": "README.md",
+      "exists": true
+    },
+    {
+      "path": "IMPLEMENTATION_ROADMAP.md",
+      "exists": true
+    },
+    {
+      "path": "docs/BEGINNER_GUIDE.md",
+      "exists": true
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "exists": true
+    },
+    {
+      "path": "docs/MEDIA_PROJECT_GUIDE.md",
+      "exists": true
+    },
+    {
+      "path": "docs/PHASE_ONE_GUIDE.md",
+      "exists": true
+    },
+    {
+      "path": "src/ui/Timeline/TimelineBar.tsx",
+      "exists": true
+    },
+    {
+      "path": "src/ui/Inspector/ObjectPanel.tsx",
+      "exists": true
+    },
+    {
+      "path": "src/ui/Inspector/EnvironmentPanel.tsx",
+      "exists": true
+    },
+    {
+      "path": "src/ui/Inspector/VideoTimingControls.tsx",
+      "exists": true
+    },
+    {
+      "path": "src/ui/ExportDialog/ExportDialog.tsx",
+      "exists": true
+    }
+  ],
+  "humanVerification": "NOT_RUN",
+  "taskStatusesChanged": false,
+  "documentCheck": "PASS",
+  "documentCheckCommand": {
+    "command": ".venv/Scripts/python.exe scripts/check-project-docs.py",
+    "started": "2026-11-03T16:34:02.294793+08:00",
+    "exitCode": 0
+  },
+  "legacyDocumentCheckPreserved": true,
+  "checks": {
+    "scenes": 65,
+    "unfilledHumanResults": 65,
+    "markdownFilesChecked": 109,
+    "currentLinkErrors": 0,
+    "historicalLinkWarnings": 238
+  },
+  "status": "PASS"
+}

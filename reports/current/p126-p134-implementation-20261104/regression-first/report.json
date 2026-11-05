@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-04T00:25:36.393Z",
+  "checks": [
+    {
+      "name": "D02-legacy-time-boundaries-remain-correct",
+      "status": "PASS",
+      "detail": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4.999999,
+          4
+        ],
+        [
+          4.999999,
+          5
+        ],
+        [
+          4.999999,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "D03-shared-source-retains-independent-decoders",
+      "status": "PASS",
+      "detail": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "E01-ordinary-edits-stay-static",
+      "status": "PASS"
+    },
+    {
+      "name": "solid-and-sticker-both-support-front-back-placement",
+      "status": "PASS"
+    },
+    {
+      "name": "transparent-output-with-solid-and-phone-renders",
+      "status": "PASS"
+    },
+    {
+      "name": "compact-window-controls-remain-usable",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "media-regression",
+      "status": "PASS"
+    },
+    {
+      "name": "authoring-regression",
+      "status": "FAIL",
+      "error": "TimeoutError: locator.press: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '调整水平位置', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "occlusion",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

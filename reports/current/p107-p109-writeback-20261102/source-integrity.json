@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "payloadFiles": 159,
+  "unchangedPayloadFiles": 151,
+  "reviewedDocumentationChanges": [
+    "DEVELOPMENT_LOG.md",
+    "IMPLEMENTATION_ROADMAP.md",
+    "ISSUES_LOG.md",
+    "README.md",
+    "docs/ARCHITECTURE.md",
+    "docs/PHASE_ONE_GUIDE.md",
+    "docs/TESTING.md",
+    "reports/current/README.md"
+  ],
+  "unexpectedPayloadChanges": [],
+  "requirements": {
+    "package.json": true,
+    "package-lock.json": true,
+    "src/store/project.ts": true,
+    "src/store/schema.ts": true,
+    "src/timeline/sample.ts": true,
+    "src/devices/manifest.ts": true,
+    "src/scene/GltfDevice.tsx": true
+  },
+  "sourceBefore": 143,
+  "sourceAfter": 153,
+  "changedSources": [
+    "src/App.tsx",
+    "src/app/useShortcuts.ts",
+    "src/export/backdrop.ts",
+    "src/export/frameRenderer.ts",
+    "src/export/sequence.ts",
+    "src/export/still.ts",
+    "src/export/video.ts",
+    "src/media/screenVideo.ts",
+    "src/scene/geometry.ts",
+    "src/ui/ExportDialog/ExportDialog.tsx"
+  ],
+  "addedSources": [
+    "scripts/join-clips.py",
+    "scripts/test-stage-one-offline.cjs",
+    "scripts/test-stage-one.cjs",
+    "src/export/exportError.ts",
+    "src/export/exportLifecycle.test.ts",
+    "src/export/exportReadiness.test.ts",
+    "src/export/rendererCleanup.test.ts",
+    "src/export/sceneReady.ts",
+    "src/export/session.ts",
+    "src/scene/geometryUv.test.ts"
+  ],
+  "unexpectedSourceChanges": [],
+  "originalZipUnchanged": true,
+  "protectedDataPathsNotInPayload": true
+}

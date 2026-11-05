@@ -1,0 +1,12 @@
+
+> mockup-web@0.0.0 build
+> tsc -b && vite build
+
+src/automation/bridge.ts(43,38): error TS18047: 'device.screen' is possibly 'null'.
+src/store/projectValidation.ts(65,7): error TS18046: 'input' is of type 'unknown'.
+src/store/projectValidation.ts(66,24): error TS18046: 'input' is of type 'unknown'.
+src/store/projectValidation.ts(66,43): error TS18046: 'input' is of type 'unknown'.
+src/store/projectValidation.ts(66,68): error TS18046: 'input' is of type 'unknown'.
+src/store/projectValidation.ts(67,19): error TS18046: 'input' is of type 'unknown'.
+src/store/projectValidation.ts(68,76): error TS18046: 'input' is of type 'unknown'.
+src/store/projectValidation.ts(68,109): error TS18046: 'input' is of type 'unknown'.

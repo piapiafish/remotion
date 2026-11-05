@@ -1,0 +1,146 @@
+{
+  "status": "PASS",
+  "frames": [
+    {
+      "frame": 0,
+      "ssim": 0.994036,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decoded": "02-decoded-0.png",
+      "reference": "02-reference-0.png",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-y",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\P1-06-dual-timing-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,0)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-0.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-0.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-0.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ]
+    },
+    {
+      "frame": 30,
+      "ssim": 0.995277,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decoded": "02-decoded-30.png",
+      "reference": "02-reference-30.png",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-y",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\P1-06-dual-timing-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,30)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-30.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-30.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-30.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ]
+    },
+    {
+      "frame": 72,
+      "ssim": 0.994713,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decoded": "02-decoded-72.png",
+      "reference": "02-reference-72.png",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-y",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\P1-06-dual-timing-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,72)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-72.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-72.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-72.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ]
+    },
+    {
+      "frame": 114,
+      "ssim": 0.995033,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decoded": "02-decoded-114.png",
+      "reference": "02-reference-114.png",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-y",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\P1-06-dual-timing-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,114)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-114.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-decoded-114.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-114.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ]
+    }
+  ],
+  "method": "FFmpeg-decoded actual H264 vs same-frame Standard engine output, SSIM >=0.97; includes pre-start hold, active trim, loop boundary and late hold."
+}

@@ -1,0 +1,20 @@
+Input #0, png_pipe, from 'C:\Users\20153\AppData\Local\Temp\p106-20261102-5ipog_47\evidence\browser\02-decoded-72.png':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: png, rgb24(pc, gbr/bt709/iec61966-2-1), 1920x1080 [SAR 1:1 DAR 16:9], 25 fps, 25 tbr, 25 tbn
+Input #1, png_pipe, from 'C:\Users\20153\AppData\Local\Temp\p106-20261102-5ipog_47\evidence\browser\02-reference-72.png':
+  Duration: N/A, bitrate: N/A
+  Stream #1:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080, 25 fps, 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (png) -> ssim
+  Stream #1:0 (png) -> ssim
+  ssim:default -> Stream #0:0 (wrapped_avframe)
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf63.1.102
+  Stream #0:0: Video: wrapped_avframe, gbrp(pc, gbr/bt709/iec61966-2-1, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 25 fps, 25 tbn
+    Metadata:
+      encoder         : Lavc63.1.102 wrapped_avframe
+[Parsed_ssim_0 @ 00000240ca984e40] SSIM R:0.994089 (22.283215) G:0.996108 (24.098689) B:0.993943 (22.177321) All:0.994713 (22.768178)
+[out#0/null @ 00000240ca974680] video:0KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed=1.18x elapsed=0:00:00.03    

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": {
+    "previousLogEntriesPreserved": true,
+    "P101ToP105TaskRowsPreserved": true,
+    "P101EnvironmentEvidencePreserved": true,
+    "PreviousCurrentReportHistoryPreserved": true
+  },
+  "method": "Compare latest pre-apply official document copies against explicitly merged documents; history, P1-01 environment results and P1-01..05 rows retained."
+}

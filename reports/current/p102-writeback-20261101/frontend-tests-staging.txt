@@ -1,0 +1,42 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ output/p102-update-20261101/payload/src/store/deviceLifecycle.test.ts (0 test)
+ ❯ output/p102-update-20261101/payload/src/ui/Inspector/DeviceSection.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  output/p102-update-20261101/payload/src/store/deviceLifecycle.test.ts [ output/p102-update-20261101/payload/src/store/deviceLifecycle.test.ts ]
+Error: Cannot find module './defaults' imported from D:/remotion/p0/MultiAgent-3D-Promo-Studio/output/p102-update-20261101/payload/src/store/deviceLifecycle.test.ts
+ ❯ output/p102-update-20261101/payload/src/store/deviceLifecycle.test.ts:2:1
+      1| import { beforeEach, describe, expect, it } from 'vitest'
+      2| import { createDefaultProject, createDevice } from './defaults'
+       | ^
+      3| import { emptyHistory, resetCoalescing } from './history'
+      4| import { useProjectStore } from './project'
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  output/p102-update-20261101/payload/src/ui/Inspector/DeviceSection.test.ts [ output/p102-update-20261101/payload/src/ui/Inspector/DeviceSection.test.ts ]
+Error: Cannot find module '../controls/Segmented' imported from D:/remotion/p0/MultiAgent-3D-Promo-Studio/output/p102-update-20261101/payload/src/ui/Inspector/DeviceSection.tsx
+ ❯ output/p102-update-20261101/payload/src/ui/Inspector/DeviceSection.tsx:3:1
+      1| import { useEffect, useRef, useState, type DragEvent } from 'react'
+      2| import { Smartphone, RectangleHorizontal, Info, ChevronDown, Check } f…
+      3| import { Segmented } from '../controls/Segmented'
+       | ^
+      4| import { useProjectStore } from '../../store/project'
+      5| import { DEVICE_LIST, getManifest } from '../../devices/manifest'
+ ❯ output/p102-update-20261101/payload/src/ui/Inspector/DeviceSection.test.ts:12:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 23 passed (25)
+      Tests  228 passed (228)
+   Start at  19:59:15
+   Duration  1.23s (transform 4.04s, setup 0ms, import 5.34s, tests 205ms, environment 2ms)
+

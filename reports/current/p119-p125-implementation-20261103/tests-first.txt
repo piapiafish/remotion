@@ -1,0 +1,78 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/store/persistSafety.test.ts (34 tests | 2 failed) 54ms
+     × packages background bytes, strips session URLs, and restores timing with tracks 15ms
+     × cancels a missing-media import before storage writes and preserves the current undo history 1ms
+ ❯ src/timeline/motionPlan.test.ts (24 tests | 1 failed) 71ms
+     × retains motion and annotations through a saved .mockup round trip 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/store/persistSafety.test.ts > complete portable project archives > packages background bytes, strips session URLs, and restores timing with tracks
+AssertionError: expected '{"version":1,"name":"未命名工程","duration…' to be '{"version":1,"name":"未命名工程","duration…' // Object.is equality
+
+Expected: "{"version":1,"name":"未命名工程","duration":4,"fps":30,"output":{"width":1920,"height":1080},"devices":[{"instanceId":"f884c49a-38f9-445b-a2cf-5ce9c2c5fc07","id":"procedural-phone","colorway":"graphite","orientation":"portrait","screen":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"screenFit":"contain","transform":{"position.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"scale":{"keys":[{"t":0,"v":1,"ease":[0.33,0,0.15,1]}]}},"screenPlayback":{"in":2,"out":7,"start":1,"loop":true}}],"background":{"type":"image","ref":{"id":"back","kind":"image","width":100,"height":200},"fit":"cover"},"environment":{"hdri":"studio","intensity":1,"rotation":0,"shadowOpacity":0.3,"shadowBlur":14},"camera":{"fov":32,"preset":"three-quarter-left","tracks":{"position.x":{"keys":[{"t":0,"v":-2.2,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0.9,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":2.4,"ease":[0.33,0,0.15,1]}]},"target.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"fov":{"keys":[{"t":0,"v":32,"ease":[0.33,0,0.15,1]}]}}}}"
+Received: "{"version":1,"name":"未命名工程","duration":4,"fps":30,"output":{"width":1920,"height":1080},"devices":[{"instanceId":"f884c49a-38f9-445b-a2cf-5ce9c2c5fc07","id":"procedural-phone","colorway":"graphite","orientation":"portrait","screen":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"screenFit":"contain","transform":{"position.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"scale":{"keys":[{"t":0,"v":1,"ease":[0.33,0,0.15,1]}]}},"screenPlayback":{"in":2,"out":7,"start":1,"loop":true}}],"background":{"type":"image","ref":{"id":"back","kind":"image","width":100,"height":200},"fit":"cover"},"environment":{"hdri":"studio","intensity":1,"rotation":0,"shadowOpacity":0.3,"shadowBlur":14,"groundY":-0.76},"camera":{"fov":32,"preset":"three-quarter-left","tracks":{"position.x":{"keys":[{"t":0,"v":-2.2,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0.9,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":2.4,"ease":[0.33,0,0.15,1]}]},"target.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"fov":{"keys":[{"t":0,"v":32,"ease":[0.33,0,0.15,1]}]}}}}"
+
+ ❯ src/store/persistSafety.test.ts:36:42
+     34|     storage.blobs.clear()
+     35|     const reopened = await deserializeProject(archive)
+     36|     expect(projectFingerprint(reopened)).toBe(projectFingerprint(p))
+       |                                          ^
+     37|     expect(reopened.background.type === 'image' && reopened.background…
+     38|     expect(reopened.devices[0].transform).toEqual(p.devices[0].transfo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/store/persistSafety.test.ts > undo, relinking and unsaved work > cancels a missing-media import before storage writes and preserves the current undo history
+AssertionError: expected "vi.fn()" to be called 2 times, but got 0 times
+ ❯ src/store/persistSafety.test.ts:120:21
+    118|     expect(get().project).toBe(previous); expect(get().history).toBe(h…
+    119|     expect(storage.puts).toBe(0); expect(get().fileBusy).toBe(false)
+    120|     expect(confirm).toHaveBeenCalledTimes(2)
+       |                     ^
+    121|     expect(confirm.mock.calls[1][0]).toContain('设备 1')
+    122|     expect(useFeedbackStore.getState().notice?.message).toContain('已取消…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/timeline/motionPlan.test.ts > motion JSON -> native phone tracks > retains motion and annotations through a saved .mockup round trip
+AssertionError: expected { version: 1, …(9) } to deeply equal { version: 1, …(9) }
+
+- Expected
++ Received
+
+@@ -1276,10 +1276,11 @@
+        },
+      },
+    ],
+    "duration": 15,
+    "environment": {
++     "groundY": -0.8229852548873904,
+      "hdri": "studio",
+      "intensity": 1,
+      "rotation": 0,
+      "shadowBlur": 14,
+      "shadowOpacity": 0.3,
+
+ ❯ src/timeline/motionPlan.test.ts:138:22
+    136|     expect(migrate(project).motionPlan).toEqual(project.motionPlan)
+    137|     const restored = await deserializeProject(await serializeProject(p…
+    138|     expect(restored).toEqual(project)
+       |                      ^
+    139|     expect(sampleTimeline(restored, 8)).toEqual(sampleTimeline(project…
+    140|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 32 passed (34)
+      Tests  3 failed | 337 passed (340)
+   Start at  19:30:42
+   Duration  1.71s (transform 9.93s, setup 0ms, import 14.32s, tests 659ms, environment 2ms)
+

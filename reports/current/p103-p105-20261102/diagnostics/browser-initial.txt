@@ -1,0 +1,3 @@
+START 01-manual-keyframes
+FAIL 01-manual-keyframes
+{"status":"ENVIRONMENT_BLOCKED","checks":1,"failures":[{"id":"01-manual-keyframes","status":"FAIL","execution":"INCOMPLETE","error":"Error: download.saveAs: canceled","stack":"download.saveAs: canceled\n    at save (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:14:198)\n    at async C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:67:10\n    at async run (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:32:158)\n    at async C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:66:26"}]}

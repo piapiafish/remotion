@@ -1,0 +1,42 @@
+
+  VITE v8.2.2  ready in 193 ms
+
+  ➜  Local:   http://127.0.0.1:56388/
+09:13:14 [vite] (client) [console.warn] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+09:13:14 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:15 [vite] (client) [console.warn] THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision
+(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision
+(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision
+09:13:15 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:15 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:15 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:15 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:16 [vite] (client) [console.warn] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+09:13:17 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:17 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:17 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:17 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:17 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:17 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:18 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:19 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:20 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+09:13:21 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.

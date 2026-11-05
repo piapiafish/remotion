@@ -1,0 +1,136 @@
+import type { Project, MediaRef, TrackSet } from './schema'
+import { DEVICE_LIST } from '../devices/manifest'
+
+const bad = (field: string): never => { throw new Error(`工程数据无效：${field}`) }
+const obj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v)
+const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v)
+const str = (v: unknown): v is string => typeof v === 'string'
+function tracks(value: TrackSet, field: string) {
+  if (!obj(value)) bad(field)
+  for (const [name, track] of Object.entries(value)) {
+    if (!obj(track) || !Array.isArray(track.keys) || !track.keys.length) bad(`${field}.${name}`)
+    if (track.interpolation !== undefined && track.interpolation !== 'continuous') bad(`${field}.${name}.interpolation`)
+    let previous = -1
+    for (const key of track.keys) {
+      if (!obj(key) || !num(key.t) || key.t < 0 || key.t < previous || !num(key.v)) bad(`${field}.${name}.keys`)
+      if (!Array.isArray(key.ease) || key.ease.length !== 4 || !key.ease.every(num) || key.ease[0] < 0 || key.ease[0] > 1 || key.ease[2] < 0 || key.ease[2] > 1) bad(`${field}.${name}.ease`)
+      if (key.poseId !== undefined && (!str(key.poseId) || !key.poseId || key.poseId.length > 150)) bad(`${field}.poseId`)
+      if (key.order !== undefined && !num(key.order)) bad(`${field}.order`)
+      previous = key.t
+    }
+  }
+}
+function range(v:unknown,field:string) { if(v!==undefined && (!obj(v)||!num(v.start)||!num(v.end)||v.start<0||v.end<=v.start))bad(`${field}显示区间`) }
+function media(ref: MediaRef, field: string) {
+  if (!obj(ref) || !str(ref.id) || !/^[a-zA-Z0-9_-]{1,150}$/.test(ref.id) || !['image', 'video'].includes(ref.kind)) bad(field)
+  if (!num(ref.width) || ref.width <= 0 || !num(ref.height) || ref.height <= 0) bad(`${field}.size`)
+  if (ref.kind === 'video' && (!num(ref.duration) || ref.duration <= 0)) bad(`${field}.duration`)
+}
+
+export function validateProject(project: Project): void {
+  if (!str(project.name) || !num(project.duration) || project.duration <= 0 || ![30, 60].includes(project.fps)) bad('name / duration / fps')
+  if (!obj(project.output) || !Number.isInteger(project.output.width) || project.output.width <= 0 || !Number.isInteger(project.output.height) || project.output.height <= 0) bad('output')
+  if (![1, 2, 3, 4, 5].includes(project.version)) bad('工程版本')
+  if (!Array.isArray(project.devices) || (!project.devices.length && project.version === 1)) bad('devices')
+  const ids = new Set<string>()
+  for (const [i, d] of project.devices.entries()) {
+    const field = `设备 ${i + 1}`
+    if (!obj(d) || !str(d.instanceId) || !d.instanceId || ids.has(d.instanceId) || !DEVICE_LIST.some(m => m.id === d.id)) bad(field)
+    ids.add(d.instanceId)
+    if (!str(d.colorway) || !['portrait', 'landscape'].includes(d.orientation) || !['cover', 'contain'].includes(d.screenFit)) bad(field)
+    if (d.name !== undefined && !str(d.name)) bad(`${field}名称`)
+    if (d.animationEnabled !== undefined && typeof d.animationEnabled !== 'boolean') bad(`${field}动画`)
+    range(d.displayRange, field)
+    if(d.scaleAnchor!==undefined&&(!Array.isArray(d.scaleAnchor)||d.scaleAnchor.length!==3||!d.scaleAnchor.every(num)))bad(field+'缩放锚点')
+    if(d.screenClips!==undefined){
+      if(!Array.isArray(d.screenClips))bad(field+'视频列表')
+      const clips=new Set<string>()
+      for(const c of d.screenClips){
+        if(!obj(c)||!str(c.clipId)||!c.clipId||clips.has(c.clipId)||!str(c.name)||!['cover','contain'].includes(c.fit))bad(field+'视频片段')
+        if(c.followObjectRange!==undefined&&typeof c.followObjectRange!=='boolean')bad(field+'视频兼容范围')
+        clips.add(c.clipId);media(c.media,field+' · '+c.name)
+        if(c.media.kind!=='video')bad(field+'视频类型')
+        range(c.displayRange,field+'视频');if(!c.displayRange)bad(field+'视频显示区间')
+        const p=c.playback
+        if(!obj(p)||!num(p.in)||!num(p.out)||p.in<0||p.out<=p.in||p.out>(c.media.duration??0)+1e-6||!num(p.start)||p.start<0||typeof p.loop!=='boolean')bad(field+'视频播放区间')
+        if(p.stop!==undefined&&(!num(p.stop)||p.stop<=p.start))bad(field+'视频暂停时刻')
+        if(p.rate!==undefined&&(!num(p.rate)||p.rate<.25||p.rate>4))bad(field+'视频倍速')
+      }
+    }
+    tracks(d.transform, field)
+    if (d.screen !== null) media(d.screen, field)
+    const p = d.screenPlayback
+    if (p !== undefined) {
+      if(p.stop!==undefined&&(!num(p.stop)||p.stop<=p.start))bad(field+'视频暂停时刻')
+      if(p.rate !== undefined && (!num(p.rate) || p.rate < .25 || p.rate > 4)) bad(`${field}播放速度`)
+      if (!obj(p) || !num(p.in) || !num(p.out) || !num(p.start) || p.in < 0 || p.out <= p.in || p.start < 0 || typeof p.loop !== 'boolean') bad(`${field}录屏时序`)
+      if (d.screen?.kind === 'video' && p.out > (d.screen.duration ?? 0) + 1e-6) bad(`${field}录屏出点超出源时长`)
+    }
+  }
+  if (project.texts !== undefined) {
+    if (!Array.isArray(project.texts)) bad('文字列表')
+    for (const text of project.texts) {
+      if (!obj(text) || !str(text.instanceId) || !text.instanceId || ids.has(text.instanceId)) bad('文字标识')
+      ids.add(text.instanceId)
+      if (!str(text.name) || !str(text.content) || !/^#[0-9a-f]{6}$/i.test(text.color) || !['left','center','right'].includes(text.align)) bad('文字样式')
+      if (![text.fontSize,text.fontWeight,text.lineHeight,text.width].every(num) || text.fontSize < 8 || text.fontSize > 400 || text.fontWeight < 100 || text.fontWeight > 900 || text.lineHeight < .5 || text.lineHeight > 4 || text.width <= 0 || text.width > 2) bad('文字尺寸')
+      if (text.animationEnabled !== undefined && typeof text.animationEnabled !== 'boolean') bad('文字动画')
+      range(text.displayRange,'文字显示区间')
+      if(text.textKind !== undefined && !['solid','sticker'].includes(text.textKind))bad('文字类型')
+      if(text.layer !== undefined && !['front','back'].includes(text.layer))bad('文字图层')
+      if(text.fontData !== undefined && (!str(text.fontData) || text.fontData.length > 10000000))bad('文字字形')
+      if(text.fontData){let font:unknown;try{font=JSON.parse(text.fontData)}catch{bad('文字字形数据')};if(!obj(font)||!obj(font.glyphs)||!num(font.resolution)||font.resolution<=0)bad('文字字形数据');for(const glyph of Object.values((font as {glyphs:Record<string,unknown>}).glyphs)){if(!obj(glyph)||!str(glyph.o)||!num(glyph.ha))bad('文字字形轮廓')}}
+      if(text.depthOfField!==undefined&&(!obj(text.depthOfField)||typeof text.depthOfField.enabled!=='boolean'||!num(text.depthOfField.distance)||text.depthOfField.distance<.1||text.depthOfField.distance>100))bad('贴纸景深')
+      tracks(text.transform, '文字关键帧')
+    }
+  }
+  if (project.effects !== undefined) {
+    const fx = project.effects
+    if (!obj(fx) || !obj(fx.depthOfField) || !obj(fx.motionBlur)) bad('画面效果')
+    const dof = fx.depthOfField, blur = fx.motionBlur
+    if (typeof dof.enabled !== 'boolean' || (dof.focusDevice !== null && !str(dof.focusDevice)) || !num(dof.distance) || dof.distance <= 0 || !num(dof.strength) || dof.strength < 0 || dof.strength > 1) bad('景深')
+    if(dof.focusObject!==undefined&&dof.focusObject!==null&&(!obj(dof.focusObject)||!['device','text'].includes(dof.focusObject.kind)||!str(dof.focusObject.instanceId)))bad('对焦对象')
+    if (typeof blur.enabled !== 'boolean' || !num(blur.strength) || blur.strength < 0 || blur.strength > 1 || ![2,4,8].includes(blur.samples)) bad('动态模糊')
+  }
+  if (!obj(project.camera) || !num(project.camera.fov) || project.camera.fov <= 0 || project.camera.fov >= 180) bad('camera')
+  tracks(project.camera.tracks, 'camera.tracks')
+  if(project.camera.segments!==undefined){
+    if(!Array.isArray(project.camera.segments))bad('相机动画段')
+    const segmentIds=new Set<string>();let end=-1
+    for(const segment of project.camera.segments){
+      if(!obj(segment)||!str(segment.id)||!segment.id||segmentIds.has(segment.id)||!str(segment.name)||!num(segment.start)||!num(segment.end)||segment.start<0||segment.end-segment.start<1/project.fps-1e-7||segment.start<end-1e-8)bad('相机动画段区间或重叠')
+      segmentIds.add(segment.id);end=segment.end;tracks(segment.tracks,'相机动画段')
+      if(!Object.keys(segment.tracks).length||Object.values(segment.tracks).some(t=>t.keys.some(k=>k.t>segment.end-segment.start+1e-7)))bad('相机段内关键帧')
+    }
+  }
+  const e = project.environment
+  if (!obj(e) || !['studio', 'city', 'sunset', 'warehouse'].includes(e.hdri) || ![e.intensity, e.rotation, e.shadowOpacity, e.shadowBlur].every(num)) bad('environment')
+  if(e.groundY!==undefined&&(!num(e.groundY)||Math.abs(e.groundY)>10000))bad('environment.groundY')
+  const b = project.background
+  if (!obj(b)) bad('background')
+  if (b.type === 'image') {
+    media(b.ref, '背景图片')
+    if (b.ref.kind !== 'image' || !['cover', 'contain'].includes(b.fit)) bad('背景图片')
+  } else if (b.type === 'solid') { if (!str(b.color)) bad('background.color') }
+  else if (b.type === 'gradient') { if (!str(b.from) || !str(b.to) || !num(b.angle)) bad('background.gradient') }
+  else if (b.type !== 'transparent') bad('background.type')
+  if (project.motionPlan !== undefined) {
+    const m = project.motionPlan
+    if (!obj(m) || !str(m.title) || !str(m.brief) || !Array.isArray(m.cues) || !m.cues.every(c => obj(c) && num(c.t) && str(c.description))) bad('motionPlan')
+  }
+}
+
+export function validateInputShape(input: unknown): asserts input is Record<string, unknown> {
+  if (!obj(input)) throw new Error('工程数据无效：工程必须是对象。')
+  if (input.version !== undefined && input.version !== 1 && input.version !== 2 && input.version !== 3 && input.version !== 4 && input.version !== 5) bad('工程版本')
+  if (input.devices !== undefined) {
+    if (!Array.isArray(input.devices) || (!input.devices.length && input.version !== 2 && input.version !== 3 && input.version !== 4 && input.version !== 5) || !input.devices.every(obj)) bad('devices')
+  } else if (!obj(input.device)) bad('缺少设备数据')
+  for (const key of ['output', 'camera', 'environment', 'background']) if (input[key] !== undefined && !obj(input[key])) bad(key)
+  const devices = Array.isArray(input.devices) ? input.devices : [input.device]
+  for (const d of devices) {
+    if (!obj(d) || !str(d.id)) bad('缺少设备型号')
+    if (obj(d) && d.transform !== undefined && !obj(d.transform)) bad('device.transform')
+  }
+  if (obj(input.camera) && input.camera.tracks !== undefined && !obj(input.camera.tracks)) bad('camera.tracks')
+}

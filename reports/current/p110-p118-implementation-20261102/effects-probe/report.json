@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-02T14:37:10.911Z",
+  "checks": [
+    {
+      "name": "template-first",
+      "status": "PASS"
+    },
+    {
+      "name": "two-object-timeline-rows",
+      "status": "PASS"
+    },
+    {
+      "name": "text-and-phones-in-one-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "no-placeholder-panels",
+      "status": "PASS"
+    },
+    {
+      "name": "depth-render-produced",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "status": "FAIL",
+  "error": "page.evaluate: TypeError: Cannot read properties of null (reading 'kind')\n    at targetTracks (http://127.0.0.1:50737/src/timeline/editing.ts:31:16)\n    at addObjectKey (http://127.0.0.1:50737/src/timeline/objectEditing.ts:41:19)\n    at edit.keySelection.target.target (http://127.0.0.1:50737/src/store/project.ts:302:29)\n    at http://127.0.0.1:50737/src/store/project.ts:58:19\n    at setState (http://127.0.0.1:50737/node_modules/.vite/deps/vanilla-DCS0UZ51.js?v=d2264108:6:53)\n    at edit (http://127.0.0.1:50737/src/store/project.ts:57:43)\n    at Object.addObjectKey (http://127.0.0.1:50737/src/store/project.ts:302:4)\n    at eval (eval at evaluate (:290:30), <anonymous>:1:128)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-studio.cjs:26:13"
+}

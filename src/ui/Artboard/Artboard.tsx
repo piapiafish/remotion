@@ -1,0 +1,85 @@
+import { useCameraKeyboard } from './useCameraKeyboard'
+import { useCameraSession } from '../../store/cameraSession'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { TextOverlay } from './TextOverlay'
+import { sampleTimeline, sampleTrack } from '../../timeline/sample'
+import { textPose } from '../../scene/textOverlay'
+import { useExportSession } from '../../export/session'
+import { previewPixelRatio } from '../../scene/previewResolution'
+import { Stage } from '../../scene/Stage'
+import { backdropCss } from '../../scene/Backdrop'
+import { useProjectStore } from '../../store/project'
+import { aspectLabelFor } from '../../store/schema'
+
+/**
+ * Letterbox the artboard to the output aspect inside whatever space the pane
+ * gives us, sizing it in explicit pixels.
+ *
+ * The pixels matter. CSS `aspect-ratio` plus container query units expresses
+ * this in one line, but it resolves over two layout passes — the box is 0x0
+ * on the first — and R3F only measures its container once, on mount. It
+ * therefore latched onto that zero and never created a renderer at all.
+ *
+ * So the first measurement is taken synchronously in a layout effect, where
+ * the geometry is already committed and readable. ResizeObserver handles
+ * only later changes. Seeding from the observer instead would reintroduce
+ * the same bug in a subtler form: RO callbacks are delivered during the
+ * rendering step, which a browser skips entirely while the tab is hidden —
+ * so the canvas would never appear for anyone who opened the page in a
+ * background tab and came back to it.
+ */
+function useLetterbox(ratio: number) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [box, setBox] = useState({ width: 0, height: 0 })
+
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const measure = (width: number, height: number) =>
+      setBox((prev) => (prev.width === width && prev.height === height ? prev : { width, height }))
+
+    const rect = el.getBoundingClientRect()
+    measure(rect.width, rect.height)
+
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect
+      measure(width, height)
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const width = Math.max(0, Math.min(box.width, box.height * ratio))
+  return { ref, width, height: width / ratio }
+}
+
+export function Artboard() {
+  const background=useProjectStore(s=>s.project.background),output=useProjectStore(s=>s.project.output)
+  const tool=useProjectStore(s=>s.canvasTool),setTool=useProjectStore(s=>s.setCanvasTool),selection=useProjectStore(s=>s.activeObject)
+  const {ref,width,height}=useLetterbox(output.width/output.height),board=useRef<HTMLDivElement>(null)
+  useCameraKeyboard(board)
+  const session=useCameraSession(),[focused,setFocused]=useState(false)
+  useEffect(()=>{if(session.mode==='ready'||session.mode==='countdown'||session.mode==='recording')board.current?.focus()},[session.mode])
+  useEffect(()=>{
+    let timer:ReturnType<typeof setTimeout>|undefined
+    const wheel=(e:WheelEvent)=>{
+      e.preventDefault();e.stopPropagation()
+      if(useExportSession.getState().busy)return
+      const s=useProjectStore.getState(),ref=s.activeObject
+      if(timer)clearTimeout(timer)
+      if(useCameraSession.getState().mode==='idle'&&(!timer||!s.editingGesture))s.beginEditGesture()
+      const factor=Math.exp(-Math.max(-150,Math.min(150,e.deltaY))*.002)
+      if(ref?.kind==='device'){const d=s.project.devices.find(d=>d.instanceId===ref.instanceId);if(d)s.setObjectScale(sampleTrack(d.transform.scale,s.playhead,1)*factor)}
+      else if(ref?.kind==='text'){const t=s.project.texts?.find(t=>t.instanceId===ref.instanceId);if(t)s.setObjectScale(textPose(t,s.playhead).scale*factor)}
+      else{const c=useCameraSession.getState().view??sampleTimeline(s.project,s.playhead).camera,offset=c.position.map((v,i)=>v-c.target[i]),dist=Math.hypot(...offset),next=Math.max(.4,Math.min(30,dist/factor));if(dist>1e-6)s.setCameraPosition(c.target.map((v,i)=>v+offset[i]*next/dist) as [number,number,number])}
+      timer=setTimeout(()=>{timer=undefined;useProjectStore.getState().endEditGesture()},180)
+    }
+    const el=board.current;el?.addEventListener('wheel',wheel,{passive:false,capture:true})
+    return()=>{el?.removeEventListener('wheel',wheel,{capture:true});if(timer){clearTimeout(timer);useProjectStore.getState().endEditGesture()}}
+  },[width])
+  return <div className="artboard-zone"><div className="artboard-bar"><span className="artboard-label">画面 <strong>{aspectLabelFor(output)}</strong></span><span className="artboard-dims">{output.width} × {output.height}</span></div>
+    <div className="artboard-wrap" ref={ref}><div ref={board} tabIndex={0} onFocus={()=>setFocused(true)} onBlur={()=>setFocused(false)} onPointerDownCapture={()=>board.current?.focus({preventScroll:true})} className="artboard" data-testid="artboard" style={{width,height,...backdropCss(background)}}>{width>0&&<><TextOverlay width={width} height={height} layer="back"/><div className="scene-layer"><Stage previewDpr={previewPixelRatio(width,height,window.devicePixelRatio)}/></div><TextOverlay width={width} height={height} layer="front"/></>}</div></div>
+    <div className="canvas-tools"><span className={'camera-control-state '+(focused?'focused':'')}>{focused?'相机控制中':'点击画面使用 WASD'}</span>{session.mode==='idle'&&(['translate','rotate'] as const).map(mode=><button key={mode} className={tool===mode?'tool-btn active':'tool-btn'} aria-label={mode==='translate'?'移动对象':'旋转对象'} aria-pressed={tool===mode} onClick={()=>setTool(mode)}>{mode==='translate'?'移动':'旋转'}</button>)}<span className="hint">{selection?'滚轮缩放对象 · WASD 移动相机':'拖动空白旋转 · 滚轮远近 · WASD 平移 · ↑↓ 前后 · ←→ 环绕'}</span>{session.mode==='idle'&&session.view&&<button className="link-btn" onClick={()=>useCameraSession.setState({view:null})}>返回成片镜头（当前为临时视角）</button>}<button className="link-btn" onClick={()=>{const s=useProjectStore.getState();if(useCameraSession.getState().mode==='idle')s.beginEditGesture();s.setCameraPosition([0,0,3.2]);s.setCameraTarget([0,0,0]);s.endEditGesture()}}>恢复视角</button></div>
+  </div>
+}

@@ -1,0 +1,10 @@
+{
+  "Reason": "Keep pre-update test bytes intact without letting Vitest collect backup test copies",
+  "Files": [
+    {
+      "OriginalPath": "src\\timeline\\templates.test.ts",
+      "StoredPath": "src\\timeline\\templates.test.ts.original",
+      "SHA256": "2D6F0A8F96107E618DF32D66068D5CE0EE39EA58C1D3FB9058858A52EC63CDEB"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+import { withExportSession } from '../export/session'
+import { resetCameraSession } from '../store/cameraSession'
+import { ensureFixedGround } from '../scene/groundPlane'
+import { waitForSceneReady } from '../export/sceneReady'
+/** Private localhost browser bridge used by Playwright worker. Never expose on public deployments. */
+import { DEVICE_LIST } from '../devices/manifest'
+import { getExportContext } from '../export/renderer'
+import { loadBackdrop } from '../export/backdrop'
+import { exportVideo, supportedVideoFormats } from '../export/video'
+import { exportPngSequence } from '../export/sequence'
+import { beginFrameExport } from '../export/frameRenderer'
+import { useProjectStore } from '../store/project'
+import { hasScreenVideos, seekScreenVideos, waitForScreenVideosReady, screenVideoStatus, prepareScreenVideos } from '../media/screenVideo'
+import type { Project } from '../store/schema'
+import type { ExportQuality } from '../export/frameRenderer'
+import { pauseEffectPreview, settleEffectPreview } from '../scene/sceneEffects'
+
+function wait(ms: number) { return new Promise<void>((resolve) => setTimeout(resolve, ms)) }
+function assertLocalUrl(project: Project) {
+  for(const device of project.devices) {
+    for(const ref of [device.screen,...(device.screenClips??[]).map(c=>c.media)]){const url=ref?.url
+    if(url && (!url.startsWith('/__automation__/') || url.includes('..') || url.includes('\\'))) throw new Error('Automation only accepts local /__automation__/ assets')
+    }
+  }
+}
+function download(blob: Blob, filename: string) {
+ const url=URL.createObjectURL(blob)
+ const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove()
+ // Delayed cleanup is essential: immediate revoke may cancel browser downloads.
+ setTimeout(()=>URL.revokeObjectURL(url),30000)
+}
+async function waitForReady(timeoutMs=45000){
+ const resume=pauseEffectPreview()
+ try{await settleEffectPreview();return await waitForReadyInternal(timeoutMs)}finally{resume()}
+}
+async function waitForReadyInternal(timeoutMs=45000){
+ const start=performance.now();let ctx=getExportContext();while(!ctx){if(performance.now()-start>=timeoutMs)throw new Error('MODEL_OR_VIDEO_NOT_READY: canvas not ready');await wait(30);ctx=getExportContext()}
+ const state=useProjectStore.getState();ctx.applyAt(state.playhead)
+ await waitForSceneReady(ctx.scene,state.project,timeoutMs,undefined,state.playhead)
+ prepareScreenVideos(state.playhead)
+ if(hasScreenVideos()&&!await waitForScreenVideosReady(timeoutMs,state.playhead))throw new Error('MODEL_OR_VIDEO_NOT_READY: screen not ready')
+ await wait(100);return {ready:true,deviceCount:state.project.devices.length}
+}
+async function commonParams(quality:ExportQuality){
+ const ctx=getExportContext();if(!ctx)throw new Error('RENDER_CONTEXT_MISSING')
+ const p=useProjectStore.getState().project
+ return {
+  renderer:ctx.renderer,scene:ctx.scene,camera:ctx.camera,
+  project:p,
+  setFrameloop:ctx.setFrameloop,applyAt:ctx.applyAt,
+  width:p.output.width,height:p.output.height,duration:p.duration,fps:p.fps,
+  backdrop:await loadBackdrop(p.background),quality,
+ }
+}
+async function previewFrame(frameIndex=0,quality:ExportQuality='standard'){
+ return withExportSession(async()=>{
+ await waitForReady()
+ const p=useProjectStore.getState().project
+ const ctx=getExportContext();if(!ctx)throw new Error('RENDER_CONTEXT_MISSING')
+ const t=Math.max(0,Math.min(frameIndex,p.duration*p.fps-1))/p.fps
+ const params=await commonParams(quality)
+ // Freeze preview before the asynchronous seek. SceneDriver would otherwise
+ // overwrite the requested pose/video with the paused UI playhead mid-seek.
+ const exporter=beginFrameExport(params)
+ let blob:Blob
+ try{
+   ctx.applyAt(t)
+   if(hasScreenVideos())await seekScreenVideos(t)
+   blob=await (await exporter.renderAt!(t,ctx.applyAt)).convertToBlob({type:'image/png'})
+ }finally{exporter.dispose()}
+ const base64=await new Promise<string>((resolve,reject)=>{const f=new FileReader();f.onload=()=>resolve(String(f.result));f.onerror=()=>reject(f.error);f.readAsDataURL(blob)})
+ return base64
+ })
+}
+export function installAutomationBridge(){
+ // The bridge exists only on localhost and opt-in ?automation=1; external sites never get it.
+ if(!new URLSearchParams(location.search).has('automation') || !['localhost','127.0.0.1'].includes(location.hostname))return
+ const api={
+  ping:()=>({ok:true,version:'0.1.0'}),
+  listDevices:()=>DEVICE_LIST.filter(d=>d.glb).map(d=>({id:d.id,name:d.name,category:d.category})),
+  async loadProject(project:Project){
+    if(!project || ![1,2,3,4].includes(project.version) || !Array.isArray(project.devices) || project.devices.length!==1) throw new Error('INVALID_PROJECT')
+    assertLocalUrl(project)
+    resetCameraSession()
+    useProjectStore.getState().endEditGesture()
+    useProjectStore.setState({project:ensureFixedGround(project),documentEpoch:useProjectStore.getState().documentEpoch+1,activeDevice:0,activeObject:{kind:'device',instanceId:project.devices[0].instanceId},editorPage:'editor',editorMode:'movie',playhead:0,playing:false,keySelection:null})
+    // Allow the subscription to commit the newly selected GLB before probing readiness.
+    await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())))
+    return await waitForReady()
+  },
+  waitForReady,
+  videoClocks: screenVideoStatus,
+  previewFrame,
+  async renderDownload(filename='shot.mp4',quality:ExportQuality='standard'){
+   return withExportSession(async()=>{
+   await waitForReady()
+   const params=await commonParams(quality)
+   const formats=await supportedVideoFormats(params.width,params.height,params.fps,quality)
+   if(!formats.includes('mp4')) throw new Error('MP4_UNSUPPORTED: fallback to frame ZIP')
+   const video=await exportVideo({...params,format:'mp4'})
+   if(video.size<1024)throw new Error('OUTPUT_EMPTY')
+   download(video,filename)
+   return {ok:true,size:video.size,format:'mp4'}
+   })
+  },
+  async framesDownload(filename='frames.zip',quality:ExportQuality='standard'){
+   return withExportSession(async()=>{
+   await waitForReady();const params=await commonParams(quality)
+   const frames=await exportPngSequence(params)
+   if(frames.size<1024) throw new Error('FRAME_ZIP_EMPTY')
+   download(frames,filename)
+   return {ok:true,size:frames.size,format:'png-zip'}
+   })
+  },
+ }
+ Object.defineProperty(window,'__PROMO_BRIDGE__',{value:api,configurable:false,enumerable:false})
+}

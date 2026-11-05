@@ -1,0 +1,2 @@
+PASS procedural-phone-loads-and-exports-rotation
+PASS procedural-phone-material-and-screen-instance-isolation

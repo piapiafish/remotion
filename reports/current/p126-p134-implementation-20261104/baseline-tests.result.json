@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-03T23:50:49.486769+00:00",
+  "command": [
+    "D:\\Node.js\\npm.cmd",
+    "test"
+  ],
+  "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "exitCode": 0,
+  "seconds": 4.984,
+  "log": "baseline-tests.txt",
+  "status": "PASS"
+}

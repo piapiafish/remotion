@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-04T14:14:52.516Z",
+  "checks": [
+    {
+      "name": "solid-is-offered-as-focus-target",
+      "status": "PASS"
+    },
+    {
+      "name": "stickers-start-clear",
+      "status": "PASS"
+    },
+    {
+      "name": "sticker-depth-setting-saved-in-project",
+      "status": "PASS"
+    },
+    {
+      "name": "sticker-dof-changes-real-canvas-pixels",
+      "status": "PASS",
+      "detail": {
+        "sharp": 7061,
+        "blur": 23489
+      }
+    },
+    {
+      "name": "deleting-solid-focus-retains-effective-distance",
+      "status": "PASS"
+    },
+    {
+      "name": "version-five-contains-segments-fonts-clips-and-sticker-depth",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh-session-restores-segments-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "editor-layout-1920x1080",
+      "status": "PASS",
+      "detail": {
+        "timeline": 206,
+        "board": 588,
+        "overflow": false
+      }
+    },
+    {
+      "name": "editor-layout-1366x768",
+      "status": "PASS",
+      "detail": {
+        "timeline": 206,
+        "board": 276,
+        "overflow": false
+      }
+    },
+    {
+      "name": "editor-layout-1000x800",
+      "status": "PASS",
+      "detail": {
+        "timeline": 153,
+        "board": 318,
+        "overflow": false
+      }
+    },
+    {
+      "name": "rerecord-uses-chosen-segment-window",
+      "status": "PASS"
+    },
+    {
+      "name": "discard-rerecord-keeps-old-project",
+      "status": "PASS"
+    },
+    {
+      "name": "real-short-mp4-is-1080p30",
+      "status": "PASS"
+    },
+    {
+      "name": "real-long-mp4-is-900-frames",
+      "status": "PASS"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "effects",
+      "status": "PASS"
+    },
+    {
+      "name": "exports",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T14:14:52.891Z",
+      "url": "http://127.0.0.1:61912/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:14:53.350Z",
+      "url": "http://127.0.0.1:61912/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:14:53.976Z",
+      "url": "http://127.0.0.1:61912/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:15:03.867Z",
+      "url": "http://127.0.0.1:61912/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:15:04.330Z",
+      "url": "http://127.0.0.1:61912/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:15:05.030Z",
+      "url": "http://127.0.0.1:61912/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:15:11.431Z",
+      "url": "http://127.0.0.1:61912/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T14:15:14.146Z",
+      "url": "http://127.0.0.1:61912/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:15:14.317Z",
+      "url": "http://127.0.0.1:61912/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:15:14.808Z",
+      "url": "http://127.0.0.1:61912/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:15:15.516Z",
+      "url": "http://127.0.0.1:61912/?automation=1#editor"
+    }
+  ]
+}

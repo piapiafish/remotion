@@ -1,0 +1,205 @@
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
+import { Play, Pause } from 'lucide-react'
+import { useProjectStore } from '../../store/project'
+import { getManifest } from '../../devices/manifest'
+import { CAMERA_CHANNELS, DEVICE_CHANNELS, sameTime, targetTracks, type KeySelection, type TrackTarget } from '../../timeline/editing'
+import { NAMED_EASINGS } from '../../timeline/easing'
+import { MotionFilmstrip } from './MotionFilmstrip'
+import { PresetControls } from './PresetControls'
+
+export function TimelineBar() {
+  const project = useProjectStore(s => s.project)
+  const playhead = useProjectStore(s => s.playhead)
+  const playing = useProjectStore(s => s.playing)
+  const active = useProjectStore(s => s.activeDevice)
+  const selection = useProjectStore(s => s.keySelection)
+  const [scope, setScope] = useState<'device' | 'camera'>('device')
+  const [channel, setChannel] = useState('position.x')
+  const trackRef = useRef<HTMLDivElement>(null)
+  const scrubPointer = useRef<number | null>(null)
+  const duration = project.duration
+  const device = project.devices[active]
+  const target: TrackTarget = scope === 'camera' ? { kind: 'camera' } : { kind: 'device', instanceId: device?.instanceId ?? '' }
+  const channels = scope === 'camera' ? CAMERA_CHANNELS : DEVICE_CHANNELS
+  const currentChannel = channels.includes(channel) ? channel : 'position.x'
+  const tracks = targetTracks(project, target)
+  const owner = scope === 'camera' ? 'Camera' : `Device ${active + 1} · ${device ? getManifest(device.id).name : ''}`
+  const selected = selection && ((selection.target.kind === 'camera' && scope === 'camera')
+    || (selection.target.kind === 'device' && target.kind === 'device' && selection.target.instanceId === target.instanceId)) ? selection : null
+  const key = selected ? targetTracks(project, selected.target)?.[selected.channel]?.keys.find(k => sameTime(k.t, selected.t)) : undefined
+  const store = () => useProjectStore.getState()
+  const pct = (t: number) => `${Math.min(1, Math.max(0, t / duration)) * 100}%`
+
+  function scrub(clientX: number) {
+    const rect = trackRef.current?.getBoundingClientRect()
+    if (!rect || rect.width <= 0) return
+    store().setPlaying(false)
+    store().setPlayhead(Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)) * duration)
+  }
+  const scrubHandlers = {
+    onPointerDown(e: PointerEvent<HTMLDivElement>) {
+      if (e.button !== 0 || !e.isPrimary) return
+      const rect = trackRef.current?.getBoundingClientRect()
+      if (!rect || e.clientX < rect.left) return
+      e.preventDefault()
+      e.currentTarget.focus()
+      scrubPointer.current = e.pointerId
+      e.currentTarget.setPointerCapture(e.pointerId)
+      scrub(e.clientX)
+    },
+    onPointerMove(e: PointerEvent<HTMLDivElement>) { if (scrubPointer.current === e.pointerId) scrub(e.clientX) },
+    onPointerUp(e: PointerEvent<HTMLDivElement>) {
+      if (scrubPointer.current !== e.pointerId) return
+      scrub(e.clientX)
+      scrubPointer.current = null
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+    },
+    onPointerCancel() { scrubPointer.current = null },
+    onLostPointerCapture() { scrubPointer.current = null },
+  }
+  function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (/INPUT|SELECT|TEXTAREA/.test((e.target as HTMLElement).tagName)) return
+    if (e.key === 'Delete' || e.key === 'Backspace') {
+      e.preventDefault(); e.stopPropagation(); store().deleteTimelineKey(); return
+    }
+    let t = playhead
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') t -= 1 / project.fps
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') t += 1 / project.fps
+    else if (e.key === 'Home') t = 0
+    else if (e.key === 'End') t = duration
+    else return
+    e.preventDefault(); store().setPlaying(false); store().setPlayhead(t)
+  }
+  const degrees = selected?.channel.startsWith('rotation.')
+  const easeName = key ? Object.entries(NAMED_EASINGS).find(([, v]) => v.every((n, i) => n === key.ease[i]))?.[0] ?? 'custom' : 'linear'
+
+  return <div className={project.motionPlan ? 'timeline has-motion-plan' : 'timeline'}>
+    <div className="timeline-toolbar">
+      <button className="play-btn" onClick={() => store().setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>
+        {playing ? <Pause size={16} /> : <Play size={16} />}
+      </button>
+      <PresetControls />
+      <div className="time-readout">
+        <input aria-label="Playhead time" className="time-now" type="number" min={0} max={duration} step={1 / project.fps}
+          value={Number(playhead.toFixed(3))} onChange={e => { store().setPlaying(false); store().setPlayhead(Number(e.target.value)) }} />
+        <span>of</span>
+        <input aria-label="Project duration" className="time-duration" type="number" min={0.1} step={0.5} value={duration}
+          onChange={e => { const n = Number(e.target.value); if (Number.isFinite(n) && n >= 0.1) store().setDuration(n) }} /><span>s</span>
+      </div>
+    </div>
+    <div className="key-editor">
+      <select aria-label="Track target" value={scope} onChange={e => { setScope(e.target.value as typeof scope); store().selectKey(null) }}>
+        <option value="device">Device {active + 1}</option><option value="camera">Camera</option>
+      </select>
+      <select aria-label="Animation channel" value={currentChannel} onChange={e => { setChannel(e.target.value); store().selectKey(null) }}>
+        {channels.map(c => <option key={c} value={c}>{c}</option>)}
+      </select>
+      <button onClick={() => store().addTimelineKey(target, currentChannel)} disabled={scope === 'device' && !device}>Add keyframe</button>
+      {key && selected && <>
+        <label>Time <CommitNumber label="Keyframe time" value={Number(key.t.toFixed(3))}
+          onCommit={v => { store().beginEditGesture(); store().moveTimelineKey(selected, v); store().endEditGesture() }} /></label>
+        <label>{degrees ? 'Degrees' : 'Value'} <CommitNumber label="Keyframe value"
+          value={Number((degrees ? key.v * 180 / Math.PI : key.v).toFixed(4))}
+          onCommit={v => store().setTimelineKeyValue(v * (degrees ? Math.PI / 180 : 1))} /></label>
+        <label>Ease <select aria-label="Keyframe easing" value={easeName}
+          onChange={e => store().setTimelineKeyEase(NAMED_EASINGS[e.target.value as keyof typeof NAMED_EASINGS])}>
+          {easeName === 'custom' && <option value="custom" disabled>Custom</option>}
+          {Object.keys(NAMED_EASINGS).map(n => <option key={n}>{n}</option>)}
+        </select></label>
+        <button onClick={() => store().deleteTimelineKey()}>Delete keyframe</button>
+      </>}
+    </div>
+    <div className="timeline-owner">{owner} · {currentChannel} {tracks?.[currentChannel]?.interpolation === 'continuous' ? '· Continuous interpolation; choosing an ease switches this channel to keyed easing.' : ''}</div>
+    <div className="timeline-body">
+      <div className="timeline-content" style={project.motionPlan ? { minWidth: Math.max(600, duration * 130 + 106) } : undefined}>
+        <div className="ruler" {...scrubHandlers}>
+          {Array.from({ length: Math.ceil(duration) + 1 }, (_, i) => <span key={i} className="tick" style={{ left: pct(Math.min(i, duration)) }}>{Number(Math.min(i, duration).toFixed(2))}s</span>)}
+        </div>
+        <div className="tracks" tabIndex={0} role="slider" aria-label="Timeline playhead" aria-valuemin={0} aria-valuemax={duration}
+          aria-valuenow={playhead} onKeyDown={onKeyDown} {...scrubHandlers}>
+          {channels.map(c => <ChannelRow key={`${scope}-${device?.instanceId}-${c}`} target={target} channel={c} duration={duration}
+            selected={selected} onSelect={() => setChannel(c)} />)}
+          <div className="playhead-track" ref={trackRef}><div className="playhead" style={{ left: pct(playhead) }}><span className="playhead-grip" /></div></div>
+        </div>
+        {project.motionPlan && <MotionFilmstrip project={project} />}
+      </div>
+    </div>
+  </div>
+}
+
+function ChannelRow({ target, channel, duration, selected, onSelect }: {
+  target: TrackTarget; channel: string; duration: number; selected: KeySelection | null; onSelect: () => void
+}) {
+  const project = useProjectStore(s => s.project)
+  const track = targetTracks(project, target)?.[channel]
+  const drag = useRef<{ pointer: number; startX: number; width: number; selection: KeySelection; moved: boolean } | null>(null)
+  const store = () => useProjectStore.getState()
+  function finish(e: PointerEvent<HTMLDivElement>, cancel = false) {
+    if (!drag.current || drag.current.pointer !== e.pointerId) return
+    const moved = drag.current.moved
+    drag.current = null
+    if (moved) store().endEditGesture(cancel)
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+  }
+  return <div className="track-row"
+    onPointerMove={e => {
+      const d = drag.current
+      if (!d || d.pointer !== e.pointerId || d.width <= 0) return
+      if (d.moved && !store().editingGesture) { drag.current = null; return }
+      if (!d.moved && Math.abs(e.clientX - d.startX) < 3) return
+      if (!d.moved) { store().beginEditGesture(); d.moved = true }
+      const fps = store().project.fps
+      const t = Math.round((d.selection.t + (e.clientX - d.startX) / d.width * duration) * fps) / fps
+      store().moveTimelineKey(d.selection, t)
+    }}
+    onPointerUp={e => finish(e)} onPointerCancel={e => finish(e, true)} onLostPointerCapture={e => finish(e)}>
+    <button className="track-label" onPointerDown={e => e.stopPropagation()} onClick={onSelect}>{channel}</button>
+    <div className={track && track.keys.length > 1 ? 'track-lane animated' : 'track-lane'}>
+      {track?.keys.map(k => <KeyDiamond key={k.t} selection={{ target, channel, t: k.t }} duration={duration}
+        selected={!!selected && selected.channel === channel && sameTime(selected.t, k.t)}
+        onStart={(e, selection) => {
+          e.stopPropagation(); e.preventDefault(); e.currentTarget.focus(); onSelect(); store().selectKey(selection)
+          const row = e.currentTarget.closest('.track-row') as HTMLDivElement
+          drag.current = { pointer: e.pointerId, startX: e.clientX, width: e.currentTarget.parentElement!.getBoundingClientRect().width, selection, moved: false }
+          row.setPointerCapture(e.pointerId)
+        }} />)}
+    </div>
+  </div>
+}
+function KeyDiamond({ selection, duration, selected, onStart }: {
+  selection: KeySelection; duration: number; selected: boolean
+  onStart: (e: PointerEvent<HTMLButtonElement>, selection: KeySelection) => void
+}) {
+  const store = () => useProjectStore.getState()
+  return <button type="button" className={selected ? 'keyframe selected' : 'keyframe'}
+    style={{ left: `${Math.min(100, Math.max(0, selection.t / duration * 100))}%` }}
+    aria-label={`${selection.target.kind === 'camera' ? 'Camera' : 'Device'} ${selection.channel} keyframe ${Number(selection.t.toFixed(3))}s`}
+    aria-pressed={selected} title={`${selection.channel} · ${selection.t.toFixed(3)}s · drag to retime`}
+    onPointerDown={e => {
+      if (e.button !== 0) return
+      onStart(e, selection)
+    }}
+    onKeyDown={e => {
+      if (e.key !== 'Delete' && e.key !== 'Backspace') return
+      e.preventDefault(); e.stopPropagation(); store().selectKey(selection); store().deleteTimelineKey()
+    }} />
+}
+
+function CommitNumber({ value, label, onCommit }: { value: number; label: string; onCommit: (n: number) => void }) {
+  const [draft, setDraft] = useState(String(value))
+  const focused = useRef(false), cancelled = useRef(false)
+  useEffect(() => { if (!focused.current) setDraft(String(value)) }, [value])
+  return <input aria-label={label} type="number" step="any" value={draft}
+    onFocus={() => { focused.current = true; cancelled.current = false }}
+    onChange={e => setDraft(e.target.value)}
+    onBlur={() => {
+      focused.current = false
+      const n = Number(draft)
+      if (!cancelled.current && draft.trim() && Number.isFinite(n) && n !== value) onCommit(n)
+      setDraft(String(value))
+    }}
+    onKeyDown={e => {
+      if (e.key === 'Enter') e.currentTarget.blur()
+      if (e.key === 'Escape') { cancelled.current = true; setDraft(String(value)); e.currentTarget.blur() }
+    }} />
+}

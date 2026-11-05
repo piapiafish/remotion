@@ -1,0 +1,26 @@
+import { makeSolidGeometry } from './solidGeometry'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { type ThreeEvent } from '@react-three/fiber'
+import type { Group, Mesh } from 'three'
+import type { Font } from 'three/examples/jsm/loaders/FontLoader.js'
+import type { TextObject } from '../store/schema'
+import { solidFont, solidKey, markSolidReady } from './solidFont'
+import { useProjectStore } from '../store/project'
+import { sampleTrack } from '../timeline/sample'
+import { useCameraSession } from '../store/cameraSession'
+import { reportError } from '../store/feedback'
+
+export function SolidText({text}:{text:TextObject}){
+  const [font,setFont]=useState<{font:Font;key:string}|null>(null),group=useRef<Group>(null),mesh=useRef<Mesh>(null),drag=useRef<{x:number;y:number;px:number;py:number;ry:number;pointer:number}|null>(null)
+  const key=solidKey(text),spec=useMemo(()=>{const [content,fontSize,width,align,lineHeight,fontData]=JSON.parse(key);return {content,fontSize,width,align,lineHeight,fontData}},[key])
+  useEffect(()=>{let live=true;markSolidReady(text.instanceId,null);solidFont(spec).then(f=>{if(live)setFont({font:f.font,key})}).catch(error=>{if(live)reportError('实体文字字形生成失败',error)});return()=>{live=false;markSolidReady(text.instanceId,null)}},[text.instanceId,key,spec])
+  const geometry=useMemo(()=>font?.key===key?makeSolidGeometry(spec,font.font):null,[font,key,spec])
+  useEffect(()=>{if(geometry)markSolidReady(text.instanceId,key);return()=>{geometry?.dispose();markSolidReady(text.instanceId,null)}},[geometry,key,text.instanceId])
+  const end=(e:ThreeEvent<PointerEvent>,cancel=false)=>{if(!drag.current)return;drag.current=null;useProjectStore.getState().endEditGesture(cancel);(e.target as Element).releasePointerCapture?.(e.pointerId)}
+  useEffect(()=>{const cancel=()=>{if(drag.current){drag.current=null;useProjectStore.getState().endEditGesture(true)}};window.addEventListener('blur',cancel);return()=>{window.removeEventListener('blur',cancel);cancel()}},[])
+  return <group ref={group} userData={{textId:text.instanceId}} onPointerDown={e=>{
+    if(e.button!==0||useCameraSession.getState().mode!=='idle')return;e.stopPropagation();const s=useProjectStore.getState();s.selectObject({kind:'text',instanceId:text.instanceId});s.beginEditGesture();drag.current={x:e.clientX,y:e.clientY,px:sampleTrack(text.transform['position.x'],s.playhead,0),py:sampleTrack(text.transform['position.y'],s.playhead,0),ry:sampleTrack(text.transform['rotation.y'],s.playhead,0),pointer:e.pointerId};(e.target as Element).setPointerCapture?.(e.pointerId)
+  }} onPointerMove={e=>{const d=drag.current;if(!d||e.pointerId!==d.pointer)return;e.stopPropagation();const s=useProjectStore.getState();if(s.canvasTool==='rotate')s.setTextValue('rotation.y',d.ry+(e.clientX-d.x)*.01);else{s.setTextValue('position.x',d.px+(e.clientX-d.x)*.005);s.setTextValue('position.y',d.py-(e.clientY-d.y)*.005)}}} onPointerUp={e=>end(e)} onPointerCancel={e=>end(e,true)} onLostPointerCapture={e=>end(e)}>
+    {geometry&&<mesh ref={mesh} geometry={geometry} castShadow receiveShadow><meshStandardMaterial color={text.color} roughness={.45} metalness={.05} transparent opacity={1}/></mesh>}
+  </group>
+}

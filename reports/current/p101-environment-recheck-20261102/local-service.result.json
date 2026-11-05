@@ -1,0 +1,5 @@
+{
+  "Command": ".venv/Scripts/python.exe reports/current/p101-environment-recheck-20261102/verify-local-service.py",
+  "ExitCode": 0,
+  "TemporaryDirectory": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\environment-probes\\p101-20261102-temp"
+}

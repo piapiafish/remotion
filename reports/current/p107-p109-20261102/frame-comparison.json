@@ -1,0 +1,120 @@
+{
+  "status": "PASS",
+  "method": "Actual H264-decoded frames versus same-frame Standard engine output",
+  "threshold": 0.97,
+  "frames": [
+    {
+      "frame": 0,
+      "ssim": 0.999111,
+      "status": "PASS"
+    },
+    {
+      "frame": 11,
+      "ssim": 0.999111,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "ssim": 0.999111,
+      "status": "PASS"
+    },
+    {
+      "frame": 13,
+      "ssim": 0.999111,
+      "status": "PASS"
+    },
+    {
+      "frame": 26,
+      "ssim": 0.999046,
+      "status": "PASS"
+    },
+    {
+      "frame": 27,
+      "ssim": 0.99909,
+      "status": "PASS"
+    },
+    {
+      "frame": 28,
+      "ssim": 0.999054,
+      "status": "PASS"
+    },
+    {
+      "frame": 32,
+      "ssim": 0.998746,
+      "status": "PASS"
+    },
+    {
+      "frame": 33,
+      "ssim": 0.998924,
+      "status": "PASS"
+    },
+    {
+      "frame": 34,
+      "ssim": 0.998894,
+      "status": "PASS"
+    },
+    {
+      "frame": 47,
+      "ssim": 0.998575,
+      "status": "PASS"
+    },
+    {
+      "frame": 48,
+      "ssim": 0.998812,
+      "status": "PASS"
+    },
+    {
+      "frame": 49,
+      "ssim": 0.998815,
+      "status": "PASS"
+    },
+    {
+      "frame": 71,
+      "ssim": 0.999026,
+      "status": "PASS"
+    },
+    {
+      "frame": 72,
+      "ssim": 0.999016,
+      "status": "PASS"
+    },
+    {
+      "frame": 73,
+      "ssim": 0.998559,
+      "status": "PASS"
+    },
+    {
+      "frame": 101,
+      "ssim": 0.998835,
+      "status": "PASS"
+    },
+    {
+      "frame": 102,
+      "ssim": 0.998835,
+      "status": "PASS"
+    },
+    {
+      "frame": 103,
+      "ssim": 0.998845,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "ssim": 0.999109,
+      "status": "PASS"
+    }
+  ],
+  "decode_command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-y",
+    "-i",
+    "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\workflow-final\\stage-one-short.mp4",
+    "-vf",
+    "select=eq(n\\,0)+eq(n\\,11)+eq(n\\,12)+eq(n\\,13)+eq(n\\,26)+eq(n\\,27)+eq(n\\,28)+eq(n\\,32)+eq(n\\,33)+eq(n\\,34)+eq(n\\,47)+eq(n\\,48)+eq(n\\,49)+eq(n\\,71)+eq(n\\,72)+eq(n\\,73)+eq(n\\,101)+eq(n\\,102)+eq(n\\,103)+eq(n\\,119)",
+    "-fps_mode",
+    "vfr",
+    "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\workflow-final\\decoded\\frame-%03d.png"
+  ]
+}

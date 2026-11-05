@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-02T04:58:37.593Z",
+  "phase": "workflow",
+  "url": "http://127.0.0.1:4207",
+  "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+  "checks": [
+    {
+      "id": "two-independent-browser-recordings",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "status": "INCOMPLETE",
+  "browser": "156.0.8078.76",
+  "footage": {
+    "Meals": {
+      "path": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\workflow-2\\meals-recording.mp4",
+      "duration": 4.833333,
+      "sha256": "461cfd19a355d28f552cdb6554b52a7d3e9025e2f16a0e458ad94fec37d182a3"
+    },
+    "Activity": {
+      "path": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\workflow-2\\activity-recording.mp4",
+      "duration": 4.633333,
+      "sha256": "51770ada4908edb7b4921509b522caf5409203e4af005daedb5909ced9dc4268"
+    }
+  },
+  "error": "TimeoutError: locator.click: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTitle('Duplicate', { exact: true })\u001b[22m\n",
+  "stack": "locator.click: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTitle('Duplicate', { exact: true })\u001b[22m\n\n    at C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\project\\scripts\\test-stage-one.cjs:82:49"
+}

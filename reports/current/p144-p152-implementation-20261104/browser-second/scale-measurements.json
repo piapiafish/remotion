@@ -1,0 +1,157 @@
+[
+  {
+    "id": "procedural-phone",
+    "before": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "visible": true
+    },
+    "after": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.6293022888532428,
+      "visible": true
+    }
+  },
+  {
+    "id": "iphone-17-pro",
+    "before": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "visible": true
+    },
+    "after": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.6293022888532428,
+      "visible": true
+    }
+  },
+  {
+    "id": "iphone-17-pro-max",
+    "before": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "visible": true
+    },
+    "after": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.6293022888532428,
+      "visible": true
+    }
+  },
+  {
+    "id": "pixel-9-pro-xl",
+    "before": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "visible": true
+    },
+    "after": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.6293022888532428,
+      "visible": true
+    }
+  },
+  {
+    "id": "galaxy-s26-ultra",
+    "before": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "visible": true
+    },
+    "after": {
+      "position": [
+        0.7,
+        0.6,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.6293022888532428,
+      "visible": true
+    }
+  }
+]

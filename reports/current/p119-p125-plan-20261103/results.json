@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-03T17:52:01.721088+08:00",
+  "status": "PLAN_READY",
+  "workType": "PLAN_ONLY",
+  "manualFeedback": {
+    "PASS": 6,
+    "FAIL": 5,
+    "UNFILLED": 54
+  },
+  "feedbackTasks": {
+    "A02": [
+      "P1-19"
+    ],
+    "A03": [
+      "P1-20"
+    ],
+    "B02": [
+      "P1-21",
+      "P1-22"
+    ],
+    "B03": [
+      "P1-23"
+    ],
+    "C03": [
+      "P1-24"
+    ]
+  },
+  "tasks": [
+    "P1-19",
+    "P1-20",
+    "P1-21",
+    "P1-22",
+    "P1-23",
+    "P1-24",
+    "P1-25"
+  ],
+  "fileProtection": {
+    "sourceFilesChecked": 173,
+    "sourceChanges": [],
+    "manualChecklistUnchanged": true,
+    "userSampleUnchanged": true,
+    "legacyDocumentCheckPreserved": true
+  },
+  "planCoverage": {
+    "missingTasks": [],
+    "unassignedFailedItems": [],
+    "missingIssueReferences": []
+  },
+  "productTests": "NOT_RUN",
+  "browserReproduction": "NOT_RUN",
+  "implementation": "NOT_STARTED",
+  "phaseOneAccepted": false,
+  "documentCheck": {
+    "command": ".venv/Scripts/python.exe scripts/check-project-docs.py",
+    "started": "2026-11-03T17:52:01.722089+08:00",
+    "exitCode": 0,
+    "status": "PASS",
+    "markdownFilesChecked": 110,
+    "currentLinkErrors": 0,
+    "historicalLinkWarnings": 238
+  }
+}

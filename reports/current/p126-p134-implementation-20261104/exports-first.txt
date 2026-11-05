@@ -1,0 +1,5 @@
+PASS real-effects-1080p30-video
+PASS single-30-second-900-frame-video
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"exports","status":"PASS"}],"checks":4}

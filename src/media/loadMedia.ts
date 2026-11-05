@@ -1,0 +1,58 @@
+import { putMedia } from './storage'
+import { loadImageAsMediaRef } from './loadImage'
+import type { MediaRef } from '../store/schema'
+
+/** Container types a `<video>` element will actually play back. */
+export const ACCEPTED_SCREEN_TYPES = 'image/*,video/mp4,video/webm,video/quicktime'
+
+/**
+ * Read a screen recording into a MediaRef and persist the blob.
+ *
+ * Dimensions come from `videoWidth`/`videoHeight` rather than the container's
+ * declared size, because those are the values *after* the browser has applied
+ * any rotation matrix the file carries — phone screen recordings routinely
+ * carry one, and reading around it is how exports come out sideways (§14
+ * trap 8). Letting the element do it means the whole app, preview and export
+ * alike, only ever sees upright frames.
+ */
+export async function loadVideoAsMediaRef(file: File): Promise<MediaRef> {
+  const digest=await crypto.subtle.digest('SHA-256',await file.arrayBuffer())
+  const id='video-'+Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('')
+  const url = URL.createObjectURL(file)
+
+  try {
+  const meta = await new Promise<{ width: number; height: number; duration: number }>(
+    (resolve, reject) => {
+      const el = document.createElement('video')
+      el.preload = 'metadata'
+      el.muted = true
+      const cleanup = () => { clearTimeout(timer); el.onloadedmetadata = null; el.onerror = null; el.removeAttribute('src'); el.load() }
+      const timer = setTimeout(() => { cleanup(); reject(new Error('读取录屏超时，请检查文件或更换格式。')) }, 12000)
+      el.onloadedmetadata = () => {
+        const value = { width: el.videoWidth, height: el.videoHeight, duration: el.duration }
+        cleanup()
+        if (value.width <= 0 || value.height <= 0 || !Number.isFinite(value.duration) || value.duration <= 0) reject(new Error('录屏尺寸或时长无效。'))
+        else resolve(value)
+      }
+      el.onerror = () => { cleanup(); reject(new Error('浏览器无法读取该录屏，请使用可播放的 MP4 或 WebM。')) }
+      el.src = url
+    },
+  )
+
+  await putMedia(id, file)
+  return { id, kind: 'video', ...meta, url }
+  } catch (error) { URL.revokeObjectURL(url); throw error }
+}
+
+/**
+ * Load whatever the user dropped on the screen.
+ *
+ * No selected file is a no-op; unsupported or unreadable files produce a
+ * visible error at the upload entry point and preserve the current source.
+ */
+export async function loadScreenMedia(file: File | undefined): Promise<MediaRef | null> {
+  if (!file) return null
+  if (file.type.startsWith('image/')) return loadImageAsMediaRef(file)
+  if (file.type.startsWith('video/')) return loadVideoAsMediaRef(file)
+  throw new Error('不支持该素材类型，请选择图片、MP4 或 WebM。')
+}

@@ -1,0 +1,18 @@
+START 03-independent-presets-and-media
+PASS MAN-005-preset-only-selected-instance
+PASS preset-protects-unrelated-channels
+PASS devices-have-independent-actions-and-times
+PASS timeline-owner-follows-device-selection
+PASS preset-undo-is-one-operation
+PASS orbit-preset-has-camera-scope
+FAIL 03-independent-presets-and-media
+START 04-new-session-and-export
+FAIL 04-new-session-and-export
+START 05-P1-02-regression
+PASS P1-02-add-undo-no-crash
+FAIL P1-02-redo-valid-selection
+PASS P1-02-duplicate-selects-copy
+PASS P1-02-removal-selection-valid
+PASS no-unhandled-page-errors
+PASS all-local-assets-loaded
+{"status":"INCOMPLETE","checks":14,"failures":[{"id":"03-independent-presets-and-media","status":"FAIL","execution":"INCOMPLETE","error":"Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame\n    at Object.$T [as waitForReady] (http://127.0.0.1:4187/assets/index-B-i93O67.js:4115:64594)\n    at async <anonymous>:316:30","stack":"page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame\n    at Object.$T [as waitForReady] (http://127.0.0.1:4187/assets/index-B-i93O67.js:4115:64594)\n    at async <anonymous>:316:30\n    at ready (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:16:40)\n    at C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:179:10\n    at async run (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:32:158)\n    at async C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:155:26"},{"id":"04-new-session-and-export","status":"FAIL","execution":"INCOMPLETE","error":"Error: 03 fixture missing","stack":"Error: 03 fixture missing\n    at C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:183:19\n    at run (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:32:164)\n    at async C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:182:26"},{"id":"P1-02-redo-valid-selection","status":"FAIL"}]}

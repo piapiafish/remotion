@@ -1,0 +1,35 @@
+import { useState } from 'react'
+import { useProjectStore } from '../../store/project'
+import { normalizePlayback } from '../../media/videoTiming'
+import { reportError } from '../../store/feedback'
+
+function TimingNumber({ label, value, max, commit }: { label: string; value: number; max?: number; commit: (n: number) => void }) {
+  const [draft, setDraft] = useState<string | null>(null)
+  const submit = () => {
+    if (draft !== null) {
+      if (!draft.trim() || !Number.isFinite(Number(draft))) reportError('录屏时序未修改', new Error('请输入有效的秒数。'))
+      else if (Number(draft) !== value) commit(Number(draft))
+    }
+    setDraft(null)
+  }
+  return <label className="video-timing-field">{label}<input aria-label={label} type="number" min="0" max={max} step="0.01"
+    value={draft ?? value} onChange={e => setDraft(e.target.value)} onBlur={submit}
+    onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); if (e.key === 'Escape') { e.preventDefault(); setDraft(null) } }} /></label>
+}
+
+export function VideoTimingControls() {
+  const device = useProjectStore(s => s.project.devices[s.activeDevice])
+  const setPlayback = useProjectStore(s => s.setScreenPlayback)
+  if (device?.screen?.kind !== 'video') return null
+  const p = normalizePlayback(device.screen.duration ?? 0, device.screenPlayback)
+  return <details className="advanced video-timing" key={device.instanceId}><summary>录屏时序</summary>
+    <label>录屏时序 · 秒</label>
+    <div className="video-timing-fields">
+      <TimingNumber key={device.instanceId + '-in'} label="源入点" value={p.in} max={device.screen.duration} commit={n => setPlayback({ in: n })} />
+      <TimingNumber key={device.instanceId + '-out'} label="源出点" value={p.out} max={device.screen.duration} commit={n => setPlayback({ out: n })} />
+      <TimingNumber key={device.instanceId + '-start'} label="开始时间" value={p.start} commit={n => setPlayback({ start: n })} />
+    </div>
+    <label><input type="checkbox" aria-label="循环选定片段" checked={p.loop} onChange={e => setPlayback({ loop: e.target.checked })} /> 循环选定片段</label>
+    <p className="hint">起播前保持入点帧；结束后保持末帧。循环仅播放选定片段。</p>
+  </details>
+}

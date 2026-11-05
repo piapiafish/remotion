@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-04T11:23:36.289386+00:00",
+  "url": "http://127.0.0.1:58617",
+  "serverCommand": [
+    "D:\\Node.js\\node.exe",
+    "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "58617",
+    "--strictPort"
+  ],
+  "command": [
+    "D:\\Node.js\\node.exe",
+    "scripts/test-third-feedback.cjs"
+  ],
+  "status": "RUNNING",
+  "serverStopped": true,
+  "seconds": 32.469
+}

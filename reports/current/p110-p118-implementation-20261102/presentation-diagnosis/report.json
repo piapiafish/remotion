@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-02T14:40:53.115Z",
+  "checks": [
+    {
+      "name": "template-first",
+      "status": "PASS"
+    },
+    {
+      "name": "two-object-timeline-rows",
+      "status": "PASS"
+    },
+    {
+      "name": "text-and-phones-in-one-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "no-placeholder-panels",
+      "status": "PASS"
+    },
+    {
+      "name": "depth-render-produced",
+      "status": "PASS"
+    },
+    {
+      "name": "temporal-render-produced",
+      "status": "PASS"
+    },
+    {
+      "name": "effect-presentation-keeps-scene",
+      "status": "PASS",
+      "detail": {
+        "before": 24915845,
+        "after": 24915845,
+        "error": 0
+      }
+    },
+    {
+      "name": "page-no-exceptions",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS"
+}

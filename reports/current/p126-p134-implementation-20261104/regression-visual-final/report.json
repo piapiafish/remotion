@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-04T00:47:42.102Z",
+  "checks": [
+    {
+      "name": "D02-legacy-time-boundaries-remain-correct",
+      "status": "PASS",
+      "detail": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4.999999,
+          4
+        ],
+        [
+          4.999999,
+          5
+        ],
+        [
+          4.999999,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "D03-shared-source-retains-independent-decoders",
+      "status": "PASS",
+      "detail": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "media-regression",
+      "status": "PASS"
+    },
+    {
+      "name": "occlusion",
+      "status": "FAIL",
+      "error": "ReferenceError: still is not defined"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

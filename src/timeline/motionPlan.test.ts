@@ -1,0 +1,201 @@
+import { ensureFixedGround } from '../scene/groundPlane'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { applyMotionPlan, generateMockMotionPlan, motionTimelineFrames, parseMotionPlan, validateMotionPlan } from './motionPlan'
+import { createDefaultProject } from '../store/defaults'
+import { sampleTimeline, sampleTrack, isAnimated } from './sample'
+import { removeKey, setKey } from './tracks'
+import { useProjectStore } from '../store/project'
+import { emptyHistory, resetCoalescing } from '../store/history'
+import { migrate, serializeProject, deserializeProject } from '../store/persist'
+
+const makePlan = () => generateMockMotionPlan('旋转手机', 'iphone-17-pro', { width: 1080, height: 1920 })
+
+describe('motion JSON -> native phone tracks', () => {
+  it('drives every requested pose without requiring any video/image asset', () => {
+    const plan = makePlan()
+    const project = applyMotionPlan(createDefaultProject(), plan)
+    expect(project.devices).toHaveLength(1)
+    expect(project.devices[0].screen).toBeNull()
+    for (const frame of plan.keyframes) {
+      const state = sampleTimeline(project, frame.t)
+      expect(state.devices[0].position).toEqual(frame.position)
+      frame.rotationDeg.forEach((v, i) => expect(state.devices[0].rotation[i]).toBeCloseTo(v * Math.PI / 180, 10))
+      expect(state.devices[0].scale).toBe(frame.scale)
+      expect(state.camera.position).toEqual(plan.camera.position)
+    }
+  })
+
+  it('preserves full revolutions and interpolates the same tracks as preview/export', () => {
+    const plan = makePlan()
+    delete plan.interpolation // old JSON keeps its explicitly linear segment easing
+    plan.duration = 4
+    plan.keyframes = [
+      { ...plan.keyframes[0], t: 0, position: [0, 0, 0], rotationDeg: [0, 0, 0], scale: 1, ease: 'linear' },
+      { ...plan.keyframes[0], t: 4, position: [1, .4, 0], rotationDeg: [0, 720, 0], scale: 2 },
+    ]
+    const project = applyMotionPlan(createDefaultProject(), plan)
+    const middle = sampleTimeline(project, 2).devices[0]
+    expect(middle.position).toEqual([.5, .2, 0])
+    expect(middle.scale).toBe(1.5)
+    expect(middle.rotation[1]).toBeCloseTo(Math.PI * 2)
+    expect(sampleTimeline(project, 4).devices[0].rotation[1]).toBeCloseTo(Math.PI * 4)
+    expect(sampleTimeline(project, 1).devices[0].rotation[1]).toBeCloseTo(Math.PI)
+  })
+
+  it('keeps velocity continuous through each simulated pose, with no one-second stops', () => {
+    const project = applyMotionPlan(createDefaultProject(), makePlan())
+    const dt = 1e-5
+    for (const track of Object.values(project.devices[0].transform)) {
+      for (const key of track.keys.slice(1, -1)) {
+        const left = (sampleTrack(track, key.t, 0) - sampleTrack(track, key.t - dt, 0)) / dt
+        const right = (sampleTrack(track, key.t + dt, 0) - sampleTrack(track, key.t, 0)) / dt
+        expect(Math.abs(left - right)).toBeLessThan(.001)
+      }
+    }
+    const rotation = project.devices[0].transform['rotation.y']
+    for (const t of [4, 5, 6, 7, 8, 9, 10, 11]) {
+      expect((sampleTrack(rotation, t + dt, 0) - sampleTrack(rotation, t - dt, 0)) / (2 * dt)).toBeGreaterThan(.1)
+    }
+  })
+
+  it('does not overshoot poses or reverse the spin, and starts/finishes at rest', () => {
+    const project = applyMotionPlan(createDefaultProject(), makePlan())
+    for (const track of Object.values(project.devices[0].transform)) {
+      for (let i = 0; i < track.keys.length - 1; i++) {
+        const a = track.keys[i], b = track.keys[i + 1]
+        for (let step = 0; step <= 20; step++) {
+          const value = sampleTrack(track, a.t + (b.t - a.t) * step / 20, 0)
+          expect(value).toBeGreaterThanOrEqual(Math.min(a.v, b.v) - 1e-10)
+          expect(value).toBeLessThanOrEqual(Math.max(a.v, b.v) + 1e-10)
+        }
+      }
+      const dt = 1e-5, last = track.keys.at(-1)!
+      expect(Math.abs((sampleTrack(track, dt, 0) - track.keys[0].v) / dt)).toBeLessThan(.001)
+      expect(Math.abs((last.v - sampleTrack(track, last.t - dt, 0)) / dt)).toBeLessThan(.001)
+    }
+    const yaw = project.devices[0].transform['rotation.y']
+    for (let frame = 1; frame <= project.duration * 60; frame++) {
+      expect(sampleTrack(yaw, frame / 60, 0)).toBeGreaterThanOrEqual(sampleTrack(yaw, (frame - 1) / 60, 0) - 1e-10)
+    }
+  })
+
+  it('preserves continuous interpolation when a user edits or removes a native key', () => {
+    const project = applyMotionPlan(createDefaultProject(), makePlan())
+    const original = project.devices[0].transform['position.x']
+    expect(setKey(original, 2, .2).interpolation).toBe('continuous')
+    expect(setKey(original, 2.5, .2).interpolation).toBe('continuous')
+    expect(removeKey(original, 2).interpolation).toBe('continuous')
+  })
+
+  it('shows interpolated seconds and all fractional keyframe times with their instructions', () => {
+    const plan = makePlan()
+    plan.duration = 3
+    plan.keyframes = [
+      { ...plan.keyframes[0], t: 0, description: '从左侧入场' },
+      { ...plan.keyframes[3], t: 1.25, description: '正面停留' },
+      { ...plan.keyframes[8], t: 2.5, description: '背面展示' },
+    ]
+    const frames = motionTimelineFrames(applyMotionPlan(createDefaultProject(), plan))
+    expect(frames.map(f => f.t)).toEqual([0, 1, 1.25, 2, 2.5, 3])
+    expect(frames.find(f => f.t === 2)?.description).toBe('正面停留')
+    expect(frames.find(f => f.t === 1)?.isKey).toBe(false)
+    expect(frames.find(f => f.t === 1.25)?.isKey).toBe(true)
+    expect(frames.at(-1)?.state.rotation[1]).toBeCloseTo(Math.PI)
+  })
+
+  it('accepts fenced/prose JSON and descriptions containing quotes/braces', () => {
+    const plan = makePlan()
+    plan.keyframes[0].description = '显示 {机身}，备注："正面"'
+    const json = JSON.stringify(plan)
+    for (const source of [json, '\uFEFF' + json, '方案如下：\n```json\n' + json + '\n```\n请预览。']) {
+      expect(parseMotionPlan(source)).toEqual(plan)
+    }
+    expect(() => parseMotionPlan(json + '\n' + json)).toThrow('一份')
+    expect(() => parseMotionPlan('手机向左转')).toThrow('JSON')
+  })
+
+  it.each([
+    ['duplicate time', (p: ReturnType<typeof makePlan>) => { p.keyframes[1].t = 0 }],
+    ['descending time', (p: ReturnType<typeof makePlan>) => { p.keyframes[2].t = .5 }],
+    ['no zero', (p: ReturnType<typeof makePlan>) => { p.keyframes[0].t = .1 }],
+    ['outside duration', (p: ReturnType<typeof makePlan>) => { p.keyframes[15].t = 16 }],
+    ['nonfinite rotation', (p: ReturnType<typeof makePlan>) => { p.keyframes[2].rotationDeg[1] = Infinity }],
+    ['negative scale', (p: ReturnType<typeof makePlan>) => { p.keyframes[2].scale = -1 }],
+    ['invalid device', (p: ReturnType<typeof makePlan>) => { Object.assign(p, { deviceId: 'unknown' }) }],
+    ['invalid fps', (p: ReturnType<typeof makePlan>) => { Object.assign(p, { fps: 29 }) }],
+    ['invalid easing', (p: ReturnType<typeof makePlan>) => { Object.assign(p.keyframes[0], { ease: 'slerp' }) }],
+    ['camera at target', (p: ReturnType<typeof makePlan>) => { p.camera.position = [0, 0, 0] }],
+    ['bad vector', (p: ReturnType<typeof makePlan>) => { Object.assign(p.keyframes[1], { position: [0] }) }],
+  ])('rejects %s before execution', (_label, mutate) => {
+    const plan = makePlan()
+    mutate(plan)
+    expect(() => validateMotionPlan(plan)).toThrow()
+  })
+
+  it('retains motion and annotations through a saved .mockup round trip', async () => {
+    const project = applyMotionPlan(createDefaultProject(), makePlan())
+    expect(migrate(project).motionPlan).toEqual(project.motionPlan)
+    const restored = await deserializeProject(await serializeProject(project))
+    expect(restored).toEqual(migrate(ensureFixedGround(project)))
+    expect(sampleTimeline(restored, 8)).toEqual(sampleTimeline(project, 8))
+  })
+})
+
+describe('motion plan editor transaction', () => {
+  beforeEach(() => {
+    resetCoalescing()
+    useProjectStore.setState({ project: createDefaultProject(), history: emptyHistory, playhead: 2, playing: true, editorMode: 'image' })
+  })
+  it('switches to Movie and applies all tracks as one undoable edit', () => {
+    const original = useProjectStore.getState().project
+    useProjectStore.getState().applyMotionPlan(makePlan())
+    expect(useProjectStore.getState()).toMatchObject({ editorMode: 'movie', playhead: 0, playing: false, activeDevice: 0 })
+    expect(useProjectStore.getState().history.past).toHaveLength(1)
+    expect(useProjectStore.getState().project.duration).toBe(15)
+    useProjectStore.getState().undo()
+    expect(useProjectStore.getState().project).toEqual(original)
+    useProjectStore.getState().redo()
+    expect(sampleTimeline(useProjectStore.getState().project, 8).devices[0].rotation[1]).toBeCloseTo(Math.PI)
+  })
+  it('does not change the canvas, playback or history for a rejected plan', () => {
+    const before = useProjectStore.getState()
+    expect(() => before.applyMotionPlan({})).toThrow()
+    expect(useProjectStore.getState()).toBe(before)
+  })
+
+  it('clears the AI tracks/annotations in one undoable edit, leaving the model and look intact', () => {
+    useProjectStore.getState().applyMotionPlan(makePlan())
+    const animated = useProjectStore.getState().project
+    useProjectStore.setState({ playing: true, playhead: 8 })
+    useProjectStore.getState().clearMotionPlan()
+    const state = useProjectStore.getState()
+    expect(state).toMatchObject({ playing: false, playhead: 0, motionPreset: 'none' })
+    expect(state.project.motionPlan).toBeUndefined()
+    expect(state.project.devices[0].id).toBe(animated.devices[0].id)
+    expect(state.project.devices[0].colorway).toBe(animated.devices[0].colorway)
+    expect(state.project.background).toEqual(animated.background)
+    expect(state.project.output).toEqual(animated.output)
+    expect(isAnimated(state.project.devices[0].transform)).toBe(false)
+    expect(isAnimated(state.project.camera.tracks)).toBe(false)
+    for (const t of [0, 8, 15]) {
+      expect(sampleTimeline(state.project, t).devices[0]).toEqual({ position: [0, 0, 0], rotation: [0, 0, 0], scale: 1,visible:t<state.project.duration })
+    }
+    state.undo()
+    expect(useProjectStore.getState().project).toEqual(animated)
+    useProjectStore.getState().redo()
+    expect(useProjectStore.getState().project.motionPlan).toBeUndefined()
+  })
+
+  it('does not create an undo entry when there is no AI animation to clear', () => {
+    const before = useProjectStore.getState()
+    before.clearMotionPlan()
+    expect(useProjectStore.getState()).toBe(before)
+  })
+
+  it('restarts playback from the beginning after reaching the final frame', () => {
+    useProjectStore.getState().applyMotionPlan(makePlan())
+    useProjectStore.setState({ playhead: 15, playing: false })
+    useProjectStore.getState().setPlaying(true)
+    expect(useProjectStore.getState()).toMatchObject({ playing: true, playhead: 0 })
+  })
+})

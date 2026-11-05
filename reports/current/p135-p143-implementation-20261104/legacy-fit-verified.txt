@@ -1,0 +1,6 @@
+PASS legacy-fill-does-not-change-loop-or-clock
+FAIL legacy-loop-still-renders-after-fill-change
+SCENARIO FAIL legacy-fit Error: legacy-loop-still-renders-after-fill-change
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"legacy-fit","status":"FAIL","error":"Error: legacy-loop-still-renders-after-fill-change"}],"checks":4}

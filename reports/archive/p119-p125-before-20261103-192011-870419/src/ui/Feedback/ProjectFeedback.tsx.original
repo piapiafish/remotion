@@ -1,0 +1,19 @@
+import { useFeedbackStore } from '../../store/feedback'
+import { useProjectStore } from '../../store/project'
+
+export function ProjectFeedback() {
+  const notice = useFeedbackStore(s => s.notice)
+  const dismiss = useFeedbackStore(s => s.dismiss)
+  const project = useProjectStore(s => s.project)
+  const setActive = useProjectStore(s => s.setActiveDevice)
+  return <div className="feedback-stack">
+    {notice && <div className={`project-feedback ${notice.kind}`} role={notice.kind === 'error' ? 'alert' : 'status'}>
+      <span>{notice.message}</span><button onClick={dismiss} aria-label="关闭提示">×</button>
+    </div>}
+    {project.devices.some(d => d.screen?.missing) && <div className="project-feedback error" role="alert">
+      素材缺失，点击设备后重新绑定：
+      {project.devices.map((d, i) => d.screen?.missing && <button key={d.instanceId} onClick={() => setActive(i)}>设备 {i + 1}</button>)}
+    </div>}
+    {project.background.type === 'image' && project.background.ref.missing && <div className="project-feedback error" role="alert">背景图片缺失，请打开“环境 → 背景” 重新绑定图片或选择其他背景。</div>}
+  </div>
+}

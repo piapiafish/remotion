@@ -1,0 +1,257 @@
+{
+  "date": "2026-11-01T16:29:17.835Z",
+  "method": "Actual P1-03/04/05 production build; Chrome; local route fulfillment without TCP. UI actions and actual file downloads. Vite/API network not tested.",
+  "checks": [
+    {
+      "id": "manual-entry-hold-exit-keys",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-720-degree-euler-rotation",
+      "status": "PASS"
+    },
+    {
+      "id": "keyframe-real-pointer-drag-retimes",
+      "status": "PASS"
+    },
+    {
+      "id": "long-drag-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "drag-redo-restores-retiming",
+      "status": "PASS"
+    },
+    {
+      "id": "keyframe-keyboard-delete",
+      "status": "PASS"
+    },
+    {
+      "id": "keyframe-easing-is-written",
+      "status": "PASS"
+    },
+    {
+      "id": "camera-channel-edit-keeps-device-animation",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-pick-selects-second-instance",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-pick-synchronizes-list-and-inspector",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-move-real-handle-targets-only-selected-device",
+      "status": "PASS",
+      "used": {
+        "offset": 32,
+        "from": {
+          "x": 440.87316314371697,
+          "y": 363
+        },
+        "to": {
+          "x": 485.87316314371697,
+          "y": 363
+        }
+      }
+    },
+    {
+      "id": "canvas-move-syncs-numeric-fields",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-drag-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-rotate-real-handle",
+      "status": "PASS",
+      "rotateUsed": {
+        "radius": 52
+      }
+    },
+    {
+      "id": "canvas-scale-real-handle-uniform-document-scale",
+      "status": "PASS",
+      "scaleUsed": {
+        "offset": 32
+      }
+    },
+    {
+      "id": "escape-cancels-device-gesture",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-transform-at-playhead-adds-key-without-changing-endpoints",
+      "status": "PASS"
+    },
+    {
+      "id": "animated-canvas-edit-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "number-field-drag-writes-pose",
+      "status": "PASS"
+    },
+    {
+      "id": "long-number-field-drag-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "export-excludes-gizmo-and-selection-outline",
+      "status": "PASS"
+    },
+    {
+      "id": "orbit-tool-moves-camera-only",
+      "status": "PASS"
+    },
+    {
+      "id": "camera-gesture-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-pick-real-GLB",
+      "status": "PASS"
+    },
+    {
+      "id": "MAN-005-preset-only-selected-instance",
+      "status": "PASS"
+    },
+    {
+      "id": "preset-protects-unrelated-channels",
+      "status": "PASS"
+    },
+    {
+      "id": "devices-have-independent-actions-and-times",
+      "status": "PASS"
+    },
+    {
+      "id": "timeline-owner-follows-device-selection",
+      "status": "PASS"
+    },
+    {
+      "id": "preset-undo-is-one-operation",
+      "status": "PASS"
+    },
+    {
+      "id": "orbit-preset-has-camera-scope",
+      "status": "PASS"
+    },
+    {
+      "id": "independent-recordings-are-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-animation-new-session-roundtrip",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-animation-real-1080p30-export",
+      "status": "PASS"
+    },
+    {
+      "id": "new-session-restores-tracks-and-media-bytes",
+      "status": "PASS"
+    },
+    {
+      "id": "dual-animation-dual-recording-1080p30-mp4",
+      "status": "PASS",
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "frames": "60",
+      "duration": "2.000000"
+    },
+    {
+      "id": "editing-after-export-remains-usable",
+      "status": "PASS"
+    },
+    {
+      "id": "P1-02-add-undo-no-crash",
+      "status": "PASS"
+    },
+    {
+      "id": "P1-02-redo-valid-selection",
+      "status": "PASS"
+    },
+    {
+      "id": "P1-02-duplicate-selects-copy",
+      "status": "PASS"
+    },
+    {
+      "id": "P1-02-removal-selection-valid",
+      "status": "PASS"
+    },
+    {
+      "id": "no-unhandled-page-errors",
+      "status": "PASS",
+      "pageErrors": []
+    },
+    {
+      "id": "all-local-assets-loaded",
+      "status": "PASS",
+      "failures": []
+    }
+  ],
+  "cases": [
+    {
+      "label": "01-manual-keyframes",
+      "status": "COMPLETED",
+      "seconds": 4.653
+    },
+    {
+      "label": "02-canvas-selection-and-transform",
+      "status": "COMPLETED",
+      "seconds": 9.004
+    },
+    {
+      "label": "03-independent-presets-and-media",
+      "status": "COMPLETED",
+      "seconds": 6.06
+    },
+    {
+      "label": "04-new-session-and-export",
+      "status": "COMPLETED",
+      "seconds": 15.483
+    },
+    {
+      "label": "05-P1-02-regression",
+      "status": "COMPLETED",
+      "seconds": 1.547
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [],
+  "status": "PASS",
+  "browser": "156.0.8078.76",
+  "manualReferences": [
+    {
+      "frame": 0,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-0.png"
+    },
+    {
+      "frame": 15,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-15.png"
+    },
+    {
+      "frame": 59,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-59.png"
+    }
+  ],
+  "references": [
+    {
+      "frame": 0,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-reference-0.png"
+    },
+    {
+      "frame": 30,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-reference-30.png"
+    },
+    {
+      "frame": 59,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-reference-59.png"
+    }
+  ]
+}

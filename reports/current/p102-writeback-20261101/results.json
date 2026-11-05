@@ -1,0 +1,132 @@
+{
+  "Date": "2026-11-01",
+  "Scope": "P1-02 formal installation and verification in actual D: project",
+  "Status": "PASS",
+  "Project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "InstalledFiles": 112,
+  "PayloadVerifiedAtInstall": true,
+  "Revision": "p102-device-lifecycle-20261101",
+  "Receipt": "../p102-20261101/writeback-receipt.json",
+  "Backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p102-before-20261101-195814-156606",
+  "Permissions": "PASS (create, overwrite, readback, rename, delete; normal workspace permissions)",
+  "Checks": [
+    {
+      "Command": "npm.cmd test",
+      "ExitCode": 0
+    },
+    {
+      "Command": "npm.cmd run build",
+      "ExitCode": 0
+    },
+    {
+      "Command": "npm.cmd run lint",
+      "ExitCode": 0
+    },
+    {
+      "Command": "node scripts/test-device-lifecycle.cjs",
+      "ExitCode": 0
+    }
+  ],
+  "FrontendTests": 228,
+  "LintWarnings": 14,
+  "SourceChecks": [
+    {
+      "Path": "scripts/audit-p1-01.cjs",
+      "Expected": "d538ca52946f4f5773e4ce9da59f63fc54f5eba031d219d123c9be7482920ca1",
+      "Actual": "d538ca52946f4f5773e4ce9da59f63fc54f5eba031d219d123c9be7482920ca1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "scripts/test-device-lifecycle.cjs",
+      "Expected": "b8d3f863b779523261d0d236fdba58746c69432ef3efa2579ab0dc58002be687",
+      "Actual": "b8d3f863b779523261d0d236fdba58746c69432ef3efa2579ab0dc58002be687",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/automation/bridge.ts",
+      "Expected": "12336db43faaf561cec17dd988abda5e53ef06aacd34764080a37f820cf98f0f",
+      "Actual": "12336db43faaf561cec17dd988abda5e53ef06aacd34764080a37f820cf98f0f",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/deviceLifecycle.test.ts",
+      "Expected": "a7a3a889e9d1773d67123322607ec8bba18f4579d3654b373e401c349fcf2c46",
+      "Actual": "a7a3a889e9d1773d67123322607ec8bba18f4579d3654b373e401c349fcf2c46",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/devicePlacement.ts",
+      "Expected": "b3f54f2103c0dfdb4e324232fb661b48ebb2a216d9d90af41bf68500d01cbea9",
+      "Actual": "b3f54f2103c0dfdb4e324232fb661b48ebb2a216d9d90af41bf68500d01cbea9",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/project.ts",
+      "Expected": "2c8c2010a352a242e71efe52092b232efb315018ffc027925967fe77381a6178",
+      "Actual": "2c8c2010a352a242e71efe52092b232efb315018ffc027925967fe77381a6178",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/DeviceList.tsx",
+      "Expected": "bef3d95ea565ec13673d698316b1b3fe33b1a2cb4fee673925ca05d70166ce94",
+      "Actual": "bef3d95ea565ec13673d698316b1b3fe33b1a2cb4fee673925ca05d70166ce94",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/DeviceSection.test.ts",
+      "Expected": "b593e2074443dbef61dbd2155634e4dfe56cc6dfc250ef06eb314f18f4cc2eeb",
+      "Actual": "b593e2074443dbef61dbd2155634e4dfe56cc6dfc250ef06eb314f18f4cc2eeb",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/DeviceSection.tsx",
+      "Expected": "f1f54b19d70a670527e564780343fff3ab21525a3d9ad4feec9aa3330e96a19c",
+      "Actual": "f1f54b19d70a670527e564780343fff3ab21525a3d9ad4feec9aa3330e96a19c",
+      "Status": "PASS"
+    }
+  ],
+  "PostInstallDocumentUpdates": [
+    "DEVELOPMENT_LOG.md",
+    "IMPLEMENTATION_ROADMAP.md",
+    "ISSUES_LOG.md",
+    "reports/current/README.md"
+  ],
+  "Browser": {
+    "Checks": 24,
+    "RequestFailures": 0,
+    "Cases": 4,
+    "PageErrors": 0,
+    "Method": "Actual P1-02 production build; Chrome; local route fulfillment without TCP. UI actions and actual file downloads. Vite/API network not tested.",
+    "Version": "156.0.8078.76",
+    "Status": "PASS"
+  },
+  "Export": {
+    "Video": "evidence/browser/P1-02-dual-device-1080p30.mp4",
+    "Height": 1080,
+    "FrameSSIM": [
+      0.992847,
+      0.995643,
+      0.99323
+    ],
+    "Status": "PASS",
+    "Width": 1920,
+    "Seconds": 1,
+    "Frames": 30,
+    "FPS": 30
+  },
+  "Documentation": {
+    "Status": "PASS",
+    "ExitCode": 0,
+    "Command": "scripts/check-project-docs.py",
+    "MarkdownFilesChecked": 72,
+    "CurrentLinkErrors": 0,
+    "HistoricalLinkWarnings": 20,
+    "OriginalRootReportPreserved": true,
+    "Integrity": "NOT_RUN (old organization baseline is not applicable to normal source changes)"
+  },
+  "FirstFrontendAttempt": "228 tests passed but two extracted payload test copies produced import failures; retained frontend-tests-staging.txt, moved staging outside actual project, rerun passed",
+  "AgentAPI": "NOT_RUN this installation round; no old service or protocol changes",
+  "ViteApiTcp": "NOT_TESTED by offline routed browser",
+  "HumanAcceptance": "PENDING",
+  "PhaseOneAccepted": false
+}

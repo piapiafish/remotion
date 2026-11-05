@@ -1,0 +1,14 @@
+PASS text-field-keeps-wasd-input
+PASS escape-restores-temporary-camera
+PASS recorder-start-visible-1920x1080
+PASS recorder-start-visible-1366x768
+PASS recorder-start-visible-1000x800
+PASS recording-auto-stops-exactly-at-segment-end
+PASS rerecord-retains-id-and-other-segment
+PASS rerecord-is-one-undo
+PASS deleting-all-segments-restores-static-camera
+PASS two-deletes-can-both-be-undone
+PASS version-four-camera-migration-preserves-sampled-curve
+PASS old-multivideo-fonts-and-effects-retained
+PASS cancel-restores-editing-session
+PASS retry-after-cancel-exports-real-sixty-frames

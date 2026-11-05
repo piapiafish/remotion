@@ -1,0 +1,228 @@
+{
+  "date": "2026-11-04T00:15:38.501Z",
+  "checks": [
+    {
+      "name": "native-click-focus-then-up-one-frame",
+      "status": "PASS",
+      "detail": {
+        "target": {
+          "kind": "device",
+          "instanceId": "d9dfd199-83f9-489e-b3a1-669654df4007"
+        },
+        "channel": "*",
+        "t": 1.0333333333333334,
+        "poseId": "time:1"
+      }
+    },
+    {
+      "name": "100-nudges-cross-other-keys-without-small-limit",
+      "status": "PASS",
+      "detail": {
+        "t": 4.399999999999995
+      }
+    },
+    {
+      "name": "precise-retime-extends-project",
+      "status": "PASS"
+    },
+    {
+      "name": "retime-and-extension-undo-together",
+      "status": "PASS"
+    },
+    {
+      "name": "same-frame-retime-preserves-independent-poses",
+      "status": "PASS",
+      "detail": [
+        {
+          "id": "1c02f280-4dba-4f30-910d-67fc3c01cf01",
+          "t": 0,
+          "order": 1,
+          "initial": true
+        },
+        {
+          "id": "dec8ad32-a3bb-4038-be03-e40710b88f38",
+          "t": 2,
+          "order": 2,
+          "initial": false
+        },
+        {
+          "id": "time:1",
+          "t": 2,
+          "order": 105,
+          "initial": false
+        }
+      ]
+    },
+    {
+      "name": "deletes-only-selected-stack-layer",
+      "status": "PASS"
+    },
+    {
+      "name": "first-key-protected-with-visible-message",
+      "status": "PASS"
+    },
+    {
+      "name": "object-is-hidden-before-appearance",
+      "status": "PASS"
+    },
+    {
+      "name": "object-is-visible-at-appearance",
+      "status": "PASS"
+    },
+    {
+      "name": "object-is-hidden-at-end",
+      "status": "PASS"
+    },
+    {
+      "name": "left-range-handle-trims-without-erasing-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "whole-object-range-moves-authored-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "range-edit-preserves-other-device",
+      "status": "PASS"
+    },
+    {
+      "name": "range-move-undo-keeps-previous-trim",
+      "status": "PASS"
+    },
+    {
+      "name": "video-speed-setting-is-shared-with-clock",
+      "status": "PASS"
+    },
+    {
+      "name": "loop-setting-removed",
+      "status": "PASS"
+    },
+    {
+      "name": "negative-start-identifies-error-and-preserves-value",
+      "status": "PASS"
+    },
+    {
+      "name": "left-video-trim-keeps-its-end-fixed",
+      "status": "PASS"
+    },
+    {
+      "name": "video-trim-does-not-touch-motion",
+      "status": "PASS"
+    },
+    {
+      "name": "inactive-video-decoders-are-released",
+      "status": "PASS"
+    },
+    {
+      "name": "arrow-key-pans-static-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard-camera-pan-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "dedicated-recorder-has-no-object-panel",
+      "status": "PASS"
+    },
+    {
+      "name": "objects-cannot-be-selected-in-recorder",
+      "status": "PASS"
+    },
+    {
+      "name": "countdown-does-not-advance-time",
+      "status": "PASS"
+    },
+    {
+      "name": "continuous-recording-captures-motion-and-holds",
+      "status": "PASS",
+      "detail": {
+        "frames": 33,
+        "start": 0,
+        "end": 1.0666666666666667
+      }
+    },
+    {
+      "name": "recording-keeps-object-animation-data",
+      "status": "PASS"
+    },
+    {
+      "name": "take-committed-as-editable-camera-track",
+      "status": "PASS"
+    },
+    {
+      "name": "whole-take-undo-restores-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary-viewing-does-not-write-recorded-track",
+      "status": "PASS"
+    },
+    {
+      "name": "sticker-can-be-placed-behind-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "real-solid-text-has-thick-geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "solid-text-pose-and-thickness-are-keyed",
+      "status": "PASS"
+    },
+    {
+      "name": "text-control-inputs-align",
+      "status": "PASS",
+      "detail": [
+        789.4375,
+        789.4375,
+        789.4375
+      ]
+    },
+    {
+      "name": "solid-glyph-subset-and-new-timing-are-portable",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh-session-restores-both-text-kinds",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "ranges",
+      "status": "PASS"
+    },
+    {
+      "name": "media",
+      "status": "FAIL",
+      "error": "Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame\n    at waitForReadyInternal (http://127.0.0.1:59673/src/automation/bridge.ts:78:8)\n    at async Object.waitForReady (http://127.0.0.1:59673/src/automation/bridge.ts:36:10)\n    at async <anonymous>:316:30"
+    },
+    {
+      "name": "camera",
+      "status": "PASS"
+    },
+    {
+      "name": "text",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

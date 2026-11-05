@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "cumulativePayloadFiles": 285,
+  "payloadFilesUnchangedAfterInstall": 276,
+  "reviewedLocalChanges": [
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "package": "bb06c4c4668b6b21ff5ba3756d5bb79e7c0d3a1700cd82b19da555dc85ac6b30",
+      "current": "df64818cad5100ed1426f7b8abdc523dcc5abb71e1899a53c3893da45e7b440a"
+    },
+    {
+      "path": "docs/MEDIA_PROJECT_GUIDE.md",
+      "package": "ed5e6c5edfba11403c0178b87ec2910c57c031b886d46a2570a075f94d68560f",
+      "current": "e5fdd6353feb6bb2b57a5a5e9a6eb76ac84fe988abac6b5bd54992cc83976404"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "package": "1dd3772176c8ecdb2b1b1491ad6afcd678acd726f1ab87c0315442ad26a19b03",
+      "current": "47f4128d23ad2d95b73ba6459d5ed34bb1e415cddced30f71d30c0f94c8e59fd"
+    },
+    {
+      "path": "scripts/test-editor-interactions.cjs",
+      "package": "da50a59a2c7bb97ed820860ed9a8e15733dd47db90f0ff242de5f8545b73a741",
+      "current": "22685af5f87d12d86999ec9e46e35b6fd64889819fce31f9b023b7833e7a8874"
+    },
+    {
+      "path": "scripts/test-media-project.cjs",
+      "package": "557b1dc2c75e23a817dff96d5c3815de696fd728c4cfcb4325199e9f5119411f",
+      "current": "47c5d72ecb7054415cc8f035b9930c34540d0d0fa409e6c9c9ee0e6432f5a1d3"
+    },
+    {
+      "path": "src/store/persist.ts",
+      "package": "8e8812f3f61f759a8694d0d56939df9b3576b8d7ee43442c69479f1e10a67fb9",
+      "current": "1f28d42eaf3a4a224608ea0a9686eef58327a3c168f6fba77c60dfc55c29d913"
+    },
+    {
+      "path": "src/store/persistSafety.test.ts",
+      "package": "9159d8c1609f459523deb5af164b5b73c13e11c865dcb3942f3e76c213b66c21",
+      "current": "30c1c4ae6d266677f1d5f6a109e31aea5202839a5905f0d9a2c56ecea10316e1"
+    },
+    {
+      "path": "src/store/project.ts",
+      "package": "23a4308a4321d5bfff06f0b5021a883ba48b1a3decd21914828865c6e5606117",
+      "current": "8d67b5ca69aed24b34c39150ae9aaefdf363a804fa27cf29785f2d8b6464d120"
+    },
+    {
+      "path": "src/ui/Inspector/VideoTimingControls.tsx",
+      "package": "e9deeee93b5dba3ed881130b7539b9a522a8402f82701082d89fa84e998b0ae3",
+      "current": "ddbfc20ee36ab5fe6190ce0949c6fc0b22f172856ae0cec1161b8ace74aa0378"
+    }
+  ],
+  "unexpectedPayloadChanges": [],
+  "requiredUnchangedFiles": {
+    "package.json": true,
+    "package-lock.json": true,
+    "src/store/devicePlacement.ts": true,
+    "src/timeline/sample.ts": true,
+    "src/export/video.ts": true
+  },
+  "sourceBefore": 133,
+  "sourceAfter": 143,
+  "changedSources": [
+    {
+      "path": "src/App.css",
+      "before": "fbf9d200a09169818719544ddc760f8d6678117242d7ecc79aa8dd35f6e99926",
+      "after": "606bf68433a3b621456abad02f5e87e19ea16d3986821e64bfece5c6b2990104"
+    },
+    {
+      "path": "src/App.tsx",
+      "before": "1862eb99a01dacebe02f4c0eb7cac44c77142ad14fbd49e38bcc7c2a0923fa13",
+      "after": "84d13cd9183233137684dbda1afe3ff5ab85e56ba496c4ad3d5bc484d59c5a76"
+    },
+    {
+      "path": "src/automation/bridge.ts",
+      "before": "0893ecccb0eb923f061c62bbee70ec38c23500603cd0592e740ffc3b2e3e06c2",
+      "after": "42ea248df30e16b1a790e9db47816afbdd844c7dc71e1e1a56bc6630d779fe6b"
+    },
+    {
+      "path": "src/export/backdrop.ts",
+      "before": "f7e5274f9cc64462794367b1c3fcabd818feb8274bd0c252df566d0b92d7d6bd",
+      "after": "ea144ed626c45acd50ba6af9f79db98b37671179d1eaa6b8bd680cf0ec938553"
+    },
+    {
+      "path": "src/media/loadImage.ts",
+      "before": "38f3fc491bf93e4dd3bb948754afc8a5b39de289ee40c914558e3f3e42d59a8b",
+      "after": "790fa29bade2e23103ba94fb460c6e1b7a0c10525d405bf2ae07eb6c8a407e84"
+    },
+    {
+      "path": "src/media/loadMedia.ts",
+      "before": "4fcbaf59fd1bd0f4dad18fdde90f180e89d72a1a826ad982ed4d3aef3d3c946a",
+      "after": "e88516de6d6802bb7748f6a5afae5b3b3c4eb3470aeaac12e6b786d18366dbb1"
+    },
+    {
+      "path": "src/media/screenVideo.ts",
+      "before": "e19c894849e4b7f324b7a010aaac2859d368408b8d7e9eb1fd72e478b0c46b92",
+      "after": "04806afd871703c7d8ea4158224b0ffb2be2d2c46c6e7bf77ad04b2ea9e4d8df"
+    },
+    {
+      "path": "src/media/storage.ts",
+      "before": "23301f8fe78404828fd2faffc417d9a5f96051b0af963df9ad62451bf96c221a",
+      "after": "3cbe94b48e8ddc6cee7bfde51fbc7a4eb7bae29d8afacc5c97d23c742776e348"
+    },
+    {
+      "path": "src/media/useScreenVideo.ts",
+      "before": "090c0d6a1e2381d61da31fee4ec205d561af7dd845520916717a8ef48a29ea7d",
+      "after": "2b745c1570f019258c997e3c7d2f4194b74cd8949ce478128c63e5b57bec47f0"
+    },
+    {
+      "path": "src/scene/Backdrop.tsx",
+      "before": "20c03adc957f481a70669e040581e0921b835f3c91339cc4ccbe2d0b8502f922",
+      "after": "c7d87b80c2ce45201ce89ced86d6b94594fe02c3dfc95dea43af34a8891f7387"
+    },
+    {
+      "path": "src/scene/Device.tsx",
+      "before": "657f58b1a94d237d7a9ec980fc5cdd4c40d124d4a6794afa601cdd2bf8995adc",
+      "after": "bf40f252e5af1ce8dab7f7ef7df4423bce905e58938931800bc715b9ee134b1d"
+    },
+    {
+      "path": "src/scene/DeviceInstanceView.tsx",
+      "before": "8a72ea8361839eed7c5745d21c3835a2232979700550a744b491e652016cdb9c",
+      "after": "703e5bd7944b74e03a7abf296500a877ca90ba50d856657883cba5831c77d169"
+    },
+    {
+      "path": "src/scene/GltfDevice.tsx",
+      "before": "048643949ce472c82a8fa78dccb4b8f15d3f76ed36dbb5b2b7b64110638d5141",
+      "after": "c20be8745743abeaf4729685ae7dd2eb5cc2ccb9573db244ee8d86da60c94f94"
+    },
+    {
+      "path": "src/store/persist.ts",
+      "before": "743930a3c0ece5db6cd09e66b514013b8e49fd810bda76f5ce3d2f26ef67c595",
+      "after": "1f28d42eaf3a4a224608ea0a9686eef58327a3c168f6fba77c60dfc55c29d913"
+    },
+    {
+      "path": "src/store/project.ts",
+      "before": "2984bb939f1e38a0e927cbb59503145da5b8b10be98b73688bacea5e8635ae84",
+      "after": "8d67b5ca69aed24b34c39150ae9aaefdf363a804fa27cf29785f2d8b6464d120"
+    },
+    {
+      "path": "src/store/schema.ts",
+      "before": "4180413d9ff80bdc04ddda2235c25d0a42a2698710b2a85dad88f8491cb561f7",
+      "after": "04a179af81d5a0e94cf123da0cfb356e1654403a6e0287058a51b0ae4df46cef"
+    },
+    {
+      "path": "src/ui/Inspector/DeviceSection.tsx",
+      "before": "f1f54b19d70a670527e564780343fff3ab21525a3d9ad4feec9aa3330e96a19c",
+      "after": "cac81884348e1507835d5e779150e7a712ce1f3f5e155ba993f1b619dee91d96"
+    },
+    {
+      "path": "src/ui/Inspector/Inspector.tsx",
+      "before": "6311f9d66f7df28de3ff5057bd14e73847e4b64a1d7e18731ba43e273c003dcf",
+      "after": "f0c7cbe19de891665e6d6739005b6310e30239b10e154213d2c213e13322fe13"
+    },
+    {
+      "path": "src/ui/TopBar/TopBar.tsx",
+      "before": "c2d6259a3c19588cc869690ccef83ef2164244324f41f7187119eb1be396f68f",
+      "after": "9f0f0fc71212ab24a9100c14f381e901b59914cedf79ff40a65eeeaddc16c921"
+    },
+    {
+      "path": "scripts/test-editor-interactions.cjs",
+      "before": "da50a59a2c7bb97ed820860ed9a8e15733dd47db90f0ff242de5f8545b73a741",
+      "after": "22685af5f87d12d86999ec9e46e35b6fd64889819fce31f9b023b7833e7a8874"
+    }
+  ],
+  "addedSources": [
+    "src/app/useUnsavedChanges.ts",
+    "src/media/inspectMedia.ts",
+    "src/media/videoTiming.test.ts",
+    "src/media/videoTiming.ts",
+    "src/store/feedback.ts",
+    "src/store/persistSafety.test.ts",
+    "src/store/projectValidation.ts",
+    "src/ui/Feedback/ProjectFeedback.tsx",
+    "src/ui/Inspector/VideoTimingControls.tsx",
+    "scripts/test-media-project.cjs"
+  ],
+  "unexpectedSourceChanges": [],
+  "originalZipUnchanged": true
+}

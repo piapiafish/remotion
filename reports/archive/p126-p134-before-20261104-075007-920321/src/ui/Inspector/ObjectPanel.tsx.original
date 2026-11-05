@@ -1,0 +1,40 @@
+import { Copy, Settings2, Smartphone, Trash2, Type } from 'lucide-react'
+import { useProjectStore } from '../../store/project'
+import { getManifest } from '../../devices/manifest'
+import { deviceLabel } from '../../app/labels'
+import { DeviceCard, ScreenContent } from './DeviceSection'
+import { TransformSection } from './TransformSection'
+import { NumberField } from '../controls/NumberField'
+import { sampleTrack } from '../../timeline/sample'
+import type { ObjectRef } from '../../store/schema'
+
+export function ObjectPanel() {
+  const s = useProjectStore(), p = s.project, ref = s.activeObject
+  const text = ref?.kind === 'text' ? p.texts?.find(t => t.instanceId === ref.instanceId) : null
+  const device = ref?.kind === 'device' ? p.devices.find(d => d.instanceId === ref.instanceId) : null
+  const objects = [
+    ...p.devices.map((d,i) => ({ ref: { kind: 'device', instanceId: d.instanceId } as ObjectRef, name: d.name || `手机 ${i+1}`, detail: deviceLabel(d.id,getManifest(d.id).name), thumb: d.screen?.kind === 'image' ? d.screen.url : null })),
+    ...(p.texts ?? []).map(t => ({ ref: { kind: 'text', instanceId: t.instanceId } as ObjectRef, name: t.name, detail: t.content || '空白文字', thumb: null })),
+  ]
+  return <div className="object-panel">
+    <div className="object-add"><button className="ghost-btn" onClick={s.addDevice}><Smartphone size={15}/>添加手机</button><button className="ghost-btn" onClick={s.addText}><Type size={15}/>添加文字</button></div>
+    <div className="object-list" aria-label="对象列表">
+      {objects.map(obj => <button key={obj.ref.instanceId} data-testid={`object-${obj.ref.instanceId}`} className={`object-card ${ref?.instanceId === obj.ref.instanceId ? 'active' : ''}`} onClick={() => s.selectObject(obj.ref)} aria-pressed={ref?.instanceId === obj.ref.instanceId}>
+        <span className="object-avatar">{obj.thumb ? <img src={obj.thumb} alt=""/> : obj.ref.kind === 'device' ? <Smartphone size={23}/> : <Type size={23}/>}</span><span><strong>{obj.name}</strong><small>{obj.detail}</small></span><Settings2 size={15}/>
+      </button>)}
+      {!objects.length && <p className="empty-state">画面里还没有对象。添加手机或文字开始制作。</p>}
+    </div>
+    {ref && (device || text) ? <div className="object-settings" data-testid="object-settings">
+      <div className="field-header"><strong>{device ? '手机设置' : '文字设置'}</strong><div className="row"><button className="icon-btn" title="复制对象" aria-label="复制对象" onClick={() => s.duplicateObject(ref)}><Copy size={15}/></button><button className="icon-btn" title="删除对象" aria-label="删除对象" onClick={() => s.removeObject(ref)}><Trash2 size={15}/></button><button className="link-btn" onClick={() => s.selectObject(null)}>收起</button></div></div>
+      <label className="stack-field">对象名称<input aria-label="对象名称" value={device?.name ?? text?.name ?? ''} placeholder={device ? `手机 ${s.activeDevice+1}` : '标题'} onChange={e => s.renameObject(e.target.value)}/></label>
+      {device && <><DeviceCard/><ScreenContent/><details className="advanced"><summary>位置与旋转精调</summary><TransformSection/></details></>}
+      {text && <>
+        <label className="stack-field">文字内容<textarea aria-label="文字内容" rows={3} value={text.content} maxLength={10000} onChange={e => s.setText({ content: e.target.value })}/></label>
+        <div className="field-grid"><NumberField onGestureStart={s.beginEditGesture} onGestureEnd={s.endEditGesture} label="字号" value={text.fontSize} min={8} max={400} step={1} onChange={v => s.setText({fontSize:v})}/><label className="stack-field">字重<select aria-label="字重" value={text.fontWeight} onChange={e => s.setText({fontWeight:Number(e.target.value)})}><option value={400}>常规</option><option value={600}>加粗</option><option value={800}>特粗</option></select></label><label className="stack-field">颜色<input type="color" aria-label="文字颜色" value={text.color} onChange={e => s.setText({color:e.target.value})}/></label></div>
+        <div className="field-grid"><label className="stack-field">对齐<select aria-label="文字对齐" value={text.align} onChange={e => s.setText({align:e.target.value as typeof text.align})}><option value="left">左对齐</option><option value="center">居中</option><option value="right">右对齐</option></select></label><NumberField onGestureStart={s.beginEditGesture} onGestureEnd={s.endEditGesture} label="行距" value={text.lineHeight} min={.5} max={4} step={.05} onChange={v=>s.setText({lineHeight:v})}/><NumberField onGestureStart={s.beginEditGesture} onGestureEnd={s.endEditGesture} label="文本宽度" value={text.width*100} min={5} max={200} step={1} onChange={v=>s.setText({width:v/100})}/></div>
+        <div className="field-grid">{['position.x','position.y','rotation.z','scale','opacity'].map((channel,i) => { const v = sampleTrack(text.transform[channel],s.playhead,channel === 'scale' || channel === 'opacity' ? 1 : 0), factor = channel === 'rotation.z' ? 180/Math.PI : channel === 'scale' ? 1 : 100; return <NumberField key={channel} label={['水平位置 %','垂直位置 %','旋转角度','缩放','透明度 %'][i]} value={v*factor} min={channel==='opacity'?0:channel==='scale'?.05:undefined} max={channel==='opacity'?100:undefined} step={channel==='scale'?.01:1} onGestureStart={s.beginEditGesture} onGestureEnd={s.endEditGesture} onChange={n=>s.setTextValue(channel,n/factor)}/> })}</div>
+        <div className="row"><button className="ghost-btn" onClick={()=>s.moveTextLayer(1)}>上移一层</button><button className="ghost-btn" onClick={()=>s.moveTextLayer(-1)}>下移一层</button></div><p className="hint">标题固定在画面上，始终显示在手机前方，保持清晰。</p>
+      </>}
+    </div> : <p className="hint">点击手机或文字卡片打开设置。点击画布空白可调整相机。</p>}
+  </div>
+}

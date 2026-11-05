@@ -1,0 +1,1065 @@
+--- before/src/App.css
++++ after/src/App.css
+@@ -1592,3 +1592,10 @@
+ .beginner-studio .canvas-tools { position:static; transform:none; align-self:center; flex-shrink:0; max-width:100%; min-height:36px; padding:3px 0; border:0; border-radius:0; background:transparent; backdrop-filter:none; }
+ .feedback-stack { position:fixed; z-index:160; top:64px; left:50%; transform:translateX(-50%); width:calc(100% - 32px); max-width:680px; display:flex; flex-direction:column; gap:6px; pointer-events:none; }.feedback-stack .project-feedback { margin:0; border:1px solid var(--line); border-radius:8px; pointer-events:auto; box-shadow:0 8px 24px #0005; }
+ @media(max-height:700px) { .beginner-studio .stage-zone.with-timeline { grid-template-rows:minmax(160px,1fr) 190px; }.timeline-mainbar { min-height:40px; padding:4px 10px; }.timeline-footer { min-height:32px; }.object-track { height:32px; }.canvas-tools .hint { display:none; }.beginner-studio .artboard-zone { padding-top:2px; }.artboard-bar { height:24px; } }
++
++/* Playhead and blank tracks share continuous scrubbing. */
++.time-ruler { touch-action:none; user-select:none; }
++.playhead-handle { position:absolute; top:-8px; height:10px; width:18px; transform:translateX(-50%); z-index:5; padding:0; border:0; background:var(--accent); border-radius:3px 3px 5px 5px; cursor:ew-resize; touch-action:none; }
++.object-lane { cursor:ew-resize; }
++
++.replacement-shade { z-index:250; }.replacement-dialog { max-width:540px; padding:24px; }.replacement-dialog h2 { margin:0 0 12px; }.replacement-dialog p { color:var(--text-2); line-height:1.7; }.replacement-actions { display:flex; flex-direction:column; gap:10px; margin-top:20px; }.replacement-actions button { justify-content:center; padding:12px; }
+--- before/src/App.tsx
++++ after/src/App.tsx
+@@ -12,10 +12,13 @@
+ import { useShortcuts } from './app/useShortcuts'
+ import { useUnsavedChanges } from './app/useUnsavedChanges'
+ import { useExportSession } from './export/session'
++import { ReplacementDialog } from './ui/Feedback/ReplacementDialog'
++import { useReplacement } from './store/replacement'
+ import './App.css'
+ 
+ function App() {
+   const busy = useExportSession(s=>s.busy), page = useProjectStore(s=>s.editorPage)
++  const pending=useReplacement(s=>s.pending)
+   const mode = useProjectStore(s=>s.editorMode)
+   const [panel,setPanel] = useState<'objects'|'environment'>('objects')
+   const [dialog,setDialog] = useState<'export'|'assistant'|null>(null)
+@@ -32,6 +35,7 @@
+   },[])
+   return <div className="app beginner-studio">
+     <ProjectFeedback/>
++    <div style={{display:'contents'}} inert={!!pending}>
+     {page==='templates'?<TemplatePage/>:<>
+       <div inert={busy}><TopBar onExport={()=>setDialog('export')} onAssistant={()=>setDialog('assistant')}/></div>
+       <div className="app-body">
+@@ -40,6 +44,7 @@
+       </div>
+     </>}
+     {dialog&&page==='editor'&&<div className="dialog-shade" onClick={()=>{if(!busy)setDialog(null)}}><section role="dialog" aria-modal="true" aria-label={dialog==='export'?'导出作品':'动画助手（模拟）'} className="studio-dialog" onClick={e=>e.stopPropagation()}><header><h2>{dialog==='export'?'导出作品':'动画助手（模拟）'}</h2><button className="ghost-btn" disabled={busy} onClick={()=>setDialog(null)} aria-label="关闭面板">关闭</button></header>{dialog==='export'?<ExportControls/>:<AgentPanel/>}</section></div>}
++    </div><ReplacementDialog/>
+   </div>
+ }
+ export default App
+--- before/src/app/useShortcuts.ts
++++ after/src/app/useShortcuts.ts
+@@ -1,4 +1,5 @@
+ import { useExportSession } from '../export/session'
++import { useReplacement } from '../store/replacement'
+ import { useEffect } from 'react'
+ import { useProjectStore } from '../store/project'
+ 
+@@ -12,6 +13,7 @@
+   useEffect(() => {
+     function onKey(e: KeyboardEvent) {
+       if(e.isComposing)return
++      if(useReplacement.getState().pending){if((e.ctrlKey||e.metaKey)&&['s','z'].includes(e.key.toLowerCase()))e.preventDefault();return}
+       if (useExportSession.getState().busy) {
+         if ((e.ctrlKey || e.metaKey) && ['s', 'z'].includes(e.key.toLowerCase())) e.preventDefault()
+         return
+--- before/src/automation/bridge.ts
++++ after/src/automation/bridge.ts
+@@ -1,3 +1,4 @@
++import { ensureFixedGround } from '../scene/groundPlane'
+ /** Private localhost browser bridge used by Playwright worker. Never expose on public deployments. */
+ import { DEVICE_LIST } from '../devices/manifest'
+ import { getExportContext } from '../export/renderer'
+@@ -102,7 +103,7 @@
+     if(!project || project.version!==1 || !Array.isArray(project.devices) || project.devices.length!==1) throw new Error('INVALID_PROJECT')
+     assertLocalUrl(project)
+     useProjectStore.getState().endEditGesture()
+-    useProjectStore.setState({project,documentEpoch:useProjectStore.getState().documentEpoch+1,activeDevice:0,activeObject:{kind:'device',instanceId:project.devices[0].instanceId},editorPage:'editor',editorMode:'movie',playhead:0,playing:false,keySelection:null})
++    useProjectStore.setState({project:ensureFixedGround(project),documentEpoch:useProjectStore.getState().documentEpoch+1,activeDevice:0,activeObject:{kind:'device',instanceId:project.devices[0].instanceId},editorPage:'editor',editorMode:'movie',playhead:0,playing:false,keySelection:null})
+     // Allow the subscription to commit the newly selected GLB before probing readiness.
+     await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())))
+     return await waitForReady()
+--- before/src/media/screenVideo.test.ts
++++ after/src/media/screenVideo.test.ts
+@@ -1,6 +1,6 @@
+ import { afterEach, describe, expect, it, vi } from 'vitest'
+ import type * as THREE from 'three'
+-import { createScreenVideo, hasScreenVideos, screenTimeAt, seekScreenVideos, type ScreenVideo } from './screenVideo'
++import { createScreenVideo, hasScreenVideos, screenTimeAt, seekScreenVideos, syncScreenVideos, type ScreenVideo } from './screenVideo'
+ 
+ /*
+  * The one expression the whole video feature rests on (§8.3):
+@@ -36,6 +36,41 @@
+     // A negative currentTime throws on assignment in some browsers, so this
+     // would surface as an unrelated-looking error mid-scrub.
+     expect(screenTimeAt(-5, 10)).toBe(0)
++  })
++})
++
++describe('preview decoder scheduling',()=>{
++  let entry:ScreenVideo|null=null
++  class Video extends EventTarget {
++    src='';paused=true;readyState=2;seeking=false;playbackRate=1;currentTime=0;error=null
++    play(){this.paused=false;return Promise.resolve()}
++    pause(){this.paused=true}
++    removeAttribute(){}
++    load(){}
++  }
++  function setup(){
++    const el=new Video()
++    vi.stubGlobal('document',{createElement:()=>el});vi.stubGlobal('HTMLMediaElement',{HAVE_METADATA:1,HAVE_CURRENT_DATA:2})
++    entry=createScreenVideo('/clip.mp4',10,{capabilities:{getMaxAnisotropy:()=>1}} as THREE.WebGLRenderer)
++    return el
++  }
++  afterEach(()=>{entry?.dispose();entry=null;vi.unstubAllGlobals()})
++  it('slows a slightly ahead decoder without seeking backwards',()=>{
++    const el=setup();syncScreenVideos(0,true);el.currentTime=.3;syncScreenVideos(.04,true)
++    expect(el.currentTime).toBe(.3);expect(el.playbackRate).toBeLessThan(1);expect(el.paused).toBe(false)
++  })
++  it('only submits the latest paused target after an in-flight seek completes',()=>{
++    const el=setup();el.seeking=true;syncScreenVideos(2,false);syncScreenVideos(4,false)
++    expect(el.currentTime).toBe(0);el.seeking=false;el.dispatchEvent(new Event('seeked'));expect(el.currentTime).toBe(4)
++  })
++  it('does not overwrite an in-flight decoder repeatedly while playing',()=>{
++    const el=setup();syncScreenVideos(0,true);el.seeking=true;syncScreenVideos(3,true);syncScreenVideos(3.04,true)
++    expect(el.currentTime).toBe(0)
++  })
++  it('exact export targeting replaces any queued preview target',async()=>{
++    const el=setup();el.seeking=true;syncScreenVideos(4,false)
++    const pending=seekScreenVideos(1);el.seeking=false;el.dispatchEvent(new Event('seeked'));await pending
++    expect(el.currentTime).toBe(1)
+   })
+ })
+ 
+--- before/src/media/screenVideo.ts
++++ after/src/media/screenVideo.ts
+@@ -84,6 +84,12 @@
+   }
+ 
+   registry.add(entry)
++  const state={lastTimeline:undefined as number|undefined,lastMapped:undefined as number|undefined,lastSeek:-Infinity,pending:undefined as number|undefined,corrections:0,playing:false}
++  previewStates.set(entry,state)
++  el.addEventListener('seeked',()=>{
++    texture.needsUpdate=true
++    if(!state.playing&&state.pending!==undefined&&!el.seeking){const want=state.pending;state.pending=undefined;if(Math.abs(el.currentTime-want)>1e-4)el.currentTime=want}
++  })
+   el.addEventListener('error', () => reportError('录屏播放失败，请重新绑定素材', new Error(el.error?.message || '浏览器无法解码该录屏。')), { once: true })
+   return entry
+ }
+@@ -97,6 +103,7 @@
+  * videos, now", and neither should have to know how many devices there are.
+  */
+ const registry = new Set<ScreenVideo>()
++const previewStates=new WeakMap<ScreenVideo,{lastTimeline?:number;lastMapped?:number;lastSeek:number;pending?:number;corrections:number;playing:boolean}>()
+ 
+ export function updateScreenPlayback(entry: ScreenVideo, playback?: ScreenPlayback) {
+   entry.playback = playback
+@@ -104,7 +111,7 @@
+ 
+ /** Read-only clock diagnostics for the existing opt-in local automation bridge. */
+ export function screenVideoStatus() {
+-  return [...registry].map(({ el, playback, duration }) => ({ time: el.currentTime, paused: el.paused, readyState: el.readyState, duration, playback }))
++  return [...registry].map(entry => ({ time:entry.el.currentTime,paused:entry.el.paused,seeking:entry.el.seeking,readyState:entry.el.readyState,duration:entry.duration,playback:entry.playback,rate:entry.el.playbackRate,corrections:previewStates.get(entry)?.corrections??0 }))
+ }
+ 
+ /**
+@@ -117,29 +124,29 @@
+  * which is what makes scrubbing feel connected to the screen content.
+  */
+ export function syncScreenVideos(t: number, playing: boolean) {
+-  for (const { el, texture, duration, playback } of registry) {
+-    if (el.readyState < HTMLMediaElement.HAVE_METADATA) continue
+-
+-    const clock = videoTimeAt(t, duration, playback), want = clock.time
+-    const drifted = Math.abs(el.currentTime - want) > (playing && clock.active ? SYNC_TOLERANCE : 1e-4)
+-
+-    // Past the end of a clip shorter than the timeline, the last frame holds
+-    // — so stop the element rather than letting it sit in an ended state
+-    // that a later wrap has to recover from.
+-    const shouldPlay = playing && clock.active
+-
+-    if (shouldPlay) {
+-      if (drifted) el.currentTime = want
+-      if (el.paused) void el.play().catch(() => {})
+-    } else {
+-      if (!el.paused) el.pause()
+-      if (drifted) {
+-        el.currentTime = want
+-        // A paused element uploads nothing on its own; without this the
+-        // screen keeps showing the frame it was stopped on while the
+-        // scrubber moves.
+-        texture.needsUpdate = true
+-      }
++  for (const entry of registry) {
++    const {el,texture,duration,playback}=entry,state=previewStates.get(entry)!
++    if(el.readyState<HTMLMediaElement.HAVE_METADATA)continue
++    const clock=videoTimeAt(t,duration,playback),want=clock.time,shouldPlay=playing&&clock.active
++    const jumped=state.lastTimeline===undefined||t<state.lastTimeline-1e-4||t-state.lastTimeline>.5
++    const wrapped=state.lastMapped!==undefined&&want<state.lastMapped-.05
++    const starting=shouldPlay&&!state.playing
++    state.lastTimeline=t;state.lastMapped=want;state.playing=shouldPlay
++    const drift=want-el.currentTime,now=performance.now()
++    if(shouldPlay){
++      state.pending=undefined
++      // Soft drift correction lets high-frame-rate decoders run forwards.
++      // Hard seeks are reserved for explicit jumps, wraps and sustained large drift.
++      const hard=jumped||wrapped||starting||Math.abs(drift)>.75&&now-state.lastSeek>750
++      if(!el.seeking&&hard&&Math.abs(drift)>SYNC_TOLERANCE){el.currentTime=want;state.lastSeek=now;state.corrections++}
++      el.playbackRate=Math.abs(drift)>SYNC_TOLERANCE&&!hard?Math.max(.92,Math.min(1.08,1+drift*.15)):1
++      if(el.paused)void el.play().catch(error=>{if(error?.name!=='AbortError')reportError('录屏暂时无法播放，请暂停后重试',error)})
++    }else{
++      el.playbackRate=1
++      if(!el.paused)el.pause()
++      if(el.seeking)state.pending=want
++      else if(Math.abs(drift)>1e-4){state.pending=undefined;el.currentTime=want}
++      else texture.needsUpdate=true
+     }
+   }
+ }
+@@ -160,7 +167,10 @@
+   await Promise.all([...registry].map((entry) => seekOne(entry, t, timeoutMs, signal)))
+ }
+ 
+-function seekOne({ el, texture, duration, playback }: ScreenVideo, t: number, timeoutMs: number, signal?: AbortSignal) {
++function seekOne(entry: ScreenVideo, t: number, timeoutMs: number, signal?: AbortSignal) {
++  const {el,texture,duration,playback}=entry
++  const preview=previewStates.get(entry)
++  if(preview)preview.pending=undefined
+   const want = videoTimeAt(t, duration, playback).time
+ 
+   return new Promise<void>((resolve, reject) => {
+--- before/src/scene/EffectsDriver.tsx
++++ after/src/scene/EffectsDriver.tsx
+@@ -12,6 +12,7 @@
+ export function EffectsDriver(){
+   const {gl,scene,camera}=useThree(),renderer=useRef<SceneEffectsRenderer|null>(null)
+   const job=useRef<Promise<void>|null>(null),last=useRef<{project:Project;time:number;playing:boolean;revision:number;width:number;height:number}|null>(null),reported=useRef<Project|null>(null)
++  const requested=useRef<{project:Project;time:number;playing:boolean}|null>(null)
+   useEffect(()=>{const fx=new SceneEffectsRenderer(gl,scene,camera);renderer.current=fx;return()=>{cancelEffectPreview();renderer.current=null;const work=job.current;if(work)void work.finally(()=>fx.dispose());else fx.dispose()}},[gl,scene,camera])
+   useFrame(()=>{
+     const s=useProjectStore.getState(),fx=renderer.current
+@@ -20,14 +21,15 @@
+     if(isEffectPreviewPaused()){cancelEffectPreview();last.current=null;gl.render(scene,camera);return}
+     if(!hasEffects(s.project.effects)){cancelEffectPreview();fx.releaseResources();last.current=null;gl.render(scene,camera);return}
+     if(s.editingGesture){cancelEffectPreview();last.current=null;fx.renderDepthOfField(s.project,s.playhead);return}
+-    if(job.current)return
++    if(job.current){const active=requested.current;if(active&&(active.project!==s.project||active.playing!==s.playing||!s.playing&&Math.abs(active.time-s.playhead)>1e-6))cancelEffectPreview();return}
+     const time=s.playing?Math.floor(s.playhead*s.project.fps)/s.project.fps:s.playhead
+     const revision=getFrameExportRevision()
+     if(last.current?.project===s.project&&last.current.time===time&&last.current.playing===s.playing&&last.current.revision===revision&&last.current.width===gl.domElement.width&&last.current.height===gl.domElement.height)return
+     const ctx=getExportContext();if(!ctx)return
+     const controller=new AbortController(),project=s.project
++    requested.current={project,time,playing:s.playing}
+     const work=(async()=>{
+-      try{const canvas=await fx.capture(project,time,ctx.applyAt,controller.signal,s.playing?2:undefined,false);controller.signal.throwIfAborted();if(!useExportSession.getState().busy&&!isFrameExportActive()){fx.present(canvas);last.current={project,time,playing:s.playing,revision,width:gl.domElement.width,height:gl.domElement.height}}}
++      try{const canvas=await fx.capture(project,time,ctx.applyAt,controller.signal,s.playing?2:undefined,false,s.playing);controller.signal.throwIfAborted();const current=useProjectStore.getState();if(current.project!==project||current.playing!==s.playing||!current.playing&&Math.abs(current.playhead-time)>1e-6)return;if(!useExportSession.getState().busy&&!isFrameExportActive()){fx.present(canvas);last.current={project,time,playing:s.playing,revision,width:gl.domElement.width,height:gl.domElement.height}}}
+       catch(error){if(!controller.signal.aborted&&!String(error).includes('SCREEN_VIDEO_NOT_READY')&&reported.current!==project){reported.current=project;reportError('效果预览失败，可关闭效果或降低质量后重试',error)}}
+     })()
+     job.current=work;registerEffectPreview(controller,work);void work.finally(()=>{if(job.current===work)job.current=null})
+--- before/src/scene/groundPlane.ts
++++ after/src/scene/groundPlane.ts
+@@ -1,6 +1,7 @@
+ import type { DeviceState, Project, Vec3 } from '../store/schema'
+-import { sampleTimeline } from '../timeline/sample'
++import { sampleDevice, sampleTimeline } from '../timeline/sample'
+ import { getManifest } from '../devices/manifest'
++import { constrainGroundPose, deviceHalfHeight } from './deviceBounds'
+ 
+ /**
+  * Gap between the lowest device and the shadow catcher.
+@@ -76,6 +77,7 @@
+  * a moving phone, which would read as the camera moving.
+  */
+ export function projectGroundY(project: Project): number {
++  if(project.environment.groundY!==undefined)return project.environment.groundY
+   if (project.devices.length === 0) return -0.76
+ 
+   const sizes = project.devices.map((device) => getManifest(device.id).bodySize)
+@@ -85,9 +87,28 @@
+     const t = (project.duration * i) / (GROUND_SAMPLES - 1)
+     const { devices } = sampleTimeline(project, t)
+     devices.forEach((state, index) => {
+-      lowest = Math.min(lowest, deviceBottom(state, sizes[index]))
++      lowest = Math.min(lowest, project.devices[index].orientation==='landscape'
++        ?state.position[1]-deviceHalfHeight(project.devices[index],state):deviceBottom(state, sizes[index]))
+     })
+   }
+ 
+   return lowest - GROUND_CLEARANCE
+ }
++
++/** Resolve legacy ground once, before any edits; subsequent changes keep it. */
++export function ensureFixedGround(project: Project): Project {
++  return project.environment.groundY!==undefined?project:{...project,environment:{...project.environment,groundY:projectGroundY(project)}}
++}
++
++/** Warn about preserved authored poses that the fixed floor limits. Includes
++ * exact key times so a short dip between the old 17 samples is still found. */
++export function groundConstraintConflicts(project: Project): string[] {
++  if(project.environment.groundY===undefined)return []
++  const steps=Math.max(1,Math.min(2048,Math.ceil(project.duration*project.fps)))
++  return project.devices.flatMap((device,index)=>{
++    const times=new Set(Object.values(device.transform).flatMap(track=>track.keys.map(k=>k.t)).filter(t=>t<=project.duration))
++    for(let i=0;i<=steps;i++)times.add(project.duration*i/steps)
++    const limited=[...times].some(time=>{const raw=sampleDevice(device,time),pose=constrainGroundPose(raw,device,project.environment.groundY);return pose.position[1]>raw.position[1]+1e-6})
++    return limited?[device.name||`手机 ${index+1}`]:[]
++  })
++}
+--- before/src/scene/SceneDriver.tsx
++++ after/src/scene/SceneDriver.tsx
+@@ -6,7 +6,7 @@
+ import { applySceneState } from './applySceneState'
+ import { registerSceneApplier } from '../export/renderer'
+ import { syncScreenVideos } from '../media/screenVideo'
+-import { hasEffects, isEffectPreviewSampling } from './sceneEffects'
++import { isEffectPreviewSampling } from './sceneEffects'
+ 
+ type SceneDriverProps = {
+   /** One group per device instance, in project order. */
+@@ -66,7 +66,7 @@
+     // Screen recordings follow the playhead too — playing while the timeline
+     // plays, seeked while it is scrubbed. Tolerant by design in preview; the
+     // export seeks the same elements exactly (§8.3).
+-    if(!hasEffects(project.effects) && !isEffectPreviewSampling())syncScreenVideos(t, useProjectStore.getState().playing)
++    if(playing || !isEffectPreviewSampling())syncScreenVideos(t, useProjectStore.getState().playing)
+ 
+     // While the user is orbiting, the camera belongs to them; OrbitControls
+     // commits the resulting pose back into the document on release. Applying
+--- before/src/scene/sceneEffects.ts
++++ after/src/scene/sceneEffects.ts
+@@ -88,7 +88,7 @@
+       u.colorMap.value=this.blurTarget!.texture;u.direction.value.set(0,1);gl.setRenderTarget(target);gl.render(this.quadScene,this.quadCamera)
+     }finally{gl.setRenderTarget(target)}
+   }
+-  async capture(project:Project,time:number,applyAt:(t:number)=>void,signal?:AbortSignal,samples?:number,hideHelpers=true):Promise<OffscreenCanvas>{
++  async capture(project:Project,time:number,applyAt:(t:number)=>void,signal?:AbortSignal,samples?:number,hideHelpers=true,liveVideo=false):Promise<OffscreenCanvas>{
+     this.resize()
+     const times=exposureTimes(project,time,samples),ctx=this.accumulation!.getContext('2d')!,sampleCtx=this.sample!.getContext('2d')!
+     ctx.clearRect(0,0,this.w,this.h);ctx.globalCompositeOperation='lighter';ctx.globalAlpha=1/times.length
+@@ -96,7 +96,7 @@
+     try{
+       for(const t of times){
+         signal?.throwIfAborted()
+-        if(hasScreenVideos())await seekScreenVideos(t,5000,signal)
++        if(!liveVideo&&hasScreenVideos())await seekScreenVideos(t,5000,signal)
+         signal?.throwIfAborted()
+         applyAt(t)
+         const render=()=>this.renderDepthOfField(project,t)
+--- before/src/scene/ShadowCatcher.tsx
++++ after/src/scene/ShadowCatcher.tsx
+@@ -3,7 +3,7 @@
+ 
+ type ShadowCatcherProps = {
+   opacity: number
+-  /** Resolved by `projectGroundY` so the plane clears every device. */
++  /** Persisted world-space ground height; never follows device edits. */
+   y: number
+ }
+ 
+@@ -18,11 +18,7 @@
+   material.opacity = opacity
+ 
+   return (
+-    // The height is computed, not fixed. At a hardcoded -0.76 this plane sat
+-    // 25mm below the iPhone 17 Pro but 55mm INSIDE every 16.3cm phone, and
+-    // because it is transparent it draws in the transparent pass — after the
+-    // opaque body — so the intersection appeared as a hard diagonal line
+-    // across the lower screen (§14 trap 11).
++    // Fixed per document. The shared pose constraint keeps device bottoms above it.
+     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, y, 0]} receiveShadow>
+       <planeGeometry args={[12, 12]} />
+       <primitive object={material} attach="material" />
+--- before/src/scene/Stage.tsx
++++ after/src/scene/Stage.tsx
+@@ -75,7 +75,7 @@
+   return null
+ }
+ 
+-export function Stage() {
++export function Stage({previewDpr=1.5}:{previewDpr?:number}) {
+   const project = useProjectStore((s) => s.project)
+   const devices = project.devices
+   const environment = useProjectStore((s) => s.project.environment)
+@@ -110,8 +110,7 @@
+   },[])
+   const finishDrag=(event:ThreeEvent<PointerEvent>,cancel=false)=>{const d=directDrag.current;if(!d||d.pointer!==event.pointerId)return;directDrag.current=null;useProjectStore.getState().endEditGesture(cancel);(event.target as Element).releasePointerCapture?.(event.pointerId)}
+ 
+-  // Resolved per document edit, never per frame — a ground that slid under a
+-  // moving phone would read as the camera drifting.
++  // Persisted once per document; device edits cannot move the common floor.
+   const groundY = useMemo(() => projectGroundY(project), [project])
+ 
+ 
+@@ -154,7 +153,7 @@
+   return (
+     <Canvas
+       shadows
+-      dpr={[1, 2]}
++      dpr={previewDpr}
+       gl={{ preserveDrawingBuffer: true, alpha: true, antialias: true }}
+       onCreated={({ gl }) => gl.setClearAlpha(0)}
+     >
+--- before/src/store/persist.ts
++++ after/src/store/persist.ts
+@@ -4,6 +4,7 @@
+ import type { MediaRef, Project } from './schema'
+ import { validateInputShape, validateProject } from './projectValidation'
+ import { inspectMedia } from '../media/inspectMedia'
++import { ensureFixedGround } from '../scene/groundPlane'
+ 
+ /**
+  * `.mockup` = a zip of project.json plus a media/ folder (§5).
+@@ -121,7 +122,7 @@
+   if (!input || typeof input !== 'object') return defaults
+   const raw = input as Partial<Project>
+ 
+-  return {
++  return ensureFixedGround({
+     ...defaults,
+     ...raw,
+     version: raw.version === 2 ? 2 : 1,
+@@ -129,7 +130,7 @@
+     environment: { ...defaults.environment, ...raw.environment },
+     camera: { ...defaults.camera, ...raw.camera, tracks: { ...defaults.camera.tracks, ...raw.camera?.tracks } },
+     devices: migrateDevices(raw, defaults),
+-  }
++  })
+ }
+ 
+ type LegacySingleDevice = {
+--- before/src/store/persistSafety.test.ts
++++ after/src/store/persistSafety.test.ts
+@@ -4,6 +4,8 @@
+ import { deserializeProject, serializeProject, projectFingerprint, missingMedia } from './persist'
+ import { useProjectStore } from './project'
+ import { useFeedbackStore } from './feedback'
++import { ensureFixedGround } from '../scene/groundPlane'
++import { useReplacement } from './replacement'
+ import { emptyHistory } from './history'
+ import type { MediaRef } from './schema'
+ 
+@@ -20,7 +22,7 @@
+ const bytes = (s: string) => strToU8(s)
+ const get = () => useProjectStore.getState()
+ function reset(p = createDefaultProject()) { get().endEditGesture(); useProjectStore.setState({ project: p, savedFingerprint: projectFingerprint(p), history: emptyHistory, activeDevice: 0, playhead: 0, fileBusy: false }) }
+-beforeEach(() => { storage.blobs.clear(); storage.failAt = storage.puts = 0; storage.failGet = false; storage.gate = null; reset(); useFeedbackStore.getState().dismiss() })
++beforeEach(() => { useReplacement.setState({pending:null}); storage.blobs.clear(); storage.failAt = storage.puts = 0; storage.failGet = false; storage.gate = null; reset(); useFeedbackStore.getState().dismiss() })
+ afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers() })
+ 
+ describe('complete portable project archives', () => {
+@@ -33,7 +35,7 @@
+     expect(strFromU8(contents['project.json'])).not.toContain('blob:')
+     storage.blobs.clear()
+     const reopened = await deserializeProject(archive)
+-    expect(projectFingerprint(reopened)).toBe(projectFingerprint(p))
++    expect(projectFingerprint(reopened)).toBe(projectFingerprint(ensureFixedGround(p)))
+     expect(reopened.background.type === 'image' && reopened.background.ref.url).toMatch(/^blob:/)
+     expect(reopened.devices[0].transform).toEqual(p.devices[0].transform)
+   })
+@@ -112,14 +114,15 @@
+     incoming.background = { type: 'image', ref: ref('present', 'image'), fit: 'cover' }
+     get().setName('keep this edit')
+     const previous = get().project, history = get().history
+-    const confirm = vi.fn().mockReturnValueOnce(true).mockReturnValueOnce(false)
++    const confirm = vi.fn().mockReturnValue(false)
+     vi.stubGlobal('window', { confirm })
+     await get().openProject(pack(incoming, { 'media/present': bytes('image') }))
+     expect(get().project).toBe(previous); expect(get().history).toBe(history)
+     expect(storage.puts).toBe(0); expect(get().fileBusy).toBe(false)
+-    expect(confirm).toHaveBeenCalledTimes(2)
+-    expect(confirm.mock.calls[1][0]).toContain('设备 1')
+-    expect(useFeedbackStore.getState().notice?.message).toContain('已取消打开')
++    const continuation=useReplacement.getState().pending!;useReplacement.setState({pending:null});continuation.proceed()
++    await vi.waitFor(()=>expect(confirm).toHaveBeenCalledOnce())
++    expect(confirm.mock.calls[0][0]).toContain('设备 1')
++    await vi.waitFor(()=>expect(useFeedbackStore.getState().notice?.message).toContain('已取消打开'))
+   })
+   it('opens a missing-media document only after the user chooses to relink it', async () => {
+     const incoming = createDefaultProject(); incoming.devices[0].screen = ref('absent')
+--- before/src/store/project.ts
++++ after/src/store/project.ts
+@@ -10,7 +10,11 @@
+ import { applyCameraAngle, applyMotionPreset, type MotionPresetId } from '../timeline/presets'
+ import { setKey, setVec3At } from '../timeline/tracks'
+ import { addEditableKey, channelFallback, deleteEditableKey, easeEditableKey, editChannel, moveEditableKey, targetTracks, validSelection, type KeySelection, type TrackTarget } from '../timeline/editing'
+-import { sampleTrack } from '../timeline/sample'
++import { sampleTrack, sampleDevice } from '../timeline/sample'
++import { ensureFixedGround, groundConstraintConflicts } from '../scene/groundPlane'
++import { constrainGroundPose } from '../scene/deviceBounds'
++import { useReplacement } from './replacement'
++import { chooseSaveDestination, writeProjectFile, type SaveResult } from './saveDestination'
+ import { focusDistance } from '../scene/sceneEffects'
+ import { addObjectKey, deleteObjectKey, easeObjectKey, moveObjectKey, poseValueAt, withObjectTracks } from '../timeline/objectEditing'
+ import type { EaseHandle } from './schema'
+@@ -56,7 +60,7 @@
+   undo: () => void
+   redo: () => void
+   newProject: () => void
+-  saveProject: () => Promise<void>
++  saveProject: (options?: {confirmWrite?:boolean}) => Promise<SaveResult>
+   openProject: (file: Blob) => Promise<void>
+   savedFingerprint: string
+   fileBusy: boolean
+@@ -152,12 +156,18 @@
+ }
+ 
+ export const useProjectStore = create<ProjectStore>((set, get) => {
+-  const initial = createDefaultProject()
+-  const canReplace = () => {
+-    if (!get().hasUnsavedChanges() || typeof window === 'undefined') return true
+-    const discard = window.confirm('当前工程有未保存的修改。确定：放弃修改并继续。取消：保留当前工程；需要保存时，请取消后点击顶栏“保存工程”，再重新操作。')
+-    if (!discard) useFeedbackStore.getState().show({ kind: 'info', message: '已保留当前工程。可点击顶栏“保存工程”，再重新新建或打开。' })
+-    return discard
++  const initial = ensureFixedGround(createDefaultProject())
++  let approved=false
++  const canReplace = (kind:'open'|'new',action:()=>void) => {
++    if(approved||!get().hasUnsavedChanges()||typeof window==='undefined')return true
++    if(useReplacement.getState().pending)return false
++    const before=get().project,epoch=get().documentEpoch
++    get().setPlaying(false)
++    useReplacement.setState({pending:{kind,proceed:()=>{
++      if(get().project!==before||get().documentEpoch!==epoch){useFeedbackStore.getState().show({kind:'error',message:'等待期间工程已改变，已保留当前工程，请重新操作。'});return}
++      approved=true;try{action()}finally{approved=false}
++    }}})
++    return false
+   }
+   let gesture: { project: Project; history: History; selection: KeySelection | null } | null = null
+   /**
+@@ -167,7 +177,17 @@
+    */
+   const edit = (label: string, update: (p: Project) => Project, ui: EditUi | ((p: Project) => EditUi) = {}) =>
+     set((s) => {
+-      const project = update(s.project)
++      let project = update(s.project)
++      if(project!==s.project&&project.environment.groundY!==undefined){
++        const time=(typeof ui==='object'?ui.playhead:undefined)??s.playhead
++        const devices=project.devices.map(d=>{
++          const old=s.project.devices.find(x=>x.instanceId===d.instanceId)
++          if(old&&old.transform===d.transform&&old.id===d.id&&old.orientation===d.orientation)return d
++          const raw=sampleDevice(d,time),pose=constrainGroundPose(raw,d,project.environment.groundY)
++          return pose===raw?d:{...d,transform:poseValueAt(d.transform,'position.y',time,pose.position[1],!!d.animationEnabled)}
++        })
++        if(devices.some((d,i)=>d!==project.devices[i]))project={...project,devices}
++      }
+       if (project === s.project) return s
+       const patch = typeof ui === 'function' ? ui(project) : ui
+       const activeObject = patch.activeObject !== undefined ? retainObject(project, patch.activeObject, s.activeDevice)
+@@ -202,7 +222,8 @@
+       devices: p.devices.map((d, i) => (i === get().activeDevice ? update(d) : d)),
+     }))
+ 
+-  const replace = (project: Project) => {
++  const replace = (input: Project) => {
++    const project=ensureFixedGround(input)
+     resetCoalescing()
+     gesture = null
+     set({ project, documentEpoch: get().documentEpoch + 1, savedFingerprint: projectFingerprint(project), history: emptyHistory, playhead: 0, playing: false, activeDevice: 0, activeObject: project.devices[0] ? { kind: 'device', instanceId: project.devices[0].instanceId } : null, keySelection: null, editingGesture: false, motionPreset: 'none', editorPage: 'editor' })
+@@ -235,30 +256,36 @@
+     })
+   },
+ 
+-  newProject: () => { if (!get().fileBusy && canReplace()) { replace(createDefaultProject()); set({ editorPage: 'templates' }); useFeedbackStore.getState().dismiss() } },
++  newProject: () => { if (!get().fileBusy && canReplace('new',()=>get().newProject())) { replace(createDefaultProject()); set({ editorPage: 'templates' }); useFeedbackStore.getState().dismiss() } },
+   editorPage: 'templates',
+   setEditorPage: editorPage => { get().endEditGesture(); set({ editorPage, playing: false }) },
+   startTemplate: id => {
+     const template = getTemplate(id)
+-    if (!template || get().fileBusy || !canReplace()) return
++    if (!template || get().fileBusy || !canReplace('new',()=>get().startTemplate(id))) return
+     const base = createDefaultProject()
+     replace({ ...base, devices: applyTemplateToDevices(template, base.devices), camera: templateCamera(template), output: template.suggestedOutput ?? base.output, background: template.background ?? base.background, environment: { ...base.environment, shadowOpacity: template.shadowOpacity ?? base.environment.shadowOpacity } })
+     set({ editorMode: 'movie' })
+   },
+-  saveProject: async () => {
+-    if (get().fileBusy) return
++  saveProject: async (options) => {
++    if (get().fileBusy) return 'failed'
+     get().endEditGesture()
+-    const project = get().project
++    const project = get().project,epoch=get().documentEpoch
+     set({ fileBusy: true })
+     try {
+-      downloadProject(await serializeProject(project), project.name)
+-      set({ savedFingerprint: projectFingerprint(project) })
+-      useFeedbackStore.getState().show({ kind: 'info', message: '已发起 .mockup 下载，请确认浏览器已保存文件。' })
+-    } catch (error) { reportError('保存工程失败，当前工程仍可编辑，请重试', error) }
+-    finally { set({ fileBusy: false }) }
++      const handle=options?.confirmWrite?await chooseSaveDestination(project.name):null
++      const blob=await serializeProject(project)
++      if(handle)await writeProjectFile(handle,blob);else downloadProject(blob,project.name)
++      if(get().documentEpoch!==epoch||get().project!==project){useFeedbackStore.getState().show({kind:'info',message:'已保存此前版本，当前新修改仍未保存。'});return 'failed'}
++      if(handle||!options?.confirmWrite)set({ savedFingerprint: projectFingerprint(project) })
++      useFeedbackStore.getState().show({ kind: 'info', message: handle?'工程已保存。':'已发起 .mockup 下载，请确认浏览器已保存文件。' })
++      return handle?'saved':'downloaded'
++    } catch (error) {
++      if(error instanceof Error&&error.name==='AbortError')return 'cancelled'
++      reportError('保存工程失败，当前工程仍可编辑，请重试', error);return 'failed'
++    } finally { set({ fileBusy: false }) }
+   },
+   openProject: async (file) => {
+-    if (get().fileBusy || !canReplace()) return
++    if (get().fileBusy || !canReplace('open',()=>{void get().openProject(file)})) return
+     get().endEditGesture()
+     const before = get().project
+     set({ fileBusy: true })
+@@ -271,7 +298,10 @@
+       replace(project)
+       const missing = missingMedia(project)
+       if (missing.length) useFeedbackStore.getState().show({ kind: 'error', message: `工程已打开，但 ${missing.join('、')} 的素材缺失。请选择对应设备重新绑定，完成后再保存。` })
+-      else useFeedbackStore.getState().show({ kind: 'info', message: '工程已打开。' })
++      else {
++        const constrained=groundConstraintConflicts(project)
++        useFeedbackStore.getState().show({kind:'info',message:constrained.length?`工程已打开。${constrained.join('、')}的部分姿态低于地面，已按地面限制显示；原关键帧保留。`:'工程已打开。'})
++      }
+     } catch (error) {
+       if (error instanceof ProjectOpenCancelled) useFeedbackStore.getState().show({ kind: 'info', message: '已取消打开，当前工程已保留。' })
+       else reportError('打开工程失败，已保留当前工程', error)
+@@ -422,7 +452,7 @@
+     const source = get().project.devices[get().activeDevice]
+     editDevices('addDevice', (p) => {
+       const device = source
+-        ? createDevice({ id: source.id, colorway: source.colorway, orientation: source.orientation })
++        ? createDevice({ id: source.id, colorway: source.colorway })
+         : createDevice()
+       return { ...p, devices: [...p.devices, placeNewDevice(p, device, get().playhead, get().activeDevice)] }
+     }, (p) => ({ activeDevice: p.devices.length - 1 }))
+--- before/src/store/projectValidation.ts
++++ after/src/store/projectValidation.ts
+@@ -67,6 +67,7 @@
+   tracks(project.camera.tracks, 'camera.tracks')
+   const e = project.environment
+   if (!obj(e) || !['studio', 'city', 'sunset', 'warehouse'].includes(e.hdri) || ![e.intensity, e.rotation, e.shadowOpacity, e.shadowBlur].every(num)) bad('environment')
++  if(e.groundY!==undefined&&(!num(e.groundY)||Math.abs(e.groundY)>10000))bad('environment.groundY')
+   const b = project.background
+   if (!obj(b)) bad('background')
+   if (b.type === 'image') {
+--- before/src/store/schema.ts
++++ after/src/store/schema.ts
+@@ -81,6 +81,8 @@
+   rotation: number // radians, y-axis
+   shadowOpacity: number
+   shadowBlur: number
++  /** Fixed world-space floor; absent only in legacy documents before migration. */
++  groundY?: number
+ }
+ 
+ export type CameraAnglePreset =
+--- before/src/timeline/motionPlan.test.ts
++++ after/src/timeline/motionPlan.test.ts
+@@ -1,3 +1,4 @@
++import { ensureFixedGround } from '../scene/groundPlane'
+ import { beforeEach, describe, expect, it } from 'vitest'
+ import { applyMotionPlan, generateMockMotionPlan, motionTimelineFrames, parseMotionPlan, validateMotionPlan } from './motionPlan'
+ import { createDefaultProject } from '../store/defaults'
+@@ -135,7 +136,7 @@
+     const project = applyMotionPlan(createDefaultProject(), makePlan())
+     expect(migrate(project).motionPlan).toEqual(project.motionPlan)
+     const restored = await deserializeProject(await serializeProject(project))
+-    expect(restored).toEqual(project)
++    expect(restored).toEqual(ensureFixedGround(project))
+     expect(sampleTimeline(restored, 8)).toEqual(sampleTimeline(project, 8))
+   })
+ })
+--- before/src/timeline/sample.ts
++++ after/src/timeline/sample.ts
+@@ -1,5 +1,6 @@
+ import { easingFor } from './easing'
+-import type { Keyframe, Project, SceneState, Track, TrackSet } from '../store/schema'
++import type { DeviceInstance, DeviceState, Keyframe, Project, SceneState, Track, TrackSet } from '../store/schema'
++import { constrainGroundPose } from '../scene/deviceBounds'
+ 
+ /** Shared monotone tangent at a key. Stops at turns, never overshoots a pose. */
+ function tangent(keys: Keyframe[], index: number): number {
+@@ -102,12 +103,12 @@
+       target: vec3(cam, 'target', t, [0, 0, 0]),
+       fov: sampleTrack(cam['fov'], t, project.camera.fov),
+     },
+-    devices: project.devices.map((device) => ({
+-      position: vec3(device.transform, 'position', t, [0, 0, 0]),
+-      rotation: vec3(device.transform, 'rotation', t, [0, 0, 0]),
+-      scale: sampleTrack(device.transform['scale'], t, 1),
+-    })),
++    devices: project.devices.map(device=>constrainGroundPose(sampleDevice(device,t),device,project.environment.groundY)),
+   }
++}
++
++export function sampleDevice(device: DeviceInstance, t: number): DeviceState {
++  return {position:vec3(device.transform,'position',t,[0,0,0]),rotation:vec3(device.transform,'rotation',t,[0,0,0]),scale:sampleTrack(device.transform.scale,t,1)}
+ }
+ 
+ /** True if any channel in the set carries real animation (more than one key). */
+--- before/src/ui/Artboard/Artboard.tsx
++++ after/src/ui/Artboard/Artboard.tsx
+@@ -3,6 +3,7 @@
+ import { sampleTimeline, sampleTrack } from '../../timeline/sample'
+ import { textPose } from '../../scene/textOverlay'
+ import { useExportSession } from '../../export/session'
++import { previewPixelRatio } from '../../scene/previewResolution'
+ import { Stage } from '../../scene/Stage'
+ import { backdropCss } from '../../scene/Backdrop'
+ import { useProjectStore } from '../../store/project'
+@@ -73,7 +74,7 @@
+     return()=>{el?.removeEventListener('wheel',wheel,{capture:true});if(timer){clearTimeout(timer);useProjectStore.getState().endEditGesture()}}
+   },[width])
+   return <div className="artboard-zone"><div className="artboard-bar"><span className="artboard-label">画面 <strong>{aspectLabelFor(output)}</strong></span><span className="artboard-dims">{output.width} × {output.height}</span></div>
+-    <div className="artboard-wrap" ref={ref}><div ref={board} className="artboard" data-testid="artboard" style={{width,height,...backdropCss(background)}}>{width>0&&<><Stage/><TextOverlay width={width} height={height}/></>}</div></div>
++    <div className="artboard-wrap" ref={ref}><div ref={board} className="artboard" data-testid="artboard" style={{width,height,...backdropCss(background)}}>{width>0&&<><Stage previewDpr={previewPixelRatio(width,height,window.devicePixelRatio)}/><TextOverlay width={width} height={height}/></>}</div></div>
+     <div className="canvas-tools">{(['translate','rotate'] as const).map(mode=><button key={mode} className={tool===mode?'tool-btn active':'tool-btn'} aria-label={mode==='translate'?'移动对象':'旋转对象'} aria-pressed={tool===mode} onClick={()=>setTool(mode)}>{mode==='translate'?'移动':'旋转'}</button>)}<span className="hint">{selection?'滚轮缩放对象 · 拖动调整 · 点击空白调整相机':'拖动空白旋转相机 · 滚轮调整远近'}</span><button className="link-btn" onClick={()=>{const s=useProjectStore.getState();s.beginEditGesture();s.setCameraPosition([0,0,3.2]);s.setCameraTarget([0,0,0]);s.endEditGesture()}}>恢复视角</button></div>
+   </div>
+ }
+--- before/src/ui/Inspector/DeviceSection.tsx
++++ after/src/ui/Inspector/DeviceSection.tsx
+@@ -1,10 +1,10 @@
+ import { useEffect, useRef, useState, type DragEvent } from 'react'
+-import { Smartphone, RectangleHorizontal, Info, ChevronDown, Check } from 'lucide-react'
++import { Smartphone, Info, ChevronDown, Check } from 'lucide-react'
+ import { Segmented } from '../controls/Segmented'
+ import { useProjectStore } from '../../store/project'
+ import { DEVICE_LIST, getManifest } from '../../devices/manifest'
+ import { ACCEPTED_SCREEN_TYPES, loadScreenMedia } from '../../media/loadMedia'
+-import type { DeviceId, DeviceOrientation, ScreenFit } from '../../store/schema'
++import type { DeviceId, ScreenFit } from '../../store/schema'
+ import { reportError } from '../../store/feedback'
+ import { VideoTimingControls } from './VideoTimingControls'
+ import { deviceLabel, finishLabels } from '../../app/labels'
+@@ -12,9 +12,7 @@
+ 
+ export function DeviceCard() {
+   const deviceId = useProjectStore((s) => s.project.devices[s.activeDevice]?.id)
+-  const orientation = useProjectStore((s) => s.project.devices[s.activeDevice]?.orientation)
+   const setDeviceId = useProjectStore((s) => s.setDeviceId)
+-  const setOrientation = useProjectStore((s) => s.setOrientation)
+   const [picking, setPicking] = useState(false)
+   const cardRef = useRef<HTMLDivElement>(null)
+   const manifest = deviceId ? getManifest(deviceId) : undefined
+@@ -61,15 +59,6 @@
+         <ChevronDown size={14} className={picking ? 'chevron open' : 'chevron'} />
+       </button>
+ 
+-      <Segmented<DeviceOrientation>
+-        size="sm"
+-        value={orientation}
+-        onChange={setOrientation}
+-        options={[
+-          { id: 'portrait', label: <Smartphone size={13} />, title: '竖向' },
+-          { id: 'landscape', label: <RectangleHorizontal size={13} />, title: '横向' },
+-        ]}
+-      />
+ 
+       {picking && (
+         <div className="device-list">
+--- before/src/ui/Inspector/TransformSection.tsx
++++ after/src/ui/Inspector/TransformSection.tsx
+@@ -2,6 +2,7 @@
+ import { NumberField } from '../controls/NumberField'
+ import { useProjectStore } from '../../store/project'
+ import { sampleTimeline } from '../../timeline/sample'
++import { CONTACT_GAP, deviceHalfHeight } from '../../scene/deviceBounds'
+ 
+ /**
+  * Position, rotation and scale for the device the Devices list has selected.
+@@ -124,7 +125,7 @@
+       </div>
+ 
+       <p className="hint">
+-        拖动数值可连续调整，按住 Shift 精调。Z 表示前后深度。
++        {project.environment.groundY!==undefined&&device.position[1]-deviceHalfHeight(project.devices[active],device)<=project.environment.groundY+CONTACT_GAP+1e-5?'已到地面，可向上移动。':'拖动数值可连续调整，按住 Shift 精调。Z 表示前后深度。'}
+       </p>
+     </div>
+   )
+--- before/src/ui/Timeline/TimelineBar.tsx
++++ after/src/ui/Timeline/TimelineBar.tsx
+@@ -30,29 +30,49 @@
+     <div className="timeline-footer">{selection?<><span>{selection.t.toFixed(3)} 秒 · 姿态关键帧</span><CommitNumber label="关键帧时间" value={selection.t} onCommit={v=>{s.beginEditGesture();s.moveTimelineKey(selection,v);s.endEditGesture()}}/><select aria-label="关键帧过渡" value={ease} onChange={e=>{if(e.target.value==='continuous')s.setKeyContinuous();else s.setTimelineKeyEase(NAMED_EASINGS[e.target.value as keyof typeof NAMED_EASINGS])}}>{Object.entries(easeLabels).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select><button className="link-btn" onClick={s.deleteTimelineKey}>删除关键帧</button><KeyProperties/></>:<span className="hint">点选关键帧，拖动调整时间；同一时刻的姿态一起移动。</span>}<span className="spacer"/>{s.activeObject?.kind==='device'&&<select aria-label="添加动作预设" value="" onChange={e=>s.setMotionPreset(e.target.value as MotionPresetId)}><option value="">添加动作…</option>{MOTION_PRESETS.filter(m=>m.id!=='orbit').map(m=><option key={m.id} value={m.id}>{motionLabels[m.id]??m.label}</option>)}</select>}<button className="icon-btn" aria-label="缩小时间轴" onClick={()=>setZoom(Math.max(1,zoom/1.4))}>−</button><button className="icon-btn" aria-label="放大时间轴" onClick={()=>setZoom(Math.min(12,zoom*1.4))}>＋</button></div>
+   </section>
+ }
++function seekAt(element:HTMLElement,x:number) {
++  const s=useProjectStore.getState(),r=element.getBoundingClientRect()
++  if(r.width<=0)return
++  s.setPlaying(false);s.setPlayhead((x-r.left)/r.width*s.project.duration)
++}
+ function TimeRuler({duration,zoom}:{duration:number;zoom:number}) {
+-  const s=useProjectStore(), active=useRef<number|null>(null)
+-  const seek=(e:PointerEvent<HTMLDivElement>)=>{const rect=e.currentTarget.getBoundingClientRect();s.setPlaying(false);s.setPlayhead((e.clientX-rect.left)/rect.width*duration)}
++  const active=useRef<number|null>(null)
++  useEffect(()=>{const stop=()=>{active.current=null};window.addEventListener('blur',stop);return()=>window.removeEventListener('blur',stop)},[])
+   const raw=duration/(10*zoom),base=10**Math.floor(Math.log10(raw)),step=[1,2,5,10].map(n=>n*base).find(n=>n>=raw)??base*10
+   const ticks=Array.from({length:Math.floor(duration/step)+1},(_,i)=>i*step)
+   if(ticks[ticks.length-1]<duration-1e-6)ticks.push(duration)
+-  return <div className="time-ruler-wrap"><span>对象</span><div className="time-ruler" onPointerDown={e=>{active.current=e.pointerId;e.currentTarget.setPointerCapture(e.pointerId);seek(e)}} onPointerMove={e=>{if(active.current===e.pointerId)seek(e)}} onPointerUp={()=>{active.current=null}} onPointerCancel={()=>{active.current=null}}>{ticks.map(t=><small key={t} style={{left:`${t/duration*100}%`}}>{Number(t.toFixed(3))}</small>)}</div></div>
++  return <div className="time-ruler-wrap"><span>对象</span><div className="time-ruler" aria-label="拖动时间尺" onPointerDown={e=>{if(e.button!==0)return;e.preventDefault();active.current=e.pointerId;e.currentTarget.setPointerCapture(e.pointerId);seekAt(e.currentTarget,e.clientX)}} onPointerMove={e=>{if(active.current===e.pointerId)seekAt(e.currentTarget,e.clientX)}} onPointerUp={()=>{active.current=null}} onPointerCancel={()=>{active.current=null}} onLostPointerCapture={()=>{active.current=null}}>{ticks.map(t=><small key={t} style={{left:`${t/duration*100}%`}}>{Number(t.toFixed(3))}</small>)}</div></div>
+ }
+ function ObjectRow({target,name}:{target:TrackTarget;name:string}) {
+   const s=useProjectStore(), times=objectKeyTimes(s.project,target), lane=useRef<HTMLDivElement>(null)
+-  const drag=useRef<{pointer:number;x:number;width:number;selection:KeySelection;moved:boolean}|null>(null)
+-  useEffect(()=>{const cancel=()=>{if(drag.current){const moved=drag.current.moved;drag.current=null;if(moved)useProjectStore.getState().endEditGesture(true)}};window.addEventListener('blur',cancel);return()=>{window.removeEventListener('blur',cancel);cancel()}},[])
++  const drag=useRef<{pointer:number;x:number;width:number;scroll:number;selection:KeySelection|null;moved:boolean}|null>(null)
++  useEffect(()=>{const cancel=()=>{const d=drag.current;drag.current=null;if(d?.moved&&d.selection)useProjectStore.getState().endEditGesture(true)};const key=(e:globalThis.KeyboardEvent)=>{if(e.key==='Escape')cancel()};window.addEventListener('blur',cancel);window.addEventListener('keydown',key);return()=>{window.removeEventListener('blur',cancel);window.removeEventListener('keydown',key);cancel()}},[])
+   const choose=()=>s.selectObject(target.kind==='camera'?null:target)
+-  const finish=(e:PointerEvent<HTMLDivElement>,cancel=false)=>{const d=drag.current;if(!d||d.pointer!==e.pointerId)return;drag.current=null;if(d.moved)s.endEditGesture(cancel);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId)}
++  const finish=(e:PointerEvent<HTMLDivElement>,cancel=false)=>{const d=drag.current;if(!d||d.pointer!==e.pointerId)return;drag.current=null;if(d.moved&&d.selection)s.endEditGesture(cancel);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId)}
+   const current=s.keySelection, active=s.activeObject?ownerEqual(s.activeObject,target):target.kind==='camera'&&current?.target.kind==='camera'
+   return <div className={`object-track ${active?'active':''}`} data-testid={`track-${target.kind==='camera'?'camera':target.instanceId}`} onPointerDown={e=>{
+     if(e.button!==0||!lane.current||!(e.target as HTMLElement).closest('.object-lane'))return
+-    const rect=lane.current.getBoundingClientRect(), x=e.clientX-rect.left
++    e.preventDefault();e.stopPropagation()
++    const rect=lane.current.getBoundingClientRect(), x=e.clientX-rect.left,scroll=e.currentTarget.closest('.timeline-scroll')?.scrollLeft??0
++    const handle=!!(e.target as HTMLElement).closest('.playhead-handle')
+     const nearest=[...times].sort((a,b)=>Math.abs(a/s.project.duration*rect.width-x)-Math.abs(b/s.project.duration*rect.width-x))[0]
+-    if(nearest!==undefined&&Math.abs(nearest/s.project.duration*rect.width-x)<=14){e.preventDefault();e.stopPropagation();const selection={target,channel:'*',t:nearest};s.selectKey(selection);drag.current={pointer:e.pointerId,x:e.clientX,width:rect.width,selection,moved:false};e.currentTarget.setPointerCapture(e.pointerId)}
+-    else {choose();s.setPlayhead(x/rect.width*s.project.duration)}
+-  }} onPointerMove={e=>{const d=drag.current;if(!d||d.pointer!==e.pointerId||d.width<=0)return;if(!d.moved&&Math.abs(e.clientX-d.x)<4)return;if(!d.moved){s.beginEditGesture();d.moved=true}if(!useProjectStore.getState().editingGesture){drag.current=null;return}const t=Math.round((d.selection.t+(e.clientX-d.x)/d.width*s.project.duration)*s.project.fps)/s.project.fps;s.moveTimelineKey(d.selection,t)}} onPointerUp={e=>finish(e)} onPointerCancel={e=>finish(e,true)} onLostPointerCapture={e=>finish(e)}>
+-    <button className="object-track-name" onClick={choose}>{name}</button><div className="object-lane" ref={lane}>{times.map(t=><button key={t} className={`pose-key ${current&&ownerEqual(current.target,target)&&sameTime(current.t,t)?'selected':''}`} style={{left:`${t/s.project.duration*100}%`}} aria-label={`${name}关键帧 ${Number(t.toFixed(3))}秒`} aria-pressed={!!current&&ownerEqual(current.target,target)&&sameTime(current.t,t)} title={`${t.toFixed(3)} 秒 · 拖动整体改时`} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();s.selectKey({target,channel:'*',t})}}}><i/></button>)}<div className="object-playhead" style={{left:`${s.playhead/s.project.duration*100}%`}}/></div>
++    const selection=!handle&&nearest!==undefined&&Math.abs(nearest/s.project.duration*rect.width-x)<=14?{target,channel:'*',t:nearest}:null
++    drag.current={pointer:e.pointerId,x:e.clientX,width:rect.width,scroll,selection,moved:false}
++    e.currentTarget.setPointerCapture(e.pointerId)
++    if(selection)s.selectKey(selection);else seekAt(lane.current,e.clientX)
++  }} onPointerMove={e=>{
++    const d=drag.current,el=lane.current;if(!d||d.pointer!==e.pointerId||!el||d.width<=0)return
++    const scroll=e.currentTarget.closest('.timeline-scroll')
++    if(scroll){const r=scroll.getBoundingClientRect();if(e.clientX>r.right-16)scroll.scrollLeft+=16;else if(e.clientX<r.left+115)scroll.scrollLeft-=16}
++    if(!d.selection){seekAt(el,e.clientX);return}
++    const dx=e.clientX-d.x+((scroll?.scrollLeft??0)-d.scroll)
++    if(!d.moved&&Math.abs(dx)<4)return
++    if(!d.moved){s.beginEditGesture();d.moved=true}
++    if(!useProjectStore.getState().editingGesture){drag.current=null;return}
++    const t=Math.round((d.selection.t+dx/d.width*s.project.duration)*s.project.fps)/s.project.fps
++    s.moveTimelineKey(d.selection,t)
++  }} onPointerUp={e=>finish(e)} onPointerCancel={e=>finish(e,true)} onLostPointerCapture={e=>finish(e)}>
++    <button className="object-track-name" onClick={choose}>{name}</button><div className="object-lane" ref={lane}>{times.map(t=><button key={t} className={`pose-key ${current&&ownerEqual(current.target,target)&&sameTime(current.t,t)?'selected':''}`} style={{left:`${t/s.project.duration*100}%`}} aria-label={`${name}关键帧 ${Number(t.toFixed(3))}秒`} aria-pressed={!!current&&ownerEqual(current.target,target)&&sameTime(current.t,t)} title={`${t.toFixed(3)} 秒 · 拖动整体改时`} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();s.selectKey({target,channel:'*',t})}}}><i/></button>)}<div className="object-playhead" style={{left:`${s.playhead/s.project.duration*100}%`}}/><button className="playhead-handle" style={{left:`${s.playhead/s.project.duration*100}%`}} aria-label={`拖动播放头 ${name}`} title="拖动查看画面"/></div>
+   </div>
+ }
+ function KeyProperties() {
+--- before/scripts/test-beginner-workflow.cjs
++++ after/scripts/test-beginner-workflow.cjs
+@@ -65,7 +65,7 @@
+  await p.evaluate(()=>{const s=window.S.getState();s.setDuration(.2);s.setOutput({width:640,height:360});s.setEffects({...s.project.effects,depthOfField:{...s.project.effects.depthOfField,enabled:false},motionBlur:{...s.project.effects.motionBlur,enabled:false}})});await modal();await p.evaluate(()=>{window.originalFlush=VideoEncoder.prototype.flush;VideoEncoder.prototype.flush=()=>new Promise(()=>{})});await p.getByRole('button',{name:'导出视频（MP4 (H.264)）',exact:true}).click();await p.waitForTimeout(1800);check('export-locks-editor',await p.locator('main.stage-zone').evaluate(el=>el.inert));await p.getByRole('button',{name:/^取消导出/}).click();await p.waitForFunction(()=>!window.X.useExportSession.getState().busy);await p.evaluate(()=>{VideoEncoder.prototype.flush=window.originalFlush});check('stalled-flush-cancel-releases-resources',await p.evaluate(()=>!window.F.isFrameExportActive()));const retry=await video('after-cancel');check('cancel-then-retry-exports',retry.frames===6);await close();
+  await modal();await p.evaluate(()=>{window.originalConfigure=VideoEncoder.prototype.configure;VideoEncoder.prototype.configure=function(){throw Error('受控编码配置失败')}});await p.getByRole('button',{name:'导出视频（MP4 (H.264)）',exact:true}).click();await p.getByRole('alert').filter({hasText:'受控编码配置失败'}).first().waitFor();check('encoding-error-has-visible-retry',await p.getByRole('button',{name:'重试导出',exact:true}).isVisible());await p.evaluate(()=>{VideoEncoder.prototype.configure=window.originalConfigure});const waitRetry=p.waitForEvent('download');await p.getByRole('button',{name:'重试导出',exact:true}).click();await(await waitRetry).saveAs(path.join(out,'error-retry.mp4'));check('error-retry-produces-file',fs.statSync(path.join(out,'error-retry.mp4')).size>1000);await close();
+  await p.evaluate(()=>{window.encoderDescriptor=Object.getOwnPropertyDescriptor(window,'VideoEncoder');Object.defineProperty(window,'VideoEncoder',{configurable:true,value:undefined});const s=window.S.getState();s.setEffects({...s.project.effects,depthOfField:{...s.project.effects.depthOfField,enabled:true},motionBlur:{...s.project.effects.motionBlur,enabled:true}})});await modal();await p.getByText('此浏览器无法编码视频。',{exact:false}).waitFor();const waitZip=p.waitForEvent('download');await p.getByRole('button',{name:'导出 PNG 序列（6 帧）',exact:true}).click();const zip=await waitZip;await zip.saveAs(path.join(out,'effects-fallback.zip'));const frames=Object.entries(unzipSync(fs.readFileSync(path.join(out,'effects-fallback.zip'))));check('png-fallback-keeps-text-and-effects',frames.length===6&&frames.every(([n,b])=>n.endsWith('.png')&&b.length>1000));fs.writeFileSync(path.join(out,'fallback-first.png'),frames[0][1]);await close();await p.evaluate(()=>Object.defineProperty(window,'VideoEncoder',window.encoderDescriptor));
+- if(process.env.SKIP_LONG!=='1')for(const seconds of [30,60]){await p.evaluate(seconds=>{const s=window.S.getState();s.setDuration(seconds);s.setOutput({width:1920,height:1080});s.setEffects({...s.project.effects,depthOfField:{...s.project.effects.depthOfField,enabled:false},motionBlur:{...s.project.effects.motionBlur,enabled:false}});s.setActiveDevice(0);s.setScreenPlayback({loop:true});s.setMotionPreset('spin-y-360',0,seconds);s.setActiveDevice(1);s.setMotionPreset('float',0,seconds);s.setPlayhead(0)},seconds);await modal();const long=await video('long-'+seconds+'s');check('continuous-'+seconds+'s-export',long.frames===seconds*30&&Math.abs(long.duration-seconds)<.1,long);await close()}
++ if(process.env.SKIP_LONG!=='1')for(const seconds of JSON.parse(process.env.LONG_SECONDS??'[30,60]')){await p.evaluate(seconds=>{const s=window.S.getState();s.setDuration(seconds);s.setOutput({width:1920,height:1080});s.setEffects({...s.project.effects,depthOfField:{...s.project.effects.depthOfField,enabled:false},motionBlur:{...s.project.effects.motionBlur,enabled:false}});s.setActiveDevice(0);s.setScreenPlayback({loop:true});s.setMotionPreset('spin-y-360',0,seconds);s.setActiveDevice(1);s.setMotionPreset('float',0,seconds);s.setPlayhead(0)},seconds);await modal();const long=await video('long-'+seconds+'s');check('continuous-'+seconds+'s-export',long.frames===seconds*30&&Math.abs(long.duration-seconds)<.1,long);await close()}
+  await p.evaluate(()=>{const s=window.S.getState();s.setEffects({...s.project.effects,depthOfField:{...s.project.effects.depthOfField,enabled:false},motionBlur:{...s.project.effects.motionBlur,enabled:false}})});
+  for(const [scale,width,height]of [[1.25,1093,614],[1.5,910,512]]){await p.setViewportSize({width,height});await p.screenshot({path:path.join(out,'scale-'+scale+'.png'),fullPage:true});const fits=await p.getByRole('button',{name:'导出',exact:true}).boundingBox();check('desktop-scale-'+scale+'-export-accessible',fits&&fits.x>=0&&fits.x+fits.width<=width)}await p.setViewportSize({width:1366,height:768});await p.screenshot({path:path.join(out,'04-small-desktop.png'),fullPage:true});check('small-desktop-controls-fit',await p.getByRole('button',{name:'导出',exact:true}).isVisible());
+  await p.getByRole('button',{name:'‹ 模板',exact:true}).click();check('return-to-template-keeps-scene',await p.getByRole('button',{name:'返回当前工程',exact:true}).isVisible());await p.getByRole('button',{name:'返回当前工程',exact:true}).click();check('resume-current-editor',await p.getByTestId('object-timeline').isVisible());
+--- before/docs/ARCHITECTURE.md
++++ after/docs/ARCHITECTURE.md
+@@ -1,6 +1,18 @@
+ # 当前架构与数据流
+ 
+ 更新：2026-11-03（P1-10～18 新手界面、对象时间轴、文字及效果已实施）。本文描述实际源码与边界；开发顺序只看 [工作计划](../IMPLEMENTATION_ROADMAP.md)。
++
++## P1-19～25：首批反馈修正
++
++时间轴的对象行空白、播放头小柄和秒尺均接入指针捕获和连续定位；关键帧单独拥有改时手势，记录起始滚动位置，在滚动后按内容坐标换算。定位不写文档或撤销。取消、失焦与释放结束相应手势。
++
++store/replacement.ts 保存应用内文档替换的临时继续动作；ReplacementDialog 提供保存、不保存、取消，使用 inert 与键盘守卫阻止背后编辑。saveProject 返回 saved/downloaded/cancelled/failed；保存后继续优先通过文件选择器取得可写句柄，完成 write/close 后才执行替换，普通下载回退保留用户确认。文档引用和 documentEpoch 校验阻止过期继续动作替换新工程；素材缺失确认仍是独立流程。
++
++EnvironmentConfig.groundY 保存固定世界地面。新建/打开工程和本地 bridge 入口调用 ensureFixedGround，仅在缺少字段时按旧场景推导一次；后续设备、时长或轨道编辑保留它。deviceBounds.ts 计算设备旋转包围盒在世界 Y 方向的范围，旧内层 landscape 朝向按模型修正坐标变换纳入；接触余量为 0.002 场景单位。sampleTimeline 对所有时刻的姿态应用同一触地约束，编辑入口将受限位置写回原生轨道，从而支持预览、效果子采样、导出和手势撤销。旧工程关键帧保留，迁移后的触地限制可能修正极少数低于地面的旧中间姿态。没有增加物理引擎或重力。
++
++视频预览对小幅时钟漂移使用有限播放速率校正，主动跳时/循环/持续大偏差才定位；正在定位时不重复覆盖，暂停拖动保留最新请求，精确导出清除预览待处理请求。播放中的效果采样使用当前解码帧和两次姿态采样；暂停及导出仍精确等待各个曝光时刻，过期暂停预览被取消且不回显。预览画布在低 DPI 下采用至少 1.5 倍采样，以 1 倍为下限，按 2 倍与约 320 万像素目标控制采样；大窗口预算不足时允许降到 1 倍。横竖按钮已移除，旧 orientation 字段继续读取，新手机默认竖向，复制保留原姿态。
++
++以上是当前修正实现；下方 P1-01～18 章节保留此前形成的模块说明，冲突处以本节为准。验证与人工边界见 [本轮报告](../reports/current/p119-p125-implementation-20261103/README.md)。
+ 
+ ## 工程组成
+ 
+--- before/docs/BEGINNER_GUIDE.md
++++ after/docs/BEGINNER_GUIDE.md
+@@ -6,13 +6,15 @@
+ 
+ 进入后先看到模板页。选择喜欢的构图即可进入编辑器，手机、机型、颜色和素材都可以继续改。“打开已有工程”可以直接恢复 `.mockup`，不用重新选模板。
+ 
+-左上角“模板”返回选择页，当前工程保留；“返回当前工程”继续编辑。再次选模板时，有未保存内容会提醒。取消后仍保留原工程，可以先点“保存工程”。
++左上角“模板”返回选择页，当前工程保留；“返回当前工程”继续编辑。再次选模板或打开其他工程时，有未保存内容会显示三个选项：保存当前工程后继续、不保存并继续、取消。选择保存后会先让你指定工程文件位置；取消保存或保存失败时继续保留当前工程。浏览器只能发起下载时，需确认文件已保存，再点击继续。
+ 
+ ## 对象设置
+ 
+ 右侧“对象”列出所有手机和标题。点击卡片或直接点画布对象，即可打开其独立设置。每个手机的机型、颜色、屏幕素材、填充方式互相独立。
+ 
+ “完整显示”保留素材完整内容，“填满裁切”优先填满屏幕。视频的入点、出点、开始时间和循环在该手机的“录屏时序”里；开始时间以前显示入点画面，结束后保持末帧，循环仅循环选定区间。
++
++横放手机请使用“旋转”或“位置与旋转精调”中的倾斜角；横竖切换按钮已移除。旧工程中已设置的横向姿态仍能正确显示和保存。
+ 
+ “添加文字”插入画面标题。可以修改内容、字号、颜色、对齐和行距，直接拖动位置，通过滚轮缩放。文字固定在画面上，显示在手机前方，不随相机转动；两条标题重叠时可用“上移一层 / 下移一层”调整。
+ 
+@@ -33,6 +35,8 @@
+ 
+ 每个对象在时间轴上各占一行，所有对象共享秒尺和播放头。相机出现动画后也会显示一行。静态对象起初没有动画标记。
+ 
++拖动顶部秒尺、橙色播放头小柄或对象轨道空白，可以连续查看不同时间的画面；松开后停在对应时刻。拖动菱形关键帧则改变动作时间，两种手势各自独立。放大时间轴后可以横向滚动查看。
++
+ 1. 选中手机，在 0 秒点“添加关键帧”，记录起点。
+ 2. 将当前时间改为 2 秒，移动、旋转或缩放手机，新的姿态会记录在这个时刻。
+ 3. 播放检查；拖动 2 秒的标记到 6 秒，整组姿态一起改时，动作会用 6 秒完成。
+@@ -46,10 +50,14 @@
+ 
+ “环境”集中管理背景、灯光与阴影、画面效果。景深和动态模糊默认关闭。
+ 
++地面高度在建立工程时固定，并随工程保存；移动或缩放一台手机不会把其他手机脚下的地面带走。向下移动到地面会停止，缩放、旋转和动画过程也会保持手机在地面上方。需要改变贴地姿态时，可调整旋转和缩放，垂直位置会相应修正；一次手势可以整体撤销。
++
++打开旧工程时，若检测到已有姿态低于地面，会提示涉及的手机，按地面限制显示，并保留原关键帧，便于你重新调整。
++
+ - 景深：选择对焦手机并调整模糊强度。对焦对象移动时焦点会跟随；也可以使用固定焦点距离。删除对焦对象后，保留最后距离并提示重新选择。
+ - 动态模糊：根据手机和相机在一帧曝光区间内的运动形成拖影。强度和采样数量越大，需要的时间越多；静止画面保持清晰。
+ 
+-背景和标题保持清晰。动态模糊在播放预览时使用 2 次轻量采样，暂停检查和导出使用所选的 2/4/8 次采样。可以暂停在某个时刻检查最终效果。不同质量档的噪声和拖影细节可能不同，动画时间和效果设置保持一致。
++背景和标题保持清晰。动态模糊在播放预览时使用 2 次轻量姿态采样，手机录屏保持连续解码；暂停检查和导出使用所选的 2/4/8 次采样，并精确定位录屏。可以暂停在某个时刻检查最终效果；播放预览的录屏拖影细节与最终输出可能有差异。
+ 
+ ## 保存与导出
+ 
+@@ -60,3 +68,5 @@
+ 从顶栏“导出”打开设置，默认优先选择 MP4。可导出 PNG 图片、视频或 PNG 帧序列；视频导出受浏览器和设备编码能力影响。取消、失败后可以继续编辑或重试，详细原因显示在面板内。
+ 
+ 本轮的 1080P/30FPS 短片、30 秒和 60 秒样本、效果对照及实际耗时见 [实施报告](../reports/current/p110-p118-implementation-20261102/README.md)。这些样本不代表所有效果质量、机型数量和机器都具有相同性能。
++
++2026-11-03 的首批反馈修正见 [本轮记录](../reports/current/p119-p125-implementation-20261103/README.md)。请优先复核原清单的 A02、A03、B02、B03、C03；B03 改用旋转横放。个人录屏清晰度还受原始分辨率、手机在画面中的大小和电脑性能影响，低分辨率素材中不存在的细节无法靠预览设置恢复。
+--- before/docs/TESTING.md
++++ after/docs/TESTING.md
+@@ -1,6 +1,14 @@
+ # 验证方法与证据维护
+ 
+ 本页说明如何检查；最新结果只看 [reports/current/](../reports/current/README.md)。任务完成条件见 [工作计划](../IMPLEMENTATION_ROADMAP.md)。
++
++## P1-19～25 人工反馈回归
++
++`scripts/test-feedback-baseline.cjs` 记录修复前的交互和实际录屏状态，修复后不要求它继续复现旧失败。`scripts/test-feedback-fixes.cjs` 通过真实本地 Vite、鼠标、UI 对话框和下载验证连续定位、固定地面、保存分支、用户高帧率素材、四组效果及 1080P 短片；`scripts/test-fixed-floor-models.cjs` 核对五机型实际顶点最低点和分离设备的投影区域。
++
++脚本使用 `STUDIO_URL` 与独立的 `BEGINNER_OUT`，启动/停止测试服务可沿用本轮报告中的 run-browser.py。用户原工程保持只读，测试副本及录屏放在本轮报告的 private/，不加入公开交付。文件选择器成功分支在浏览器自动化中用真实 OPFS 可写句柄验证写入/关闭顺序，系统原生保存窗口仍需用户操作核验；取消/写失败为受控注入，不能表述为人工已验收。
++
++原 `test-beginner-workflow.cjs` 继续覆盖选择、复制、撤销、关键帧和异常导出；`LONG_SECONDS` 可设为 JSON 数组，例如 `[30]`，选择本轮实际长片范围。`SKIP_LONG=1` 仍明确跳过长片。实际命令、失败轮次与当前结果见 [本轮报告](../reports/current/p119-p125-implementation-20261103/README.md)。
+ 
+ ## 基础检查
+ 
+--- before/README.md
++++ after/README.md
+@@ -24,6 +24,8 @@
+ 顶栏“动画助手”里的手机运动计划目前使用固定模拟计划，可导入 `phone-motion/1` JSON；它尚不理解任意自然语言。旧 Video DSL / CLI / Remotion 成片流程保留为已有能力，与人工工程并未完整双向同步。
+ 
+ 人工体验与验收请使用根目录的 [人工核验清单](人工核验清单.md)：覆盖 P1-01～P1-18，共 65 个操作场景，包含具体步骤、通过标准和结果填写位置。
++
++2026-11-03 已按首批反馈实施 P1-19～25：连续拖动时间轴、三选项保存提示、连续录屏同步与更清晰的默认预览、删除朝向按钮、固定地面和触地限制。355 项前端及本机流程复核通过，先复核原清单 A02、A03、B02、B03、C03，详细证据及保存窗口/播放预览边界见 [本轮报告](reports/current/p119-p125-implementation-20261103/README.md)。
+ 
+ ## Windows 启动
+ 
+--- before/IMPLEMENTATION_ROADMAP.md
++++ after/IMPLEMENTATION_ROADMAP.md
+@@ -1,6 +1,6 @@
+ # 项目工作计划
+ 
+-更新：2026-11-03（首批人工核验已填写 11 项：6 项通过、5 项未通过；新增 P1-19～25 修正计划，尚未实施）。本文件是唯一正式开发任务总表。
++更新：2026-11-03（P1-19～24 已实施并完成本机复核，P1-25 自动检查完成；原五项反馈待用户复核，阶段一未验收）。本文件是唯一正式开发任务总表。
+ 
+ ## 目标与状态规则
+ 
+@@ -10,7 +10,7 @@
+ 
+ | 阶段 | 谁主导创作 | AI 职责 | 当前状态 |
+ | --- | --- | --- | --- |
+-| 第一阶段：人工编辑器 | 用户 | 不作为创作流程的依赖 | 人工核验进行中；首批 5 项未通过按 P1-19～25 修正，第一阶段未验收 |
++| 第一阶段：人工编辑器 | 用户 | 不作为创作流程的依赖 | 首批反馈修正已实施，待复核五项反馈并继续未填写项目；第一阶段未验收 |
+ | 第二阶段：人工与 AI 结合 | 用户确定内容、素材和运动意图 | 自然语言 → 可编辑的模型运动与局部修改；不分析软件源码 | 后置；已有 JSON 编译基础，不等于自然语言助手已完成 |
+ | 第三阶段：AI 主持制作 | AI 提出方案和组织制作，用户审阅与决策 | 源码理解、宣传重点、录屏清单、分镜与运动设计、生成预览 | 后置 |
+ 
+@@ -34,25 +34,25 @@
+ | P1-08 / 质量 | 逐机型模型、贴屏、材质与灯光验收；manifest、scene | 可穿插；旋转验收复用 P1-03/P1-07 | 各目标机型有前/背/侧视图及旋转产物；屏幕方向、遮挡、色彩与摄像头可审阅；改动不影响其他机型 | 待验证（修复已正式应用；现有机型待人工，新模型未接入）；[本机报告](reports/current/p107-p109-writeback-20261102/README.md) |
+ | P1-09 / 阶段验收 | 完整人工创作、使用边界与最终确认：MAN-009（综合验收）、MAN-010（最低范围说明） | P1-02～08 达到各自验收条件；本次新增范围通过 P1-18 汇总 | 用户完成双设备独立素材和动作，保存关闭重开、修改后重导出；新增模板入口、文字与效果纳入作品；短片闭环与长片限制有记录；用户确认视觉与操作结果 | 待人工验收（新版已实施；实际用户作品及最终视觉/交互确认待补）；[本机报告](reports/current/p110-p118-implementation-20261102/README.md) |
+ | P1-10 / 最高 | 复现并修正关键帧改时与过渡问题；MAN-012 | 当前 P1-07～09 基线 | 同一动作由 2 秒拉长为 6 秒后，过渡占满新时间区间；预览、拖动与导出一致，360°/720°保留 | 待人工验收（已实施，本机复核见下方报告） |
+-| P1-11 / 交互 | 独立模板启动页与精简编辑器布局；UX-001 | 当前模板和工程入口 | 新建先选模板再进编辑器，打开旧工程可直达；返回选择不丢工程；主界面移除模板网格及逐秒预览卡片 | 待人工验收（A01 通过；A03 三选项提示按 P1-20 修正） |
+-| P1-12 / 核心 | 统一对象选择与手机设置卡片；UX-001 | P1-11；复用设备实例和 history | 每台手机有独立卡片与设置页；颜色/填充/素材只影响该对象；允许取消选择，预留文字对象 | 待人工验收（B01 通过；B03 朝向入口按 P1-23 调整） |
++| P1-11 / 交互 | 独立模板启动页与精简编辑器布局；UX-001 | 当前模板和工程入口 | 新建先选模板再进编辑器，打开旧工程可直达；返回选择不丢工程；主界面移除模板网格及逐秒预览卡片 | 待人工验收（A01 通过；A03 三选项提示已按 P1-20 实施，待复核） |
++| P1-12 / 核心 | 统一对象选择与手机设置卡片；UX-001 | P1-11；复用设备实例和 history | 每台手机有独立卡片与设置页；颜色/填充/素材只影响该对象；允许取消选择，预留文字对象 | 待人工验收（B01 通过；B03 朝向入口已按 P1-23 调整，待复核） |
+ | P1-13 / 交互 | 空白区域操作相机、滚轮缩放对象；UX-001 | P1-12、P1-10 | 点对象直接选择；选中时滚轮只缩放对象；空白取消后拖动/滚轮控制相机；一次手势可撤销 | 待人工验收（已实施，本机复核见下方报告） |
+-| P1-14 / 核心 | 每对象一行的统一时间轴与关键帧易选；MAN-013、UX-001 | P1-10、P1-12 | 所有设备同时展示；同时间的属性键聚合显示、一起改时；点击容易、密集键可分辨，无需切换设备查看轨道 | 待人工验收（A02 拖动未通过，按 P1-19 修正；其余继续核验） |
++| P1-14 / 核心 | 每对象一行的统一时间轴与关键帧易选；MAN-013、UX-001 | P1-10、P1-12 | 所有设备同时展示；同时间的属性键聚合显示、一起改时；点击容易、密集键可分辨，无需切换设备查看轨道 | 待人工验收（A02 拖动已按 P1-19 修正，待复核；其余继续核验） |
+ | P1-15 / 核心 | 可编辑、可动画的画面文字对象；MAN-010 | P1-12、P1-14 | 中文标题可插入、移动、缩放及设关键帧；相机移动不改变标题位置；保存、新会话恢复和导出包含文字 | 待人工验收（已实施，本机复核见下方报告） |
+ | P1-16 / 核心 | 合并环境设置并实现景深、动态模糊；MAN-010 | P1-10；合成接口衔接 P1-15 | 两种效果分别及同时启用均真实可见，预览与导出有一致性证据，取消/失败后恢复，旧工程默认关闭 | 待人工验收（已实施，本机复核见下方报告） |
+ | P1-17 / 交互 | 全界面中文与新手操作提示；UX-001 | P1-11～16；文案随各项同步修改 | 按钮、模板、属性、提示、时间轴、错误及无障碍名称均使用中文，品牌/格式标识保留 | 待人工验收（已实施，本机复核见下方报告） |
+ | P1-18 / 验收 | 新界面整合、旧工程回归及新手作品验收 | P1-10～17；关联 P1-07/08 遗留验证 | 完成选模板→双设备与文字→动画→效果→保存重开→导出；记录长片/性能边界，结果并入 P1-09 | 待人工验收（11 项已填写，6 通过、5 未通过；修正见 P1-19～25） |
+-| P1-19 / 最高 | 时间轴连续拖动与播放位置命中；A02、MAN-014 | 当前统一时间轴 | 秒尺、播放头、轨道空白可连续定位；关键帧拖动仍只改键，横向滚动后位置正确 | 待开发（计划已形成） |
+-| P1-20 / 高 | 未保存工程三选项与保存后继续；A03、UX-002 | 当前保存/打开与未保存保护 | 明确提供“保存并打开 / 不保存并打开 / 取消打开”；保存失败或取消不替换当前作品 | 待开发（计划已形成） |
+-| P1-21 / 高 | 实际录屏大幅运动时卡顿与重复画面；B02、MAN-015 | P1-19 可定位；实际素材基线 | 连续预览不发生非预期回跳或重复片段；暂停、拖动、循环与导出仍使用正确源时间 | 待开发（需先复现并测量） |
+-| P1-22 / 高 | 默认构图下屏幕素材清晰度；B02、MAN-016 | P1-21 的播放基线；现有公共渲染 | 默认尺寸可辨内容没有额外模糊；同尺寸对照有证据，改善清晰度不使播放退化 | 待开发（需先区分素材与预览分辨率） |
+-| P1-23 / 普通 | 移除手机横竖朝向按钮，统一旋转操作；B03、UX-003 | 当前设备设置与旋转；衔接 P1-24 | 设置区不再有横竖切换；旋转可横放；旧横向工程的构图、贴屏和动画保持可读 | 待开发（需求已明确） |
+-| P1-24 / 高 | 固定地面、独立投影及手机触地限制；C03、MAN-017、UX-004 | P1-23 的旧朝向兼容；统一采样/变换 | 单机编辑不移动公共地面或牵动其他非遮挡投影；所有姿态与动画中间帧不穿地 | 待开发（需修正地面数据与约束） |
+-| P1-25 / 验证 | 本批反馈复核与通过项回归 | P1-19～24 | 五项反馈分别有修复证据；六项已通过行为保留；用户复核后更新对应结果 | 待开发（修正后执行） |
++| P1-19 / 最高 | 时间轴连续拖动与播放位置命中；A02、MAN-014 | 当前统一时间轴 | 秒尺、播放头、轨道空白可连续定位；关键帧拖动仍只改键，横向滚动后位置正确 | 待人工验收（已实施，本机自动复核通过） |
++| P1-20 / 高 | 未保存工程三选项与保存后继续；A03、UX-002 | 当前保存/打开与未保存保护 | 明确提供“保存并打开 / 不保存并打开 / 取消打开”；保存失败或取消不替换当前作品 | 待人工验收（已实施，本机自动复核通过） |
++| P1-21 / 高 | 实际录屏大幅运动时卡顿与重复画面；B02、MAN-015 | P1-19 可定位；实际素材基线 | 连续预览不发生非预期回跳或重复片段；暂停、拖动、循环与导出仍使用正确源时间 | 待人工验收（已实施，本机自动复核通过） |
++| P1-22 / 高 | 默认构图下屏幕素材清晰度；B02、MAN-016 | P1-21 的播放基线；现有公共渲染 | 默认尺寸可辨内容没有额外模糊；同尺寸对照有证据，改善清晰度不使播放退化 | 待人工验收（已实施，本机自动复核通过） |
++| P1-23 / 普通 | 移除手机横竖朝向按钮，统一旋转操作；B03、UX-003 | 当前设备设置与旋转；衔接 P1-24 | 设置区不再有横竖切换；旋转可横放；旧横向工程的构图、贴屏和动画保持可读 | 待人工验收（已实施，本机自动复核通过） |
++| P1-24 / 高 | 固定地面、独立投影及手机触地限制；C03、MAN-017、UX-004 | P1-23 的旧朝向兼容；统一采样/变换 | 单机编辑不移动公共地面或牵动其他非遮挡投影；所有姿态与动画中间帧不穿地 | 待人工验收（已实施，本机自动复核通过） |
++| P1-25 / 验证 | 本批反馈复核与通过项回归 | P1-19～24 | 五项反馈分别有修复证据；六项已通过行为保留；用户复核后更新对应结果 | 待人工验收（自动复核完成，用户结果不代填） |
+ 
+ ### P1-19～25：首批人工核验反馈修正
+ 
+-本轮用户要求是根据已填写内容制定修改计划。以下是后续实施范围，**当前仅完成清单、工程元数据及源码核对，未修改功能，也未将任何未通过项改为通过**。原始输入见 [人工核验清单](人工核验清单.md)，冻结的反馈与源码依据见 [本轮核对记录](reports/current/p119-p125-plan-20261103/README.md)。
++本节于 2026-11-03 根据首批人工反馈形成，随后用户授权执行。**P1-19～24 已在 D 盘实施；355 项前端、构建、lint、25 项 API 及本机浏览器、真实短片/30 秒输出复核完成，P1-25 转待用户复核。** 原始清单的六项通过、五项未通过与其余未填内容保留，不代填修复后的人工结果。实施内容、不同检查轮次及边界见 [实施报告](reports/current/p119-p125-implementation-20261103/README.md)；原始输入见 [人工核验清单](人工核验清单.md)，冻结的规划依据见 [原核对记录](reports/current/p119-p125-plan-20261103/README.md)。下方保留修正规则和逐项验收依据。
+ 
+ #### 已确认的输入与执行顺序
+ 
+@@ -500,7 +500,7 @@
+ 
+ ## 执行节奏与最近任务
+ 
+-当前主线：**P1-19/20 时间轴与保存提示 → P1-21/22 录屏连续性与清晰度 → P1-23/24 朝向入口与固定地面 → P1-25 反馈复核 → 继续未填人工核验 → P1-09 阶段确认**。2026-11-03 本轮仅形成修正计划；P1-10～18 的已实施代码作为基线，6 项用户通过记录保留，5 项未通过需修正，54 项尚未填写。P1-07/08 的既有验证边界继续保留。
++当前主线：**P1-19/20 时间轴与保存提示 → P1-21/22 录屏连续性与清晰度 → P1-23/24 朝向入口与固定地面 → P1-25 反馈复核 → 继续未填人工核验 → P1-09 阶段确认**。2026-11-03 修正已在 D 盘实施并完成本机自动复核；下一步优先请用户复核 A02、A03、B02、B03、C03，再继续其余未填内容。6 项用户通过记录、5 项原未通过批注与 54 项未填写状态均保留。P1-07/08 的既有验证边界继续保留。
+ 
+ P1-02 已在此前轮次正式应用。2026-11-02 已将 P1-03、P1-04、P1-05 合并更新正式应用到 D 盘，121 文件校验一致；本机 259 项前端测试、构建、lint、42 项浏览器检查、两份 1080P/30FPS 两秒视频和六帧一致性通过。[正式应用报告](reports/current/p103-p105-writeback-20261102/README.md)及安装凭据已保存，三项保持待人工验收，需用户审阅操作体验。
+ 
+--- before/ISSUES_LOG.md
++++ after/ISSUES_LOG.md
+@@ -1,8 +1,19 @@
+ # 问题、原因与遗留记录
+ 
+-更新：2026-11-03（首批人工核验 6 项通过、5 项未通过，已形成 P1-19～25 修正计划，未实施）。本文件记录事实、证据和处理归属；开发顺序、具体工作与验收条件统一见 [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md)。导出、新手界面及效果已在 D 盘，30/60 秒样本已有记录；本轮人工反馈、新模型与最终验收继续处理。既有版本证据见 [实施报告](reports/current/p110-p118-implementation-20261102/README.md)。
++更新：2026-11-03（P1-19～25 修正已实施并完成本机自动复核，待用户复核首批五项反馈）。任务状态仍以 [唯一工作计划](IMPLEMENTATION_ROADMAP.md) 为准；原始人工勾选保留。
+ 
+-## 2026-11-03：首批人工核验反馈
++## 2026-11-03：首批反馈修正实施结果
++
++- MAN-014 / A02：秒尺、对象轨道空白、播放头小柄均可连续定位；原生鼠标、滚动坐标、关键帧改时和撤销已复核。定位不改文档和对象选择。
++- UX-002 / A03：应用内三选项已接入。保存接口区分完成写入、已发起下载、取消和失败；失败/取消保留工程。浏览器回退等待用户确认下载，过期继续动作不能覆盖后来修改。自动化以真实 OPFS 句柄验证写入顺序，系统保存窗口还需用户亲自操作确认。
++- MAN-015 / B02：已改为小偏差调节速率、必要时才定位，暂停只保留最新请求；播放中效果使用连续解码帧。实际双视频预览 12 秒无源帧倒退；0.25 秒偏差加 200ms 调度间隔的受控实验中，旧同步出现 1 次倒退校正和 1 次倒退画面，新方式均为 0。自然基线没有复现用户所有卡顿现象，该实验只证明此种触发路径被修正，用户实际观感仍需复核。
++- MAN-016 / B02：低 DPI 预览受限超采样已接入；同窗口画布由 1070×601 提高到 1605×902，保留构图与源素材，以 1 倍为下限、约 320 万像素为目标的采样预算。源分辨率和小屏幕可表达的细节限制仍在，默认大小可读性由用户复核。
++- UX-003 / B03：横竖按钮移除；用旋转横放，新加手机默认竖向，复制和打开旧工程保留原朝向。个人工程的旧 landscape 与外层旋转叠加已保存重开验证。
++- MAN-017、UX-004 / C03：固定 groundY 进入保存恢复；所有姿态经公共触地约束，缩放/旋转造成的垂直修正与手势一起撤销。五机型实际顶点最低点均未穿地；双机分离后，含 4089 个半透明阴影像素的采样区在单机缩放前后完全一致。旧轨迹短暂低于地面时提示具体手机，原关键帧保持。
++
++355 项前端、构建、lint、25 项 API 与多轮真实浏览器复核通过；带效果四秒短片、30 秒单次输出和抽帧比较已保存。未将任何原人工未通过项改为已验收。命令、诊断失败、不同轮次及人工边界见 [实施报告](reports/current/p119-p125-implementation-20261103/README.md)。
++
++## 2026-11-03：首批人工核验反馈（规划时记录）
+ 
+ 用户填写的 [人工核验清单](人工核验清单.md) 是本轮问题来源：A01、B01、B04、B05、C01、C02 通过；A02、A03、B02、B03、C03 未通过；其余 54 项未填写。本轮读取当前代码和个人工程元数据，未运行新的浏览器复现。以下区分用户观察、源码证据与需求调整；既有自动检查不覆盖本次实际体验反馈。
+ 
+--- before/DEVELOPMENT_LOG.md
++++ after/DEVELOPMENT_LOG.md
+@@ -1,6 +1,22 @@
+ # 开发日志与交接
+ 
+ 本文件只记录实际工作与交接，不承载第二份任务总表。正式目标和任务状态见 [工作计划](IMPLEMENTATION_ROADMAP.md)。历史内容保存在 [归档入口](reports/archive/README.md)。
++
++## 2026-11-03：实施 P1-19～25 首批人工反馈修正
++
++在 D 盘当前工程直接实施时间轴连续定位、明确的三选项保存/替换流程、录屏软同步和最新暂停请求、连续播放效果采样、受像素预算约束的预览清晰度、朝向按钮移除、固定地面与公共触地约束。触地修正进入原生轨道及 history，旧 orientation 保留；打开旧轨迹时提示受影响手机并保留原关键帧。没有升级依赖或导入新机型。
++
++本机最终 36 文件 / 355 项前端通过，构建和 lint 退出 0；原接口 25 项通过。针对性浏览器 32 项、原工作流 42 项（含 30 秒）、五模型/投影 7 项、保存补充 7 项、受控同步对照 2 项通过；随后补充旧轨迹提示，并完成地面恢复 14 项、短暂穿地提示 5 项及最终 355 项/构建/lint。不能把较早完整流程写成补充提示之后再次整套重跑。
++
++收尾发现个人原工程在执行期间的 19:32:40 另有保存，大小、录屏配置和总时长发生变化。未写回或恢复原路径；保留开始快照，再对最新双高帧率录屏文件取只读副本，补充打开/时序/源帧顺序等 5 项检查通过。哈希变化作为期间文件更新记录，不能写成原文件始终字节不变。人工勾选清单保持原字节。
++
++使用个人工程副本和实际 720×1584 高帧率素材；自然双视频播放没有源帧倒退，受控偏差实验从旧方式 1 次倒退变为 0 次。新版预览在相同窗口采用 1605×902 背缓冲。五个已接入型号实际网格最低点未穿地，双机分离的有效阴影区域在单机缩放前后保持。实际 1080P/30FPS 四秒效果短片、30 秒/900 帧单次视频已落盘；六帧/十八区域比较通过。性能、保存窗口和播放预览边界见报告。
++
++备份为 `reports/archive/p119-p125-before-20261103-192011-870419/`，所有文件追加 .original；本轮失败诊断保留，原人工勾选和个人工程未覆盖。完整差异、日志、视频、图片、数据保护核对与交接见 [本轮报告](reports/current/p119-p125-implementation-20261103/README.md)。
++
++### 最新交接：修正已应用，等待用户复核五项反馈
++
++P1-19～24 的功能和 P1-25 的自动复核完成，状态转待人工验收。优先复核 A02、A03、B02、B03、C03，再继续原清单未填内容；系统原生文件保存窗口、实际录屏的流畅度/默认大小可读性仍需用户体验。60 秒未在本轮重复，旧轮次证据保留；新模型、在线 AI、自动草稿和完整剪辑轨道仍按原阶段处理。用户预览地址保留，本轮专用测试服务均已停止。
+ 
+ ## 2026-11-03：根据首批人工核验制定 P1-19～25 修正计划
+ 
+--- before/reports/current/README.md
++++ after/reports/current/README.md
+@@ -1,4 +1,10 @@
+ # 当前验证与整理结果
++
++## P1-19～25 首批人工反馈修正（2026-11-03）
++
++连续拖动时间轴、三选项保存、录屏同步与预览清晰度、旋转入口及固定地面已在 D 盘实施。355 项前端、构建、lint、25 项 API 通过；针对性 32 项、原工作流 42 项（含 30 秒）、五模型 7 项和其他专项均有本轮证据。实际带效果短片、单次 30 秒和六帧/十八区域对照通过。原人工结果保持，五项反馈待用户复核。
++
++见 [实施报告](p119-p125-implementation-20261103/README.md)、[结果](p119-p125-implementation-20261103/results.json)、[新版操作指南](../../docs/BEGINNER_GUIDE.md)。下方规划、旧实现及诊断只代表当时轮次。
+ 
+ ## 首批人工核验与修正计划（2026-11-03，仅规划）
+ 

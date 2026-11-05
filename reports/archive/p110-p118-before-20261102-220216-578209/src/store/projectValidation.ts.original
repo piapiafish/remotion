@@ -1,0 +1,76 @@
+import type { Project, MediaRef, TrackSet } from './schema'
+import { DEVICE_LIST } from '../devices/manifest'
+
+const bad = (field: string): never => { throw new Error(`工程数据无效：${field}`) }
+const obj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v)
+const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v)
+const str = (v: unknown): v is string => typeof v === 'string'
+function tracks(value: TrackSet, field: string) {
+  if (!obj(value)) bad(field)
+  for (const [name, track] of Object.entries(value)) {
+    if (!obj(track) || !Array.isArray(track.keys) || !track.keys.length) bad(`${field}.${name}`)
+    if (track.interpolation !== undefined && track.interpolation !== 'continuous') bad(`${field}.${name}.interpolation`)
+    let previous = -1
+    for (const key of track.keys) {
+      if (!obj(key) || !num(key.t) || key.t < 0 || key.t <= previous || !num(key.v)) bad(`${field}.${name}.keys`)
+      if (!Array.isArray(key.ease) || key.ease.length !== 4 || !key.ease.every(num) || key.ease[0] < 0 || key.ease[0] > 1 || key.ease[2] < 0 || key.ease[2] > 1) bad(`${field}.${name}.ease`)
+      previous = key.t
+    }
+  }
+}
+function media(ref: MediaRef, field: string) {
+  if (!obj(ref) || !str(ref.id) || !/^[a-zA-Z0-9_-]{1,150}$/.test(ref.id) || !['image', 'video'].includes(ref.kind)) bad(field)
+  if (!num(ref.width) || ref.width <= 0 || !num(ref.height) || ref.height <= 0) bad(`${field}.size`)
+  if (ref.kind === 'video' && (!num(ref.duration) || ref.duration <= 0)) bad(`${field}.duration`)
+}
+
+export function validateProject(project: Project): void {
+  if (!str(project.name) || !num(project.duration) || project.duration <= 0 || ![30, 60].includes(project.fps)) bad('name / duration / fps')
+  if (!obj(project.output) || !Number.isInteger(project.output.width) || project.output.width <= 0 || !Number.isInteger(project.output.height) || project.output.height <= 0) bad('output')
+  if (!Array.isArray(project.devices) || !project.devices.length) bad('devices')
+  const ids = new Set<string>()
+  for (const [i, d] of project.devices.entries()) {
+    const field = `设备 ${i + 1}`
+    if (!obj(d) || !str(d.instanceId) || !d.instanceId || ids.has(d.instanceId) || !DEVICE_LIST.some(m => m.id === d.id)) bad(field)
+    ids.add(d.instanceId)
+    if (!str(d.colorway) || !['portrait', 'landscape'].includes(d.orientation) || !['cover', 'contain'].includes(d.screenFit)) bad(field)
+    tracks(d.transform, field)
+    if (d.screen !== null) media(d.screen, field)
+    const p = d.screenPlayback
+    if (p !== undefined) {
+      if (!obj(p) || !num(p.in) || !num(p.out) || !num(p.start) || p.in < 0 || p.out <= p.in || p.start < 0 || typeof p.loop !== 'boolean') bad(`${field}录屏时序`)
+      if (d.screen?.kind === 'video' && p.out > (d.screen.duration ?? 0) + 1e-6) bad(`${field}录屏出点超出源时长`)
+    }
+  }
+  if (!obj(project.camera) || !num(project.camera.fov) || project.camera.fov <= 0 || project.camera.fov >= 180) bad('camera')
+  tracks(project.camera.tracks, 'camera.tracks')
+  const e = project.environment
+  if (!obj(e) || !['studio', 'city', 'sunset', 'warehouse'].includes(e.hdri) || ![e.intensity, e.rotation, e.shadowOpacity, e.shadowBlur].every(num)) bad('environment')
+  const b = project.background
+  if (!obj(b)) bad('background')
+  if (b.type === 'image') {
+    media(b.ref, '背景图片')
+    if (b.ref.kind !== 'image' || !['cover', 'contain'].includes(b.fit)) bad('背景图片')
+  } else if (b.type === 'solid') { if (!str(b.color)) bad('background.color') }
+  else if (b.type === 'gradient') { if (!str(b.from) || !str(b.to) || !num(b.angle)) bad('background.gradient') }
+  else if (b.type !== 'transparent') bad('background.type')
+  if (project.motionPlan !== undefined) {
+    const m = project.motionPlan
+    if (!obj(m) || !str(m.title) || !str(m.brief) || !Array.isArray(m.cues) || !m.cues.every(c => obj(c) && num(c.t) && str(c.description))) bad('motionPlan')
+  }
+}
+
+export function validateInputShape(input: unknown): asserts input is Record<string, unknown> {
+  if (!obj(input)) throw new Error('工程数据无效：工程必须是对象。')
+  if (input.version !== undefined && input.version !== 1) bad('工程版本')
+  if (input.devices !== undefined) {
+    if (!Array.isArray(input.devices) || !input.devices.length || !input.devices.every(obj)) bad('devices')
+  } else if (!obj(input.device)) bad('缺少设备数据')
+  for (const key of ['output', 'camera', 'environment', 'background']) if (input[key] !== undefined && !obj(input[key])) bad(key)
+  const devices = Array.isArray(input.devices) ? input.devices : [input.device]
+  for (const d of devices) {
+    if (!obj(d) || !str(d.id)) bad('缺少设备型号')
+    if (obj(d) && d.transform !== undefined && !obj(d.transform)) bad('device.transform')
+  }
+  if (obj(input.camera) && input.camera.tracks !== undefined && !obj(input.camera.tracks)) bad('camera.tracks')
+}

@@ -1,0 +1,15 @@
+{
+  "dateObserved": "1793705560.4216535",
+  "originalExpectedSha256": "7aded35c9720f89e8fbc339e16dead1b280f46b8af33f36527de13a93248556a",
+  "preservedBaselineSha256": "7aded35c9720f89e8fbc339e16dead1b280f46b8af33f36527de13a93248556a",
+  "latestSha256": "54a260de007d4d66eec6d22f9218fabfaace067201a2e89ba18483bd9bcafce1",
+  "latestBytes": 37831995,
+  "baselineBytes": 29058533,
+  "sameProjectJson": false,
+  "changedTopLevelFields": [
+    "devices",
+    "duration",
+    "environment"
+  ],
+  "latestDeviceCount": 3
+}

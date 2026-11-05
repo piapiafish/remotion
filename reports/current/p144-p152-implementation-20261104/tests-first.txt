@@ -1,0 +1,229 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/timeline/secondFeedback.test.ts (29 tests | 1 failed) 30ms
+     × does not edit animated tracks during ordinary viewing 9ms
+ ❯ src/timeline/motionPlan.test.ts (24 tests | 1 failed) 92ms
+     × retains motion and annotations through a saved .mockup round trip 23ms
+ ❯ src/timeline/thirdFeedback.test.ts (39 tests | 6 failed) 32ms
+     × packs disjoint sources and touching boundaries into one lane 4ms
+     × keeps overlapping depth order stable while reusing disjoint lanes 1ms
+     × uses the selected stacked pose when scaling without modifying the upper pose 1ms
+     × shrinks towards the initial position after a later move 2ms
+     × writes matching native position/scale poses without touching other times 1ms
+     × migrates one legacy source without changing loop timing 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/timeline/motionPlan.test.ts > motion JSON -> native phone tracks > retains motion and annotations through a saved .mockup round trip
+AssertionError: expected { version: 5, …(9) } to deeply equal { version: 4, …(9) }
+
+- Expected
++ Received
+
+@@ -6,10 +6,11 @@
+      "type": "gradient",
+    },
+    "camera": {
+      "fov": 30,
+      "preset": null,
++     "segments": [],
+      "tracks": {
+        "fov": {
+          "keys": [
+            {
+              "ease": [
+@@ -1359,7 +1360,7 @@
+    "name": "手机运动 · 入场、旋转与悬停",
+    "output": {
+      "height": 1920,
+      "width": 1080,
+    },
+-   "version": 4,
++   "version": 5,
+  }
+
+ ❯ src/timeline/motionPlan.test.ts:139:22
+    137|     expect(migrate(project).motionPlan).toEqual(project.motionPlan)
+    138|     const restored = await deserializeProject(await serializeProject(p…
+    139|     expect(restored).toEqual({...ensureFixedGround(project),version:4})
+       |                      ^
+    140|     expect(sampleTimeline(restored, 8)).toEqual(sampleTimeline(project…
+    141|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  src/timeline/secondFeedback.test.ts > camera recording is an explicit transaction > does not edit animated tracks during ordinary viewing
+AssertionError: expected { fov: 32, preset: null, …(1) } to be { fov: 32, …(2) } // Object.is equality
+
+- Expected
++ Received
+
+@@ -1,16 +1,16 @@
+  {
+    "fov": 32,
+-   "preset": "three-quarter-left",
++   "preset": null,
+    "tracks": {
+      "fov": {
+        "keys": [
+          {
+            "ease": [
+-             0.33,
++             0,
+              0,
+-             0.15,
++             1,
+              1,
+            ],
+            "t": 0,
+            "v": 32,
+          },
+@@ -24,11 +24,11 @@
+              0,
+              0.15,
+              1,
+            ],
+            "t": 0,
+-           "v": -2.2,
++           "v": 2,
+          },
+        ],
+      },
+      "position.y": {
+        "keys": [
+@@ -38,11 +38,11 @@
+              0,
+              0.15,
+              1,
+            ],
+            "t": 0,
+-           "v": 0.9,
++           "v": 3,
+          },
+        ],
+      },
+      "position.z": {
+        "keys": [
+@@ -52,11 +52,11 @@
+              0,
+              0.15,
+              1,
+            ],
+            "t": 0,
+-           "v": 2.4,
++           "v": 4,
+          },
+        ],
+      },
+      "target.x": {
+        "keys": [
+
+ ❯ src/timeline/secondFeedback.test.ts:38:253
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  src/timeline/thirdFeedback.test.ts > three independent media time ranges > packs disjoint sources and touching boundaries into one lane
+AssertionError: expected 3 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 3
+
+ ❯ src/timeline/thirdFeedback.test.ts:33:163
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  src/timeline/thirdFeedback.test.ts > three independent media time ranges > keeps overlapping depth order stable while reusing disjoint lanes
+AssertionError: expected 2 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ src/timeline/thirdFeedback.test.ts:34:256
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  src/timeline/thirdFeedback.test.ts > fixed initial scale anchor > uses the selected stacked pose when scaling without modifying the upper pose
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ src/timeline/thirdFeedback.test.ts:59:78
+     57|     }})
+     58|     const next=scaleFromAnchor(d,0,.5,undefined,'lower')
+     59|     expect(next.transform['position.x'].keys.find(k=>k.poseId==='lower…
+       |                                                                              ^
+     60|     expect(next.transform['position.x'].keys.find(k=>k.poseId==='upper…
+     61|     expect(next.transform.scale.keys.find(k=>k.poseId==='upper')?.v).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  src/timeline/thirdFeedback.test.ts > fixed initial scale anchor > shrinks towards the initial position after a later move
+AssertionError: expected [ 2, 1, +0 ] to deeply equal [ 1, 1, +0 ]
+
+- Expected
++ Received
+
+  [
+-   1,
++   2,
+    1,
+    0,
+  ]
+
+ ❯ src/timeline/thirdFeedback.test.ts:63:253
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  src/timeline/thirdFeedback.test.ts > fixed initial scale anchor > writes matching native position/scale poses without touching other times
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ src/timeline/thirdFeedback.test.ts:64:376
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  src/timeline/thirdFeedback.test.ts > version 4 portability > migrates one legacy source without changing loop timing
+AssertionError: expected 5 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 5
+
+ ❯ src/timeline/thirdFeedback.test.ts:77:232
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  3 failed | 36 passed (39)
+      Tests  8 failed | 420 passed (428)
+   Start at  21:53:12
+   Duration  2.59s (transform 16.16s, setup 0ms, import 26.12s, tests 1.43s, environment 2ms)
+

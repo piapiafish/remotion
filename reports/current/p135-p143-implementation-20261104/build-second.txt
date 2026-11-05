@@ -1,0 +1,5 @@
+
+> mockup-web@0.0.0 build
+> tsc -b && vite build
+
+src/ui/Timeline/TimelineBar.tsx(11,7): error TS6133: 'ownerEqual' is declared but its value is never read.

@@ -1,0 +1,36 @@
+import { useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
+import type { Project } from '../store/schema'
+import { useProjectStore } from '../store/project'
+import { reportError } from '../store/feedback'
+import { useExportSession } from '../export/session'
+import { getExportContext } from '../export/renderer'
+import { getFrameExportRevision, isFrameExportActive } from '../export/frameRenderer'
+import { cancelEffectPreview, hasEffects, isEffectPreviewPaused, registerEffectPreview, SceneEffectsRenderer } from './sceneEffects'
+
+/** Own the final preview draw, including exact decoder seeks for temporal samples. */
+export function EffectsDriver(){
+  const {gl,scene,camera}=useThree(),renderer=useRef<SceneEffectsRenderer|null>(null)
+  const job=useRef<Promise<void>|null>(null),last=useRef<{project:Project;time:number;playing:boolean;revision:number;width:number;height:number}|null>(null),reported=useRef<Project|null>(null)
+  useEffect(()=>{const fx=new SceneEffectsRenderer(gl,scene,camera);renderer.current=fx;return()=>{cancelEffectPreview();renderer.current=null;const work=job.current;if(work)void work.finally(()=>fx.dispose());else fx.dispose()}},[gl,scene,camera])
+  useFrame(()=>{
+    const s=useProjectStore.getState(),fx=renderer.current
+    if(!fx)return
+    if(useExportSession.getState().busy||isFrameExportActive()){cancelEffectPreview();last.current=null;return}
+    if(isEffectPreviewPaused()){cancelEffectPreview();last.current=null;gl.render(scene,camera);return}
+    if(!hasEffects(s.project.effects)){cancelEffectPreview();fx.releaseResources();last.current=null;gl.render(scene,camera);return}
+    if(s.editingGesture){cancelEffectPreview();last.current=null;fx.renderDepthOfField(s.project,s.playhead);return}
+    if(job.current)return
+    const time=s.playing?Math.floor(s.playhead*s.project.fps)/s.project.fps:s.playhead
+    const revision=getFrameExportRevision()
+    if(last.current?.project===s.project&&last.current.time===time&&last.current.playing===s.playing&&last.current.revision===revision&&last.current.width===gl.domElement.width&&last.current.height===gl.domElement.height)return
+    const ctx=getExportContext();if(!ctx)return
+    const controller=new AbortController(),project=s.project
+    const work=(async()=>{
+      try{const canvas=await fx.capture(project,time,ctx.applyAt,controller.signal,s.playing?2:undefined,false);controller.signal.throwIfAborted();if(!useExportSession.getState().busy&&!isFrameExportActive()){fx.present(canvas);last.current={project,time,playing:s.playing,revision,width:gl.domElement.width,height:gl.domElement.height}}}
+      catch(error){if(!controller.signal.aborted&&!String(error).includes('SCREEN_VIDEO_NOT_READY')&&reported.current!==project){reported.current=project;reportError('效果预览失败，可关闭效果或降低质量后重试',error)}}
+    })()
+    job.current=work;registerEffectPreview(controller,work);void work.finally(()=>{if(job.current===work)job.current=null})
+  },1)
+  return null
+}

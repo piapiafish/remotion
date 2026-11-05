@@ -1,0 +1,20 @@
+
+  VITE v8.2.2  ready in 240 ms
+
+  ➜  Local:   http://127.0.0.1:65287/
+19:48:00 [vite] (client) [console.warn] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+19:48:00 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:00 [vite] (client) [console.warn] THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision
+(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision
+(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision
+19:48:01 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:02 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:03 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:03 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:04 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:05 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:05 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:06 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.
+19:48:07 [vite] (client) [console.warn] THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.

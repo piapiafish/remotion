@@ -1,0 +1,155 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/timeline/objectEditing.test.ts (11 tests | 1 failed) 19ms
+     × merges collisions without erasing other channel keys or objects 7ms
+ ❯ src/store/keyframeEditing.test.ts (14 tests | 1 failed) 21ms
+     × clamps key moves to the project bounds 5ms
+ ❯ src/timeline/motionPlan.test.ts (24 tests | 2 failed) 105ms
+     × retains motion and annotations through a saved .mockup round trip 42ms
+     × clears the AI tracks/annotations in one undoable edit, leaving the model and look intact 2ms
+ ❯ src/store/persistSafety.test.ts (34 tests | 1 failed) 148ms
+     × packages background bytes, strips session URLs, and restores timing with tracks 39ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/store/keyframeEditing.test.ts > manual scalar keyframe editing > clamps key moves to the project bounds
+AssertionError: expected 100 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 100
+
+ ❯ src/store/keyframeEditing.test.ts:126:36
+    124|     s().addTimelineKey(target(), 'position.x')
+    125|     s().moveTimelineKey({ target: target(), channel: 'position.x', t: …
+    126|     expect(track().keys.at(-1)?.t).toBe(4)
+       |                                    ^
+    127|     s().setPlayhead(Infinity); expect(Number.isFinite(s().playhead)).t…
+    128|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/store/persistSafety.test.ts > complete portable project archives > packages background bytes, strips session URLs, and restores timing with tracks
+AssertionError: expected '{"version":3,"name":"未命名工程","duration…' to be '{"version":1,"name":"未命名工程","duration…' // Object.is equality
+
+Expected: "{"version":1,"name":"未命名工程","duration":4,"fps":30,"output":{"width":1920,"height":1080},"devices":[{"instanceId":"bda248c4-1a0c-4891-bb17-88cfebc2d978","id":"procedural-phone","colorway":"graphite","orientation":"portrait","screen":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"screenFit":"contain","transform":{"position.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"scale":{"keys":[{"t":0,"v":1,"ease":[0.33,0,0.15,1]}]}},"screenPlayback":{"in":2,"out":7,"start":1,"loop":true}}],"background":{"type":"image","ref":{"id":"back","kind":"image","width":100,"height":200},"fit":"cover"},"environment":{"hdri":"studio","intensity":1,"rotation":0,"shadowOpacity":0.3,"shadowBlur":14,"groundY":-0.76},"camera":{"fov":32,"preset":"three-quarter-left","tracks":{"position.x":{"keys":[{"t":0,"v":-2.2,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0.9,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":2.4,"ease":[0.33,0,0.15,1]}]},"target.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"fov":{"keys":[{"t":0,"v":32,"ease":[0.33,0,0.15,1]}]}}}}"
+Received: "{"version":3,"name":"未命名工程","duration":4,"fps":30,"output":{"width":1920,"height":1080},"devices":[{"instanceId":"bda248c4-1a0c-4891-bb17-88cfebc2d978","id":"procedural-phone","colorway":"graphite","orientation":"portrait","screen":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"screenFit":"contain","transform":{"position.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"scale":{"keys":[{"t":0,"v":1,"ease":[0.33,0,0.15,1]}]}},"screenPlayback":{"in":2,"out":7,"start":1,"loop":true}}],"background":{"type":"image","ref":{"id":"back","kind":"image","width":100,"height":200},"fit":"cover"},"environment":{"hdri":"studio","intensity":1,"rotation":0,"shadowOpacity":0.3,"shadowBlur":14,"groundY":-0.76},"camera":{"fov":32,"preset":"three-quarter-left","tracks":{"position.x":{"keys":[{"t":0,"v":-2.2,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0.9,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":2.4,"ease":[0.33,0,0.15,1]}]},"target.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"fov":{"keys":[{"t":0,"v":32,"ease":[0.33,0,0.15,1]}]}}}}"
+
+ ❯ src/store/persistSafety.test.ts:38:42
+     36|     storage.blobs.clear()
+     37|     const reopened = await deserializeProject(archive)
+     38|     expect(projectFingerprint(reopened)).toBe(projectFingerprint(ensur…
+       |                                          ^
+     39|     expect(reopened.background.type === 'image' && reopened.background…
+     40|     expect(reopened.devices[0].transform).toEqual(p.devices[0].transfo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/timeline/motionPlan.test.ts > motion JSON -> native phone tracks > retains motion and annotations through a saved .mockup round trip
+AssertionError: expected { version: 3, …(9) } to deeply equal { version: 1, …(9) }
+
+- Expected
++ Received
+
+@@ -1359,7 +1359,7 @@
+    "name": "手机运动 · 入场、旋转与悬停",
+    "output": {
+      "height": 1920,
+      "width": 1080,
+    },
+-   "version": 1,
++   "version": 3,
+  }
+
+ ❯ src/timeline/motionPlan.test.ts:139:22
+    137|     expect(migrate(project).motionPlan).toEqual(project.motionPlan)
+    138|     const restored = await deserializeProject(await serializeProject(p…
+    139|     expect(restored).toEqual(ensureFixedGround(project))
+       |                      ^
+    140|     expect(sampleTimeline(restored, 8)).toEqual(sampleTimeline(project…
+    141|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/timeline/motionPlan.test.ts > motion plan editor transaction > clears the AI tracks/annotations in one undoable edit, leaving the model and look intact
+AssertionError: expected { position: [ +0, +0, +0 ], …(3) } to deeply equal { position: [ +0, +0, +0 ], …(2) }
+
+- Expected
++ Received
+
+@@ -8,6 +8,7 @@
+      0,
+      0,
+      0,
+    ],
+    "scale": 1,
++   "visible": true,
+  }
+
+ ❯ src/timeline/motionPlan.test.ts:181:59
+    179|     expect(isAnimated(state.project.camera.tracks)).toBe(false)
+    180|     for (const t of [0, 8, 15]) {
+    181|       expect(sampleTimeline(state.project, t).devices[0]).toEqual({ po…
+       |                                                           ^
+    182|     }
+    183|     state.undo()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/timeline/objectEditing.test.ts > object pose retiming and explicit animation > merges collisions without erasing other channel keys or objects
+AssertionError: expected { keys: [ …(2) ] } to deeply equal { keys: [ …(2) ] }
+
+- Expected
++ Received
+
+@@ -5,20 +5,26 @@
+          0,
+          0,
+          1,
+          1,
+        ],
++       "initial": true,
++       "order": 0,
++       "poseId": "time:0",
+        "t": 0,
+        "v": 0,
+      },
+      {
+        "ease": [
+          0,
+          0,
+          1,
+          1,
+        ],
++       "initial": false,
++       "order": 0,
++       "poseId": "time:6",
+        "t": 6,
+        "v": 7,
+      },
+    ],
+  }
+
+ ❯ src/timeline/objectEditing.test.ts:43:53
+     41|     const target:TrackTarget={kind:'device',instanceId:p.devices[0].in…
+     42|     expect(next.devices[0].transform['position.x'].keys.map(k=>k.t)).t…
+     43|     expect(next.devices[0].transform['rotation.y']).toEqual(p.devices[…
+       |                                                     ^
+     44|     expect(deleteObjectKey(next,target,6).devices[0].transform['positi…
+     45|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  4 failed | 32 passed (36)
+      Tests  5 failed | 350 passed (355)
+   Start at  08:06:06
+   Duration  2.21s (transform 10.81s, setup 0ms, import 18.77s, tests 818ms, environment 3ms)
+

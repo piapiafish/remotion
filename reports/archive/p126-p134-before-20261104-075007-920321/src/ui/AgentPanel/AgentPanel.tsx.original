@@ -1,0 +1,138 @@
+import { useState } from 'react'
+import { Play, Sparkles, Trash2 } from 'lucide-react'
+import { DEVICE_LIST } from '../../devices/manifest'
+import { useProjectStore } from '../../store/project'
+import { generateMockMotionPlan, parseMotionPlan, type MotionPlan } from '../../timeline/motionPlan'
+import type { DeviceId } from '../../store/schema'
+import { StoryboardRenderPanel } from './StoryboardRenderPanel'
+
+const devices = DEVICE_LIST.filter(device => device.glb)
+
+export function AgentPanel() {
+  const [brief, setBrief] = useState('手机从左下方进入，转到正面，完整旋转一周，再悬停收尾。')
+  const [deviceId, setDeviceId] = useState<DeviceId>('iphone-17-pro')
+  const [source, setSource] = useState('')
+  const [error, setError] = useState('')
+  const [notice, setNotice] = useState('')
+  const [originalPlan, setOriginalPlan] = useState<MotionPlan | null>(null)
+  const [legacy, setLegacy] = useState(false)
+  const plan = useProjectStore(s => s.project.motionPlan)
+  const duration = useProjectStore(s => s.project.duration)
+  const applyMotionPlan = useProjectStore(s => s.applyMotionPlan)
+
+  function apply(sourceText: string, origin: string) {
+    try {
+      const next = parseMotionPlan(sourceText)
+      applyMotionPlan(next)
+      setOriginalPlan(next)
+      setError('')
+      setNotice(`${origin}已应用到左侧主画布：${next.keyframes.length} 个关键帧，${next.duration} 秒。点击播放或时间轴预览。`)
+    } catch (failure) {
+      setError((failure as Error).message)
+      setNotice('')
+    }
+  }
+
+  function generate() {
+    // Exercise exactly the JSON -> validation -> native tracks path used by a future AI.
+    const json = JSON.stringify(generateMockMotionPlan(brief, deviceId, useProjectStore.getState().project.output), null, 2)
+    setSource(json)
+    apply(json, '模拟 AI 运动计划')
+  }
+
+  async function importFile(file?: File) {
+    if (!file) return
+    if (file.size > 1024 * 1024) { setError('运动计划文件不能超过 1 MiB。'); return }
+    try {
+      const value = await file.text()
+      setSource(value)
+      apply(value, '本地运动计划')
+    } catch (failure) { setError(`文件读取失败：${(failure as Error).message}`) }
+  }
+
+  function download() {
+    if (!originalPlan) return
+    const url = URL.createObjectURL(new Blob([JSON.stringify(originalPlan, null, 2)], { type: 'application/json' }))
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'phone-motion.json'
+    a.click()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
+
+  function preview() {
+    const store = useProjectStore.getState()
+    store.setEditorMode('movie')
+    store.setPlayhead(0)
+    store.setPlaying(true)
+  }
+
+  function clear() {
+    useProjectStore.getState().clearMotionPlan()
+    setOriginalPlan(null)
+    setSource('')
+    setError('')
+    setNotice('已清除 AI 动画，手机已恢复居中静止。可用撤销恢复。')
+  }
+
+  return <div className="agent-panel motion-director">
+    <div className="motion-intro">
+      <strong>先规划手机怎么动</strong>
+      <span className="motion-badge">模拟 AI</span>
+    </div>
+    <p className="hint">生成运动 JSON 后，直接驱动左侧手机模型，并在对象时间轴显示运动关键帧。</p>
+    <label htmlFor="agent-brief">运动要求</label>
+    <textarea id="agent-brief" rows={3} value={brief} onChange={e => setBrief(e.target.value)} />
+    <label htmlFor="agent-device">手机模型</label>
+    <select id="agent-device" value={deviceId} onChange={e => setDeviceId(e.target.value as DeviceId)}>
+      {devices.map(device => <option key={device.id} value={device.id}>{device.id === 'procedural-phone' ? '通用手机' : device.name}</option>)}
+    </select>
+    <button type="button" className="export-btn motion-generate" onClick={generate}>
+      <Sparkles size={15} /> 生成运动计划并应用
+    </button>
+    <button type="button" className="ghost-btn motion-clear" disabled={!plan} onClick={clear}>
+      <Trash2 size={14} /> 一键清除 AI 动画
+    </button>
+    <p className="hint">尚未连接在线 AI；当前固定生成 15 秒的入场、旋转与悬停示例。运动要求会保存在 JSON 中，暂不解析任意自然语言。不需要录屏素材。</p>
+
+    {error && <p className="agent-error" role="alert">{error}</p>}
+    {notice && <p className="agent-status" role="status">{notice}</p>}
+    {plan && <div className="agent-panel motion-applied">
+      <strong>当前画布的运动计划</strong>
+      <span className="hint">{plan.title} · {duration} 秒 · {plan.cues.length} 个计划关键帧</span>
+      <button type="button" className="ghost-btn" onClick={preview}><Play size={13} /> 从头预览手机运动</button>
+      <p className="hint">可继续在“对象”中编辑姿态，使用撤销恢复；保存 .mockup 可保留运动和画面说明。</p>
+    </div>}
+    {originalPlan && <details className="motion-json">
+      <summary>查看生成 / 导入的运动 JSON</summary>
+      <pre>{JSON.stringify(originalPlan, null, 2)}</pre>
+      <button type="button" className="ghost-btn" onClick={download}>下载原始运动计划 JSON</button>
+    </details>}
+
+    <details className="motion-import">
+      <summary>导入本地 JSON / 粘贴 AI 运动计划</summary>
+      <div className="agent-panel">
+        <p className="hint">使用 phone-motion/1 格式：时间（秒）、位置、旋转（度）、缩放、画面说明。导入后替换当前手机运动，可撤销。</p>
+        <a href="/examples/phone-motion.json" download="phone-motion.json">下载运动计划示例 JSON</a>
+        <label htmlFor="agent-source">运动计划 JSON</label>
+        <textarea id="agent-source" rows={6} value={source} onChange={e => setSource(e.target.value)}
+          placeholder="粘贴运动计划 JSON；也支持 AI 回复中的 JSON 代码块。" />
+        <button type="button" className="ghost-btn" disabled={!source.trim()} onClick={() => apply(source, 'JSON 运动计划')}>应用 JSON 到主画布</button>
+        <label htmlFor="agent-json-file">或选择本地 JSON 文件（自动应用）</label>
+        <input id="agent-json-file" type="file" accept=".json,.txt,application/json" onChange={e => {
+          const file = e.target.files?.[0]
+          e.target.value = ''
+          void importFile(file)
+        }} />
+      </div>
+    </details>
+
+    <details className="motion-legacy" onToggle={e => setLegacy(e.currentTarget.open)}>
+      <summary>旧版素材分镜与成片渲染</summary>
+      {legacy && <div className="agent-panel">
+        <p className="hint">此入口使用旧 Video DSL 和录屏素材，单独生成成片。手机轨迹请使用上方运动计划。</p>
+        <StoryboardRenderPanel />
+      </div>}
+    </details>
+  </div>
+}

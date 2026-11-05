@@ -1,0 +1,199 @@
+{
+  "date": "2026-11-03T11:37:17.899Z",
+  "checks": [
+    {
+      "name": "legacy-orientation-preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "orientation-buttons-removed",
+      "status": "PASS"
+    },
+    {
+      "name": "empty-lane-continuous-scrub",
+      "status": "PASS"
+    },
+    {
+      "name": "scrub-does-not-edit-document-or-selection",
+      "status": "PASS"
+    },
+    {
+      "name": "ruler-continuous-scrub",
+      "status": "PASS"
+    },
+    {
+      "name": "playhead-grip-can-drag",
+      "status": "PASS"
+    },
+    {
+      "name": "scrolled-timeline-maps-real-content-coordinates",
+      "status": "PASS"
+    },
+    {
+      "name": "floor-fixed-and-other-device-independent",
+      "status": "PASS",
+      "detail": {
+        "ground": -1.5005773088488468,
+        "after": -1.5005773088488468,
+        "otherUnchanged": true,
+        "bottom": -1.4985773088488468,
+        "gap": 0.002
+      }
+    },
+    {
+      "name": "scale-and-downward-motion-stop-at-floor",
+      "status": "PASS",
+      "detail": {
+        "ground": -1.5005773088488468,
+        "after": -1.5005773088488468,
+        "otherUnchanged": true,
+        "bottom": -1.4985773088488468,
+        "gap": 0.002
+      }
+    },
+    {
+      "name": "contact-and-scale-undo-together",
+      "status": "PASS"
+    },
+    {
+      "name": "intermediate-frames-and-720-turn-stay-above-ground",
+      "status": "PASS",
+      "detail": {
+        "min": 0.0020000000000000018,
+        "rotation": 12.566370614359172
+      }
+    },
+    {
+      "name": "fixed-ground-and-legacy-orientation-survive-fresh-session",
+      "status": "PASS"
+    },
+    {
+      "name": "three-clear-unsaved-options",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel-keeps-project-and-history",
+      "status": "PASS"
+    },
+    {
+      "name": "two-videos-decode-independently",
+      "status": "PASS",
+      "detail": [
+        1012,
+        238
+      ]
+    },
+    {
+      "name": "playing-source-frames-do-not-run-backwards",
+      "status": "PASS"
+    },
+    {
+      "name": "bounded-preview-resolution-is-higher-than-css",
+      "status": "PASS",
+      "detail": {
+        "width": 1605,
+        "height": 902,
+        "css": {
+          "x": 20,
+          "y": 100.0625,
+          "width": 1070,
+          "height": 601.875,
+          "top": 100.0625,
+          "right": 1090,
+          "bottom": 701.9375,
+          "left": 20
+        }
+      }
+    },
+    {
+      "name": "normal-playback-does-not-seek-every-frame",
+      "status": "PASS",
+      "detail": [
+        {
+          "time": 12.1528,
+          "paused": true,
+          "seeking": true,
+          "readyState": 1,
+          "duration": 18.084467,
+          "rate": 1,
+          "corrections": 0
+        },
+        {
+          "time": 7.999999,
+          "paused": true,
+          "seeking": false,
+          "readyState": 4,
+          "duration": 8,
+          "rate": 1,
+          "corrections": 0
+        }
+      ]
+    },
+    {
+      "name": "effect-playback-keeps-live-decoders-running",
+      "status": "PASS",
+      "detail": [
+        {
+          "time": 5.257572,
+          "paused": false,
+          "seeking": false,
+          "readyState": 4,
+          "duration": 18.084467,
+          "rate": 1.0237870000071514,
+          "corrections": 0
+        },
+        {
+          "time": 5.299,
+          "paused": false,
+          "seeking": false,
+          "readyState": 4,
+          "duration": 8,
+          "rate": 1,
+          "corrections": 0
+        }
+      ]
+    },
+    {
+      "name": "all-four-effect-combinations-render",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-save-preserves-ground-text-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "timeline-ground",
+      "status": "PASS"
+    },
+    {
+      "name": "replacement",
+      "status": "FAIL",
+      "error": "Error: locator.click: Error: strict mode violation: getByRole('dialog', { name: '未保存的修改' }).getByRole('button', { name: '保存当前工程并新建工程' }) resolved to 2 elements:\n    1) <button class=\"primary-btn\">保存当前工程并新建工程</button> aka getByRole('button', { name: '保存当前工程并新建工程', exact: true })\n    2) <button class=\"ghost-btn\">不保存当前工程并新建工程</button> aka getByRole('button', { name: '不保存当前工程并新建工程' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: '未保存的修改' }).getByRole('button', { name: '保存当前工程并新建工程' })\u001b[22m\n"
+    },
+    {
+      "name": "live-video",
+      "status": "PASS"
+    },
+    {
+      "name": "exports-regression",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForEvent: Timeout 180000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

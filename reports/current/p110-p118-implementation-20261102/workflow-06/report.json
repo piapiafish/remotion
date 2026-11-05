@@ -1,0 +1,384 @@
+{
+  "date": "2026-11-02T15:16:15.069Z",
+  "method": "Real local Vite HTTP, Chrome UI, native object actions, portable archives and actual encoded downloads.",
+  "checks": [
+    {
+      "name": "first-entry-is-template-page",
+      "status": "PASS"
+    },
+    {
+      "name": "template-creates-two-phones-and-opens-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-settings-are-independent",
+      "status": "PASS"
+    },
+    {
+      "name": "two-independent-recordings-and-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "selected-object-wheel-scales-even-over-blank",
+      "status": "PASS"
+    },
+    {
+      "name": "wheel-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-click-deselects",
+      "status": "PASS",
+      "detail": {
+        "debug": {
+          "hit": false,
+          "x": 139,
+          "y": 720,
+          "hits": [
+            {
+              "name": "Z",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Z",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "",
+              "type": "Mesh",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "",
+                  "type": "Mesh",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "",
+              "type": "TransformControlsPlane",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "",
+                  "type": "TransformControlsPlane",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        "element": "<canvas data-engine=\"three.js r185\" width=\"856\" height=\"642\" style=\"display: block; width: 856px; height: 642px;\"></canvas>",
+        "active": null
+      }
+    },
+    {
+      "name": "unselected-wheel-zooms-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-drag-orbits-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit-animation-preserves-start-and-records-new-pose",
+      "status": "PASS"
+    },
+    {
+      "name": "drag-retimes-all-pose-channels-to-six-seconds",
+      "status": "PASS"
+    },
+    {
+      "name": "six-second-transition-is-halfway-at-three-seconds",
+      "status": "PASS",
+      "detail": {
+        "a": {
+          "position": [
+            -0.46,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.92
+        },
+        "m": {
+          "position": [
+            -0.38111776110672557,
+            0.026294079631091486,
+            -4.440892098500626e-16
+          ],
+          "rotation": [
+            0,
+            6.283185307179586,
+            0
+          ],
+          "scale": 0.92
+        },
+        "b": {
+          "position": [
+            -0.3022355222134512,
+            0.05258815926218297,
+            -8.881784197001252e-16
+          ],
+          "rotation": [
+            0,
+            12.566370614359172,
+            0
+          ],
+          "scale": 0.92
+        }
+      }
+    },
+    {
+      "name": "keyframes-have-large-hit-area",
+      "status": "PASS"
+    },
+    {
+      "name": "retiming-undo-restores-all-channels",
+      "status": "PASS"
+    },
+    {
+      "name": "precise-retiming-keeps-channels-together",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-change-does-not-move-screen-title",
+      "status": "PASS"
+    },
+    {
+      "name": "five-objects-visible-in-one-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "object-delete-updates-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "object-delete-undo-restores-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "dense-key-navigation-selects-correct-time",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-project-includes-v2-text-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh-session-restores-text-effects-media-and-keyframes",
+      "status": "PASS"
+    },
+    {
+      "name": "reopened-text-remains-editable-and-undoable",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-dual-video-with-titles-and-effects",
+      "status": "PASS",
+      "detail": {
+        "name": "beginner-1080p30",
+        "file": "beginner-1080p30.mp4",
+        "seconds": 21.687,
+        "bytes": 1383256,
+        "width": 1920,
+        "height": 1080,
+        "frames": 120,
+        "duration": 4
+      }
+    },
+    {
+      "name": "preview-returns-after-effects-export",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-open-preserves-current-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "export-locks-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "stalled-flush-cancel-releases-resources",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel-then-retry-exports",
+      "status": "PASS"
+    },
+    {
+      "name": "encoding-error-has-visible-retry",
+      "status": "PASS"
+    },
+    {
+      "name": "error-retry-produces-file",
+      "status": "PASS"
+    },
+    {
+      "name": "png-fallback-keeps-text-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "continuous-30s-export",
+      "status": "PASS",
+      "detail": {
+        "name": "long-30s",
+        "file": "long-30s.mp4",
+        "seconds": 112.287,
+        "bytes": 20879515,
+        "width": 1920,
+        "height": 1080,
+        "frames": 900,
+        "duration": 30
+      }
+    },
+    {
+      "name": "continuous-60s-export",
+      "status": "PASS",
+      "detail": {
+        "name": "long-60s",
+        "file": "long-60s.mp4",
+        "seconds": 224.812,
+        "bytes": 37118892,
+        "width": 1920,
+        "height": 1080,
+        "frames": 1800,
+        "duration": 60
+      }
+    },
+    {
+      "name": "small-desktop-controls-fit",
+      "status": "PASS"
+    },
+    {
+      "name": "return-to-template-keeps-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "resume-current-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "no-page-exceptions",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-render-console-errors",
+      "status": "FAIL",
+      "detail": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+  ],
+  "exports": [
+    {
+      "name": "beginner-1080p30",
+      "file": "beginner-1080p30.mp4",
+      "seconds": 21.687,
+      "bytes": 1383256,
+      "width": 1920,
+      "height": 1080,
+      "frames": 120,
+      "duration": 4
+    },
+    {
+      "name": "after-cancel",
+      "file": "after-cancel.mp4",
+      "seconds": 0.547,
+      "bytes": 28342,
+      "width": 640,
+      "height": 360,
+      "frames": 6,
+      "duration": 0.2
+    },
+    {
+      "name": "long-30s",
+      "file": "long-30s.mp4",
+      "seconds": 112.287,
+      "bytes": 20879515,
+      "width": 1920,
+      "height": 1080,
+      "frames": 900,
+      "duration": 30
+    },
+    {
+      "name": "long-60s",
+      "file": "long-60s.mp4",
+      "seconds": 224.812,
+      "bytes": 37118892,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1800,
+      "duration": 60
+    }
+  ],
+  "status": "FAIL",
+  "browser": "156.0.8078.76",
+  "error": "Error: no-render-console-errors\n    at check (D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:7:150)\n    at D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:72:77"
+}

@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-03T11:54:27.891Z",
+  "checks": [
+    {
+      "name": "open-cancel-retains-work",
+      "status": "PASS"
+    },
+    {
+      "name": "save-then-open-writes-old-document",
+      "status": "PASS"
+    },
+    {
+      "name": "download-fallback-retains-current-until-confirmed",
+      "status": "PASS"
+    },
+    {
+      "name": "download-acknowledgement-resumes-once",
+      "status": "PASS"
+    },
+    {
+      "name": "stale-continuation-cannot-discard-new-edits",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-cancels-pending-transition",
+      "status": "PASS"
+    },
+    {
+      "name": "no-page-errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

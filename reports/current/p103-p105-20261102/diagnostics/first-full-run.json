@@ -1,0 +1,183 @@
+{
+  "date": "2026-11-01T16:26:30.606Z",
+  "method": "Actual P1-03/04/05 production build; Chrome; local route fulfillment without TCP. UI actions and actual file downloads. Vite/API network not tested.",
+  "checks": [
+    {
+      "id": "manual-entry-hold-exit-keys",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-720-degree-euler-rotation",
+      "status": "PASS"
+    },
+    {
+      "id": "keyframe-real-pointer-drag-retimes",
+      "status": "PASS"
+    },
+    {
+      "id": "long-drag-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "drag-redo-restores-retiming",
+      "status": "PASS"
+    },
+    {
+      "id": "keyframe-keyboard-delete",
+      "status": "PASS"
+    },
+    {
+      "id": "keyframe-easing-is-written",
+      "status": "PASS"
+    },
+    {
+      "id": "camera-channel-edit-keeps-device-animation",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-pick-selects-second-instance",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-pick-synchronizes-list-and-inspector",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-move-real-handle-targets-only-selected-device",
+      "status": "PASS",
+      "used": {
+        "offset": 32,
+        "from": {
+          "x": 440.87316314371697,
+          "y": 363
+        },
+        "to": {
+          "x": 485.87316314371697,
+          "y": 363
+        }
+      }
+    },
+    {
+      "id": "canvas-move-syncs-numeric-fields",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-drag-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-rotate-real-handle",
+      "status": "PASS",
+      "rotateUsed": {
+        "radius": 52
+      }
+    },
+    {
+      "id": "canvas-scale-real-handle-uniform-document-scale",
+      "status": "PASS",
+      "scaleUsed": {
+        "offset": 32
+      }
+    },
+    {
+      "id": "escape-cancels-device-gesture",
+      "status": "PASS"
+    },
+    {
+      "id": "canvas-transform-at-playhead-adds-key-without-changing-endpoints",
+      "status": "PASS"
+    },
+    {
+      "id": "animated-canvas-edit-single-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "number-field-drag-writes-pose",
+      "status": "FAIL"
+    },
+    {
+      "id": "02-canvas-selection-and-transform",
+      "status": "FAIL",
+      "execution": "INCOMPLETE",
+      "error": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTitle(/^Undo \\(/)\u001b[22m\n\u001b[2m    - locator resolved to <button disabled class=\"icon-btn\" title=\"Undo (⌘Z)\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    39 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+      "stack": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTitle(/^Undo \\(/)\u001b[22m\n\u001b[2m    - locator resolved to <button disabled class=\"icon-btn\" title=\"Undo (⌘Z)\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    39 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at undo (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:44:55)\n    at C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:163:10\n    at async run (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:32:158)\n    at async C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:100:26"
+    },
+    {
+      "id": "canvas-pick-real-GLB",
+      "status": "PASS"
+    },
+    {
+      "id": "MAN-005-preset-only-selected-instance",
+      "status": "PASS"
+    },
+    {
+      "id": "preset-protects-unrelated-channels",
+      "status": "PASS"
+    },
+    {
+      "id": "devices-have-independent-actions-and-times",
+      "status": "PASS"
+    },
+    {
+      "id": "timeline-owner-follows-device-selection",
+      "status": "PASS"
+    },
+    {
+      "id": "preset-undo-is-one-operation",
+      "status": "PASS"
+    },
+    {
+      "id": "orbit-preset-has-camera-scope",
+      "status": "PASS"
+    },
+    {
+      "id": "independent-recordings-are-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-animation-new-session-roundtrip",
+      "status": "PASS"
+    },
+    {
+      "id": "04-new-session-and-export",
+      "status": "FAIL",
+      "execution": "INCOMPLETE",
+      "error": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Export video (MP4 (H.264))', exact: true })\u001b[22m\n",
+      "stack": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Export video (MP4 (H.264))', exact: true })\u001b[22m\n\n    at C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:220:81\n    at async run (C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:32:158)\n    at async C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\audit-editing.cjs:211:26"
+    }
+  ],
+  "cases": [
+    {
+      "label": "01-manual-keyframes",
+      "status": "COMPLETED",
+      "seconds": 4.614
+    },
+    {
+      "label": "02-canvas-selection-and-transform",
+      "status": "INCOMPLETE"
+    },
+    {
+      "label": "03-independent-presets-and-media",
+      "status": "COMPLETED",
+      "seconds": 6.098
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [],
+  "status": "RUNNING",
+  "browser": "156.0.8078.76",
+  "manualReferences": [
+    {
+      "frame": 0,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-0.png"
+    },
+    {
+      "frame": 15,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-15.png"
+    },
+    {
+      "frame": 59,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-59.png"
+    }
+  ]
+}

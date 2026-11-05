@@ -1,0 +1,6 @@
+PASS G02-numeric-instructions-preserve-before-range-and-position
+PASS G02-instructions-preserve-other-object
+PASS G02-undo-restores-previous-end-angle
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"g02","status":"PASS"}],"checks":5}

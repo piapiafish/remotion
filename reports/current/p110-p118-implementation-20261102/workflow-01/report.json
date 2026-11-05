@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-02T14:52:32.432Z",
+  "method": "Real local Vite HTTP, Chrome UI, native object actions, portable archives and actual encoded downloads.",
+  "checks": [
+    {
+      "name": "first-entry-is-template-page",
+      "status": "PASS"
+    },
+    {
+      "name": "template-creates-two-phones-and-opens-editor",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "exports": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.76",
+  "error": "locator.check: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('radio', { name: '黑色钛金属', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"radio\" class=\"finish-radio\" name=\"device-finish\" value=\"black-titanium\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <label title=\"黑色钛金属\" class=\"finish-option\">…</label> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <label title=\"黑色钛金属\" class=\"finish-option\">…</label> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <label title=\"黑色钛金属\" class=\"finish-option\">…</label> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:30:209"
+}

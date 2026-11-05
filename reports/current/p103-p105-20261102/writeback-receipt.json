@@ -1,0 +1,614 @@
+{
+  "status": "APPLIED",
+  "version": "P1-03-04-05-20261102",
+  "applied_at": "2026-11-02T08:02:33.893210+08:00",
+  "target": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p103-p105-before-20261102-080233-468621",
+  "files": [
+    {
+      "path": "DEVELOPMENT_LOG.md",
+      "before": "66b8eed50c02667757374ecd84fcb11486c510a847de9c2ec8b4336055016e2b",
+      "after": "c71b7e8e733076fa505dd19d00d7235c2a1935ac1bc2329fb6a27c3e2e9916ee"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "before": "39b494cfcfdd4e1ae11d39e7ee7673c72f695fe17c214d8604c2b69ac0721d48",
+      "after": "0675abe85a77b11ddd0588014f4b058baf1c27d3d1ffb6dc939dbb58ceabc2d5"
+    },
+    {
+      "path": "docs/MANUAL_ANIMATION_GUIDE.md",
+      "before": null,
+      "after": "6959ddcb6ab26bdd4c74b247426dce671a9cb6f73a0a28e01bc77991f02a08d6"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "before": "80e0e17cb82b3f68a05b04fcade5c17962254bf70d9f675083ea3a27d6280201",
+      "after": "64f2763eb92a1dfde6fe0779525dcd149dc0a2bfcd3ad431880cd88be60a1da2"
+    },
+    {
+      "path": "IMPLEMENTATION_ROADMAP.md",
+      "before": "9a15a04e3629449ab196f8968ed09cbda2bc2f1457ee429284e2ebf410193e43",
+      "after": "e88c19b0edccd418230afe676e12eaae0a12494d38e482ea2413567beb9c43ac"
+    },
+    {
+      "path": "ISSUES_LOG.md",
+      "before": "f975449a920aae9afa2c4c8a74aa0454d2c061483fc54bba59569a97f68de6cb",
+      "after": "ed55683ed8418188d422340e9afcefe112cbb6fe4cb0409e9504db148bb80152"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-720.mockup",
+      "before": null,
+      "after": "40e3f5dfb784654bf02db82d74d00e022a4273b0248d5d8759bbb627639f734c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-base.mockup",
+      "before": null,
+      "after": "9b540926dcdd02d96476ab0c9c6fe5e9257c5241242be6b4a534267ba6fec8a3"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-deleted.mockup",
+      "before": null,
+      "after": "f8ae43b544b68dd49cbfc19d56e1a4c1eac2c78166ee67e2640dfca01ea4d8c2"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-dragged.mockup",
+      "before": null,
+      "after": "11c5400fa2c8a6779bfaed6d3e4fddc0d3e377d9637c1de1ad8113d90dc396b1"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-easing.mockup",
+      "before": null,
+      "after": "48a501eb9e5222f543184889fde5f87ca320621bd89c666bc73e3ee8ca560c0a"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-entry-hold-exit.mockup",
+      "before": null,
+      "after": "d496228a51f10c1461bf6ed036a18ba803a4a9dbf8ec02f2328d773f2aef13e6"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-manual-frame.png",
+      "before": null,
+      "after": "abae74469b5ffe25e653bd6af225ef7241f346f74c38fa1b76c8c8b99362c244"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-manually-authored.mockup",
+      "before": null,
+      "after": "dd10b5ef13d9dc8e63cc992208ca05126756e8151f0665890c24288500a71aca"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-redone.mockup",
+      "before": null,
+      "after": "11c5400fa2c8a6779bfaed6d3e4fddc0d3e377d9637c1de1ad8113d90dc396b1"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/01-undone.mockup",
+      "before": null,
+      "after": "40e3f5dfb784654bf02db82d74d00e022a4273b0248d5d8759bbb627639f734c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-after-camera.mockup",
+      "before": null,
+      "after": "bce4b348032a8cf7f83f29e629edfa8642fe5ad3cdcda7b6f1f84117e8335f99"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-after-move.mockup",
+      "before": null,
+      "after": "b3141c8d8f3e09e8ebb3bc317c94725427a1c9ea08a55f6a5ddc49b26cd8b949"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-after-rotate.mockup",
+      "before": null,
+      "after": "838058353fd092081a8461febb55707e871dd00efaf88a9ce21e1d1e035af838"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-after-scale.mockup",
+      "before": null,
+      "after": "50fbce2db4695d0cdc9a9880414cbbd2f3f2a2992d78b3782e19933996df534f"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-animated-fixture.mockup",
+      "before": null,
+      "after": "8573bd294601291928b63c97aa7e2e9f50a6ed409a817e4108cb764732ab1948"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-animated-moved.mockup",
+      "before": null,
+      "after": "2e5c5b198706a7f73b536fd6a781bf45f8497fb184f0b953b4a505d31d3354c3"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-animated-undone.mockup",
+      "before": null,
+      "after": "85557200f92d1839c7ce6966453015b347c61ac357ae93f4e399cf994fe895f3"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-before-camera.mockup",
+      "before": null,
+      "after": "26e65ed25e98ae3a827ae14eaaa43e2495e3fba897d302ee338f47038632985d"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-before-move.mockup",
+      "before": null,
+      "after": "2c36ee777fb007806ec625323ce6bf75ffb080b2aad81179a769b91187511120"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-before-rotate.mockup",
+      "before": null,
+      "after": "cb51b64f9fa05aec911fa791471b328979d90e943b8eba24c29892f71ce50453"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-camera-undone.mockup",
+      "before": null,
+      "after": "26e65ed25e98ae3a827ae14eaaa43e2495e3fba897d302ee338f47038632985d"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-cancel-fixture.mockup",
+      "before": null,
+      "after": "b69b5554c020498041cfe03cd53026a310069146d6e713c22ddb41051bc19958"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-cancelled.mockup",
+      "before": null,
+      "after": "0161c3594e1bf44c7c7c6aefb0b9851d7bb93e371662005dd45d53caaf2090f6"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-fixture.mockup",
+      "before": null,
+      "after": "9271e0f6cdd626d7623594b1daa35f54c724fe5b61fada2792ee276ca54ec258"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-gizmo-clean.png",
+      "before": null,
+      "after": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-gizmo-reference.png",
+      "before": null,
+      "after": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-move-probe-32.mockup",
+      "before": null,
+      "after": "b3141c8d8f3e09e8ebb3bc317c94725427a1c9ea08a55f6a5ddc49b26cd8b949"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-move-undone.mockup",
+      "before": null,
+      "after": "2c36ee777fb007806ec625323ce6bf75ffb080b2aad81179a769b91187511120"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-number-drag.mockup",
+      "before": null,
+      "after": "5f82788eb82a054fc89ca36ee76406335c597ae381a772c8b0caf9c0b0fb0b00"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-number-undone.mockup",
+      "before": null,
+      "after": "85557200f92d1839c7ce6966453015b347c61ac357ae93f4e399cf994fe895f3"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-orbit-clean.png",
+      "before": null,
+      "after": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-overlay-fixture.mockup",
+      "before": null,
+      "after": "2ce9f7a8a452b580d7856f5cfe5e8d2341b4a60195b0acd63e60af029b4c9354"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-rotate-fixture.mockup",
+      "before": null,
+      "after": "9271e0f6cdd626d7623594b1daa35f54c724fe5b61fada2792ee276ca54ec258"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-rotate-probe-52.mockup",
+      "before": null,
+      "after": "838058353fd092081a8461febb55707e871dd00efaf88a9ce21e1d1e035af838"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-scale-fixture.mockup",
+      "before": null,
+      "after": "b69b5554c020498041cfe03cd53026a310069146d6e713c22ddb41051bc19958"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/02-scale-probe-32.mockup",
+      "before": null,
+      "after": "50fbce2db4695d0cdc9a9880414cbbd2f3f2a2992d78b3782e19933996df534f"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-before-orbit.mockup",
+      "before": null,
+      "after": "75bba688ebd150911649cf0d6233358c76b59ae42cb8635cf92fa2766fe35bec"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-before-preset.mockup",
+      "before": null,
+      "after": "2892b323e25697b10ce4439ff4e11d879d40b2dbe8b4f83f4e1124ba24a73490"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-dual-independent-animation-media.mockup",
+      "before": null,
+      "after": "633ccea00f983882b00cea0acdde3832213b6323359bd1874998d5bea46cdb9c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-first-float.mockup",
+      "before": null,
+      "after": "75bba688ebd150911649cf0d6233358c76b59ae42cb8635cf92fa2766fe35bec"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-fixture.mockup",
+      "before": null,
+      "after": "c3ca15738e570a6dac9209acec98bae6d37f19744657f5045be9451d9b72f008"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-orbited.mockup",
+      "before": null,
+      "after": "19f4727d34330293c1f6adae38b5f4f625d88a298f7bc6a1adfbf08a3f36fd33"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-preset-undone.mockup",
+      "before": null,
+      "after": "4994c9de28eb316926f532381ce7d9a1053152c5d23e884351c463d7ecba2974"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-real-models.mockup",
+      "before": null,
+      "after": "2892b323e25697b10ce4439ff4e11d879d40b2dbe8b4f83f4e1124ba24a73490"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/03-second-spun.mockup",
+      "before": null,
+      "after": "4994c9de28eb316926f532381ce7d9a1053152c5d23e884351c463d7ecba2974"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-dual-decoded-0.png",
+      "before": null,
+      "after": "417986052694957bf6a07b1bfe1ecfa148ee38aa4647b67067dfe17e6a961628"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-dual-decoded-30.png",
+      "before": null,
+      "after": "55c7fdcf0be86817031b497c2c4665aeea197ba41bf1a5e1772f00b924bf334c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-dual-decoded-59.png",
+      "before": null,
+      "after": "df161ee829c3fb2b31deba7d5726b565d6e45f421c2abc6fe331396135fd4615"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-dual-ssim-0.txt",
+      "before": null,
+      "after": "4dc8dfaabee92d4ccba4488a84ef5e9b93e5398f0b562594197a600bc5f595a5"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-dual-ssim-30.txt",
+      "before": null,
+      "after": "5ca7290b076526f00ea7a72bf91411c349c39ff83a3b831eb3139c629899f2db"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-dual-ssim-59.txt",
+      "before": null,
+      "after": "c21a3b36ec0277d3a1c57fe29887ebed3961606abf178a61bfb7534c8d21f480"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-edited-after-export.mockup",
+      "before": null,
+      "after": "54f7747cdec27a4499556fef27c6e588d09e2253260386fe14e26cacc6acb6f1"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-ffprobe.json",
+      "before": null,
+      "after": "990a1017c3ae26ba138eeaf392aa532bc75b307c058980637b32910b462d0516"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-decoded-0.png",
+      "before": null,
+      "after": "bd2e7a482e94a5a1460fb45661156cde07c06dd5b6a80e40aee41ebe70f61628"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-decoded-15.png",
+      "before": null,
+      "after": "0bc020d11fc7e92f6490a407583d13e79cb4bb1f56cdf4b273672d06bcf1d416"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-decoded-59.png",
+      "before": null,
+      "after": "c324dad3cb2950636dcffcff7a1b7235d9a9e4fbc1c07c6efc146801121f102a"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-ffprobe.json",
+      "before": null,
+      "after": "ace4a77378cf36b5440851851a084dfc64d0466df7d2ebe02e9fd5176d869e4a"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-reference-0.png",
+      "before": null,
+      "after": "a46d9ed344e3513c3b4137bd828e713c9260fe1d8c04b8117f8902ad3c6baed1"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-reference-15.png",
+      "before": null,
+      "after": "abae74469b5ffe25e653bd6af225ef7241f346f74c38fa1b76c8c8b99362c244"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-reference-59.png",
+      "before": null,
+      "after": "ca27597281902d13c9a676170e2fa2569eda237e3b572dec17de5e0e9673a90f"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-reopened.mockup",
+      "before": null,
+      "after": "fa6bf2bd0d22318ccf81136ea5dca29fce54835cfb78a96bcfc23ba921837cda"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-ssim-0.txt",
+      "before": null,
+      "after": "951eabf2c1686be70b30340da5272a256f7563de8ba17e83ce623d19dfe2ba19"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-ssim-15.txt",
+      "before": null,
+      "after": "65c418a5d9dc8b1da30b8ee4f91346134ad08ed9d43e480c172516a4c5f27864"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-manual-ssim-59.txt",
+      "before": null,
+      "after": "2d196feb9939f6dd07b4104ae53be4f8b38e2915ada03310a79d9b9ffcf89dc1"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-reference-0.png",
+      "before": null,
+      "after": "8e220c734603ba89e93ac81598fafa93bbbfcce674b68fda740235326efc3e1c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-reference-30.png",
+      "before": null,
+      "after": "b1cb9b5fee1c068ae19afd5b258b5d3d72a4c3365f1495f9d236a87cbbde33d8"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-reference-59.png",
+      "before": null,
+      "after": "bdb34d8d97bf3ec80d7ef3efae535e5f1ce09ba68424131fb3b741b84a1d7c5f"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/04-reopened.mockup",
+      "before": null,
+      "after": "2c80355dcf8a47d9e85daee44d8e8c15c3797655f6ff059a22bc2cac94abdfd4"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/frame-comparison.json",
+      "before": null,
+      "after": "70c154cefdb47fbd432ae3563e5213633d871d88f960de42dc3739047e03d9ef"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/P1-03-05-dual-animation-1080p30.mp4",
+      "before": null,
+      "after": "60d3037151e596d7e1e1666345d441b39046f81c2b7d9b92979e8e8c743cea46"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/P1-03-manual-720-1080p30.mp4",
+      "before": null,
+      "after": "e2606dacced4bca56a1055111f8aca2424afebc3908dd8e5800df30f7e206e31"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser/report.json",
+      "before": null,
+      "after": "98cdec951804b87842a5fc79387a15598d5a9005b42147cb0e5cd13409d8eb7d"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/browser-final.txt",
+      "before": null,
+      "after": "17124d61718fd68a697bcac653d2bb7c08374f4ac09b09e2105f63e67a2fc25c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/build-final.txt",
+      "before": null,
+      "after": "c41ff05c80197f11a1761c4c7ac38a28fd3eb9547be55dd1c736e357f8dbeb8d"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/checks-final.json",
+      "before": null,
+      "after": "66cdac679893abf51f8519c9b3dd621eb1bb985f896b9a26bded17de08d5c58b"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/diagnostics/browser-030405.txt",
+      "before": null,
+      "after": "fb8c4aa783d9f0833732c4e904934421caa0468b0059385ce77cc9f64881aedd"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/diagnostics/browser-full-01.txt",
+      "before": null,
+      "after": "da3e98e5fe451f41ab1da971e2e7e1a90ae946f4b585c1456046e717daf2aa32"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/diagnostics/browser-initial.txt",
+      "before": null,
+      "after": "c7520938da788d007d4b8e66939006fc3226240edb4a195ffec010d80e0d1467"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/diagnostics/first-full-run.json",
+      "before": null,
+      "after": "6850ed179542734e3c16cdc20cb3a056680d20cd76ef886572a782704ed4ea5d"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/diagnostics/p104-build.txt",
+      "before": null,
+      "after": "45957a164caa5fbb20f44ee21ee41f1755d8cbc977765a6c263c1831ba55f634"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/diagnostics/procedural-fixture.json",
+      "before": null,
+      "after": "36620c71a556ffc0c41fa83348c2aa7bd5ca8b11e516506db8e989f8777df75c"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/export-verification.txt",
+      "before": null,
+      "after": "5ed3a31460c24175090439a4ba6b3674b45d8bea2619708b07afdab2ca513f50"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/lint-final.txt",
+      "before": null,
+      "after": "bda9a06d60419dfd811a799a31e76b04c7a019b4766e3b67442d8a92af6fe946"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/README.md",
+      "before": null,
+      "after": "24be1783199093d97978b0df02b689e3076463c923d52dbcce6c2e256a298291"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/reproduce/audit-editing-original.cjs",
+      "before": null,
+      "after": "31abcba57f7ffffd1fd37c4881a66398c5d4a57e7fbb3dbf9caa7057fdcac5fb"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/reproduce/secondary-recording.mp4",
+      "before": null,
+      "after": "b35969c23cb8d313f16a411bb7cbfec202455741cfcb1e0f8edf0b539a21e4fb"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/reproduce/verify-export-original.py",
+      "before": null,
+      "after": "d42ea4f19d150e60cf4304950c97f237054ca3d18ba009e24f357b6746240ff4"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/results.json",
+      "before": null,
+      "after": "0e057ec4f20275daaa45d5ab0f055b0b0bc4dd63e31a2fa64f30c159779717c6"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/source-baseline.json",
+      "before": null,
+      "after": "d13df9b75a37f1832ce753f4e3b2b2860a9abf88287a4909b5494a56ba63024d"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/source-changes.patch",
+      "before": null,
+      "after": "fff012a45ef48b316c1c4a1affca31592708251b77b8dcf3d3fc4181d11b071b"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/tests-final.txt",
+      "before": null,
+      "after": "17e0b59d7263ad9b7941314ae95e2006f6924c1a2777d158028a8aa3832eda5e"
+    },
+    {
+      "path": "reports/current/README.md",
+      "before": "e538f8e6df5a47c987f5d49c910a6777afac327460c568fea3cf50de9d6fed7c",
+      "after": "8ed4be3ac13d259f4095886d397bb50f21c7f371ed72812492df3b94eca36d8f"
+    },
+    {
+      "path": "scripts/test-editor-interactions.cjs",
+      "before": null,
+      "after": "da50a59a2c7bb97ed820860ed9a8e15733dd47db90f0ff242de5f8545b73a741"
+    },
+    {
+      "path": "src/app/useShortcuts.ts",
+      "before": "7659ea58e1e1b5ff43ace40372a32fe8e53cabeddf652fd5605589727e94313b",
+      "after": "45ceb47213551f6e2d33c7424551e512ae701e718935b31357388f52392ae3bd"
+    },
+    {
+      "path": "src/App.css",
+      "before": "d49022509e3bede7e7ad4344ddc9daf38978f91d2550ca5b3a1cf7693234d3a6",
+      "after": "fbf9d200a09169818719544ddc760f8d6678117242d7ecc79aa8dd35f6e99926"
+    },
+    {
+      "path": "src/automation/bridge.ts",
+      "before": "12336db43faaf561cec17dd988abda5e53ef06aacd34764080a37f820cf98f0f",
+      "after": "0893ecccb0eb923f061c62bbee70ec38c23500603cd0592e740ffc3b2e3e06c2"
+    },
+    {
+      "path": "src/export/frameRenderer.ts",
+      "before": "fba36872467cb6a819621bbd62fac7f83eb6df5c29afd85fb203a214365535b4",
+      "after": "da2ac9e72b2258a16d15d88bf8cfa90d6cd6a5c75b5fe021c6dc4fc2f718e429"
+    },
+    {
+      "path": "src/scene/DeviceControls.tsx",
+      "before": null,
+      "after": "513c239e56e2868b1ccd9318fd83000a4e2564c0e83d26c75cee67893deca1e4"
+    },
+    {
+      "path": "src/scene/editorHelpers.ts",
+      "before": null,
+      "after": "e2008914089d378518d003909b29db3aeddef1d3079c6152e1c851dffb59f731"
+    },
+    {
+      "path": "src/scene/editorInteraction.test.ts",
+      "before": null,
+      "after": "00a512f6ac0595be700253e1b77f206629660eecd8b71b3360b8cfcd5318a0c6"
+    },
+    {
+      "path": "src/scene/Stage.tsx",
+      "before": "be7cea542bf8a6ef7aaebe73f14466e80c715c671ddf9b49fe0ac10557f13f03",
+      "after": "bbc2cfa9e7fd9e3c5c9a01ef3685b8397d83f30a648aef61a8d65e45804ffb19"
+    },
+    {
+      "path": "src/scene/transformValues.ts",
+      "before": null,
+      "after": "a5e878b93ed85aab755335006d284b9dc36475b8fb95bc13494ed1bc1862ab5e"
+    },
+    {
+      "path": "src/store/keyframeEditing.test.ts",
+      "before": null,
+      "after": "b1b286916074167006eb56152480005cc820dc03c0f9b498c4060281245ffdc6"
+    },
+    {
+      "path": "src/store/project.ts",
+      "before": "2c8c2010a352a242e71efe52092b232efb315018ffc027925967fe77381a6178",
+      "after": "2984bb939f1e38a0e927cbb59503145da5b8b10be98b73688bacea5e8635ae84"
+    },
+    {
+      "path": "src/timeline/editing.ts",
+      "before": null,
+      "after": "4fcc21f596e6404e8a07c1332ecfa40132c9654bd11854864c8785ff56cbd8e6"
+    },
+    {
+      "path": "src/timeline/presets.ts",
+      "before": "7c2ef37e7ae505e53b83c0108607dfaf13824f6215a27c77d56d8526d07b7dd0",
+      "after": "e257fc64888ce71cd3446e1b4e4de66fe5b741e3147272bdcbe20327c1bba68b"
+    },
+    {
+      "path": "src/timeline/scopedPresets.test.ts",
+      "before": null,
+      "after": "7c97e34369ed188a33b513c0c5485363380605d9112b209462106c6a67e5f851"
+    },
+    {
+      "path": "src/timeline/templates.test.ts",
+      "before": "2d6f0a8f96107e618df32d66068d5ce0ee39ea58c1d3fb9058858a52ec63cdeb",
+      "after": "e143f99ac64be6fb4f85dbe0ab491a6c60463989c6292e5bc74c3a4bcf7b26ce"
+    },
+    {
+      "path": "src/ui/Artboard/Artboard.tsx",
+      "before": "a9b85259937eb85b4195ce6e099e3ea2ddb0f8240297630c0f0c4eafcd486878",
+      "after": "f0480e207d23ec25ed969715e120134debb3833d387132efac304d6899f4052b"
+    },
+    {
+      "path": "src/ui/controls/NumberField.tsx",
+      "before": "d416eb266f4c8375c25132adc592e103c5b7e312da2e39fab7087e5bab82ddbc",
+      "after": "6d8b4466277eddc026e4c05d6276d56bb38cfe2809e606d28262fddf813afa68"
+    },
+    {
+      "path": "src/ui/Inspector/CameraSection.tsx",
+      "before": "88041dbbb2e2c23edd97544a93f1b7749ac0c5513f2420f57f0f249060ae5b7e",
+      "after": "8258f4d360e09b5644de5b5bd429196017e3ac3103060dc389b207449e5b8bac"
+    },
+    {
+      "path": "src/ui/Inspector/TransformSection.tsx",
+      "before": "245f97c3a3f1ab5629dbee5965935382ac60cce28d3868708140dc3b07d28f8d",
+      "after": "4e2f745af319e9b8006bffae4f89e079d4a8322dc7c9fc6fde80b370aec7147e"
+    },
+    {
+      "path": "src/ui/Timeline/PresetControls.tsx",
+      "before": null,
+      "after": "4444184175c2359faeb709f418789e80e28c81717f653a93814cd2865a3c7efd"
+    },
+    {
+      "path": "src/ui/Timeline/TimelineBar.tsx",
+      "before": "acc80b6d3f9c1f8b845797114d3ec3fc3175a31822e56d3d567c5c3b2b4ec3e5",
+      "after": "6668a0875de06b4f6637b2d427e97dd86d0e7b43cfd20813391c929504366f79"
+    },
+    {
+      "path": "reports/current/p103-p105-20261102/delivery-validation.json",
+      "before": null,
+      "after": "2a7ad15dd88ff740ca97da592b9279ab6118f16b7e954c2ce85d8519ca07e444"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "path": "effects-complete/fourth-feedback-1080p30.mp4",
+    "bytes": 1016768,
+    "sha256": "9f7b02f2deb70b01d1265c78849cf49d4a0989faa43d8b84d9c61f5aa0839edd",
+    "effectsEnabled": true
+  },
+  {
+    "path": "effects-complete/fourth-feedback-30s.mp4",
+    "bytes": 3192091,
+    "sha256": "59e51b5e4cf843fa545dbce8d31afd358ecfaadb70d759a3cafae99818891773",
+    "effectsEnabled": false
+  },
+  {
+    "path": "regression-verified/cancel-retry-2s.mp4",
+    "bytes": 711904,
+    "sha256": "6bac3edb453c3a675590e2e3eeabce65d4c243443c3a082cd2b942b2a7254096",
+    "effectsEnabled": false
+  }
+]

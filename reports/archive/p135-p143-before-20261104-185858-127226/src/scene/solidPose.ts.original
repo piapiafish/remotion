@@ -1,0 +1,9 @@
+import type { Group, Mesh, MeshStandardMaterial } from 'three'
+import type { TextObject } from '../store/schema'
+import { sampleTrack } from '../timeline/sample'
+import { isDisplayed } from '../timeline/displayRange'
+export function applySolidPose(group:Group,mesh:Mesh,text:TextObject,t:number){
+  const value=(c:string,f=0)=>sampleTrack(text.transform[c],t,f),scale=value('scale',1)
+  group.visible=isDisplayed(text,t);group.position.set(value('position.x'),value('position.y'),value('position.z'));group.rotation.set(value('rotation.x'),value('rotation.y'),value('rotation.z'));group.scale.setScalar(scale)
+  mesh.visible=value('opacity',1)>0;mesh.scale.z=Math.max(.001,value('depth',.08));(mesh.material as MeshStandardMaterial).opacity=Math.max(0,Math.min(1,value('opacity',1)))
+}

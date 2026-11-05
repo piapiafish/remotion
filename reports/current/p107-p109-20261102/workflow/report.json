@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-02T05:01:38.092Z",
+  "phase": "workflow",
+  "url": "http://127.0.0.1:4207",
+  "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+  "checks": [
+    {
+      "id": "two-independent-browser-recordings",
+      "status": "PASS"
+    },
+    {
+      "id": "dual-real-recordings-short-export",
+      "status": "PASS"
+    },
+    {
+      "id": "fresh-context-restores-media-and-tracks",
+      "status": "PASS"
+    },
+    {
+      "id": "reopened-edit-can-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "reopened-edit-preserves-first-device",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "status": "RUNNING",
+  "browser": "156.0.8078.76",
+  "footage": {
+    "Meals": {
+      "path": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\workflow-final\\meals-recording.mp4",
+      "duration": 4.833333,
+      "sha256": "461cfd19a355d28f552cdb6554b52a7d3e9025e2f16a0e458ad94fec37d182a3"
+    },
+    "Activity": {
+      "path": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\workflow-final\\activity-recording.mp4",
+      "duration": 4.633333,
+      "sha256": "51770ada4908edb7b4921509b522caf5409203e4af005daedb5909ced9dc4268"
+    }
+  },
+  "references": [
+    {
+      "frame": 0,
+      "file": "short-reference-0.png"
+    },
+    {
+      "frame": 11,
+      "file": "short-reference-11.png"
+    },
+    {
+      "frame": 12,
+      "file": "short-reference-12.png"
+    },
+    {
+      "frame": 13,
+      "file": "short-reference-13.png"
+    },
+    {
+      "frame": 26,
+      "file": "short-reference-26.png"
+    },
+    {
+      "frame": 27,
+      "file": "short-reference-27.png"
+    },
+    {
+      "frame": 28,
+      "file": "short-reference-28.png"
+    },
+    {
+      "frame": 32,
+      "file": "short-reference-32.png"
+    },
+    {
+      "frame": 33,
+      "file": "short-reference-33.png"
+    },
+    {
+      "frame": 34,
+      "file": "short-reference-34.png"
+    },
+    {
+      "frame": 47,
+      "file": "short-reference-47.png"
+    },
+    {
+      "frame": 48,
+      "file": "short-reference-48.png"
+    },
+    {
+      "frame": 49,
+      "file": "short-reference-49.png"
+    },
+    {
+      "frame": 71,
+      "file": "short-reference-71.png"
+    },
+    {
+      "frame": 72,
+      "file": "short-reference-72.png"
+    },
+    {
+      "frame": 73,
+      "file": "short-reference-73.png"
+    },
+    {
+      "frame": 101,
+      "file": "short-reference-101.png"
+    },
+    {
+      "frame": 102,
+      "file": "short-reference-102.png"
+    },
+    {
+      "frame": 103,
+      "file": "short-reference-103.png"
+    },
+    {
+      "frame": 119,
+      "file": "short-reference-119.png"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "method": "Existing Playwright JavaScript API; unmodified production build served by local route fulfillment without a TCP server",
+  "status": "PASS",
+  "errors": [],
+  "requests": [
+    {
+      "path": "index.html",
+      "status": 200
+    },
+    {
+      "path": "assets/index-w2ipeegl.js",
+      "status": 200
+    },
+    {
+      "path": "assets/index-5YkMuiVW.css",
+      "status": 200
+    },
+    {
+      "path": "devices/iphone-17-pro.glb",
+      "status": 200
+    },
+    {
+      "path": "favicon.svg",
+      "status": 200
+    },
+    {
+      "path": "draco/draco_wasm_wrapper.js",
+      "status": 200
+    },
+    {
+      "path": "draco/draco_decoder.wasm",
+      "status": 200
+    },
+    {
+      "path": "environments/studio.hdr",
+      "status": 200
+    }
+  ],
+  "browser": "156.0.8078.76",
+  "title": "3D Device Mockup Studio",
+  "bodyText": "Movie\nImage\nScreen 16:9\n1920 × 1080\nAdd animation\nFloat\nSpin 360°\nTilt In\nSlide In\nHero Reveal\nOrbit\n0.00s\nof\ns\n0s\n1s\n2s\n3s\n4s\nCamera\nDevice\nAI 导演 · 手机运动计划\n先规划手机怎么动\n模拟 AI\n\n生成运动 JSON 后，直接驱动左侧手机模型，并在时间轴显示每秒画面与关键帧。\n\n运动要求\n手机模型\niPhone 17 Pro\niPhone 17 Pro Max\nGoogle Pixel 9 Pro XL\nSamsung Galaxy S26 Ultra\n生成运动计划并应用\n一键清除 AI 动画\n\n尚未连接在线 AI；当前固定生成 15 秒的入场、旋转与悬停示例。运动要求会保存在 JSON 中，暂不解析任意自然语言。不需要录屏素材。\n\n导入本地 JSON / 粘贴 AI 运动计划\n旧版素材分镜与成片渲染\nTemplates\nHero\n1 device\nHero Tilt\n1 device\nDuo\n2 devices · adds\nDuo Flat\n2 devices · adds\nTrio Set\n3 devices · adds\nTrio Fan\n3 devices · adds\nPerspective Row\n3 devices · adds\nFront & Back\n2 devices · adds\nFlat Lay\n1 device\nLow Hero\n1 device\nStacked Depth\n3 devices · adds\nDevice\nAdd a second device\nGeneric Phone\nSCREEN CONTENT\nDrop or paste your screen here\nPNG, JPEG, MP4 or WebM\nFIT\nContain\nCover\nDEVICE FINISH\nGraphite\nSilver\nTransform\nReset\n0.00\nPos x\n0.00\ny\n0.00\nz\n0.0\nRot x\n0.0\ny\n0.0\nz\n1.00\nScale\n\nDrag a field to slide this device; hold Shift for fine control. De",
+  "capabilities": {
+    "secure": true,
+    "videoEncoder": "function",
+    "webgl": true
+  }
+}

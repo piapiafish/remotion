@@ -1,0 +1,15 @@
+import { useEffect, useLayoutEffect, useRef, type PointerEvent } from 'react'
+import { useProjectStore } from '../../store/project'
+import { paintTitles, textPose, TITLE_FONT } from '../../scene/textOverlay'
+
+export function TextOverlay({width,height}:{width:number;height:number}) {
+  const s=useProjectStore(), canvas=useRef<HTMLCanvasElement>(null)
+  const drag=useRef<{id:string;x:number;y:number;px:number;py:number;rotation:number;pointer:number}|null>(null)
+  useEffect(()=>{const cancel=()=>{if(drag.current){drag.current=null;useProjectStore.getState().endEditGesture(true)}};window.addEventListener('blur',cancel);return()=>{window.removeEventListener('blur',cancel);cancel()}},[])
+  useLayoutEffect(()=>{const c=canvas.current;if(!c)return;const ratio=window.devicePixelRatio||1;c.width=Math.round(width*ratio);c.height=Math.round(height*ratio);const ctx=c.getContext('2d')!;ctx.scale(ratio,ratio);paintTitles(ctx,s.project,s.playhead,width,height)},[s.project,s.playhead,width,height])
+  const finish=(e:PointerEvent<HTMLButtonElement>,cancel=false)=>{if(!drag.current)return;drag.current=null;s.endEditGesture(cancel);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId)}
+  return <div className="text-overlay"><canvas ref={canvas} style={{width,height}}/>{(s.project.texts??[]).map(text=>{
+    const pose=textPose(text,s.playhead),selected=s.activeObject?.instanceId===text.instanceId
+    return <button key={text.instanceId} aria-label={`选择${text.name}`} className={`text-hit ${selected?'selected':''}`} style={{left:`${pose.x*100}%`,top:`${pose.y*100}%`,width:`${text.width*100}%`,minHeight:20,fontFamily:TITLE_FONT,fontSize:text.fontSize*height/1080,fontWeight:text.fontWeight,lineHeight:text.lineHeight,color:'transparent',whiteSpace:'pre-wrap',wordBreak:'break-all',transform:`translate(-50%,-50%) rotate(${pose.rotation}rad) scale(${pose.scale})`}} onPointerDown={e=>{if(e.button!==0)return;e.stopPropagation();e.preventDefault();s.selectObject({kind:'text',instanceId:text.instanceId});s.beginEditGesture();drag.current={id:text.instanceId,x:e.clientX,y:e.clientY,px:pose.x,py:pose.y,rotation:pose.rotation,pointer:e.pointerId};e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{const d=drag.current;if(!d||d.pointer!==e.pointerId||!useProjectStore.getState().editingGesture)return;if(s.canvasTool==='rotate')s.setTextValue('rotation.z',d.rotation+(e.clientX-d.x)/width*Math.PI*2);else{s.setTextValue('position.x',d.px+(e.clientX-d.x)/width);s.setTextValue('position.y',d.py+(e.clientY-d.y)/height)}}} onPointerUp={e=>finish(e)} onPointerCancel={e=>finish(e,true)} onLostPointerCapture={e=>finish(e)}><span aria-hidden="true" style={{pointerEvents:'none'}}>{text.content||' '}</span></button>
+  })}</div>
+}

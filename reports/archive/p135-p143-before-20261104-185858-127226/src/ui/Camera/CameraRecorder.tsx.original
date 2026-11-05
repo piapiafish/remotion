@@ -1,0 +1,21 @@
+import { useEffect, useState } from 'react'
+import { Artboard } from '../Artboard/Artboard'
+import { useProjectStore } from '../../store/project'
+import { captureCameraPose, useCameraSession } from '../../store/cameraSession'
+import { sampleTimeline } from '../../timeline/sample'
+
+export function CameraRecorder(){
+  const s=useProjectStore(),session=useCameraSession(),[count,setCount]=useState(3)
+  useEffect(()=>{if(session.mode!=='countdown')return;const id=setInterval(()=>setCount(n=>Math.max(0,n-1)),1000);return()=>clearInterval(id)},[session.mode])
+  useEffect(()=>{if(session.mode==='countdown'&&count===0){const state=useProjectStore.getState(),rec=useCameraSession.getState();state.setPlayhead(rec.start);useCameraSession.setState({mode:'recording',draft:{},frame:-1,end:rec.start});captureCameraPose(rec.view??sampleTimeline(state.project,rec.start).camera,rec.start,state.project.fps);state.setPlaying(true)}},[count,session.mode])
+  const finish=()=>{s.setPlaying(false);const rec=useCameraSession.getState();if(rec.mode==='recording')captureCameraPose(rec.view??sampleTimeline(s.project,s.playhead).camera,s.playhead,s.project.fps);useCameraSession.setState({mode:'review',view:null});s.setPlayhead(rec.start)}
+  useEffect(()=>{const blur=()=>{if(useCameraSession.getState().mode==='recording'){useProjectStore.getState().setPlaying(false);useCameraSession.setState({mode:'review',view:null})}else if(useCameraSession.getState().mode==='countdown')useCameraSession.setState({mode:'ready'})};window.addEventListener('blur',blur);return()=>window.removeEventListener('blur',blur)},[])
+  return <div className="camera-record-page"><header className="camera-record-header"><h2>录制相机运动</h2><button className="ghost-btn" onClick={()=>s.setEditorPage('editor')}>放弃并返回编辑器</button></header><div className="camera-record-body"><Artboard/><aside className="camera-record-panel">
+    <strong>{({ready:'准备镜头',countdown:'即将开始',recording:'正在录制',review:'检查本次镜头',idle:'准备'})[session.mode]}</strong><p>只控制摄像头。画面中的手机、文字和录屏照常播放，对象暂不可选。</p><p>拖动旋转 · 滚轮调整远近 · 方向键平移 · Shift 精调</p>
+    {session.mode==='ready'&&<><label className="stack-field">从作品第几秒开始<input aria-label="相机录制开始时间" type="number" min={0} max={Math.max(0,s.project.duration-1/s.project.fps)} step={1/s.project.fps} value={session.start} onChange={e=>{const start=Math.max(0,Math.min(s.project.duration-1/s.project.fps,Number(e.target.value)));if(Number.isFinite(start)){useCameraSession.setState({start});s.setPlayhead(start)}}}/></label><button className="primary-btn" onClick={()=>{setCount(3);useCameraSession.setState({mode:'countdown'})}}>开始录制（3 秒倒计时）</button></>}
+    {session.mode==='countdown'&&<><div className="record-countdown" aria-live="polite">{count}</div><button className="ghost-btn" onClick={()=>useCameraSession.setState({mode:'ready'})}>取消倒计时</button></>}
+    {session.mode==='recording'&&<><div className="record-time">● {s.playhead.toFixed(2)} 秒</div><button className="primary-btn" onClick={finish}>结束录制</button></>}
+    {session.mode==='review'&&<><p>已记录 {session.start.toFixed(2)}～{session.end.toFixed(2)} 秒，共 {session.frame<0?0:Math.max(...Object.values(session.draft).map(t=>t.keys.length))} 帧。尚未替换原相机动画。</p><button className="ghost-btn" onClick={()=>{useCameraSession.setState({view:null});s.setPlayhead(session.start);s.setPlaying(true)}}>回放本次录制</button><button className="primary-btn" disabled={session.frame<0} onClick={s.applyCameraRecording}>采用本次录制</button><button className="ghost-btn" onClick={()=>{s.setPlaying(false);s.setPlayhead(session.start);useCameraSession.setState({mode:'ready',view:sampleTimeline(s.project,session.start).camera,draft:{},frame:-1})}}>重新录制</button></>}
+    <p className="hint">点击“采用”后才写入工程，可一次撤销。页面之外转动相机不会记录动画。</p>
+  </aside></div></div>
+}

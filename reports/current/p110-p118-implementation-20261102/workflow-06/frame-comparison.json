@@ -1,0 +1,149 @@
+{
+  "date": "2026-11-02",
+  "status": "PASS",
+  "frames": [
+    0,
+    12,
+    30,
+    60,
+    90,
+    119
+  ],
+  "comparisons": 18,
+  "minimum": 0.984374,
+  "minimumByRegion": {
+    "full": 0.992161,
+    "title": 0.991485,
+    "right-screen": 0.984374
+  },
+  "results": [
+    {
+      "frame": 0,
+      "region": "full",
+      "ssim": 0.992161,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 0,
+      "region": "title",
+      "ssim": 0.991485,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 0,
+      "region": "right-screen",
+      "ssim": 0.984374,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "region": "full",
+      "ssim": 0.994093,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "region": "title",
+      "ssim": 0.994578,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 12,
+      "region": "right-screen",
+      "ssim": 0.986775,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "full",
+      "ssim": 0.99378,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "title",
+      "ssim": 0.993197,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "right-screen",
+      "ssim": 0.98678,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "full",
+      "ssim": 0.994067,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "title",
+      "ssim": 0.994,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "right-screen",
+      "ssim": 0.988598,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 90,
+      "region": "full",
+      "ssim": 0.994074,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 90,
+      "region": "title",
+      "ssim": 0.993979,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 90,
+      "region": "right-screen",
+      "ssim": 0.988986,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "full",
+      "ssim": 0.994076,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "title",
+      "ssim": 0.993977,
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "right-screen",
+      "ssim": 0.988984,
+      "exitCode": 0,
+      "status": "PASS"
+    }
+  ],
+  "seconds": 3.594,
+  "threshold": 0.95
+}

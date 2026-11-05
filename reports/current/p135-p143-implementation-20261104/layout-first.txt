@@ -1,0 +1,9 @@
+FAIL escape-stops-held-camera-key-and-restores-gesture
+SCENARIO FAIL keyboard-focus Error: escape-stops-held-camera-key-and-restores-gesture
+PASS recorder-layout-1366x768
+PASS recorder-layout-1920x1080
+PASS recorder-layout-1000x800
+PASS recorder-at-125-percent-display-scale
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"keyboard-focus","status":"FAIL","error":"Error: escape-stops-held-camera-key-and-restores-gesture"},{"name":"layout","status":"PASS"}],"checks":7}

@@ -1,0 +1,465 @@
+{
+  "Date": "2026-11-02",
+  "Scope": [
+    "P1-03",
+    "P1-04",
+    "P1-05"
+  ],
+  "Status": "APPLIED_AND_AUTOMATICALLY_VERIFIED_PENDING_HUMAN_REVIEW",
+  "Project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "Version": "P1-03-04-05-20261102",
+  "InstalledFiles": 121,
+  "Backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p103-p105-before-20261102-080233-468621",
+  "Receipt": "../p103-p105-20261102/writeback-receipt.json",
+  "PackageSHA256": "363A7E74BEDA53C8E53696F440118AAD7A33BB77569BCD5C0ED29A1C8A13335F",
+  "PayloadAtInstall": "PASS (121 files)",
+  "ImmediateRecheck": "ALREADY_APPLIED (0 pending)",
+  "SourceChecks": [
+    {
+      "Path": "scripts/test-editor-interactions.cjs",
+      "SHA256": "da50a59a2c7bb97ed820860ed9a8e15733dd47db90f0ff242de5f8545b73a741",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/app/useShortcuts.ts",
+      "SHA256": "45ceb47213551f6e2d33c7424551e512ae701e718935b31357388f52392ae3bd",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/App.css",
+      "SHA256": "fbf9d200a09169818719544ddc760f8d6678117242d7ecc79aa8dd35f6e99926",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/automation/bridge.ts",
+      "SHA256": "0893ecccb0eb923f061c62bbee70ec38c23500603cd0592e740ffc3b2e3e06c2",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/export/frameRenderer.ts",
+      "SHA256": "da2ac9e72b2258a16d15d88bf8cfa90d6cd6a5c75b5fe021c6dc4fc2f718e429",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/DeviceControls.tsx",
+      "SHA256": "513c239e56e2868b1ccd9318fd83000a4e2564c0e83d26c75cee67893deca1e4",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/editorHelpers.ts",
+      "SHA256": "e2008914089d378518d003909b29db3aeddef1d3079c6152e1c851dffb59f731",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/editorInteraction.test.ts",
+      "SHA256": "00a512f6ac0595be700253e1b77f206629660eecd8b71b3360b8cfcd5318a0c6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/Stage.tsx",
+      "SHA256": "bbc2cfa9e7fd9e3c5c9a01ef3685b8397d83f30a648aef61a8d65e45804ffb19",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/transformValues.ts",
+      "SHA256": "a5e878b93ed85aab755335006d284b9dc36475b8fb95bc13494ed1bc1862ab5e",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/keyframeEditing.test.ts",
+      "SHA256": "b1b286916074167006eb56152480005cc820dc03c0f9b498c4060281245ffdc6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/project.ts",
+      "SHA256": "2984bb939f1e38a0e927cbb59503145da5b8b10be98b73688bacea5e8635ae84",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/editing.ts",
+      "SHA256": "4fcc21f596e6404e8a07c1332ecfa40132c9654bd11854864c8785ff56cbd8e6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/presets.ts",
+      "SHA256": "e257fc64888ce71cd3446e1b4e4de66fe5b741e3147272bdcbe20327c1bba68b",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/scopedPresets.test.ts",
+      "SHA256": "7c97e34369ed188a33b513c0c5485363380605d9112b209462106c6a67e5f851",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/templates.test.ts",
+      "SHA256": "e143f99ac64be6fb4f85dbe0ab491a6c60463989c6292e5bc74c3a4bcf7b26ce",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Artboard/Artboard.tsx",
+      "SHA256": "f0480e207d23ec25ed969715e120134debb3833d387132efac304d6899f4052b",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/controls/NumberField.tsx",
+      "SHA256": "6d8b4466277eddc026e4c05d6276d56bb38cfe2809e606d28262fddf813afa68",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/CameraSection.tsx",
+      "SHA256": "8258f4d360e09b5644de5b5bd429196017e3ac3103060dc389b207449e5b8bac",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/TransformSection.tsx",
+      "SHA256": "4e2f745af319e9b8006bffae4f89e079d4a8322dc7c9fc6fde80b370aec7147e",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Timeline/PresetControls.tsx",
+      "SHA256": "4444184175c2359faeb709f418789e80e28c81717f653a93814cd2865a3c7efd",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Timeline/TimelineBar.tsx",
+      "SHA256": "6668a0875de06b4f6637b2d427e97dd86d0e7b43cfd20813391c929504366f79",
+      "Status": "PASS"
+    }
+  ],
+  "Requirements": [
+    {
+      "Path": "package.json",
+      "SHA256": "8610fb13263fffdab0130c59b613628c78a5be61f941a41b116efcf37de754a1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "package-lock.json",
+      "SHA256": "7d77daef42e2f86ee9e4ebea6f70420419e9ed4f776bd49764b6f9688869e502",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/schema.ts",
+      "SHA256": "4180413d9ff80bdc04ddda2235c25d0a42a2698710b2a85dad88f8491cb561f7",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/devicePlacement.ts",
+      "SHA256": "b3f54f2103c0dfdb4e324232fb661b48ebb2a216d9d90af41bf68500d01cbea9",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/sample.ts",
+      "SHA256": "ca6043c0da7a0fb078595a79daafd4bb5e82fcca8b5fb3de8312694df3edaaf1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/export/video.ts",
+      "SHA256": "1e05f8574e4921c665a140f720a133462c65fd3c9994b75a5d07fb6d625932c8",
+      "Status": "PASS"
+    }
+  ],
+  "PostInstallDocumentUpdates": [
+    "DEVELOPMENT_LOG.md",
+    "IMPLEMENTATION_ROADMAP.md",
+    "ISSUES_LOG.md",
+    "reports/current/README.md"
+  ],
+  "Checks": [
+    {
+      "Command": "npm.cmd test",
+      "ExitCode": 0
+    },
+    {
+      "Command": "npm.cmd run build",
+      "ExitCode": 0
+    },
+    {
+      "Command": "npm.cmd run lint",
+      "ExitCode": 0
+    },
+    {
+      "Command": "npm.cmd exec -- oxlint src services packages remotion-compositor/src scripts vite.config.ts",
+      "ExitCode": 0,
+      "Warnings": 14
+    },
+    {
+      "Command": "node scripts/test-editor-interactions.cjs",
+      "ExitCode": 0,
+      "TEMP": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\output\\p103-p105-writeback-20261102-temp",
+      "Output": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser"
+    },
+    {
+      "Command": ".venv/Scripts/python.exe reports/current/p103-p105-writeback-20261102/verify-export.py",
+      "ExitCode": 0
+    }
+  ],
+  "Frontend": {
+    "Files": 26,
+    "ExitCode": 0,
+    "Tests": 259
+  },
+  "Lint": {
+    "Full": 17,
+    "Runtime": 14,
+    "ArchiveDuplicates": 3,
+    "NewRuntimeWarnings": 0
+  },
+  "Browser": {
+    "Method": "Actual P1-03/04/05 production build; Chrome; local route fulfillment without TCP. UI actions and actual file downloads. Vite/API network not tested.",
+    "Status": "PASS",
+    "Version": "156.0.8078.76",
+    "Checks": 42,
+    "Cases": 5,
+    "RequestFailures": 0,
+    "PageErrors": 0
+  },
+  "Export": {
+    "Height": 1080,
+    "Width": 1920,
+    "Clips": [
+      {
+        "clip": "manual",
+        "video": "P1-03-manual-720-1080p30.mp4",
+        "status": "PASS",
+        "frames": [
+          {
+            "frame": 0,
+            "ssim": 0.995659,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-manual-decoded-0.png",
+            "reference": "04-manual-reference-0.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-manual-720-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,0)",
+              "-frames:v",
+              "1",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-0.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-0.png",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-reference-0.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 15,
+            "ssim": 0.995181,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-manual-decoded-15.png",
+            "reference": "04-manual-reference-15.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-manual-720-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,15)",
+              "-frames:v",
+              "1",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-15.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-15.png",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-reference-15.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 59,
+            "ssim": 0.995975,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-manual-decoded-59.png",
+            "reference": "04-manual-reference-59.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-manual-720-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,59)",
+              "-frames:v",
+              "1",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-59.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-59.png",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-reference-59.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          }
+        ]
+      },
+      {
+        "clip": "dual",
+        "video": "P1-03-05-dual-animation-1080p30.mp4",
+        "status": "PASS",
+        "frames": [
+          {
+            "frame": 0,
+            "ssim": 0.99399,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-dual-decoded-0.png",
+            "reference": "04-reference-0.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,0)",
+              "-frames:v",
+              "1",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-0.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-0.png",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-reference-0.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 30,
+            "ssim": 0.995337,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-dual-decoded-30.png",
+            "reference": "04-reference-30.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,30)",
+              "-frames:v",
+              "1",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-30.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-30.png",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-reference-30.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 59,
+            "ssim": 0.994777,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-dual-decoded-59.png",
+            "reference": "04-reference-59.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,59)",
+              "-frames:v",
+              "1",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-59.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-59.png",
+              "-i",
+              "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-reference-59.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          }
+        ]
+      }
+    ],
+    "Status": "PASS",
+    "Frames": 60,
+    "Seconds": 2,
+    "FPS": 30
+  },
+  "Documentation": {
+    "Status": "PASS",
+    "ExitCode": 0,
+    "Command": "scripts/check-project-docs.py",
+    "MarkdownFilesChecked": 81,
+    "CurrentLinkErrors": 0,
+    "HistoricalLinkWarnings": 63,
+    "PreviousRootReportPreserved": true,
+    "Integrity": "NOT_RUN (old document-organization baseline)"
+  },
+  "AgentAPI": "NOT_RUN (old services/protocol unchanged)",
+  "ViteApiTcp": "NOT_TESTED",
+  "HumanAcceptance": "PENDING",
+  "P106": "NOT_APPLIED",
+  "PhaseOneAccepted": false
+}

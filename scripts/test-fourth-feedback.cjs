@@ -1,0 +1,95 @@
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),out=process.env.BEGINNER_OUT,url=process.env.STUDIO_URL;
+const {chromium}=require(path.join(root,'.venv/Lib/site-packages/playwright/driver/package'));
+const {unzipSync,strFromU8}=require(path.join(root,'node_modules/fflate'));
+const report={date:new Date().toISOString(),checks:[],scenarios:[],pageErrors:[],consoleErrors:[],status:'RUNNING'};
+const write=()=>fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));
+function check(name,ok,detail){report.checks.push({name,status:ok?'PASS':'FAIL',detail});write();console.log((ok?'PASS ':'FAIL ')+name);if(!ok)throw Error(name)}
+let browser,context,p;
+async function session(options={}){
+ context=await browser.newContext({viewport:{width:1600,height:1000},acceptDownloads:true,...options});
+ await context.route('**/*',r=>['127.0.0.1','localhost'].includes(new URL(r.request().url()).hostname)?r.continue():r.abort());
+ p=await context.newPage();p.setDefaultTimeout(20000);p.on('pageerror',e=>report.pageErrors.push(String(e)));p.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(m.text())});p.on('dialog',d=>d.accept());
+ p.on('framenavigated',f=>{if(f===p.mainFrame()){(report.navigation??=[]).push({time:new Date().toISOString(),url:f.url()});write()}});await p.goto(url+'/?automation=1',{waitUntil:'networkidle'});
+ await p.evaluate(async()=>{window.S=(await import('/src/store/project.ts')).useProjectStore;window.T=await import('/src/timeline/sample.ts');window.O=await import('/src/timeline/objectEditing.ts');window.C=(await import('/src/store/cameraSession.ts')).useCameraSession;window.R=await import('/src/export/renderer.ts');window.F=await import('/src/export/frameRenderer.ts');window.V=await import('/src/media/screenVideo.ts');window.P=await import('/src/store/persist.ts');window.L=await import('/src/media/screenClips.ts');window.B=await import('/src/scene/solidBounds.ts');window.Q=await import('/src/timeline/cameraSegments.ts');window.D=await import('/src/scene/depthOfField.ts')});
+}
+const state=()=>p.evaluate(()=>JSON.parse(JSON.stringify(window.S.getState().project)));
+const ready=()=>p.evaluate(()=>window.__PROMO_BRIDGE__.waitForReady(20000));
+async function init(){await p.getByRole('button',{name:/双机并排/}).first().click();await p.evaluate(()=>{const s=window.S.getState();s.setDuration(4);s.setOutput({width:1920,height:1080});s.setActiveDevice(0);s.setDeviceId('iphone-17-pro');s.renameObject('手机 A');s.setActiveDevice(1);s.setDeviceId('pixel-9-pro-xl');s.renameObject('手机 B');s.setActiveDevice(0)});await ready()}
+async function time(t){await p.getByRole('spinbutton',{name:'当前时间',exact:true}).fill(String(t));await p.getByRole('spinbutton',{name:'当前时间',exact:true}).press('Tab');await p.waitForTimeout(100)}
+async function save(name){const waiting=p.waitForEvent('download',{timeout:60000});await p.getByRole('button',{name:'保存工程',exact:true}).click();const dl=await waiting,file=path.join(out,name+'.mockup');await dl.saveAs(file);return file}
+async function drag(locator,dx,relativeY=.5){await locator.scrollIntoViewIfNeeded();const b=await locator.boundingBox();await p.mouse.move(b.x+b.width/2,b.y+b.height*relativeY);await p.mouse.down();await p.mouse.move(b.x+b.width/2+dx,b.y+b.height*relativeY,{steps:12});await p.mouse.up();await p.waitForTimeout(100)}
+async function scenario(name,fn){if(process.env.THIRD_SCENARIOS&&!process.env.THIRD_SCENARIOS.split(',').includes(name))return;await session();try{await fn();report.scenarios.push({name,status:'PASS'})}catch(e){report.scenarios.push({name,status:'FAIL',error:String(e)});console.log('SCENARIO FAIL '+name+' '+String(e));await p.screenshot({path:path.join(out,name+'-failed.png'),fullPage:true}).catch(()=>{})}finally{write();await context.close()}}
+
+const fixtureFile=path.join(root,'reports/current/p126-p134-implementation-20261104/browser-final/second-feedback-scene.mockup');
+const fixtureZip=unzipSync(fs.readFileSync(fixtureFile)),fixtureProject=JSON.parse(strFromU8(fixtureZip['project.json']));
+const fixtureVideos=fixtureProject.devices.map(d=>d.screen).filter(r=>r?.kind==='video').map(r=>({ref:r,buffer:Buffer.from(fixtureZip['media/'+r.id])}));
+async function upload(index,name){const v=fixtureVideos[index%fixtureVideos.length],webm=v.buffer[0]===0x1a;await p.getByLabel('添加屏幕素材文件',{exact:true}).setInputFiles({name:name+(webm?'.webm':'.mp4'),mimeType:webm?'video/webm':'video/mp4',buffer:v.buffer});await p.waitForFunction(name=>window.S.getState().project.devices[window.S.getState().activeDevice].screenClips?.some(c=>c.name.startsWith(name)),name);await ready()}
+async function buildMedia(){
+ await init();await upload(0,'片段 A');await upload(1,'片段 B');await upload(0,'片段 C');
+ await p.evaluate(()=>{const s=window.S.getState(),d=s.project.devices[0];for(const c of d.screenClips){const A=c.name.startsWith('片段 A'),B=c.name.startsWith('片段 B');s.updateScreenClip(c.clipId,{displayRange:A?{start:0,end:1.4}:B?{start:1.4,end:3.8}:{start:2,end:3},playback:{in:0,out:c.media.duration,start:A?.2:B?1.6:2.1,stop:A?.8:B?3.4:2.8,rate:B?2:1,loop:false}})}s.setActiveDevice(1)});
+ await upload(1,'设备 B 视频');
+ await p.evaluate(()=>{const s=window.S.getState(),d=s.project.devices[1];s.updateScreenClip(d.screenClips[0].clipId,{displayRange:{start:.5,end:4},playback:{start:.7,stop:3.5,rate:1,loop:false}});s.setDisplayRange({kind:'device',instanceId:s.project.devices[0].instanceId},{start:0,end:3.8});s.setDisplayRange({kind:'device',instanceId:d.instanceId},{start:.5,end:4});s.setDuration(4);s.setActiveDevice(0);s.setPlayhead(0)});
+ await ready();
+}
+async function centre(){return p.evaluate(async()=>{const {Box3,Vector3}=await import('/node_modules/three/build/three.module.js'),ctx=window.R.getExportContext();let group;ctx.scene.traverse(o=>{if(o.userData.deviceIndex===0)group=o});group.updateWorldMatrix(true,true);const box=new Box3().setFromObject(group),centre=box.getCenter(new Vector3()),screen=centre.clone().project(ctx.camera);return {world:centre.toArray(),pixel:[(screen.x+1)*960,(1-screen.y)*540]}})}
+async function record(start,key='d'){
+ await time(start);await p.getByTestId('track-camera').locator('.object-track-name').click();await p.getByRole('button',{name:'录制相机运动',exact:true}).click();
+ await p.getByLabel('相机移动速度',{exact:true}).selectOption('slow');await p.getByRole('button',{name:'开始录制（3 秒倒计时）',exact:true}).click();
+ await p.waitForFunction(()=>window.C.getState().mode==='recording');await p.keyboard.down(key);await p.waitForTimeout(240);await p.keyboard.up(key);await p.waitForTimeout(150);
+ if(await p.getByRole('button',{name:'结束录制',exact:true}).count())await p.getByRole('button',{name:'结束录制',exact:true}).click();
+ await p.waitForFunction(()=>window.C.getState().mode==='review');
+ await p.screenshot({path:path.join(out,'camera-review-'+start+'.png'),fullPage:true});await p.getByRole('button',{name:'采用本次录制',exact:true}).click();await p.waitForFunction(()=>window.S.getState().editorPage==='editor');
+}
+(async()=>{try{
+ browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--no-sandbox','--enable-webgl','--use-gl=angle','--enable-unsafe-swiftshader']});report.browser=browser.version();
+ await scenario('interaction',async()=>{
+  await init();const scales=[];
+  for(const id of ['procedural-phone','iphone-17-pro','iphone-17-pro-max','pixel-9-pro-xl','galaxy-s26-ultra']){
+   await p.evaluate(id=>{const s=window.S.getState();s.setActiveDevice(0);s.setDeviceId(id);s.setDeviceScale(.8);s.setDevicePosition([.7,.6,.1])},id);await ready();
+   const visualBefore=await centre();const before=await p.evaluate(()=>{const s=window.S.getState();return {device:s.project.devices[0],pose:window.T.sampleTimeline(s.project,0).devices[0]}});
+   const b=await p.getByTestId('artboard').boundingBox();await p.mouse.move(b.x+b.width*.1,b.y+b.height*.2);await p.mouse.wheel(0,120);await p.waitForTimeout(280);
+   const after=await p.evaluate(()=>window.T.sampleTimeline(window.S.getState().project,0).devices[0]);
+   check('placed-centre-stays-'+id,after.position.every((x,i)=>Math.abs(x-before.pose.position[i])<1e-6)&&after.scale<before.pose.scale,{before:before.pose,after});
+   const visualAfter=await centre(),drift=Math.hypot(...visualAfter.pixel.map((v,i)=>v-visualBefore.pixel[i]));check('visible-model-centre-stays-'+id,drift<1,{visualBefore,visualAfter,driftPixels:drift});scales.push({id,before:before.pose,after,visualBefore,visualAfter});await p.getByRole('button',{name:'撤销',exact:true}).click();check('scale-undo-'+id,JSON.stringify((await state()).devices[0])===JSON.stringify(before.device));
+  }
+  fs.writeFileSync(path.join(out,'scale-measurements.json'),JSON.stringify(scales,null,2));
+  await p.getByTestId('artboard').focus();const before=await p.evaluate(()=>window.T.sampleTimeline(window.S.getState().project,0).camera);await p.keyboard.down('w');await p.waitForTimeout(230);await p.keyboard.up('w');
+  const after=await p.evaluate(()=>window.C.getState().view??window.T.sampleTimeline(window.S.getState().project,0).camera);check('wasd-moves-camera-with-selected-phone',Math.hypot(...after.position.map((x,i)=>x-before.position[i]))>.1,{before,after});
+  const stopped=JSON.stringify(after);await p.waitForTimeout(150);check('keyup-stops-camera',stopped===await p.evaluate(()=>JSON.stringify(window.C.getState().view??window.T.sampleTimeline(window.S.getState().project,0).camera)));
+  check('one-playhead-head',await p.locator('.playhead-handle').count()===1);
+  const label=await p.getByTestId('track-'+(await state()).devices[0].instanceId).locator('.object-track-name').boundingBox(),lane=await p.getByTestId('track-'+(await state()).devices[0].instanceId).locator('.object-lane').boundingBox();check('name-column-has-gap',lane.x-(label.x+label.width)>=12);
+  await p.screenshot({path:path.join(out,'editor-refined.png'),fullPage:true});
+ });
+ await scenario('timeline',async()=>{
+  await buildMedia();const id=(await state()).devices[0].instanceId,c=(await state()).devices[0].screenClips[0],row=p.getByTestId('track-'+id),video=p.getByTestId('video-'+c.clipId);
+  await p.evaluate(()=>{const s=window.S.getState(),d=s.project.devices[0],cs=d.screenClips;for(const [i,c] of cs.entries())s.updateScreenClip(c.clipId,{displayRange:{start:i*2,end:i*2+1},playback:{start:i*2,stop:i*2+1}});s.setDuration(8)});
+  const packed=await p.evaluate(()=>{const s=window.S.getState(),clips=s.project.devices[0].screenClips;return window.L.packClips(clips).count});check('both-disjoint-intervals-pack',packed===1);
+  await p.evaluate(()=>{const s=window.S.getState(),cs=s.project.devices[0].screenClips;s.updateScreenClip(cs[0].clipId,{playback:{start:0,stop:4}})});
+  check('playback-overlap-keeps-separate-rows',await p.evaluate(()=>window.L.packClips(window.S.getState().project.devices[0].screenClips).count)>1);
+  await p.evaluate(id=>{const s=window.S.getState();s.updateScreenClip(id,{displayRange:{start:0,end:1},playback:{start:1,stop:2}});s.selectScreenClip(id)},c.clipId);
+  await drag(video.locator('[data-drag="play-in"]'),500);
+  let clock=(await state()).devices[0].screenClips.find(x=>x.clipId===c.clipId).playback;check('start-clamps-one-frame-before-stop',Math.abs(clock.stop-clock.start-1/30)<1e-6,clock);
+  const handles=await video.locator('.video-play-handle').evaluateAll(xs=>xs.map(x=>{const r=x.getBoundingClientRect();return {l:r.left,r:r.right,t:r.top,b:r.bottom}}));
+  check('near-play-handles-no-longer-cover-each-other',!(handles[0].l<handles[1].r&&handles[1].l<handles[0].r&&handles[0].t<handles[1].b&&handles[1].t<handles[0].b),handles);
+  const before=clock.start;await drag(video.locator('[data-drag="play-in"]'),-55);clock=(await state()).devices[0].screenClips.find(x=>x.clipId===c.clipId).playback;check('start-can-be-grabbed-again-after-release',clock.start<before-.05,{before,clock});
+  await drag(video.locator('[data-drag="play-out"]'),35);const later=(await state()).devices[0].screenClips.find(x=>x.clipId===c.clipId).playback;check('stop-can-be-grabbed-independently',later.stop>clock.stop);
+  await p.evaluate(id=>window.S.getState().updateScreenClip(id,{displayRange:{start:1,end:1+1/30}}),c.clipId);const blue=await video.locator('.video-display-handle').evaluateAll(xs=>xs.map(x=>{const r=x.getBoundingClientRect();return {l:r.left,r:r.right,t:r.top,b:r.bottom}}));check('one-frame-blue-endpoints-are-separated',!(blue[0].l<blue[1].r&&blue[1].l<blue[0].r&&blue[0].t<blue[1].b&&blue[1].t<blue[0].b),blue);
+  await drag(video.locator('[data-drag="clip-in"]'),-35);check('blue-start-can-be-reopened',(await state()).devices[0].screenClips.find(x=>x.clipId===c.clipId).displayRange.start<1);
+  await p.evaluate(()=>{const s=window.S.getState();s.setActiveDevice(0);s.setPlayhead(0);s.addObjectKey(s.activeObject);s.setPlayhead(.8);s.setDeviceRotation([0,Math.PI/2,0])});await time(.8);await row.locator('.pose-key').last().click();
+  const del=await p.getByRole('button',{name:'删除关键帧',exact:true}).boundingBox();check('key-delete-button-is-prominent',del.height>=36&&del.width>=80,del);await p.getByText('关键帧属性',{exact:true}).click();check('key-properties-open',await p.getByRole('group',{name:'关键帧属性',exact:true}).isVisible());
+  await p.screenshot({path:path.join(out,'timeline-handles-properties.png'),fullPage:true});
+  await p.evaluate(()=>window.S.getState().selectObject(null));await p.getByTestId('artboard').focus();await p.getByLabel('拖动时间尺',{exact:true}).click({position:{x:80,y:10}});const beforeTime=await p.evaluate(()=>({t:window.S.getState().playhead,camera:window.T.sampleTimeline(window.S.getState().project,window.S.getState().playhead).camera}));await p.keyboard.press('ArrowRight');check('ruler-restores-timeline-keyboard-context',await p.evaluate(before=>Math.abs(window.S.getState().playhead-before.t-1/30)<1e-6&&document.activeElement?.closest('.object-timeline')&&JSON.stringify(window.T.sampleTimeline(window.S.getState().project,window.S.getState().playhead).camera)===JSON.stringify(before.camera),beforeTime));
+ });
+ await scenario('camera',async()=>{
+  await init();await p.evaluate(()=>window.S.getState().setDuration(6));const devices=JSON.stringify((await state()).devices);await record(.5,'d');let cs=(await state()).camera.segments;check('first-camera-segment-recorded',cs.length===1&&cs[0].start===.5&&cs[0].end>.6);
+  check('camera-key-points-hidden',await p.getByTestId('track-camera').locator('.pose-key').count()===0);
+  await record(3,'w');cs=(await state()).camera.segments;check('second-camera-segment-keeps-first',cs.length===2&&cs[1].start===3&&cs[0].end<3);
+  check('camera-recording-preserves-device-tracks',devices===JSON.stringify((await state()).devices));
+  check('gap-holds-previous-camera-pose',await p.evaluate(()=>{const s=window.S.getState(),a=s.project.camera.segments[0];return JSON.stringify(window.T.sampleTimeline(s.project,a.end+.1).camera)===JSON.stringify(window.T.sampleTimeline(s.project,2.5).camera)}));
+  await time(.6);await p.getByTestId('track-camera').locator('.object-track-name').click();await p.getByRole('button',{name:'录制相机运动',exact:true}).click();check('recording-inside-existing-segment-is-rejected',await p.evaluate(()=>window.S.getState().editorPage==='editor'));
+  await p.getByTestId('camera-segment-'+cs[0].id).click();await p.getByRole('button',{name:'删除本段',exact:true}).click();check('delete-one-camera-segment-leaves-other-intact',JSON.stringify((await state()).camera.segments)===JSON.stringify([cs[1]]));await p.getByRole('button',{name:'撤销',exact:true}).click();check('camera-delete-undo-restores-both',JSON.stringify((await state()).camera.segments)===JSON.stringify(cs));
+  const saved=await save('fourth-camera-recording');fs.writeFileSync(path.join(out,'camera-delivery.json'),JSON.stringify({project:saved}));await p.screenshot({path:path.join(out,'camera-segments-editor.png'),fullPage:true});
+ });
+ report.status=report.scenarios.every(s=>s.status==='PASS')&&!report.pageErrors.length&&!report.consoleErrors.length?'PASS':'FAIL';if(report.status!=='PASS')process.exitCode=1;
+}catch(error){report.status='FAIL';report.error=String(error);process.exitCode=1}finally{write();await browser?.close()}})();

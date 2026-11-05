@@ -1,0 +1,21 @@
+import * as THREE from 'three'
+import { getExportContext } from '../../export/renderer'
+import { isDisplayed } from '../../timeline/displayRange'
+import { useCameraSession } from '../../store/cameraSession'
+import { useEffect, useLayoutEffect, useRef, type PointerEvent } from 'react'
+import { useProjectStore } from '../../store/project'
+import { paintTitles, textPose, TITLE_FONT } from '../../scene/textOverlay'
+
+export function TextOverlay({width,height,layer='front'}:{width:number;height:number;layer?:'front'|'back'}) {
+  const s=useProjectStore(), canvas=useRef<HTMLCanvasElement>(null)
+  const drag=useRef<{id:string;x:number;y:number;px:number;py:number;rotation:number;pointer:number}|null>(null)
+  useEffect(()=>{const cancel=()=>{if(drag.current){drag.current=null;useProjectStore.getState().endEditGesture(true)}};window.addEventListener('blur',cancel);return()=>{window.removeEventListener('blur',cancel);cancel()}},[])
+  useLayoutEffect(()=>{const c=canvas.current;if(!c)return;const ratio=window.devicePixelRatio||1;c.width=Math.round(width*ratio);c.height=Math.round(height*ratio);const ctx=c.getContext('2d')!;ctx.scale(ratio,ratio);paintTitles(ctx,s.project,s.playhead,width,height,layer)},[s.project,s.playhead,width,height,layer])
+  const finish=(e:PointerEvent<HTMLButtonElement>,cancel=false)=>{if(!drag.current)return;drag.current=null;s.endEditGesture(cancel);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId)}
+  return <div className={`text-overlay text-layer-${layer}`}><canvas ref={canvas} style={{width,height}}/>{layer==='front'&&(s.project.texts??[]).filter(text=>text.textKind!=='solid'&&isDisplayed(text,s.playhead,s.project.duration)).map(text=>{
+    const pose=textPose(text,s.playhead),selected=s.activeObject?.instanceId===text.instanceId
+    return <button key={text.instanceId} aria-label={`选择${text.name}`} className={`text-hit ${selected?'selected':''}`} style={{pointerEvents:useCameraSession.getState().mode==='idle'?'auto':'none',left:`${pose.x*100}%`,top:`${pose.y*100}%`,width:`${text.width*100}%`,minHeight:20,fontFamily:TITLE_FONT,fontSize:text.fontSize*height/1080,fontWeight:text.fontWeight,lineHeight:text.lineHeight,color:'transparent',whiteSpace:'pre-wrap',wordBreak:'break-all',transform:`translate(-50%,-50%) rotate(${pose.rotation}rad) scale(${pose.scale})`}} onPointerDown={e=>{if(e.button!==0||useCameraSession.getState().mode!=='idle')return;
+      if(text.layer==='back'){const ctx=getExportContext();if(ctx){const rect=e.currentTarget.closest('.artboard')!.getBoundingClientRect(),ray=new THREE.Raycaster();ray.params.Line.threshold=.001;ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),ctx.camera);ctx.scene.updateMatrixWorld(true);for(const hit of ray.intersectObjects(ctx.scene.children,true)){let node:THREE.Object3D|null=hit.object,visible=true,ref:null|{kind:'device'|'text';instanceId:string}=null;while(node){if(!node.visible||node.userData.editorOnly)visible=false;if(node.userData.deviceIndex!==undefined){const d=s.project.devices[node.userData.deviceIndex];if(d)ref={kind:'device',instanceId:d.instanceId}}if(node.userData.textId)ref={kind:'text',instanceId:node.userData.textId};node=node.parent}if(visible&&ref){e.preventDefault();e.stopPropagation();s.selectObject(ref);return}}}}
+      e.stopPropagation();e.preventDefault();s.selectObject({kind:'text',instanceId:text.instanceId});s.beginEditGesture();drag.current={id:text.instanceId,x:e.clientX,y:e.clientY,px:pose.x,py:pose.y,rotation:pose.rotation,pointer:e.pointerId};e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{const d=drag.current;if(!d||d.pointer!==e.pointerId||!useProjectStore.getState().editingGesture)return;if(s.canvasTool==='rotate')s.setTextValue('rotation.z',d.rotation+(e.clientX-d.x)/width*Math.PI*2);else{s.setTextValue('position.x',d.px+(e.clientX-d.x)/width);s.setTextValue('position.y',d.py+(e.clientY-d.y)/height)}}} onPointerUp={e=>finish(e)} onPointerCancel={e=>finish(e,true)} onLostPointerCapture={e=>finish(e)}><span aria-hidden="true" style={{pointerEvents:'none'}}>{text.content||' '}</span></button>
+  })}</div>
+}

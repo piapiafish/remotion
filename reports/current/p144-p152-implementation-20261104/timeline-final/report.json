@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-04T14:48:55.192Z",
+  "checks": [
+    {
+      "name": "both-disjoint-intervals-pack",
+      "status": "PASS"
+    },
+    {
+      "name": "playback-overlap-keeps-separate-rows",
+      "status": "PASS"
+    },
+    {
+      "name": "start-clamps-one-frame-before-stop",
+      "status": "PASS",
+      "detail": {
+        "in": 0,
+        "out": 8,
+        "start": 1.9666666666666666,
+        "stop": 2,
+        "loop": false,
+        "rate": 1
+      }
+    },
+    {
+      "name": "near-play-handles-no-longer-cover-each-other",
+      "status": "PASS",
+      "detail": [
+        {
+          "l": 437.578125,
+          "r": 461.578125,
+          "t": 829,
+          "b": 853
+        },
+        {
+          "l": 441.984375,
+          "r": 465.984375,
+          "t": 853,
+          "b": 877
+        }
+      ]
+    },
+    {
+      "name": "start-can-be-grabbed-again-after-release",
+      "status": "PASS",
+      "detail": {
+        "before": 1.9666666666666666,
+        "clock": {
+          "in": 0,
+          "out": 8,
+          "start": 1.5666666666666664,
+          "stop": 2,
+          "loop": false,
+          "rate": 1
+        }
+      }
+    },
+    {
+      "name": "stop-can-be-grabbed-independently",
+      "status": "PASS"
+    },
+    {
+      "name": "one-frame-blue-endpoints-are-separated",
+      "status": "PASS",
+      "detail": [
+        {
+          "l": 310.5,
+          "r": 334.5,
+          "t": 790,
+          "b": 814
+        },
+        {
+          "l": 312.90625,
+          "r": 336.90625,
+          "t": 814,
+          "b": 838
+        }
+      ]
+    },
+    {
+      "name": "blue-start-can-be-reopened",
+      "status": "PASS"
+    },
+    {
+      "name": "key-delete-button-is-prominent",
+      "status": "PASS",
+      "detail": {
+        "x": 379.59375,
+        "y": 955.5,
+        "width": 91,
+        "height": 36
+      }
+    },
+    {
+      "name": "key-properties-open",
+      "status": "PASS"
+    },
+    {
+      "name": "ruler-restores-timeline-keyboard-context",
+      "status": "PASS"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "timeline",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T14:48:55.546Z",
+      "url": "http://127.0.0.1:55253/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:48:55.994Z",
+      "url": "http://127.0.0.1:55253/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:48:56.640Z",
+      "url": "http://127.0.0.1:55253/?automation=1#editor"
+    }
+  ]
+}

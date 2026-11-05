@@ -1,0 +1,17 @@
+[
+  {
+    "action": "download additional 3D model archive",
+    "status": "AUTO_REVIEW_REJECTED",
+    "reason": "The process attempted an unauthorized Visual Studio telemetry connection; payload and necessity unknown. No retry after final rejection. The incomplete 3 MiB transfer is private and is not included."
+  },
+  {
+    "action": "continue original real-HTTP workflow validation",
+    "status": "INTERRUPTED_BY_AUTO_REVIEW",
+    "reason": "Visual Studio telemetry external transmission was rejected. Five completed authoring checks are preserved; unfinished steps are not passed."
+  },
+  {
+    "action": "complete offline production 30/60 second exports",
+    "status": "INTERRUPTED_BY_AUTO_REVIEW",
+    "reason": "External page requests were blocked, but the execution environment still triggered the unauthorized telemetry endpoint. Four completed restoration/re-export checks are preserved; the started 30 second export and unstarted 60 second export are not passed."
+  }
+]

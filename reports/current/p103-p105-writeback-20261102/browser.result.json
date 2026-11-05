@@ -1,0 +1,6 @@
+{
+  "Command": "node scripts/test-editor-interactions.cjs",
+  "ExitCode": 0,
+  "TEMP": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\output\\p103-p105-writeback-20261102-temp",
+  "Output": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser"
+}

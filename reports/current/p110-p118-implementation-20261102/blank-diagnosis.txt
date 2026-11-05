@@ -1,0 +1,10 @@
+PASS first-entry-is-template-page
+PASS template-creates-two-phones-and-opens-editor
+PASS phone-settings-are-independent
+PASS two-independent-recordings-and-timing
+PASS selected-object-wheel-scales-even-over-blank
+PASS wheel-is-one-undo
+FAIL blank-click-deselects
+Error: blank-click-deselects
+    at check (D:\remotion\p0\MultiAgent-3D-Promo-Studio\scripts\test-beginner-workflow.cjs:7:150)
+    at D:\remotion\p0\MultiAgent-3D-Promo-Studio\scripts\test-beginner-workflow.cjs:40:58

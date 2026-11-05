@@ -1,0 +1,3040 @@
+{
+  "mode": "review",
+  "view": null,
+  "draft": {
+    "fov": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": 30,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    },
+    "position.x": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": -0.233818062602233,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": -0.5827139022020136,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": -1.0401289660111002,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": -1.4826805936219958,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": -1.6964072370745524,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": -1.904086621104345,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": -2.2026771667213105,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": -2.5730572120797106,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": -2.8272444975351614,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": -3.0590348453110328,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": -3.330285614745512,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": -3.390974187867344,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": -2.661093921370341,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": -2.6556017502679903,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": -2.6489638613528976,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": -2.643471690250547,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": -2.6368519873324816,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": -2.6313416302331034,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": -2.6247219273150386,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": -2.6192297562126883,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": -2.6125918672975956,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": -2.6070815101982174,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": -2.60047999327718,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": -2.5949514501807744,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": -2.588349933259737,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": -2.582839576160359,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": -2.5762198732422936,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": -2.5707095161429154,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": -2.564107999221878,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": -2.5585794561254724,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": -2.5552877906634675,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    },
+    "target.x": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": 2.7755575615628914e-17,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": -2.220446049250313e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": -6.661338147750939e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": -1.3322676295501878e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": -2.886579864025407e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": -2.6645352591003757e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": -3.9968028886505635e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": -3.9968028886505635e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": -4.440892098500626e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": -4.884981308350689e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": -8.881784197001252e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": 0.006340850963640232,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": 0.011833022065991017,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": 0.01847091098108411,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": 0.023963082083433562,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": 0.030582785001497914,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": 0.03609314210087611,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": 0.042712845018940904,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": 0.048205016121291244,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": 0.05484290503638389,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": 0.06035326213576253,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": 0.06695477905679903,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": 0.07248332215320463,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": 0.07908483907424069,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": 0.08459519617361844,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": 0.09121489909168368,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": 0.09672525619106187,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": 0.10332677311209792,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": 0.10885531620850486,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": 0.11214698167050852,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    },
+    "position.y": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": 0.053170323953570624,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": 0.1329088719486725,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": 0.23914514268458767,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": 0.3452292385985408,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": 0.3981931031263765,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": 0.4510920164442934,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": 0.5303027459148095,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": 0.6356150253418634,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": 0.7143352307885567,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": 0.7927978391433458,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": 0.8969654242118763,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": 0.9229203510039535,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": 0.7600093106088195,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": 0.7894711564608174,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": 0.8250790165137292,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": 0.8545408623657272,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": 0.8900511666376718,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": 0.919610568270637,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": 0.9551208725425824,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": 0.9845827183945804,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": 1.0201905784474923,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": 1.0497499800804575,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": 1.0851627285714347,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": 1.1148196859853672,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": 1.1502324344763453,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": 1.1797918361093096,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": 1.215302140381255,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": 1.2448615420142202,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": 1.2802742905051974,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": 1.3099312479191298,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": 1.3275888442741348,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    },
+    "target.y": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": -2.7755575615628914e-17,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": 1.3877787807814457e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": 2.220446049250313e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": 3.3306690738754696e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": 6.661338147750939e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": 7.771561172376096e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": 8.881784197001252e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": 9.992007221626409e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": 1.2212453270876722e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": 1.3322676295501878e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": 2.220446049250313e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": 0.0340144489637868,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": 0.0634762948157851,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": 0.0990841548686967,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": 0.1285460007206951,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": 0.1640563049926399,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": 0.19361570662560534,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": 0.2291260108975509,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": 0.258587856749549,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": 0.2941957168024608,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": 0.32375511843542615,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": 0.3591678669264037,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": 0.3888248243403363,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": 0.4242375728313147,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": 0.45379697446427913,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": 0.4893072787362249,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": 0.5188666803691901,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": 0.5542794288601672,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": 0.5839363862740996,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": 0.6015939826291048,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    },
+    "position.z": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 4.2,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 4.2,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": 4.1931494166380014,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": 4.1572562754703775,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": 4.062135070968845,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": 3.9143933157148916,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": 3.821471540993562,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": 3.7163113610180343,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": 3.536522627791295,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": 3.258123712034935,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": 3.0226501169026276,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": 2.766546114096528,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": 2.396800106806483,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": 2.2998939286237103,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": 1.8048600237521286,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": 1.8011350142789064,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": 1.7966329332930584,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": 1.7929079238198362,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": 1.7884181773024426,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": 1.784680833360766,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": 1.7801910868433724,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": 1.7764660773701502,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": 1.7719639963843021,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": 1.7682266524426256,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": 1.7637492403936863,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": 1.7599995619835553,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": 1.755522149934616,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": 1.7517848059929395,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": 1.7472950594755459,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": 1.7435577155338693,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": 1.73908030348493,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": 1.735330625074799,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": 1.7330980862845566,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    },
+    "target.z": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-0",
+          "order": 0,
+          "initial": true
+        },
+        {
+          "t": 0.03333333333333333,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-1",
+          "order": 1,
+          "initial": false
+        },
+        {
+          "t": 0.06666666666666667,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-2",
+          "order": 2,
+          "initial": false
+        },
+        {
+          "t": 0.1,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-3",
+          "order": 3,
+          "initial": false
+        },
+        {
+          "t": 0.13333333333333333,
+          "v": 8.881784197001252e-16,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-4",
+          "order": 4,
+          "initial": false
+        },
+        {
+          "t": 0.16666666666666666,
+          "v": 2.6645352591003757e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-5",
+          "order": 5,
+          "initial": false
+        },
+        {
+          "t": 0.2,
+          "v": 3.1086244689504383e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-6",
+          "order": 6,
+          "initial": false
+        },
+        {
+          "t": 0.23333333333333334,
+          "v": 5.773159728050814e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-7",
+          "order": 7,
+          "initial": false
+        },
+        {
+          "t": 0.26666666666666666,
+          "v": 5.329070518200751e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-8",
+          "order": 8,
+          "initial": false
+        },
+        {
+          "t": 0.3,
+          "v": 4.440892098500626e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-9",
+          "order": 9,
+          "initial": false
+        },
+        {
+          "t": 0.3333333333333333,
+          "v": 4.884981308350689e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-10",
+          "order": 10,
+          "initial": false
+        },
+        {
+          "t": 0.36666666666666664,
+          "v": 3.9968028886505635e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-11",
+          "order": 11,
+          "initial": false
+        },
+        {
+          "t": 0.4,
+          "v": 3.9968028886505635e-15,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-12",
+          "order": 12,
+          "initial": false
+        },
+        {
+          "t": 0.43333333333333335,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-13",
+          "order": 13,
+          "initial": false
+        },
+        {
+          "t": 0.4666666666666667,
+          "v": -0.0043006180010936035,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-14",
+          "order": 14,
+          "initial": false
+        },
+        {
+          "t": 0.5,
+          "v": -0.008025627474315566,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-15",
+          "order": 15,
+          "initial": false
+        },
+        {
+          "t": 0.5333333333333333,
+          "v": -0.012527708460163822,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-16",
+          "order": 16,
+          "initial": false
+        },
+        {
+          "t": 0.5666666666666667,
+          "v": -0.01625271793338534,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-17",
+          "order": 17,
+          "initial": false
+        },
+        {
+          "t": 0.6,
+          "v": -0.020742464450780318,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-18",
+          "order": 18,
+          "initial": false
+        },
+        {
+          "t": 0.6333333333333333,
+          "v": -0.02447980839245667,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-19",
+          "order": 19,
+          "initial": false
+        },
+        {
+          "t": 0.6666666666666666,
+          "v": -0.028969554909850315,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-20",
+          "order": 20,
+          "initial": false
+        },
+        {
+          "t": 0.7,
+          "v": -0.0326945643830725,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-21",
+          "order": 21,
+          "initial": false
+        },
+        {
+          "t": 0.7333333333333333,
+          "v": -0.03719664536892053,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-22",
+          "order": 22,
+          "initial": false
+        },
+        {
+          "t": 0.7666666666666667,
+          "v": -0.04093398931059755,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-23",
+          "order": 23,
+          "initial": false
+        },
+        {
+          "t": 0.8,
+          "v": -0.04541140135953725,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-24",
+          "order": 24,
+          "initial": false
+        },
+        {
+          "t": 0.8333333333333334,
+          "v": -0.049161079769668214,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-25",
+          "order": 25,
+          "initial": false
+        },
+        {
+          "t": 0.8666666666666667,
+          "v": -0.053638491818607914,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-26",
+          "order": 26,
+          "initial": false
+        },
+        {
+          "t": 0.9,
+          "v": -0.057375835760284266,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-27",
+          "order": 27,
+          "initial": false
+        },
+        {
+          "t": 0.9333333333333333,
+          "v": -0.06186558227767791,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-28",
+          "order": 28,
+          "initial": false
+        },
+        {
+          "t": 0.9666666666666667,
+          "v": -0.06560292621935448,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-29",
+          "order": 29,
+          "initial": false
+        },
+        {
+          "t": 1,
+          "v": -0.07008033826829396,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-30",
+          "order": 30,
+          "initial": false
+        },
+        {
+          "t": 1.0333333333333334,
+          "v": -0.07383001667842493,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-31",
+          "order": 31,
+          "initial": false
+        },
+        {
+          "t": 1.0666666666666667,
+          "v": -0.07606255546866736,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "poseId": "camera-32",
+          "order": 32,
+          "initial": false
+        }
+      ]
+    }
+  },
+  "start": 0,
+  "end": 1.0666666666666667,
+  "frame": 32
+}

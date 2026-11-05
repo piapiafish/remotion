@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-04T12:41:45.234Z",
+  "checks": [
+    {
+      "name": "legacy-fill-does-not-change-loop-or-clock",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy-loop-still-renders-after-fill-change",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "legacy-fit",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T12:41:45.608Z",
+      "url": "http://127.0.0.1:49682/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:41:46.085Z",
+      "url": "http://127.0.0.1:49682/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:41:46.808Z",
+      "url": "http://127.0.0.1:49682/?automation=1#editor"
+    }
+  ]
+}

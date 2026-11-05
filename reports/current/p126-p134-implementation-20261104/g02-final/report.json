@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-04T00:35:28.735Z",
+  "checks": [
+    {
+      "name": "G02-numeric-instructions-preserve-before-range-and-position",
+      "status": "PASS",
+      "detail": [
+        [
+          0,
+          0.2,
+          0,
+          0.8
+        ],
+        [
+          1,
+          0.3,
+          29.999999999999996,
+          0.8
+        ],
+        [
+          2,
+          0.4,
+          59.99999999999999,
+          0.8
+        ],
+        [
+          6,
+          0.6,
+          299.99999999999994,
+          0.8
+        ],
+        [
+          8,
+          0.8,
+          419.99999999999994,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "G02-instructions-preserve-other-object",
+      "status": "PASS"
+    },
+    {
+      "name": "G02-undo-restores-previous-end-angle",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "g02",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

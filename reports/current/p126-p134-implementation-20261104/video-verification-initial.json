@@ -1,0 +1,21 @@
+{
+  "status": "FAIL",
+  "comparisons": [
+    {
+      "frame": 0,
+      "ssim": 0.993673
+    },
+    {
+      "frame": 30,
+      "ssim": 0.984583
+    },
+    {
+      "frame": 60,
+      "ssim": 0.953326
+    },
+    {
+      "frame": 90,
+      "ssim": 0.953445
+    }
+  ]
+}

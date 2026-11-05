@@ -1,0 +1,15 @@
+D:\remotion\p0\MultiAgent-3D-Promo-Studio\scripts\test-third-feedback.cjs:200
+   const longProject=await save('third-feedback-30s');await p.getByRole('button',{name:'导出',exact:true}).click();const longWait=p.waitForEvent('download',{timeout:420000});longWait.catch(()=>{});await p.getByRole('button',{name:'导出视频（MP4 (H.264)）',exact:true}).click();const timer=setInterval(()=>{void p.evaluate(()=>({url:location.href,time:new Date().toISOString(),duration:window.S?.getState().project.duration,dialog:document.querySelector('.studio-dialog')?.innerText})).then(value=>{fs.writeFileSync(path.join(out,'export-progress.json'),JSON.stringify(value,null,2));console.log('LONG EXPORT '+JSON.stringify(value))}).catch(()=>{})},10000);let long;try{long=await longWait}finally{clearInterval(timer)},longFile=path.join(out,'third-feedback-30s.mp4');await long.saveAs(longFile);const q=JSON.parse(execFileSync('ffprobe',['-v','error','-count_frames','-show_streams','-show_format','-of','json',longFile],{encoding:'utf8'}));fs.writeFileSync(path.join(out,'ffprobe-long.json'),JSON.stringify(q,null,2));check('single-30-second-900-frame-export',Number(q.streams[0].nb_read_frames)===900,{project:longProject});await p.getByRole('button',{name:'关闭面板',exact:true}).click();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^
+
+SyntaxError: Unexpected token ','
+    at wrapSafe (node:internal/modules/cjs/loader:1861:18)
+    at Module._compile (node:internal/modules/cjs/loader:1903:20)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+Node.js v24.22.2

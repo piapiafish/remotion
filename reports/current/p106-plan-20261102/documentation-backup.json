@@ -1,0 +1,25 @@
+{
+  "directory": "reports/archive/p106-plan-before-20261102-085506-473030",
+  "files": {
+    "IMPLEMENTATION_ROADMAP.md": {
+      "backup": "reports/archive/p106-plan-before-20261102-085506-473030/IMPLEMENTATION_ROADMAP.md.original",
+      "sha256": "b9b672eb17938492a99299f9946a56d4c499773111290220b7c0fd7e316238df"
+    },
+    "DEVELOPMENT_LOG.md": {
+      "backup": "reports/archive/p106-plan-before-20261102-085506-473030/DEVELOPMENT_LOG.md.original",
+      "sha256": "d17aae0794fe235db3c7cf2e2dbe9a67b9186e7b26630d42132c16efe23deee2"
+    },
+    "ISSUES_LOG.md": {
+      "backup": "reports/archive/p106-plan-before-20261102-085506-473030/ISSUES_LOG.md.original",
+      "sha256": "fc2a23d967f700245322653ad9de9111107ca217f7f1303b042927004b0c5827"
+    },
+    "reports/current/README.md": {
+      "backup": "reports/archive/p106-plan-before-20261102-085506-473030/reports/current/README.md.original",
+      "sha256": "7ce9681e3966257c1f89dbea7b7e4cd74b20c41fb9fbb9cdb2e714db3e32199e"
+    },
+    "reports/current/document-check.json": {
+      "backup": "reports/archive/p106-plan-before-20261102-085506-473030/reports/current/document-check.json.original",
+      "sha256": "f966ec9011923bf590ed96d3241e3712af61006f51b11015211d51db11ee8f9f"
+    }
+  }
+}

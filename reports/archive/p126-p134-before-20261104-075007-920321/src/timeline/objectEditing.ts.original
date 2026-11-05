@@ -1,0 +1,56 @@
+import type { EaseHandle, Project, TrackSet } from '../store/schema'
+import { sampleTrack } from './sample'
+import { EASE_LINEAR } from './easing'
+import { keyTimes, setKey, staticTrack } from './tracks'
+import { channelFallback, deleteEditableKey, easeEditableKey, moveEditableKey, sameTime, targetChannels, targetTracks, type TrackTarget } from './editing'
+
+export function animationEnabled(project: Project, target: TrackTarget): boolean {
+  const item = target.kind === 'camera' ? project.camera : target.kind === 'text'
+    ? project.texts?.find(d => d.instanceId === target.instanceId) : project.devices.find(d => d.instanceId === target.instanceId)
+  return !!item?.animationEnabled || Object.values(targetTracks(project, target) ?? {}).some(t => t.keys.length > 1)
+}
+export function withObjectTracks(project: Project, target: TrackTarget, transform: TrackSet, enabled?: boolean): Project {
+  const flag = enabled === undefined ? {} : { animationEnabled: enabled }
+  if (target.kind === 'camera') return { ...project, camera: { ...project.camera, ...flag, preset: null, tracks: transform } }
+  if (target.kind === 'text') return { ...project, texts: project.texts?.map(d => d.instanceId === target.instanceId ? { ...d, ...flag, transform } : d) }
+  return { ...project, devices: project.devices.map(d => d.instanceId === target.instanceId ? { ...d, ...flag, transform } : d) }
+}
+export function objectKeyTimes(project: Project, target: TrackTarget): number[] {
+  return animationEnabled(project, target) ? keyTimes(targetTracks(project, target) ?? {}).filter(t=>t<=project.duration+1e-6) : []
+}
+/** Explicitly record a pose, including the first key. Never add a hidden end anchor. */
+export function addObjectKey(project: Project, target: TrackTarget, time: number): Project {
+  const original = targetTracks(project, target)
+  if (!original || !Number.isFinite(time)) return project
+  const t = Math.max(0, Math.min(project.duration, time)), tracks = { ...original }, enabled=animationEnabled(project,target)
+  for (const c of targetChannels(target)) {
+    const base=!enabled && tracks[c] ? {...tracks[c],keys:tracks[c].keys.map(k=>({...k,ease:EASE_LINEAR}))} : tracks[c]
+    tracks[c] = setKey(base, t, sampleTrack(original[c], t, channelFallback(project, target, c)),enabled?undefined:EASE_LINEAR)
+  }
+  return { ...withObjectTracks(project, target, tracks, true), version: 2 }
+}
+/** Only keys at the selected pose move; neighbouring poses and other objects remain untouched. */
+export function moveObjectKey(project: Project, target: TrackTarget, from: number, to: number): Project {
+  if (!Number.isFinite(to) || sameTime(from, to)) return project
+  const original = targetTracks(project, target)
+  if (!original) return project
+  const tracks = { ...original }
+  for (const c of Object.keys(tracks)) tracks[c] = moveEditableKey(original[c], from, Math.max(0, Math.min(project.duration, to))) ?? original[c]
+  return withObjectTracks(project, target, tracks)
+}
+export function deleteObjectKey(project: Project, target: TrackTarget, t: number): Project {
+  const original = targetTracks(project, target)
+  if (!original) return project
+  const tracks = { ...original }
+  for (const c of Object.keys(tracks)) if (tracks[c].keys.some(k => sameTime(k.t, t))) tracks[c] = deleteEditableKey(tracks[c], t, sampleTrack(tracks[c], t, channelFallback(project, target, c)))
+  return withObjectTracks(project, target, tracks,Object.values(tracks).some(track=>track.keys.length>1))
+}
+export function easeObjectKey(project: Project, target: TrackTarget, t: number, ease: EaseHandle): Project {
+  const original = targetTracks(project, target)
+  if (!original) return project
+  return withObjectTracks(project, target, Object.fromEntries(Object.entries(original).map(([c, track]) => [c, easeEditableKey(track, t, ease) ?? track])))
+}
+export function poseValueAt(tracks: TrackSet, channel: string, t: number, value: number, recording: boolean): TrackSet {
+  const pose = recording ? Object.fromEntries(Object.entries(tracks).map(([c, track]) => [c, setKey(track, t, sampleTrack(track, t, c === 'scale' || c === 'opacity' ? 1 : 0))])) : tracks
+  return { ...pose, [channel]: recording || (tracks[channel]?.keys.length ?? 0) > 1 ? setKey(pose[channel], t, value) : staticTrack(value) }
+}

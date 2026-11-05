@@ -1,0 +1,30 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/scene/fixedGround.test.ts (6 tests | 1 failed) 12ms
+     × matches transformed corners for every model and legacy orientation 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/scene/fixedGround.test.ts > fixed floor and full poses > matches transformed corners for every model and legacy orientation
+AssertionError: expected 1.3166048925804246 to be close to 1.3166049718856812, received difference is 7.930525658395027e-8, but expected 5e-8
+ ❯ src/scene/fixedGround.test.ts:28:40
+     26|         .multiply(new Matrix4().makeRotationZ(orientation==='landscape…
+     27|       const geometry=new BoxGeometry(...manifest.bodySize);geometry.ap…
+     28|       expect(deviceHalfHeight(d,pose)).toBeCloseTo(new Box3().copy(geo…
+       |                                        ^
+     29|     }
+     30|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 35 passed (36)
+      Tests  1 failed | 353 passed (354)
+   Start at  19:34:20
+   Duration  1.76s (transform 8.64s, setup 0ms, import 15.77s, tests 785ms, environment 3ms)
+

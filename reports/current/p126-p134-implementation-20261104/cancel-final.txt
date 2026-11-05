@@ -1,0 +1,5 @@
+FAIL cancel-releases-session-during-preparation
+SCENARIO FAIL cancel-retry Error: cancel-releases-session-during-preparation
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"cancel-retry","status":"FAIL","error":"Error: cancel-releases-session-during-preparation"}],"checks":3}

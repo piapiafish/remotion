@@ -1,0 +1,42 @@
+import { FontLoader, type Font, type FontData } from 'three/examples/jsm/loaders/FontLoader.js'
+import { parse } from 'opentype.js'
+import type { Project, TextObject } from '../store/schema'
+
+type Glyph = {index:number;advanceWidth:number;path:{commands:Record<string,number|string>[]};getBoundingBox:()=>{x1:number;x2:number}}
+type OutlineFont = {unitsPerEm:number;ascender:number;descender:number;charToGlyph:(char:string)=>Glyph}
+let source:Promise<OutlineFont>|null=null
+const cache=new Map<string,Promise<{font:Font;data:string}>>()
+const ready=new Map<string,string>()
+export const solidKey=(text:TextObject)=>JSON.stringify([text.content,text.fontSize,text.width,text.align,text.lineHeight,text.fontData])
+export function markSolidReady(id:string,key:string|null){if(key===null)ready.delete(id);else ready.set(id,key)}
+export function solidFont(text:Pick<TextObject,'content'|'fontData'>):Promise<{font:Font;data:string}>{
+  const chars=[...new Set(Array.from(text.content.replace(/\n/g,'')+' ?'))],id=JSON.stringify([chars,text.fontData])
+  let task=cache.get(id)
+  if(!task){task=(async()=>{
+    if(text.fontData){const data=JSON.parse(text.fontData) as FontData;if(chars.every(c=>data.glyphs[c]))return {font:new FontLoader().parse(data),data:text.fontData}}
+    source??=fetch('/fonts/NotoSansCJKsc-Regular.otf').then(async response=>{if(!response.ok)throw new Error('内置中文字体读取失败。');return parse(await response.arrayBuffer()) as OutlineFont}).catch(error=>{source=null;throw error})
+    const font=await source,glyphs:Record<string,unknown>={}
+    for(const char of chars){const g=font.charToGlyph(char);if(!g.index&&char!==' ')throw new Error(`实体文字暂不支持字形“${char}”，请替换该字符。`)
+      const bounds=g.getBoundingBox();let outline=''
+      for(const cmd of g.path.commands){const type=String(cmd.type).toLowerCase();if(type==='z')continue;outline+=(type==='c'?'b':type)+' ';for(const name of ['x','y','x1','y1','x2','y2'])if(cmd[name]!==undefined)outline+=String(cmd[name])+' '}
+      glyphs[char]={ha:g.advanceWidth,x_min:bounds.x1,x_max:bounds.x2,o:outline}
+    }
+    const data=JSON.stringify({glyphs,familyName:'Studio CJK Outlines',ascender:font.ascender,descender:font.descender,underlinePosition:-100,underlineThickness:50,boundingBox:{yMin:font.descender,yMax:font.ascender},resolution:font.unitsPerEm,original_font_information:{license:'SIL Open Font License 1.1',source:'notofonts/noto-cjk'}})
+    return {font:new FontLoader().parse(JSON.parse(data)),data}
+  })();cache.set(id,task);task.catch(()=>cache.delete(id))}
+  // Bounded text cache; the parsed shared font remains available offline.
+  if(cache.size>40)cache.delete(cache.keys().next().value!)
+  return task
+}
+export async function embedSolidFonts(project:Project):Promise<Project>{
+  if(!project.texts?.some(t=>t.textKind==='solid'))return project
+  const texts=await Promise.all(project.texts.map(async t=>t.textKind==='solid'?{...t,fontData:(await solidFont(t)).data}:t))
+  return {...project,texts,version:3}
+}
+export async function waitForSolidTexts(project:Project,signal?:AbortSignal){
+  signal?.throwIfAborted()
+  const texts=project.texts?.filter(t=>t.textKind==='solid')??[]
+  await Promise.all(texts.map(solidFont))
+  const start=performance.now()
+  while(texts.some(t=>ready.get(t.instanceId)!==solidKey(t))){signal?.throwIfAborted();if(performance.now()-start>15000)throw new Error('实体文字尚未就绪，请等待字形显示后重试。');await new Promise(resolve=>setTimeout(resolve,20))}
+}

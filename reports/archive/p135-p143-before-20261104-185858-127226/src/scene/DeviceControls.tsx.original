@@ -1,0 +1,101 @@
+import { useCameraSession } from '../store/cameraSession'
+import { TransformControls } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { useEffect, useMemo, useRef, type RefObject } from 'react'
+import * as THREE from 'three'
+import type { OrbitControls as OrbitImpl, TransformControls as TransformImpl } from 'three-stdlib'
+import { useProjectStore } from '../store/project'
+import { sampleTimeline } from '../timeline/sample'
+import { nearestEuler, uniformScale } from './transformValues'
+
+export function DeviceControls({ deviceRefs, orbitingRef, controlsRef }: {
+  deviceRefs: RefObject<(THREE.Group | null)[]>
+  orbitingRef: RefObject<boolean>
+  controlsRef: RefObject<OrbitImpl | null>
+}) {
+  const tool = useProjectStore(s => s.canvasTool)
+  const active = useProjectStore(s => s.activeDevice)
+  const instanceId = useProjectStore(s => s.project.devices[s.activeDevice]?.instanceId)
+  const playing = useProjectStore(s => s.playing)
+  const selected = useProjectStore(s=>s.activeObject?.kind==='device')
+  const proxy = useMemo(() => new THREE.Group(), [])
+  const outline = useMemo(() => {
+    const helper = new THREE.BoxHelper(new THREE.Group(), 0x80aaff)
+    helper.userData.editorOnly = true
+    helper.raycast = () => {}
+    return helper
+  }, [])
+  const controls = useRef<TransformImpl>(null)
+  const outlineRef = useRef(outline)
+  const drag = useRef<{ id: string; rotation: [number, number, number]; scale: number } | null>(null)
+
+  function finish(cancel = false) {
+    if (!drag.current) return
+    drag.current = null
+    useProjectStore.getState().endEditGesture(cancel)
+    if (cancel) controls.current?.reset()
+  }
+  useEffect(() => {
+    const cancel = () => finish(true)
+    const key = (event: KeyboardEvent) => { if (event.key === 'Escape') cancel() }
+    window.addEventListener('keydown', key)
+    window.addEventListener('pointercancel', cancel)
+    window.addEventListener('blur', cancel)
+    return () => {
+      window.removeEventListener('keydown', key)
+      window.removeEventListener('pointercancel', cancel)
+      window.removeEventListener('blur', cancel)
+      finish(true)
+    }
+  }, [instanceId, tool])
+  useEffect(() => () => { outline.geometry.dispose(); (outline.material as THREE.Material).dispose() }, [outline])
+
+  useFrame(() => {
+    const s = useProjectStore.getState()
+    if (controlsRef.current) controlsRef.current.enabled = !s.activeObject && (!s.editingGesture || orbitingRef.current)
+    const state = sampleTimeline(s.project, s.playhead)
+    const view=useCameraSession.getState().view
+    const pose = state.devices[s.activeDevice]
+    if (!orbitingRef.current) controlsRef.current?.target.set(...(view??state.camera).target)
+    const group = deviceRefs.current[s.activeDevice]
+    const helper = outlineRef.current
+    helper.visible = !!group && group.visible && !s.playing && s.activeObject?.kind === 'device'
+    if (group && helper.visible) helper.setFromObject(group)
+    if (!pose || drag.current) return
+    proxy.position.set(...pose.position)
+    proxy.rotation.set(...pose.rotation)
+    proxy.scale.setScalar(pose.scale)
+    proxy.updateMatrixWorld()
+  })
+  const transforming = tool === 'translate' || tool === 'rotate' || tool === 'scale'
+  return <>
+    <primitive object={proxy} />
+    <primitive object={outline} />
+    {transforming && selected && !playing && instanceId && <TransformControls key={instanceId + tool} ref={value => {
+      controls.current = value
+      if (value) value.userData.editorOnly = true
+    }} object={proxy} mode={tool} space="local" size={0.8}
+      onMouseDown={() => {
+        const s = useProjectStore.getState()
+        const pose = sampleTimeline(s.project, s.playhead).devices[active]
+        if (!pose) return
+        s.beginEditGesture()
+        drag.current = { id: instanceId, rotation: [...pose.rotation], scale: pose.scale }
+      }}
+      onObjectChange={() => {
+        const d = drag.current, s = useProjectStore.getState()
+        if (!d || !s.editingGesture || s.project.devices[s.activeDevice]?.instanceId !== d.id) return
+        if (tool === 'translate') s.setDevicePosition(proxy.position.toArray())
+        if (tool === 'rotate') {
+          d.rotation = nearestEuler(proxy.quaternion, d.rotation)
+          s.setDeviceRotation(d.rotation)
+        }
+        if (tool === 'scale') {
+          const scale = uniformScale(proxy.scale.toArray(), d.scale)
+          s.setDeviceScale(scale)
+          proxy.scale.setScalar(scale)
+        }
+      }}
+      onMouseUp={() => finish()} />}
+  </>
+}

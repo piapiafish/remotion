@@ -1,0 +1,24 @@
+[
+  {
+    "file": "browser-final/second-feedback-1080p30.mp4",
+    "bytes": 2247215,
+    "sha256": "1bb14292ca3db1db5c85d01c15ade9ee20131201008132c1772fd44dfd3413b2",
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "frames": 120,
+    "duration": "4.000000",
+    "codec": "h264"
+  },
+  {
+    "file": "browser-final/second-feedback-30s.mp4",
+    "bytes": 13417431,
+    "sha256": "8ad0b52813e8da64801c56c73a50df62cb9e76df5b140b99d0966d7f6bbe8516",
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "frames": 900,
+    "duration": "30.000000",
+    "codec": "h264"
+  }
+]

@@ -1,0 +1,54 @@
+import { useExportSession } from '../export/session'
+import { useReplacement } from '../store/replacement'
+import { useEffect } from 'react'
+import { useProjectStore } from '../store/project'
+
+/**
+ * Global keyboard shortcuts.
+ *
+ * Deliberately inert while a text field has focus: undo inside an input
+ * should undo typing, not reach past it and revert the document.
+ */
+export function useShortcuts() {
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if(e.isComposing)return
+      if(useReplacement.getState().pending){if((e.ctrlKey||e.metaKey)&&['s','z'].includes(e.key.toLowerCase()))e.preventDefault();return}
+      if (useExportSession.getState().busy) {
+        if ((e.ctrlKey || e.metaKey) && ['s', 'z'].includes(e.key.toLowerCase())) e.preventDefault()
+        return
+      }
+      const target = e.target as HTMLElement | null
+      if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) {
+        return
+      }
+
+      const store = useProjectStore.getState()
+      if (e.key === 'Escape' && store.editingGesture) {
+        e.preventDefault()
+        store.endEditGesture(true)
+        return
+      }
+      const mod = e.metaKey || e.ctrlKey
+
+      if (mod && e.key.toLowerCase() === 'z') {
+        e.preventDefault()
+        if (e.shiftKey) store.redo()
+        else store.undo()
+        return
+      }
+      if (mod && e.key.toLowerCase() === 's') {
+        e.preventDefault()
+        void store.saveProject()
+        return
+      }
+      if (e.key === ' ') {
+        e.preventDefault()
+        store.setPlaying(!store.playing)
+      }
+    }
+
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+}

@@ -1,0 +1,14 @@
+{
+  "Backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p103-p105-before-20261102-080233-468621",
+  "RenamedBackupTests": [
+    {
+      "OriginalPath": "src\\timeline\\templates.test.ts",
+      "StoredPath": "src\\timeline\\templates.test.ts.original",
+      "SHA256": "2D6F0A8F96107E618DF32D66068D5CE0EE39EA58C1D3FB9058858A52EC63CDEB"
+    }
+  ],
+  "PayloadVerified": true,
+  "IdempotencyCheck": "ALREADY_APPLIED (0 pending files)",
+  "ProjectDevServer": "No project Vite process found in preflight",
+  "PackageSHA256": "363A7E74BEDA53C8E53696F440118AAD7A33BB77569BCD5C0ED29A1C8A13335F"
+}

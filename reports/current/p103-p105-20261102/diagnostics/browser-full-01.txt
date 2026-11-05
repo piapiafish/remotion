@@ -1,0 +1,47 @@
+START 01-manual-keyframes
+PASS manual-entry-hold-exit-keys
+PASS manual-720-degree-euler-rotation
+PASS keyframe-real-pointer-drag-retimes
+PASS long-drag-single-undo
+PASS drag-redo-restores-retiming
+PASS keyframe-keyboard-delete
+PASS keyframe-easing-is-written
+PASS camera-channel-edit-keeps-device-animation
+START 02-canvas-selection-and-transform
+PASS canvas-pick-selects-second-instance
+PASS canvas-pick-synchronizes-list-and-inspector
+PASS canvas-move-real-handle-targets-only-selected-device
+PASS canvas-move-syncs-numeric-fields
+PASS canvas-drag-single-undo
+PASS canvas-rotate-real-handle
+PASS canvas-scale-real-handle-uniform-document-scale
+PASS escape-cancels-device-gesture
+PASS canvas-transform-at-playhead-adds-key-without-changing-endpoints
+PASS animated-canvas-edit-single-undo
+FAIL number-field-drag-writes-pose
+FAIL 02-canvas-selection-and-transform
+START 03-independent-presets-and-media
+PASS canvas-pick-real-GLB
+PASS MAN-005-preset-only-selected-instance
+PASS preset-protects-unrelated-channels
+PASS devices-have-independent-actions-and-times
+PASS timeline-owner-follows-device-selection
+PASS preset-undo-is-one-operation
+PASS orbit-preset-has-camera-scope
+PASS independent-recordings-are-preserved
+START 04-new-session-and-export
+PASS manual-animation-new-session-roundtrip
+FAIL 04-new-session-and-export
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForEvent: Target page, context or browser has been closed
+=========================== logs ===========================
+waiting for event "download"
+============================================================
+    at C:\Users\20153\AppData\Local\Temp\p103-p105-20261101-n3lc8n0e\audit-editing.cjs:219:26
+    at async run (C:\Users\20153\AppData\Local\Temp\p103-p105-20261101-n3lc8n0e\audit-editing.cjs:32:158)
+    at async C:\Users\20153\AppData\Local\Temp\p103-p105-20261101-n3lc8n0e\audit-editing.cjs:211:26
+
+Node.js v24.22.2

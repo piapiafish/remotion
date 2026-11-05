@@ -1,0 +1,284 @@
+[
+  {
+    "path": ".gitignore",
+    "status": "modified",
+    "originalSha256": "000b9d47f0c1806c114f7916a0feb526fb57f219ae166fd7c930077675bd25d0",
+    "sha256": "5d6c5d43b1ca8714da69b7d0c7349a218eb876e055ee0dab9f12bae59ca00aea"
+  },
+  {
+    "path": ".oxlintrc.json",
+    "status": "modified",
+    "originalSha256": "b4d344818a1e1bf43997e4744a9153c8eef770c98b58229cd86363dabb85ded4",
+    "sha256": "35f9d795af154edf1c46178241987bdb5695612e39426364c481b9c3123a43e1"
+  },
+  {
+    "path": "DEMO_WINDOWS.bat",
+    "status": "modified",
+    "originalSha256": "5ed829c008462288a1585d27b198c488860d5a4d3352e3a069542330322ea8e6",
+    "sha256": "33e136f177d2993258321db2e9877cd0efbb7b688c60146139d57ac53dca57b6"
+  },
+  {
+    "path": "SETUP_WINDOWS.bat",
+    "status": "modified",
+    "originalSha256": "6e066e78f9b3f67b4e51eabf9fd0bc88b6d14bb23648affc74f36a0463ff47c2",
+    "sha256": "bc352e0136659c61ec098919e743d4f237d287e6b8ff326fc1a9a58843fa2600"
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "status": "modified",
+    "originalSha256": "66ed41a4a139b8fb2f12f743cac97e22a7057ef2dd41b90e31d21ca356a1fffc",
+    "sha256": "93d4c720e8ad0d4cc945d5dddfa88cfcbe0ea5a5d0fee9e30c200da9b36a6065"
+  },
+  {
+    "path": "docs/DELIVERY_STATUS.md",
+    "status": "modified",
+    "originalSha256": "f20ba77adf17075f2926dc8950f1051e82db71f6697a6d59dae1eeb78ce0f219",
+    "sha256": "e0e8e9a8a7ff8883edb9b5f4317fd45de379992d203313c228c304cb30992059"
+  },
+  {
+    "path": "docs/P0_ACCEPTANCE_REPORT.md",
+    "status": "added",
+    "sha256": "e3df7f53d78f90ff1f321cec6fc237e8b739c2a2c41f54878fa08781abcfd917"
+  },
+  {
+    "path": "docs/P0_SOURCE_PRESERVATION.json",
+    "status": "added",
+    "sha256": "cf5061377741dc222b28f6b6fbde33387bf6a9bb1ddb1db81527737faba59fdf"
+  },
+  {
+    "path": "docs/P0_WINDOWS.md",
+    "status": "added",
+    "sha256": "f6e799354b3d921226df7aa81408173ab5aa3719a29d51222c5947e6138a1c72"
+  },
+  {
+    "path": "docs/TESTING.md",
+    "status": "modified",
+    "originalSha256": "f560dd4d9902f9323f1183d14bc64643bbeffbee8a2847e422412913c6054b28",
+    "sha256": "0b5f06959b73364bfa7dcfd575d9103f2bd7d5329491f526f7da07706b84b9bc"
+  },
+  {
+    "path": "package.json",
+    "status": "modified",
+    "originalSha256": "825ea0b5b6cbf062f297cd63cc7e7b4d979c292c05cf7e62c311ac06c3564172",
+    "sha256": "8610fb13263fffdab0130c59b613628c78a5be61f941a41b116efcf37de754a1"
+  },
+  {
+    "path": "public/draco/DRACO-LICENSE.txt",
+    "status": "added",
+    "sha256": "d3709b0fb4b8a94bbb1d02b8a2e484f258b0d9c5c5a01f940391f3fe662cd1a4"
+  },
+  {
+    "path": "public/draco/README.md",
+    "status": "added",
+    "sha256": "0059a894c97f501d0e95aef2c5a502f9f9234649529a0f1accfb22ed85296415"
+  },
+  {
+    "path": "public/draco/THREE-LICENSE.txt",
+    "status": "added",
+    "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+  },
+  {
+    "path": "public/draco/draco_decoder.js",
+    "status": "added",
+    "sha256": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f"
+  },
+  {
+    "path": "public/draco/draco_decoder.wasm",
+    "status": "added",
+    "sha256": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac"
+  },
+  {
+    "path": "public/draco/draco_wasm_wrapper.js",
+    "status": "added",
+    "sha256": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6"
+  },
+  {
+    "path": "public/environments/README.md",
+    "status": "added",
+    "sha256": "f6d81165bf1005f7bcc82c4edd1b332592c1f348a0b77d56a9aaa6f38245b198"
+  },
+  {
+    "path": "public/environments/city.hdr",
+    "status": "added",
+    "sha256": "7afe4c2f9700ee78c7477c53fa355463d7dda1fdede401432d6b5f9ff0a95696"
+  },
+  {
+    "path": "public/environments/sources.json",
+    "status": "added",
+    "sha256": "c9a47540ef179834c72d96ad2102866944cf8b8606ae39dd21913b2b09a2f6d7"
+  },
+  {
+    "path": "public/environments/studio.hdr",
+    "status": "added",
+    "sha256": "29267a4aa8c10de26cae758e4e3c4daadde88673798666ad657724bab7224a35"
+  },
+  {
+    "path": "public/environments/sunset.hdr",
+    "status": "added",
+    "sha256": "0e72ed46b5316cb5fb67fc81ff85b024a09146fd89ef3811a8d2299647ada118"
+  },
+  {
+    "path": "public/environments/warehouse.hdr",
+    "status": "added",
+    "sha256": "9b3d611cadc32c3a0c7e084ce5611c0650293881c4a041e7fa13748fe0dc6451"
+  },
+  {
+    "path": "remotion-compositor/package-lock.json",
+    "status": "added",
+    "sha256": "7cf866c21664bb586a1a00c1737dc34b17138b0bf97c1cb6d5b8004279b16ffd"
+  },
+  {
+    "path": "remotion-compositor/src/Film.tsx",
+    "status": "modified",
+    "originalSha256": "e5602145c4375a2c358c7b89203d15ccad38b237b786c3e2ef64080070b9310c",
+    "sha256": "e0fbef98cc429091d6e7a1613c261d360af6cdfa0337ecf0e2654c4140fd2587"
+  },
+  {
+    "path": "scripts/doctor.mjs",
+    "status": "modified",
+    "originalSha256": "c807da63b37108dcd721687acb98048736509b517afffef2bb6b302cdb823019",
+    "sha256": "48665b583db586aef5cfd4685ef03b757c7a24ec7b51489b68c68a45a3221a89"
+  },
+  {
+    "path": "scripts/p0-smoke.mjs",
+    "status": "added",
+    "sha256": "23d9dc99aad4701b88ebffb2cafe6bb521c74a3a69bd105b110ab1399321d30d"
+  },
+  {
+    "path": "scripts/p0-visual.py",
+    "status": "added",
+    "sha256": "b0e2e2c9df81590bb286e6481ecb443d41841c8b68821617b9a9977603ca1af4"
+  },
+  {
+    "path": "scripts/remotion-loopback.cjs",
+    "status": "added",
+    "sha256": "6ab9394091fe788be46a2095db130cd459e00d7bb39bd3700b7b25eb97f53d15"
+  },
+  {
+    "path": "services/agent-orchestrator/audio.mjs",
+    "status": "added",
+    "sha256": "86593df09e88fe56873dd29cfb201f7ea52dad65cc7f2ff03eda8c4d461a3d4a"
+  },
+  {
+    "path": "services/agent-orchestrator/cache.mjs",
+    "status": "added",
+    "sha256": "7a5595e1617368a722ce10229d6192c1b84d3575b66f577f0b0ee652b629395a"
+  },
+  {
+    "path": "services/agent-orchestrator/cli.mjs",
+    "status": "modified",
+    "originalSha256": "ad6462a418e5ee0b3487b5e3cc747ba431bb28903425dc755eee909b8491e227",
+    "sha256": "2e0ca6ba07c5aadfd2005345ed54ed90cbd9159e419d193f5af485b2fdc6f16b"
+  },
+  {
+    "path": "services/agent-orchestrator/critic.mjs",
+    "status": "modified",
+    "originalSha256": "ad8adef24d69da00ad084f97369f29fea938feed04389884b279aacfc88099dc",
+    "sha256": "bf43da52805f57b40102540de5979c87c0739712f187fe2c8bc183df9891e760"
+  },
+  {
+    "path": "services/render-worker/requirements.txt",
+    "status": "added",
+    "sha256": "ebeb483138ed507c6d6d57c4006b13a2bafbde6b20abc9829b0fd160059c368d"
+  },
+  {
+    "path": "services/render-worker/worker.py",
+    "status": "modified",
+    "originalSha256": "e26d7404ac64f20fac0d5b8350d072a313bfd027555cfe50461a2a14ed71b4c9",
+    "sha256": "777e62f2f79e2639acb779e9401c70c44751fea2938c07aff118038e3a9942a1"
+  },
+  {
+    "path": "src/automation/bridge.ts",
+    "status": "modified",
+    "originalSha256": "ee9d35c67880f177e40b18422a5e59fb3fcfc7070e2de7c5d713ec39ed0a249a",
+    "sha256": "16aec8ae9e62feb5539b78103b996d0b778182a51be67da5d536c1089e7d9b5e"
+  },
+  {
+    "path": "src/media/screenVideo.test.ts",
+    "status": "modified",
+    "originalSha256": "693696d5f2e4eb5eca9903018958cdbd2984d9f8d6b4999da22e7351814ffe20",
+    "sha256": "5b9d61adf2872a9a589d4e84514284306d2f77e78fd5e32e50b2c48dcb9a7a62"
+  },
+  {
+    "path": "src/media/screenVideo.ts",
+    "status": "modified",
+    "originalSha256": "98bcee61cedfff60bb11cd4fdc6cbb371f902d73b52b6a5c146d207e7578a415",
+    "sha256": "e19c894849e4b7f324b7a010aaac2859d368408b8d7e9eb1fd72e478b0c46b92"
+  },
+  {
+    "path": "src/media/useScreenVideo.ts",
+    "status": "added",
+    "sha256": "090c0d6a1e2381d61da31fee4ec205d561af7dd845520916717a8ef48a29ea7d"
+  },
+  {
+    "path": "src/scene/Device.tsx",
+    "status": "modified",
+    "originalSha256": "8df410c877887b7a278187b3e023f4a2798d27135e7b962b7926a056ec0541a2",
+    "sha256": "657f58b1a94d237d7a9ec980fc5cdd4c40d124d4a6794afa601cdd2bf8995adc"
+  },
+  {
+    "path": "src/scene/GltfDevice.tsx",
+    "status": "modified",
+    "originalSha256": "921174335ef38f9099f4c67051ba64fe3c6f60b8a460b4aa13f53f1a8764e133",
+    "sha256": "3c9b35b33dffb01a7b4caa9ef35a9da5d4631ae669aa018e7bdbe9dd31c772fd"
+  },
+  {
+    "path": "src/scene/Stage.tsx",
+    "status": "modified",
+    "originalSha256": "ef804925c2882b5c1a4083241f1c306eca17315e24b409cb86a1d2d1ce166068",
+    "sha256": "be7cea542bf8a6ef7aaebe73f14466e80c715c671ddf9b49fe0ac10557f13f03"
+  },
+  {
+    "path": "src/scene/materials/screenMaterial.test.ts",
+    "status": "modified",
+    "originalSha256": "12540658ceab339aa8a0c00968877ea5a87d8830e750e00d87f381954a88c942",
+    "sha256": "bd5a33f00c12906bbd2391bc96c72d7b20ab47f4580ea199c24588284baf8260"
+  },
+  {
+    "path": "src/scene/materials/screenMaterial.ts",
+    "status": "modified",
+    "originalSha256": "66efd54a8316f26feae15add431f81b6130d576e9f2e3bee435056dc1a1f8ced",
+    "sha256": "a53ce418e7c112cb663b05e51dd153c91075d5eaa38412e6681c764799965a3d"
+  },
+  {
+    "path": "tests/audio.test.mjs",
+    "status": "added",
+    "sha256": "b04181f654f74889f188659e0e52a377855e92a00b9fc12dea520323663eb5d0"
+  },
+  {
+    "path": "tests/cache.test.mjs",
+    "status": "added",
+    "sha256": "ed8385fcced89d74028874c91ad76d0e86d4e77ac85b9efc731c9ff4357c158a"
+  },
+  {
+    "path": "tests/errors.test.mjs",
+    "status": "added",
+    "sha256": "d079b955e6924300c9ce01081c667760e8a87bea596f8dcb9e4d77a2b6edf7f9"
+  },
+  {
+    "path": "tests/remotion-local.test.mjs",
+    "status": "added",
+    "sha256": "3d430b4b507a8a33f18aefbc7669f9d75f195058e470978e396dd21b9598f9ca"
+  },
+  {
+    "path": "tests/worker_test.py",
+    "status": "added",
+    "sha256": "addf6e5de9b32caafbee141409c688cee4fe58e4a29b9ec3d5455b70cb5471c1"
+  },
+  {
+    "path": "work/p0-film.json",
+    "status": "added",
+    "sha256": "3a4af22766b3804f5fbaafd52efb88576fe1d1687b352cc577a9fb14a84b7b87"
+  },
+  {
+    "path": "work/p0-single.json",
+    "status": "added",
+    "sha256": "de1185fec94078701b3d499b0109465f7440b08046d94f3cd494294858cbb083"
+  },
+  {
+    "path": "work/storyboard.json",
+    "status": "modified",
+    "originalSha256": "52719004bf301ac69b1b700370533aa0cdd07b46e94c5deecc7f366aa9831949",
+    "sha256": "71119741049af4c51296c05910dfd1e57f72470568f7fabad67accd5da578052"
+  }
+]

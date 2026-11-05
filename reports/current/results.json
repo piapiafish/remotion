@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "scope": "file organization and three-stage roadmap; no product implementation changes",
+  "projectRoot": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "checks": [
+    {
+      "command": "npm.cmd test -- --reporter=dot",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "frontend-tests.txt"
+    },
+    {
+      "command": "npm.cmd run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "build.txt"
+    },
+    {
+      "command": "npm.cmd run lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "lint.txt"
+    },
+    {
+      "command": "npm.cmd run agent:test",
+      "status": "ENVIRONMENT_BLOCKED",
+      "exitCode": 1,
+      "log": "agent-tests-sandbox.txt",
+      "reason": "Sandbox denied localhost connections; rerun outside sandbox"
+    },
+    {
+      "command": "npm.cmd run agent:test",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "agent-tests.txt",
+      "environment": "outside sandbox; localhost available"
+    }
+  ],
+  "frontendTests": {
+    "files": 21,
+    "passed": 214
+  },
+  "agentApiTests": {
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "exitCode": 0,
+    "existingWarnings": 14,
+    "errors": 0
+  },
+  "browserValidation": "NOT_RUN_THIS_ROUND",
+  "fullFilmRender": "NOT_RUN_THIS_ROUND",
+  "humanAcceptance": "NOT_RUN",
+  "sourceIntegrity": "See document-check.json; protected files must match the organization baseline",
+  "overall": "PASS_WITH_EXISTING_LINT_WARNINGS"
+}

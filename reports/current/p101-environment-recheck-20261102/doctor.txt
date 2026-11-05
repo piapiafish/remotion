@@ -1,0 +1,111 @@
+
+> mockup-web@0.0.0 agent:doctor
+> node scripts/doctor.mjs
+
+[OK] Node 22+: v24.22.2
+[OK] FFmpeg: ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+[OK] FFprobe: ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers
+[OK] iphone-17-pro: 4.88 MiB valid GLB header
+[OK] iphone-17-pro-max: 14.60 MiB valid GLB header
+[OK] pixel-9-pro-xl: 9.44 MiB valid GLB header
+[OK] galaxy-s26-ultra: 2.19 MiB valid GLB header
+[OK] node_modules/vite/bin/vite.js: present
+[OK] remotion-compositor/node_modules/@remotion/cli/remotion-cli.js: present
+[OK] public/draco/draco_wasm_wrapper.js: present
+[OK] public/draco/draco_decoder.wasm: present
+[OK] public/environments/studio.hdr: present
+[OK] public/environments/city.hdr: present
+[OK] public/environments/sunset.hdr: present
+[OK] public/environments/warehouse.hdr: present
+[OK] Python: Python 3.10.6
+[OK] Playwright browser + WebGL2: {"browser": "156.0.8078.76", "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "webgl2": true}
+{
+  "checkedAt": "2026-11-02T00:35:23.321Z",
+  "checks": [
+    {
+      "name": "Node 22+",
+      "ok": true,
+      "details": "v24.22.2"
+    },
+    {
+      "name": "FFmpeg",
+      "ok": true,
+      "details": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers\r"
+    },
+    {
+      "name": "FFprobe",
+      "ok": true,
+      "details": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers\r"
+    },
+    {
+      "name": "iphone-17-pro",
+      "ok": true,
+      "details": "4.88 MiB valid GLB header"
+    },
+    {
+      "name": "iphone-17-pro-max",
+      "ok": true,
+      "details": "14.60 MiB valid GLB header"
+    },
+    {
+      "name": "pixel-9-pro-xl",
+      "ok": true,
+      "details": "9.44 MiB valid GLB header"
+    },
+    {
+      "name": "galaxy-s26-ultra",
+      "ok": true,
+      "details": "2.19 MiB valid GLB header"
+    },
+    {
+      "name": "node_modules/vite/bin/vite.js",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "remotion-compositor/node_modules/@remotion/cli/remotion-cli.js",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "public/draco/draco_wasm_wrapper.js",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "public/draco/draco_decoder.wasm",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "public/environments/studio.hdr",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "public/environments/city.hdr",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "public/environments/sunset.hdr",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "public/environments/warehouse.hdr",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "Python",
+      "ok": true,
+      "details": "Python 3.10.6"
+    },
+    {
+      "name": "Playwright browser + WebGL2",
+      "ok": true,
+      "details": "{\"browser\": \"156.0.8078.76\", \"path\": \"C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\", \"webgl2\": true}"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-04T20:30:19.092544+08:00",
+  "status": "PASS",
+  "videos": [
+    {
+      "path": "reports/current/p135-p143-implementation-20261104/browser-verified/third-feedback-1080p30.mp4",
+      "bytes": 3554424,
+      "sha256": "9a4ac82aa7e88c295ee6420e115c354dcd9320760dbdd22f4ea1499ddf908731",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "frames": "120",
+      "seconds": "4.000000"
+    },
+    {
+      "path": "reports/current/p135-p143-implementation-20261104/browser-verified/third-feedback-30s.mp4",
+      "bytes": 26112334,
+      "sha256": "2556997abed8e8ea7f756140c2c4ba0e17fabdea26e853dc3c2834d1a76201ae",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "frames": "900",
+      "seconds": "30.000000"
+    },
+    {
+      "path": "reports/current/p135-p143-implementation-20261104/browser-verified/cancel-retry-2s.mp4",
+      "bytes": 1501766,
+      "sha256": "7dc038b98cd35d60bd3fdb9a5c7098d905581918530830318964ef9ac859b30d"
+    }
+  ],
+  "shortEffects": true,
+  "longEffects": false,
+  "cameraSample": "Browser-recorded camera motion, time stretched to 4 seconds and displacement scaled to 0.25 for the demo; full take is preserved separately"
+}

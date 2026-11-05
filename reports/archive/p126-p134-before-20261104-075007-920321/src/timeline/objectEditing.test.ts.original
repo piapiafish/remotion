@@ -1,0 +1,96 @@
+import { beforeEach, describe, expect, it } from 'vitest'
+import { createDefaultProject } from '../store/defaults'
+import { addObjectKey, deleteObjectKey, moveObjectKey, objectKeyTimes, poseValueAt } from './objectEditing'
+import { moveEditableKey, type TrackTarget } from './editing'
+import { sampleTrack } from './sample'
+import { EASE_LINEAR } from './easing'
+import { useProjectStore as store } from '../store/project'
+import { emptyHistory, resetCoalescing } from '../store/history'
+import { migrate } from '../store/persist'
+import { validateInputShape, validateProject } from '../store/projectValidation'
+import { defaultEffects } from '../store/schema'
+
+const track=(end:number, value:number)=>({keys:[{t:0,v:0,ease:EASE_LINEAR},{t:end,v:value,ease:EASE_LINEAR}]})
+describe('object pose retiming and explicit animation',()=>{
+  it('identifies the old partial retiming path, then retimes position and full rotation together',()=>{
+    const p=createDefaultProject();p.duration=6
+    p.devices[0].transform['position.x']=track(2,6);p.devices[0].transform['rotation.y']=track(2,Math.PI*4)
+    const target:TrackTarget={kind:'device',instanceId:p.devices[0].instanceId}
+    const partial=moveEditableKey(p.devices[0].transform['position.x'],2,6)!
+    expect(sampleTrack(partial,2,0)).toBeCloseTo(2)
+    expect(sampleTrack(p.devices[0].transform['rotation.y'],2,0)).toBeCloseTo(Math.PI*4)
+    const next=moveObjectKey(p,target,2,6), pose=next.devices[0].transform
+    expect(sampleTrack(pose['position.x'],3,0)).toBeCloseTo(3)
+    expect(sampleTrack(pose['rotation.y'],3,0)).toBeCloseTo(Math.PI*2)
+    expect(sampleTrack(pose['rotation.y'],6,0)).toBeCloseTo(Math.PI*4)
+  })
+  it('preserves normalized easing at matching fractions of 2 and 6 seconds',()=>{
+    for(const interpolation of [undefined,'continuous'] as const){const a={...track(2,10),interpolation},b={...track(6,10),interpolation};for(const fraction of [.1,.25,.5,.8])expect(sampleTrack(a,2*fraction,0)).toBeCloseTo(sampleTrack(b,6*fraction,0),8)}
+  })
+  it('records the first explicit pose without an invisible end key and preserves the start while editing later',()=>{
+    const p=createDefaultProject(),target:TrackTarget={kind:'device',instanceId:p.devices[0].instanceId}
+    expect(objectKeyTimes(p,target)).toEqual([])
+    const first=addObjectKey(p,target,0)
+    expect(objectKeyTimes(first,target)).toEqual([0])
+    const next=poseValueAt(first.devices[0].transform,'position.x',2,5,true)
+    expect(next['position.x'].keys.map(k=>[k.t,k.v])).toEqual([[0,0],[2,5]])
+    expect(next['rotation.y'].keys.map(k=>k.t)).toEqual([0,2])
+  })
+  it('merges collisions without erasing other channel keys or objects',()=>{
+    const p=createDefaultProject();p.duration=6;p.devices[0].transform['position.x']=track(2,5);p.devices[0].transform['rotation.y']=track(6,7)
+    const target:TrackTarget={kind:'device',instanceId:p.devices[0].instanceId}, next=moveObjectKey(p,target,2,6)
+    expect(next.devices[0].transform['position.x'].keys.map(k=>k.t)).toEqual([0,6])
+    expect(next.devices[0].transform['rotation.y']).toEqual(p.devices[0].transform['rotation.y'])
+    expect(deleteObjectKey(next,target,6).devices[0].transform['position.x'].keys).toHaveLength(1)
+  })
+  it('returns to static editing after deleting the last pose',()=>{
+    const p=createDefaultProject(),target:TrackTarget={kind:'device',instanceId:p.devices[0].instanceId}
+    const animated=addObjectKey(p,target,0), deleted=deleteObjectKey(animated,target,0)
+    expect(objectKeyTimes(deleted,target)).toEqual([])
+    expect(deleted.devices[0].animationEnabled).toBe(false)
+  })
+  it('defaults new animation to linear time while preserving authored easing on existing animation',()=>{
+    const p=createDefaultProject(),target:TrackTarget={kind:'device',instanceId:p.devices[0].instanceId}
+    expect(addObjectKey(p,target,0).devices[0].transform['position.x'].keys[0].ease).toEqual(EASE_LINEAR)
+    p.devices[0].transform['position.x']=track(2,4);p.devices[0].transform['position.x'].keys[0].ease=[.42,0,.58,1]
+    expect(addObjectKey(p,target,0).devices[0].transform['position.x'].keys[0].ease).toEqual([.42,0,.58,1])
+  })
+})
+describe('objects, undo and portable v2 documents',()=>{
+  beforeEach(()=>{store.getState().endEditGesture(true);resetCoalescing();store.setState({project:createDefaultProject(),history:emptyHistory,activeDevice:0,activeObject:null,keySelection:null,playhead:0,playing:false,editingGesture:false})})
+  it('creates titles with independent animation and restores an entire retiming gesture with one undo',()=>{
+    const s=()=>store.getState();s().addText();const ref=s().activeObject!
+    s().addObjectKey(ref);s().setPlayhead(2);s().setTextValue('position.x',.8)
+    const before=s().project
+    s().beginEditGesture();s().moveTimelineKey({target:ref,channel:'*',t:2},3);s().moveTimelineKey({target:ref,channel:'*',t:2},4);s().endEditGesture()
+    expect(objectKeyTimes(s().project,ref)).toEqual([0,4]);s().undo();expect(s().project).toEqual(before)
+  })
+  it('supports deselection, deleting the last phone, text-only recovery and empty v2 documents',()=>{
+    const s=()=>store.getState();s().selectObject({kind:'device',instanceId:s().project.devices[0].instanceId});s().selectObject(null);expect(s().activeObject).toBeNull()
+    s().addText();s().removeObject({kind:'device',instanceId:s().project.devices[0].instanceId})
+    const p=s().project;expect(p.devices).toEqual([]);validateInputShape(p);validateProject(migrate(JSON.parse(JSON.stringify(p))))
+    s().removeObject(s().activeObject!);validateProject(s().project);expect(s().activeObject).toBeNull();s().undo();expect(s().project.texts).toHaveLength(1)
+  })
+  it('rejects invalid text/effect data and keeps old documents valid',()=>{
+    validateProject(createDefaultProject());store.getState().addText();const p=store.getState().project
+    expect(()=>validateProject({...p,texts:[{...p.texts![0],fontSize:NaN}]})).toThrow()
+    expect(()=>validateProject({...p,effects:{...defaultEffects(),motionBlur:{enabled:true,strength:1,samples:100 as 2}}})).toThrow()
+    expect(()=>validateInputShape({...p,version:99})).toThrow()
+    expect(migrate(p).texts).toEqual(p.texts)
+  })
+  it('edits a property inside a selected pose without changing the other channels or losing the group selection',()=>{
+    const s=()=>store.getState(), target:TrackTarget={kind:'device',instanceId:s().project.devices[0].instanceId}
+    s().addObjectKey(target);s().setPlayhead(2);s().setDevicePosition([1,2,3]);s().selectKey({target,channel:'*',t:2})
+    const before=s().project.devices[0].transform['position.y']
+    s().setTimelineKeyValue(8,'position.x')
+    expect(s().project.devices[0].transform['position.x'].keys[1].v).toBe(8)
+    expect(s().project.devices[0].transform['position.y']).toBe(before)
+    expect(s().keySelection?.channel).toBe('*')
+  })
+  it('clamps the playhead when shortening a clip while keeping future animation keys for later extension',()=>{
+    const s=()=>store.getState(),target:TrackTarget={kind:'device',instanceId:s().project.devices[0].instanceId}
+    s().addObjectKey(target);s().setPlayhead(3);s().setDevicePosition([2,0,0]);s().selectKey({target,channel:'*',t:3});s().setDuration(1)
+    expect(s().playhead).toBe(1);expect(s().keySelection).toBeNull()
+    expect(s().project.devices[0].transform['position.x'].keys[1].t).toBe(3)
+  })
+})

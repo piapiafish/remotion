@@ -1,0 +1,169 @@
+
+> mockup-web@0.0.0 agent:test
+> node --test tests/*.test.mjs
+
+✔ quiet bundled music becomes audible without changing the source or clipping (867.0291ms)
+✔ shot cache tracks media/model/engine/pose, while subtitle-only edits keep it reusable (21.8954ms)
+✔ missing asset fails with a readable report and no output MP4 (127.2961ms)
+✔ illegal device exits before starting any renderer (98.265ms)
+✔ real ffprobe inspection rejects incorrect resolution/fps/audio expectations (731.8162ms)
+✔ Remotion keeps readable interfaces and falls back only on denied enumeration (1.3264ms)
+✔ safe relative media path rejects traversal/URL/absolute (0.5561ms)
+✔ planner generates valid 3 shot Video DSL (0.5522ms)
+✔ unknown phone is rejected (0.192ms)
+✔ compiler generates exact video frame duration and nonempty model tracks (0.5019ms)
+✔ time is deterministic: compilation stable except explicit instance identifiers (0.7063ms)
+✔ overlay beyond film length rejected (0.1146ms)
+✔ AI reply import accepts raw/BOM/fenced/prose/wrapped JSON and preserves quoted braces (2.0522ms)
+✔ AI reply import rejects malformed, ambiguous, oversized and illegal-device content (3.509ms)
+✖ local import saves unique UTF-8 work files and preserves the previous default storyboard (32.6984ms)
+✖ offline planning uses the existing validated planner without a model call (9.3402ms)
+✖ missing media and unsafe paths fail before a storyboard or renderer is created (8.2341ms)
+✖ local API rejects foreign origins, missing explicit header, malformed/oversized JSON and invalid IDs (9.6171ms)
+✖ concurrent render clicks are idempotent and different storyboards render serially (11.6097ms)
+✖ failure logs stay visible, no failed video link is exposed, and retry is allowed (9.701ms)
+✖ an exit code of zero without a verified final MP4 is still a failure (8.353ms)
+✖ completed work survives restart and the video endpoint supports download, HEAD and byte ranges (7.1117ms)
+✖ stopping the local service marks the active task interrupted (10.226ms)
+✖ symlinks cannot write work files or read media outside the project (11.9905ms)
+✔ rendering prefers the project Python environment over a changed global Python (5.1019ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 15
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1152.9215
+
+✖ failing tests:
+
+test at tests\studio-api.test.mjs:87:1
+✖ local import saves unique UTF-8 work files and preserves the previous default storyboard (32.6984ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:54970
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 54970
+    }
+  }
+
+test at tests\studio-api.test.mjs:101:1
+✖ offline planning uses the existing validated planner without a model call (9.3402ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60688
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60688
+    }
+  }
+
+test at tests\studio-api.test.mjs:111:1
+✖ missing media and unsafe paths fail before a storyboard or renderer is created (8.2341ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60690
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60690
+    }
+  }
+
+test at tests\studio-api.test.mjs:122:1
+✖ local API rejects foreign origins, missing explicit header, malformed/oversized JSON and invalid IDs (9.6171ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60692
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60692
+    }
+  }
+
+test at tests\studio-api.test.mjs:136:1
+✖ concurrent render clicks are idempotent and different storyboards render serially (11.6097ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60694
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60694
+    }
+  }
+
+test at tests\studio-api.test.mjs:156:1
+✖ failure logs stay visible, no failed video link is exposed, and retry is allowed (9.701ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60696
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60696
+    }
+  }
+
+test at tests\studio-api.test.mjs:171:1
+✖ an exit code of zero without a verified final MP4 is still a failure (8.353ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60698
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60698
+    }
+  }
+
+test at tests\studio-api.test.mjs:179:1
+✖ completed work survives restart and the video endpoint supports download, HEAD and byte ranges (7.1117ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60700
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60700
+    }
+  }
+
+test at tests\studio-api.test.mjs:198:1
+✖ stopping the local service marks the active task interrupted (10.226ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60702
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60702
+    }
+  }
+
+test at tests\studio-api.test.mjs:210:1
+✖ symlinks cannot write work files or read media outside the project (11.9905ms)
+  [TypeError [Error]: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:60704
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 60704
+    }
+  }

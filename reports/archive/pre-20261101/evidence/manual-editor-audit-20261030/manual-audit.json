@@ -1,0 +1,290 @@
+{
+  "scope": "manual editor",
+  "findings": [
+    {
+      "name": "editing a static channel at two times does not create motion",
+      "playhead": 2,
+      "keys": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0.33,
+            0,
+            0.15,
+            1
+          ]
+        }
+      ],
+      "visibleKeyframes": 0
+    },
+    {
+      "name": "dragging a keyframe does not change its time",
+      "before": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "t": 4,
+          "v": 6.283185307179586,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "after": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "t": 4,
+          "v": 6.283185307179586,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "name": "adding a device overlaps the original at its default position",
+      "transforms": [
+        {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "undoing add leaves the active device index out of bounds",
+      "deviceCount": 1,
+      "activeDevice": 1,
+      "transformFields": 0
+    }
+  ],
+  "checks": [
+    {
+      "name": "initial editor loads",
+      "device": "procedural-phone"
+    }
+  ],
+  "browser": "156.0.8078.73",
+  "initialDevice": "procedural-phone",
+  "status": "INCOMPLETE",
+  "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"Add a second device\", exact=True)\n"
+}

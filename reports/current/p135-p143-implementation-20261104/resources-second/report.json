@@ -1,0 +1,181 @@
+{
+  "date": "2026-11-04T11:49:50.494Z",
+  "checks": [
+    {
+      "name": "ten-cycles-remove-all-object-nodes-and-decoders",
+      "status": "PASS",
+      "detail": [
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        }
+      ]
+    },
+    {
+      "name": "repeated-entry-has-bounded-gpu-resource-counts",
+      "status": "PASS",
+      "detail": [
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 74,
+          "textures": 41
+        }
+      ]
+    },
+    {
+      "name": "arbitrary-export-time-restores-future-object-and-video",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "resources",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

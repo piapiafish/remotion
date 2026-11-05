@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "scope": "P1-01 editor audit; no product fixes",
+  "auditStatus": "COMPLETED_WITH_FINDINGS",
+  "productAcceptance": "NOT_ACCEPTED",
+  "humanAcceptance": "PENDING",
+  "authoritativeProject": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "execution": "SHA-256 verified current-source snapshot in permitted temporary directory",
+  "baseline": [
+    {
+      "name": "frontend-tests",
+      "command": "npm.cmd test -- --reporter=dot",
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 2.86,
+      "log": "evidence\\baseline\\frontend-tests.txt"
+    },
+    {
+      "name": "build",
+      "command": "npm.cmd run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 3.72,
+      "log": "evidence\\baseline\\build.txt"
+    },
+    {
+      "name": "lint",
+      "command": "npm.cmd run lint",
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.5,
+      "log": "evidence\\baseline\\lint.txt"
+    },
+    {
+      "name": "agent-tests",
+      "command": "npm.cmd run agent:test",
+      "exitCode": 1,
+      "status": "FAIL",
+      "seconds": 1.35,
+      "log": "evidence\\baseline\\agent-tests.txt"
+    }
+  ],
+  "frontendTests": {
+    "passed": 214,
+    "files": 21
+  },
+  "lintWarnings": 13,
+  "agentApi": {
+    "passed": 15,
+    "environmentBlocked": 10,
+    "reason": "connect EACCES 127.0.0.1",
+    "exitCode": 1
+  },
+  "browser": {
+    "version": "156.0.8078.76",
+    "cases": 9,
+    "checks": {
+      "PASS": 20,
+      "FAIL": 8,
+      "BLOCKED": 1
+    },
+    "method": "Unmodified current production build; existing Playwright JS SDK; localhost-origin requests fulfilled from local dist files, without TCP network. UI actions, file inputs and browser downloads exercise the real application. This does not validate Vite or studio API networking."
+  },
+  "frameComparison": {
+    "method": "Real H.264 video decoded by FFmpeg; compared against engine previewFrame at the exact same frame index, pose, screen-video time, resolution and Standard quality. SSIM >= .97 is an objective consistency check; user visual acceptance remains pending.",
+    "checks": [
+      {
+        "frame": 0,
+        "time": 0.0,
+        "decoded": "06-decoded-00.png",
+        "reference": "06-reference-00.png",
+        "ssim": 0.993109,
+        "status": "PASS",
+        "decodedSha256": "a658b7dc6322d476c47dd8191bb3d137c972426a5456b7e29accb4fdd2267067"
+      },
+      {
+        "frame": 30,
+        "time": 1.0,
+        "decoded": "06-decoded-30.png",
+        "reference": "06-reference-30.png",
+        "ssim": 0.995747,
+        "status": "PASS",
+        "decodedSha256": "a4bf4c1e041cbdca30de4b7964d4fa2f636fbed48048848e84210106ca99becb"
+      },
+      {
+        "frame": 59,
+        "time": 1.9666666666666666,
+        "decoded": "06-decoded-59.png",
+        "reference": "06-reference-59.png",
+        "ssim": 0.994146,
+        "status": "PASS",
+        "decodedSha256": "e2b6f659d3d45783cebd86dbe273b735f8045a27bb5ddc0cce65c8637cb1ac5a"
+      }
+    ]
+  },
+  "confirmedIssues": [
+    "MAN-001",
+    "MAN-002",
+    "MAN-003",
+    "MAN-004",
+    "MAN-005",
+    "MAN-008"
+  ],
+  "writeback": {
+    "performedInAuthoritativeProject": false,
+    "reason": "D: is outside the current session writable roots",
+    "preparedPayload": true
+  },
+  "remaining": [
+    "Review and apply guarded report/document update",
+    "Studio API checks in an environment permitting localhost TCP",
+    "P1-02 and P1-03 implementation",
+    "Per-model visual quality, longer and multi-device exports, final user acceptance"
+  ]
+}

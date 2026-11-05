@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-04T14:09:02.346976+00:00",
+  "url": "http://127.0.0.1:49866",
+  "serverCommand": [
+    "D:\\Node.js\\node.exe",
+    "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "49866",
+    "--strictPort"
+  ],
+  "command": [
+    "D:\\Node.js\\node.exe",
+    "scripts/test-fourth-effects.cjs"
+  ],
+  "status": "FAIL",
+  "exitCode": 1,
+  "serverStopped": true,
+  "seconds": 9.0
+}

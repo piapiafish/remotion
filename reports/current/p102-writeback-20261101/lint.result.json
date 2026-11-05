@@ -1,0 +1,4 @@
+{
+  "Command": "npm.cmd run lint",
+  "ExitCode": 0
+}

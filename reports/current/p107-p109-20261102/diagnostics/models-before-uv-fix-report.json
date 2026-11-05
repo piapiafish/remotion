@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-02T04:54:51.097Z",
+  "phase": "models",
+  "url": "http://127.0.0.1:4207",
+  "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+  "checks": [
+    {
+      "id": "procedural-phone-loads-and-exports-rotation",
+      "status": "PASS",
+      "seconds": 2.547
+    },
+    {
+      "id": "iphone-17-pro-loads-and-exports-rotation",
+      "status": "PASS",
+      "seconds": 2.396
+    },
+    {
+      "id": "iphone-17-pro-max-loads-and-exports-rotation",
+      "status": "PASS",
+      "seconds": 2.439
+    },
+    {
+      "id": "pixel-9-pro-xl-loads-and-exports-rotation",
+      "status": "PASS",
+      "seconds": 2.652
+    },
+    {
+      "id": "galaxy-s26-ultra-loads-and-exports-rotation",
+      "status": "PASS",
+      "seconds": 2.58
+    },
+    {
+      "id": "procedural-phone-material-and-screen-instance-isolation",
+      "status": "PASS"
+    },
+    {
+      "id": "iphone-17-pro-material-and-screen-instance-isolation",
+      "status": "PASS"
+    },
+    {
+      "id": "iphone-17-pro-max-material-and-screen-instance-isolation",
+      "status": "PASS"
+    },
+    {
+      "id": "pixel-9-pro-xl-material-and-screen-instance-isolation",
+      "status": "PASS"
+    },
+    {
+      "id": "galaxy-s26-ultra-material-and-screen-instance-isolation",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.76",
+  "inventory": [
+    {
+      "id": "procedural-phone",
+      "name": "Generic Phone",
+      "source": null,
+      "sha256": null,
+      "views": {
+        "front": "procedural-phone-front.png",
+        "left": "procedural-phone-left.png",
+        "back": "procedural-phone-back.png",
+        "right": "procedural-phone-right.png"
+      },
+      "video": "procedural-phone-spin.mp4",
+      "colors": [
+        "graphite",
+        "silver"
+      ],
+      "screenMaterial": "",
+      "screenAspect": 0.4790037052284891
+    },
+    {
+      "id": "iphone-17-pro",
+      "name": "iPhone 17 Pro",
+      "source": "/devices/iphone-17-pro.glb",
+      "sha256": "d7089ce39b8e09fe857ab41bc9105e39beb72171bbd8b7e81008afb7e0ad0c4c",
+      "views": {
+        "front": "iphone-17-pro-front.png",
+        "left": "iphone-17-pro-left.png",
+        "back": "iphone-17-pro-back.png",
+        "right": "iphone-17-pro-right.png"
+      },
+      "video": "iphone-17-pro-spin.mp4",
+      "colors": [
+        "original-blue",
+        "natural-titanium",
+        "black-titanium",
+        "white-titanium"
+      ],
+      "screenMaterial": "Screen",
+      "screenAspect": 0.4623531390714766
+    },
+    {
+      "id": "iphone-17-pro-max",
+      "name": "iPhone 17 Pro Max",
+      "source": "/devices/iphone-17-pro-max.glb",
+      "sha256": "cc32d7479d48f93b320a36cb70fd8354b4f6eb3f939304f65b54f9803a557d17",
+      "views": {
+        "front": "iphone-17-pro-max-front.png",
+        "left": "iphone-17-pro-max-left.png",
+        "back": "iphone-17-pro-max-back.png",
+        "right": "iphone-17-pro-max-right.png"
+      },
+      "video": "iphone-17-pro-max-spin.mp4",
+      "colors": [
+        "cosmic-orange",
+        "deep-blue",
+        "silver"
+      ],
+      "screenMaterial": "OLED",
+      "screenAspect": 0.460538
+    },
+    {
+      "id": "pixel-9-pro-xl",
+      "name": "Google Pixel 9 Pro XL",
+      "source": "/devices/pixel-9-pro-xl.glb",
+      "sha256": "f885feb957a3f86e4836af7c7d3100b769cf21a150f4b32f521076b229109684",
+      "views": {
+        "front": "pixel-9-pro-xl-front.png",
+        "left": "pixel-9-pro-xl-left.png",
+        "back": "pixel-9-pro-xl-back.png",
+        "right": "pixel-9-pro-xl-right.png"
+      },
+      "video": "pixel-9-pro-xl-spin.mp4",
+      "colors": [
+        "obsidian",
+        "porcelain",
+        "hazel"
+      ],
+      "screenMaterial": "GP9XL_Screen",
+      "screenAspect": 0.460538
+    },
+    {
+      "id": "galaxy-s26-ultra",
+      "name": "Samsung Galaxy S26 Ultra",
+      "source": "/devices/galaxy-s26-ultra.glb",
+      "sha256": "6355b5b819b89a2d77b52c9e2802d6e89098f5bfb98b3fbb0948fa92c81a07a0",
+      "views": {
+        "front": "galaxy-s26-ultra-front.png",
+        "left": "galaxy-s26-ultra-left.png",
+        "back": "galaxy-s26-ultra-back.png",
+        "right": "galaxy-s26-ultra-right.png"
+      },
+      "video": "galaxy-s26-ultra-spin.mp4",
+      "colors": [
+        "titanium"
+      ],
+      "screenMaterial": "Material_173",
+      "screenAspect": 0.460905
+    }
+  ]
+}

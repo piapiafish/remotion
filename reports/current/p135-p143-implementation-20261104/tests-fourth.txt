@@ -1,0 +1,74 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/timeline/sample.test.ts (21 tests | 1 failed) 22ms
+     × holds a static project steady across the whole duration 5ms
+ ❯ src/timeline/motionPlan.test.ts (24 tests | 1 failed) 98ms
+     × clears the AI tracks/annotations in one undoable edit, leaving the model and look intact 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/timeline/motionPlan.test.ts > motion plan editor transaction > clears the AI tracks/annotations in one undoable edit, leaving the model and look intact
+AssertionError: expected { position: [ +0, +0, +0 ], …(3) } to deeply equal { position: [ +0, +0, +0 ], …(3) }
+
+- Expected
++ Received
+
+@@ -8,7 +8,7 @@
+      0,
+      0,
+      0,
+    ],
+    "scale": 1,
+-   "visible": true,
++   "visible": false,
+  }
+
+ ❯ src/timeline/motionPlan.test.ts:181:59
+    179|     expect(isAnimated(state.project.camera.tracks)).toBe(false)
+    180|     for (const t of [0, 8, 15]) {
+    181|       expect(sampleTimeline(state.project, t).devices[0]).toEqual({ po…
+       |                                                           ^
+    182|     }
+    183|     state.undo()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/timeline/sample.test.ts > sampleTimeline > holds a static project steady across the whole duration
+AssertionError: expected { camera: { …(3) }, …(1) } to deeply equal { camera: { …(3) }, …(1) }
+
+- Expected
++ Received
+
+@@ -23,9 +23,9 @@
+          0,
+          0,
+          0,
+        ],
+        "scale": 1,
+-       "visible": false,
++       "visible": true,
+      },
+    ],
+  }
+
+ ❯ src/timeline/sample.test.ts:109:17
+    107|     const at0 = sampleTimeline(project, 0)
+    108|     const atEnd = sampleTimeline(project, project.duration)
+    109|     expect(at0).toEqual(atEnd)
+       |                 ^
+    110|   })
+    111| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 37 passed (39)
+      Tests  2 failed | 420 passed (422)
+   Start at  19:46:38
+   Duration  3.57s (transform 25.43s, setup 0ms, import 40.39s, tests 1.44s, environment 3ms)
+

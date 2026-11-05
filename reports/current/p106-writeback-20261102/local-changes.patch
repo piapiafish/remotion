@@ -1,0 +1,318 @@
+--- package/docs/ARCHITECTURE.md
++++ applied/docs/ARCHITECTURE.md
+@@ -1,6 +1,6 @@
+ # 当前架构与数据流
+ 
+-更新：2026-11-02（P1-06 工作副本；正式应用以安装凭据为准）。本文描述实际源码与边界；开发顺序只看 [工作计划](../IMPLEMENTATION_ROADMAP.md)。
++更新：2026-11-02（P1-06 已正式应用并完成本机复核）。本文描述实际源码与边界；开发顺序只看 [工作计划](../IMPLEMENTATION_ROADMAP.md)。
+ 
+ ## 工程组成
+ 
+@@ -43,7 +43,7 @@
+ 
+ MediaRef 保存媒体 ID、类型、尺寸、视频时长和会话 object URL，Blob 在 OPFS 或 IndexedDB。每个 DeviceInstance 可有 screenPlayback：源入点 in、出点 out、镜头内起播时间 start、loop；旧工程缺省为完整源视频、0 秒起播、无循环。src/media/videoTiming.ts 的 videoTimeAt 是预览和逐帧导出的统一时间映射。每个实例注册独立 ScreenVideo，编辑时序只更新映射，不重建解码器；暂停拖动精确跟随，播放中容许有限漂移。
+ 
+-.mockup 包含 project.json、设备及背景媒体字节，序列化去除 URL 与 missing 运行字段。打开前校验根结构、轨道/时序和素材解码；缺失包内字节保留 missing 引用并提示重新绑定，不从当前浏览器缓存静默补齐。媒体 ID 冲突且字节不同时分配新 ID，失败清理本次新增字节/URL；不自动清理当前工程或撤销历史需要的旧媒体。存储事务以 commit 完成为成功。
++.mockup 包含 project.json、设备及背景媒体字节，序列化去除 URL 与 missing 运行字段。打开前校验根结构、轨道/时序和素材解码；缺失包内字节时，在写入素材前列出设备/背景并确认是否继续，取消保持当前工程及撤销历史。继续后保留 missing 引用并提示重新绑定，不从当前浏览器缓存静默补齐；重新绑定较短录屏会提示已收缩的时序范围。媒体 ID 冲突且字节不同时分配新 ID，失败清理本次新增字节/URL；不自动清理当前工程或撤销历史需要的旧媒体。存储事务以 commit 完成为成功。
+ 
+ store 的 savedFingerprint 记录最近成功打开/发起下载的文档，播放头、选择、工具和提示不计入修改状态。documentEpoch 在替换文档时递增，阻止旧上传写入重新打开的同 ID 设备。新建/打开有丢弃确认，beforeunload 提供浏览器离开提醒；自动草稿未实现。错误与结果由共用反馈条显示。操作说明见 [录屏与工程指南](MEDIA_PROJECT_GUIDE.md)。
+ 
+--- package/docs/MEDIA_PROJECT_GUIDE.md
++++ applied/docs/MEDIA_PROJECT_GUIDE.md
+@@ -14,12 +14,12 @@
+ 
+ Open .mockup 先校验 ZIP、JSON、工程结构和包内素材能否解码，再替换当前工程。旧版本未设置录屏时序时，按完整源视频、0 秒起播、不循环打开。相同媒体 ID 对应不同字节时导入会分配新 ID，避免覆盖当前或撤销历史引用的素材。
+ 
+-缺失文件会保留为缺失引用，界面指出对应设备。选择设备，点击素材框重新绑定；动画和时序保留，若新录屏较短则将入/出点收缩到合法范围。背景图片可在 Background 中重新绑定或改成其他背景。缺失素材未处理完前不能保存不完整工程。
++发现缺失文件时，先列出设备或背景，并询问是否继续打开。取消会保留当前工程；继续打开会保留缺失引用，供用户重新绑定。选择设备，点击素材框重新绑定；动画和时序保留，若新录屏较短则将入/出点收缩到合法范围，并提示检查调整结果。背景图片可在 Background 中重新绑定或改成其他背景。缺失素材未处理完前不能保存不完整工程。
+ 
+ ## 未保存保护与恢复边界
+ 
+-顶栏显示未保存状态。新建、打开其他工程会询问是否丢弃未保存修改；刷新或关闭由浏览器显示离开提醒。读取/保存期间继续编辑时，旧的异步结果不能覆盖新工程或将新修改误标为已保存。
++顶栏显示未保存状态。新建、打开其他工程会询问是否丢弃未保存修改：确定后继续，取消后保留工程；需要先保存时，请取消后点击顶栏 Save .mockup，再重新操作。刷新或关闭由浏览器显示离开提醒。读取/保存期间继续编辑时，旧的异步结果不能覆盖新工程或将新修改误标为已保存。
+ 
+ 本轮落实显式 .mockup 保存和离开提醒，未实现自动草稿恢复。现有 OPFS/IndexedDB 保存媒体字节，不等于保存整份编辑工程；强制结束进程、浏览器崩溃或用户确认丢弃后，未保存修改不能保证恢复。自动草稿需另行设计文档与素材的一致性及容量策略，本轮不将其列为已实现能力。
+ 
+-本轮验证使用双真实 GLB、两份不同字节的 8 秒录屏（第二份为示例录屏的变色测试副本），制作并导出 4 秒短片。约 30 秒及更长导出、编码失败恢复继续由 P1-07 验证。参见 [P1-06 报告](../reports/current/p106-20261102/README.md)。
++2026-11-02 已正式应用到 D 盘并完成本机复核。验证使用双真实 GLB、两份不同字节的 8 秒录屏（第二份为示例录屏的变色测试副本），制作并导出 4 秒短片；另验证缺失背景及较短录屏的恢复。约 30 秒及更长导出、编码失败恢复继续由 P1-07 验证。参见 [本机 P1-06 报告](../reports/current/p106-writeback-20261102/README.md)及[可重新编辑的示例工程](../reports/current/p106-writeback-20261102/browser/01-dual-timed.mockup)。
+--- package/docs/TESTING.md
++++ applied/docs/TESTING.md
+@@ -58,8 +58,8 @@
+ 
+ ## P1-06 录屏和工程回归
+ 
+-构建后在根目录运行 `node scripts/test-media-project.cjs`。默认使用项目 .venv 中已有的 Playwright JavaScript SDK、系统 Chrome、PATH 中的 FFmpeg/FFprobe。可通过 PLAYWRIGHT_CORE_PATH、CHROME_PATH、P106_AUDIT_ROOT 和 P106_SECONDARY_VIDEO 覆盖路径；默认辅助视频位于 reports/current/p106-20261102/reproduce/secondary-recording.mp4。Windows 环境的 TEMP/TMP 需可写，输出默认放独立 output/p106-*。
++构建后在根目录运行 `node scripts/test-media-project.cjs`。默认使用项目 .venv 中已有的 Playwright JavaScript SDK、系统 Chrome、PATH 中的 FFmpeg/FFprobe。可通过 PLAYWRIGHT_CORE_PATH、CHROME_PATH、P106_AUDIT_ROOT 和 P106_SECONDARY_VIDEO 覆盖路径；默认辅助视频位于 reports/current/p106-20261102/reproduce/secondary-recording.mp4。Windows 环境的 TEMP/TMP 需可写，运行真实 Vite 时将其放到项目外，避免浏览器临时文件占用触发 watcher 错误。输出默认放独立 output/p106-*。
+ 
+-脚本通过本地路由供给实际生产构建；验证 7 个独立浏览器场景，包含裁切/错峰/循环、共享素材独立解码、手工 720° 动画、新会话恢复、真实 1080P/30FPS 短片、损坏工程和素材、保存失败重试、缺失媒体重新绑定、背景恢复、实际刷新取消及异步上传跨工程保护。不证明 Vite/API TCP 已通过。
++脚本默认通过本地路由供给实际生产构建。设置 P106_BASE_URL 为已启动的本地 Vite 地址时，使用实际 HTTP/TCP，跳过请求拦截；两种运行方式在报告中明确记录。可用 CASES 选择场景编号，默认执行 01～08。包含裁切/错峰/循环、共享素材独立解码、手工 720° 动画、新会话恢复、真实 1080P/30FPS 短片、损坏工程和素材、保存失败重试、缺失媒体重新绑定、背景恢复、实际刷新取消及异步上传跨工程保护。08 额外检查缺失背景的取消/恢复、较短源视频重新绑定后的提示、空白时序输入及普通替换的默认值和撤销。脚本保存场景截图；录屏控制截图位于 08-timing-controls.png。
+ 
+-P1-03～05 既有浏览器脚本早于未保存确认，本轮回归只加了自动接受该确认的运行适配，原 42 项断言未删改；适配原文和运行结果在本轮报告 reproduce/ 与 regression/。普通手工使用时保留真实确认。
++P1-03～05 回归脚本在专用测试上下文自动接受工程替换确认，原 42 项断言保留；默认仍使用生产构建离线路由。普通手工使用时保留真实确认。最新实际命令、结果及分批执行范围见 [本机 P1-06 报告](../reports/current/p106-writeback-20261102/README.md)。
+--- package/scripts/test-editor-interactions.cjs
++++ applied/scripts/test-editor-interactions.cjs
+@@ -26,6 +26,7 @@
+   }catch(error){report.requestFailures.push({label,error:String(error)});await route.abort().catch(()=>{});}
+  });
+  const page=await context.newPage();page.setDefaultTimeout(20000);page.on('pageerror',error=>{report.pageErrors.push({label,error:String(error)});write();});
++ page.on('dialog',dialog=>dialog.accept());
+  await page.goto('http://127.0.0.1:4187/?automation=1',{waitUntil:'networkidle',timeout:45000});
+  await page.getByRole('button',{name:'Movie',exact:true}).click();await ready(page);return {context,page};
+ }
+--- package/scripts/test-media-project.cjs
++++ applied/scripts/test-media-project.cjs
+@@ -4,8 +4,10 @@
+ const {chromium}=require(process.env.PLAYWRIGHT_CORE_PATH||path.join(root,'.venv','Lib','site-packages','playwright','driver','package'));
+ const {unzipSync,strFromU8,zipSync,strToU8}=require(path.join(root,'node_modules/fflate'));
+ const dist=path.join(root,'dist'),secondary=process.env.P106_SECONDARY_VIDEO||path.join(root,'reports/current/p106-20261102/reproduce/secondary-recording.mp4');
++const baseUrl=process.env.P106_BASE_URL;
+ fs.mkdirSync(out,{recursive:true});
+ const report={date:new Date().toISOString(),method:'Actual production build in Chrome, local route fulfillment; UI edits, isolated contexts, .mockup bytes and actual MP4 downloads. Vite/API TCP not tested.',checks:[],cases:[],pageErrors:[],requestFailures:[],dialogs:[],status:'RUNNING'};
++if(baseUrl)report.method='Actual local Vite HTTP/TCP in Chrome without route interception; UI edits, isolated contexts, portable archives and actual MP4 downloads.';
+ const write=()=>fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));
+ function check(id,pass,details={}){report.checks.push({id,status:pass?'PASS':'FAIL',...details});write();console.log((pass?'PASS ':'FAIL ')+id);}
+ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b),near=(a,b,e=.04)=>Math.abs(a-b)<e,hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+@@ -22,19 +24,20 @@
+ async function session(browser,label){
+  const context=await browser.newContext({viewport:{width:1440,height:1040},acceptDownloads:true});
+  const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wasm':'application/wasm','.hdr':'application/octet-stream','.glb':'model/gltf-binary','.svg':'image/svg+xml','.png':'image/png'};
+- await context.route('**/*',async route=>{try{const u=new URL(route.request().url());if(u.hostname!=='127.0.0.1')return route.abort();const rel=decodeURIComponent(u.pathname).replace(/^\/+/,'')||'index.html',file=path.resolve(dist,rel);if(!file.startsWith(dist+path.sep)||!fs.existsSync(file)){report.requestFailures.push({label,rel});return route.fulfill({status:404,body:'Not found'});}await route.fulfill({status:200,contentType:mime[path.extname(file)]||'application/octet-stream',body:fs.readFileSync(file)});}catch(error){report.requestFailures.push({label,error:String(error)});await route.abort().catch(()=>{});}});
++ if(!baseUrl)await context.route('**/*',async route=>{try{const u=new URL(route.request().url());if(u.hostname!=='127.0.0.1')return route.abort();const rel=decodeURIComponent(u.pathname).replace(/^\/+/,'')||'index.html',file=path.resolve(dist,rel);if(!file.startsWith(dist+path.sep)||!fs.existsSync(file)){report.requestFailures.push({label,rel});return route.fulfill({status:404,body:'Not found'});}await route.fulfill({status:200,contentType:mime[path.extname(file)]||'application/octet-stream',body:fs.readFileSync(file)});}catch(error){report.requestFailures.push({label,error:String(error)});await route.abort().catch(()=>{});}});
+  const page=await context.newPage();page.setDefaultTimeout(20000);
+  page.on('pageerror',error=>{report.pageErrors.push({label,error:String(error)});write();});
++ if(baseUrl)page.on('response',response=>{if(response.status()>=400){report.requestFailures.push({label,url:response.url(),status:response.status()});write();}});
+  page.on('dialog',async d=>{report.dialogs.push({label,type:d.type(),message:d.message(),accepted:page.keepUnsaved!==true});write();if(page.keepUnsaved)await d.dismiss();else await d.accept();});
+- await page.goto('http://127.0.0.1:4187/?automation=1',{waitUntil:'networkidle',timeout:45000});await page.getByRole('button',{name:'Movie',exact:true}).click();await ready(page);return {context,page};
++ await page.goto((baseUrl||'http://127.0.0.1:4187')+'/?automation=1',{waitUntil:'networkidle',timeout:45000});await page.getByRole('button',{name:'Movie',exact:true}).click();await ready(page);return {context,page};
+ }
+-async function run(browser,label,fn){let context,page;const started=Date.now();console.log('START '+label);try{({context,page}=await session(browser,label));await fn(page,context);report.cases.push({label,status:'COMPLETED',seconds:(Date.now()-started)/1000});}catch(error){check(label,false,{execution:'INCOMPLETE',error:String(error),stack:error.stack});report.cases.push({label,status:'INCOMPLETE'});}finally{await context?.close().catch(()=>{});write();}}
++async function run(browser,label,fn){let context,page;const started=Date.now();console.log('START '+label);try{({context,page}=await session(browser,label));await fn(page,context);await page.screenshot({path:path.join(out,label+'.png'),fullPage:true});report.cases.push({label,status:'COMPLETED',seconds:(Date.now()-started)/1000});}catch(error){check(label,false,{execution:'INCOMPLETE',error:String(error),stack:error.stack});await page?.screenshot({path:path.join(out,label+'-failure.png')}).catch(()=>{});report.cases.push({label,status:'INCOMPLETE'});}finally{await context?.close().catch(()=>{});write();}}
+ function two(p){const x=structuredClone(p);x.name='P1-06 dual recording timing';x.duration=4;x.camera.preset='front';for(const [i,a] of ['x','y','z'].entries())x.camera.tracks['position.'+a]={keys:[{t:0,v:[0,0,3.2][i],ease:[0,0,1,1]}]};x.devices=[structuredClone(x.devices[0]),structuredClone(x.devices[0])];x.devices[1].instanceId=crypto.randomUUID();x.devices.forEach((d,i)=>{d.id=i?'pixel-9-pro-xl':'iphone-17-pro';d.colorway=i?'obsidian':'natural';d.screen=null;delete d.screenPlayback;for(const [c,v]of Object.entries({'position.x':i?.5:-.5,'position.y':0,'position.z':0,'rotation.x':0,'rotation.y':0,'rotation.z':0,scale:.55}))d.transform[c]={keys:[{t:0,v,ease:[0,0,1,1]}]};});return x;}
+ let base,dual;
+ (async()=>{let browser;try{
+  browser=await chromium.launch({headless:true,downloadsPath:path.join(out,'downloads'),timeout:30000,executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--no-sandbox','--enable-webgl','--use-gl=angle','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});report.browser=browser.version();
+  const bootstrap=await session(browser,'bootstrap');base=(await save(bootstrap.page,'00-base')).project;await bootstrap.context.close();
+- const cases=process.env.CASES?.split(',')||['01','02','03','04','05','06','07'];
++ const cases=process.env.CASES?.split(',')||['01','02','03','04','05','06','07','08'];
+  if(cases.includes('01'))await run(browser,'01-independent-device-clocks',async p=>{
+    await open(p,fixture(two(base),'01-two'));
+    await select(p,0);await upload(p,path.join(root,'assets/demo.mp4'));await commit(p,'Source in',1);await commit(p,'Source out',2.2);await commit(p,'Timeline start',.4);
+@@ -59,7 +62,7 @@
+  if(cases.includes('02'))await run(browser,'02-new-session-restoration-and-export',async p=>{
+    if(!dual)throw new Error('01 fixture not available');await open(p,dual.file);const reopened=await save(p,'02-reopened');
+    check('new-session-exact-timing-tracks-and-media-recovery',same(reopened.project,dual.project)&&Object.keys(dual.entries).filter(n=>n.startsWith('media/')).every(n=>hash(dual.entries[n])===hash(reopened.entries[n])));
+-   report.references=[];for(const frame of [0,30,72,114]){const file=await preview(p,frame,'02-reference-'+frame);report.references.push({frame,file});write();}
++   report.references=[];for(const frame of [0,11,12,13,30,32,33,34,47,48,49,71,72,73,110,111,112,114,119]){const file=await preview(p,frame,'02-reference-'+frame);report.references.push({frame,file});write();}
+    await p.getByRole('button',{name:'Standard',exact:true}).click();await p.getByRole('button',{name:'30 fps',exact:true}).click();await p.getByRole('button',{name:'MP4 (H.264)',exact:true}).click();
+    const pending=p.waitForEvent('download',{timeout:180000});pending.catch(()=>{});const timer=setInterval(()=>console.log('EXPORT_IN_PROGRESS'),10000);
+    const file=path.join(out,'P1-06-dual-timing-1080p30.mp4');try{await p.getByRole('button',{name:'Export video (MP4 (H.264))',exact:true}).click();await(await pending).saveAs(file);}finally{clearInterval(timer);}
+@@ -81,7 +84,10 @@
+    await select(p,0);await commit(p,'Timeline start',.9);check('editing-continues-after-failed-open-and-save',(await save(p,'03-final')).project.devices[0].screenPlayback.start===.9);
+  });
+  if(cases.includes('04'))await run(browser,'04-missing-media-relink-and-background',async p=>{
+-   const entries={...dual.entries};delete entries['media/'+dual.project.devices[1].screen.id];await open(p,fixture(dual.project,'04-missing',entries));
++   const entries={...dual.entries};delete entries['media/'+dual.project.devices[1].screen.id];const missingFile=fixture(dual.project,'04-missing',entries);
++   p.keepUnsaved=true;await p.locator('.topbar input[type=file]').setInputFiles(missingFile);await p.getByRole('status').filter({hasText:'已取消打开'}).waitFor();p.keepUnsaved=false;
++   check('cancel-missing-media-open-keeps-current-project',(await save(p,'04-cancelled-missing')).project.name==='Untitled');
++   await open(p,missingFile);
+    await p.getByRole('alert').filter({hasText:'素材缺失，点击设备'}).waitFor();await select(p,1);
+    check('missing-source-identifies-device-and-preserves-timing',await p.getByText('素材缺失 · 点击重新绑定',{exact:true}).isVisible()&&await p.getByLabel('Source in',{exact:true}).inputValue()==='4'&&await p.getByLabel('Timeline start',{exact:true}).inputValue()==='1.1');
+    await p.getByTitle(/^Save \.mockup/).click();await p.getByRole('alert').filter({hasText:'保存工程失败'}).waitFor();check('missing-source-blocks-incomplete-save',await p.getByRole('alert').filter({hasText:'保存工程失败'}).isVisible());
+@@ -89,6 +95,7 @@
+    await p.getByRole('button',{name:'Background',exact:true}).click();await p.getByLabel('Background image',{exact:true}).setInputFiles(path.join(root,'assets/demo-screen.png'));await p.waitForTimeout(300);
+    const withBackground=await save(p,'04-background');check('background-image-bytes-are-portable',withBackground.project.background.type==='image'&&!!withBackground.entries['media/'+withBackground.project.background.ref.id]);
+    await open(p,withBackground.file);const reopened=await save(p,'04-background-reopened');check('background-restores-with-new-session-url',same(reopened.project,withBackground.project)&&hash(reopened.entries['media/'+reopened.project.background.ref.id])===hash(withBackground.entries['media/'+withBackground.project.background.ref.id]));
++   const fresh=await session(browser,'04-background-fresh-context');try{await open(fresh.page,withBackground.file);const portable=await save(fresh.page,'04-background-fresh-context');check('background-and-device-media-restore-in-empty-context',same(portable.project,withBackground.project)&&Object.keys(withBackground.entries).filter(n=>n.startsWith('media/')).every(n=>hash(portable.entries[n])===hash(withBackground.entries[n])));}finally{await fresh.context.close();}
+  });
+  if(cases.includes('05'))await run(browser,'05-unsaved-work-protection',async p=>{
+    await p.getByLabel('Project name',{exact:true}).fill('keep unsaved work');check('editing-shows-dirty-state',await p.getByText('未保存',{exact:true}).isVisible());
+@@ -122,6 +129,31 @@
+    await open(p,original.file);await p.waitForTimeout(1300);const after=await save(p,'07-after-replacement');
+    check('late-upload-cannot-write-into-reopened-same-instance-id',same(after.project,original.project)&&after.project.devices[0].screen===null);
+  });
++ if(cases.includes('08'))await run(browser,'08-background-and-shorter-source-recovery',async p=>{
++   await p.getByRole('button',{name:'Background',exact:true}).click();await p.getByLabel('Background image',{exact:true}).setInputFiles(path.join(root,'assets/demo-screen.png'));
++   await p.waitForTimeout(300);const complete=await save(p,'08-complete-background');
++   const entries={...complete.entries};delete entries['media/'+complete.project.background.ref.id];const missingFile=fixture({...complete.project,name:'Missing background recovery'},'08-missing-background',entries);
++   p.keepUnsaved=true;await p.locator('.topbar input[type=file]').setInputFiles(missingFile);await p.getByRole('status').filter({hasText:'已取消打开'}).waitFor();p.keepUnsaved=false;
++   check('cancel-missing-background-preserves-current-project',same((await save(p,'08-background-cancelled')).project,complete.project));
++   await open(p,missingFile);await p.getByRole('alert').filter({hasText:'背景图片缺失，请展开'}).waitFor();
++   let downloads=0;p.on('download',()=>downloads++);await p.getByTitle(/^Save \.mockup/).click();await p.getByRole('alert').filter({hasText:'保存工程失败'}).waitFor();
++   check('missing-background-is-visible-and-blocks-incomplete-save',downloads===0);await p.screenshot({path:path.join(out,'08-missing-background.png'),fullPage:true});
++   await p.getByLabel('Background image',{exact:true}).setInputFiles(path.join(root,'assets/demo-screen.png'));await p.waitForTimeout(300);const repaired=await save(p,'08-background-repaired');
++   check('background-relink-preserves-device-and-embeds-bytes',same(repaired.project.devices,complete.project.devices)&&!!repaired.entries['media/'+repaired.project.background.ref.id]);
++   await upload(p,path.join(root,'assets/demo.mp4'));await commit(p,'Source in',1);await commit(p,'Source out',5);await commit(p,'Timeline start',2.5);await p.getByLabel('Loop selected recording range',{exact:true}).check();
++   const timed=await save(p,'08-timed-source'),missing={...timed.entries};delete missing['media/'+timed.project.devices[0].screen.id];await open(p,fixture(timed.project,'08-missing-source',missing));
++   const shorter=path.join(out,'08-shorter-source.mp4');execFileSync('ffmpeg',['-hide_banner','-loglevel','error','-y','-i',path.join(root,'assets/demo.mp4'),'-t','2','-c:v','libx264','-pix_fmt','yuv420p','-r','30','-an',shorter]);
++   await upload(p,shorter);await p.getByRole('status').filter({hasText:'新录屏较短'}).waitFor();const relinked=await save(p,'08-shorter-relinked');
++   check('shorter-source-relink-shows-clamped-range',same(relinked.project.devices[0].screenPlayback,{in:1,out:2,start:2.5,loop:true}));
++   check('shorter-source-relink-keeps-animation-and-background',same(relinked.project.devices[0].transform,timed.project.devices[0].transform)&&same(relinked.project.background,timed.project.background));
++   const field=p.getByLabel('Source in',{exact:true});await field.fill('');await field.press('Tab');await p.getByRole('alert').filter({hasText:'请输入有效的秒数'}).waitFor();
++   check('empty-timing-input-is-visible-and-keeps-valid-document',same((await save(p,'08-empty-range')).project,relinked.project));
++   await time(p,2.7);check('shorter-relinked-source-uses-preserved-delay',near((await clocks(p))[0].time,1.2,.002));
++   await field.scrollIntoViewIfNeeded();await p.screenshot({path:path.join(out,'08-timing-controls.png'),fullPage:true});
++   await upload(p,path.join(root,'assets/demo.mp4'));const replaced=await save(p,'08-ordinary-replacement');
++   check('ordinary-recording-replacement-resets-timing',replaced.project.devices[0].screenPlayback===undefined&&await p.getByLabel('Source in',{exact:true}).inputValue()==='0'&&await p.getByLabel('Timeline start',{exact:true}).inputValue()==='0');
++   await p.getByTitle(/^Undo \(/).click();check('source-replacement-undo-restores-timing-and-media',same((await save(p,'08-replacement-undone')).project,relinked.project));
++ });
+  check('no-unhandled-page-errors',report.pageErrors.length===0,{errors:report.pageErrors});check('no-missing-build-resources',report.requestFailures.length===0,{requests:report.requestFailures});
+  report.status=report.checks.every(c=>c.status==='PASS')&&report.cases.every(c=>c.status==='COMPLETED')?'PASS':'FAIL';write();console.log('FINAL '+report.status+' '+report.checks.length+' assertions');process.exitCode=report.status==='PASS'?0:1;
+ }catch(error){report.status='INCOMPLETE';report.error=String(error);write();console.error(error);process.exitCode=1;}finally{await browser?.close();}})();
+--- package/src/store/persist.ts
++++ applied/src/store/persist.ts
+@@ -15,6 +15,8 @@
+ 
+ const PROJECT_ENTRY = 'project.json'
+ const MEDIA_PREFIX = 'media/'
++
++export class ProjectOpenCancelled extends Error {}
+ 
+ /** Object URLs are per-session, so they must never be written to disk. */
+ export function stripRuntimeFields(project: Project): Project {
+@@ -59,7 +61,7 @@
+   return new Blob([zipSync(files, { level: 6 })], { type: 'application/zip' })
+ }
+ 
+-export async function deserializeProject(file: Blob): Promise<Project> {
++export async function deserializeProject(file: Blob, confirmMissing?: (labels: string[]) => boolean): Promise<Project> {
+   let entries: Record<string, Uint8Array>
+   try { entries = unzipSync(new Uint8Array(await file.arrayBuffer())) }
+   catch { throw new Error('文件不是有效的 .mockup ZIP，或文件已损坏。') }
+@@ -70,6 +72,13 @@
+   validateInputShape(input)
+   const project = migrate(input)
+   validateProject(project)
++  // Decide before writing any archive media or replacing the live document.
++  const absent = (ref: MediaRef) => !entries[`${MEDIA_PREFIX}${ref.id}`]?.length
++  const missing = [
++    ...project.devices.flatMap((d, i) => d.screen && absent(d.screen) ? [`设备 ${i + 1}（${d.id}）`] : []),
++    ...(project.background.type === 'image' && absent(project.background.ref) ? ['背景图片'] : []),
++  ]
++  if (missing.length && confirmMissing && !confirmMissing(missing)) throw new ProjectOpenCancelled()
+   const refs = new Map<string, MediaRef>(), written: string[] = [], urls: string[] = []
+   try {
+     for (const ref of mediaRefs(project)) {
+--- package/src/store/persistSafety.test.ts
++++ applied/src/store/persistSafety.test.ts
+@@ -106,6 +106,37 @@
+ })
+ 
+ describe('undo, relinking and unsaved work', () => {
++  it('cancels a missing-media import before storage writes and preserves the current undo history', async () => {
++    const incoming = createDefaultProject()
++    incoming.devices[0].screen = ref('absent')
++    incoming.background = { type: 'image', ref: ref('present', 'image'), fit: 'cover' }
++    get().setName('keep this edit')
++    const previous = get().project, history = get().history
++    const confirm = vi.fn().mockReturnValueOnce(true).mockReturnValueOnce(false)
++    vi.stubGlobal('window', { confirm })
++    await get().openProject(pack(incoming, { 'media/present': bytes('image') }))
++    expect(get().project).toBe(previous); expect(get().history).toBe(history)
++    expect(storage.puts).toBe(0); expect(get().fileBusy).toBe(false)
++    expect(confirm).toHaveBeenCalledTimes(2)
++    expect(confirm.mock.calls[1][0]).toContain('设备 1')
++    expect(useFeedbackStore.getState().notice?.message).toContain('已取消打开')
++  })
++  it('opens a missing-media document only after the user chooses to relink it', async () => {
++    const incoming = createDefaultProject(); incoming.devices[0].screen = ref('absent')
++    const confirm = vi.fn(() => true); vi.stubGlobal('window', { confirm })
++    await get().openProject(pack(incoming))
++    expect(confirm).toHaveBeenCalledOnce()
++    expect(get().project.devices[0].screen).toMatchObject({ id: 'absent', missing: true })
++    expect(useFeedbackStore.getState().notice?.message).toContain('素材缺失')
++  })
++  it('reports timing clamping when a missing source is relinked to a shorter recording', () => {
++    const p = createDefaultProject(); p.devices[0].screen = { ...ref('absent'), missing: true }
++    p.devices[0].screenPlayback = { in: 2, out: 8, start: 1, loop: true }; reset(p)
++    get().setScreenMedia({ ...ref('shorter'), duration: 4 })
++    expect(get().project.devices[0].screenPlayback).toEqual({ in: 2, out: 4, start: 1, loop: true })
++    expect(useFeedbackStore.getState().notice?.message).toContain('新录屏较短')
++    get().undo(); expect(get().project).toBe(p)
++  })
+   it('edits only the selected device clock as one undo/redo step', () => {
+     const p = createDefaultProject(); p.devices[0].screen = ref('a'); p.devices.push(createDevice({ screen: ref('a') })); reset(p)
+     get().setActiveDevice(1); get().setScreenPlayback({ in: 2, out: 5, start: 1 })
+--- package/src/store/project.ts
++++ applied/src/store/project.ts
+@@ -4,7 +4,7 @@
+ import { applyTemplateToDevices, getTemplate, templateCamera } from '../timeline/templates'
+ import { emptyHistory, record, redo, resetCoalescing, undo, type History } from './history'
+ import type { ExportQuality } from '../export/frameRenderer'
+-import { deserializeProject, downloadProject, mediaRefs, missingMedia, projectFingerprint, serializeProject } from './persist'
++import { deserializeProject, downloadProject, mediaRefs, missingMedia, projectFingerprint, ProjectOpenCancelled, serializeProject } from './persist'
+ import { normalizePlayback } from '../media/videoTiming'
+ import { reportError, useFeedbackStore } from './feedback'
+ import { applyCameraAngle, applyMotionPreset, type MotionPresetId } from '../timeline/presets'
+@@ -124,7 +124,12 @@
+ 
+ export const useProjectStore = create<ProjectStore>((set, get) => {
+   const initial = createDefaultProject()
+-  const canReplace = () => !get().hasUnsavedChanges() || typeof window === 'undefined' || window.confirm('当前工程有未保存的修改。继续会丢弃这些修改，是否继续？')
++  const canReplace = () => {
++    if (!get().hasUnsavedChanges() || typeof window === 'undefined') return true
++    const discard = window.confirm('当前工程有未保存的修改。确定：放弃修改并继续。取消：保留当前工程；需要保存时，请取消后点击顶栏 Save .mockup，再重新操作。')
++    if (!discard) useFeedbackStore.getState().show({ kind: 'info', message: '已保留当前工程。可点击顶栏 Save .mockup 保存，再重新新建或打开。' })
++    return discard
++  }
+   let gesture: { project: Project; history: History; selection: KeySelection | null } | null = null
+   /**
+    * Every document mutation goes through here, so undo coverage can't drift
+@@ -215,7 +220,7 @@
+     const before = get().project
+     set({ fileBusy: true })
+     try {
+-      const project = await deserializeProject(file)
++      const project = await deserializeProject(file, labels => typeof window === 'undefined' || window.confirm(`该工程的 ${labels.join('、')} 缺少素材。确定：继续打开并重新绑定素材。取消：保留当前工程。`))
+       if (get().project !== before) {
+         new Set(mediaRefs(project).map(ref => ref.url).filter(Boolean)).forEach(url => URL.revokeObjectURL(url))
+         throw new Error('加载期间工程已被修改，请保存当前修改后重新打开。')
+@@ -224,7 +229,10 @@
+       const missing = missingMedia(project)
+       if (missing.length) useFeedbackStore.getState().show({ kind: 'error', message: `工程已打开，但 ${missing.join('、')} 的素材缺失。请选择对应设备重新绑定，完成后再保存。` })
+       else useFeedbackStore.getState().show({ kind: 'info', message: '工程已打开。' })
+-    } catch (error) { reportError('打开工程失败，已保留当前工程', error) }
++    } catch (error) {
++      if (error instanceof ProjectOpenCancelled) useFeedbackStore.getState().show({ kind: 'info', message: '已取消打开，当前工程已保留。' })
++      else reportError('打开工程失败，已保留当前工程', error)
++    }
+     finally { set({ fileBusy: false }) }
+   },
+ 
+@@ -386,12 +394,18 @@
+ 
+   setScreenMedia: (ref, instanceId) => {
+     const id = instanceId ?? get().project.devices[get().activeDevice]?.instanceId
++    const previous = get().project.devices.find(d => d.instanceId === id)
++    const adjusted = ref?.kind === 'video' && previous?.screen?.missing && previous.screenPlayback
++      ? normalizePlayback(ref.duration ?? 0, previous.screenPlayback) : undefined
+     resetCoalescing()
+     edit('screen', p => ({ ...p, devices: p.devices.map(d => d.instanceId === id
+       ? { ...d, screen: ref, screenPlayback: ref?.kind === 'video' && d.screen?.missing
+         ? normalizePlayback(ref.duration ?? 0, d.screenPlayback) : undefined }
+       : d) }))
+     resetCoalescing()
++    if (adjusted && previous?.screenPlayback && (adjusted.in !== previous.screenPlayback.in || adjusted.out !== previous.screenPlayback.out)) {
++      useFeedbackStore.getState().show({ kind: 'info', message: '素材已重新绑定；新录屏较短，源入点和出点已调整到有效范围，请检查录屏时序。' })
++    }
+   },
+   setScreenPlayback: patch => {
+     const d = get().project.devices[get().activeDevice]
+--- package/src/ui/Inspector/VideoTimingControls.tsx
++++ applied/src/ui/Inspector/VideoTimingControls.tsx
+@@ -1,11 +1,15 @@
+ import { useState } from 'react'
+ import { useProjectStore } from '../../store/project'
+ import { normalizePlayback } from '../../media/videoTiming'
++import { reportError } from '../../store/feedback'
+ 
+ function TimingNumber({ label, value, max, commit }: { label: string; value: number; max?: number; commit: (n: number) => void }) {
+   const [draft, setDraft] = useState<string | null>(null)
+   const submit = () => {
+-    if (draft !== null && draft.trim() && Number.isFinite(Number(draft)) && Number(draft) !== value) commit(Number(draft))
++    if (draft !== null) {
++      if (!draft.trim() || !Number.isFinite(Number(draft))) reportError('录屏时序未修改', new Error('请输入有效的秒数。'))
++      else if (Number(draft) !== value) commit(Number(draft))
++    }
+     setDraft(null)
+   }
+   return <label className="video-timing-field">{label}<input aria-label={label} type="number" min="0" max={max} step="0.01"

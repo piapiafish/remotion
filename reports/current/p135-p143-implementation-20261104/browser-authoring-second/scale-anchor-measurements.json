@@ -1,0 +1,767 @@
+[
+  {
+    "id": "procedural-phone",
+    "before": {
+      "pose": {
+        "position": [
+          0.23999999999999994,
+          0.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0.25,
+          0
+        ],
+        "scale": 0.92,
+        "visible": true
+      },
+      "anchor": [
+        -0.46,
+        0,
+        0
+      ],
+      "device": {
+        "instanceId": "bd035531-4982-4f68-bce5-06dfe56b56e1",
+        "id": "procedural-phone",
+        "colorway": "graphite",
+        "orientation": "portrait",
+        "screen": null,
+        "screenFit": "contain",
+        "transform": {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.23999999999999994,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.3,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.25,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.92,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "scaleAnchor": [
+          -0.46,
+          0,
+          0
+        ],
+        "name": "手机 A"
+      }
+    },
+    "after": {
+      "position": [
+        0.09063950274658733,
+        0.235988358319966,
+        0
+      ],
+      "rotation": [
+        0,
+        0.25,
+        0
+      ],
+      "scale": 0.7236976321812292,
+      "visible": true
+    },
+    "expected": 0.09063950274658733
+  },
+  {
+    "id": "iphone-17-pro",
+    "before": {
+      "pose": {
+        "position": [
+          0.23999999999999994,
+          0.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0.25,
+          0
+        ],
+        "scale": 0.92,
+        "visible": true
+      },
+      "anchor": [
+        -0.46,
+        0,
+        0
+      ],
+      "device": {
+        "instanceId": "bd035531-4982-4f68-bce5-06dfe56b56e1",
+        "id": "iphone-17-pro",
+        "colorway": "original-blue",
+        "orientation": "portrait",
+        "screen": null,
+        "screenFit": "contain",
+        "transform": {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.23999999999999994,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.3,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.25,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.92,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "scaleAnchor": [
+          -0.46,
+          0,
+          0
+        ],
+        "name": "手机 A"
+      }
+    },
+    "after": {
+      "position": [
+        0.09063950274658733,
+        0.235988358319966,
+        0
+      ],
+      "rotation": [
+        0,
+        0.25,
+        0
+      ],
+      "scale": 0.7236976321812292,
+      "visible": true
+    },
+    "expected": 0.09063950274658733
+  },
+  {
+    "id": "iphone-17-pro-max",
+    "before": {
+      "pose": {
+        "position": [
+          0.23999999999999994,
+          0.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0.25,
+          0
+        ],
+        "scale": 0.92,
+        "visible": true
+      },
+      "anchor": [
+        -0.46,
+        0,
+        0
+      ],
+      "device": {
+        "instanceId": "bd035531-4982-4f68-bce5-06dfe56b56e1",
+        "id": "iphone-17-pro-max",
+        "colorway": "cosmic-orange",
+        "orientation": "portrait",
+        "screen": null,
+        "screenFit": "contain",
+        "transform": {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.23999999999999994,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.3,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.25,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.92,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "scaleAnchor": [
+          -0.46,
+          0,
+          0
+        ],
+        "name": "手机 A"
+      }
+    },
+    "after": {
+      "position": [
+        0.09063950274658733,
+        0.235988358319966,
+        0
+      ],
+      "rotation": [
+        0,
+        0.25,
+        0
+      ],
+      "scale": 0.7236976321812292,
+      "visible": true
+    },
+    "expected": 0.09063950274658733
+  },
+  {
+    "id": "pixel-9-pro-xl",
+    "before": {
+      "pose": {
+        "position": [
+          0.23999999999999994,
+          0.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0.25,
+          0
+        ],
+        "scale": 0.92,
+        "visible": true
+      },
+      "anchor": [
+        -0.46,
+        0,
+        0
+      ],
+      "device": {
+        "instanceId": "bd035531-4982-4f68-bce5-06dfe56b56e1",
+        "id": "pixel-9-pro-xl",
+        "colorway": "obsidian",
+        "orientation": "portrait",
+        "screen": null,
+        "screenFit": "contain",
+        "transform": {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.23999999999999994,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.3,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.25,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.92,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "scaleAnchor": [
+          -0.46,
+          0,
+          0
+        ],
+        "name": "手机 A"
+      }
+    },
+    "after": {
+      "position": [
+        0.09063950274658733,
+        0.235988358319966,
+        0
+      ],
+      "rotation": [
+        0,
+        0.25,
+        0
+      ],
+      "scale": 0.7236976321812292,
+      "visible": true
+    },
+    "expected": 0.09063950274658733
+  },
+  {
+    "id": "galaxy-s26-ultra",
+    "before": {
+      "pose": {
+        "position": [
+          0.23999999999999994,
+          0.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0.25,
+          0
+        ],
+        "scale": 0.92,
+        "visible": true
+      },
+      "anchor": [
+        -0.46,
+        0,
+        0
+      ],
+      "device": {
+        "instanceId": "bd035531-4982-4f68-bce5-06dfe56b56e1",
+        "id": "galaxy-s26-ultra",
+        "colorway": "titanium",
+        "orientation": "portrait",
+        "screen": null,
+        "screenFit": "contain",
+        "transform": {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.23999999999999994,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.3,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.25,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.92,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "scaleAnchor": [
+          -0.46,
+          0,
+          0
+        ],
+        "name": "手机 A"
+      }
+    },
+    "after": {
+      "position": [
+        0.09063950274658733,
+        0.235988358319966,
+        0
+      ],
+      "rotation": [
+        0,
+        0.25,
+        0
+      ],
+      "scale": 0.7236976321812292,
+      "visible": true
+    },
+    "expected": 0.09063950274658733
+  }
+]

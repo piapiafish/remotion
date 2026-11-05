@@ -1,0 +1,257 @@
+PASS solid-is-offered-as-focus-target
+PASS stickers-start-clear
+PASS sticker-depth-setting-saved-in-project
+PASS sticker-dof-changes-real-canvas-pixels
+PASS deleting-solid-focus-retains-effective-distance
+PASS version-five-contains-segments-fonts-clips-and-sticker-depth
+PASS fresh-session-restores-segments-and-effects
+PASS editor-layout-1920x1080
+PASS editor-layout-1366x768
+PASS editor-layout-1000x800
+PASS rerecord-uses-chosen-segment-window
+PASS discard-rerecord-keeps-old-project
+EXPORT fourth-feedback-1080p30 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。已启用画面效果，导出会花费更多时间。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+4 秒，共 120 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 65 / 120 帧
+EXPORT fourth-feedback-1080p30 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。已启用画面效果，导出会花费更多时间。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+4 秒，共 120 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 107 / 120 帧
+PASS real-short-mp4-is-1080p30
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 87 / 900 帧
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 194 / 900 帧
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 311 / 900 帧
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 439 / 900 帧
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 567 / 900 帧
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 695 / 900 帧
+EXPORT fourth-feedback-30s 导出作品
+关闭
+作品类型
+视频
+图片
+宽度
+×
+高度
+画质
+标准
+高清
+精细
+
+输出 1920 × 1080。高画质可保留更多屏幕细节。
+
+屏幕细节与输出设置
+导出 PNG 图片
+帧率
+30 帧/秒
+60 帧/秒
+
+30 秒，共 900 帧。
+
+视频格式
+WebM
+MP4 (H.264)
+取消导出 · 825 / 900 帧
+PASS real-long-mp4-is-900-frames

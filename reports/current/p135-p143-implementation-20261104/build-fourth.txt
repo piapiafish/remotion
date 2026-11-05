@@ -1,0 +1,9 @@
+
+> mockup-web@0.0.0 build
+> tsc -b && vite build
+
+src/scene/editorPointer.ts(6,58): error TS2341: Property 'enabled' is private and only accessible within class 'TransformControls<TCamera>'.
+src/scene/editorPointer.ts(6,93): error TS2341: Property 'dragging' is private and only accessible within class 'TransformControls<TCamera>'.
+src/scene/editorPointer.ts(6,111): error TS2341: Property 'axis' is private and only accessible within class 'TransformControls<TCamera>'.
+src/timeline/thirdFeedback.test.ts(7,10): error TS6133: 'clipEnd' is declared but its value is never read.
+src/timeline/thirdFeedback.test.ts(7,44): error TS6133: 'deviceClips' is declared but its value is never read.

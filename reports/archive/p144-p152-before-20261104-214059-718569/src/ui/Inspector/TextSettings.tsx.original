@@ -1,0 +1,19 @@
+import type { TextObject } from '../../store/schema'
+import { useProjectStore } from '../../store/project'
+import { sampleSolidPose, useSolidBoundsRevision } from '../../scene/solidBounds'
+import { sampleTrack } from '../../timeline/sample'
+import { NumberField } from '../controls/NumberField'
+
+export function TextSettings({text}:{text:TextObject}){
+  useSolidBoundsRevision(s=>s.revision)
+  const s=useProjectStore(),solid=text.textKind==='solid',gesture={onGestureStart:s.beginEditGesture,onGestureEnd:s.endEditGesture}
+  const channels=solid?['position.x','position.y','position.z','rotation.x','rotation.y','rotation.z','scale','opacity','depth']:['position.x','position.y','rotation.z','scale','opacity']
+  const names:Record<string,string>={'position.x':'水平位置','position.y':'垂直位置','position.z':'纵深位置','rotation.x':'俯仰角','rotation.y':'偏航角','rotation.z':'倾斜角',scale:'缩放',opacity:'透明度 %',depth:'文字厚度'}
+  return <div className="text-settings"><p className="hint">{solid?'实体文字：位于三维场景，有厚度，可被手机遮挡。':'贴纸文字：固定在画面上，不跟随相机转动。'}</p>
+    <label className="stack-field">文字内容<textarea aria-label="文字内容" rows={3} maxLength={10000} value={text.content} onChange={e=>s.setText({content:e.target.value})}/></label>
+    <div className="field-grid"><NumberField {...gesture} label="字号" value={text.fontSize} min={8} max={400} step={1} onChange={v=>s.setText({fontSize:v})}/><label className="stack-field">字重<select aria-label="字重" disabled={solid} value={solid?400:text.fontWeight} onChange={e=>s.setText({fontWeight:Number(e.target.value)})}><option value={400}>常规</option><option value={600}>加粗</option><option value={800}>特粗</option></select></label><label className="stack-field">文字颜色<input type="color" aria-label="文字颜色" value={text.color} onChange={e=>s.setText({color:e.target.value})}/></label></div>
+    <div className="field-grid"><label className="stack-field">文字对齐<select aria-label="文字对齐" value={text.align} onChange={e=>s.setText({align:e.target.value as TextObject['align']})}><option value="left">左对齐</option><option value="center">居中</option><option value="right">右对齐</option></select></label><NumberField {...gesture} label="行距" value={text.lineHeight} min={.5} max={4} step={.05} onChange={v=>s.setText({lineHeight:v})}/><NumberField {...gesture} label="文本宽度" value={text.width*100} min={5} max={200} step={1} onChange={v=>s.setText({width:v/100})}/></div>
+    <div className="field-grid">{channels.map(channel=>{const fallback=channel==='scale'||channel==='opacity'?1:channel==='depth'?.08:0,value=solid&&channel.startsWith('position.')?sampleSolidPose(text,s.playhead,s.project.environment.groundY).position['xyz'.indexOf(channel.slice(-1))]:sampleTrack(text.transform[channel],s.playhead,fallback),factor=channel.startsWith('rotation.')?180/Math.PI:channel==='opacity'||!solid&&channel.startsWith('position.')?100:1;return <NumberField key={channel} {...gesture} label={names[channel]} value={value*factor} min={channel==='scale'?.05:channel==='opacity'?0:channel==='depth'?.001:undefined} max={channel==='opacity'?100:undefined} step={channel==='scale'||solid&&channel.startsWith('position.')?.01:channel==='depth'?.005:1} onChange={v=>s.setTextValue(channel,v/factor)}/>})}</div>
+    {!solid&&<><label className="stack-field">文字与手机的前后关系<select aria-label="文字前后关系" value={text.layer??'front'} onChange={e=>s.setText({layer:e.target.value as 'front'|'back'})}><option value="front">场景前方</option><option value="back">场景后方（手机可挡住文字）</option></select></label><div className="row"><button className="ghost-btn" onClick={()=>s.moveTextLayer(1)}>上移一层</button><button className="ghost-btn" onClick={()=>s.moveTextLayer(-1)}>下移一层</button></div></>}
+  </div>
+}

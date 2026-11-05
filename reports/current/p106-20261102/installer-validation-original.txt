@@ -1,0 +1,23 @@
+PASS all_364_actual_D_source_files_unchanged
+PASS payload_hashes
+PASS no_browser_UI_screenshots_or_dependencies
+PASS actual_D_readonly_preflight
+PASS p102_preflight_no_writes
+PASS p102_installation
+PASS p102_installed_hashes
+PASS p102_exact_original_backups
+PASS p102_idempotent_no_rewrites
+PASS p105_preflight_no_writes
+PASS p105_installation
+PASS p105_installed_hashes
+PASS p105_exact_original_backups
+PASS p105_idempotent_no_rewrites
+PASS unknown_local_edits_refuse_all_writes
+PASS fourth_write_failure_rolls_back_all_installed_files
+PASS tampered_payload_refused_before_writing
+PASS escaping_payload_path_refused
+PASS changed_markdown_links_resolve_in_installed_project
+PASS portable_browser_runner_syntax
+PASS installer_python_compile
+PASS final_frontend_and_browser_results
+{"status": "PASS", "checks": 22, "payload_files": 288}

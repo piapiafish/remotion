@@ -1,0 +1,21 @@
+{
+  "platform": "Windows-10-10.0.26200-SP0",
+  "checks": [
+    "primary mock generator applies 16 keyframes / 15 seconds without screen media",
+    "clicking every representative thumbnail drives the actual phone to its JSON pose including 360 degrees",
+    "filmstrip contains actual nonempty GLB renders at different times",
+    "playback interpolates the imported tracks",
+    "AI motion stops at the final pose instead of jumping back to the entry pose",
+    "pasted AI JSON supports fractional keyframes and interpolated per-second pictures",
+    "invalid JSON leaves the live scene and timeline intact",
+    "local JSON file import uses the same canvas compiler",
+    ".mockup save/reopen preserves executable tracks and plan annotations",
+    "generation is one undo/redo operation",
+    "compact Windows viewport retains a usable canvas and scrollable timeline",
+    "one-click clear removes AI keys/filmstrip, stops playback and centres the existing phone",
+    "cleared AI motion can be undone and redone"
+  ],
+  "status": "PASS",
+  "browser": "156.0.8078.73",
+  "pageErrors": []
+}

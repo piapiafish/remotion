@@ -1,0 +1,220 @@
+{
+  "date": "2026-11-04T11:45:29.912Z",
+  "checks": [
+    {
+      "name": "ten-cycles-remove-all-object-nodes-and-decoders",
+      "status": "PASS",
+      "detail": [
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 73,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 82,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 91,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 100,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 109,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 118,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 127,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 136,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 145,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 154,
+          "textures": 40
+        }
+      ]
+    },
+    {
+      "name": "repeated-entry-has-bounded-gpu-resource-counts",
+      "status": "FAIL",
+      "detail": [
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 73,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 82,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 91,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 100,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 109,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 118,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 127,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 136,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 145,
+          "textures": 40
+        },
+        {
+          "decoders": 0,
+          "devices": 0,
+          "texts": 0,
+          "geometries": 154,
+          "textures": 40
+        }
+      ]
+    },
+    {
+      "name": "offline-restores-all-media-clocks-layers-and-anchors",
+      "status": "PASS"
+    },
+    {
+      "name": "offline-solid-glyphs-and-contact-restore",
+      "status": "PASS"
+    },
+    {
+      "name": "missing-source-identifies-both-references-without-masking-cache",
+      "status": "PASS"
+    },
+    {
+      "name": "rebind-repairs-one-clip-without-overwriting-other-clock",
+      "status": "PASS"
+    },
+    {
+      "name": "rebind-is-undoable",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-multivideo-effects-1080p30-120-frame-export",
+      "status": "PASS"
+    },
+    {
+      "name": "all-boundary-references-use-formal-export-preparation",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "resources",
+      "status": "FAIL",
+      "error": "Error: repeated-entry-has-bounded-gpu-resource-counts"
+    },
+    {
+      "name": "restore",
+      "status": "PASS"
+    },
+    {
+      "name": "exports",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForEvent: Timeout 420000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+    },
+    {
+      "name": "cancel",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 20000ms exceeded."
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

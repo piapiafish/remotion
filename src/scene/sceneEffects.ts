@@ -1,0 +1,124 @@
+import * as THREE from 'three'
+import { waitForSceneReady } from '../export/sceneReady'
+import type { Project, SceneEffects } from '../store/schema'
+import { focusDistance } from './depthOfField'
+export { focusDistance } from './depthOfField'
+import { seekScreenVideos, hasScreenVideos } from '../media/screenVideo'
+import { withoutEditorHelpers } from './editorHelpers'
+
+export function exposureTimes(project: Project, time: number, count?: number): number[] {
+  const blur=project.effects?.motionBlur
+  if(!blur?.enabled || blur.strength<=0)return [time]
+  const n=count??blur.samples, span=blur.strength/project.fps
+  return Array.from({length:n},(_,i)=>Math.max(0,Math.min(project.duration,time+((i+.5)/n-.5)*span)))
+}
+const vertex=`precision highp float;attribute vec3 position;attribute vec2 uv;varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}`
+const fragment=`precision highp float;
+uniform sampler2D colorMap;uniform sampler2D depthMap;uniform vec2 texel;uniform vec2 direction;
+uniform float cameraNear;uniform float cameraFar;uniform float focus;uniform float radius;
+varying vec2 vUv;
+float distanceAt(vec2 uv){float z=texture2D(depthMap,uv).x*2.0-1.0;return 2.0*cameraNear*cameraFar/(cameraFar+cameraNear-z*(cameraFar-cameraNear));}
+void main(){
+ float z=distanceAt(vUv);float coc=clamp(abs(z-focus)/max(.12,focus*.35),0.0,1.0)*radius;
+ vec4 sum=vec4(0.0);float total=0.0;
+ for(int i=-20;i<=20;i++){
+  float p=float(i)/20.0;float w=exp(-3.0*p*p);
+  sum+=texture2D(colorMap,clamp(vUv+direction*p*texel*coc,vec2(0.0),vec2(1.0)))*w;total+=w;
+ }
+ gl_FragColor=sum/total;
+}`
+const copyFragment=`precision highp float;uniform sampler2D colorMap;varying vec2 vUv;void main(){gl_FragColor=texture2D(colorMap,vUv);}`
+
+/** Shared CPU-clocked sampling plus depth-aware GPU blur. Buffers are reused per renderer size. */
+export class SceneEffectsRenderer {
+  private w=0;private h=0
+  private color?:THREE.FramebufferTexture
+  private depth?:THREE.WebGLRenderTarget
+  private blurTarget?:THREE.WebGLRenderTarget
+  private material=new THREE.RawShaderMaterial({vertexShader:vertex,fragmentShader:fragment,uniforms:{colorMap:{value:null},depthMap:{value:null},texel:{value:new THREE.Vector2()},direction:{value:new THREE.Vector2(1,0)},cameraNear:{value:.1},cameraFar:{value:1000},focus:{value:3.2},radius:{value:0}},depthTest:false,depthWrite:false,blending:THREE.NoBlending})
+  private copy=new THREE.RawShaderMaterial({vertexShader:vertex,fragmentShader:copyFragment,uniforms:{colorMap:{value:null}},depthTest:false,depthWrite:false,blending:THREE.NoBlending})
+  private depthMaterial=new THREE.MeshDepthMaterial({side:THREE.DoubleSide})
+  private quad=new THREE.Mesh(new THREE.PlaneGeometry(2,2),this.material)
+  private quadScene=new THREE.Scene()
+  private quadCamera=new THREE.Camera()
+  private sample?:OffscreenCanvas
+  private accumulation?:OffscreenCanvas
+  private presentation?:THREE.CanvasTexture<OffscreenCanvas>
+  private disposed=false
+  private renderer:THREE.WebGLRenderer
+  private scene:THREE.Scene
+  private camera:THREE.Camera
+  constructor(renderer:THREE.WebGLRenderer,scene:THREE.Scene,camera:THREE.Camera){this.renderer=renderer;this.scene=scene;this.camera=camera;this.quad.frustumCulled=false;this.quadScene.add(this.quad)}
+  private resize(){
+    if(this.disposed)throw new Error('效果资源已释放')
+    const size=this.renderer.getDrawingBufferSize(new THREE.Vector2()),w=size.x,h=size.y
+    if(w===this.w&&h===this.h)return
+    this.releaseBuffers();this.w=w;this.h=h
+    this.color=new THREE.FramebufferTexture(w,h);this.color.minFilter=THREE.LinearFilter;this.color.magFilter=THREE.LinearFilter
+    this.depth=new THREE.WebGLRenderTarget(w,h,{depthBuffer:true,stencilBuffer:false})
+    this.depth.depthTexture=new THREE.DepthTexture(w,h,THREE.UnsignedIntType)
+    this.blurTarget=new THREE.WebGLRenderTarget(w,h,{depthBuffer:false,stencilBuffer:false})
+    this.sample=new OffscreenCanvas(w,h);this.accumulation=new OffscreenCanvas(w,h)
+  }
+  renderDepthOfField(project:Project,time:number){
+    this.resize()
+    const gl=this.renderer,scene=this.scene,camera=this.camera
+    gl.render(scene,camera)
+    const dof=project.effects?.depthOfField
+    if(!dof?.enabled||dof.strength<=0)return
+    if(!(camera instanceof THREE.PerspectiveCamera))throw new Error('景深需要透视相机')
+    gl.copyFramebufferToTexture(this.color!)
+    const override=scene.overrideMaterial,target=gl.getRenderTarget()
+    try {
+      scene.overrideMaterial=this.depthMaterial;gl.setRenderTarget(this.depth!);gl.clear();gl.render(scene,camera)
+    } finally {scene.overrideMaterial=override;gl.setRenderTarget(target)}
+    const u=this.material.uniforms
+    u.colorMap.value=this.color;u.depthMap.value=this.depth!.depthTexture;u.texel.value.set(1/this.w,1/this.h)
+    u.cameraNear.value=camera.near;u.cameraFar.value=camera.far;u.focus.value=focusDistance(project,time,{position:camera.position.toArray(),target:camera.position.clone().add(camera.getWorldDirection(new THREE.Vector3())).toArray(),fov:camera.fov});u.radius.value=dof.strength*30*this.h/1080
+    this.quad.material=this.material
+    try{
+      u.direction.value.set(1,0);gl.setRenderTarget(this.blurTarget!);gl.render(this.quadScene,this.quadCamera)
+      u.colorMap.value=this.blurTarget!.texture;u.direction.value.set(0,1);gl.setRenderTarget(target);gl.render(this.quadScene,this.quadCamera)
+    }finally{gl.setRenderTarget(target)}
+  }
+  async capture(project:Project,time:number,applyAt:(t:number)=>void,signal?:AbortSignal,samples?:number,hideHelpers=true,liveVideo=false):Promise<OffscreenCanvas>{
+    this.resize()
+    const times=exposureTimes(project,time,samples),ctx=this.accumulation!.getContext('2d')!,sampleCtx=this.sample!.getContext('2d')!
+    ctx.clearRect(0,0,this.w,this.h);ctx.globalCompositeOperation='lighter';ctx.globalAlpha=1/times.length
+    sampleCtx.globalCompositeOperation='copy'
+    try{
+      for(const t of times){
+        signal?.throwIfAborted()
+        applyAt(t)
+        if(!liveVideo){await waitForSceneReady(this.scene,project,10000,signal,t);if(hasScreenVideos())await seekScreenVideos(t,5000,signal)}
+        signal?.throwIfAborted()
+        const render=()=>this.renderDepthOfField(project,t)
+        if(hideHelpers)withoutEditorHelpers(this.scene,render);else render()
+        sampleCtx.drawImage(this.renderer.domElement,0,0)
+        ctx.drawImage(this.sample!,0,0)
+      }
+      ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over'
+      return this.accumulation!
+    } finally {if(!signal?.aborted)applyAt(time)}
+  }
+  present(canvas:OffscreenCanvas){
+    if(this.disposed)return
+    if(!this.presentation){this.presentation=new THREE.CanvasTexture(canvas);this.presentation.colorSpace=THREE.NoColorSpace;this.presentation.premultiplyAlpha=true}
+    this.presentation.image=canvas;this.presentation.needsUpdate=true
+    this.copy.uniforms.colorMap.value=this.presentation;this.quad.material=this.copy
+    this.renderer.render(this.quadScene,this.quadCamera)
+  }
+  releaseResources(){if(this.w===0)return;this.releaseBuffers();this.w=0;this.h=0}
+  private releaseBuffers(){this.color?.dispose();this.depth?.depthTexture?.dispose();this.depth?.dispose();this.blurTarget?.dispose();this.presentation?.dispose();this.color=undefined;this.depth=undefined;this.blurTarget=undefined;this.presentation=undefined;if(this.sample){this.sample.width=0;this.sample.height=0}if(this.accumulation){this.accumulation.width=0;this.accumulation.height=0}}
+  dispose(){if(this.disposed)return;this.disposed=true;this.releaseBuffers();this.material.dispose();this.copy.dispose();this.depthMaterial.dispose();this.quad.geometry.dispose()}
+}
+
+let previewController:AbortController|null=null,previewWork:Promise<unknown>|null=null
+let previewPauseCount=0
+export function isEffectPreviewPaused(){return previewPauseCount>0}
+export function pauseEffectPreview(){previewPauseCount++;cancelEffectPreview();let resumed=false;return()=>{if(!resumed){resumed=true;previewPauseCount--}}}
+export function isEffectPreviewSampling(){return !!previewWork}
+export function registerEffectPreview(controller:AbortController,work:Promise<unknown>){previewController=controller;previewWork=work;void work.finally(()=>{if(previewWork===work){previewWork=null;previewController=null}}).catch(()=>{})}
+export function cancelEffectPreview(){previewController?.abort()}
+export async function settleEffectPreview(){cancelEffectPreview();try{await previewWork}catch{/* cancellation belongs to the preview */}}
+export const hasEffects=(effects?:SceneEffects)=>!!(effects?.depthOfField.enabled||effects?.motionBlur.enabled)

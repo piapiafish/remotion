@@ -1,0 +1,376 @@
+{
+  "date": "2026-10-30",
+  "scope": "External AI storyboard import -> automatic local save -> existing CLI -> Remotion -> browser playback/download",
+  "sourceBaseVersion": 2,
+  "sourceBaseSHA256": "002f73cd2dd92a8d5ced5a0747786a90034ba2b6146bce52f25592a69f37a5a6",
+  "environment": {
+    "os": "Linux",
+    "python": "3.12.14",
+    "node": "24.22.1",
+    "playwright": "1.58.0",
+    "browser": "145.0.7632.6",
+    "CJKFontForTesting": "Noto Sans SC installed in test OS; not added to project assets"
+  },
+  "checks": {
+    "newApiTests": 13,
+    "allAgentTestsPassed": 25,
+    "frontendTestsPassed": 190,
+    "browserFlowChecksPassed": 14,
+    "buildExitCode": 0,
+    "lintExitCode": 0,
+    "lintWarnings": 14,
+    "doctorExitCode": 0
+  },
+  "realOutput": {
+    "file": "Agent-Flow-Test.mp4",
+    "bytes": 3428170,
+    "sha256": "9846a2d85ee2a88ebb56f12ac121486e8c07135867f0d33e9b4b6d3c61da4e40",
+    "width": 540,
+    "height": 960,
+    "fps": 30,
+    "videoSeconds": 15,
+    "videoFrames": 450,
+    "videoCodec": "h264",
+    "audioCodec": "aac",
+    "audioMeanDb": -36.0,
+    "audioPeakDb": -30.0
+  },
+  "limitations": {
+    "windowsNativeRun": false,
+    "onlineModelCalls": false,
+    "directNaturalLanguageChat": false,
+    "mockupStoryboardTwoWaySync": false,
+    "crossStoryboardCacheReuse": false
+  },
+  "testInput": "Existing deterministic storyboard, modified and wrapped as a representative external AI JSON reply; no real LLM service was called.",
+  "browserFlow": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "invalid AI content is rejected in the page",
+        "status": "PASS"
+      },
+      {
+        "name": "offline planner automatically writes validated storyboard",
+        "status": "PASS",
+        "path": "work/studio/044526c8-7628-47b3-9e0d-9e5e6d67d6fd/storyboard.json"
+      },
+      {
+        "name": "saved JSON downloads correctly",
+        "status": "PASS"
+      },
+      {
+        "name": "JSON file imports automatically without overwriting earlier work",
+        "status": "PASS"
+      },
+      {
+        "name": "illegal device and missing asset have readable page errors",
+        "status": "PASS"
+      },
+      {
+        "name": "AI prose plus fenced JSON imports, validates and saves",
+        "status": "PASS",
+        "path": "work/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/storyboard.json"
+      },
+      {
+        "name": "refresh restores the saved storyboard",
+        "status": "PASS"
+      },
+      {
+        "name": "page-triggered real three-shot rendering and Remotion composition pass",
+        "status": "PASS",
+        "renderReport": {
+          "schemaVersion": "0.1.0",
+          "startedAt": "2026-10-30T09:19:43.066Z",
+          "status": "DONE",
+          "jobs": [
+            {
+              "id": "shot-001",
+              "status": "DONE",
+              "startedAt": "2026-10-30T09:19:43.106Z",
+              "quality": {
+                "ok": true,
+                "bytes": 2291776,
+                "duration": 5,
+                "width": 540,
+                "height": 960,
+                "fps": 30,
+                "frames": 150,
+                "audio": false,
+                "codec": "h264",
+                "file": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-001.mp4"
+              },
+              "output": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-001.mp4"
+            },
+            {
+              "id": "shot-002",
+              "status": "DONE",
+              "startedAt": "2026-10-30T09:22:47.922Z",
+              "quality": {
+                "ok": true,
+                "bytes": 2629359,
+                "duration": 5,
+                "width": 540,
+                "height": 960,
+                "fps": 30,
+                "frames": 150,
+                "audio": false,
+                "codec": "h264",
+                "file": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-002.mp4"
+              },
+              "output": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-002.mp4"
+            },
+            {
+              "id": "shot-003",
+              "status": "DONE",
+              "startedAt": "2026-10-30T09:25:57.083Z",
+              "quality": {
+                "ok": true,
+                "bytes": 1984754,
+                "duration": 5,
+                "width": 540,
+                "height": 960,
+                "fps": 30,
+                "frames": 150,
+                "audio": false,
+                "codec": "h264",
+                "file": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-003.mp4"
+              },
+              "output": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-003.mp4"
+            }
+          ],
+          "warnings": [],
+          "compositor": "remotion",
+          "final": {
+            "ok": true,
+            "bytes": 3428170,
+            "duration": 15.061333,
+            "width": 540,
+            "height": 960,
+            "fps": 30,
+            "frames": 450,
+            "audio": true,
+            "codec": "h264",
+            "file": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/final.mp4"
+          },
+          "finishedAt": "2026-10-30T09:29:49.264Z"
+        }
+      },
+      {
+        "name": "final MP4 plays in the panel and seeks",
+        "status": "PASS",
+        "time": 0.655906,
+        "duration": 15.061333,
+        "width": 540,
+        "height": 960
+      },
+      {
+        "name": "downloaded video passes FFprobe and full decoding",
+        "status": "PASS",
+        "bytes": 3428170
+      },
+      {
+        "name": "video range requests support browser seeking",
+        "status": "PASS"
+      },
+      {
+        "name": "repeated page rendering reuses all three shot caches",
+        "status": "PASS",
+        "renderReport": {
+          "schemaVersion": "0.1.0",
+          "startedAt": "2026-10-30T09:29:55.126Z",
+          "status": "DONE",
+          "jobs": [
+            {
+              "id": "shot-001",
+              "status": "CACHED",
+              "startedAt": "2026-10-30T09:29:55.153Z",
+              "output": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-001.mp4"
+            },
+            {
+              "id": "shot-002",
+              "status": "CACHED",
+              "startedAt": "2026-10-30T09:29:55.265Z",
+              "output": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-002.mp4"
+            },
+            {
+              "id": "shot-003",
+              "status": "CACHED",
+              "startedAt": "2026-10-30T09:29:55.353Z",
+              "output": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/shots/shot-003.mp4"
+            }
+          ],
+          "warnings": [],
+          "compositor": "remotion",
+          "final": {
+            "ok": true,
+            "bytes": 3428170,
+            "duration": 15.061333,
+            "width": 540,
+            "height": 960,
+            "fps": 30,
+            "frames": 450,
+            "audio": true,
+            "codec": "h264",
+            "file": "./output/studio/475ed81f-1c72-4b1e-889c-c8f3da697fcc/final.mp4"
+          },
+          "finishedAt": "2026-10-30T09:30:26.391Z"
+        }
+      },
+      {
+        "name": "server restart restores completed work and download access",
+        "status": "PASS"
+      },
+      {
+        "name": "no browser page errors",
+        "status": "PASS"
+      }
+    ],
+    "browser": "145.0.7632.6",
+    "sessionId": "475ed81f-1c72-4b1e-889c-c8f3da697fcc",
+    "ffprobe": {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "profile": "High",
+          "codec_type": "video",
+          "codec_tag_string": "avc1",
+          "codec_tag": "0x31637661",
+          "width": 540,
+          "height": 960,
+          "coded_width": 540,
+          "coded_height": 960,
+          "closed_captions": 0,
+          "film_grain": 0,
+          "has_b_frames": 2,
+          "sample_aspect_ratio": "1:1",
+          "display_aspect_ratio": "9:16",
+          "pix_fmt": "yuvj420p",
+          "level": 31,
+          "color_range": "pc",
+          "color_space": "bt470bg",
+          "chroma_location": "center",
+          "field_order": "progressive",
+          "refs": 1,
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "id": "0x1",
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "time_base": "1/15360",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 230400,
+          "duration": "15.000000",
+          "bit_rate": "1500072",
+          "bits_per_raw_sample": "8",
+          "nb_frames": "450",
+          "extradata_size": 51,
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0
+          },
+          "tags": {
+            "language": "und",
+            "handler_name": "VideoHandler",
+            "vendor_id": "[0][0][0][0]"
+          },
+          "side_data_list": [
+            {
+              "side_data_type": "ICC Profile"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_long_name": "AAC (Advanced Audio Coding)",
+          "profile": "LC",
+          "codec_type": "audio",
+          "codec_tag_string": "mp4a",
+          "codec_tag": "0x6134706d",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 2,
+          "channel_layout": "stereo",
+          "bits_per_sample": 0,
+          "initial_padding": 0,
+          "id": "0x2",
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/48000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 722944,
+          "duration": "15.061333",
+          "bit_rate": "317374",
+          "nb_frames": "706",
+          "extradata_size": 2,
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0
+          },
+          "tags": {
+            "language": "und",
+            "handler_name": "SoundHandler",
+            "vendor_id": "[0][0][0][0]"
+          }
+        }
+      ],
+      "format": {
+        "filename": "./output/agent-flow-test/Agent-Flow-Test.mp4",
+        "nb_streams": 2,
+        "nb_programs": 0,
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "format_long_name": "QuickTime / MOV",
+        "start_time": "0.000000",
+        "duration": "15.061333",
+        "size": "3428170",
+        "bit_rate": "1820911",
+        "probe_score": 100,
+        "tags": {
+          "major_brand": "isom",
+          "minor_version": "512",
+          "compatible_brands": "isomiso2avc1mp41",
+          "encoder": "Lavf61.7.100",
+          "comment": "Made with Remotion 4.0.300"
+        }
+      }
+    },
+    "videoSHA256": "9846a2d85ee2a88ebb56f12ac121486e8c07135867f0d33e9b4b6d3c61da4e40"
+  }
+}

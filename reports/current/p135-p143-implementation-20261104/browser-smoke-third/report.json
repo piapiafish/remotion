@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-04T11:26:48.073Z",
+  "checks": [
+    {
+      "name": "two-real-models-ready",
+      "status": "PASS"
+    },
+    {
+      "name": "solid-selected-outline-and-axis-controls",
+      "status": "PASS"
+    },
+    {
+      "name": "solid-cannot-cross-fixed-floor",
+      "status": "PASS"
+    },
+    {
+      "name": "empty-object-row-is-compact",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-really-removed-from-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-reattaches-at-start",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-removed-at-exclusive-end",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "smoke",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

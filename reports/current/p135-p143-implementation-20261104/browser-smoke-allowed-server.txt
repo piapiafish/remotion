@@ -1,0 +1,8 @@
+
+  VITE v8.2.2  ready in 189 ms
+
+  ➜  Local:   http://127.0.0.1:58942/
+Assets in public directory cannot be imported from JavaScript.
+If you intend to import that asset, put the file in the src directory, and use /src/fonts/OFL.txt?raw instead of /public/fonts/OFL.txt?raw.
+If you intend to use the URL of that asset, use /fonts/OFL.txt?url&raw.
+19:24:32 [vite] (client) [console.warn] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.

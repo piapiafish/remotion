@@ -1,0 +1,239 @@
+import * as THREE from 'three'
+import type { ScreenPlayback } from '../store/schema'
+import { videoTimeAt } from './videoTiming'
+import { reportError } from '../store/feedback'
+
+/**
+ * Screen video: playing a recording on a device's display (M7, §8.3).
+ *
+ * The rule the whole design follows: **video time is derived from timeline
+ * time, never played independently.**
+ *
+ *     screenTime = videoTimeAt(t, sourceDuration, device.screenPlayback)
+ *
+ * One mapping shared by preview and export. In preview it maps to
+ * `videoEl.currentTime` and accepts some slop — a video element playing at
+ * its own rate is smoother than one seeked 60 times a second, and nobody can
+ * see 80ms of drift. In export it maps to an exact seek, awaited, so frame
+ * `i` of the export shows the frame at `i / fps` no matter how long the
+ * render took.
+ */
+
+/** Preview drift, in seconds, before the element is seeked back into line. */
+const SYNC_TOLERANCE = 0.12
+
+/** Time into the clip shown at timeline time `t`. */
+export function screenTimeAt(t: number, clipDuration: number, offset = 0): number {
+  return Math.min(Math.max(t - offset, 0), clipDuration)
+}
+
+export type ScreenVideo = {
+  el: HTMLVideoElement
+  texture: THREE.VideoTexture
+  /** Clip length in seconds — what the screen time is clamped to. */
+  duration: number
+  activeAt?: (time:number)=>boolean
+  clipId?: string
+  instanceId?: string
+  playback?: ScreenPlayback
+  dispose: () => void
+}
+
+/**
+ * Build a video element and its texture for a screen.
+ *
+ * `muted` and `playsInline` are not cosmetic: without both, autoplay is
+ * blocked and the element never produces a frame, so the screen renders
+ * black with no error anywhere.
+ *
+ * Mipmaps stay OFF here, unlike a still screenshot. Regenerating a mip chain
+ * on every uploaded frame costs more than the sharpness it buys, and the
+ * export renders the screen at or above 1:1 anyway (see `frameRenderer.ts`),
+ * which is the case mipmaps do nothing for.
+ */
+export function createScreenVideo(
+  url: string,
+  duration: number,
+  renderer: THREE.WebGLRenderer,
+  playback?: ScreenPlayback,
+): ScreenVideo {
+  const el = document.createElement('video')
+  el.src = url
+  el.muted = true
+  el.playsInline = true
+  el.loop = false // looping is the timeline's job, not the element's
+  el.preload = 'auto'
+  el.crossOrigin = 'anonymous'
+
+  const texture = new THREE.VideoTexture(el)
+  texture.colorSpace = THREE.SRGBColorSpace // §14 trap 3
+  texture.minFilter = THREE.LinearFilter
+  texture.magFilter = THREE.LinearFilter
+  texture.generateMipmaps = false
+  texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+
+  const entry: ScreenVideo = {
+    el,
+    texture,
+    duration,
+    playback,
+    dispose: () => {
+      registry.delete(entry)
+      el.pause()
+      el.removeAttribute('src')
+      el.load()
+      texture.dispose()
+    },
+  }
+
+  registry.add(entry)
+  const state={lastTimeline:undefined as number|undefined,lastMapped:undefined as number|undefined,lastSeek:-Infinity,pending:undefined as number|undefined,corrections:0,playing:false}
+  previewStates.set(entry,state)
+  el.addEventListener('seeked',()=>{
+    texture.needsUpdate=true
+    if(!state.playing&&state.pending!==undefined&&!el.seeking){const want=state.pending;state.pending=undefined;if(Math.abs(el.currentTime-want)>1e-4)el.currentTime=want}
+  })
+  el.addEventListener('error', () => reportError('录屏播放失败，请重新绑定素材', new Error(el.error?.message || '浏览器无法解码该录屏。')), { once: true })
+  return entry
+}
+
+/**
+ * Every screen video currently in the scene.
+ *
+ * A registry rather than props threaded through the scene tree because the
+ * two consumers are in different worlds: SceneDriver runs inside the R3F
+ * loop, and the export loop runs outside React entirely. Both need "all the
+ * videos, now", and neither should have to know how many devices there are.
+ */
+type ScreenPipeline={prepare:(t:number)=>void;paint:(t:number)=>void;ready:(t:number)=>boolean}
+const pipelines=new Set<ScreenPipeline>()
+export function registerScreenPipeline(pipeline:ScreenPipeline){pipelines.add(pipeline);return()=>{pipelines.delete(pipeline)}}
+export function prepareScreenVideos(t:number){for(const p of pipelines)p.prepare(t)}
+export function paintScreenVideos(t:number){for(const p of pipelines)p.paint(t)}
+const registry = new Set<ScreenVideo>()
+const previewStates=new WeakMap<ScreenVideo,{lastTimeline?:number;lastMapped?:number;lastSeek:number;pending?:number;corrections:number;playing:boolean}>()
+
+export function updateScreenPlayback(entry: ScreenVideo, playback?: ScreenPlayback) {
+  entry.playback = playback
+}
+
+/** Read-only clock diagnostics for the existing opt-in local automation bridge. */
+export function screenVideoStatus() {
+  return [...registry].map(entry => ({ clipId:entry.clipId,instanceId:entry.instanceId,time:entry.el.currentTime,paused:entry.el.paused,seeking:entry.el.seeking,readyState:entry.el.readyState,duration:entry.duration,playback:entry.playback,rate:entry.el.playbackRate,corrections:previewStates.get(entry)?.corrections??0 }))
+}
+
+/**
+ * Preview sync. Cheap, called every frame, never awaits.
+ *
+ * While the timeline plays, the element plays too and is only nudged when it
+ * drifts past the tolerance — seeking every frame gives visibly worse
+ * playback than letting the decoder run. While the timeline is paused or
+ * being scrubbed, the element is paused and follows the playhead exactly,
+ * which is what makes scrubbing feel connected to the screen content.
+ */
+export function syncScreenVideos(t: number, playing: boolean) {
+  prepareScreenVideos(t)
+  for (const entry of registry) {
+    const {el,texture,duration,playback}=entry,state=previewStates.get(entry)!
+    if(el.readyState<HTMLMediaElement.HAVE_METADATA)continue
+    const clock=videoTimeAt(t,duration,playback),want=clock.time,shouldPlay=playing&&clock.active&&(entry.activeAt?.(t)??true)
+    const jumped=state.lastTimeline===undefined||t<state.lastTimeline-1e-4||t-state.lastTimeline>.5
+    const wrapped=state.lastMapped!==undefined&&want<state.lastMapped-.05
+    const starting=shouldPlay&&!state.playing
+    state.lastTimeline=t;state.lastMapped=want;state.playing=shouldPlay
+    const drift=want-el.currentTime,now=performance.now()
+    if(shouldPlay){
+      state.pending=undefined
+      // Soft drift correction lets high-frame-rate decoders run forwards.
+      // Hard seeks are reserved for explicit jumps, wraps and sustained large drift.
+      const hard=jumped||wrapped||starting||Math.abs(drift)>.75&&now-state.lastSeek>750
+      if(!el.seeking&&hard&&Math.abs(drift)>SYNC_TOLERANCE){el.currentTime=want;state.lastSeek=now;state.corrections++}
+      el.playbackRate=(clock.playback.rate??1)*(Math.abs(drift)>SYNC_TOLERANCE&&!hard?Math.max(.92,Math.min(1.08,1+drift*.15)):1)
+      if(el.paused)void el.play().catch(error=>{if(error?.name!=='AbortError')reportError('录屏暂时无法播放，请暂停后重试',error)})
+    }else{
+      el.playbackRate=1
+      if(!el.paused)el.pause()
+      if(el.seeking)state.pending=want
+      else if(Math.abs(drift)>1e-4){state.pending=undefined;el.currentTime=want}
+      else texture.needsUpdate=true
+    }
+  }
+}
+
+/**
+ * Export sync: seek every screen video to exactly `t` and wait for the frame.
+ *
+ * This is the difference between preview and export. `beginFrameExport`
+ * renders synchronously, so the awaiting has to happen before it — a render
+ * fired without waiting for `seeked` shows whatever frame the decoder
+ * happened to have, which is how an export ends up with the same frame
+ * repeated a dozen times and then a jump.
+ *
+ * A seek that never completes must not hang the export, so each one races a
+ * timeout. Never silently encode a stale frame as a successful export.
+ */
+export async function seekScreenVideos(t: number, timeoutMs = 2000, signal?: AbortSignal): Promise<void> {
+  prepareScreenVideos(t)
+  if(pipelines.size&&!await waitForScreenVideosReady(timeoutMs,t,signal))throw new Error('SCREEN_VIDEO_NOT_READY')
+  await Promise.all([...registry].map((entry) => entry.activeAt?.(t)===false?Promise.resolve():seekOne(entry, t, timeoutMs, signal)))
+  paintScreenVideos(t)
+}
+
+function seekOne(entry: ScreenVideo, t: number, timeoutMs: number, signal?: AbortSignal) {
+  const {el,texture,duration,playback}=entry
+  const preview=previewStates.get(entry)
+  if(preview)preview.pending=undefined
+  const want = videoTimeAt(t, duration, playback).time
+
+  return new Promise<void>((resolve, reject) => {
+    if (signal?.aborted) return reject(signal.reason)
+    if (el.error) return reject(new Error('SCREEN_VIDEO_DECODE_FAILED: ' + el.error.message))
+    if (el.readyState < HTMLMediaElement.HAVE_METADATA) return reject(new Error('SCREEN_VIDEO_NOT_READY'))
+    if (!el.paused) el.pause()
+
+    // Already there — seeking to the current time fires no event, so this
+    // would otherwise wait for the timeout on every duplicated frame.
+    if (el.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && !el.seeking && Math.abs(el.currentTime - want) < 1e-4) {
+      texture.needsUpdate = true
+      return resolve()
+    }
+
+    const cleanup = () => {
+      clearTimeout(timer)
+      signal?.removeEventListener('abort', aborted)
+      el.removeEventListener('seeked', done)
+      el.removeEventListener('loadeddata', loaded)
+      el.removeEventListener('error', failed)
+    }
+    const done = () => {
+      cleanup()
+      texture.needsUpdate = true
+      resolve()
+    }
+    const loaded = () => { if(!el.seeking && Math.abs(el.currentTime-want)<1e-4)done() }
+    const aborted = () => { cleanup(); reject(signal?.reason ?? new DOMException('Cancelled', 'AbortError')) }
+    const failed = () => {cleanup();reject(new Error(`SCREEN_VIDEO_DECODE_FAILED: ${el.error?.message || el.src}`))}
+    const timer = setTimeout(() => {cleanup();reject(new Error(`SCREEN_VIDEO_SEEK_TIMEOUT: ${want.toFixed(6)}s`))}, timeoutMs)
+    signal?.addEventListener('abort', aborted, { once: true })
+    el.addEventListener('seeked', done, { once: true })
+    el.addEventListener('loadeddata', loaded)
+    el.addEventListener('error', failed, { once: true })
+    try{el.currentTime = want}catch(error){cleanup();reject(error)}
+  })
+}
+
+/** True when the scene has any video screen — lets callers skip the await. */
+export function hasScreenVideos(): boolean {
+  return registry.size > 0 || pipelines.size > 0
+}
+
+/** Wait until each browser video decoder exposes actual current pixel data. */
+export async function waitForScreenVideosReady(timeoutMs=12000,time?:number,signal?:AbortSignal):Promise<boolean> {
+  const started=performance.now()
+  while(performance.now()-started<timeoutMs){
+    signal?.throwIfAborted()
+    if([...registry].filter(e=>time===undefined||e.activeAt?.(time)!==false).every(({el})=>el.readyState>=HTMLMediaElement.HAVE_CURRENT_DATA && el.videoWidth>0 && el.videoHeight>0) && (time===undefined||[...pipelines].every(p=>p.ready(time)))) return true
+    await new Promise(r=>setTimeout(r,30))
+  }
+  return false
+}

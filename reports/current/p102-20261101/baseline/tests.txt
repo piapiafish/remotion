@@ -1,0 +1,15 @@
+
+> mockup-web@0.0.0 test
+> vitest run src --reporter=dot
+
+
+ RUN  v4.1.11 C:/Users/20153/AppData/Local/Temp/p102-20261101-4dizbre0/project
+
+····································································································································································································································
+
+ Test Files  23 passed (23)
+      Tests  228 passed (228)
+   Start at  19:09:32
+   Duration  1.36s (transform 3.04s, setup 0ms, import 4.67s, tests 200ms, environment 2ms)
+
+

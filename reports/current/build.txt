@@ -1,0 +1,15 @@
+
+> mockup-web@0.0.0 build
+> tsc -b && vite build
+
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 2422 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.47 kB │ gzip:   0.30 kB
+dist/assets/index-5YkMuiVW.css     19.62 kB │ gzip:   4.22 kB
+dist/assets/index-w2ipeegl.js   1,396.17 kB │ gzip: 396.99 kB
+
+✓ built in 1.02s
+

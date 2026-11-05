@@ -1,0 +1,36 @@
+import { useState } from 'react'
+import { useProjectStore } from '../../store/project'
+import { normalizePlayback } from '../../media/videoTiming'
+import { reportError } from '../../store/feedback'
+
+function TimingNumber({ label, value, max, commit }: { label: string; value: number; max?: number; commit: (n: number) => void }) {
+  const [draft, setDraft] = useState<string | null>(null)
+  const submit = () => {
+    if (draft !== null) {
+      if (!draft.trim() || !Number.isFinite(Number(draft))) reportError('录屏时序未修改', new Error('请输入有效的秒数。'))
+      else if (Number(draft) !== value) commit(Number(draft))
+    }
+    setDraft(null)
+  }
+  return <label className="video-timing-field">{label}<input aria-label={label} type="number" min="0" max={max} step="0.01"
+    value={draft ?? value} onChange={e => setDraft(e.target.value)} onBlur={submit}
+    onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); if (e.key === 'Escape') { e.preventDefault(); setDraft(null) } }} /></label>
+}
+
+export function VideoTimingControls() {
+  const device = useProjectStore(s => s.project.devices[s.activeDevice])
+  const setPlayback = useProjectStore(s => s.setScreenPlayback)
+  if (device?.screen?.kind !== 'video') return null
+  const p = normalizePlayback(device.screen.duration ?? 0, device.screenPlayback)
+  return <details className="advanced video-timing" key={device.instanceId}><summary>动画调节 · 屏幕视频</summary>
+    <label>精确调节 · 秒</label>
+    <div className="video-timing-fields">
+      <TimingNumber key={device.instanceId + '-in'} label="从原视频第几秒开始" value={p.in} max={device.screen.duration} commit={n => setPlayback({ in: n })} />
+      <TimingNumber key={device.instanceId + '-out'} label="播放到原视频第几秒" value={p.out} max={device.screen.duration} commit={n => setPlayback({ out: n })} />
+      <TimingNumber key={device.instanceId + '-start'} label="在作品第几秒开始" value={p.start} commit={n => setPlayback({ start: n })} />
+    </div>
+    <TimingNumber key={device.instanceId+'-rate'} label="播放速度（倍）" value={p.rate??1} max={4} commit={n=>setPlayback({rate:n})}/>
+    <p className="hint">作品 {(p.start).toFixed(2)}～{(p.start+(p.out-p.in)/(p.rate??1)).toFixed(2)} 秒播放。也可拖动时间轴的细条裁切和移动。起播前/结束后保持首/末画面。</p>
+    {p.loop&&<p className="hint">保留旧工程循环；重新裁切、移动或改速后将改为单次播放，可撤销。</p>}
+  </details>
+}

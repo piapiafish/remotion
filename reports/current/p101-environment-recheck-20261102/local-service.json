@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-02T00:39:20.708175+00:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "method": "Python Playwright and actual Vite HTTP/TCP, without request interception or offline route fulfillment.",
+  "checks": [
+    {
+      "name": "real Vite HTTP and studio API capabilities respond",
+      "status": "PASS",
+      "capabilities": {
+        "ok": true,
+        "planning": "offline",
+        "schemaVersion": "0.1.0"
+      }
+    },
+    {
+      "name": "Python Playwright loads editor through real localhost TCP",
+      "status": "PASS"
+    },
+    {
+      "name": "real GLB, decoder and WebGL scene become ready over HTTP",
+      "status": "PASS",
+      "ready": {
+        "ready": true,
+        "deviceCount": 1
+      }
+    },
+    {
+      "name": "page imports JSON and saves through the real Vite studio plugin",
+      "status": "PASS"
+    },
+    {
+      "name": "saved independent storyboard bytes match submitted JSON",
+      "status": "PASS"
+    },
+    {
+      "name": "browser downloads matching JSON over HTTP",
+      "status": "PASS"
+    },
+    {
+      "name": "real TCP API continues to reject foreign origins",
+      "status": "PASS"
+    },
+    {
+      "name": "Vite restart restores disk-saved plan and page selection",
+      "status": "PASS"
+    },
+    {
+      "name": "no unhandled browser errors or missing HTTP resources",
+      "status": "PASS"
+    },
+    {
+      "name": "existing default storyboard remains unchanged",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "status": "PASS",
+  "commands": [
+    {
+      "command": [
+        "D:\\Node.js\\node.EXE",
+        "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "61316",
+        "--strictPort"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "log": "vite-start.txt"
+    },
+    {
+      "command": [
+        "D:\\Node.js\\node.EXE",
+        "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "61316",
+        "--strictPort"
+      ],
+      "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+      "log": "vite-restart.txt"
+    }
+  ],
+  "baseUrl": "http://127.0.0.1:61316",
+  "browser": "156.0.8078.76",
+  "savedSession": {
+    "id": "7418e50f-31ef-4b5e-a665-a248d9e1dc59",
+    "path": "work/studio/7418e50f-31ef-4b5e-a665-a248d9e1dc59/storyboard.json",
+    "outputPath": "output/studio/7418e50f-31ef-4b5e-a665-a248d9e1dc59",
+    "status": "READY"
+  },
+  "serverStopped": true
+}

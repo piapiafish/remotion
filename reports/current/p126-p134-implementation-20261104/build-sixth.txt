@@ -1,0 +1,13 @@
+
+> mockup-web@0.0.0 build
+> tsc -b && vite build
+
+src/store/project.ts(591,208): error TS2339: Property 'instanceId' does not exist on type 'TrackTarget'.
+  Property 'instanceId' does not exist on type '{ kind: "camera"; }'.
+src/store/project.ts(596,208): error TS2339: Property 'instanceId' does not exist on type 'TrackTarget'.
+  Property 'instanceId' does not exist on type '{ kind: "camera"; }'.
+src/store/project.ts(603,192): error TS2339: Property 'instanceId' does not exist on type 'TrackTarget'.
+  Property 'instanceId' does not exist on type '{ kind: "camera"; }'.
+src/store/project.ts(622,283): error TS2339: Property 'instanceId' does not exist on type 'TrackTarget'.
+  Property 'instanceId' does not exist on type '{ kind: "camera"; }'.
+src/store/projectValidation.ts(65,221): error TS18046: 'font' is of type 'unknown'.

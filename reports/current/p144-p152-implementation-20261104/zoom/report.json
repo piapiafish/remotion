@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-04T14:23:28.955Z",
+  "checks": [
+    {
+      "name": "native-browser-125-percent-zoom-applied",
+      "status": "FAIL",
+      "detail": {
+        "innerWidth": 1600,
+        "innerHeight": 1000,
+        "dpr": 1,
+        "viewport": 1,
+        "screenWidth": 1600,
+        "board": 508,
+        "timeline": 206,
+        "overflow": false
+      }
+    }
+  ],
+  "scenarios": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "error": "Error: native-browser-125-percent-zoom-applied"
+}

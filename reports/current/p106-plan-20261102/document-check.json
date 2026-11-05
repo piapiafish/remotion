@@ -1,0 +1,611 @@
+{
+  "date": "2026-11-02T08:58:00.556603+08:00",
+  "markdownFilesChecked": 87,
+  "errors": [],
+  "historicalLinkWarnings": [
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 3,
+      "target": "reports/archive/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 7,
+      "target": "reports/current/p103-p105-20261102/writeback-receipt.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 9,
+      "target": "reports/current/p103-p105-writeback-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 21,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 29,
+      "target": "reports/current/p102-20261101/writeback-receipt.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 31,
+      "target": "reports/current/p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 47,
+      "target": "reports/current/p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 55,
+      "target": "reports/current/p101-plan-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 69,
+      "target": "reports/current/p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/DEVELOPMENT_LOG.md",
+      "line": 94,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 23,
+      "target": "reports/current/p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 28,
+      "target": "reports/current/p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 29,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 30,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 31,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 51,
+      "target": "reports/current/p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 59,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 70,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 80,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/IMPLEMENTATION_ROADMAP.md",
+      "line": 176,
+      "target": "reports/current/p103-p105-writeback-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 3,
+      "target": "reports/current/p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 7,
+      "target": "reports/current/p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 7,
+      "target": "reports/current/p101-20261101/browser/report.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 24,
+      "target": "reports/current/p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 28,
+      "target": "reports/current/p103-p105-writeback-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 30,
+      "target": "reports/current/p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 51,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 57,
+      "target": "reports/current/p101-plan-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 61,
+      "target": "docs/ARCHITECTURE.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/ISSUES_LOG.md",
+      "line": 61,
+      "target": "reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 5,
+      "target": "p103-p105-writeback-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 5,
+      "target": "p103-p105-writeback-20261102/results.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 5,
+      "target": "p103-p105-20261102/writeback-receipt.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 5,
+      "target": "../../docs/MANUAL_ANIMATION_GUIDE.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 11,
+      "target": "p103-p105-20261102/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 11,
+      "target": "../../docs/MANUAL_ANIMATION_GUIDE.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 16,
+      "target": "p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 16,
+      "target": "p102-writeback-20261101/results.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 16,
+      "target": "p102-20261101/writeback-receipt.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 32,
+      "target": "p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 32,
+      "target": "p102-20261101/browser/report.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 32,
+      "target": "p102-20261101/browser/P1-02-dual-device-1080p30.mp4"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 36,
+      "target": "p101-plan-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 51,
+      "target": "p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 51,
+      "target": "p101-20261101/results.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 61,
+      "target": "../archive/pre-20261101/original-documents.zip"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 61,
+      "target": "file-organization.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 64,
+      "target": "frontend-tests.txt"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 65,
+      "target": "build.txt"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 66,
+      "target": "lint.txt"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 67,
+      "target": "agent-tests.txt"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 71,
+      "target": "results.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 71,
+      "target": "agent-tests-sandbox.txt"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 75,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 75,
+      "target": "../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 77,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p101-env-before-20261102-084146/reports/current/README.md",
+      "line": 79,
+      "target": "../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/DEVELOPMENT_LOG.md",
+      "line": 3,
+      "target": "reports/archive/README.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/DEVELOPMENT_LOG.md",
+      "line": 28,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/ISSUES_LOG.md",
+      "line": 15,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/ISSUES_LOG.md",
+      "line": 30,
+      "target": "reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 38,
+      "target": "PHONE_MOTION_PLAN.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 40,
+      "target": "AUTOMATED_STORYBOARD_FLOW.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 52,
+      "target": "../reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/docs/ARCHITECTURE.md",
+      "line": 52,
+      "target": "reference/mockup-app-spec.md"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 9,
+      "target": "../archive/pre-20261101/original-documents.zip"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 9,
+      "target": "file-organization.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 12,
+      "target": "frontend-tests.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 13,
+      "target": "build.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 14,
+      "target": "lint.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 15,
+      "target": "agent-tests.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 19,
+      "target": "results.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 19,
+      "target": "agent-tests-sandbox.txt"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 23,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 23,
+      "target": "../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 25,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p102-before-20261101-195814-156606/reports/current/README.md",
+      "line": 27,
+      "target": "../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 3,
+      "target": "reports/archive/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 7,
+      "target": "reports/current/p102-20261101/writeback-receipt.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 9,
+      "target": "reports/current/p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 25,
+      "target": "reports/current/p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 33,
+      "target": "reports/current/p101-plan-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 47,
+      "target": "reports/current/p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/DEVELOPMENT_LOG.md",
+      "line": 72,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/IMPLEMENTATION_ROADMAP.md",
+      "line": 23,
+      "target": "reports/current/p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/IMPLEMENTATION_ROADMAP.md",
+      "line": 28,
+      "target": "reports/current/p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/IMPLEMENTATION_ROADMAP.md",
+      "line": 51,
+      "target": "reports/current/p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 3,
+      "target": "reports/current/p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 7,
+      "target": "reports/current/p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 7,
+      "target": "reports/current/p101-20261101/browser/report.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 24,
+      "target": "reports/current/p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 41,
+      "target": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 47,
+      "target": "reports/current/p101-plan-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/ISSUES_LOG.md",
+      "line": 51,
+      "target": "reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/docs/ARCHITECTURE.md",
+      "line": 40,
+      "target": "PHONE_MOTION_PLAN.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/docs/ARCHITECTURE.md",
+      "line": 42,
+      "target": "AUTOMATED_STORYBOARD_FLOW.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/docs/ARCHITECTURE.md",
+      "line": 54,
+      "target": "../reports/archive/pre-20261101/CONTEXT.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/docs/ARCHITECTURE.md",
+      "line": 54,
+      "target": "reference/mockup-app-spec.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/docs/TESTING.md",
+      "line": 43,
+      "target": "P0_WINDOWS.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 5,
+      "target": "p102-writeback-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 5,
+      "target": "p102-writeback-20261101/results.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 5,
+      "target": "p102-20261101/writeback-receipt.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 21,
+      "target": "p102-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 21,
+      "target": "p102-20261101/browser/report.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 21,
+      "target": "p102-20261101/browser/P1-02-dual-device-1080p30.mp4"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 25,
+      "target": "p101-plan-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 40,
+      "target": "p101-20261101/README.md"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 40,
+      "target": "p101-20261101/results.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 50,
+      "target": "../archive/pre-20261101/original-documents.zip"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 50,
+      "target": "file-organization.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 53,
+      "target": "frontend-tests.txt"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 54,
+      "target": "build.txt"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 55,
+      "target": "lint.txt"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 56,
+      "target": "agent-tests.txt"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 60,
+      "target": "results.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 60,
+      "target": "agent-tests-sandbox.txt"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 64,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 64,
+      "target": "../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 66,
+      "target": "../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json"
+    },
+    {
+      "file": "reports/archive/p103-p105-before-20261102-080233-468621/reports/current/README.md",
+      "line": 68,
+      "target": "../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md"
+    }
+  ],
+  "integrity": {
+    "status": "NOT_RUN"
+  },
+  "status": "PASS"
+}

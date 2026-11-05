@@ -1,0 +1,28 @@
+PASS: real Vite HTTP and studio API capabilities respond
+PYTHON_PLAYWRIGHT_DRIVER_STARTING
+PYTHON_PLAYWRIGHT_DRIVER_READY
+PASS: Python Playwright loads editor through real localhost TCP
+PASS: real GLB, decoder and WebGL scene become ready over HTTP
+PASS: page imports JSON and saves through the real Vite studio plugin
+PASS: saved independent storyboard bytes match submitted JSON
+PASS: browser downloads matching JSON over HTTP
+PASS: real TCP API continues to reject foreign origins
+Traceback (most recent call last):
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\reports\current\p101-environment-recheck-20261102\verify-local-service.py", line 133, in <module>
+    page.reload(wait_until='networkidle', timeout=60000)
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\.venv\lib\site-packages\playwright\sync_api\_generated.py", line 9097, in reload
+    self._sync(self._impl_obj.reload(timeout=timeout, waitUntil=wait_until))
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\.venv\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\.venv\lib\site-packages\playwright\_impl\_page.py", line 560, in reload
+    await self._channel.send(
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\.venv\lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\.venv\lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: net::ERR_ABORTED; maybe frame was detached?
+Call log:
+  - waiting for navigation until "networkidle"
+
+
+{"status": "FAIL", "checks": 7, "serverStopped": true}

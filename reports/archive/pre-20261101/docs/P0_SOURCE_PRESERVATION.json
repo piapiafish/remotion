@@ -1,0 +1,71 @@
+{
+  "allOriginalFilesStillPresent": true,
+  "protectedAssetsUnchanged": true,
+  "originalNoticesRetained": true,
+  "assets": [
+    {
+      "path": "assets/demo-screen.png",
+      "sha256": "77070dc7731d5c992524df5aaefc9231231548e978f05b7d403ae6a0a039be68"
+    },
+    {
+      "path": "assets/demo.mp4",
+      "sha256": "21be84909a07a4b534d343fb091a3d25a8261155e773836c0ecd6f760c8f1a7f"
+    },
+    {
+      "path": "assets/music-demo.mp3",
+      "sha256": "496fdf03ae95bf8123acee5f6603bb63520f270221bbec10217e9870a393b587"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/多手机演示/151s.jpg",
+      "sha256": "b5f3fcd56ecab632e20df5d490d0794839b6d3a4a5975cc7aaec6a590c9ebb34"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/多手机演示/273s.jpg",
+      "sha256": "2ccc2ae9fe8f20a2268bf53792d02b7598aef43d4f78514d525e3c07332ec39f"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/多手机演示/8s.jpg",
+      "sha256": "765d5791a7c64df44fdc1c1d7ddbd32dda818ff19e47593fa5388a2f64eaff15"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/织界/20s.jpg",
+      "sha256": "3cec14e1030d55de8225c7703e95a0def6936d382b827b27b809bf1df43e9567"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/织界/26s.jpg",
+      "sha256": "edf2d621d51b390f5bc90c21a5fa8b098aed2bd638460ce813c5895633f53d5c"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/织界/42s.jpg",
+      "sha256": "bbfa53992e781bb145b46fd9f8c678b43b1547436c47be57bd97690f893b526d"
+    },
+    {
+      "path": "docs/ai-promo/references/keyframes/织界/56s.jpg",
+      "sha256": "4931df873c459ac31f0b26b197e405a42d49ec763012ccbe8522b19e6f0e27ee"
+    },
+    {
+      "path": "docs/ai-promo/references/videos/多手机功能演示参考.mp4",
+      "sha256": "d10cba4b204521118186abf010239a7a6c161567e6eacdad2fa32627165cc649"
+    },
+    {
+      "path": "docs/ai-promo/references/videos/织界演示视频.mp4",
+      "sha256": "4cb798e527e3e9de52aeb18c7eecf50c5473ef94ace5a63c4575a6f07e023abc"
+    },
+    {
+      "path": "public/devices/galaxy-s26-ultra.glb",
+      "sha256": "6355b5b819b89a2d77b52c9e2802d6e89098f5bfb98b3fbb0948fa92c81a07a0"
+    },
+    {
+      "path": "public/devices/iphone-17-pro-max.glb",
+      "sha256": "cc32d7479d48f93b320a36cb70fd8354b4f6eb3f939304f65b54f9803a557d17"
+    },
+    {
+      "path": "public/devices/iphone-17-pro.glb",
+      "sha256": "d7089ce39b8e09fe857ab41bc9105e39beb72171bbd8b7e81008afb7e0ad0c4c"
+    },
+    {
+      "path": "public/devices/pixel-9-pro-xl.glb",
+      "sha256": "f885feb957a3f86e4836af7c7d3100b769cf21a150f4b32f521076b229109684"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-04T12:34:50.971979+00:00",
+  "url": "http://127.0.0.1:61585",
+  "serverCommand": [
+    "D:\\Node.js\\node.exe",
+    "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "61585",
+    "--strictPort"
+  ],
+  "command": [
+    "D:\\Node.js\\node.exe",
+    "scripts/test-third-feedback.cjs"
+  ],
+  "status": "FAIL",
+  "exitCode": 1,
+  "serverStopped": true,
+  "seconds": 19.078
+}

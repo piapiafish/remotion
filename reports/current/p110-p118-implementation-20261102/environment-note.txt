@@ -1,0 +1,1 @@
+First npm test attempt: all 33 suites stopped before execution with EPERM while renaming Vitest SSR cache in restricted temporary directory. No test assertions ran. Re-run uses approved local process execution and a project-external writable TEMP. This is not an application failure.

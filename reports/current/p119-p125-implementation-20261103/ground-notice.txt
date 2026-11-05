@@ -1,0 +1,15 @@
+PASS legacy-orientation-preserved
+PASS orientation-buttons-removed
+PASS empty-lane-continuous-scrub
+PASS scrub-does-not-edit-document-or-selection
+PASS ruler-continuous-scrub
+PASS playhead-grip-can-drag
+PASS scrolled-timeline-maps-real-content-coordinates
+PASS floor-fixed-and-other-device-independent
+PASS scale-and-downward-motion-stop-at-floor
+PASS contact-and-scale-undo-together
+PASS intermediate-frames-and-720-turn-stay-above-ground
+PASS fixed-ground-and-legacy-orientation-survive-fresh-session
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"timeline-ground","status":"PASS"}],"checks":14}

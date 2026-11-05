@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "0.1.0",
+  "canvas": {
+    "width": 540,
+    "height": 960,
+    "fps": 30
+  },
+  "assets": [
+    {
+      "id": "screen",
+      "kind": "video",
+      "uri": "assets/demo.mp4"
+    }
+  ],
+  "shots": [
+    {
+      "shotId": "p101-network-recheck",
+      "deviceId": "iphone-17-pro",
+      "screenAssetId": "screen",
+      "durationFrames": 30,
+      "template": "hero-straight",
+      "motion": "none",
+      "screenFit": "contain",
+      "screenOffsetFrames": 0,
+      "background": "#0b1020"
+    }
+  ],
+  "overlays": [],
+  "audio": []
+}

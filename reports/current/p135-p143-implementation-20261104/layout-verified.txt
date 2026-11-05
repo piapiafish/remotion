@@ -1,0 +1,12 @@
+PASS escape-stops-held-camera-key-and-restores-gesture
+PASS blur-stops-held-camera-motion
+PASS number-field-keeps-arrow-keys
+PASS timeline-keeps-arrow-keys
+PASS typing-wasd-does-not-move-camera
+PASS recorder-layout-1366x768
+PASS recorder-layout-1920x1080
+PASS recorder-layout-1000x800
+PASS recorder-at-125-percent-display-scale
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"keyboard-focus","status":"PASS"},{"name":"layout","status":"PASS"}],"checks":11}

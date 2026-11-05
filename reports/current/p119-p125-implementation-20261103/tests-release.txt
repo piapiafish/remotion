@@ -1,0 +1,13 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+
+ Test Files  36 passed (36)
+      Tests  355 passed (355)
+   Start at  19:59:35
+   Duration  1.95s (transform 10.63s, setup 0ms, import 16.97s, tests 822ms, environment 3ms)
+

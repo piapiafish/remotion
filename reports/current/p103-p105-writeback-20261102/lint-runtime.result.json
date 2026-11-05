@@ -1,0 +1,5 @@
+{
+  "Command": "npm.cmd exec -- oxlint src services packages remotion-compositor/src scripts vite.config.ts",
+  "ExitCode": 0,
+  "Warnings": 14
+}

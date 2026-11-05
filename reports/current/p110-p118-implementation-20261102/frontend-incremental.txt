@@ -1,0 +1,93 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/store/history.test.ts (10 tests | 1 failed) 19ms
+     × falls back to a default project for junk input 6ms
+ ❯ src/store/persistSafety.test.ts (34 tests | 1 failed) 48ms
+     × unsupported version leaves the current editable project intact and shows an error 9ms
+ ❯ src/ui/Inspector/DeviceSection.test.ts (2 tests | 1 failed) 9ms
+     × shows a safe device prompt when a stale selection reaches the panel 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/store/history.test.ts > migrate > falls back to a default project for junk input
+AssertionError: expected '未命名工程' to be 'Untitled' // Object.is equality
+
+Expected: "Untitled"
+Received: "未命名工程"
+
+ ❯ src/store/history.test.ts:102:30
+    100|     expect(migrate(null).version).toBe(1)
+    101|     expect(migrate('nonsense').version).toBe(1)
+    102|     expect(migrate(42).name).toBe('Untitled')
+       |                              ^
+    103|   })
+    104|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/store/persistSafety.test.ts > invalid input is rejected before storage or project replacement > unsupported version leaves the current editable project intact and shows an error
+AssertionError: expected { version: 2, name: '未命名工程', …(7) } to be { version: 1, name: '未命名工程', …(7) } // Object.is equality
+
+- Expected
++ Received
+
+@@ -111,11 +111,11 @@
+    },
+    "devices": [
+      {
+        "colorway": "graphite",
+        "id": "procedural-phone",
+-       "instanceId": "0d2bdbff-bcb3-4797-9fd2-98edc53831ca",
++       "instanceId": "6199491d-19b3-4e45-8f00-39c9977a325a",
+        "orientation": "portrait",
+        "screen": null,
+        "screenFit": "contain",
+        "transform": {
+          "position.x": {
+@@ -231,7 +231,7 @@
+    "name": "未命名工程",
+    "output": {
+      "height": 1080,
+      "width": 1920,
+    },
+-   "version": 1,
++   "version": 2,
+  }
+
+ ❯ src/store/persistSafety.test.ts:101:27
+     99|     const previous = get().project
+    100|     await get().openProject(file())
+    101|     expect(get().project).toBe(previous); expect(get().fileBusy).toBe(…
+       |                           ^
+    102|     expect(useFeedbackStore.getState().notice).toMatchObject({ kind: '…
+    103|     expect(storage.puts).toBe(0)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/ui/Inspector/DeviceSection.test.ts > inspector selection protection > shows a safe device prompt when a stale selection reaches the panel
+AssertionError: expected '<p class="hint" role="status">请选择一个手机…' to contain 'Select a device'
+
+Expected: "Select a device"
+Received: "<p class="hint" role="status">请选择一个手机对象，再调整它的设置。</p>"
+
+ ❯ src/ui/Inspector/DeviceSection.test.ts:16:55
+     14| describe('inspector selection protection', () => {
+     15|   it('shows a safe device prompt when a stale selection reaches the pa…
+     16|     expect(renderToString(createElement(DeviceCard))).toContain('Selec…
+       |                                                       ^
+     17|   })
+     18|   it('keeps media/finish controls safe when the selected device no lon…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed | 30 passed (33)
+      Tests  3 failed | 329 passed (332)
+   Start at  22:28:06
+   Duration  1.74s (transform 7.66s, setup 0ms, import 11.77s, tests 638ms, environment 4ms)
+

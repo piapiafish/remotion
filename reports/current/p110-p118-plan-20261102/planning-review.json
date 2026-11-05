@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-02T21:59:34.805750+08:00",
+  "scope": "Planning only",
+  "applicationFilesChecked": 156,
+  "applicationFilesUnchanged": true,
+  "unexpectedApplicationChanges": [],
+  "existingP101To108AndFuturePhaseRowsPreserved": true,
+  "previousDevelopmentHistoryPreserved": true,
+  "previousIssueEvidencePreserved": true,
+  "requirementsCoverage": {
+    "standalone_template_first": true,
+    "phone_cards_and_settings": true,
+    "remove_camera_presets": true,
+    "blank_drag_camera": true,
+    "confirmed_selection_wheel": true,
+    "merged_environment": true,
+    "depth_of_field": true,
+    "motion_blur": true,
+    "screen_space_text_objects": true,
+    "all_objects_timeline": true,
+    "remove_filmstrip_and_tools": true,
+    "chinese_ui": true,
+    "retiming_diagnosis": true,
+    "keyframe_hit_target": true,
+    "preserve_save_undo_export": true,
+    "real_effects_export": true,
+    "legacy_gaps_preserved": true
+  },
+  "newTaskRows": {
+    "P1-10": 1,
+    "P1-11": 1,
+    "P1-12": 1,
+    "P1-13": 1,
+    "P1-14": 1,
+    "P1-15": 1,
+    "P1-16": 1,
+    "P1-17": 1,
+    "P1-18": 1
+  },
+  "productTests": "NOT_RUN",
+  "browserAndExports": "NOT_RUN",
+  "implementation": "NOT_STARTED",
+  "humanAcceptance": "PENDING",
+  "documentation": {
+    "status": "PASS",
+    "markdownFiles": 105,
+    "currentErrors": 0,
+    "historicalWarnings": 238,
+    "oldRootReportRestored": true
+  },
+  "status": "PASS"
+}

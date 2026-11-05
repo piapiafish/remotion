@@ -1,0 +1,6 @@
+PASS two-real-models-ready
+FAIL solid-selected-outline-and-axis-controls
+SCENARIO FAIL smoke Error: solid-selected-outline-and-axis-controls
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"smoke","status":"FAIL","error":"Error: solid-selected-outline-and-axis-controls"}],"checks":4}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-04T11:16:40.117430+00:00",
+  "command": [
+    "D:\\Node.js\\npm.cmd",
+    "run",
+    "build"
+  ],
+  "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "exitCode": 2,
+  "seconds": 4.813,
+  "log": "build-second.txt",
+  "status": "FAIL"
+}

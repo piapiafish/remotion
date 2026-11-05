@@ -1,0 +1,25 @@
+PASS first-entry-is-template-page
+PASS template-creates-two-phones-and-opens-editor
+PASS phone-settings-are-independent
+PASS two-independent-recordings-and-timing
+PASS selected-object-wheel-scales-even-over-blank
+PASS wheel-is-one-undo
+PASS blank-click-deselects
+PASS unselected-wheel-zooms-camera
+PASS blank-drag-orbits-camera
+PASS explicit-animation-preserves-start-and-records-new-pose
+PASS drag-retimes-all-pose-channels-to-six-seconds
+PASS six-second-transition-is-halfway-at-three-seconds
+PASS keyframes-have-large-hit-area
+PASS retiming-undo-restores-all-channels
+PASS precise-retiming-keeps-channels-together
+PASS camera-change-does-not-move-screen-title
+PASS five-objects-visible-in-one-timeline
+PASS object-delete-updates-timeline
+PASS object-delete-undo-restores-timeline
+PASS dense-key-navigation-selects-correct-time
+page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame
+    at Object.waitForReady (http://127.0.0.1:53185/src/automation/bridge.ts:67:8)
+    at async <anonymous>:316:30
+    at ready (D:\remotion\p0\MultiAgent-3D-Promo-Studio\scripts\test-beginner-workflow.cjs:12:19)
+    at D:\remotion\p0\MultiAgent-3D-Promo-Studio\scripts\test-beginner-workflow.cjs:55:338

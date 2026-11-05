@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-03T11:47:58.436Z",
+  "checks": [
+    {
+      "name": "procedural-phone-actual-mesh-stays-above-ground",
+      "status": "PASS",
+      "detail": {
+        "bottom": -0.7182991112029904,
+        "ground": -0.76
+      }
+    },
+    {
+      "name": "iphone-17-pro-actual-mesh-stays-above-ground",
+      "status": "PASS",
+      "detail": {
+        "bottom": -0.709623842621224,
+        "ground": -0.76
+      }
+    },
+    {
+      "name": "iphone-17-pro-max-actual-mesh-stays-above-ground",
+      "status": "PASS",
+      "detail": {
+        "bottom": -0.6982827846797233,
+        "ground": -0.76
+      }
+    },
+    {
+      "name": "pixel-9-pro-xl-actual-mesh-stays-above-ground",
+      "status": "PASS",
+      "detail": {
+        "bottom": -0.7041453575274168,
+        "ground": -0.76
+      }
+    },
+    {
+      "name": "galaxy-s26-ultra-actual-mesh-stays-above-ground",
+      "status": "PASS",
+      "detail": {
+        "bottom": -0.7225814969684573,
+        "ground": -0.76
+      }
+    },
+    {
+      "name": "separate-device-shadow-patch-stays-stable",
+      "status": "PASS",
+      "detail": {
+        "roi": {
+          "x": 377,
+          "y": 370,
+          "width": 170,
+          "height": 60
+        },
+        "ground": -0.76,
+        "afterGround": -0.76,
+        "changedFraction": 0,
+        "meanAbsoluteDifference": 0
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS"
+}

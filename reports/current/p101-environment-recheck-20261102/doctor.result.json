@@ -1,0 +1,5 @@
+{
+  "Command": "npm.cmd run agent:doctor",
+  "ExitCode": 0,
+  "Python": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\Scripts\\python.exe"
+}

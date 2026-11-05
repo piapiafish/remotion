@@ -1,0 +1,13 @@
+START 08-background-and-shorter-source-recovery
+PASS cancel-missing-background-preserves-current-project
+PASS missing-background-is-visible-and-blocks-incomplete-save
+PASS background-relink-preserves-device-and-embeds-bytes
+PASS shorter-source-relink-shows-clamped-range
+PASS shorter-source-relink-keeps-animation-and-background
+PASS empty-timing-input-is-visible-and-keeps-valid-document
+PASS shorter-relinked-source-uses-preserved-delay
+PASS ordinary-recording-replacement-resets-timing
+PASS source-replacement-undo-restores-timing-and-media
+PASS no-unhandled-page-errors
+PASS no-missing-build-resources
+FINAL PASS 11 assertions

@@ -1,0 +1,81 @@
+--- start-snapshot
++++ latest-user-file
+@@ -1,7 +1,7 @@
+ {
+   "version": 2,
+   "name": "验收-01素材",
+-  "duration": 8,
++  "duration": 18.084467,
+   "fps": 30,
+   "output": {
+     "width": 1920,
+@@ -128,11 +128,11 @@
+       "colorway": "obsidian",
+       "orientation": "portrait",
+       "screen": {
+-        "id": "5d6ba77f-240d-4822-9d98-6e6da2404376",
++        "id": "c2c317f2-6944-419f-acb6-35ba63d0d8bb",
+         "kind": "video",
+         "width": 720,
+         "height": 1584,
+-        "duration": 18.084467
++        "duration": 15.159167
+       },
+       "screenFit": "contain",
+       "transform": {
+@@ -235,7 +235,13 @@
+           ]
+         }
+       },
+-      "name": "手机B"
++      "name": "手机B",
++      "screenPlayback": {
++        "in": 2,
++        "out": 5,
++        "start": 1,
++        "loop": false
++      }
+     },
+     {
+       "instanceId": "a7ca8603-2dca-4a55-bc6b-0d5732672256",
+@@ -243,10 +249,11 @@
+       "colorway": "original-blue",
+       "orientation": "portrait",
+       "screen": {
+-        "id": "d017371c-38f7-48b4-89d4-a0a1d84cb474",
+-        "kind": "image",
+-        "width": 178,
+-        "height": 74
++        "id": "1b713088-9291-4b1a-9b56-cb77f16539fc",
++        "kind": "video",
++        "width": 720,
++        "height": 1584,
++        "duration": 18.084467
+       },
+       "screenFit": "contain",
+       "transform": {
+@@ -349,7 +356,13 @@
+           ]
+         }
+       },
+-      "name": "手机C"
++      "name": "手机C",
++      "screenPlayback": {
++        "in": 4,
++        "out": 6,
++        "start": 2,
++        "loop": false
++      }
+     }
+   ],
+   "background": {
+@@ -363,7 +376,8 @@
+     "intensity": 1,
+     "rotation": 0,
+     "shadowOpacity": 0.3,
+-    "shadowBlur": 14
++    "shadowBlur": 14,
++    "groundY": -1.5005773088488468
+   },
+   "camera": {
+     "fov": 30,

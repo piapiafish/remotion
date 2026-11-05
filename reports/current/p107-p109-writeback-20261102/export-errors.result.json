@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-02T09:44:28.920099+00:00",
+  "status": "PASS",
+  "phase": "errors",
+  "commands": [
+    [
+      "D:\\Node.js\\node.EXE",
+      "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "52331",
+      "--strictPort"
+    ],
+    [
+      "D:\\Node.js\\node.EXE",
+      "scripts/test-stage-one.cjs"
+    ]
+  ],
+  "baseUrl": "http://127.0.0.1:52331",
+  "capabilities": {
+    "ok": true,
+    "planning": "offline",
+    "schemaVersion": "0.1.0"
+  },
+  "exitCode": 0,
+  "serverStopped": true,
+  "seconds": 23.234
+}

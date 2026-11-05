@@ -1,0 +1,13 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 C:/Users/20153/AppData/Local/Temp/p106-20261102-5ipog_47/project
+
+
+ Test Files  26 passed (26)
+      Tests  259 passed (259)
+   Start at  07:21:30
+   Duration  1.76s (transform 6.36s, setup 0ms, import 9.11s, tests 245ms, environment 2ms)
+

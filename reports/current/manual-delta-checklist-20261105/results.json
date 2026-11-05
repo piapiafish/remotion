@@ -1,0 +1,307 @@
+{
+  "date": "2026-11-05T16:52:37.373758+08:00",
+  "status": "PASS",
+  "scope": "Documentation only; no product or manual acceptance tests executed",
+  "errors": [],
+  "caseCount": 27,
+  "caseStructure": [
+    {
+      "id": "X01",
+      "title": "连续拖动时间与唯一播放头",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X02",
+      "title": "未保存时的三个选项",
+      "numberedSteps": 7,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X03",
+      "title": "大幅画面变化时的录屏流畅度与默认尺寸清晰度",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X04",
+      "title": "去掉横竖朝向按钮，使用旋转横放",
+      "numberedSteps": 4,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X05",
+      "title": "地面固定，修改 A 不带动 B 的地面投影",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X06",
+      "title": "手机移到右侧后原地缩小",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X07",
+      "title": "对象出现/消失直接由底条控制",
+      "numberedSteps": 7,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X08",
+      "title": "蓝色显隐与橙色播放/暂停独立",
+      "numberedSteps": 6,
+      "tableExamples": 5,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X09",
+      "title": "整段视频平移、倍速及清楚的调节入口",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X10",
+      "title": "非法视频时间指出具体错在哪里",
+      "numberedSteps": 3,
+      "tableExamples": 6,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X11",
+      "title": "同一手机多视频与上下层级",
+      "numberedSteps": 7,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X12",
+      "title": "合行必须同时考虑蓝色、橙色和按钮间距",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X13",
+      "title": "两个端点靠近后，松开仍能分别抓回",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X14",
+      "title": "对象选择区、导航和时间轴缩放更清楚",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X15",
+      "title": "同刻独立叠放，关键帧优先于下方视频",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X16",
+      "title": "上下键微调可跨过其他键，片尾可自动延长",
+      "numberedSteps": 7,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X17",
+      "title": "大按钮、属性面板和首关键帧保护",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X18",
+      "title": "WASD 生效，方向键含义与焦点明确",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X19",
+      "title": "相机专页倒计时、录制、回放和采用",
+      "numberedSteps": 7,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X20",
+      "title": "多段互不重叠，空档停留，内部点隐藏",
+      "numberedSteps": 8,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X21",
+      "title": "按段删除/重录，普通查看不写入动画",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X22",
+      "title": "两类文字和可调厚度",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X23",
+      "title": "实体文字选中效果、三轴移动及地面限制",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X24",
+      "title": "手机可以挡住贴纸，实体按空间遮挡",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X25",
+      "title": "实体文字能被选作景深焦点",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X26",
+      "title": "每张贴纸可独立选择是否受景深影响",
+      "numberedSteps": 5,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    },
+    {
+      "id": "X27",
+      "title": "主编辑页和录制页的布局是否顺手",
+      "numberedSteps": 6,
+      "tableExamples": 0,
+      "emptyResult": true,
+      "status": "PASS"
+    }
+  ],
+  "originalStatusCounts": {
+    "pass": 24,
+    "fail": 16,
+    "blocked": 1,
+    "blank": 24
+  },
+  "all16OriginalFeedbackCovered": true,
+  "passedExcluded": [
+    "A01",
+    "B01",
+    "B04",
+    "B05",
+    "C01",
+    "C02",
+    "D02",
+    "D03",
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "G01",
+    "H02",
+    "H04",
+    "I01",
+    "I02",
+    "I03",
+    "J02",
+    "J03",
+    "K01",
+    "K02",
+    "K03"
+  ],
+  "blankWaived": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05",
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "N01",
+    "N02",
+    "N03",
+    "O01",
+    "O02",
+    "P01",
+    "P02",
+    "Q01",
+    "Q02",
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "protectedFilesChecked": 214,
+  "protectedFilesChanged": [],
+  "originalManualUnchanged": true,
+  "backupCount": 7,
+  "backupsByteIdentical": true,
+  "changedExistingDocuments": [
+    "README.md",
+    "IMPLEMENTATION_ROADMAP.md",
+    "DEVELOPMENT_LOG.md",
+    "ISSUES_LOG.md",
+    "reports/current/README.md"
+  ],
+  "newChecklistSha256": "1ce6abcd598f8a3d463d9c819cd1ca8c215efd5f35aaa9962a0b1dec4f8a16f3",
+  "documentCheck": {
+    "command": ".venv/Scripts/python.exe scripts/check-project-docs.py",
+    "exitCode": 0,
+    "markdownFilesChecked": 122,
+    "currentErrors": 0,
+    "historicalWarnings": 238,
+    "historicalReportRestored": true
+  },
+  "productTests": "NOT_RUN",
+  "manualAcceptance": "NOT_RUN; new result fields left blank"
+}

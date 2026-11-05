@@ -1,0 +1,32 @@
+{
+  "method": "Real H.264 video decoded by FFmpeg; compared against engine previewFrame at the exact same frame index, pose, screen-video time, resolution and Standard quality. SSIM >= .97 is an objective consistency check; user visual acceptance remains pending.",
+  "checks": [
+    {
+      "frame": 0,
+      "time": 0.0,
+      "decoded": "06-decoded-00.png",
+      "reference": "06-reference-00.png",
+      "ssim": 0.993109,
+      "status": "PASS",
+      "decodedSha256": "a658b7dc6322d476c47dd8191bb3d137c972426a5456b7e29accb4fdd2267067"
+    },
+    {
+      "frame": 30,
+      "time": 1.0,
+      "decoded": "06-decoded-30.png",
+      "reference": "06-reference-30.png",
+      "ssim": 0.995747,
+      "status": "PASS",
+      "decodedSha256": "a4bf4c1e041cbdca30de4b7964d4fa2f636fbed48048848e84210106ca99becb"
+    },
+    {
+      "frame": 59,
+      "time": 1.9666666666666666,
+      "decoded": "06-decoded-59.png",
+      "reference": "06-reference-59.png",
+      "ssim": 0.994146,
+      "status": "PASS",
+      "decodedSha256": "e2b6f659d3d45783cebd86dbe273b735f8045a27bb5ddc0cce65c8637cb1ac5a"
+    }
+  ]
+}

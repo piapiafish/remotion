@@ -1,0 +1,1862 @@
+--- a/scripts/test-editor-interactions.cjs
++++ b/scripts/test-editor-interactions.cjs
+@@ -0,0 +1,255 @@
++const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
++const {execFileSync}=require('node:child_process');
++const root=path.resolve(__dirname,'..'),out=path.resolve(process.env.P10305_AUDIT_ROOT||path.join(root,'output','p103-p105-'+new Date().toISOString().replace(/[:.]/g,'-')));
++const {chromium}=require(process.env.PLAYWRIGHT_CORE_PATH||path.join(root,'.venv','Lib','site-packages','playwright','driver','package'));
++const {unzipSync,strFromU8,zipSync,strToU8}=require(path.join(root,'node_modules/fflate'));
++const THREE=require(path.join(root,'node_modules/three'));
++const dist=path.join(root,'dist');fs.mkdirSync(out,{recursive:true});
++const report={date:new Date().toISOString(),method:'Actual P1-03/04/05 production build; Chrome; local route fulfillment without TCP. UI actions and actual file downloads. Vite/API network not tested.',checks:[],cases:[],pageErrors:[],requestFailures:[],status:'RUNNING'};
++const write=()=>fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));
++function check(id,pass,details={}){report.checks.push({id,status:pass?'PASS':'FAIL',...details});write();console.log((pass?'PASS ':'FAIL ')+id);}
++const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
++const transform=p=>p.locator('.field-header').filter({hasText:'Transform'}).locator('..');
++async function setNumber(p,index,value){const box=transform(p).locator('.numfield-box').nth(index);await box.click();const input=box.locator('input');await input.fill(String(value));await input.press('Enter');}
++async function save(p,name){const pending=p.waitForEvent('download',{timeout:25000});await p.getByTitle(/^Save \.mockup/).click();const dl=await pending,file=path.join(out,name+'.mockup');await dl.saveAs(file);const entries=unzipSync(fs.readFileSync(file));return {file,entries,project:JSON.parse(strFromU8(entries['project.json']))};}
++async function preview(p,frame,name){const data=await p.evaluate(i=>window.__PROMO_BRIDGE__.previewFrame(i,'standard'),frame);const file=path.join(out,name+'.png');fs.writeFileSync(file,Buffer.from(data.split(',')[1],'base64'));return file;}
++async function ready(p){return await p.evaluate(()=>window.__PROMO_BRIDGE__.waitForReady());}
++async function openFixture(p,project,name){const file=path.join(out,name+'.mockup');fs.writeFileSync(file,zipSync({'project.json':strToU8(JSON.stringify(project))}));await p.locator('.topbar input[type=file]').setInputFiles(file);await ready(p);}
++async function session(browser,label){
++ const context=await browser.newContext({viewport:{width:1440,height:960},acceptDownloads:true});
++ const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wasm':'application/wasm','.hdr':'application/octet-stream','.glb':'model/gltf-binary','.svg':'image/svg+xml'};
++ await context.route('**/*',async route=>{
++  try{const url=new URL(route.request().url());if(url.hostname!=='127.0.0.1')return await route.abort();
++   const rel=decodeURIComponent(url.pathname).replace(/^\/+/,'')||'index.html',file=path.resolve(dist,rel);
++   if(!file.startsWith(dist+path.sep)||!fs.existsSync(file)){report.requestFailures.push({label,rel});return await route.fulfill({status:404,body:'Not found'});}
++   await route.fulfill({status:200,contentType:mime[path.extname(file)]||'application/octet-stream',body:fs.readFileSync(file)});
++  }catch(error){report.requestFailures.push({label,error:String(error)});await route.abort().catch(()=>{});}
++ });
++ const page=await context.newPage();page.setDefaultTimeout(20000);page.on('pageerror',error=>{report.pageErrors.push({label,error:String(error)});write();});
++ await page.goto('http://127.0.0.1:4187/?automation=1',{waitUntil:'networkidle',timeout:45000});
++ await page.getByRole('button',{name:'Movie',exact:true}).click();await ready(page);return {context,page};
++}
++async function run(browser,label,fn){let context,page;const started=Date.now();console.log('START '+label);try{({context,page}=await session(browser,label));await fn(page,context);report.cases.push({label,status:'COMPLETED',seconds:(Date.now()-started)/1000});}catch(error){check(label,false,{execution:'INCOMPLETE',error:String(error),stack:error.stack});report.cases.push({label,status:'INCOMPLETE'});}finally{await context?.close().catch(()=>{});write();}}
++const position=d=>['x','y','z'].map(a=>d.transform['position.'+a]?.keys[0]?.v??0);
++const activeIndex=async p=>{const el=p.locator('.device-row.active .device-row-index');return await el.count()?Number(await el.innerText())-1:0;};
++
++let base,authored,dual;
++const near=(a,b,e=1e-4)=>Math.abs(a-b)<e;
++const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
++async function time(p,t){await p.getByLabel('Playhead time',{exact:true}).fill(String(t));await p.getByLabel('Playhead time',{exact:true}).press('Tab');}
++async function channel(p,c,scope='device'){await p.getByLabel('Track target',{exact:true}).selectOption(scope);await p.getByLabel('Animation channel',{exact:true}).selectOption(c);}
++async function commit(p,label,v){const field=p.getByLabel(label,{exact:true});await field.fill(String(v));await field.press('Tab');}
++async function keyValue(p,v){await commit(p,'Keyframe value',v);}
++async function keyAt(p,c,t,scope='Device'){const button=p.getByRole('button',{name:scope+' '+c+' keyframe '+t+'s',exact:true});await button.click();}
++async function undo(p){await p.getByTitle(/^Undo \(/).click();}
++async function redo(p){await p.getByTitle(/^Redo \(/).click();}
++function two(p){
++ const x=structuredClone(p);x.name='P1-03-05 verification';x.duration=2;x.camera.preset='front';
++ ['x','y','z'].forEach((a,i)=>x.camera.tracks['position.'+a].keys=[{t:0,v:[0,0,3.2][i],ease:[0,0,1,1]}]);
++ x.devices=[structuredClone(x.devices[0]),structuredClone(x.devices[0])];
++ x.devices[1].instanceId=crypto.randomUUID();
++ x.devices.forEach((d,i)=>{for(const [c,v]of Object.entries({'position.x':i?0.5:-0.5,'position.y':0,'position.z':0,'rotation.x':0,'rotation.y':0,'rotation.z':0,scale:0.55}))d.transform[c]={keys:[{t:0,v,ease:[0,0,1,1]}]};});
++ return x;
++}
++async function center(p,project,index){
++ const rect=await p.locator('.artboard').boundingBox();
++ const camera=new THREE.PerspectiveCamera(project.camera.fov,project.output.width/project.output.height,.01,1000);
++ camera.position.set(...['x','y','z'].map(a=>project.camera.tracks['position.'+a].keys[0].v));camera.lookAt(0,0,0);camera.updateMatrixWorld(true);
++ const point=new THREE.Vector3(...position(project.devices[index])).project(camera);
++ return {x:rect.x+(point.x+1)*rect.width/2,y:rect.y+(1-point.y)*rect.height/2,rect};
++}
++async function drag(p,from,to,steps=10){await p.mouse.move(from.x,from.y);await p.mouse.down();await p.mouse.move(to.x,to.y,{steps});await p.mouse.up();}
++(async()=>{let browser;try{
++ browser=await chromium.launch({headless:true,downloadsPath:path.join(out,'downloads'),timeout:30000,executablePath:process.env.CHROME_PATH||(fs.existsSync('C:/Program Files/Google/Chrome/Application/chrome.exe')?'C:/Program Files/Google/Chrome/Application/chrome.exe':'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'),args:['--no-sandbox','--enable-webgl','--use-gl=angle','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
++ report.browser=browser.version();
++ const cases=process.env.CASES?.split(',')||['01','02','03','04','05'];
++ if(cases.includes('01'))await run(browser,'01-manual-keyframes',async p=>{
++   base=(await save(p,'01-base')).project;
++   await p.getByLabel('Project duration',{exact:true}).fill('2');await time(p,0);
++   await setNumber(p,6,.65);
++   await channel(p,'position.x');await p.getByRole('button',{name:'Add keyframe',exact:true}).click();await keyValue(p,-1.2);
++   await time(p,.5);await p.getByRole('button',{name:'Add keyframe',exact:true}).click();await keyValue(p,0);
++   await time(p,1.5);await p.getByRole('button',{name:'Add keyframe',exact:true}).click();await keyValue(p,0);
++   await keyAt(p,'position.x',2);await keyValue(p,1.2);
++   const added=(await save(p,'01-entry-hold-exit')).project;
++   check('manual-entry-hold-exit-keys',same(added.devices[0].transform['position.x'].keys.map(k=>[k.t,k.v]),[[0,-1.2],[.5,0],[1.5,0],[2,1.2]]));
++   await channel(p,'rotation.y');await time(p,0);await p.getByRole('button',{name:'Add keyframe',exact:true}).click();
++   await p.getByLabel('Keyframe easing',{exact:true}).selectOption('linear');await keyAt(p,'rotation.y',2);await keyValue(p,720);
++   const rotation=(await save(p,'01-720')).project;
++   check('manual-720-degree-euler-rotation',near(rotation.devices[0].transform['rotation.y'].keys.at(-1).v,4*Math.PI));
++   await channel(p,'position.x');await keyAt(p,'position.x',.5);
++   const diamond=p.getByRole('button',{name:'Device position.x keyframe 0.5s',exact:true});
++   const box=await diamond.boundingBox(),lane=await diamond.locator('..').boundingBox();
++   await p.mouse.move(box.x+box.width/2,box.y+box.height/2);await p.mouse.down();
++   await p.mouse.move(box.x+box.width/2+lane.width*.15,box.y+box.height/2,{steps:4});
++   await p.waitForTimeout(650);await p.mouse.move(box.x+box.width/2+lane.width*.1,box.y+box.height/2,{steps:4});await p.mouse.up();
++   const dragged=(await save(p,'01-dragged')).project;
++   check('keyframe-real-pointer-drag-retimes',dragged.devices[0].transform['position.x'].keys.some(k=>near(k.t,.7)));
++   await undo(p);check('long-drag-single-undo',(await save(p,'01-undone')).project.devices[0].transform['position.x'].keys.some(k=>near(k.t,.5)));
++   await redo(p);check('drag-redo-restores-retiming',(await save(p,'01-redone')).project.devices[0].transform['position.x'].keys.some(k=>near(k.t,.7)));
++   await keyAt(p,'position.x',1.5);await p.keyboard.press('Delete');
++   check('keyframe-keyboard-delete',!(await save(p,'01-deleted')).project.devices[0].transform['position.x'].keys.some(k=>near(k.t,1.5)));
++   await undo(p);await keyAt(p,'position.x',.7);await p.getByLabel('Keyframe easing',{exact:true}).selectOption('ease-out');
++   check('keyframe-easing-is-written',same((await save(p,'01-easing')).project.devices[0].transform['position.x'].keys.find(k=>near(k.t,.7)).ease,[0,0,.58,1]));
++   await channel(p,'fov','camera');await time(p,1);await p.getByRole('button',{name:'Add keyframe',exact:true}).click();await keyValue(p,35);
++   authored=await save(p,'01-manually-authored');
++   check('camera-channel-edit-keeps-device-animation',authored.project.camera.tracks.fov.keys.some(k=>k.t===1&&k.v===35)&&same(authored.project.devices[0].transform['rotation.y'],rotation.devices[0].transform['rotation.y']));
++   await preview(p,15,'01-manual-frame');
++ });
++ if(!base){let x=await session(browser,'bootstrap');base=(await save(x.page,'bootstrap-base')).project;await x.context.close();}
++ if(cases.includes('02'))await run(browser,'02-canvas-selection-and-transform',async p=>{
++   const fixture=two(base);await openFixture(p,fixture,'02-fixture');
++   await p.getByRole('button',{name:'Select device',exact:true}).click();
++   let pos=await center(p,fixture,1);await p.mouse.click(pos.x,pos.y);
++   check('canvas-pick-selects-second-instance',await activeIndex(p)===1);
++   pos=await center(p,fixture,0);await p.mouse.click(pos.x,pos.y);
++   check('canvas-pick-synchronizes-list-and-inspector',await activeIndex(p)===0&&near(Number(await transform(p).locator('.numfield-value').nth(0).innerText()),-.5,.02));
++   await p.getByRole('button',{name:'Move device',exact:true}).click();await p.waitForTimeout(250);
++   const before=(await save(p,'02-before-move')).project;
++   let moved=false,used;
++   for(const offset of [32,45,20,60,12]){
++     const origin=await center(p,before,0);const from={x:origin.x+offset,y:origin.y},to={x:origin.x+offset+45,y:origin.y};
++     await drag(p,from,to);
++     const after=(await save(p,'02-move-probe-'+offset)).project;
++     if(!same(after.devices[0].transform,before.devices[0].transform)){moved=true;used={offset,from,to};break;}
++   }
++   const after=(await save(p,'02-after-move')).project;
++   check('canvas-move-real-handle-targets-only-selected-device',moved&&same(after.devices[1],before.devices[1])&&same(after.camera,before.camera),{used});
++   check('canvas-move-syncs-numeric-fields',near(Number(await transform(p).locator('.numfield-value').nth(0).innerText()),after.devices[0].transform['position.x'].keys[0].v,.02));
++   if(moved){await undo(p);check('canvas-drag-single-undo',same((await save(p,'02-move-undone')).project,before));await redo(p);}
++   await openFixture(p,fixture,'02-rotate-fixture');await p.getByRole('button',{name:'Rotate device',exact:true}).click();await p.waitForTimeout(250);
++   const rotBefore=(await save(p,'02-before-rotate')).project;
++   let rotated=false,rotateUsed;
++   for(const radius of [52,42,65,32,80,22]){
++     const origin=await center(p,fixture,0);const from={x:origin.x+radius,y:origin.y},to={x:origin.x+radius*.7,y:origin.y-radius*.7};
++     await drag(p,from,to,12);const after=(await save(p,'02-rotate-probe-'+radius)).project;
++     if(!same(after.devices[0].transform,rotBefore.devices[0].transform)){rotated=true;rotateUsed={radius};break;}
++   }
++   const rotAfter=(await save(p,'02-after-rotate')).project;
++   check('canvas-rotate-real-handle',rotated&&same(rotAfter.devices[1],rotBefore.devices[1]),{rotateUsed});
++   await openFixture(p,fixture,'02-scale-fixture');await p.getByRole('button',{name:'Scale device',exact:true}).click();await p.waitForTimeout(250);
++   let scaled=false,scaleUsed;
++   for(const offset of [32,45,20,60,12]){
++     const origin=await center(p,fixture,0);await drag(p,{x:origin.x+offset,y:origin.y},{x:origin.x+offset+30,y:origin.y},12);
++     const after=(await save(p,'02-scale-probe-'+offset)).project;
++     if(!near(after.devices[0].transform.scale.keys[0].v,.55)){scaled=true;scaleUsed={offset};break;}
++   }
++   const scaleAfter=(await save(p,'02-after-scale')).project;
++   check('canvas-scale-real-handle-uniform-document-scale',scaled&&same(scaleAfter.devices[1],fixture.devices[1])&&Number.isFinite(scaleAfter.devices[0].transform.scale.keys[0].v),{scaleUsed});
++   await openFixture(p,fixture,'02-cancel-fixture');await p.getByRole('button',{name:'Move device',exact:true}).click();await p.waitForTimeout(200);
++   const origin=await center(p,fixture,0),off=used?.offset||32;
++   await p.mouse.move(origin.x+off,origin.y);await p.mouse.down();await p.mouse.move(origin.x+off+35,origin.y,{steps:10});await p.keyboard.press('Escape');await p.mouse.up();
++   check('escape-cancels-device-gesture',same((await save(p,'02-cancelled')).project,fixture));
++   const animated=two(base);animated.devices[0].transform['position.x'].keys.push({t:2,v:-.5,ease:[0,0,1,1]});
++   await openFixture(p,animated,'02-animated-fixture');await time(p,1);
++   await p.getByRole('button',{name:'Move device',exact:true}).click();await p.waitForTimeout(200);
++   const animatedOrigin=await center(p,animated,0);
++   await drag(p,{x:animatedOrigin.x+off,y:animatedOrigin.y},{x:animatedOrigin.x+off+30,y:animatedOrigin.y},12);
++   const animatedAfter=(await save(p,'02-animated-moved')).project;
++   check('canvas-transform-at-playhead-adds-key-without-changing-endpoints',
++     animatedAfter.devices[0].transform['position.x'].keys.some(k=>near(k.t,1)&&!near(k.v,-.5))
++     &&same(animatedAfter.devices[0].transform['position.x'].keys.filter(k=>k.t!==1),animated.devices[0].transform['position.x'].keys)
++     &&same(animatedAfter.devices[1],animated.devices[1]));
++   await undo(p);check('animated-canvas-edit-single-undo',same((await save(p,'02-animated-undone')).project,animated));
++   const field=transform(p).locator('.numfield-box').nth(1);await field.scrollIntoViewIfNeeded();const fieldBox=await field.boundingBox();
++   await p.mouse.move(fieldBox.x+fieldBox.width/2,fieldBox.y+fieldBox.height/2);await p.mouse.down();
++   await p.mouse.move(fieldBox.x+fieldBox.width/2+20,fieldBox.y+fieldBox.height/2,{steps:4});
++   await p.waitForTimeout(650);await p.mouse.move(fieldBox.x+fieldBox.width/2+30,fieldBox.y+fieldBox.height/2,{steps:4});await p.mouse.up();
++   const fieldAfter=(await save(p,'02-number-drag')).project;
++   check('number-field-drag-writes-pose',!same(fieldAfter,animated));
++   await undo(p);check('long-number-field-drag-single-undo',same((await save(p,'02-number-undone')).project,animated));
++
++   await openFixture(p,fixture,'02-overlay-fixture');
++   await p.getByRole('button',{name:'Move device',exact:true}).click();
++   await preview(p,0,'02-gizmo-reference');const gizmo=fs.readFileSync(await preview(p,0,'02-gizmo-clean'));
++   await p.getByRole('button',{name:'Orbit camera',exact:true}).click();const orbit=fs.readFileSync(await preview(p,0,'02-orbit-clean'));
++   check('export-excludes-gizmo-and-selection-outline',hash(gizmo)===hash(orbit));
++   const orbitBefore=(await save(p,'02-before-camera')).project,rect=await p.locator('.artboard').boundingBox();
++   await drag(p,{x:rect.x+rect.width*.85,y:rect.y+rect.height*.2},{x:rect.x+rect.width*.7,y:rect.y+rect.height*.3},15);
++   const orbitAfter=(await save(p,'02-after-camera')).project;
++   check('orbit-tool-moves-camera-only',!same(orbitAfter.camera,orbitBefore.camera)&&same(orbitAfter.devices,orbitBefore.devices));
++   await undo(p);check('camera-gesture-single-undo',same((await save(p,'02-camera-undone')).project,orbitBefore));
++ });
++ if(cases.includes('03'))await run(browser,'03-independent-presets-and-media',async p=>{
++   await openFixture(p,two(base),'03-fixture');
++   await p.locator('.device-open').click();await p.getByRole('button',{name:'iPhone 17 Pro',exact:true}).click();await ready(p);
++   await p.locator('.device-row').nth(1).locator('.device-row-name').click();
++   await p.locator('.device-open').click();await p.getByRole('button',{name:'Google Pixel 9 Pro XL',exact:true}).click();await ready(p);
++   const realModels=(await save(p,'03-real-models')).project;
++   await p.getByRole('button',{name:'Select device',exact:true}).click();
++   const glbPoint=await center(p,realModels,0);await p.mouse.click(glbPoint.x,glbPoint.y);
++   check('canvas-pick-real-GLB',await activeIndex(p)===0);
++
++   await p.locator('.device-row').nth(1).locator('.device-row-name').click();
++   const before=(await save(p,'03-before-preset')).project;
++   await commit(p,'Preset start',.5);await commit(p,'Preset duration',1);
++   await p.getByLabel('Add animation',{exact:true}).selectOption('spin-y-360');
++   const spun=(await save(p,'03-second-spun')).project;
++   check('MAN-005-preset-only-selected-instance',same(spun.devices[0],before.devices[0])&&spun.devices[1].transform['rotation.y'].keys.some(k=>near(k.t,1.5)&&near(k.v,2*Math.PI)));
++   check('preset-protects-unrelated-channels',same(spun.devices[1].transform['position.x'],before.devices[1].transform['position.x'])&&same(spun.camera,before.camera));
++   await p.locator('.device-row').nth(0).locator('.device-row-name').click();await commit(p,'Preset start',0);await commit(p,'Preset duration',1.5);
++   await p.getByLabel('Add animation',{exact:true}).selectOption('float');
++   const floated=(await save(p,'03-first-float')).project;
++   check('devices-have-independent-actions-and-times',same(floated.devices[1],spun.devices[1])&&floated.devices[0].transform['position.y'].keys.length===3);
++   check('timeline-owner-follows-device-selection',(await p.locator('.timeline-owner').innerText()).includes('Device 1'));
++   await undo(p);check('preset-undo-is-one-operation',same((await save(p,'03-preset-undone')).project,spun));await redo(p);
++   const orbitBefore=(await save(p,'03-before-orbit')).project;
++   await commit(p,'Preset start',0);await commit(p,'Preset duration',2);await p.getByLabel('Add animation',{exact:true}).selectOption('orbit');
++   const orbited=(await save(p,'03-orbited')).project;
++   check('orbit-preset-has-camera-scope',same(orbited.devices,orbitBefore.devices)&&same(orbited.camera.tracks.fov,orbitBefore.camera.tracks.fov)&&!same(orbited.camera.tracks['position.x'],orbitBefore.camera.tracks['position.x']));
++   await undo(p);
++   await p.locator('.device-row').nth(0).locator('.device-row-name').click();
++   await p.locator('.dropzone input[type=file]').setInputFiles(path.join(root,'assets','demo.mp4'));await p.waitForFunction(()=>document.querySelector('video.dropzone-preview')?.videoWidth>0);
++   await p.locator('.device-row').nth(1).locator('.device-row-name').click();
++   await p.locator('.dropzone input[type=file]').setInputFiles(process.env.P10305_SECONDARY_VIDEO||path.join(root,'reports','current','p103-p105-20261102','reproduce','secondary-recording.mp4'));await p.waitForFunction(()=>document.querySelector('video.dropzone-preview')?.videoWidth>0);
++   await ready(p);dual=await save(p,'03-dual-independent-animation-media');
++   check('independent-recordings-are-preserved',dual.project.devices[0].screen.id!==dual.project.devices[1].screen.id&&Object.keys(dual.entries).filter(n=>n.startsWith('media/')).length===2);
++ });
++ if(cases.includes('04'))await run(browser,'04-new-session-and-export',async p=>{
++   if(!dual)throw new Error('03 fixture missing');
++   if(authored) {
++     await p.locator('.topbar input[type=file]').setInputFiles(authored.file);await ready(p);
++     check('manual-animation-new-session-roundtrip',same((await save(p,'04-manual-reopened')).project,authored.project));
++     report.manualReferences=[];
++     for(const frame of [0,15,59]){const file=await preview(p,frame,'04-manual-reference-'+frame);report.manualReferences.push({frame,file});write();}
++     await p.getByRole('button',{name:'Standard',exact:true}).click();await p.getByRole('button',{name:'30 fps',exact:true}).click();
++     await p.getByRole('button',{name:'MP4 (H.264)',exact:true}).click();
++     const downloading=p.waitForEvent('download',{timeout:180000});downloading.catch(()=>{});
++     await p.getByRole('button',{name:'Export video (MP4 (H.264))',exact:true}).click();
++     const file=path.join(out,'P1-03-manual-720-1080p30.mp4');await (await downloading).saveAs(file);
++     const meta=JSON.parse(execFileSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',file],{encoding:'utf8'}));
++     fs.writeFileSync(path.join(out,'04-manual-ffprobe.json'),JSON.stringify(meta,null,2));
++     const v=meta.streams.find(s=>s.codec_type==='video');
++     check('manual-animation-real-1080p30-export',v.width===1920&&v.height===1080&&v.avg_frame_rate==='30/1'&&Number(v.nb_frames)===60);
++   }
++
++   await p.locator('.topbar input[type=file]').setInputFiles(dual.file);await ready(p);
++   const reopened=await save(p,'04-reopened');
++   check('new-session-restores-tracks-and-media-bytes',same(reopened.project,dual.project)&&Object.keys(dual.entries).filter(n=>n.startsWith('media/')).every(n=>hash(dual.entries[n])===hash(reopened.entries[n])));
++   await p.getByRole('button',{name:'Rotate device',exact:true}).click();
++   report.references=[];
++   for(const frame of [0,30,59]){const file=await preview(p,frame,'04-reference-'+frame);report.references.push({frame,file});write();}
++   await p.getByRole('button',{name:'Standard',exact:true}).click();await p.getByRole('button',{name:'30 fps',exact:true}).click();await p.getByRole('button',{name:'MP4 (H.264)',exact:true}).click();
++   const pending=p.waitForEvent('download',{timeout:180000});pending.catch(()=>{});const timer=setInterval(()=>console.log('EXPORT_IN_PROGRESS'),10000);
++   try{await p.getByRole('button',{name:'Export video (MP4 (H.264))',exact:true}).click();const dl=await pending;await dl.saveAs(path.join(out,'P1-03-05-dual-animation-1080p30.mp4'));}finally{clearInterval(timer);}
++   const file=path.join(out,'P1-03-05-dual-animation-1080p30.mp4');
++   const meta=JSON.parse(execFileSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',file],{encoding:'utf8'}));fs.writeFileSync(path.join(out,'04-ffprobe.json'),JSON.stringify(meta,null,2));
++   const v=meta.streams.find(s=>s.codec_type==='video');
++   check('dual-animation-dual-recording-1080p30-mp4',v.width===1920&&v.height===1080&&v.avg_frame_rate==='30/1'&&Number(v.nb_frames)===60,{width:v.width,height:v.height,fps:v.avg_frame_rate,frames:v.nb_frames,duration:meta.format.duration});
++   await channel(p,'rotation.y');await time(p,1);await p.getByRole('button',{name:'Add keyframe',exact:true}).click();await keyValue(p,90);
++   const changed=await save(p,'04-edited-after-export');
++   check('editing-after-export-remains-usable',changed.project.devices[0].transform['rotation.y'].keys.some(k=>near(k.t,1)&&near(k.v,Math.PI/2)));
++ });
++ if(cases.includes('05'))await run(browser,'05-P1-02-regression',async p=>{
++   await p.getByRole('button',{name:'Add a second device',exact:true}).click();await undo(p);
++   check('P1-02-add-undo-no-crash',await transform(p).locator('.numfield-box').count()===7);
++   await redo(p);check('P1-02-redo-valid-selection',await activeIndex(p)===0&&await transform(p).locator('.numfield-box').count()===7);
++   await p.locator('.device-row').nth(1).getByTitle('Duplicate',{exact:true}).click();
++   check('P1-02-duplicate-selects-copy',await activeIndex(p)===2);
++   await p.locator('.device-row').nth(0).getByTitle('Remove',{exact:true}).click();
++   check('P1-02-removal-selection-valid',await activeIndex(p)===1&&await transform(p).locator('.numfield-box').count()===7);
++ });
++ check('no-unhandled-page-errors',report.pageErrors.length===0,{pageErrors:report.pageErrors});
++ check('all-local-assets-loaded',report.requestFailures.length===0,{failures:report.requestFailures});
++ report.status=report.cases.some(c=>c.status==='INCOMPLETE')?'INCOMPLETE':report.checks.some(c=>c.status!=='PASS')?'FAIL':'PASS';
++}catch(error){report.status='ENVIRONMENT_BLOCKED';report.error=String(error);report.stack=error.stack;}finally{await browser?.close().catch(()=>{});write();console.log(JSON.stringify({status:report.status,checks:report.checks.length,failures:report.checks.filter(c=>c.status!=='PASS')}));if(report.status!=='PASS')process.exitCode=1;}})();
+--- a/src/App.css
++++ b/src/App.css
+@@ -176,7 +176,7 @@
+ }
+ 
+ .stage-zone.with-timeline {
+-  grid-template-rows: 1fr 210px;
++  grid-template-rows: minmax(160px, 1fr) 300px;
+ }
+ 
+ .stage-zone.with-timeline:has(.has-motion-plan) {
+@@ -376,7 +376,7 @@
+ }
+ 
+ .timeline-body {
+-  --track-label-width: 64px;
++  --track-label-width: 90px;
+   --track-gap: 10px;
+   flex: 1;
+   padding: 0 16px 12px;
+@@ -1511,3 +1511,23 @@
+ .motion-now .hint {
+   margin-left: auto;
+ }
++
++/* Channel editing shares the existing timeline and theme. */
++.key-editor { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; padding: 6px 16px; border-bottom: 1px solid var(--line-soft); font-size: 11px; }
++.key-editor label { display: flex; align-items: center; gap: 4px; }
++.key-editor input { width: 62px; }
++.key-editor select, .key-editor button, .key-editor input, .preset-controls input, .preset-controls button {
++  color-scheme: dark; background: var(--chrome-2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 4px; font: inherit;
++}
++.key-editor select option { background: #25262d; color: #eee; }
++.timeline-owner { font-size: 11px; color: var(--text-2); padding: 4px 16px; }
++.keyframe.selected { background: var(--accent); outline: 2px solid white; z-index: 2; }
++.track-label { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++.time-now { width: 76px; }
++.preset-controls { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; font-size: 11px; }
++.preset-controls input { width: 48px; }
++.timeline-toolbar { flex-wrap: wrap; gap: 8px; padding-top: 6px; padding-bottom: 6px; }
++
++.key-editor select { width: auto; max-width: 160px; }
++.canvas-tools { gap: 4px; }
++.canvas-tools .tool-btn { width: auto; min-width: 38px; padding: 0 8px; font-size: 11px; }
+--- a/src/app/useShortcuts.ts
++++ b/src/app/useShortcuts.ts
+@@ -16,6 +16,11 @@
+       }
+ 
+       const store = useProjectStore.getState()
++      if (e.key === 'Escape' && store.editingGesture) {
++        e.preventDefault()
++        store.endEditGesture(true)
++        return
++      }
+       const mod = e.metaKey || e.ctrlKey
+ 
+       if (mod && e.key.toLowerCase() === 'z') {
+--- a/src/automation/bridge.ts
++++ b/src/automation/bridge.ts
+@@ -92,7 +92,8 @@
+   async loadProject(project:Project){
+     if(!project || project.version!==1 || !Array.isArray(project.devices) || project.devices.length!==1) throw new Error('INVALID_PROJECT')
+     assertLocalUrl(project)
+-    useProjectStore.setState({project,activeDevice:0,editorMode:'movie',playhead:0,playing:false})
++    useProjectStore.getState().endEditGesture()
++    useProjectStore.setState({project,activeDevice:0,editorMode:'movie',playhead:0,playing:false,keySelection:null})
+     // Allow the subscription to commit the newly selected GLB before probing readiness.
+     await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())))
+     return await waitForReady()
+--- a/src/export/frameRenderer.ts
++++ b/src/export/frameRenderer.ts
+@@ -1,4 +1,5 @@
+ import * as THREE from 'three'
++import { withoutEditorHelpers } from '../scene/editorHelpers'
+ import { boxDownsample } from './downsample'
+ import type { BackdropPainter } from './backdrop'
+ 
+@@ -205,7 +206,7 @@
+     supersample,
+ 
+     renderFrame() {
+-      renderer.render(scene, camera)
++      withoutEditorHelpers(scene, () => renderer.render(scene, camera))
+ 
+       if (renderer.getContext().isContextLost()) {
+         throw new Error('WebGL context lost during export — try a lower quality setting')
+--- a/src/scene/DeviceControls.tsx
++++ b/src/scene/DeviceControls.tsx
+@@ -0,0 +1,98 @@
++import { TransformControls } from '@react-three/drei'
++import { useFrame } from '@react-three/fiber'
++import { useEffect, useMemo, useRef, type RefObject } from 'react'
++import * as THREE from 'three'
++import type { OrbitControls as OrbitImpl, TransformControls as TransformImpl } from 'three-stdlib'
++import { useProjectStore } from '../store/project'
++import { sampleTimeline } from '../timeline/sample'
++import { nearestEuler, uniformScale } from './transformValues'
++
++export function DeviceControls({ deviceRefs, orbitingRef, controlsRef }: {
++  deviceRefs: RefObject<(THREE.Group | null)[]>
++  orbitingRef: RefObject<boolean>
++  controlsRef: RefObject<OrbitImpl | null>
++}) {
++  const tool = useProjectStore(s => s.canvasTool)
++  const active = useProjectStore(s => s.activeDevice)
++  const instanceId = useProjectStore(s => s.project.devices[s.activeDevice]?.instanceId)
++  const playing = useProjectStore(s => s.playing)
++  const proxy = useMemo(() => new THREE.Group(), [])
++  const outline = useMemo(() => {
++    const helper = new THREE.BoxHelper(new THREE.Group(), 0x80aaff)
++    helper.userData.editorOnly = true
++    helper.raycast = () => {}
++    return helper
++  }, [])
++  const controls = useRef<TransformImpl>(null)
++  const outlineRef = useRef(outline)
++  const drag = useRef<{ id: string; rotation: [number, number, number]; scale: number } | null>(null)
++
++  function finish(cancel = false) {
++    if (!drag.current) return
++    drag.current = null
++    useProjectStore.getState().endEditGesture(cancel)
++    if (cancel) controls.current?.reset()
++  }
++  useEffect(() => {
++    const cancel = () => finish(true)
++    const key = (event: KeyboardEvent) => { if (event.key === 'Escape') cancel() }
++    window.addEventListener('keydown', key)
++    window.addEventListener('pointercancel', cancel)
++    window.addEventListener('blur', cancel)
++    return () => {
++      window.removeEventListener('keydown', key)
++      window.removeEventListener('pointercancel', cancel)
++      window.removeEventListener('blur', cancel)
++      finish(true)
++    }
++  }, [instanceId, tool])
++  useEffect(() => () => { outline.geometry.dispose(); (outline.material as THREE.Material).dispose() }, [outline])
++
++  useFrame(() => {
++    const s = useProjectStore.getState()
++    if (controlsRef.current) controlsRef.current.enabled = s.canvasTool === 'orbit' && !s.editingGesture
++    const state = sampleTimeline(s.project, s.playhead)
++    const pose = state.devices[s.activeDevice]
++    if (!orbitingRef.current) controlsRef.current?.target.set(...state.camera.target)
++    const group = deviceRefs.current[s.activeDevice]
++    const helper = outlineRef.current
++    helper.visible = !!group && !s.playing && s.canvasTool !== 'orbit'
++    if (group && helper.visible) helper.setFromObject(group)
++    if (!pose || drag.current) return
++    proxy.position.set(...pose.position)
++    proxy.rotation.set(...pose.rotation)
++    proxy.scale.setScalar(pose.scale)
++    proxy.updateMatrixWorld()
++  })
++  const transforming = tool === 'translate' || tool === 'rotate' || tool === 'scale'
++  return <>
++    <primitive object={proxy} />
++    <primitive object={outline} />
++    {transforming && !playing && instanceId && <TransformControls key={instanceId + tool} ref={value => {
++      controls.current = value
++      if (value) value.userData.editorOnly = true
++    }} object={proxy} mode={tool} space="local" size={0.8}
++      onMouseDown={() => {
++        const s = useProjectStore.getState()
++        const pose = sampleTimeline(s.project, s.playhead).devices[active]
++        if (!pose) return
++        s.beginEditGesture()
++        drag.current = { id: instanceId, rotation: [...pose.rotation], scale: pose.scale }
++      }}
++      onObjectChange={() => {
++        const d = drag.current, s = useProjectStore.getState()
++        if (!d || !s.editingGesture || s.project.devices[s.activeDevice]?.instanceId !== d.id) return
++        if (tool === 'translate') s.setDevicePosition(proxy.position.toArray())
++        if (tool === 'rotate') {
++          d.rotation = nearestEuler(proxy.quaternion, d.rotation)
++          s.setDeviceRotation(d.rotation)
++        }
++        if (tool === 'scale') {
++          const scale = uniformScale(proxy.scale.toArray(), d.scale)
++          s.setDeviceScale(scale)
++          proxy.scale.setScalar(scale)
++        }
++      }}
++      onMouseUp={() => finish()} />}
++  </>
++}
+--- a/src/scene/Stage.tsx
++++ b/src/scene/Stage.tsx
+@@ -6,6 +6,7 @@
+ import { SceneDriver } from './SceneDriver'
+ import { ShadowCatcher } from './ShadowCatcher'
+ import { DeviceInstanceView } from './DeviceInstanceView'
++import { DeviceControls } from './DeviceControls'
+ import { useProjectStore } from '../store/project'
+ import { projectGroundY } from './groundPlane'
+ import { clearExportContext, registerExportContext } from '../export/renderer'
+@@ -59,6 +60,7 @@
+   const devices = project.devices
+   const environment = useProjectStore((s) => s.project.environment)
+   const setCameraPosition = useProjectStore((s) => s.setCameraPosition)
++  const tool = useProjectStore(s => s.canvasTool)
+ 
+   /*
+    * The shadow light is held in STATE, not a ref.
+@@ -143,17 +145,23 @@
+         target={[0, 0, 0]}
+         enableDamping
+         makeDefault
++        enabled={tool === 'orbit'}
+         onStart={() => {
+           orbitingRef.current = true
++          useProjectStore.getState().beginEditGesture()
+         }}
+         onEnd={() => {
+           orbitingRef.current = false
+           const p = controlsRef.current?.object.position
+           if (p) setCameraPosition([p.x, p.y, p.z])
++          const target = controlsRef.current?.target
++          if (target) useProjectStore.getState().setCameraTarget(target.toArray())
++          useProjectStore.getState().endEditGesture()
+         }}
+       />
+ 
+       <SceneDriver deviceRefs={deviceRefs} orbitingRef={orbitingRef} />
++      <DeviceControls deviceRefs={deviceRefs} orbitingRef={orbitingRef} controlsRef={controlsRef} />
+ 
+       <Suspense fallback={null}>
+           <Environment
+@@ -172,6 +180,12 @@
+         {devices.map((device, index) => (
+           <group
+             key={device.instanceId}
++            onClick={event => {
++              if (useProjectStore.getState().canvasTool === 'orbit') return
++              event.stopPropagation()
++              useProjectStore.getState().setPlaying(false)
++              useProjectStore.getState().setActiveDevice(index)
++            }}
+             ref={(group) => {
+               deviceRefs.current[index] = group
+               // Tag the group with its document index so measurements can map
+--- a/src/scene/editorHelpers.ts
++++ b/src/scene/editorHelpers.ts
+@@ -0,0 +1,9 @@
++import type { Object3D, Scene } from 'three'
++/** All image, thumbnail and video exports hide editor overlays for the render only. */
++export function withoutEditorHelpers<T>(scene: Scene, render: () => T): T {
++  const hidden: { object: Object3D; visible: boolean }[] = []
++  scene.traverse(object => {
++    if (object.userData.editorOnly) { hidden.push({ object, visible: object.visible }); object.visible = false }
++  })
++  try { return render() } finally { for (const item of hidden) item.object.visible = item.visible }
++}
+--- a/src/scene/editorInteraction.test.ts
++++ b/src/scene/editorInteraction.test.ts
+@@ -0,0 +1,49 @@
++import { describe, expect, it } from 'vitest'
++import { Euler, Group, Mesh, Quaternion, Scene } from 'three'
++import { nearestEuler, uniformScale } from './transformValues'
++import { withoutEditorHelpers } from './editorHelpers'
++
++describe('canvas transform values', () => {
++  for (const axis of [0, 1, 2]) {
++    it('retains two complete positive and negative turns on axis ' + axis, () => {
++      for (const direction of [-1, 1]) {
++        let previous: [number, number, number] = [0, 0, 0]
++        for (let i = 0; i <= 160; i++) {
++          const angles: [number, number, number] = [0, 0, 0]
++          angles[axis] = direction * i / 160 * Math.PI * 4
++          previous = nearestEuler(new Quaternion().setFromEuler(new Euler(...angles)), previous)
++          expect(previous[axis]).toBeCloseTo(angles[axis], 5)
++        }
++      }
++    })
++  }
++  it('lifts an existing 720-degree pose rather than normalizing it to zero', () => {
++    const previous: [number, number, number] = [.1, Math.PI * 4, -.2]
++    const next = [.1, Math.PI * 4 + .2, -.2] as [number, number, number]
++    const result = nearestEuler(new Quaternion().setFromEuler(new Euler(...next)), previous)
++    result.forEach((v, i) => expect(v).toBeCloseTo(next[i]))
++  })
++  it('keeps scale uniform and positive for each axis handle', () => {
++    expect(uniformScale([1.5, 1, 1], 1)).toBe(1.5)
++    expect(uniformScale([1, .8, 1], 1)).toBe(.8)
++    expect(uniformScale([1, 1, -2], 1)).toBe(.05)
++    expect(uniformScale([.9, .9, .9], 1)).toBe(.9)
++  })
++})
++describe('export overlay exclusion', () => {
++  it('hides helper subtrees during rendering and restores their original visibility', () => {
++    const scene = new Scene(), phone = new Mesh(), gizmo = new Group(), outline = new Group()
++    gizmo.userData.editorOnly = true; outline.userData.editorOnly = true; outline.visible = false
++    scene.add(phone, gizmo, outline)
++    const result = withoutEditorHelpers(scene, () => {
++      expect(phone.visible).toBe(true); expect(gizmo.visible).toBe(false); expect(outline.visible).toBe(false)
++      return 'frame'
++    })
++    expect(result).toBe('frame'); expect(gizmo.visible).toBe(true); expect(outline.visible).toBe(false)
++  })
++  it('restores the editing overlay even when rendering fails', () => {
++    const scene = new Scene(), gizmo = new Group(); gizmo.userData.editorOnly = true; scene.add(gizmo)
++    expect(() => withoutEditorHelpers(scene, () => { throw new Error('GPU') })).toThrow('GPU')
++    expect(gizmo.visible).toBe(true)
++  })
++})
+--- a/src/scene/transformValues.ts
++++ b/src/scene/transformValues.ts
+@@ -0,0 +1,17 @@
++import { Euler, type Quaternion } from 'three'
++import type { Vec3 } from '../store/schema'
++
++/** Lift quaternion decompositions to the nearest equivalent Euler branch, retaining full turns. */
++export function nearestEuler(quaternion: Quaternion, previous: Vec3): Vec3 {
++  const e = new Euler().setFromQuaternion(quaternion, 'XYZ')
++  const candidates = [[e.x, e.y, e.z], [e.x + Math.PI, Math.PI - e.y, e.z + Math.PI]]
++  const lifted = candidates.map(values => values.map((v, i) =>
++    v + Math.round((previous[i] - v) / (2 * Math.PI)) * 2 * Math.PI) as Vec3)
++  return lifted.reduce((a, b) => b.reduce((sum, v, i) => sum + (v - previous[i]) ** 2, 0)
++    < a.reduce((sum, v, i) => sum + (v - previous[i]) ** 2, 0) ? b : a)
++}
++/** A handle on any scale axis changes the one uniform scale in the document. */
++export function uniformScale(values: Vec3, initial: number): number {
++  const changed = values.reduce((a, b) => Math.abs(b - initial) > Math.abs(a - initial) ? b : a)
++  return Math.max(0.05, Number.isFinite(changed) ? changed : initial)
++}
+--- a/src/store/keyframeEditing.test.ts
++++ b/src/store/keyframeEditing.test.ts
+@@ -0,0 +1,129 @@
++import { beforeEach, describe, expect, it, vi } from 'vitest'
++import { createDefaultProject, createDevice } from './defaults'
++import { useProjectStore as useStore } from './project'
++import { emptyHistory, resetCoalescing } from './history'
++import { sampleTimeline } from '../timeline/sample'
++import { EASE_LINEAR, EASE_OUT } from '../timeline/easing'
++import { targetTracks, type TrackTarget } from '../timeline/editing'
++
++const s = () => useStore.getState()
++const target = (): TrackTarget => ({ kind: 'device', instanceId: s().project.devices[0].instanceId })
++const track = (c = 'position.x') => s().project.devices[0].transform[c]
++beforeEach(() => {
++  s().endEditGesture(true)
++  resetCoalescing()
++  const p = createDefaultProject()
++  useStore.setState({ project: { ...p, devices: [p.devices[0], createDevice()] }, history: emptyHistory,
++    playhead: 0, activeDevice: 0, playing: false, keySelection: null })
++})
++describe('manual scalar keyframe editing', () => {
++  it('keeps ordinary numbers static until explicitly activated', () => {
++    s().setPlayhead(2); s().setDevicePosition([1, 0, 0])
++    expect(track().keys).toHaveLength(1)
++    s().addTimelineKey(target(), 'position.x')
++    expect(track().keys.map(k => k.t)).toEqual([0, 2])
++    s().setDevicePosition([2, 0, 0])
++    expect(sampleTimeline(s().project, 0).devices[0].position[0]).toBe(1)
++    expect(sampleTimeline(s().project, 2).devices[0].position[0]).toBe(2)
++  })
++  it('activates at zero using an identical end anchor', () => {
++    s().addTimelineKey(target(), 'rotation.y')
++    expect(track('rotation.y').keys.map(k => [k.t, k.v])).toEqual([[0, 0], [4, 0]])
++    expect(track().keys).toHaveLength(1)
++  })
++  it('edits only the selected channel and instance', () => {
++    const other = s().project.devices[1]
++    const camera = s().project.camera
++    s().addTimelineKey(target(), 'position.x'); s().setTimelineKeyValue(0.8)
++    expect(s().project.devices[1]).toBe(other)
++    expect(s().project.camera).toBe(camera)
++    expect(track('position.y').keys).toHaveLength(1)
++  })
++  it('supports existing camera target and fov channels', () => {
++    const camera = { kind: 'camera' } as const
++    s().setPlayhead(1); s().addTimelineKey(camera, 'target.x'); s().setTimelineKeyValue(0.6)
++    expect(targetTracks(s().project, camera)?.['target.x'].keys[1].v).toBe(0.6)
++    s().addTimelineKey(camera, 'fov'); s().setTimelineKeyValue(45)
++    expect(sampleTimeline(s().project, 1).camera.fov).toBe(45)
++    expect(track().keys).toHaveLength(1)
++  })
++  it('preserves multiple Euler revolutions through sampling and JSON', () => {
++    s().addTimelineKey(target(), 'rotation.y')
++    s().selectKey({ target: target(), channel: 'rotation.y', t: 0 }); s().setTimelineKeyEase(EASE_LINEAR)
++    s().selectKey({ target: target(), channel: 'rotation.y', t: 4 }); s().setTimelineKeyValue(4 * Math.PI)
++    const p = JSON.parse(JSON.stringify(s().project))
++    expect(sampleTimeline(p, 1).devices[0].rotation[1]).toBeCloseTo(Math.PI)
++    expect(sampleTimeline(p, 4).devices[0].rotation[1]).toBeCloseTo(4 * Math.PI)
++  })
++  it('replaces an occupied key without duplicate times', () => {
++    s().addTimelineKey(target(), 'position.x')
++    s().selectKey({ target: target(), channel: 'position.x', t: 4 }); s().setTimelineKeyValue(2)
++    s().moveTimelineKey({ target: target(), channel: 'position.x', t: 4 }, 0)
++    expect(track().keys).toHaveLength(1)
++    expect(track().keys[0].v).toBe(2)
++  })
++  it('restores a collided key when a drag moves back, then undoes the entire gesture', () => {
++    s().addTimelineKey(target(), 'position.x')
++    s().selectKey({ target: target(), channel: 'position.x', t: 4 }); s().setTimelineKeyValue(2)
++    const before = s().project
++    const sel = { target: target(), channel: 'position.x', t: 4 }
++    s().beginEditGesture(); s().moveTimelineKey(sel, 0); s().moveTimelineKey(sel, 3); s().endEditGesture()
++    expect(track().keys.map(k => k.t)).toEqual([0, 3])
++    s().undo(); expect(s().project).toBe(before)
++    s().redo(); expect(track().keys.map(k => k.t)).toEqual([0, 3])
++  })
++  it('keeps a long gesture as one undo and separates consecutive gestures', () => {
++    const clock = vi.spyOn(Date, 'now')
++    clock.mockReturnValue(1000)
++    const original = s().project
++    s().beginEditGesture(); s().setDevicePosition([1, 0, 0])
++    clock.mockReturnValue(6000); s().setDevicePosition([2, 0, 0]); s().endEditGesture()
++    s().beginEditGesture(); s().setDevicePosition([3, 0, 0]); s().endEditGesture()
++    s().undo(); expect(sampleTimeline(s().project, 0).devices[0].position[0]).toBe(2)
++    s().undo(); expect(s().project).toBe(original)
++    clock.mockRestore()
++  })
++  it('cancels a gesture without changing undo history', () => {
++    const original = s().project, history = s().history
++    s().beginEditGesture(); s().setDevicePosition([1, 0, 0]); s().endEditGesture(true)
++    expect(s().project).toBe(original); expect(s().history).toBe(history)
++    expect(s().editingGesture).toBe(false)
++  })
++  it('holds the remaining value after deletion and preserves the final value on last-key deletion', () => {
++    s().addTimelineKey(target(), 'position.x')
++    s().selectKey({ target: target(), channel: 'position.x', t: 4 }); s().setTimelineKeyValue(2)
++    s().selectKey({ target: target(), channel: 'position.x', t: 0 }); s().deleteTimelineKey()
++    expect(track().keys).toHaveLength(1); expect(track().keys[0].v).toBe(2)
++    s().selectKey({ target: target(), channel: 'position.x', t: 0 }); s().deleteTimelineKey()
++    expect(sampleTimeline(s().project, 3).devices[0].position[0]).toBe(2)
++  })
++  it('changes easing without altering values, and makes it effective on continuous tracks', () => {
++    s().addTimelineKey(target(), 'position.x')
++    const p = s().project, d = p.devices[0]
++    useStore.setState({ project: { ...p, devices: [{ ...d, transform: { ...d.transform, 'position.x': { ...track(), interpolation: 'continuous' } } }, p.devices[1]] } })
++    s().setTimelineKeyEase(EASE_OUT)
++    expect(track().interpolation).toBeUndefined()
++    expect(track().keys[0].ease).toEqual(EASE_OUT)
++    expect(track().keys.map(k => k.v)).toEqual([0, 0])
++  })
++  it('clears stale selection on device switch, undo and document replacement', () => {
++    s().addTimelineKey(target(), 'position.x'); expect(s().keySelection).not.toBeNull()
++    s().setActiveDevice(1); expect(s().keySelection).toBeNull()
++    s().setActiveDevice(0); s().addTimelineKey(target(), 'position.x'); s().undo()
++    expect(s().keySelection).toBeNull()
++    s().newProject(); expect(s().keySelection).toBeNull()
++  })
++  it('rejects invalid channels, instances, times and values', () => {
++    const original = s().project
++    s().addTimelineKey(target(), 'not.a.channel')
++    s().addTimelineKey({ kind: 'device', instanceId: 'missing' }, 'position.x')
++    s().setTimelineKeyValue(NaN); s().moveTimelineKey({ target: target(), channel: 'position.x', t: 0 }, NaN)
++    expect(s().project).toBe(original)
++  })
++  it('clamps key moves to the project bounds', () => {
++    s().addTimelineKey(target(), 'position.x')
++    s().moveTimelineKey({ target: target(), channel: 'position.x', t: 4 }, 100)
++    expect(track().keys.at(-1)?.t).toBe(4)
++    s().setPlayhead(Infinity); expect(Number.isFinite(s().playhead)).toBe(true)
++  })
++})
+--- a/src/store/project.ts
++++ b/src/store/project.ts
+@@ -6,7 +6,10 @@
+ import type { ExportQuality } from '../export/frameRenderer'
+ import { deserializeProject, downloadProject, pruneUnreferencedMedia, serializeProject } from './persist'
+ import { applyCameraAngle, applyMotionPreset, type MotionPresetId } from '../timeline/presets'
+-import { setVec3At, setValueAt } from '../timeline/tracks'
++import { setKey, setVec3At, setValueAt } from '../timeline/tracks'
++import { addEditableKey, channelFallback, deleteEditableKey, easeEditableKey, editChannel, moveEditableKey, targetTracks, validSelection, type KeySelection, type TrackTarget } from '../timeline/editing'
++import { sampleTrack } from '../timeline/sample'
++import type { EaseHandle } from './schema'
+ import { getManifest } from '../devices/manifest'
+ import { applyMotionPlan as compileMotionPlan, clearMotionPlan } from '../timeline/motionPlan'
+ import type {
+@@ -80,7 +83,20 @@
+   setDeviceRotation: (v: Vec3) => void
+   setDevicePosition: (v: Vec3) => void
+   setDeviceScale: (v: number) => void
+-  setMotionPreset: (preset: MotionPresetId) => void
++  setMotionPreset: (preset: MotionPresetId, start?: number, duration?: number) => void
++  keySelection: KeySelection | null
++  selectKey: (selection: KeySelection | null) => void
++  addTimelineKey: (target: TrackTarget, channel: string) => void
++  moveTimelineKey: (selection: KeySelection, to: number) => void
++  deleteTimelineKey: () => void
++  setTimelineKeyValue: (value: number) => void
++  setTimelineKeyEase: (ease: EaseHandle) => void
++  editingGesture: boolean
++  beginEditGesture: () => void
++  endEditGesture: (cancel?: boolean) => void
++  canvasTool: 'select' | 'translate' | 'rotate' | 'scale' | 'orbit'
++  setCanvasTool: (tool: ProjectStore['canvasTool']) => void
++  setCameraTarget: (v: Vec3) => void
+ }
+ 
+ // Narrow selectors are used at call sites (§14 trap 10) — components should
+@@ -96,9 +112,10 @@
+   return retained >= 0 ? retained : clampSelection(index, next.devices.length)
+ }
+ 
+-type EditUi = Partial<Pick<ProjectStore, 'activeDevice' | 'playhead' | 'playing' | 'editorMode' | 'motionPreset'>>
++type EditUi = Partial<Pick<ProjectStore, 'activeDevice' | 'playhead' | 'playing' | 'editorMode' | 'motionPreset' | 'keySelection'>>
+ 
+ export const useProjectStore = create<ProjectStore>((set, get) => {
++  let gesture: { project: Project; history: History; selection: KeySelection | null } | null = null
+   /**
+    * Every document mutation goes through here, so undo coverage can't drift
+    * out of sync with the set of actions. `label` groups a continuous gesture
+@@ -112,7 +129,10 @@
+       return {
+         ...patch,
+         project,
+-        history: record(s.history, s.project, label),
++        history: gesture
++          ? (s.project === gesture.project ? record(gesture.history, gesture.project) : s.history)
++          : record(s.history, s.project, label),
++        keySelection: validSelection(project, patch.keySelection === undefined ? s.keySelection : patch.keySelection),
+         activeDevice: patch.activeDevice === undefined
+           ? retainSelection(s.project, project, s.activeDevice)
+           : clampSelection(patch.activeDevice, project.devices.length),
+@@ -135,7 +155,8 @@
+ 
+   const replace = (project: Project) => {
+     resetCoalescing()
+-    set({ project, history: emptyHistory, playhead: 0, playing: false, activeDevice: 0 })
++    gesture = null
++    set({ project, history: emptyHistory, playhead: 0, playing: false, activeDevice: 0, keySelection: null, editingGesture: false, motionPreset: 'none' })
+   }
+ 
+   return {
+@@ -145,17 +166,19 @@
+   canUndo: () => get().history.past.length > 0,
+   canRedo: () => get().history.future.length > 0,
+   undo: () => {
++    get().endEditGesture()
+     resetCoalescing()
+     set((s) => {
+       const result = undo(s.history, s.project)
+-      return result ? { ...result, activeDevice: retainSelection(s.project, result.project, s.activeDevice) } : s
++      return result ? { ...result, keySelection: null, activeDevice: retainSelection(s.project, result.project, s.activeDevice) } : s
+     })
+   },
+   redo: () => {
++    get().endEditGesture()
+     resetCoalescing()
+     set((s) => {
+       const result = redo(s.history, s.project)
+-      return result ? { ...result, activeDevice: retainSelection(s.project, result.project, s.activeDevice) } : s
++      return result ? { ...result, keySelection: null, activeDevice: retainSelection(s.project, result.project, s.activeDevice) } : s
+     })
+   },
+ 
+@@ -175,6 +198,70 @@
+   motionPreset: 'none',
+   editorMode: 'image',
+   activeDevice: 0,
++  keySelection: null,
++  editingGesture: false,
++  canvasTool: 'select',
++  selectKey: (selection) => {
++    resetCoalescing()
++    set(s => ({ keySelection: validSelection(s.project, selection), ...(selection ? { playing: false, playhead: selection.t } : {}) }))
++  },
++  setCanvasTool: (canvasTool) => { get().endEditGesture(true); set({ canvasTool, playing: false }) },
++  beginEditGesture: () => {
++    if (gesture) get().endEditGesture()
++    resetCoalescing()
++    gesture = { project: get().project, history: get().history, selection: get().keySelection }
++    set({ editingGesture: true, playing: false })
++  },
++  endEditGesture: (cancel = false) => {
++    const previous = gesture
++    gesture = null
++    resetCoalescing()
++    set(cancel && previous
++      ? { project: previous.project, history: previous.history, keySelection: previous.selection, editingGesture: false }
++      : { editingGesture: false })
++  },
++  addTimelineKey: (target, channel) => {
++    const t = Math.min(get().project.duration, get().playhead)
++    resetCoalescing()
++    edit('addKey', p => addEditableKey(p, target, channel, t), { keySelection: { target, channel, t }, playing: false })
++    resetCoalescing()
++  },
++  moveTimelineKey: (selection, to) => {
++    if (!Number.isFinite(to)) return
++    const t = Math.max(0, Math.min(get().project.duration, to))
++    const baseline = gesture?.project ?? get().project
++    const original = targetTracks(baseline, selection.target)?.[selection.channel]
++    const moved = moveEditableKey(original, selection.t, t)
++    if (!moved) return
++    edit('moveKey', p => editChannel(p, selection.target, selection.channel, () => moved),
++      { keySelection: { ...selection, t }, playhead: t, playing: false })
++  },
++  deleteTimelineKey: () => {
++    const selection = validSelection(get().project, get().keySelection)
++    if (!selection) return
++    resetCoalescing()
++    edit('deleteKey', p => {
++      const fallback = sampleTrack(targetTracks(p, selection.target)?.[selection.channel], selection.t, channelFallback(p, selection.target, selection.channel))
++      return editChannel(p, selection.target, selection.channel, track => deleteEditableKey(track, selection.t, fallback))
++    }, { keySelection: null })
++    resetCoalescing()
++  },
++  setTimelineKeyValue: (value) => {
++    const selection = validSelection(get().project, get().keySelection)
++    if (!selection || !Number.isFinite(value)) return
++    const v = selection.channel === 'scale' ? Math.max(0.05, value)
++      : selection.channel === 'fov' ? Math.max(1, Math.min(179, value)) : value
++    resetCoalescing()
++    edit('keyValue', p => editChannel(p, selection.target, selection.channel, track => setKey(track, selection.t, v)))
++    resetCoalescing()
++  },
++  setTimelineKeyEase: (ease) => {
++    const selection = validSelection(get().project, get().keySelection)
++    if (!selection || ease.length !== 4 || !ease.every(Number.isFinite) || ease[0] < 0 || ease[0] > 1 || ease[2] < 0 || ease[2] > 1) return
++    resetCoalescing()
++    edit('keyEase', p => editChannel(p, selection.target, selection.channel, track => easeEditableKey(track, selection.t, ease) ?? track!))
++    resetCoalescing()
++  },
+   exportQuality: 'high',
+   matchSource: false,
+ 
+@@ -187,7 +274,7 @@
+   setEditorMode: (editorMode) => set({ editorMode }),
+   setName: (name) => edit('name', (p) => ({ ...p, name })),
+ 
+-  setPlayhead: (t) => set({ playhead: Math.max(0, t) }),
++  setPlayhead: (t) => { if (Number.isFinite(t)) set({ playhead: Math.max(0, Math.min(get().project.duration, t)) }) },
+   setPlaying: (playing) => set(s => ({ playing, ...(playing && s.playhead >= s.project.duration ? { playhead: 0 } : {}) })),
+   setDuration: (seconds) =>
+     edit('duration', (p) => ({ ...p, duration: Math.max(0.1, seconds) })),
+@@ -197,8 +284,9 @@
+   setFps: (fps) => edit('fps', (p) => ({ ...p, fps })),
+ 
+   setActiveDevice: (index) => {
+-    resetCoalescing()
+-    set((s) => ({ activeDevice: clampSelection(index, s.project.devices.length) }))
++    get().endEditGesture()
++    resetCoalescing()
++    set((s) => ({ activeDevice: clampSelection(index, s.project.devices.length), keySelection: null, motionPreset: 'none' }))
+   },
+ 
+   addDevice: () => {
+@@ -285,6 +373,9 @@
+         tracks: setVec3At(p.camera.tracks, 'position', get().playhead, v),
+       },
+     })),
++  setCameraTarget: (v) => edit('cameraTarget', p => ({
++    ...p, camera: { ...p.camera, preset: null, tracks: setVec3At(p.camera.tracks, 'target', get().playhead, v) },
++  })),
+   setCameraFov: (fov) =>
+     edit('fov', (p) => ({
+       ...p,
+@@ -311,9 +402,13 @@
+       ...d,
+       transform: { ...d.transform, scale: setValueAt(d.transform.scale, get().playhead, v) },
+     })),
+-  setMotionPreset: (preset) => {
+-    set({ motionPreset: preset })
+-    edit('motionPreset', (p) => applyMotionPreset(p, preset))
++  setMotionPreset: (preset, start, duration) => {
++    const state = get()
++    const at = start ?? state.playhead
++    const options = { deviceId: state.project.devices[state.activeDevice]?.instanceId, start: at, duration: duration ?? state.project.duration - at }
++    resetCoalescing()
++    edit('motionPreset', p => applyMotionPreset(p, preset, options), { motionPreset: preset, keySelection: null, playing: false })
++    resetCoalescing()
+   },
+   }
+ })
+--- a/src/timeline/editing.ts
++++ b/src/timeline/editing.ts
+@@ -0,0 +1,64 @@
++import type { EaseHandle, Project, Track, TrackSet } from '../store/schema'
++import { sampleTrack } from './sample'
++import { setKey, staticTrack } from './tracks'
++
++export type TrackTarget = { kind: 'camera' } | { kind: 'device'; instanceId: string }
++export type KeySelection = { target: TrackTarget; channel: string; t: number }
++export const DEVICE_CHANNELS = ['position.x', 'position.y', 'position.z', 'rotation.x', 'rotation.y', 'rotation.z', 'scale']
++export const CAMERA_CHANNELS = ['position.x', 'position.y', 'position.z', 'target.x', 'target.y', 'target.z', 'fov']
++export const sameTime = (a: number, b: number) => Math.abs(a - b) < 1e-6
++
++export function targetTracks(project: Project, target: TrackTarget): TrackSet | undefined {
++  return target.kind === 'camera' ? project.camera.tracks
++    : project.devices.find(d => d.instanceId === target.instanceId)?.transform
++}
++export function channelFallback(project: Project, target: TrackTarget, channel: string): number {
++  if (channel === 'scale') return 1
++  if (target.kind === 'camera' && channel === 'fov') return project.camera.fov
++  if (target.kind === 'camera' && channel === 'position.z') return 3.2
++  return 0
++}
++export function editChannel(project: Project, target: TrackTarget, channel: string, update: (track: Track | undefined) => Track): Project {
++  if (!(target.kind === 'camera' ? CAMERA_CHANNELS : DEVICE_CHANNELS).includes(channel)) return project
++  const tracks = targetTracks(project, target)
++  if (!tracks) return project
++  const track = update(tracks[channel])
++  if (track === tracks[channel]) return project
++  const next = { ...tracks, [channel]: track }
++  return target.kind === 'camera'
++    ? { ...project, camera: { ...project.camera, preset: null, tracks: next } }
++    : { ...project, devices: project.devices.map(d => d.instanceId === target.instanceId ? { ...d, transform: next } : d) }
++}
++export function validSelection(project: Project, selection: KeySelection | null): KeySelection | null {
++  return selection && targetTracks(project, selection.target)?.[selection.channel]?.keys.some(k => sameTime(k.t, selection.t)) ? selection : null
++}
++/** Explicit animation activation makes a second, identical anchor. Ordinary number edits stay static. */
++export function addEditableKey(project: Project, target: TrackTarget, channel: string, t: number): Project {
++  if (!Number.isFinite(t)) return project
++  const time = Math.max(0, Math.min(project.duration, t))
++  return editChannel(project, target, channel, original => {
++    const value = sampleTrack(original, time, channelFallback(project, target, channel))
++    let track = original?.keys.length ? original : staticTrack(value)
++    track = setKey(track, time, value)
++    if (track.keys.length === 1) track = setKey(track, sameTime(time, 0) ? project.duration : 0, value)
++    return track
++  })
++}
++export function moveEditableKey(track: Track | undefined, from: number, to: number): Track | undefined {
++  const key = track?.keys.find(k => sameTime(k.t, from))
++  if (!track || !key || !Number.isFinite(to) || sameTime(from, to)) return track
++  // Moving onto an occupied time replaces that key. The dragged key wins.
++  return setKey({ ...track, keys: track.keys.filter(k => !sameTime(k.t, from)) }, to, key.v, key.ease)
++}
++export function deleteEditableKey(track: Track | undefined, t: number, fallback: number): Track {
++  if (!track?.keys.some(k => sameTime(k.t, t))) return track ?? staticTrack(fallback)
++  const keys = track.keys.filter(k => !sameTime(k.t, t))
++  return keys.length <= 1 ? staticTrack(keys[0]?.v ?? fallback) : { ...track, keys }
++}
++export function easeEditableKey(track: Track | undefined, t: number, ease: EaseHandle): Track | undefined {
++  const key = track?.keys.find(k => sameTime(k.t, t))
++  if (!track || !key) return track
++  // An explicit easing choice switches a velocity-continuous channel to keyed easing.
++  const { interpolation: _interpolation, ...keyed } = track
++  return setKey(keyed, t, key.v, ease)
++}
+--- a/src/timeline/presets.ts
++++ b/src/timeline/presets.ts
+@@ -1,6 +1,7 @@
+ import { EASE_LINEAR, EASE_OUT, EASE_SMOOTH } from './easing'
++import { sampleTimeline, sampleTrack } from './sample'
+ import { staticTrack, staticVec3 } from './tracks'
+-import { CAMERA_PRESETS, type CameraAnglePreset, type Project, type TrackSet } from '../store/schema'
++import { CAMERA_PRESETS, type CameraAnglePreset, type Project, type Track, type TrackSet } from '../store/schema'
+ 
+ // Presets are keyframe *generators*, never a parallel runtime path (§8.2).
+ // Applying one writes keys into a track set and then gets out of the way, so
+@@ -175,56 +176,57 @@
+   }
+ }
+ 
+-/**
+- * Motion applies to every device in the scene, because an arrangement that
+- * animates one phone out of three reads as a glitch rather than a choice.
+- * Each device keeps its own placement: the preset's motion is composed onto
+- * the pose the template gave it, not substituted for it.
+- */
+-export function applyMotionPreset(project: Project, preset: MotionPresetId): Project {
++export type MotionPresetOptions = { deviceId?: string; start?: number; duration?: number }
++export const PRESET_CHANNELS: Record<MotionPresetId, string[]> = {
++  none: ['position.x', 'position.y', 'position.z', 'rotation.x', 'rotation.y', 'rotation.z', 'scale'],
++  float: ['position.y'],
++  'spin-y-360': ['rotation.y'],
++  'tilt-in': ['rotation.x', 'rotation.y'],
++  'slide-in-left': ['position.x'],
++  'hero-reveal': ['scale', 'position.y', 'rotation.y'],
++  orbit: ['position.x', 'position.y', 'position.z'],
++}
++
++/** Replace keys only in the chosen range; outer keys retain their values/eases and connect to the new boundary keys. */
++function mergeRange(original: Track | undefined, generated: Track, start: number, duration: number): Track {
++  const end = start + duration
++  const keys = generated.keys.map(k => ({ ...k, t: start + k.t }))
++  if (keys.at(-1)!.t < end - 1e-6) keys.push({ ...keys.at(-1)!, t: end })
++  return { ...original, keys: [...(original?.keys.filter(k => k.t < start - 1e-6 || k.t > end + 1e-6) ?? []), ...keys].sort((a, b) => a.t - b.t) }
++}
++
++/** Device motion defaults to one instance. Orbit explicitly changes camera position only. */
++export function applyMotionPreset(project: Project, preset: MotionPresetId, options: MotionPresetOptions = {}): Project {
++  if (!Object.hasOwn(PRESET_CHANNELS, preset)) return project
++  const start = options.start ?? 0
++  const duration = options.duration ?? project.duration - start
++  if (!Number.isFinite(start) || !Number.isFinite(duration) || start < 0 || duration <= 0 || start + duration > project.duration + 1e-6) return project
++  const state = sampleTimeline(project, start)
+   if (preset === 'orbit') {
+-    // Orbit moves the camera, so the devices keep whatever poses they have.
+-    const [px, py, pz] = CAMERA_PRESETS[project.camera.preset ?? 'three-quarter-left'].position
+-    const radius = Math.hypot(px, pz)
+-    return {
+-      ...project,
+-      camera: {
+-        ...project.camera,
+-        tracks: {
+-          ...cameraTracksForOrbit(radius, py, project.duration),
+-          fov: staticTrack(project.camera.fov),
+-        },
+-      },
++    const { position, target } = state.camera
++    const dx = position[0] - target[0], dz = position[2] - target[2]
++    const radius = Math.max(0.1, Math.hypot(dx, dz)), phase = Math.atan2(dx, dz)
++    const motion: TrackSet = {}
++    for (const channel of PRESET_CHANNELS.orbit) motion[channel] = { keys: [] }
++    for (let i = 0; i <= 12; i++) {
++      const angle = phase + i / 12 * TAU, t = duration * i / 12
++      motion['position.x'].keys.push({ t, v: target[0] + Math.sin(angle) * radius, ease: EASE_LINEAR })
++      motion['position.y'].keys.push({ t, v: position[1], ease: EASE_LINEAR })
++      motion['position.z'].keys.push({ t, v: target[2] + Math.cos(angle) * radius, ease: EASE_LINEAR })
+     }
+-  }
+-
+-  const motion = deviceTracksForMotion(preset, project.duration)
+-  return {
+-    ...project,
+-    devices: project.devices.map((device) => ({
+-      ...device,
+-      transform: composeMotionOntoPose(device.transform, motion),
+-    })),
+-  }
+-}
+-
+-/**
+- * Offset a preset's motion by the device's existing static pose, so a phone
+- * placed at x = -0.68 by a template floats around -0.68 rather than snapping
+- * to the origin. Channels the preset doesn't drive are left untouched.
+- */
+-function composeMotionOntoPose(pose: TrackSet, motion: TrackSet): TrackSet {
+-  const result: TrackSet = { ...pose }
+-  for (const [channel, track] of Object.entries(motion)) {
+-    const base = pose[channel]?.keys[0]?.v ?? 0
+-    const isScale = channel === 'scale'
+-    result[channel] = {
+-      keys: track.keys.map((key) => ({
+-        ...key,
+-        // Scale composes multiplicatively; position and rotation add.
+-        v: isScale ? key.v * (base || 1) : key.v + base,
+-      })),
+-    }
+-  }
+-  return result
+-}
++    const tracks = { ...project.camera.tracks }
++    for (const channel of PRESET_CHANNELS.orbit) tracks[channel] = mergeRange(tracks[channel], motion[channel], start, duration)
++    return { ...project, camera: { ...project.camera, preset: null, tracks } }
++  }
++  const deviceId = options.deviceId ?? project.devices[0]?.instanceId
++  const index = project.devices.findIndex(d => d.instanceId === deviceId)
++  if (index < 0) return project
++  const device = project.devices[index], transform = { ...device.transform }
++  const motion = deviceTracksForMotion(preset, duration)
++  for (const channel of PRESET_CHANNELS[preset]) {
++    const base = sampleTrack(device.transform[channel], start, channel === 'scale' ? 1 : 0)
++    const generated = { keys: motion[channel].keys.map(k => ({ ...k, v: channel === 'scale' ? base * k.v : base + k.v })) }
++    transform[channel] = mergeRange(device.transform[channel], generated, start, duration)
++  }
++  return { ...project, devices: project.devices.map(d => d.instanceId === deviceId ? { ...d, transform } : d) }
++}
+--- a/src/timeline/scopedPresets.test.ts
++++ b/src/timeline/scopedPresets.test.ts
+@@ -0,0 +1,71 @@
++import { beforeEach, describe, expect, it } from 'vitest'
++import { createDefaultProject, createDevice } from '../store/defaults'
++import { useProjectStore as useStore } from '../store/project'
++import { emptyHistory, resetCoalescing } from '../store/history'
++import { applyMotionPreset, PRESET_CHANNELS, type MotionPresetId } from './presets'
++import { EASE_LINEAR } from './easing'
++import { sampleTimeline } from './sample'
++import { staticTrack } from './tracks'
++function project() {
++  const p = createDefaultProject()
++  return { ...p, duration: 8, devices: [p.devices[0], createDevice()] }
++}
++describe('instance-scoped presets', () => {
++  for (const preset of Object.keys(PRESET_CHANNELS).filter(p => p !== 'orbit') as MotionPresetId[]) {
++    it(preset + ' changes only its declared channels on the chosen instance', () => {
++      const p = project(), original = p.devices[1].transform
++      const after = applyMotionPreset(p, preset, { deviceId: p.devices[1].instanceId, start: 2, duration: 3 })
++      expect(after.devices[0]).toBe(p.devices[0]); expect(after.camera).toBe(p.camera)
++      for (const channel of Object.keys(original)) {
++        if (!PRESET_CHANNELS[preset].includes(channel)) expect(after.devices[1].transform[channel]).toBe(original[channel])
++      }
++      expect(after.devices[1].instanceId).toBe(p.devices[1].instanceId)
++      expect(after.devices[1].screen).toBe(p.devices[1].screen)
++    })
++  }
++  it('preserves outer keys and uses the sampled pose at the insertion time', () => {
++    const p = project(), ease = EASE_LINEAR
++    p.devices[1].transform['rotation.y'] = { keys: [{ t: 0, v: 1, ease }, { t: 1, v: 2, ease }, { t: 7, v: 3, ease }] }
++    const base = sampleTimeline(p, 2).devices[1].rotation[1]
++    const after = applyMotionPreset(p, 'spin-y-360', { deviceId: p.devices[1].instanceId, start: 2, duration: 3 })
++    const keys = after.devices[1].transform['rotation.y'].keys
++    expect(keys.map(k => k.t)).toEqual([0, 1, 2, 5, 7])
++    expect(keys[0]).toEqual(p.devices[1].transform['rotation.y'].keys[0])
++    expect(keys.at(-1)).toEqual(p.devices[1].transform['rotation.y'].keys.at(-1))
++    expect(keys[2].v).toBeCloseTo(base)
++    expect(keys[3].v - keys[2].v).toBeCloseTo(Math.PI * 2)
++  })
++  it('orbits the actual camera about its sampled target while protecting devices, lens and target tracks', () => {
++    const p = project()
++    p.camera.preset = null
++    p.camera.tracks['position.x'] = staticTrack(2)
++    p.camera.tracks['position.z'] = staticTrack(3)
++    p.camera.tracks['target.x'] = staticTrack(.6)
++    const after = applyMotionPreset(p, 'orbit', { start: 1, duration: 4 })
++    expect(after.devices).toBe(p.devices)
++    expect(after.camera.tracks.fov).toBe(p.camera.tracks.fov)
++    expect(after.camera.tracks['target.x']).toBe(p.camera.tracks['target.x'])
++    const atStart = sampleTimeline(after, 1), atEnd = sampleTimeline(after, 5)
++    atStart.camera.position.forEach((v, i) => expect(v).toBeCloseTo(sampleTimeline(p, 1).camera.position[i]))
++    atStart.camera.position.forEach((v, i) => expect(v).toBeCloseTo(atEnd.camera.position[i]))
++  })
++  it('rejects out-of-range intervals and unknown instances without changing the project', () => {
++    const p = project()
++    for (const options of [{start:-1}, {start:8}, {start:7,duration:2}, {duration:NaN}, {deviceId:'missing'}]) {
++      expect(applyMotionPreset(p, 'float', options)).toBe(p)
++    }
++  })
++})
++describe('preset history and device identity', () => {
++  beforeEach(() => { useStore.getState().endEditGesture(true); resetCoalescing(); useStore.setState({ project: project(), history: emptyHistory, activeDevice: 1, playhead: 2, keySelection: null }) })
++  it('defaults to the active instance at the playhead and undoes each application independently', () => {
++    const s = () => useStore.getState()
++    const original = s().project
++    s().setMotionPreset('spin-y-360', 2, 3); const first = s().project
++    expect(first.devices[0]).toBe(original.devices[0])
++    expect(first.devices[1].transform['rotation.y'].keys.some(k => k.t === 2)).toBe(true)
++    s().setMotionPreset('float', 0, 2); s().undo(); expect(s().project).toBe(first)
++    s().undo(); expect(s().project).toBe(original)
++    s().redo(); expect(s().project).toBe(first)
++  })
++})
+--- a/src/timeline/templates.test.ts
++++ b/src/timeline/templates.test.ts
+@@ -96,15 +96,14 @@
+ })
+ 
+ describe('motion on a template', () => {
+-  it('animates every device, not only the first', () => {
++  it('defaults to one device and preserves the remaining template instances', () => {
+     const project = {
+       ...createDefaultProject(),
+       devices: applyTemplateToDevices(getTemplate('trio-fan')!, [createDevice()]),
+     }
+     const spun = applyMotionPreset(project, 'spin-y-360')
+-    for (const device of spun.devices) {
+-      expect(device.transform['rotation.y'].keys.length).toBeGreaterThan(1)
+-    }
++    expect(spun.devices[0].transform['rotation.y'].keys.length).toBeGreaterThan(1)
++    expect(spun.devices.slice(1)).toEqual(project.devices.slice(1))
+   })
+ 
+   it('offsets motion by each device\'s pose instead of snapping to origin', () => {
+--- a/src/ui/Artboard/Artboard.tsx
++++ b/src/ui/Artboard/Artboard.tsx
+@@ -1,5 +1,4 @@
+ import { useLayoutEffect, useRef, useState } from 'react'
+-import { Hand, Search } from 'lucide-react'
+ import { Stage } from '../../scene/Stage'
+ import { backdropCss } from '../../scene/Backdrop'
+ import { useProjectStore } from '../../store/project'
+@@ -51,6 +50,8 @@
+ export function Artboard() {
+   const background = useProjectStore((s) => s.project.background)
+   const output = useProjectStore((s) => s.project.output)
++  const tool = useProjectStore(s => s.canvasTool)
++  const setTool = useProjectStore(s => s.setCanvasTool)
+   const { ref, width, height } = useLetterbox(output.width / output.height)
+ 
+   return (
+@@ -73,12 +74,11 @@
+       </div>
+ 
+       <div className="canvas-tools">
+-        <button className="tool-btn active" title="Pan — drag the canvas to orbit">
+-          <Hand size={15} />
+-        </button>
+-        <button className="tool-btn" title="Zoom — scroll to dolly">
+-          <Search size={15} />
+-        </button>
++        {(['select', 'translate', 'rotate', 'scale', 'orbit'] as const).map(mode =>
++          <button key={mode} className={tool === mode ? 'tool-btn active' : 'tool-btn'} aria-pressed={tool === mode}
++            title={mode === 'orbit' ? 'Orbit camera — drag to orbit, right-drag to pan, scroll to zoom' : mode + ' selected device'}
++            aria-label={mode === 'translate' ? 'Move device' : mode === 'rotate' ? 'Rotate device' : mode === 'scale' ? 'Scale device' : mode === 'orbit' ? 'Orbit camera' : 'Select device'}
++            onClick={() => setTool(mode)}>{mode === 'translate' ? 'Move' : mode[0].toUpperCase() + mode.slice(1)}</button>)}
+       </div>
+     </div>
+   )
+--- a/src/ui/Inspector/CameraSection.tsx
++++ b/src/ui/Inspector/CameraSection.tsx
+@@ -24,6 +24,9 @@
+   const setCameraPosition = useProjectStore((s) => s.setCameraPosition)
+   const setCameraFov = useProjectStore((s) => s.setCameraFov)
+   const setCameraPreset = useProjectStore((s) => s.setCameraPreset)
++  const beginEditGesture = useProjectStore(s => s.beginEditGesture)
++  const endEditGesture = useProjectStore(s => s.endEditGesture)
++  const gesture = { onGestureStart: beginEditGesture, onGestureEnd: endEditGesture }
+ 
+   // Fields show the *resolved* value at the playhead, not the raw keyframe —
+   // so scrubbing the timeline moves the numbers, exactly as it moves the
+@@ -44,9 +47,9 @@
+       </div>
+ 
+       <div className="field-grid">
+-        <NumberField value={px} onChange={(v) => setCameraPosition([v, py, pz])} label="Pos x" animated={animatedPos('x')} />
+-        <NumberField value={py} onChange={(v) => setCameraPosition([px, v, pz])} label="y" animated={animatedPos('y')} />
+-        <NumberField value={pz} onChange={(v) => setCameraPosition([px, py, v])} label="z" animated={animatedPos('z')} />
++        <NumberField {...gesture} value={px} onChange={(v) => setCameraPosition([v, py, pz])} label="Pos x" animated={animatedPos('x')} />
++        <NumberField {...gesture} value={py} onChange={(v) => setCameraPosition([px, v, pz])} label="y" animated={animatedPos('y')} />
++        <NumberField {...gesture} value={pz} onChange={(v) => setCameraPosition([px, py, v])} label="z" animated={animatedPos('z')} />
+       </div>
+ 
+ 
+--- a/src/ui/Inspector/TransformSection.tsx
++++ b/src/ui/Inspector/TransformSection.tsx
+@@ -23,6 +23,9 @@
+   const setDevicePosition = useProjectStore((s) => s.setDevicePosition)
+   const setDeviceRotation = useProjectStore((s) => s.setDeviceRotation)
+   const setDeviceScale = useProjectStore((s) => s.setDeviceScale)
++  const beginEditGesture = useProjectStore(s => s.beginEditGesture)
++  const endEditGesture = useProjectStore(s => s.endEditGesture)
++  const gesture = { onGestureStart: beginEditGesture, onGestureEnd: endEditGesture }
+ 
+   // Resolved at the playhead, not read off the raw keyframes — so scrubbing
+   // moves the numbers exactly as it moves the device, and one evaluation path
+@@ -41,9 +44,11 @@
+   const rad = (d: number) => (d * Math.PI) / 180
+ 
+   function reset() {
++    beginEditGesture()
+     setDevicePosition([0, 0, 0])
+     setDeviceRotation([0, 0, 0])
+     setDeviceScale(1)
++    endEditGesture()
+   }
+ 
+   return (
+@@ -58,19 +63,19 @@
+       {/* Drag any field to slide the device; the boxes scrub. Shift for fine
+           control, which is where overlapping two devices actually happens. */}
+       <div className="field-grid">
+-        <NumberField
++        <NumberField {...gesture}
+           value={px}
+           onChange={(v) => setDevicePosition([v, py, pz])}
+           label="Pos x"
+           animated={animated('position.x')}
+         />
+-        <NumberField
++        <NumberField {...gesture}
+           value={py}
+           onChange={(v) => setDevicePosition([px, v, pz])}
+           label="y"
+           animated={animated('position.y')}
+         />
+-        <NumberField
++        <NumberField {...gesture}
+           value={pz}
+           onChange={(v) => setDevicePosition([px, py, v])}
+           label="z"
+@@ -81,7 +86,7 @@
+       {/* Degrees for humans, radians in the document — converted at the edge
+           so the timeline model stays in one unit. */}
+       <div className="field-grid">
+-        <NumberField
++        <NumberField {...gesture}
+           value={deg(rx)}
+           onChange={(v) => setDeviceRotation([rad(v), ry, rz])}
+           label="Rot x"
+@@ -89,7 +94,7 @@
+           precision={1}
+           animated={animated('rotation.x')}
+         />
+-        <NumberField
++        <NumberField {...gesture}
+           value={deg(ry)}
+           onChange={(v) => setDeviceRotation([rx, rad(v), rz])}
+           label="y"
+@@ -97,7 +102,7 @@
+           precision={1}
+           animated={animated('rotation.y')}
+         />
+-        <NumberField
++        <NumberField {...gesture}
+           value={deg(rz)}
+           onChange={(v) => setDeviceRotation([rx, ry, rad(v)])}
+           label="z"
+@@ -108,7 +113,7 @@
+       </div>
+ 
+       <div className="field-grid">
+-        <NumberField
++        <NumberField {...gesture}
+           value={device.scale}
+           onChange={setDeviceScale}
+           label="Scale"
+--- a/src/ui/Timeline/PresetControls.tsx
++++ b/src/ui/Timeline/PresetControls.tsx
+@@ -0,0 +1,30 @@
++import { useState } from 'react'
++import { MOTION_PRESETS, PRESET_CHANNELS, type MotionPresetId } from '../../timeline/presets'
++import { useProjectStore } from '../../store/project'
++export function PresetControls() {
++  const duration = useProjectStore(s => s.project.duration)
++  const playhead = useProjectStore(s => s.playhead)
++  const active = useProjectStore(s => s.activeDevice)
++  const [start, setStart] = useState<number | null>(null)
++  const [length, setLength] = useState<number | null>(null)
++  const [preset, setPreset] = useState<MotionPresetId>('spin-y-360')
++  const at = Math.max(0, Math.min(duration, start ?? playhead))
++  const span = Math.max(0, Math.min(duration - at, length ?? duration - at))
++  return <div className="preset-controls">
++    <label className="add-animation"><select aria-label="Add animation" value="" onChange={e => {
++      const id = e.target.value as MotionPresetId
++      if (id in PRESET_CHANNELS && span > 0) { setPreset(id); useProjectStore.getState().setMotionPreset(id, at, span) }
++    }}>
++      <option value="">Add animation</option>
++      {MOTION_PRESETS.map(p => <option key={p.id} value={p.id}>{p.id === 'orbit' ? 'Orbit camera' : p.id === 'none' ? 'Freeze selected device' : p.label}</option>)}
++    </select></label>
++    <label>Start <input aria-label="Preset start" type="number" min={0} max={duration} step={0.1} value={Number(at.toFixed(3))}
++      onChange={e => { const n = Number(e.target.value); if (Number.isFinite(n)) setStart(n) }} /></label>
++    <label>Length <input aria-label="Preset duration" type="number" min={0.1} max={duration - at} step={0.1} value={Number(span.toFixed(3))}
++      onChange={e => { const n = Number(e.target.value); if (Number.isFinite(n)) setLength(n) }} /></label>
++    <button disabled={span <= 0} onClick={() => useProjectStore.getState().setMotionPreset(preset, at, span)}>Reapply</button>
++    <span title={'Replaces keys in this range on: ' + PRESET_CHANNELS[preset].join(', ') + '. Outer keys remain connected.'}>
++      {preset === 'orbit' ? 'Camera' : 'Device ' + (active + 1)} · replaces keys in range
++    </span>
++  </div>
++}
+--- a/src/ui/Timeline/TimelineBar.tsx
++++ b/src/ui/Timeline/TimelineBar.tsx
+@@ -1,202 +1,205 @@
+-import { useRef, type KeyboardEvent, type PointerEvent } from 'react'
+-import { Play, Pause, Plus } from 'lucide-react'
++import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
++import { Play, Pause } from 'lucide-react'
+ import { useProjectStore } from '../../store/project'
+-import { MOTION_PRESETS, type MotionPresetId } from '../../timeline/presets'
+-import { keyTimes } from '../../timeline/tracks'
+-import { isAnimated } from '../../timeline/sample'
++import { getManifest } from '../../devices/manifest'
++import { CAMERA_CHANNELS, DEVICE_CHANNELS, sameTime, targetTracks, type KeySelection, type TrackTarget } from '../../timeline/editing'
++import { NAMED_EASINGS } from '../../timeline/easing'
+ import { MotionFilmstrip } from './MotionFilmstrip'
+-
+-/**
+- * Transport and scrubbing share one time axis with the ruler and keyframes.
+- * The keyframe diamonds remain read-only; dragging moves the playhead.
+- */
++import { PresetControls } from './PresetControls'
++
+ export function TimelineBar() {
+-  const project = useProjectStore((s) => s.project)
+-  const playhead = useProjectStore((s) => s.playhead)
+-  const playing = useProjectStore((s) => s.playing)
+-  const motionPreset = useProjectStore((s) => s.motionPreset)
+-  const setPlayhead = useProjectStore((s) => s.setPlayhead)
+-  const setPlaying = useProjectStore((s) => s.setPlaying)
+-  const setDuration = useProjectStore((s) => s.setDuration)
+-  const setMotionPreset = useProjectStore((s) => s.setMotionPreset)
++  const project = useProjectStore(s => s.project)
++  const playhead = useProjectStore(s => s.playhead)
++  const playing = useProjectStore(s => s.playing)
++  const active = useProjectStore(s => s.activeDevice)
++  const selection = useProjectStore(s => s.keySelection)
++  const [scope, setScope] = useState<'device' | 'camera'>('device')
++  const [channel, setChannel] = useState('position.x')
+   const trackRef = useRef<HTMLDivElement>(null)
+-  const draggingPointer = useRef<number | null>(null)
+-
++  const scrubPointer = useRef<number | null>(null)
+   const duration = project.duration
+-  const pct = (t: number) => `${(t / duration) * 100}%`
+-
+-  function scrubTo(clientX: number) {
++  const device = project.devices[active]
++  const target: TrackTarget = scope === 'camera' ? { kind: 'camera' } : { kind: 'device', instanceId: device?.instanceId ?? '' }
++  const channels = scope === 'camera' ? CAMERA_CHANNELS : DEVICE_CHANNELS
++  const currentChannel = channels.includes(channel) ? channel : 'position.x'
++  const tracks = targetTracks(project, target)
++  const owner = scope === 'camera' ? 'Camera' : `Device ${active + 1} · ${device ? getManifest(device.id).name : ''}`
++  const selected = selection && ((selection.target.kind === 'camera' && scope === 'camera')
++    || (selection.target.kind === 'device' && target.kind === 'device' && selection.target.instanceId === target.instanceId)) ? selection : null
++  const key = selected ? targetTracks(project, selected.target)?.[selected.channel]?.keys.find(k => sameTime(k.t, selected.t)) : undefined
++  const store = () => useProjectStore.getState()
++  const pct = (t: number) => `${Math.min(1, Math.max(0, t / duration)) * 100}%`
++
++  function scrub(clientX: number) {
+     const rect = trackRef.current?.getBoundingClientRect()
+     if (!rect || rect.width <= 0) return
+-    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width))
+-    setPlaying(false)
+-    setPlayhead(ratio * duration)
+-  }
+-
+-  function stopScrubbing(e: PointerEvent<HTMLDivElement>) {
+-    if (draggingPointer.current !== e.pointerId) return
+-    draggingPointer.current = null
+-    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+-      e.currentTarget.releasePointerCapture(e.pointerId)
+-    }
+-  }
+-
++    store().setPlaying(false)
++    store().setPlayhead(Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)) * duration)
++  }
+   const scrubHandlers = {
+     onPointerDown(e: PointerEvent<HTMLDivElement>) {
+-      if (e.button !== 0 || !e.isPrimary || draggingPointer.current !== null) return
++      if (e.button !== 0 || !e.isPrimary) return
+       const rect = trackRef.current?.getBoundingClientRect()
+-      // Track labels are not part of the time axis.
+-      if (!rect || rect.width <= 0 || e.clientX < rect.left) return
++      if (!rect || e.clientX < rect.left) return
+       e.preventDefault()
+-      trackRef.current?.parentElement?.focus()
+-      draggingPointer.current = e.pointerId
++      e.currentTarget.focus()
++      scrubPointer.current = e.pointerId
+       e.currentTarget.setPointerCapture(e.pointerId)
+-      scrubTo(e.clientX)
++      scrub(e.clientX)
+     },
+-    onPointerMove(e: PointerEvent<HTMLDivElement>) {
+-      if (draggingPointer.current === e.pointerId) scrubTo(e.clientX)
++    onPointerMove(e: PointerEvent<HTMLDivElement>) { if (scrubPointer.current === e.pointerId) scrub(e.clientX) },
++    onPointerUp(e: PointerEvent<HTMLDivElement>) {
++      if (scrubPointer.current !== e.pointerId) return
++      scrub(e.clientX)
++      scrubPointer.current = null
++      if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+     },
+-    onPointerUp(e: PointerEvent<HTMLDivElement>) {
+-      if (draggingPointer.current !== e.pointerId) return
+-      scrubTo(e.clientX)
+-      stopScrubbing(e)
+-    },
+-    onPointerCancel: stopScrubbing,
+-    onLostPointerCapture(e: PointerEvent<HTMLDivElement>) {
+-      if (draggingPointer.current === e.pointerId) draggingPointer.current = null
+-    },
+-  }
+-
+-  function scrubWithKeyboard(e: KeyboardEvent<HTMLDivElement>) {
+-    let next: number
+-    switch (e.key) {
+-      case 'ArrowLeft': case 'ArrowDown': next = playhead - 1 / project.fps; break
+-      case 'ArrowRight': case 'ArrowUp': next = playhead + 1 / project.fps; break
+-      case 'Home': next = 0; break
+-      case 'End': next = duration; break
+-      default: return
++    onPointerCancel() { scrubPointer.current = null },
++    onLostPointerCapture() { scrubPointer.current = null },
++  }
++  function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
++    if (/INPUT|SELECT|TEXTAREA/.test((e.target as HTMLElement).tagName)) return
++    if (e.key === 'Delete' || e.key === 'Backspace') {
++      e.preventDefault(); e.stopPropagation(); store().deleteTimelineKey(); return
+     }
+-    e.preventDefault()
+-    setPlaying(false)
+-    setPlayhead(Math.min(duration, Math.max(0, next)))
+-  }
+-
+-  const cameraKeys = keyTimes(project.camera.tracks)
+-  const active = useProjectStore((s) => s.activeDevice)
+-  const deviceTracks = project.devices[active]?.transform ?? {}
+-  const deviceKeys = keyTimes(deviceTracks)
+-  const cameraAnimated = isAnimated(project.camera.tracks)
+-  const deviceAnimated = isAnimated(deviceTracks)
+-
+-  // One tick per second, plus a half-second subdivision for readability.
+-  const seconds = Math.ceil(duration)
+-
+-  return (
+-    <div className={project.motionPlan ? 'timeline has-motion-plan' : 'timeline'}>
+-      <div className="timeline-toolbar">
+-        <button className="play-btn" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'} title={playing ? 'Pause' : 'Play'}>
+-          {playing ? <Pause size={16} /> : <Play size={16} />}
+-        </button>
+-
+-        <label className="add-animation">
+-          <Plus size={14} />
+-          <select
+-            aria-label="Add animation"
+-            value={motionPreset}
+-            onChange={(e) => setMotionPreset(e.target.value as MotionPresetId)}
+-          >
+-            {MOTION_PRESETS.map((p) => (
+-              <option key={p.id} value={p.id}>
+-                {p.id === 'none' ? 'Add animation' : p.label}
+-              </option>
+-            ))}
+-          </select>
+-        </label>
+-
+-        <div className="time-readout">
+-          <span className="time-now">{playhead.toFixed(2)}s</span>
+-          <span className="time-of">of</span>
+-          <input
+-            className="time-duration"
+-            type="number"
+-            min={0.5}
+-            step={0.5}
+-            value={duration}
+-            onChange={(e) => setDuration(Number(e.target.value))}
+-          />
+-          <span className="time-of">s</span>
++    let t = playhead
++    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') t -= 1 / project.fps
++    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') t += 1 / project.fps
++    else if (e.key === 'Home') t = 0
++    else if (e.key === 'End') t = duration
++    else return
++    e.preventDefault(); store().setPlaying(false); store().setPlayhead(t)
++  }
++  const degrees = selected?.channel.startsWith('rotation.')
++  const easeName = key ? Object.entries(NAMED_EASINGS).find(([, v]) => v.every((n, i) => n === key.ease[i]))?.[0] ?? 'custom' : 'linear'
++
++  return <div className={project.motionPlan ? 'timeline has-motion-plan' : 'timeline'}>
++    <div className="timeline-toolbar">
++      <button className="play-btn" onClick={() => store().setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>
++        {playing ? <Pause size={16} /> : <Play size={16} />}
++      </button>
++      <PresetControls />
++      <div className="time-readout">
++        <input aria-label="Playhead time" className="time-now" type="number" min={0} max={duration} step={1 / project.fps}
++          value={Number(playhead.toFixed(3))} onChange={e => { store().setPlaying(false); store().setPlayhead(Number(e.target.value)) }} />
++        <span>of</span>
++        <input aria-label="Project duration" className="time-duration" type="number" min={0.1} step={0.5} value={duration}
++          onChange={e => { const n = Number(e.target.value); if (Number.isFinite(n) && n >= 0.1) store().setDuration(n) }} /><span>s</span>
++      </div>
++    </div>
++    <div className="key-editor">
++      <select aria-label="Track target" value={scope} onChange={e => { setScope(e.target.value as typeof scope); store().selectKey(null) }}>
++        <option value="device">Device {active + 1}</option><option value="camera">Camera</option>
++      </select>
++      <select aria-label="Animation channel" value={currentChannel} onChange={e => { setChannel(e.target.value); store().selectKey(null) }}>
++        {channels.map(c => <option key={c} value={c}>{c}</option>)}
++      </select>
++      <button onClick={() => store().addTimelineKey(target, currentChannel)} disabled={scope === 'device' && !device}>Add keyframe</button>
++      {key && selected && <>
++        <label>Time <CommitNumber label="Keyframe time" value={Number(key.t.toFixed(3))}
++          onCommit={v => { store().beginEditGesture(); store().moveTimelineKey(selected, v); store().endEditGesture() }} /></label>
++        <label>{degrees ? 'Degrees' : 'Value'} <CommitNumber label="Keyframe value"
++          value={Number((degrees ? key.v * 180 / Math.PI : key.v).toFixed(4))}
++          onCommit={v => store().setTimelineKeyValue(v * (degrees ? Math.PI / 180 : 1))} /></label>
++        <label>Ease <select aria-label="Keyframe easing" value={easeName}
++          onChange={e => store().setTimelineKeyEase(NAMED_EASINGS[e.target.value as keyof typeof NAMED_EASINGS])}>
++          {easeName === 'custom' && <option value="custom" disabled>Custom</option>}
++          {Object.keys(NAMED_EASINGS).map(n => <option key={n}>{n}</option>)}
++        </select></label>
++        <button onClick={() => store().deleteTimelineKey()}>Delete keyframe</button>
++      </>}
++    </div>
++    <div className="timeline-owner">{owner} · {currentChannel} {tracks?.[currentChannel]?.interpolation === 'continuous' ? '· Continuous interpolation; choosing an ease switches this channel to keyed easing.' : ''}</div>
++    <div className="timeline-body">
++      <div className="timeline-content" style={project.motionPlan ? { minWidth: Math.max(600, duration * 130 + 106) } : undefined}>
++        <div className="ruler" {...scrubHandlers}>
++          {Array.from({ length: Math.ceil(duration) + 1 }, (_, i) => <span key={i} className="tick" style={{ left: pct(Math.min(i, duration)) }}>{Number(Math.min(i, duration).toFixed(2))}s</span>)}
+         </div>
+-      </div>
+-
+-      <div className="timeline-body">
+-        <div className="timeline-content" style={project.motionPlan ? { minWidth: Math.max(600, duration * 130 + 106) } : undefined}>
+-        <div className="ruler" {...scrubHandlers}>
+-          {Array.from({ length: seconds + 1 }, (_, i) => (
+-            <span key={i} className="tick" style={{ left: pct(Math.min(i, duration)) }}>
+-              {Number(Math.min(i, duration).toFixed(2))}s
+-            </span>
+-          ))}
+-        </div>
+-
+-        <div
+-          className="tracks"
+-          role="slider"
+-          aria-label="Timeline playhead"
+-          aria-valuemin={0}
+-          aria-valuemax={duration}
+-          aria-valuenow={playhead}
+-          aria-valuetext={`${playhead.toFixed(2)} seconds`}
+-          tabIndex={0}
+-          onKeyDown={scrubWithKeyboard}
+-          {...scrubHandlers}
+-        >
+-          <TrackRow label="Camera" keys={cameraKeys} animated={cameraAnimated} pct={pct} />
+-          <TrackRow label="Device" keys={deviceKeys} animated={deviceAnimated} pct={pct} cues={project.motionPlan?.cues} />
+-          <div className="playhead-track" ref={trackRef}>
+-            <div className="playhead" style={{ left: pct(playhead) }}>
+-              <span className="playhead-grip" />
+-            </div>
+-          </div>
++        <div className="tracks" tabIndex={0} role="slider" aria-label="Timeline playhead" aria-valuemin={0} aria-valuemax={duration}
++          aria-valuenow={playhead} onKeyDown={onKeyDown} {...scrubHandlers}>
++          {channels.map(c => <ChannelRow key={`${scope}-${device?.instanceId}-${c}`} target={target} channel={c} duration={duration}
++            selected={selected} onSelect={() => setChannel(c)} />)}
++          <div className="playhead-track" ref={trackRef}><div className="playhead" style={{ left: pct(playhead) }}><span className="playhead-grip" /></div></div>
+         </div>
+         {project.motionPlan && <MotionFilmstrip project={project} />}
+-        </div>
+       </div>
+-      {project.motionPlan && <div className="motion-now" role="status">
+-        <span>{playhead.toFixed(2)}s</span>
+-        <span>{project.motionPlan.cues.findLast(cue => cue.t <= playhead)?.description}</span>
+-        <span className="hint">横向滚动查看全部画面 · 点击定位</span>
+-      </div>}
+-    </div>
+-  )
+-}
+-
+-function TrackRow({
+-  label,
+-  keys,
+-  animated,
+-  pct,
+-  cues,
+-}: {
+-  label: string
+-  keys: number[]
+-  animated: boolean
+-  pct: (t: number) => string
+-  cues?: { t: number; description: string }[]
++    </div>
++  </div>
++}
++
++function ChannelRow({ target, channel, duration, selected, onSelect }: {
++  target: TrackTarget; channel: string; duration: number; selected: KeySelection | null; onSelect: () => void
+ }) {
+-  const seek = (t: number) => {
+-    const store = useProjectStore.getState()
+-    store.setPlaying(false)
+-    store.setPlayhead(t)
+-  }
+-  return (
+-    <div className="track-row">
+-      <span className="track-label">{label}</span>
+-      <div className={animated ? 'track-lane animated' : 'track-lane'}>
+-        {animated &&
+-          keys.map((t) => <button key={t} type="button" className="keyframe" style={{ left: pct(t) }}
+-            aria-label={`${label} keyframe ${t}s`} title={`${label} · ${Number(t.toFixed(3))}s${cues?.find(c => c.t === t)?.description ? ' · ' + cues.find(c => c.t === t)!.description : ''}`}
+-            onPointerDown={e => e.stopPropagation()} onClick={() => seek(t)} />)}
+-      </div>
+-    </div>
+-  )
+-}
++  const project = useProjectStore(s => s.project)
++  const track = targetTracks(project, target)?.[channel]
++  const drag = useRef<{ pointer: number; startX: number; width: number; selection: KeySelection; moved: boolean } | null>(null)
++  const store = () => useProjectStore.getState()
++  function finish(e: PointerEvent<HTMLDivElement>, cancel = false) {
++    if (!drag.current || drag.current.pointer !== e.pointerId) return
++    const moved = drag.current.moved
++    drag.current = null
++    if (moved) store().endEditGesture(cancel)
++    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
++  }
++  return <div className="track-row"
++    onPointerMove={e => {
++      const d = drag.current
++      if (!d || d.pointer !== e.pointerId || d.width <= 0) return
++      if (d.moved && !store().editingGesture) { drag.current = null; return }
++      if (!d.moved && Math.abs(e.clientX - d.startX) < 3) return
++      if (!d.moved) { store().beginEditGesture(); d.moved = true }
++      const fps = store().project.fps
++      const t = Math.round((d.selection.t + (e.clientX - d.startX) / d.width * duration) * fps) / fps
++      store().moveTimelineKey(d.selection, t)
++    }}
++    onPointerUp={e => finish(e)} onPointerCancel={e => finish(e, true)} onLostPointerCapture={e => finish(e)}>
++    <button className="track-label" onPointerDown={e => e.stopPropagation()} onClick={onSelect}>{channel}</button>
++    <div className={track && track.keys.length > 1 ? 'track-lane animated' : 'track-lane'}>
++      {track?.keys.map(k => <KeyDiamond key={k.t} selection={{ target, channel, t: k.t }} duration={duration}
++        selected={!!selected && selected.channel === channel && sameTime(selected.t, k.t)}
++        onStart={(e, selection) => {
++          e.stopPropagation(); e.preventDefault(); e.currentTarget.focus(); onSelect(); store().selectKey(selection)
++          const row = e.currentTarget.closest('.track-row') as HTMLDivElement
++          drag.current = { pointer: e.pointerId, startX: e.clientX, width: e.currentTarget.parentElement!.getBoundingClientRect().width, selection, moved: false }
++          row.setPointerCapture(e.pointerId)
++        }} />)}
++    </div>
++  </div>
++}
++function KeyDiamond({ selection, duration, selected, onStart }: {
++  selection: KeySelection; duration: number; selected: boolean
++  onStart: (e: PointerEvent<HTMLButtonElement>, selection: KeySelection) => void
++}) {
++  const store = () => useProjectStore.getState()
++  return <button type="button" className={selected ? 'keyframe selected' : 'keyframe'}
++    style={{ left: `${Math.min(100, Math.max(0, selection.t / duration * 100))}%` }}
++    aria-label={`${selection.target.kind === 'camera' ? 'Camera' : 'Device'} ${selection.channel} keyframe ${Number(selection.t.toFixed(3))}s`}
++    aria-pressed={selected} title={`${selection.channel} · ${selection.t.toFixed(3)}s · drag to retime`}
++    onPointerDown={e => {
++      if (e.button !== 0) return
++      onStart(e, selection)
++    }}
++    onKeyDown={e => {
++      if (e.key !== 'Delete' && e.key !== 'Backspace') return
++      e.preventDefault(); e.stopPropagation(); store().selectKey(selection); store().deleteTimelineKey()
++    }} />
++}
++
++function CommitNumber({ value, label, onCommit }: { value: number; label: string; onCommit: (n: number) => void }) {
++  const [draft, setDraft] = useState(String(value))
++  const focused = useRef(false), cancelled = useRef(false)
++  useEffect(() => { if (!focused.current) setDraft(String(value)) }, [value])
++  return <input aria-label={label} type="number" step="any" value={draft}
++    onFocus={() => { focused.current = true; cancelled.current = false }}
++    onChange={e => setDraft(e.target.value)}
++    onBlur={() => {
++      focused.current = false
++      const n = Number(draft)
++      if (!cancelled.current && draft.trim() && Number.isFinite(n) && n !== value) onCommit(n)
++      setDraft(String(value))
++    }}
++    onKeyDown={e => {
++      if (e.key === 'Enter') e.currentTarget.blur()
++      if (e.key === 'Escape') { cancelled.current = true; setDraft(String(value)); e.currentTarget.blur() }
++    }} />
++}
+--- a/src/ui/controls/NumberField.tsx
++++ b/src/ui/controls/NumberField.tsx
+@@ -11,6 +11,8 @@
+   max?: number
+   /** Renders the animate marker when this channel carries keyframes. */
+   animated?: boolean
++  onGestureStart?: () => void
++  onGestureEnd?: (cancel?: boolean) => void
+ }
+ 
+ /**
+@@ -30,12 +32,14 @@
+   min,
+   max,
+   animated,
++  onGestureStart,
++  onGestureEnd,
+ }: NumberFieldProps) {
+   const [editing, setEditing] = useState(false)
+   const [draft, setDraft] = useState('')
+   const [dragging, setDragging] = useState(false)
+   const inputRef = useRef<HTMLInputElement>(null)
+-  const drag = useRef({ startX: 0, startValue: 0, moved: false })
++  const drag = useRef({ startX: 0, startValue: 0, moved: false, pointer: null as number | null })
+ 
+   useEffect(() => {
+     if (editing) inputRef.current?.select()
+@@ -48,9 +52,10 @@
+   }
+ 
+   function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+-    if (editing) return
++    if (editing || e.button !== 0 || !e.isPrimary) return
++    onGestureStart?.()
+     e.currentTarget.setPointerCapture(e.pointerId)
+-    drag.current = { startX: e.clientX, startValue: value, moved: false }
++    drag.current = { startX: e.clientX, startValue: value, moved: false, pointer: e.pointerId }
+     setDragging(true)
+   }
+ 
+@@ -65,13 +70,35 @@
+   }
+ 
+   function onPointerUp(e: React.PointerEvent<HTMLDivElement>) {
+-    e.currentTarget.releasePointerCapture(e.pointerId)
++    if (drag.current.pointer !== e.pointerId) return
++    drag.current.pointer = null
++    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
++    onGestureEnd?.()
+     setDragging(false)
+     if (!drag.current.moved) {
+       setDraft(String(Number(value.toFixed(precision))))
+       setEditing(true)
+     }
+   }
++
++  function cancelPointer(e: React.PointerEvent<HTMLDivElement>) {
++    if (drag.current.pointer !== e.pointerId) return
++    drag.current.pointer = null
++    setDragging(false)
++    onGestureEnd?.(true)
++  }
++
++  useEffect(() => {
++    if (!dragging) return
++    const cancel = (e: KeyboardEvent) => {
++      if (e.key !== 'Escape') return
++      drag.current.pointer = null
++      setDragging(false)
++      onGestureEnd?.(true)
++    }
++    window.addEventListener('keydown', cancel)
++    return () => window.removeEventListener('keydown', cancel)
++  }, [dragging, onGestureEnd])
+ 
+   function commit() {
+     const parsed = Number(draft)
+@@ -86,6 +113,8 @@
+         onPointerDown={onPointerDown}
+         onPointerMove={onPointerMove}
+         onPointerUp={onPointerUp}
++        onPointerCancel={cancelPointer}
++        onLostPointerCapture={cancelPointer}
+       >
+         {editing ? (
+           <input

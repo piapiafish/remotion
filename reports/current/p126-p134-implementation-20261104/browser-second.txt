@@ -1,0 +1,43 @@
+PASS native-click-focus-then-up-one-frame
+PASS 100-nudges-cross-other-keys-without-small-limit
+PASS precise-retime-extends-project
+PASS retime-and-extension-undo-together
+PASS same-frame-retime-preserves-independent-poses
+PASS deletes-only-selected-stack-layer
+PASS first-key-protected-with-visible-message
+PASS object-is-hidden-before-appearance
+PASS object-is-visible-at-appearance
+PASS object-is-hidden-at-end
+PASS left-range-handle-trims-without-erasing-keys
+PASS whole-object-range-moves-authored-keys
+PASS range-edit-preserves-other-device
+PASS range-move-undo-keeps-previous-trim
+PASS video-speed-setting-is-shared-with-clock
+PASS loop-setting-removed
+PASS negative-start-identifies-error-and-preserves-value
+PASS left-video-trim-keeps-its-end-fixed
+PASS video-trim-does-not-touch-motion
+PASS inactive-video-decoders-are-released
+SCENARIO FAIL media Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame
+    at waitForReadyInternal (http://127.0.0.1:59673/src/automation/bridge.ts:78:8)
+    at async Object.waitForReady (http://127.0.0.1:59673/src/automation/bridge.ts:36:10)
+    at async <anonymous>:316:30
+PASS arrow-key-pans-static-camera
+PASS keyboard-camera-pan-is-one-undo
+PASS dedicated-recorder-has-no-object-panel
+PASS objects-cannot-be-selected-in-recorder
+PASS countdown-does-not-advance-time
+PASS continuous-recording-captures-motion-and-holds
+PASS recording-keeps-object-animation-data
+PASS take-committed-as-editable-camera-track
+PASS whole-take-undo-restores-camera
+PASS ordinary-viewing-does-not-write-recorded-track
+PASS sticker-can-be-placed-behind-scene
+PASS real-solid-text-has-thick-geometry
+PASS solid-text-pose-and-thickness-are-keyed
+PASS text-control-inputs-align
+PASS solid-glyph-subset-and-new-timing-are-portable
+PASS fresh-session-restores-both-text-kinds
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"timeline","status":"PASS"},{"name":"ranges","status":"PASS"},{"name":"media","status":"FAIL","error":"Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame\n    at waitForReadyInternal (http://127.0.0.1:59673/src/automation/bridge.ts:78:8)\n    at async Object.waitForReady (http://127.0.0.1:59673/src/automation/bridge.ts:36:10)\n    at async <anonymous>:316:30"},{"name":"camera","status":"PASS"},{"name":"text","status":"PASS"}],"checks":38}

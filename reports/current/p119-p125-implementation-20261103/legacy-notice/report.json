@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-03T11:59:14.601Z",
+  "checks": [
+    {
+      "name": "legacy-floor-conflict-identifies-affected-phone",
+      "status": "PASS",
+      "detail": "工程已打开。旧轨迹手机的部分姿态低于地面，已按地面限制显示；原关键帧保留。"
+    },
+    {
+      "name": "legacy-dip-keys-are-not-rewritten",
+      "status": "PASS"
+    },
+    {
+      "name": "short-unsampled-legacy-dip-is-constrained",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "ground-notice-specific",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

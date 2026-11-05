@@ -1,0 +1,139 @@
+--- P1-05/src/store/project.ts
++++ P1-06/src/store/project.ts
+@@ -4,7 +4,9 @@
+ import { applyTemplateToDevices, getTemplate, templateCamera } from '../timeline/templates'
+ import { emptyHistory, record, redo, resetCoalescing, undo, type History } from './history'
+ import type { ExportQuality } from '../export/frameRenderer'
+-import { deserializeProject, downloadProject, pruneUnreferencedMedia, serializeProject } from './persist'
++import { deserializeProject, downloadProject, mediaRefs, missingMedia, projectFingerprint, serializeProject } from './persist'
++import { normalizePlayback } from '../media/videoTiming'
++import { reportError, useFeedbackStore } from './feedback'
+ import { applyCameraAngle, applyMotionPreset, type MotionPresetId } from '../timeline/presets'
+ import { setKey, setVec3At, setValueAt } from '../timeline/tracks'
+ import { addEditableKey, channelFallback, deleteEditableKey, easeEditableKey, editChannel, moveEditableKey, targetTracks, validSelection, type KeySelection, type TrackTarget } from '../timeline/editing'
+@@ -21,6 +23,7 @@
+   MediaRef,
+   Project,
+   ScreenFit,
++  ScreenPlayback,
+   Vec3,
+ } from './schema'
+ 
+@@ -50,6 +53,10 @@
+   newProject: () => void
+   saveProject: () => Promise<void>
+   openProject: (file: Blob) => Promise<void>
++  savedFingerprint: string
++  fileBusy: boolean
++  documentEpoch: number
++  hasUnsavedChanges: () => boolean
+   setEditorMode: (mode: 'movie' | 'image') => void
+   setName: (name: string) => void
+   setPlayhead: (t: number) => void
+@@ -67,7 +74,8 @@
+   applyMotionPlan: (plan: unknown) => void
+   clearMotionPlan: () => void
+ 
+-  setScreenMedia: (ref: MediaRef | null) => void
++  setScreenMedia: (ref: MediaRef | null, instanceId?: string) => void
++  setScreenPlayback: (patch: Partial<ScreenPlayback>) => void
+   setScreenFit: (fit: ScreenFit) => void
+   setDeviceId: (id: DeviceId) => void
+   setColorway: (id: string) => void
+@@ -115,6 +123,8 @@
+ type EditUi = Partial<Pick<ProjectStore, 'activeDevice' | 'playhead' | 'playing' | 'editorMode' | 'motionPreset' | 'keySelection'>>
+ 
+ export const useProjectStore = create<ProjectStore>((set, get) => {
++  const initial = createDefaultProject()
++  const canReplace = () => !get().hasUnsavedChanges() || typeof window === 'undefined' || window.confirm('当前工程有未保存的修改。继续会丢弃这些修改，是否继续？')
+   let gesture: { project: Project; history: History; selection: KeySelection | null } | null = null
+   /**
+    * Every document mutation goes through here, so undo coverage can't drift
+@@ -156,11 +166,15 @@
+   const replace = (project: Project) => {
+     resetCoalescing()
+     gesture = null
+-    set({ project, history: emptyHistory, playhead: 0, playing: false, activeDevice: 0, keySelection: null, editingGesture: false, motionPreset: 'none' })
++    set({ project, documentEpoch: get().documentEpoch + 1, savedFingerprint: projectFingerprint(project), history: emptyHistory, playhead: 0, playing: false, activeDevice: 0, keySelection: null, editingGesture: false, motionPreset: 'none' })
+   }
+ 
+   return {
+-  project: createDefaultProject(),
++  project: initial,
++  savedFingerprint: projectFingerprint(initial),
++  fileBusy: false,
++  documentEpoch: 0,
++  hasUnsavedChanges: () => projectFingerprint(get().project) !== get().savedFingerprint,
+   history: emptyHistory,
+ 
+   canUndo: () => get().history.past.length > 0,
+@@ -182,15 +196,36 @@
+     })
+   },
+ 
+-  newProject: () => replace(createDefaultProject()),
++  newProject: () => { if (!get().fileBusy && canReplace()) { replace(createDefaultProject()); useFeedbackStore.getState().dismiss() } },
+   saveProject: async () => {
++    if (get().fileBusy) return
++    get().endEditGesture()
+     const project = get().project
+-    downloadProject(await serializeProject(project), project.name)
++    set({ fileBusy: true })
++    try {
++      downloadProject(await serializeProject(project), project.name)
++      set({ savedFingerprint: projectFingerprint(project) })
++      useFeedbackStore.getState().show({ kind: 'info', message: '已发起 .mockup 下载，请确认浏览器已保存文件。' })
++    } catch (error) { reportError('保存工程失败，当前工程仍可编辑，请重试', error) }
++    finally { set({ fileBusy: false }) }
+   },
+   openProject: async (file) => {
+-    const project = await deserializeProject(file)
+-    replace(project)
+-    void pruneUnreferencedMedia(project)
++    if (get().fileBusy || !canReplace()) return
++    get().endEditGesture()
++    const before = get().project
++    set({ fileBusy: true })
++    try {
++      const project = await deserializeProject(file)
++      if (get().project !== before) {
++        new Set(mediaRefs(project).map(ref => ref.url).filter(Boolean)).forEach(url => URL.revokeObjectURL(url))
++        throw new Error('加载期间工程已被修改，请保存当前修改后重新打开。')
++      }
++      replace(project)
++      const missing = missingMedia(project)
++      if (missing.length) useFeedbackStore.getState().show({ kind: 'error', message: `工程已打开，但 ${missing.join('、')} 的素材缺失。请选择对应设备重新绑定，完成后再保存。` })
++      else useFeedbackStore.getState().show({ kind: 'info', message: '工程已打开。' })
++    } catch (error) { reportError('打开工程失败，已保留当前工程', error) }
++    finally { set({ fileBusy: false }) }
+   },
+ 
+   playhead: 0,
+@@ -349,7 +384,26 @@
+     set({ playhead: 0, playing: false, motionPreset: 'none' })
+   },
+ 
+-  setScreenMedia: (ref) => editDevice('screen', (d) => ({ ...d, screen: ref })),
++  setScreenMedia: (ref, instanceId) => {
++    const id = instanceId ?? get().project.devices[get().activeDevice]?.instanceId
++    resetCoalescing()
++    edit('screen', p => ({ ...p, devices: p.devices.map(d => d.instanceId === id
++      ? { ...d, screen: ref, screenPlayback: ref?.kind === 'video' && d.screen?.missing
++        ? normalizePlayback(ref.duration ?? 0, d.screenPlayback) : undefined }
++      : d) }))
++    resetCoalescing()
++  },
++  setScreenPlayback: patch => {
++    const d = get().project.devices[get().activeDevice]
++    if (d?.screen?.kind !== 'video') return
++    const value = { ...normalizePlayback(d.screen.duration ?? 0, d.screenPlayback), ...patch }
++    if (![value.in, value.out, value.start].every(Number.isFinite) || value.in < 0 || value.out <= value.in || value.out > (d.screen.duration ?? 0) || value.start < 0) {
++      reportError('录屏时序未修改', new Error('请保证 0 ≤ 入点 < 出点 ≤ 源时长，起播时间 ≥ 0。')); return
++    }
++    resetCoalescing()
++    editDevice('screenPlayback', device => ({ ...device, screenPlayback: value }))
++    resetCoalescing()
++  },
+   setScreenFit: (fit) => editDevice('fit', (d) => ({ ...d, screenFit: fit })),
+   setDeviceId: (id) =>
+     // A colorway id is only meaningful within its own manifest, so reset to

@@ -1,0 +1,5 @@
+PASS legacy-fill-does-not-change-loop-or-clock
+PASS legacy-loop-still-renders-after-fill-change
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"legacy-fit","status":"PASS"}],"checks":4}

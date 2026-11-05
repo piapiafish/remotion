@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-02T09:46:51.278Z",
+  "phase": "models",
+  "url": "http://127.0.0.1:49195",
+  "method": "Real Vite HTTP/TCP, existing native store/actions and UI, real Chrome/WebGL/WebCodecs. Controlled faults are restored after each case.",
+  "checks": [
+    {
+      "id": "procedural-phone-loads-and-exports-rotation",
+      "status": "PASS",
+      "seconds": 2.201
+    },
+    {
+      "id": "procedural-phone-material-and-screen-instance-isolation",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.76",
+  "inventory": [
+    {
+      "id": "procedural-phone",
+      "name": "Generic Phone",
+      "source": null,
+      "sha256": null,
+      "views": {
+        "front": "procedural-phone-front.png",
+        "left": "procedural-phone-left.png",
+        "back": "procedural-phone-back.png",
+        "right": "procedural-phone-right.png"
+      },
+      "video": "procedural-phone-spin.mp4",
+      "colors": [
+        "graphite",
+        "silver"
+      ],
+      "screenMaterial": "",
+      "screenAspect": 0.4790037052284891
+    }
+  ]
+}

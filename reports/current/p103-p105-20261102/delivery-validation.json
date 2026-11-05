@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "check": "official-project-unchanged",
+      "status": "PASS",
+      "files": 364,
+      "changed": []
+    },
+    {
+      "check": "all-payload-hashes",
+      "status": "PASS",
+      "files": 120
+    },
+    {
+      "check": "no-browser-screenshots-in-payload",
+      "status": "PASS"
+    },
+    {
+      "check": "installer D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio --check",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "{\"status\": \"READY\", \"pending_files\": 120, \"target\": \"D:\\\\remotion\\\\p0\\\\MultiAgent-3D-Promo-Studio\"}"
+    },
+    {
+      "check": "official-read-only-preflight",
+      "status": "PASS",
+      "pending": 120
+    },
+    {
+      "check": "installer --project C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\verify-install-c1us5ucf\\project",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "{\"status\": \"APPLIED\", \"installed\": 120, \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p103-p105-20261101-n3lc8n0e\\\\verify-install-c1us5ucf\\\\project\\\\reports\\\\archive\\\\p103-p105-before-20261102-003714-758150\", \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p103-p105-20261101-n3lc8n0e\\\\verify-install-c1us5ucf\\\\project\\\\reports\\\\current\\\\p103-p105-20261102\\\\writeback-receipt.json\"}"
+    },
+    {
+      "check": "install-to-clean-baseline",
+      "status": "PASS"
+    },
+    {
+      "check": "installed-and-backup-integrity",
+      "status": "PASS",
+      "backups": 19
+    },
+    {
+      "check": "installer --project C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\verify-install-c1us5ucf\\project",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "{\"status\": \"ALREADY_APPLIED\", \"pending_files\": 0}"
+    },
+    {
+      "check": "idempotent-reapply",
+      "status": "PASS"
+    },
+    {
+      "check": "installer --project C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\verify-conflict-ex_ohqwa\\project",
+      "status": "PASS",
+      "exit_code": 1,
+      "output": "{\"status\": \"CONFLICT\", \"files\": [\"src/store/project.ts\"]}"
+    },
+    {
+      "check": "unknown-local-edit-refused-before-write",
+      "status": "PASS"
+    },
+    {
+      "check": "interrupted-install-restores-originals",
+      "status": "PASS",
+      "extra": []
+    },
+    {
+      "check": "modified-markdown-overlay-links",
+      "status": "PASS",
+      "files": 8,
+      "errors": []
+    },
+    {
+      "check": "portable-runner-syntax",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "check": "installer-python-syntax",
+      "status": "PASS"
+    }
+  ],
+  "official_project_written": false
+}

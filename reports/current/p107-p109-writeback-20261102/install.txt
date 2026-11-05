@@ -1,0 +1,1 @@
+{"status": "APPLIED", "installed": 159, "backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p10709-before-20261102-174227-421716", "receipt": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p107-p109-20261102\\writeback-receipt.json"}

@@ -1,0 +1,16 @@
+PASS fixed-initial-anchor-procedural-phone
+PASS scale-one-undo-procedural-phone
+PASS fixed-initial-anchor-iphone-17-pro
+PASS scale-one-undo-iphone-17-pro
+PASS fixed-initial-anchor-iphone-17-pro-max
+PASS scale-one-undo-iphone-17-pro-max
+PASS fixed-initial-anchor-pixel-9-pro-xl
+PASS scale-one-undo-pixel-9-pro-xl
+PASS fixed-initial-anchor-galaxy-s26-ultra
+PASS scale-one-undo-galaxy-s26-ultra
+PASS actual-extruded-glyph-never-crosses-ground
+FAIL solid-z-axis-responds-to-real-mouse-drag
+SCENARIO FAIL authoring Error: solid-z-axis-responds-to-real-mouse-drag
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"authoring","status":"FAIL","error":"Error: solid-z-axis-responds-to-real-mouse-drag"}],"checks":14}

@@ -1,0 +1,251 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useProjectStore } from '../../store/project'
+import type { BackgroundConfig } from '../../store/schema'
+import { exportStillPng } from '../../export/still'
+import { exportPngSequence, frameTimes } from '../../export/sequence'
+import {
+  bitrateFor,
+  exportVideo,
+  supportedVideoFormats,
+  VIDEO_FORMAT_EXTENSIONS,
+  VIDEO_FORMAT_LABELS,
+  type VideoFormat,
+} from '../../export/video'
+import {
+  maxOutputScale,
+  resolveSupersample,
+  type ExportQuality,
+} from '../../export/frameRenderer'
+import { loadBackdrop } from '../../export/backdrop'
+import { resolveExportSize } from '../../export/exportSize'
+import { worstCaseScreenCoverage } from '../../export/screenCoverage'
+import { getExportContext } from '../../export/renderer'
+import { hasScreenVideos, seekScreenVideos } from '../../media/screenVideo'
+import { exportFailure, exportStep } from '../../export/exportError'
+import { useExportSession, withExportSession } from '../../export/session'
+import { reportError, useFeedbackStore } from '../../store/feedback'
+import { Segmented } from '../controls/Segmented'
+
+export async function runExport(width: number, height: number, background: BackgroundConfig, quality: ExportQuality = 'high') {
+  return withExportSession(async () => {
+    const ctx = getExportContext()!
+    const backdrop = await exportStep('media', () => loadBackdrop(background))
+    try {
+      if (hasScreenVideos()) await exportStep('media', () => seekScreenVideos(useProjectStore.getState().playhead))
+      const blob = await exportStep('render', () => exportStillPng({ ...ctx, width, height, backdrop, quality, project:useProjectStore.getState().project,time:useProjectStore.getState().playhead }))
+      download(blob, 'mockup.png')
+    } finally { backdrop?.dispose?.() }
+  })
+}
+
+function download(blob: Blob, filename: string) {
+  let url: string | undefined
+  try {
+    if (!blob.size) throw new Error('导出文件为空')
+    url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = filename
+    document.body.appendChild(a)
+    try { a.click() } finally { a.remove() }
+  } catch (error) { throw exportFailure('output', error) }
+  finally { if (url) { const ref = url; setTimeout(() => URL.revokeObjectURL(ref), 30000) } }
+}
+
+type ClipExportOptions = {
+  width: number; height: number; background: BackgroundConfig; quality: ExportQuality
+  duration: number; fps: 30 | 60; name: string
+  onProgress: (fraction: number) => void; signal: AbortSignal
+}
+
+async function runClip(options: ClipExportOptions, format?: VideoFormat) {
+  return withExportSession(async () => {
+    options.signal.throwIfAborted()
+    const ctx = getExportContext()!
+    const snapshot = useProjectStore.getState().project
+    const backdrop = await exportStep('media', () => loadBackdrop(options.background, options.signal), options.signal)
+    try {
+      const params = {
+        ...ctx, ...options, backdrop, project:snapshot,
+        applyAt: (t: number) => {
+          if (useProjectStore.getState().project !== snapshot) throw exportFailure('prepare', new Error('工程在导出期间发生变化，请重新导出'))
+          ctx.applyAt(t)
+        },
+      }
+      const blob = format ? await exportVideo({ ...params, format }) : await exportPngSequence(params)
+      options.signal.throwIfAborted()
+      download(blob, format ? (options.name || 'mockup') + '.' + VIDEO_FORMAT_EXTENSIONS[format] : (options.name || 'mockup') + '-frames.zip')
+    } finally { backdrop?.dispose?.() }
+  },options.signal)
+}
+export async function runSequenceExport(options: ClipExportOptions) { return runClip(options) }
+export async function runVideoExport(options: ClipExportOptions & { format: VideoFormat }) { return runClip(options, options.format) }
+
+export function ExportControls() {
+  const output = useProjectStore((s) => s.project.output)
+  const background = useProjectStore((s) => s.project.background)
+  const setOutput = useProjectStore((s) => s.setOutput)
+  const quality = useProjectStore((s) => s.exportQuality)
+  const setExportQuality = useProjectStore((s) => s.setExportQuality)
+  const editorMode = useProjectStore((s) => s.editorMode)
+  const name = useProjectStore((s) => s.project.name)
+  const duration = useProjectStore((s) => s.project.duration)
+  const fps = useProjectStore((s) => s.project.fps)
+  const setFps = useProjectStore((s) => s.setFps)
+  const matchSource = useProjectStore((s) => s.matchSource)
+  const setMatchSource = useProjectStore((s) => s.setMatchSource)
+  // The detail readout applies to a recording exactly as it does to a
+  // screenshot; calling a video a screenshot just makes it look like the
+  // number is about something else.
+  const screenKind = useProjectStore((s) => s.project.devices[s.activeDevice]?.screenClips?.length?'video':s.project.devices[s.activeDevice]?.screen?.kind)
+  const screenNoun = screenKind === 'video' ? '录屏' : '截图'
+  const [localBusy, setBusy] = useState(false)
+  const sessionBusy = useExportSession(s => s.busy)
+  const busy = localBusy || sessionBusy
+  const [failure, setFailure] = useState<string | null>(null)
+  const retryRef = useRef<(() => Promise<void>) | null>(null)
+  // null when idle. 0 is a real value — the first frame has not finished —
+  // so this cannot be a plain number defaulting to zero.
+  const [progress, setProgress] = useState<number | null>(null)
+  const abortRef = useRef<AbortController | null>(null)
+
+  /*
+   * Which codecs this browser will actually encode (§9.3). Detected rather
+   * than assumed: alpha support in particular varies by browser *and*
+   * version, and an unsupported config throws at `configure` — i.e. after
+   * the user has committed to the export. `null` while the check is in
+   * flight, so the picker doesn't flash a wrong answer.
+   */
+  const [formats, setFormats] = useState<VideoFormat[] | null>(null)
+  const [format, setFormat] = useState<VideoFormat | null>(null)
+
+  const ctx = getExportContext()
+
+  /*
+   * Relate the output size back to the screenshot's own resolution.
+   *
+   * Quality tiers fix how the screen is *sampled*; they cannot add pixels the
+   * output canvas does not have. At 1920x1080 a phone screenshot is
+   * reproduced at roughly a third of its height no matter which tier is
+   * chosen, which is the whole of the remaining "crisp going in, soft coming
+   * out" complaint — and nothing here said so. Read live from the scene, so
+   * it reflects the actual pose rather than an assumed framing.
+   */
+  /*
+   * Worst case over the whole clip, memoised.
+   *
+   * The sweep samples the timeline and every device, which is cheap
+   * (sub-millisecond) but not free, and this component re-renders on every
+   * keystroke in the size fields. Keyed on the project and the size so it
+   * runs once per edit rather than once per render.
+   */
+  const project = useProjectStore((s) => s.project)
+  const coverage = useMemo(
+    () => (ctx ? worstCaseScreenCoverage(ctx.scene, project, output.width, output.height) : null),
+    [ctx, project, output.width, output.height],
+  )
+
+  /*
+   * The size every export below actually uses.
+   *
+   * Resolved here rather than written into the document: `output` is the
+   * user's *composition* (its aspect is what the artboard letterboxes to),
+   * and rewriting it on every device nudge would fill the undo stack with
+   * size changes nobody made. Both axes scale together, so the framing is
+   * identical — only the pixel count differs.
+   */
+  const exportSize = resolveExportSize({
+    width: output.width,
+    height: output.height,
+    coverage,
+    matchSource,
+    gpuScaleLimit: ctx
+      ? maxOutputScale(output.width, output.height, ctx.renderer.capabilities.maxTextureSize)
+      : 1,
+    // Only H.264 carries the macroblock ceiling; WebM and the PNG sequence
+    // have no equivalent, so they must not be shrunk for it.
+    encoderLimited: format === 'mp4',
+  })
+
+  const resized = exportSize.width !== output.width || exportSize.height !== output.height
+
+  // Show the resolution actually rendered, since the GPU can clamp it — and
+  // it is the resolved size that gets rendered, not the composition size.
+  const supersample = ctx
+    ? resolveSupersample(ctx.renderer, exportSize.width, exportSize.height, quality)
+    : 1
+
+  const frameCount = frameTimes(duration, fps).length
+
+  useEffect(() => {
+    let live = true
+    void supportedVideoFormats(output.width, output.height, fps, quality).then((supported) => {
+      if (!live) return
+      setFormats(supported)
+      // Keep the user's pick if this size still supports it; otherwise fall
+      // back to the best available rather than leaving a dead selection.
+      setFormat((current) =>
+        current && supported.includes(current) ? current : (supported.includes('mp4') ? 'mp4' : supported[0] ?? null),
+      )
+    })
+    return () => {
+      live = false
+    }
+  }, [output.width, output.height, fps, quality])
+
+  // Transparency survives only in the alpha-capable format; everywhere else
+  // the encoder discards it and the result is black where the backdrop
+  // would have been. Say so before the export, not after.
+  const alphaWillBeLost =
+    background.type === 'transparent' && format !== null && format !== 'webm-alpha'
+
+  async function handleExport() {
+    if (busy) return
+    setBusy(true)
+    setFailure(null)
+    retryRef.current = handleExport
+    try {
+      await runExport(exportSize.width, exportSize.height, background, quality)
+      useFeedbackStore.getState().show({ kind: 'info', message: 'PNG 已交给浏览器下载，请确认保存位置。' })
+    } catch (error) {
+      const err = exportFailure('render', error)
+      setFailure(err.message)
+      reportError('导出失败', err)
+    } finally { setBusy(false) }
+  }
+
+  async function runClipExport(run: (options: ClipExportOptions) => Promise<void>) {
+    if (abortRef.current || busy) return
+    const controller = new AbortController()
+    abortRef.current = controller
+    retryRef.current = () => runClipExport(run)
+    setBusy(true); setFailure(null); setProgress(0)
+    try {
+      await run({ width: exportSize.width, height: exportSize.height, background, quality,
+        duration, fps, name, onProgress: setProgress, signal: controller.signal })
+      useFeedbackStore.getState().show({ kind: 'info', message: '文件已交给浏览器下载，请确认保存位置。' })
+    } catch (error) {
+      if (!controller.signal.aborted) {
+        const err = exportFailure('render', error)
+        setFailure(err.message)
+        reportError('导出失败', err)
+      } else useFeedbackStore.getState().show({ kind: 'info', message: '已取消导出，可以继续编辑或重新导出。' })
+    } finally {
+      abortRef.current = null; setBusy(false); setProgress(null)
+    }
+  }
+
+  return <div className="control-group" aria-busy={busy}>
+    {failure&&<div role="alert"><p>{failure}</p><p className="hint">可重试，或降低尺寸与质量。编码器不可用时可导出 PNG 序列。</p><button className="ghost-btn" disabled={busy} onClick={()=>void retryRef.current?.()}>重试导出</button></div>}
+    <label className="stack-field">作品类型<select aria-label="作品类型" disabled={busy} value={editorMode} onChange={e=>useProjectStore.getState().setEditorMode(e.target.value as 'movie'|'image')}><option value="movie">视频</option><option value="image">图片</option></select></label>
+    <div className="row"><label>宽度<input aria-label="导出宽度" type="number" min={2} disabled={busy} value={matchSource?exportSize.width:output.width} onChange={e=>{const n=Number(e.target.value);if(Number.isInteger(n)&&n>=2){setMatchSource(false);setOutput({width:n})}}}/></label><span>×</span><label>高度<input aria-label="导出高度" type="number" min={2} disabled={busy} value={matchSource?exportSize.height:output.height} onChange={e=>{const n=Number(e.target.value);if(Number.isInteger(n)&&n>=2){setMatchSource(false);setOutput({height:n})}}}/></label></div>
+    <label>画质</label><Segmented<ExportQuality> value={quality} onChange={value=>{if(!busy)setExportQuality(value)}} options={[{id:'standard',label:'标准',title:'优先导出速度'},{id:'high',label:'高清',title:'兼顾细节和导出速度'},{id:'max',label:'精细',title:'更细腻，需要更多时间'}]}/>
+    <p className="hint">输出 {exportSize.width} × {exportSize.height}。{project.effects?.depthOfField.enabled||project.effects?.motionBlur.enabled?'已启用画面效果，导出会花费更多时间。':'高画质可保留更多屏幕细节。'}</p>
+    <details className="advanced"><summary>屏幕细节与输出设置</summary><p className="hint">画面内部按 {supersample} 倍采样后缩小。{coverage?`${coverage.sourceHeight} 像素的${screenNoun}在画面中约占 ${coverage.renderedHeight} 像素。`:''}</p><label className="toggle-row"><input type="checkbox" disabled={busy} checked={matchSource} onChange={e=>setMatchSource(e.target.checked)}/>匹配素材清晰度（可能放大输出文件）</label>{resized&&<p className="hint">根据素材和设备能力调整到 {exportSize.width} × {exportSize.height}；仍受显卡和编码器限制。</p>}</details>
+    <button className="export-btn" disabled={busy} onClick={()=>void handleExport()}>{busy&&progress===null?'正在导出…':'导出 PNG 图片'}</button>
+    {editorMode==='movie'&&<><label>帧率</label><Segmented<30|60> value={fps} onChange={v=>{if(!busy)setFps(v)}} options={[{id:30,label:'30 帧/秒',title:'常用帧率'},{id:60,label:'60 帧/秒',title:'帧数和处理时间增加'}]}/><p className="hint">{duration} 秒，共 {frameCount} 帧。</p>
+    {formats&&formats.length>0&&format&&<><label>视频格式</label><Segmented<VideoFormat> value={format} onChange={v=>{if(!busy)setFormat(v)}} options={formats.map(f=>({id:f,label:VIDEO_FORMAT_LABELS[f]}))}/>{!formats.includes('mp4')&&<p className="hint">当前尺寸无法使用 MP4 编码。可减小尺寸，或选择 WebM / PNG 序列。</p>}{alphaWillBeLost&&<p className="hint">当前格式不支持透明背景，透明区域会变成黑色。可选择透明 WebM 或 PNG 序列。</p>}</>}
+    {formats?.length===0&&<p className="hint">此浏览器无法编码视频。可使用 Chrome / Edge 重试，或导出 PNG 序列。</p>}
+    {progress!==null?<><div className="export-progress"><div className="export-progress-bar" style={{width:`${progress*100}%`}}/></div><button className="export-btn" onClick={()=>abortRef.current?.abort()}>取消导出 · {Math.round(progress*frameCount)} / {frameCount} 帧</button></>:<>{format&&<button className="export-btn" disabled={busy} onClick={()=>void runClipExport(o=>runVideoExport({...o,format}))}>导出视频（{VIDEO_FORMAT_LABELS[format]}）</button>}<button className="ghost-btn" disabled={busy} onClick={()=>void runClipExport(runSequenceExport)}>导出 PNG 序列（{frameCount} 帧）</button><p className="hint">视频目标码率约 {(bitrateFor(output.width,output.height,fps,quality)/1e6).toFixed(0)} Mbps。PNG 序列保存无损帧。</p></>}
+    </>}
+  </div>
+}

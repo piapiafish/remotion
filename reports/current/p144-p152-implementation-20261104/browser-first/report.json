@@ -1,0 +1,364 @@
+{
+  "date": "2026-11-04T13:58:05.870Z",
+  "checks": [
+    {
+      "name": "placed-centre-stays-procedural-phone",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.8,
+          "visible": true
+        },
+        "after": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.6293022888532428,
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "scale-undo-procedural-phone",
+      "status": "PASS"
+    },
+    {
+      "name": "placed-centre-stays-iphone-17-pro",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.8,
+          "visible": true
+        },
+        "after": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.6293022888532428,
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "scale-undo-iphone-17-pro",
+      "status": "PASS"
+    },
+    {
+      "name": "placed-centre-stays-iphone-17-pro-max",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.8,
+          "visible": true
+        },
+        "after": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.6293022888532428,
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "scale-undo-iphone-17-pro-max",
+      "status": "PASS"
+    },
+    {
+      "name": "placed-centre-stays-pixel-9-pro-xl",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.8,
+          "visible": true
+        },
+        "after": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.6293022888532428,
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "scale-undo-pixel-9-pro-xl",
+      "status": "PASS"
+    },
+    {
+      "name": "placed-centre-stays-galaxy-s26-ultra",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.8,
+          "visible": true
+        },
+        "after": {
+          "position": [
+            0.7,
+            0.6,
+            0.1
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.6293022888532428,
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "scale-undo-galaxy-s26-ultra",
+      "status": "PASS"
+    },
+    {
+      "name": "wasd-moves-camera-with-selected-phone",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0,
+            0,
+            4.2
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "fov": 30
+        },
+        "after": {
+          "position": [
+            0,
+            0.758899999999998,
+            4.2
+          ],
+          "target": [
+            0,
+            0.758899999999998,
+            0
+          ],
+          "fov": 30
+        }
+      }
+    },
+    {
+      "name": "keyup-stops-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "one-playhead-head",
+      "status": "PASS"
+    },
+    {
+      "name": "name-column-has-gap",
+      "status": "PASS"
+    },
+    {
+      "name": "both-disjoint-intervals-pack",
+      "status": "PASS"
+    },
+    {
+      "name": "playback-overlap-keeps-separate-rows",
+      "status": "PASS"
+    },
+    {
+      "name": "start-clamps-one-frame-before-stop",
+      "status": "FAIL",
+      "detail": {
+        "in": 0,
+        "out": 8,
+        "start": 1,
+        "stop": 2,
+        "loop": false,
+        "rate": 1
+      }
+    },
+    {
+      "name": "first-camera-segment-recorded",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-key-points-hidden",
+      "status": "PASS"
+    },
+    {
+      "name": "second-camera-segment-keeps-first",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-recording-preserves-device-tracks",
+      "status": "PASS"
+    },
+    {
+      "name": "gap-holds-previous-camera-pose",
+      "status": "PASS"
+    },
+    {
+      "name": "recording-inside-existing-segment-is-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "delete-one-camera-segment-leaves-other-intact",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-delete-undo-restores-both",
+      "status": "PASS"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "interaction",
+      "status": "PASS"
+    },
+    {
+      "name": "timeline",
+      "status": "FAIL",
+      "error": "Error: start-clamps-one-frame-before-stop"
+    },
+    {
+      "name": "camera",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T13:58:06.355Z",
+      "url": "http://127.0.0.1:63540/?automation=1"
+    },
+    {
+      "time": "2026-11-04T13:58:06.835Z",
+      "url": "http://127.0.0.1:63540/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T13:58:07.483Z",
+      "url": "http://127.0.0.1:63540/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T13:58:16.785Z",
+      "url": "http://127.0.0.1:63540/?automation=1"
+    },
+    {
+      "time": "2026-11-04T13:58:17.237Z",
+      "url": "http://127.0.0.1:63540/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T13:58:17.892Z",
+      "url": "http://127.0.0.1:63540/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T13:58:20.480Z",
+      "url": "http://127.0.0.1:63540/?automation=1"
+    },
+    {
+      "time": "2026-11-04T13:58:20.947Z",
+      "url": "http://127.0.0.1:63540/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T13:58:21.618Z",
+      "url": "http://127.0.0.1:63540/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T13:58:23.166Z",
+      "url": "http://127.0.0.1:63540/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T13:58:29.113Z",
+      "url": "http://127.0.0.1:63540/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T13:58:29.941Z",
+      "url": "http://127.0.0.1:63540/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T13:58:34.479Z",
+      "url": "http://127.0.0.1:63540/?automation=1#editor"
+    }
+  ]
+}

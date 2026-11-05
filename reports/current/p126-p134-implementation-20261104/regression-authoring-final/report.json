@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-04T00:28:55.843Z",
+  "checks": [
+    {
+      "name": "E01-ordinary-edits-stay-static",
+      "status": "PASS"
+    },
+    {
+      "name": "E02-pose-animation-has-correct-two-second-midpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "E03-retiming-fills-the-new-six-second-span",
+      "status": "PASS"
+    },
+    {
+      "name": "E04-hold-and-exit-remain-separate",
+      "status": "PASS"
+    },
+    {
+      "name": "E05-multi-turn-rotation-survives-save-and-nonuniform-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "G01-device-preset-keeps-other-object-unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "H02-sticker-position-and-opacity-remain-animated",
+      "status": "PASS"
+    },
+    {
+      "name": "H04-pure-text-and-portrait-project-reopen",
+      "status": "PASS"
+    },
+    {
+      "name": "I01-four-background-types-still-render-and-save",
+      "status": "PASS"
+    },
+    {
+      "name": "I02-environment-controls-still-apply",
+      "status": "PASS"
+    },
+    {
+      "name": "I03-effects-remain-opt-in",
+      "status": "PASS"
+    },
+    {
+      "name": "I03-effect-change-undo-restores-settings",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "authoring-regression",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

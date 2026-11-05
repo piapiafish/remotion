@@ -1,0 +1,206 @@
+{
+  "status": "PASS",
+  "threshold": 0.98,
+  "method": "Real encoded frames versus references captured in the same shared export session, including visibility boundary frames.",
+  "comparisons": [
+    {
+      "frame": 0,
+      "region": "full",
+      "ssim": 0.993673,
+      "status": "PASS"
+    },
+    {
+      "frame": 0,
+      "region": "center",
+      "ssim": 0.990848,
+      "status": "PASS"
+    },
+    {
+      "frame": 0,
+      "region": "title",
+      "ssim": 0.993899,
+      "status": "PASS"
+    },
+    {
+      "frame": 7,
+      "region": "full",
+      "ssim": 0.995858,
+      "status": "PASS"
+    },
+    {
+      "frame": 7,
+      "region": "center",
+      "ssim": 0.995286,
+      "status": "PASS"
+    },
+    {
+      "frame": 7,
+      "region": "title",
+      "ssim": 0.99635,
+      "status": "PASS"
+    },
+    {
+      "frame": 8,
+      "region": "full",
+      "ssim": 0.995861,
+      "status": "PASS"
+    },
+    {
+      "frame": 8,
+      "region": "center",
+      "ssim": 0.995365,
+      "status": "PASS"
+    },
+    {
+      "frame": 8,
+      "region": "title",
+      "ssim": 0.9964,
+      "status": "PASS"
+    },
+    {
+      "frame": 29,
+      "region": "full",
+      "ssim": 0.995046,
+      "status": "PASS"
+    },
+    {
+      "frame": 29,
+      "region": "center",
+      "ssim": 0.993801,
+      "status": "PASS"
+    },
+    {
+      "frame": 29,
+      "region": "title",
+      "ssim": 0.996532,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "full",
+      "ssim": 0.994056,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "center",
+      "ssim": 0.992354,
+      "status": "PASS"
+    },
+    {
+      "frame": 30,
+      "region": "title",
+      "ssim": 0.996501,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "full",
+      "ssim": 0.993555,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "center",
+      "ssim": 0.99106,
+      "status": "PASS"
+    },
+    {
+      "frame": 60,
+      "region": "title",
+      "ssim": 0.996431,
+      "status": "PASS"
+    },
+    {
+      "frame": 104,
+      "region": "full",
+      "ssim": 0.993751,
+      "status": "PASS"
+    },
+    {
+      "frame": 104,
+      "region": "center",
+      "ssim": 0.99124,
+      "status": "PASS"
+    },
+    {
+      "frame": 104,
+      "region": "title",
+      "ssim": 0.996537,
+      "status": "PASS"
+    },
+    {
+      "frame": 105,
+      "region": "full",
+      "ssim": 0.993698,
+      "status": "PASS"
+    },
+    {
+      "frame": 105,
+      "region": "center",
+      "ssim": 0.991127,
+      "status": "PASS"
+    },
+    {
+      "frame": 105,
+      "region": "title",
+      "ssim": 0.996537,
+      "status": "PASS"
+    },
+    {
+      "frame": 107,
+      "region": "full",
+      "ssim": 0.993659,
+      "status": "PASS"
+    },
+    {
+      "frame": 107,
+      "region": "center",
+      "ssim": 0.991034,
+      "status": "PASS"
+    },
+    {
+      "frame": 107,
+      "region": "title",
+      "ssim": 0.996539,
+      "status": "PASS"
+    },
+    {
+      "frame": 108,
+      "region": "full",
+      "ssim": 0.994126,
+      "status": "PASS"
+    },
+    {
+      "frame": 108,
+      "region": "center",
+      "ssim": 0.991982,
+      "status": "PASS"
+    },
+    {
+      "frame": 108,
+      "region": "title",
+      "ssim": 0.996539,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "full",
+      "ssim": 0.994479,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "center",
+      "ssim": 0.992749,
+      "status": "PASS"
+    },
+    {
+      "frame": 119,
+      "region": "title",
+      "ssim": 0.996546,
+      "status": "PASS"
+    }
+  ],
+  "minimum": 0.990848
+}

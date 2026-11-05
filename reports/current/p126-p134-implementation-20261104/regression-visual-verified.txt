@@ -1,0 +1,8 @@
+PASS D02-legacy-time-boundaries-remain-correct
+PASS D03-shared-source-retains-independent-decoders
+PASS solid-and-sticker-both-support-front-back-placement
+PASS transparent-output-with-solid-and-phone-renders
+PASS compact-window-controls-remain-usable
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"media-regression","status":"PASS"},{"name":"occlusion","status":"PASS"}],"checks":7}

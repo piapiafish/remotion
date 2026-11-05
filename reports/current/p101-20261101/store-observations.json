@@ -1,0 +1,411 @@
+[
+  {
+    "id": "MAN-004",
+    "details": {
+      "deviceCount": 2,
+      "positions": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "activeDevice": 1
+    }
+  },
+  {
+    "id": "MAN-003",
+    "details": {
+      "deviceCount": 1,
+      "activeDevice": 1,
+      "selectedDeviceExists": false,
+      "transformPanelCanResolveDevice": false
+    }
+  },
+  {
+    "id": "MAN-001",
+    "details": {
+      "keys": [
+        {
+          "t": 0,
+          "v": 1,
+          "ease": [
+            0.33,
+            0,
+            0.15,
+            1
+          ]
+        }
+      ],
+      "at0": [
+        0,
+        1,
+        0
+      ],
+      "at1": [
+        0,
+        1,
+        0
+      ],
+      "note": "Static-track setter intentionally preserves one key; the missing product capability is an explicit enable-animation/add-key UI."
+    }
+  },
+  {
+    "id": "MAN-005",
+    "details": {
+      "selected": 1,
+      "before": {
+        "position.x": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        },
+        "position.y": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        },
+        "position.z": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        },
+        "rotation.x": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        },
+        "rotation.y": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        },
+        "rotation.z": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        },
+        "scale": {
+          "keys": [
+            {
+              "t": 0,
+              "v": 1,
+              "ease": [
+                0.33,
+                0,
+                0.15,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "after": [
+        {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              },
+              {
+                "t": 4,
+                "v": 6.283185307179586,
+                "ease": [
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "position.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "position.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.x": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.y": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              },
+              {
+                "t": 4,
+                "v": 6.283185307179586,
+                "ease": [
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ]
+          },
+          "rotation.z": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          },
+          "scale": {
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "ease": [
+                  0.33,
+                  0,
+                  0.15,
+                  1
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "note": "The existing preset applies globally; selected-device-only animation is a missing capability."
+    }
+  },
+  {
+    "id": "CONTROL-INDEPENDENT-POSITION",
+    "details": {
+      "positions": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  {
+    "id": "CONTROL-REDO-REMOVE",
+    "details": {
+      "deviceCount": 1,
+      "activeDevice": 0
+    }
+  }
+]

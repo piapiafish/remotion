@@ -1,0 +1,265 @@
+{
+  "date": "2026-11-02T05:11:30.854Z",
+  "status": "RUNNING",
+  "method": "Actual production build supplied from local files only. Every page request is intercepted; non-local requests are denied. No Vite, API, recording helper, source imports or external page connections.",
+  "checks": [
+    {
+      "id": "fresh-production-context-restores-engineering-and-media",
+      "status": "PASS"
+    },
+    {
+      "id": "reopened-timing-edit-undo",
+      "status": "PASS"
+    },
+    {
+      "id": "reopened-revision-preserves-other-device",
+      "status": "PASS"
+    },
+    {
+      "id": "reopened-modified-document-exports-1080p30",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "deniedRequests": [],
+  "exports": [
+    {
+      "name": "revised-short",
+      "file": "revised-short.mp4",
+      "seconds": 19.246,
+      "bytes": 927337,
+      "peakSampledJsHeap": 15436752,
+      "samples": [
+        {
+          "time": 1793596293921,
+          "jsHeap": 13243484
+        },
+        {
+          "time": 1793596295096,
+          "jsHeap": 10833336
+        },
+        {
+          "time": 1793596296142,
+          "jsHeap": 15436752
+        },
+        {
+          "time": 1793596297246,
+          "jsHeap": 12295500
+        },
+        {
+          "time": 1793596298332,
+          "jsHeap": 14437420
+        },
+        {
+          "time": 1793596300273,
+          "jsHeap": 12391760
+        },
+        {
+          "time": 1793596301366,
+          "jsHeap": 12596072
+        },
+        {
+          "time": 1793596302426,
+          "jsHeap": 12461860
+        },
+        {
+          "time": 1793596303432,
+          "jsHeap": 13279804
+        },
+        {
+          "time": 1793596304448,
+          "jsHeap": 12658128
+        },
+        {
+          "time": 1793596305478,
+          "jsHeap": 12536260
+        },
+        {
+          "time": 1793596306540,
+          "jsHeap": 12537932
+        },
+        {
+          "time": 1793596307612,
+          "jsHeap": 12130632
+        },
+        {
+          "time": 1793596308625,
+          "jsHeap": 13359164
+        },
+        {
+          "time": 1793596309670,
+          "jsHeap": 12581684
+        },
+        {
+          "time": 1793596310800,
+          "jsHeap": 13117216
+        },
+        {
+          "time": 1793596311874,
+          "jsHeap": 13046492
+        }
+      ],
+      "progress": [
+        {
+          "time": 1793596294084,
+          "style": "width: 0.833333%;"
+        },
+        {
+          "time": 1793596295140,
+          "style": "width: 9.16667%;"
+        },
+        {
+          "time": 1793596296187,
+          "style": "width: 13.3333%;"
+        },
+        {
+          "time": 1793596297296,
+          "style": "width: 16.6667%;"
+        },
+        {
+          "time": 1793596299251,
+          "style": "width: 23.3333%;"
+        },
+        {
+          "time": 1793596300319,
+          "style": "width: 28.3333%;"
+        },
+        {
+          "time": 1793596301417,
+          "style": "width: 33.3333%;"
+        },
+        {
+          "time": 1793596302428,
+          "style": "width: 39.1667%;"
+        },
+        {
+          "time": 1793596303443,
+          "style": "width: 45%;"
+        },
+        {
+          "time": 1793596304467,
+          "style": "width: 50.8333%;"
+        },
+        {
+          "time": 1793596305481,
+          "style": "width: 56.6667%;"
+        },
+        {
+          "time": 1793596306598,
+          "style": "width: 63.3333%;"
+        },
+        {
+          "time": 1793596307617,
+          "style": "width: 69.1667%;"
+        },
+        {
+          "time": 1793596308667,
+          "style": "width: 75%;"
+        },
+        {
+          "time": 1793596309751,
+          "style": "width: 80.8333%;"
+        },
+        {
+          "time": 1793596310854,
+          "style": "width: 87.5%;"
+        },
+        {
+          "time": 1793596311936,
+          "style": "width: 94.1667%;"
+        }
+      ],
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "mime_codec_string": "avc1.640032",
+            "width": 1920,
+            "height": 1080,
+            "coded_width": 1920,
+            "coded_height": 1088,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": 50,
+            "color_range": "tv",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "chroma_location": "left",
+            "field_order": "progressive",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "id": "0x1",
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "time_base": "1/30",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 120,
+            "duration": "4.000000",
+            "bit_rate": "1852258",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "120",
+            "nb_read_frames": "120",
+            "extradata_size": 44,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-11-02T05:11:33.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr"
+            }
+          }
+        ],
+        "format": {
+          "filename": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\p107-p109-work-20261102-677c0d\\evidence\\offline-production\\revised-short.mp4",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "start_time": "0.000000",
+          "duration": "4.000000",
+          "size": "927337",
+          "bit_rate": "1854674",
+          "probe_score": 100,
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomavc1mp41",
+            "creation_time": "2026-11-02T05:11:33.000000Z"
+          }
+        }
+      }
+    }
+  ],
+  "browser": "156.0.8078.76"
+}

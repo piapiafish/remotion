@@ -1,0 +1,40 @@
+PASS native-click-focus-then-up-one-frame
+PASS 100-nudges-cross-other-keys-without-small-limit
+PASS precise-retime-extends-project
+PASS retime-and-extension-undo-together
+SCENARIO FAIL timeline TimeoutError: locator.fill: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('spinbutton', { name: '关键帧时间', exact: true })[22m
+
+PASS object-is-hidden-before-appearance
+PASS object-is-visible-at-appearance
+PASS object-is-hidden-at-end
+PASS left-range-handle-trims-without-erasing-keys
+PASS whole-object-range-moves-authored-keys
+PASS range-edit-preserves-other-device
+PASS range-move-undo-keeps-previous-trim
+PASS video-speed-setting-is-shared-with-clock
+PASS loop-setting-removed
+PASS negative-start-identifies-error-and-preserves-value
+PASS left-video-trim-keeps-its-end-fixed
+PASS video-trim-does-not-touch-motion
+FAIL inactive-video-decoders-are-released
+SCENARIO FAIL media Error: inactive-video-decoders-are-released
+PASS arrow-key-pans-static-camera
+PASS keyboard-camera-pan-is-one-undo
+PASS dedicated-recorder-has-no-object-panel
+PASS objects-cannot-be-selected-in-recorder
+PASS countdown-does-not-advance-time
+PASS continuous-recording-captures-motion-and-holds
+PASS recording-keeps-object-animation-data
+PASS take-committed-as-editable-camera-track
+PASS whole-take-undo-restores-camera
+PASS ordinary-viewing-does-not-write-recorded-track
+PASS sticker-can-be-placed-behind-scene
+PASS real-solid-text-has-thick-geometry
+PASS solid-text-pose-and-thickness-are-keyed
+FAIL text-control-inputs-align
+SCENARIO FAIL text Error: text-control-inputs-align
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"timeline","status":"FAIL","error":"TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('spinbutton', { name: '关键帧时间', exact: true })\u001b[22m\n"},{"name":"ranges","status":"PASS"},{"name":"media","status":"FAIL","error":"Error: inactive-video-decoders-are-released"},{"name":"camera","status":"PASS"},{"name":"text","status":"FAIL","error":"Error: text-control-inputs-align"}],"checks":33}

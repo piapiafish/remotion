@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-02T21:48:17.560232+08:00",
+  "scope": "Planning only; no application implementation",
+  "backup": "reports/archive/p110-p118-plan-before-20261102-214817-496931",
+  "sourceFiles": 156,
+  "userChoices": {
+    "wheel": "selected object scales regardless of pointer position within canvas; blank click deselects before camera zoom",
+    "text": "screen-space overlay title; position and keyframes"
+  }
+}

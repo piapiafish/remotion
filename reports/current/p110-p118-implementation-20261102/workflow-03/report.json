@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-02T14:56:13.678Z",
+  "method": "Real local Vite HTTP, Chrome UI, native object actions, portable archives and actual encoded downloads.",
+  "checks": [
+    {
+      "name": "first-entry-is-template-page",
+      "status": "PASS"
+    },
+    {
+      "name": "template-creates-two-phones-and-opens-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-settings-are-independent",
+      "status": "PASS"
+    },
+    {
+      "name": "two-independent-recordings-and-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "selected-object-wheel-scales-even-over-blank",
+      "status": "PASS"
+    },
+    {
+      "name": "wheel-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-click-deselects",
+      "status": "FAIL"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "exports": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.76",
+  "error": "Error: blank-click-deselects\n    at check (D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:7:150)\n    at D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:40:58"
+}

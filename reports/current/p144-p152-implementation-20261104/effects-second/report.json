@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-04T14:10:52.436Z",
+  "checks": [
+    {
+      "name": "solid-is-offered-as-focus-target",
+      "status": "PASS"
+    },
+    {
+      "name": "stickers-start-clear",
+      "status": "PASS"
+    },
+    {
+      "name": "sticker-depth-setting-saved-in-project",
+      "status": "PASS"
+    },
+    {
+      "name": "sticker-dof-changes-real-canvas-pixels",
+      "status": "PASS",
+      "detail": {
+        "sharp": 7061,
+        "blur": 23489
+      }
+    },
+    {
+      "name": "deleting-solid-focus-retains-effective-distance",
+      "status": "PASS"
+    },
+    {
+      "name": "version-five-contains-segments-fonts-clips-and-sticker-depth",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh-session-restores-segments-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "editor-layout-1920x1080",
+      "status": "PASS",
+      "detail": {
+        "timeline": 206,
+        "board": 588,
+        "overflow": false
+      }
+    },
+    {
+      "name": "editor-layout-1366x768",
+      "status": "PASS",
+      "detail": {
+        "timeline": 206,
+        "board": 276,
+        "overflow": false
+      }
+    },
+    {
+      "name": "editor-layout-1000x800",
+      "status": "PASS",
+      "detail": {
+        "timeline": 153,
+        "board": 318,
+        "overflow": false
+      }
+    },
+    {
+      "name": "rerecord-uses-chosen-segment-window",
+      "status": "PASS"
+    },
+    {
+      "name": "discard-rerecord-keeps-old-project",
+      "status": "PASS"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "effects",
+      "status": "PASS"
+    },
+    {
+      "name": "exports",
+      "status": "FAIL",
+      "error": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '视频', exact: true })\u001b[22m\n"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T14:10:52.788Z",
+      "url": "http://127.0.0.1:50437/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:10:53.252Z",
+      "url": "http://127.0.0.1:50437/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:10:53.892Z",
+      "url": "http://127.0.0.1:50437/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:11:04.350Z",
+      "url": "http://127.0.0.1:50437/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:11:04.807Z",
+      "url": "http://127.0.0.1:50437/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:11:05.500Z",
+      "url": "http://127.0.0.1:50437/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:11:11.881Z",
+      "url": "http://127.0.0.1:50437/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T14:11:14.273Z",
+      "url": "http://127.0.0.1:50437/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T14:11:14.433Z",
+      "url": "http://127.0.0.1:50437/?automation=1"
+    },
+    {
+      "time": "2026-11-04T14:11:14.908Z",
+      "url": "http://127.0.0.1:50437/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T14:11:15.600Z",
+      "url": "http://127.0.0.1:50437/?automation=1#editor"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "executionRoot": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\project",
+  "checks": [
+    {
+      "name": "frontend-tests",
+      "command": "npm.cmd test -- --reporter=dot",
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 2.86,
+      "log": "evidence\\baseline\\frontend-tests.txt"
+    },
+    {
+      "name": "build",
+      "command": "npm.cmd run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 3.72,
+      "log": "evidence\\baseline\\build.txt"
+    },
+    {
+      "name": "lint",
+      "command": "npm.cmd run lint",
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.5,
+      "log": "evidence\\baseline\\lint.txt"
+    },
+    {
+      "name": "agent-tests",
+      "command": "npm.cmd run agent:test",
+      "exitCode": 1,
+      "status": "FAIL",
+      "seconds": 1.35,
+      "log": "evidence\\baseline\\agent-tests.txt"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-04T00:45:49.656Z",
+  "checks": [
+    {
+      "name": "cancel-releases-session-during-preparation",
+      "status": "FAIL"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "cancel-retry",
+      "status": "FAIL",
+      "error": "Error: cancel-releases-session-during-preparation"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

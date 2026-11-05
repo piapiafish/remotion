@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-02T21:59:34.808751+08:00",
+  "command": [
+    "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\Scripts\\python.exe",
+    "scripts/check-project-docs.py"
+  ],
+  "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "status": "PASS",
+  "exitCode": 0,
+  "seconds": 0.75,
+  "originalRootReportRestored": true
+}

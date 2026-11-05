@@ -1,0 +1,25 @@
+import type { DisplayRange, Project, TrackSet } from '../store/schema'
+import { targetTracks, type TrackTarget } from './editing'
+import { withObjectTracks } from './objectEditing'
+
+export function displayRange(item: { displayRange?: DisplayRange }, duration: number): DisplayRange {
+  return item.displayRange ?? { start: 0, end: duration }
+}
+export function isDisplayed(item: { displayRange?: DisplayRange }, t: number): boolean {
+  return !item.displayRange || t >= item.displayRange.start - 1e-9 && t < item.displayRange.end - 1e-9
+}
+export function changeDisplayRange(project: Project, target: TrackTarget, range: DisplayRange, shift = 0): Project {
+  if (target.kind === 'camera' || !Number.isFinite(shift) || !Number.isFinite(range.start) || !Number.isFinite(range.end) || range.start < 0 || range.end <= range.start) return project
+  const item = (target.kind === 'device' ? project.devices : project.texts ?? []).find(x => x.instanceId === target.instanceId)
+  if (!item) return project
+  let next = project
+  if (shift) {
+    const tracks = targetTracks(project, target)!
+    if (Object.values(tracks).some(track => track.keys.some(k => k.t + shift < -1e-8))) return project
+    const moved: TrackSet = Object.fromEntries(Object.entries(tracks).map(([c, track]) => [c, { ...track, keys: track.keys.map(k => ({ ...k, t: Math.max(0, k.t + shift) })) }]))
+    next = withObjectTracks(project, target, moved)
+  }
+  return { ...next, version: 3, duration: Math.max(project.duration, range.end),
+    devices: next.devices.map(d => target.kind === 'device' && d.instanceId === target.instanceId ? { ...d, displayRange: range, ...(shift && d.screenPlayback ? { screenPlayback: { ...d.screenPlayback, start: Math.max(0, d.screenPlayback.start + shift) } } : {}) } : d),
+    texts: next.texts?.map(t => target.kind === 'text' && t.instanceId === target.instanceId ? { ...t, displayRange: range } : t) }
+}

@@ -1,0 +1,5 @@
+
+> mockup-web@0.0.0 build
+> tsc -b && vite build
+
+src/media/screenVideo.ts(57,3): error TS1005: ',' expected.

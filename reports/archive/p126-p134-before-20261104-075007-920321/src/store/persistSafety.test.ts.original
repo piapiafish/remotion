@@ -1,0 +1,200 @@
+import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
+import { zipSync, unzipSync, strToU8, strFromU8 } from 'fflate'
+import { createDefaultProject, createDevice } from './defaults'
+import { deserializeProject, serializeProject, projectFingerprint, missingMedia } from './persist'
+import { useProjectStore } from './project'
+import { useFeedbackStore } from './feedback'
+import { ensureFixedGround } from '../scene/groundPlane'
+import { useReplacement } from './replacement'
+import { emptyHistory } from './history'
+import type { MediaRef } from './schema'
+
+const storage = vi.hoisted(() => ({ blobs: new Map<string, Blob>(), failAt: 0, puts: 0, failGet: false, gate: null as Promise<void> | null }))
+vi.mock('../media/inspectMedia', () => ({ inspectMedia: vi.fn(async () => ({ width: 100, height: 200, duration: 10 })) }))
+vi.mock('../media/storage', () => ({
+  getMedia: vi.fn(async (id: string) => { if (storage.gate) await storage.gate; if (storage.failGet) throw new Error('Quota/storage unavailable'); return storage.blobs.get(id) ?? null }),
+  putMedia: vi.fn(async (id: string, blob: Blob) => { storage.puts++; if (storage.failAt === storage.puts) throw new Error('QuotaExceededError'); storage.blobs.set(id, blob) }),
+  deleteMedia: vi.fn(async (id: string) => { storage.blobs.delete(id) }),
+  pruneMedia: vi.fn(),
+}))
+const ref = (id: string, kind: 'image' | 'video' = 'video'): MediaRef => ({ id, kind, width: 100, height: 200, ...(kind === 'video' ? { duration: 10 } : {}), url: 'blob:old-session' })
+const pack = (p: unknown, files: Record<string, Uint8Array> = {}) => new Blob([zipSync({ 'project.json': strToU8(JSON.stringify(p)), ...files })])
+const bytes = (s: string) => strToU8(s)
+const get = () => useProjectStore.getState()
+function reset(p = createDefaultProject()) { get().endEditGesture(); useProjectStore.setState({ project: p, savedFingerprint: projectFingerprint(p), history: emptyHistory, activeDevice: 0, playhead: 0, fileBusy: false }) }
+beforeEach(() => { useReplacement.setState({pending:null}); storage.blobs.clear(); storage.failAt = storage.puts = 0; storage.failGet = false; storage.gate = null; reset(); useFeedbackStore.getState().dismiss() })
+afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers() })
+
+describe('complete portable project archives', () => {
+  it('packages background bytes, strips session URLs, and restores timing with tracks', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('clip'); p.devices[0].screenPlayback = { in: 2, out: 7, start: 1, loop: true }
+    p.background = { type: 'image', ref: ref('back', 'image'), fit: 'cover' }
+    storage.blobs.set('clip', new Blob(['video bytes'])); storage.blobs.set('back', new Blob(['image bytes']))
+    const archive = await serializeProject(p), contents = unzipSync(new Uint8Array(await archive.arrayBuffer()))
+    expect(Object.keys(contents).sort()).toEqual(['media/back', 'media/clip', 'project.json'])
+    expect(strFromU8(contents['project.json'])).not.toContain('blob:')
+    storage.blobs.clear()
+    const reopened = await deserializeProject(archive)
+    expect(projectFingerprint(reopened)).toBe(projectFingerprint(ensureFixedGround(p)))
+    expect(reopened.background.type === 'image' && reopened.background.ref.url).toMatch(/^blob:/)
+    expect(reopened.devices[0].transform).toEqual(p.devices[0].transform)
+  })
+  it('rejects saving if referenced bytes are absent rather than writing an incomplete archive', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('gone')
+    await expect(serializeProject(p)).rejects.toThrow('素材缺失')
+  })
+  it('does not mask missing ZIP entries with same-ID local cached bytes', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('cached'); p.devices[0].screenPlayback = { in: 1, out: 4, start: 2, loop: false }
+    storage.blobs.set('cached', new Blob(['unrelated']))
+    const reopened = await deserializeProject(pack(p))
+    expect(reopened.devices[0].screen).toMatchObject({ id: 'cached', url: '', missing: true })
+    expect(reopened.devices[0].screenPlayback).toEqual(p.devices[0].screenPlayback)
+    expect(missingMedia(reopened)[0]).toContain('设备 1')
+    await expect(serializeProject(reopened)).rejects.toThrow('素材缺失')
+  })
+  it('remaps a media-ID collision without overwriting the old project bytes', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('collision')
+    storage.blobs.set('collision', new Blob(['old project']))
+    const reopened = await deserializeProject(pack(p, { 'media/collision': bytes('new project') }))
+    expect(reopened.devices[0].screen!.id).not.toBe('collision')
+    expect(await storage.blobs.get('collision')!.text()).toBe('old project')
+    expect(await storage.blobs.get(reopened.devices[0].screen!.id)!.text()).toBe('new project')
+  })
+  it('rolls back imported blobs when a later storage write fails', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('one'); p.devices.push(createDevice({ screen: ref('two') }))
+    storage.blobs.set('one', new Blob(['keep'])); storage.failAt = 2
+    await expect(deserializeProject(pack(p, { 'media/one': bytes('replace'), 'media/two': bytes('new') }))).rejects.toThrow('Quota')
+    expect([...storage.blobs.keys()]).toEqual(['one']); expect(await storage.blobs.get('one')!.text()).toBe('keep')
+  })
+  it('retains shared source references across two independent device clocks', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('same'); p.devices.push(createDevice({ screen: ref('same'), screenPlayback: { in: 3, out: 8, start: 2, loop: true } }))
+    const reopened = await deserializeProject(pack(p, { 'media/same': bytes('source') }))
+    expect(reopened.devices[0].screen!.id).toBe(reopened.devices[1].screen!.id)
+    expect(reopened.devices[0].screen!.url).toBe(reopened.devices[1].screen!.url)
+    expect(reopened.devices[1].screenPlayback).toEqual(p.devices[1].screenPlayback)
+    expect(storage.puts).toBe(1)
+  })
+  it('loads old single-device documents with compatible defaults', async () => {
+    const p = createDefaultProject()
+    const reopened = await deserializeProject(pack({ version: 1, device: p.devices[0], deviceTransform: p.devices[0].transform }))
+    expect(reopened.devices).toHaveLength(1); expect(reopened.devices[0].screenPlayback).toBeUndefined()
+  })
+})
+
+describe('invalid input is rejected before storage or project replacement', () => {
+  it.each([
+    ['invalid ZIP', () => new Blob(['no zip'])],
+    ['missing project.json', () => new Blob([zipSync({ other: bytes('data') })])],
+    ['bad JSON', () => new Blob([zipSync({ 'project.json': bytes('{broken') })])],
+    ['root array', () => pack([])], ['empty root', () => pack({})],
+    ['empty device list', () => pack({ devices: [] })],
+    ['missing device model', () => pack({ devices: [{}] })],
+    ['null tracks', () => { const p = createDefaultProject(); Object.assign(p.devices[0], { transform: null }); return pack(p) }],
+    ['unsupported version', () => pack({ ...createDefaultProject(), version: 99 })],
+    ['bad fps', () => pack({ ...createDefaultProject(), fps: 29 })],
+    ['bad duration', () => pack({ ...createDefaultProject(), duration: -1 })],
+    ['bad model', () => { const p = createDefaultProject(); Object.assign(p.devices[0], { id: 'unknown' }); return pack(p) }],
+    ['bad track', () => { const p = createDefaultProject(); p.devices[0].transform.scale.keys[0].v = NaN; return pack(p) }],
+    ['bad range', () => { const p = createDefaultProject(); p.devices[0].screen = ref('x'); p.devices[0].screenPlayback = { in: 4, out: 2, start: 0, loop: false }; return pack(p) }],
+    ['duplicate instances', () => { const p = createDefaultProject(); p.devices.push(p.devices[0]); return pack(p) }],
+  ])('%s leaves the current editable project intact and shows an error', async (_label, file) => {
+    const previous = get().project
+    await get().openProject(file())
+    expect(get().project).toBe(previous); expect(get().fileBusy).toBe(false)
+    expect(useFeedbackStore.getState().notice).toMatchObject({ kind: 'error' })
+    expect(storage.puts).toBe(0)
+    get().setName('still editable'); expect(get().project.name).toBe('still editable')
+  })
+})
+
+describe('undo, relinking and unsaved work', () => {
+  it('cancels a missing-media import before storage writes and preserves the current undo history', async () => {
+    const incoming = createDefaultProject()
+    incoming.devices[0].screen = ref('absent')
+    incoming.background = { type: 'image', ref: ref('present', 'image'), fit: 'cover' }
+    get().setName('keep this edit')
+    const previous = get().project, history = get().history
+    const confirm = vi.fn().mockReturnValue(false)
+    vi.stubGlobal('window', { confirm })
+    await get().openProject(pack(incoming, { 'media/present': bytes('image') }))
+    expect(get().project).toBe(previous); expect(get().history).toBe(history)
+    expect(storage.puts).toBe(0); expect(get().fileBusy).toBe(false)
+    const continuation=useReplacement.getState().pending!;useReplacement.setState({pending:null});continuation.proceed()
+    await vi.waitFor(()=>expect(confirm).toHaveBeenCalledOnce())
+    expect(confirm.mock.calls[0][0]).toContain('设备 1')
+    await vi.waitFor(()=>expect(useFeedbackStore.getState().notice?.message).toContain('已取消打开'))
+  })
+  it('opens a missing-media document only after the user chooses to relink it', async () => {
+    const incoming = createDefaultProject(); incoming.devices[0].screen = ref('absent')
+    const confirm = vi.fn(() => true); vi.stubGlobal('window', { confirm })
+    await get().openProject(pack(incoming))
+    expect(confirm).toHaveBeenCalledOnce()
+    expect(get().project.devices[0].screen).toMatchObject({ id: 'absent', missing: true })
+    expect(useFeedbackStore.getState().notice?.message).toContain('素材缺失')
+  })
+  it('reports timing clamping when a missing source is relinked to a shorter recording', () => {
+    const p = createDefaultProject(); p.devices[0].screen = { ...ref('absent'), missing: true }
+    p.devices[0].screenPlayback = { in: 2, out: 8, start: 1, loop: true }; reset(p)
+    get().setScreenMedia({ ...ref('shorter'), duration: 4 })
+    expect(get().project.devices[0].screenPlayback).toEqual({ in: 2, out: 4, start: 1, loop: true })
+    expect(useFeedbackStore.getState().notice?.message).toContain('新录屏较短')
+    get().undo(); expect(get().project).toBe(p)
+  })
+  it('edits only the selected device clock as one undo/redo step', () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('a'); p.devices.push(createDevice({ screen: ref('a') })); reset(p)
+    get().setActiveDevice(1); get().setScreenPlayback({ in: 2, out: 5, start: 1 })
+    expect(get().project.devices[0]).toBe(p.devices[0]); expect(get().project.devices[1].screenPlayback).toEqual({ in: 2, out: 5, start: 1, loop: false })
+    get().undo(); expect(get().project).toEqual(p); expect(get().hasUnsavedChanges()).toBe(false)
+    get().redo(); expect(get().hasUnsavedChanges()).toBe(true)
+  })
+  it('does not modify invalid source ranges or history', () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('a'); reset(p)
+    get().setScreenPlayback({ in: 8, out: 3 }); expect(get().project).toBe(p); expect(get().history.past).toHaveLength(0)
+  })
+  it('relinks a missing recording while preserving its timing and animation', () => {
+    const p = createDefaultProject(); p.devices[0].screen = { ...ref('gone'), missing: true, url: '' }; p.devices[0].screenPlayback = { in: 2, out: 5, start: 1, loop: true }; reset(p)
+    get().setScreenMedia(ref('new'))
+    expect(get().project.devices[0].screenPlayback).toEqual(p.devices[0].screenPlayback)
+    expect(get().project.devices[0].transform).toBe(p.devices[0].transform)
+    get().undo(); expect(get().project.devices[0].screen?.missing).toBe(true)
+  })
+  it('resets timing on an ordinary source replacement and preserves it on duplication', () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('one'); p.devices[0].screenPlayback = { in: 2, out: 5, start: 1, loop: true }; reset(p)
+    get().duplicateDevice(0); expect(get().project.devices[1].screenPlayback).toEqual(p.devices[0].screenPlayback)
+    get().setScreenMedia(ref('replacement')); expect(get().project.devices[1].screenPlayback).toBeUndefined()
+  })
+  it('uses the captured instance for asynchronous uploads after selection changes', () => {
+    const p = createDefaultProject(); p.devices.push(createDevice()); reset(p)
+    get().setActiveDevice(1); get().setScreenMedia(ref('uploaded'), p.devices[0].instanceId)
+    expect(get().project.devices[0].screen?.id).toBe('uploaded'); expect(get().project.devices[1].screen).toBeNull()
+  })
+  it('cancels new/open when the user keeps unsaved work', async () => {
+    get().setName('keep me'); const previous = get().project
+    vi.stubGlobal('window', { confirm: vi.fn(() => false) })
+    get().newProject(); await get().openProject(pack(createDefaultProject()))
+    expect(get().project).toBe(previous); expect(get().hasUnsavedChanges()).toBe(true)
+  })
+  it('keeps dirty state and reports a save failure', async () => {
+    get().setScreenMedia(ref('missing'))
+    await get().saveProject()
+    expect(get().hasUnsavedChanges()).toBe(true); expect(get().fileBusy).toBe(false)
+    expect(useFeedbackStore.getState().notice?.message).toContain('保存工程失败')
+  })
+  it('does not mark edits made during an asynchronous save as saved', async () => {
+    vi.useFakeTimers()
+    const p = createDefaultProject(); p.devices[0].screen = ref('a'); storage.blobs.set('a', new Blob(['bytes'])); reset(p)
+    const click = vi.fn(); vi.stubGlobal('document', { body: { appendChild: vi.fn() }, createElement: () => ({ click, remove: vi.fn() }) })
+    let release = () => {}; storage.gate = new Promise<void>(resolve => { release = resolve })
+    const saving = get().saveProject(); get().setName('edit while saving'); release(); await saving
+    expect(click).toHaveBeenCalledOnce(); expect(get().hasUnsavedChanges()).toBe(true)
+    expect(get().savedFingerprint).toBe(projectFingerprint(p)); await vi.runOnlyPendingTimersAsync()
+  })
+  it('does not overwrite edits made while an imported project is loading', async () => {
+    const p = createDefaultProject(); p.devices[0].screen = ref('incoming')
+    let release = () => {}; storage.gate = new Promise<void>(resolve => { release = resolve })
+    const opening = get().openProject(pack(p, { 'media/incoming': bytes('data') }))
+    get().setName('changed during loading'); release(); await opening
+    expect(get().project.name).toBe('changed during loading'); expect(get().project.devices[0].screen).toBeNull()
+    expect(useFeedbackStore.getState().notice?.message).toContain('加载期间工程已被修改')
+  })
+})

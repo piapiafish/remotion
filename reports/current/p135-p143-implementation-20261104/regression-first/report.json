@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-04T11:38:37.888Z",
+  "checks": [
+    {
+      "name": "D02-legacy-time-boundaries-remain-correct",
+      "status": "FAIL",
+      "detail": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "name": "E01-ordinary-edits-stay-static",
+      "status": "PASS"
+    },
+    {
+      "name": "E02-pose-animation-has-correct-two-second-midpoint",
+      "status": "FAIL"
+    },
+    {
+      "name": "G02-numeric-instructions-preserve-before-range-and-position",
+      "status": "FAIL",
+      "detail": [
+        [
+          0,
+          0.2339130434782609,
+          0,
+          0.8
+        ],
+        [
+          1,
+          0.3,
+          29.999999999999996,
+          0.8
+        ],
+        [
+          2,
+          0.4,
+          59.99999999999999,
+          0.8
+        ],
+        [
+          6,
+          0.6,
+          299.99999999999994,
+          0.8
+        ],
+        [
+          8,
+          0.8,
+          419.99999999999994,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "solid-and-sticker-both-support-front-back-placement",
+      "status": "PASS"
+    },
+    {
+      "name": "transparent-output-with-solid-and-phone-renders",
+      "status": "PASS"
+    },
+    {
+      "name": "compact-window-controls-remain-usable",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "media-regression",
+      "status": "FAIL",
+      "error": "Error: D02-legacy-time-boundaries-remain-correct"
+    },
+    {
+      "name": "authoring-regression",
+      "status": "FAIL",
+      "error": "Error: E02-pose-animation-has-correct-two-second-midpoint"
+    },
+    {
+      "name": "g02",
+      "status": "FAIL",
+      "error": "Error: G02-numeric-instructions-preserve-before-range-and-position"
+    },
+    {
+      "name": "occlusion",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

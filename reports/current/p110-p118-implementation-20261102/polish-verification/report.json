@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-02T16:05:52.128Z",
+  "checks": [
+    {
+      "name": "group-property-panel-edits-selected-axis",
+      "status": "PASS"
+    },
+    {
+      "name": "last-pose-deletion-disables-animation",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-keys-retain-numeric-lens-editing",
+      "status": "PASS"
+    },
+    {
+      "name": "shorter-duration-clamps-current-time",
+      "status": "PASS"
+    },
+    {
+      "name": "none-png-and-mp4",
+      "status": "PASS",
+      "detail": {
+        "frames": "6"
+      }
+    },
+    {
+      "name": "dof-png-and-mp4",
+      "status": "PASS",
+      "detail": {
+        "frames": "6"
+      }
+    },
+    {
+      "name": "blur-png-and-mp4",
+      "status": "PASS",
+      "detail": {
+        "frames": "6"
+      }
+    },
+    {
+      "name": "combined-png-and-mp4",
+      "status": "PASS",
+      "detail": {
+        "frames": "6"
+      }
+    },
+    {
+      "name": "disabling-effects-releases-gpu-textures",
+      "status": "PASS",
+      "detail": {
+        "withEffects": 11,
+        "withoutEffects": 6
+      }
+    },
+    {
+      "name": "focus-deletion-keeps-last-distance",
+      "status": "PASS",
+      "detail": {
+        "distance": 3.5,
+        "actual": {
+          "enabled": true,
+          "focusDevice": null,
+          "distance": 3.5,
+          "strength": 0.5
+        }
+      }
+    },
+    {
+      "name": "text-only-scene-exports-transparent-png",
+      "status": "PASS"
+    },
+    {
+      "name": "assistant-remains-available-and-marked-mock",
+      "status": "PASS"
+    },
+    {
+      "name": "no-browser-errors",
+      "status": "PASS",
+      "detail": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS"
+}

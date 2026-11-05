@@ -1,0 +1,26 @@
+import { useEffect } from 'react'
+import { Vector3 } from 'three'
+import { useProjectStore } from '../../store/project'
+import { useCameraSession } from '../../store/cameraSession'
+import { sampleTimeline } from '../../timeline/sample'
+import { useExportSession } from '../../export/session'
+import { useReplacement } from '../../store/replacement'
+
+export function useCameraKeyboard(board:React.RefObject<HTMLDivElement|null>){
+  useEffect(()=>{const held=new Set<string>();let frame=0,last=0,fine=false
+    const stop=(cancel=false)=>{held.clear();cancelAnimationFrame(frame);frame=0;last=0;if(useCameraSession.getState().mode==='idle')useProjectStore.getState().endEditGesture(cancel)}
+    const tick=(now:number)=>{const s=useProjectStore.getState();if(!held.size||useExportSession.getState().busy||useReplacement.getState().pending){stop();return}
+      const step=(last?Math.min(.05,(now-last)/1000):1/60)*(fine?.2:1),pose=useCameraSession.getState().view??sampleTimeline(s.project,s.playhead).camera
+      last=now;const direction=new Vector3(...pose.target).sub(new Vector3(...pose.position)).normalize(),right=direction.clone().cross(new Vector3(0,1,0)).normalize(),up=right.clone().cross(direction).normalize(),offset=right.multiplyScalar((Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft')))*step).addScaledVector(up,(Number(held.has('ArrowUp'))-Number(held.has('ArrowDown')))*step)
+      s.setCameraPosition(new Vector3(...pose.position).add(offset).toArray());s.setCameraTarget(new Vector3(...pose.target).add(offset).toArray());frame=requestAnimationFrame(tick)
+    }
+    const down=(e:KeyboardEvent)=>{if(e.isComposing||e.defaultPrevented||/INPUT|SELECT|TEXTAREA/.test((e.target as HTMLElement).tagName))return
+      if(e.key==='Escape'&&held.size){e.preventDefault();stop(true);return}
+      const s=useProjectStore.getState();if(!board.current?.contains(document.activeElement)||s.activeObject||!e.key.startsWith('Arrow')||useExportSession.getState().busy||useReplacement.getState().pending)return
+      e.preventDefault();fine=e.shiftKey;held.add(e.key);if(!frame){if(useCameraSession.getState().mode==='idle')s.beginEditGesture();frame=requestAnimationFrame(tick)}
+    }
+    const up=(e:KeyboardEvent)=>{held.delete(e.key);fine=e.shiftKey;if(!held.size&&frame)stop()}
+    const blur=()=>stop();window.addEventListener('keydown',down);window.addEventListener('keyup',up);window.addEventListener('blur',blur)
+    return()=>{window.removeEventListener('keydown',down);window.removeEventListener('keyup',up);window.removeEventListener('blur',blur);stop()}
+  },[board])
+}

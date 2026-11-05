@@ -1,0 +1,4 @@
+{
+  "Command": "node scripts/test-device-lifecycle.cjs",
+  "ExitCode": 0
+}

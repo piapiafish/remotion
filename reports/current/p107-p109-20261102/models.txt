@@ -1,0 +1,10 @@
+PASS procedural-phone-loads-and-exports-rotation
+PASS iphone-17-pro-loads-and-exports-rotation
+PASS iphone-17-pro-max-loads-and-exports-rotation
+PASS pixel-9-pro-xl-loads-and-exports-rotation
+PASS galaxy-s26-ultra-loads-and-exports-rotation
+PASS procedural-phone-material-and-screen-instance-isolation
+PASS iphone-17-pro-material-and-screen-instance-isolation
+PASS iphone-17-pro-max-material-and-screen-instance-isolation
+PASS pixel-9-pro-xl-material-and-screen-instance-isolation
+PASS galaxy-s26-ultra-material-and-screen-instance-isolation

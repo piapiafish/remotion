@@ -1,0 +1,812 @@
+{
+  "package": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\deliveries\\P1-07-09-Update-20261102.zip",
+  "sha256": "8be6521421810abff8c42accdb593dda4e689ba1ccb9f40d14ee80349c1e9c1e",
+  "version": "P1-07-09-20261102",
+  "payloadFiles": 159,
+  "requirements": {
+    "package.json": true,
+    "package-lock.json": true,
+    "src/store/project.ts": true,
+    "src/store/schema.ts": true,
+    "src/timeline/sample.ts": true,
+    "src/devices/manifest.ts": true,
+    "src/scene/GltfDevice.tsx": true
+  },
+  "files": [
+    {
+      "path": "DEVELOPMENT_LOG.md",
+      "before": "2f61bfa8be26ed9fbcb1570e7bddfcbfc0c3851c165bb1cc9840fb960d5a9f46",
+      "after": "357bb3f5228fa2103c334766ede73c8334768cf188677f74edc503c3e0d7bb1b"
+    },
+    {
+      "path": "IMPLEMENTATION_ROADMAP.md",
+      "before": "a7769f8e8d21bfa473e60aca08952e168e0eb160914daf6b33a2aa769ef086a4",
+      "after": "c687cc9d45e2dc401cc326c62e182606b79d058b5f4dffb49789fac872a0cd80"
+    },
+    {
+      "path": "ISSUES_LOG.md",
+      "before": "0a69af2e356023ab968cd29d73c194d47c897b88f86d70579f79dbd646c138a7",
+      "after": "2010849413c425effbcf0bb79c4e2662e537abb7747044f4b7af6f4e7d039a20"
+    },
+    {
+      "path": "README.md",
+      "before": "c270557f9e404d038de25990300379a63746967afb87d5676b7a30872800f819",
+      "after": "70b7735c47f5d3ef0f8070e5dd218a86edb5806fd9f19d97b5f76526c2664602"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "before": "df64818cad5100ed1426f7b8abdc523dcc5abb71e1899a53c3893da45e7b440a",
+      "after": "6c75c09b0e19af0befa5d8bbec2d4fb8889b33edc82e8bf019ab95d8344aca3e"
+    },
+    {
+      "path": "docs/PHASE_ONE_GUIDE.md",
+      "before": null,
+      "after": "c6bb7c5a186321e5d8b81b2c6d155427bb466db2f398d090718e6d889390e2ca"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "before": "47f4128d23ad2d95b73ba6459d5ed34bb1e415cddced30f71d30c0f94c8e59fd",
+      "after": "08c37377896d7e315fcba7b4e49fc43a799507927920abb327727d612e74e2d6"
+    },
+    {
+      "path": "reports/current/README.md",
+      "before": "4a600247cf207ef67d0dd0251df767e9a28f3b2db13221ca593172f3635785fe",
+      "after": "3a47437387b6d9f28c1074d0d6346b8733eeb1a3bc62feea396e9787a7773c33"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/README.md",
+      "before": null,
+      "after": "53d4a85904db27e63aa8878fe0e1e7c8bf5b4146ce826e091d609448aab55688"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/build-final.txt",
+      "before": null,
+      "after": "3524ecc1c9f4f78f1ccba5e951466c1719a3a274361628b717a2861c8132ceff"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/checks-final.json",
+      "before": null,
+      "after": "8f13f2267a29430b1381f483898dc34a3859ef5f0af548a1dd0c6a150b8ce4e8"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/device-models-review.mp4",
+      "before": null,
+      "after": "5d782dbefb055fcb6ff6ea47cdca25039c2a1622eb6221fff793e84c68048954"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/diagnostics/generic-after-fix-report.json",
+      "before": null,
+      "after": "06bc70dfbb1b92321ef254be904f7278d09c29d577e7aadc4af5361b18b7566b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/diagnostics/generic-before-uv-fix.png",
+      "before": null,
+      "after": "870837cf8b5ac113fa391c73b904f27f0cdf676180801363e5b55dd522ed3b17"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/diagnostics/models-before-uv-fix-report.json",
+      "before": null,
+      "after": "47a5a0d7b8bb71be9163fba70cff8e701ca86b290cedb685349733b8465e39a4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/diagnostics/workflow-missing-recorder-report.json",
+      "before": null,
+      "after": "c136425cd43fb17f750fcb43c7d9c3d0022edcff535f18766651ffaca4690c49"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/diagnostics/workflow-selector-diagnostic.json",
+      "before": null,
+      "after": "aeaf6fed6560f292dea94a75c67d489ee69a825edc3e7ee6e5f8a7560411a42f"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/document-check.json",
+      "before": null,
+      "after": "a17141697a68c843bc6130c2f5802c6b8036f1c33dd0cce75369872db94fbaad"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors-2.txt",
+      "before": null,
+      "after": "18a6bedbe4753c8d938792403175119d8a6e74a27625c85871b00626e30c62cb"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors-first.txt",
+      "before": null,
+      "after": "1751d11eea61307f9d89e11c627780b95932f8634990455e55c1b0e6343326d3"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/after-cancel-ffprobe.json",
+      "before": null,
+      "after": "328bc09c84bafffdb7a90060f6d30398a2061d1defac36a30aaabe868e3659ee"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/after-cancel.mp4",
+      "before": null,
+      "after": "b9a8a51fa85dfd084af75b68d8390039e9a2ab37796e6281300c3f6d7ef2614e"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/allocation-retry.mp4",
+      "before": null,
+      "after": "ba264ef849978919a01e9c5e18821b6fecd653f28e5c697762eaac401fb6f67b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/cancel.mockup",
+      "before": null,
+      "after": "885d629b0891d07b19477dd52fbca14c133ef1592e6213ed25cea7bc9f4b1923"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/configure-retry.mp4",
+      "before": null,
+      "after": "d5c91fe494019145367d2811aa998b30bfeffbc92e2cbd2db751add503409929"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/encode-retry.mp4",
+      "before": null,
+      "after": "a63c914de2346083d3597de4f8489c38a5c15687f459e67e271c82d7295575a0"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/fallback.mockup",
+      "before": null,
+      "after": "c89506a9b781b90f2c1a8dd8ce51689f6a4d7c30c46b151fc4f852268cbebf76"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/fallback.zip",
+      "before": null,
+      "after": "9379599edf8bc162c524c9be16dc7c8ce0c15215395800a6cad3dd7d5e192abd"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/flush-retry.mp4",
+      "before": null,
+      "after": "828f16e806e5ba9b3ed0d8032147764779a5d48a574eb4aaa13923ecef2c248c"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/media.mockup",
+      "before": null,
+      "after": "fdf7bc20714c380b4c9d27e8b199b57daca9a24b15b7e7afc5fc50718b2117fe"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/output-retry.mp4",
+      "before": null,
+      "after": "762ffab94bd0b5d585c5aec7fb3b1a7e1d90b39e49ccd495ac0baa1cbf0c164f"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/render-retry.mp4",
+      "before": null,
+      "after": "ba264ef849978919a01e9c5e18821b6fecd653f28e5c697762eaac401fb6f67b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/report.json",
+      "before": null,
+      "after": "7c52400cae46ce0a2b1142fd56f88567b019de163a802d0796c6e5af5494cb0c"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/errors/small.mockup",
+      "before": null,
+      "after": "fb5f69e3b472a4ce42cccb503ba77077725a21d6d337c152d84beda68cce5016"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/execution-blocks.json",
+      "before": null,
+      "after": "e1b0afd7d169cc525a7c453b446c28cf2450324fcd64307ee03820be2edb3e2e"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/frame-comparison.json",
+      "before": null,
+      "after": "9185e688e482c523f1d63af3d76dea06e62c62e3a617df9cfb0a22cc180f46d7"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/join-validation.json",
+      "before": null,
+      "after": "29a28f196b02e0b9de5b4a6f5934cc70b876560afb790062ed981c56543b7f41"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/lint-final.txt",
+      "before": null,
+      "after": "9f1e39aad3daa2402156b4e8b079ae70db8054c1aaad559163b84e3cb26e55bc"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/model-contact.png",
+      "before": null,
+      "after": "647cd38fb38d5dd9426c7e73e2033eb136b8a06c1c2fae4855d6a9d980a225fa"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models-generic-fixed.txt",
+      "before": null,
+      "after": "dae5da8b0340d99ea8e4ceb700347a443e9407248baf744af7edcfb751776192"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models.txt",
+      "before": null,
+      "after": "d7cd8159f2653b11073bf1b4a2f6819c6bc4d1eb5129776585930365fef8c0e0"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-back.png",
+      "before": null,
+      "after": "6f0dddcffefd10a65a2b5d9304eca5183a05ca6dfb9cf9af14b35809a70efff5"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-front.png",
+      "before": null,
+      "after": "40165270c12dafddf903eded07bffd16c6c66ee46c7d809071317a39c1dcb0c4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-isolation.mockup",
+      "before": null,
+      "after": "02fa7213f61d9be7ed799870a652ec2b99525168d88cefe2d8548d55db0e7412"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-left.png",
+      "before": null,
+      "after": "ac8ce53e6da708d3c6fb218846e5b0d08fed675074aa1bd959a117cf81e40134"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-right.png",
+      "before": null,
+      "after": "6b8a5123a5c4410fbc50aeea70cf838bdf4d79519232fb3104e4cae59955cdc5"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-spin-ffprobe.json",
+      "before": null,
+      "after": "24b38a0ec6357799a9b95fe956cf35db85f8b37db852ad71e87cba65360473b2"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-spin.mp4",
+      "before": null,
+      "after": "1ec4e482cba847f504dd580a9303a89ceaa90c6aed679e5679ada63e37a15c95"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra-titanium-back.png",
+      "before": null,
+      "after": "a59efea33d2be6938720deceaf4545e29d6dee914528d604923d260d0a1ff4af"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/galaxy-s26-ultra.mockup",
+      "before": null,
+      "after": "ef299be93997866ebb72ee861bf4da26b5eedfa20172f6b0855a3a94e010c90b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/inventory.json",
+      "before": null,
+      "after": "26014209f465c1993070e9da1852405e6186a70a56be8b94656ac0ea6d327baa"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-back.png",
+      "before": null,
+      "after": "31b8aeac06a44c534adc187e49369a82066e62676f51d2c94afc6d05ec1345cb"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-black-titanium-back.png",
+      "before": null,
+      "after": "133080b1bad28dc2caf7a44655838c96824c9d21c02deadc9e626434150fe76b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-front.png",
+      "before": null,
+      "after": "9d64677cd530ba82c2654fee8ea37ad136481a5a1acd218a19490142ba62d0bf"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-isolation.mockup",
+      "before": null,
+      "after": "abb79932d027513eab17fe8f495b6c1420a7134c66ad1af07daef2f1e08a1e91"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-left.png",
+      "before": null,
+      "after": "76955f0454c4318c80e9ca6e633a42655709020c2058fa4c7929219f0026ac21"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-back.png",
+      "before": null,
+      "after": "9204d908b1485d78ee0098382e891218b463dd61114eed3351c23fd3d49ba6e8"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-cosmic-orange-back.png",
+      "before": null,
+      "after": "2955c535bec96ab7b69ad7a403792bf7693551e9db1c9f70c4de3033771b1ff5"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-deep-blue-back.png",
+      "before": null,
+      "after": "22b89a067f876accf8df77a0ba8cff00b0360e25226fe2cad10471492549ee8f"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-front.png",
+      "before": null,
+      "after": "7bce92f05cf246281c31d0484e586fbf5cece1ec8e4c80287f506c7949b9f709"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-isolation.mockup",
+      "before": null,
+      "after": "099c1bc40b851296fdd62f407560f290800e0f641bb7699aa8e7663ddd69af15"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-left.png",
+      "before": null,
+      "after": "2abb7ee452a31312a41a0eb7817837ad4887ac82605b55b6719be8bc8bd79e08"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-right.png",
+      "before": null,
+      "after": "07bf2d95bec5faf55372f445a95c1833317c0a6874d5d6bee8658c20179c4f96"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-silver-back.png",
+      "before": null,
+      "after": "89bc4713eec9c3ec29680c151487421262d67edf232a5975b6d1718803f392c7"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-spin-ffprobe.json",
+      "before": null,
+      "after": "00f6ec716ed948f4f49c577e38576a6211a5a5939b6d891fd52c899d394923b8"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max-spin.mp4",
+      "before": null,
+      "after": "e571c303a48250422e0fd209b5458dcda8b7717d2dd845f0e9e30938bd5f5063"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-max.mockup",
+      "before": null,
+      "after": "f2db04c5efe8e87456b7b6ff5dad74cad93584fb5d6a3aa5c59d02a2343732b4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-natural-titanium-back.png",
+      "before": null,
+      "after": "c8d25f2caab0060d40d24ca3e367b603153c7e87980455ad76d6881d51a2c5b2"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-original-blue-back.png",
+      "before": null,
+      "after": "512d9b1c4064ca1ce79abfde9338da969b766f7aa6dfe52d7d19b83ef6cc60f4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-right.png",
+      "before": null,
+      "after": "2dad943807fd2cc498fdbff43b5698df84f83fb50e6ffef1883857b7d7f824e4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-spin-ffprobe.json",
+      "before": null,
+      "after": "74a6bc0a58a74b2864f814e3680c5e0493414344f3208595e329cea0454b8c4f"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-spin.mp4",
+      "before": null,
+      "after": "93ef76a7aa7ed45259a5e5909c6340f1a77feea2cd40b635aeb1432ab0a8ee70"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro-white-titanium-back.png",
+      "before": null,
+      "after": "197cc268dd6777e5f35ff645bacd98b5684b250dae555d2e6feeca6e525a1629"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/iphone-17-pro.mockup",
+      "before": null,
+      "after": "07c2601a74a1b09f31ab3056e482aa5ed512f6d0c971d25441f9ec6723947805"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-back.png",
+      "before": null,
+      "after": "46e4ae449d623de718aa6b1569122eeba9242bbfe6357d611e909b9b3f64c1b9"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-front.png",
+      "before": null,
+      "after": "10c91f13be37512a750123998e585c2bc6bc545c2b0267a2c77e3c51a0569115"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-hazel-back.png",
+      "before": null,
+      "after": "83bea33a2033c564199c564feeebdc5585a78ffcaf1da7a1aa3556a9864fe181"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-isolation.mockup",
+      "before": null,
+      "after": "88561026e3ecf35ffc8554ec1be31da3b9873332ab9998fa0d968e21db268355"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-left.png",
+      "before": null,
+      "after": "bee23094bd80e5726db72d2c49d973f6b22b6aeee1db7c139639dc4e7369707b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-obsidian-back.png",
+      "before": null,
+      "after": "46e4ae449d623de718aa6b1569122eeba9242bbfe6357d611e909b9b3f64c1b9"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-porcelain-back.png",
+      "before": null,
+      "after": "4f7f7c5625a5823d5d274a32e62de7a1a5e4c033d51a9a77167822008ba56370"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-right.png",
+      "before": null,
+      "after": "48e2c1346ebb047b3fac7430b62777a2a4a6863c42db68971c40a62f663ca003"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-spin-ffprobe.json",
+      "before": null,
+      "after": "c16701d1bf19867efbb463eda859a8a0bb5c2f1a1e28d932fd7fdbb40d0461dc"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl-spin.mp4",
+      "before": null,
+      "after": "5142d06c4fbaf523faa85f9ccd5c02e1473ded9cbef28b0a6569cbebaf4221ff"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/pixel-9-pro-xl.mockup",
+      "before": null,
+      "after": "cf98d9332ce837be9ac8bac1e85b6791c1eb9c4c2a64210b98aef1c6ef1c33bd"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-back.png",
+      "before": null,
+      "after": "ecb2d519124d26dc0adbed4211d33ab82ff73d2daf3fc2acf0eec295581bbf5b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-front.png",
+      "before": null,
+      "after": "8d9a99f21f24ece025ce518010fa84f16d85d273fa5dabc0100b0d1a80e06614"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-graphite-back.png",
+      "before": null,
+      "after": "ecb2d519124d26dc0adbed4211d33ab82ff73d2daf3fc2acf0eec295581bbf5b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-isolation.mockup",
+      "before": null,
+      "after": "68a7139f44a1dfcd6b1dcbababddff1fc1c06f6dc3c2fa83ce4c2d8b4ec1cf50"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-left.png",
+      "before": null,
+      "after": "9b27195661b820cc17cbecec1cfbf42ac42d3685cb9cc6e712a4e3b3ac744f17"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-right.png",
+      "before": null,
+      "after": "f4090873cd32edb069e82861228f68a5cd19d76946e7bbd6e77808af4517867a"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-silver-back.png",
+      "before": null,
+      "after": "c348330591c0e0a730ec77ddf83f90c4bf611b7402d70a2e4c3b05d6acd50569"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-spin-ffprobe.json",
+      "before": null,
+      "after": "44b5cfe0262bb74020d95f8ddf2b6d588578487aec84d695461433d9870a2984"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone-spin.mp4",
+      "before": null,
+      "after": "322bcbb228a5c44152b8419a93e21a4ebeac515c14f661993937822e852cddff"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/procedural-phone.mockup",
+      "before": null,
+      "after": "681867f012b0103a86bc3144b94ac38b161e452c6fc47b155ddab9bbf307b53e"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/models/screen-check.png",
+      "before": null,
+      "after": "554907334160325045950956f54d06c215890b01f3fbe8a673fa13ddffa4f74c"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline-production.txt",
+      "before": null,
+      "after": "a7d69ef6c91a3258e131563879ad5fe641e9d500b34a1f379766bc9cecbee8cf"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline/report.json",
+      "before": null,
+      "after": "90ad43dbf241382a6a8c5943bf32dad8cdf2a2fac343221734a1b900c46b3046"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline/restored.mockup",
+      "before": null,
+      "after": "dcfcddd391bb4e2ddc4c43f791ae0233d21e66759282a9814130560150cd3eb4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline/revised-short-ffprobe.json",
+      "before": null,
+      "after": "49c75bfad0fb5a5dfd6153b6c9df5c149955625688b16b056d80fceeb060204a"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline/revised-short.mp4",
+      "before": null,
+      "after": "545ade87b36e4bbb9e5386c05aba5e66b44d5ae5acc14f50fb854942570ece76"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline/revised.mockup",
+      "before": null,
+      "after": "4a2198c80b19c5e65fe03072dec8eae31e03dc1cea4d76aa4002a8b8bea9bc71"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/offline/scene-30s.mockup",
+      "before": null,
+      "after": "65b6e14086d23b388af47718ddf756c0e09831ecebaf9748e26ed921e789a536"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/results.json",
+      "before": null,
+      "after": "4cb19a28522dc901c19cdb5e120a994f7aa4346fc3bdd83f380a8f0f4a3be037"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/screen-markers.json",
+      "before": null,
+      "after": "6f443b6c01914fb19829d88da4e4da5ae3b33e1488799791394547a3ff8d4af4"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/source-integrity.json",
+      "before": null,
+      "after": "30ef9964a2f64767cb6637c1c4a5932b88055254319e814095494f45d06a738e"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/tests-final.txt",
+      "before": null,
+      "after": "d4b43b7388c36db0c251bb30584578fdc23824fa9167a639d668ce741e9f6ab3"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow-2.txt",
+      "before": null,
+      "after": "4e4b421bd224d451e92a1eb18e8259723374eda11fbff2c2ae56ef58f7c63a43"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow-final.txt",
+      "before": null,
+      "after": "15d4940d64f8f5457bcd3f5d2a44bf02810e7cb32ddd84ac4c170963c91c2466"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow.txt",
+      "before": null,
+      "after": "7d4bd17774316a69c455913b50984d4b93b0d48c575f11cb6d96c323105fa894"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/activity-recording.mp4",
+      "before": null,
+      "after": "51770ada4908edb7b4921509b522caf5409203e4af005daedb5909ced9dc4268"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/authored.mockup",
+      "before": null,
+      "after": "2c9ac0349bfb76fdc39107e536d5a45112e600850192217f10c429f46cf1cc79"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/blank-composition.mockup",
+      "before": null,
+      "after": "8106f6d58c8cbe6bb08ea6b1123ac87e62500b9234e1cec2c844b2f27f926c9e"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/meals-recording.mp4",
+      "before": null,
+      "after": "461cfd19a355d28f552cdb6554b52a7d3e9025e2f16a0e458ad94fec37d182a3"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/reopened.mockup",
+      "before": null,
+      "after": "a0a0689732f5131ad87dbdc27c7625b5096238dce09cb53ffbfc2a8c5369efcb"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/report.json",
+      "before": null,
+      "after": "0f14b72cc1ea188dea6be06576d06355eae8e01667bed11677211664d4a2a19d"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/revised.mockup",
+      "before": null,
+      "after": "a8a6b48946f672df51c4d1e0d1358f635baea1c7b0a30f67455feb50a710bc71"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-0.png",
+      "before": null,
+      "after": "94a982ecec3fa9e40b947ebf7f8c3a232080d2ea81d9b7b1ae7da8b8ab908c79"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-101.png",
+      "before": null,
+      "after": "fc149796475c8e0a712144c7084b98c43eedfc28d3da355b4eaaa5e6de2c388b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-102.png",
+      "before": null,
+      "after": "fc149796475c8e0a712144c7084b98c43eedfc28d3da355b4eaaa5e6de2c388b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-103.png",
+      "before": null,
+      "after": "5b803166879bce24c08277997a4afebceedcf7e041f935ee8bef626d2dba6526"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-11.png",
+      "before": null,
+      "after": "94a982ecec3fa9e40b947ebf7f8c3a232080d2ea81d9b7b1ae7da8b8ab908c79"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-119.png",
+      "before": null,
+      "after": "94a982ecec3fa9e40b947ebf7f8c3a232080d2ea81d9b7b1ae7da8b8ab908c79"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-12.png",
+      "before": null,
+      "after": "94a982ecec3fa9e40b947ebf7f8c3a232080d2ea81d9b7b1ae7da8b8ab908c79"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-13.png",
+      "before": null,
+      "after": "94a982ecec3fa9e40b947ebf7f8c3a232080d2ea81d9b7b1ae7da8b8ab908c79"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-26.png",
+      "before": null,
+      "after": "68e38a79fcb1bcd9fcd9bef96edf740e9438041bbb63633669656cdf19784444"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-27.png",
+      "before": null,
+      "after": "76631299c80b60eeb1c2e2ce04967693c1324a9963a864552b3c628d4f9f706a"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-28.png",
+      "before": null,
+      "after": "9893c7d48bf5f82b5b7a176dc5f6400e746c61fab9807340c9df1d1be751ad06"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-32.png",
+      "before": null,
+      "after": "ee97634fd6aaa293e051bc9718278b14c251a651f9783d0e4798f3f3832157ce"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-33.png",
+      "before": null,
+      "after": "45694f2bfbf861a2beaf9a07c74e399d481929c1f3459990ca985705becd2ace"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-34.png",
+      "before": null,
+      "after": "05b953034d7d865497294e43f3e761917a47efd55197b8697b439cc259d6d5e7"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-47.png",
+      "before": null,
+      "after": "d617b59323c6a78ab0479ee44bfd55f95a20c366c713ea3a4f9bc0622e00228a"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-48.png",
+      "before": null,
+      "after": "2354b90cbb5fd01091291ca06dd40ceacb4309785e955a44499b152b73c1c97b"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-49.png",
+      "before": null,
+      "after": "cf66ca7403731b764b84e91145e86b96e79ce999df95fab5231329127e63cc12"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-71.png",
+      "before": null,
+      "after": "21cdf6edd2997fa87cf1bd954a09504265169a2a806da24c2cd7cbbbdbe27692"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-72.png",
+      "before": null,
+      "after": "93adf80482da667e742d671d8bdd92dce873a3a811e7f9d72c75ef8030a8b9a2"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/short-reference-73.png",
+      "before": null,
+      "after": "adc5bc05943c3993ae389f62c11949ebb8c8cd1bb4d33d8ae8514833cbc2b4b7"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/stage-one-short-ffprobe.json",
+      "before": null,
+      "after": "6f71cea69444b41ed122a1ee1414c2b356d5b0a46654365f216822eafdbe5f9a"
+    },
+    {
+      "path": "reports/current/p107-p109-20261102/workflow/stage-one-short.mp4",
+      "before": null,
+      "after": "1ca7461e888f93a9b686b2a8692fce5135ea851ec08cf14cce201cc1f91d4c0c"
+    },
+    {
+      "path": "scripts/join-clips.py",
+      "before": null,
+      "after": "2b81dc308b4961751fdbb084826afda4c15fd53d752dbff42482c248f98af1e4"
+    },
+    {
+      "path": "scripts/test-stage-one-offline.cjs",
+      "before": null,
+      "after": "17053f47872d853362bfb786384f1fc7cf081b3e5ee489bb5583416e8ad3d140"
+    },
+    {
+      "path": "scripts/test-stage-one.cjs",
+      "before": null,
+      "after": "c760c0b9135cf9a93c93f18152dd692b84b8aa241cc0646e6f1050c9f51fc8a4"
+    },
+    {
+      "path": "src/App.tsx",
+      "before": "84d13cd9183233137684dbda1afe3ff5ab85e56ba496c4ad3d5bc484d59c5a76",
+      "after": "0677299b359651cde1f43efda5c2dd814015757e767dfb3dbe7b2693e01bc141"
+    },
+    {
+      "path": "src/app/useShortcuts.ts",
+      "before": "45ceb47213551f6e2d33c7424551e512ae701e718935b31357388f52392ae3bd",
+      "after": "c4e2951f414309a90c56533bf76fa20bbfd4b9a16fc405c9cfa28e416da93905"
+    },
+    {
+      "path": "src/export/backdrop.ts",
+      "before": "ea144ed626c45acd50ba6af9f79db98b37671179d1eaa6b8bd680cf0ec938553",
+      "after": "67473593e6056d9244d68e72a374a7243684ad5c6abbd73ae3da85f975355943"
+    },
+    {
+      "path": "src/export/exportError.ts",
+      "before": null,
+      "after": "80a7b32b26639f03e64914a40640235c91acbac21de97c29db6104fb3995e14e"
+    },
+    {
+      "path": "src/export/exportLifecycle.test.ts",
+      "before": null,
+      "after": "2e54465b7d7eb56ef84aef0498b13195371043ac42e1ace0f78efae79ef0845d"
+    },
+    {
+      "path": "src/export/exportReadiness.test.ts",
+      "before": null,
+      "after": "c87585510ab2949144216971e85fc2cf4562c50b3a121fcf8234ba496809067f"
+    },
+    {
+      "path": "src/export/frameRenderer.ts",
+      "before": "da2ac9e72b2258a16d15d88bf8cfa90d6cd6a5c75b5fe021c6dc4fc2f718e429",
+      "after": "2e1105be1c427c3aaf584a30ad2d171e8f18d10fe730b718faf9319dec05df00"
+    },
+    {
+      "path": "src/export/rendererCleanup.test.ts",
+      "before": null,
+      "after": "90d28e0b10c323b94e8f256c50e6e75c6c56a8c4f3c3d5fecad1999ed691f523"
+    },
+    {
+      "path": "src/export/sceneReady.ts",
+      "before": null,
+      "after": "dd2555d90d053cf90ba5f50f13664e03f86f659c33b0e5852524c815522e07b4"
+    },
+    {
+      "path": "src/export/sequence.ts",
+      "before": "2985b974a994864414d15c69f5d9139de8c401da05ed4b5c4a3d1298712ca5b4",
+      "after": "ce794f3b0c35f5f33347eeca6c15dd7bf9825a0b926e380bc521b657c516d546"
+    },
+    {
+      "path": "src/export/session.ts",
+      "before": null,
+      "after": "421efeb5e7d403fc2956c410a8d015577e344eda78851fddb49e83f0e7060ba4"
+    },
+    {
+      "path": "src/export/still.ts",
+      "before": "0170cdbc7a1b674e8c42cb30d5d389c8bc585501a88ac8324a10f4c5df6effdd",
+      "after": "f18f21c5ab6e940b917770581b9c1f18d0cee546ce9a6007ea8d5fa82356a6f1"
+    },
+    {
+      "path": "src/export/video.ts",
+      "before": "1e05f8574e4921c665a140f720a133462c65fd3c9994b75a5d07fb6d625932c8",
+      "after": "6de01346e38a6cf1aedf8e56bbd91593e0116a4d382485af3f3f373d90a725ff"
+    },
+    {
+      "path": "src/media/screenVideo.ts",
+      "before": "04806afd871703c7d8ea4158224b0ffb2be2d2c46c6e7bf77ad04b2ea9e4d8df",
+      "after": "06175867610c020ebadf2451ced687ec3d1f722a37f66550be0dcabc32113e96"
+    },
+    {
+      "path": "src/scene/geometry.ts",
+      "before": "f5452db7b011e857776d6af08175c248585ed599eb77ef156bc744ad3261f3ed",
+      "after": "3225fbaac6b03372d2cd8c76d3ebc1a5fbf556ae8d260bf65a0cd0cd2a91243a"
+    },
+    {
+      "path": "src/scene/geometryUv.test.ts",
+      "before": null,
+      "after": "5405a9e201c0766255341c407ddc3bcb0579255425c7010866d132e4b6a220f5"
+    },
+    {
+      "path": "src/ui/ExportDialog/ExportDialog.tsx",
+      "before": "2d3dee86a928c48a183e8a0635e2e8fccd2ec88f9a4e68301105d67b57f2f5ae",
+      "after": "885d9884d8914517281ef8aede5408e15ee4b6464736618aee21c5a9412b5946"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-03T11:59:34.767326+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "lint"
+  ],
+  "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "exitCode": 0,
+  "seconds": 1.282,
+  "log": "lint-release.txt",
+  "status": "PASS"
+}

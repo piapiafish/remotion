@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "frames": [
+    {
+      "frame": 0,
+      "ssim": 0.992847,
+      "threshold": 0.97,
+      "status": "PASS",
+      "commands": [
+        {
+          "command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\P1-02-dual-device-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,0)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-decoded-0.png"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-decoded-0.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-reference-0.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ],
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "frame": 15,
+      "ssim": 0.995643,
+      "threshold": 0.97,
+      "status": "PASS",
+      "commands": [
+        {
+          "command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\P1-02-dual-device-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,15)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-decoded-15.png"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-decoded-15.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-reference-15.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ],
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "frame": 29,
+      "ssim": 0.99323,
+      "threshold": 0.97,
+      "status": "PASS",
+      "commands": [
+        {
+          "command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\P1-02-dual-device-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,29)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-decoded-29.png"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-decoded-29.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p102-writeback-20261101\\evidence\\browser\\04-reference-29.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ],
+          "exit_code": 0
+        }
+      ]
+    }
+  ],
+  "method": "Decode installed-project MP4 and compare indices 0, 15, 29 to same-project Standard-quality engine frames."
+}

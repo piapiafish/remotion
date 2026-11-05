@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-04T11:24:30.657Z",
+  "checks": [
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "smoke",
+      "status": "FAIL",
+      "error": "Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: canvas not ready\n    at waitForReadyInternal (http://127.0.0.1:58942/src/automation/bridge.ts:48:18)\n    at Object.waitForReady (http://127.0.0.1:58942/src/automation/bridge.ts:41:16)\n    at async <anonymous>:316:30"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.80"
+}

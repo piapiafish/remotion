@@ -1,0 +1,215 @@
+{
+  "Date": "2026-11-02",
+  "Scope": "P1-01 environment-blocked checks repeated against current official P1-03-05 project",
+  "Status": "PASS",
+  "Project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "OriginalEvidence": "../p101-20261101/results.json",
+  "OriginalBlockedTests": 10,
+  "ResolvedBlockedTests": [
+    {
+      "Name": "an exit code of zero without a verified final MP4 is still a failure",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "completed work survives restart and the video endpoint supports download, HEAD and byte ranges",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "concurrent render clicks are idempotent and different storyboards render serially",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "failure logs stay visible, no failed video link is exposed, and retry is allowed",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "local API rejects foreign origins, missing explicit header, malformed/oversized JSON and invalid IDs",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "local import saves unique UTF-8 work files and preserves the previous default storyboard",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "missing media and unsafe paths fail before a storyboard or renderer is created",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "offline planning uses the existing validated planner without a model call",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "stopping the local service marks the active task interrupted",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    },
+    {
+      "Name": "symlinks cannot write work files or read media outside the project",
+      "OriginalStatus": "ENVIRONMENT_BLOCKED (localhost EACCES)",
+      "CurrentStatus": "PASS"
+    }
+  ],
+  "AgentApi": {
+    "ExitCode": 0,
+    "Failed": 0,
+    "Passed": 25,
+    "Skipped": 0,
+    "Scope": "Original full 25-test suite; render subprocesses use controlled fixtures as in the original suite"
+  },
+  "Doctor": {
+    "ExitCode": 0,
+    "Checked": 17,
+    "Failed": 0,
+    "Checks": [
+      {
+        "name": "Node 22+",
+        "ok": true,
+        "details": "v24.22.2"
+      },
+      {
+        "name": "FFmpeg",
+        "ok": true,
+        "details": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers\r"
+      },
+      {
+        "name": "FFprobe",
+        "ok": true,
+        "details": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers\r"
+      },
+      {
+        "name": "iphone-17-pro",
+        "ok": true,
+        "details": "4.88 MiB valid GLB header"
+      },
+      {
+        "name": "iphone-17-pro-max",
+        "ok": true,
+        "details": "14.60 MiB valid GLB header"
+      },
+      {
+        "name": "pixel-9-pro-xl",
+        "ok": true,
+        "details": "9.44 MiB valid GLB header"
+      },
+      {
+        "name": "galaxy-s26-ultra",
+        "ok": true,
+        "details": "2.19 MiB valid GLB header"
+      },
+      {
+        "name": "node_modules/vite/bin/vite.js",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "remotion-compositor/node_modules/@remotion/cli/remotion-cli.js",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "public/draco/draco_wasm_wrapper.js",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "public/draco/draco_decoder.wasm",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "public/environments/studio.hdr",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "public/environments/city.hdr",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "public/environments/sunset.hdr",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "public/environments/warehouse.hdr",
+        "ok": true,
+        "details": "present"
+      },
+      {
+        "name": "Python",
+        "ok": true,
+        "details": "Python 3.10.6"
+      },
+      {
+        "name": "Playwright browser + WebGL2",
+        "ok": true,
+        "details": "{\"browser\": \"156.0.8078.76\", \"path\": \"C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\", \"webgl2\": true}"
+      }
+    ]
+  },
+  "LocalService": {
+    "Checks": 10,
+    "TestServerStopped": true,
+    "SavedSession": {
+      "id": "7418e50f-31ef-4b5e-a665-a248d9e1dc59",
+      "path": "work/studio/7418e50f-31ef-4b5e-a665-a248d9e1dc59/storyboard.json",
+      "outputPath": "output/studio/7418e50f-31ef-4b5e-a665-a248d9e1dc59",
+      "status": "READY"
+    },
+    "Browser": "156.0.8078.76",
+    "Status": "PASS",
+    "HttpErrors": 0,
+    "PageErrors": 0,
+    "Method": "Python Playwright and actual Vite HTTP/TCP, without request interception or offline route fulfillment."
+  },
+  "Commands": [
+    {
+      "Command": "npm.cmd run agent:test",
+      "ExitCode": 0
+    },
+    {
+      "Command": "npm.cmd run agent:doctor",
+      "ExitCode": 0,
+      "Python": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\.venv\\Scripts\\python.exe"
+    },
+    {
+      "Command": ".venv/Scripts/python.exe reports/current/p101-environment-recheck-20261102/verify-local-service.py",
+      "ExitCode": 0,
+      "TemporaryDirectory": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\environment-probes\\p101-20261102-temp"
+    }
+  ],
+  "SourceIntegrity": {
+    "Status": "PASS",
+    "CheckedFiles": 133,
+    "ChangedFiles": []
+  },
+  "ProductCodeModified": false,
+  "FrontendBuildLint": "NOT_RERUN (no product code change; current P1-03-05 results retained separately)",
+  "FullLegacyFilmRender": "NOT_RUN",
+  "Diagnostics": {
+    "Second": "HMR reconnect raced explicit reload after service restart; probe now closes page but keeps browser context/storage before reopening",
+    "Logs": "diagnostics/",
+    "Initial": "Vite watcher hit EBUSY on browser cookie journal in project-local TEMP; retry uses a permitted directory outside project"
+  },
+  "Documentation": {
+    "Status": "PASS",
+    "ExitCode": 0,
+    "Command": "scripts/check-project-docs.py",
+    "MarkdownFilesChecked": 86,
+    "Errors": 0,
+    "HistoricalWarnings": 120,
+    "PriorRootReportPreserved": true,
+    "Integrity": "NOT_RUN (old organization baseline)"
+  },
+  "HumanAcceptance": "PENDING",
+  "PhaseOneAccepted": false
+}

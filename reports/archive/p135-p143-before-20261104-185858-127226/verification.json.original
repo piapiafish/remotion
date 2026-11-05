@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "engine": "7.4.6",
+  "platform": "Linux",
+  "windowsRuntimeVerified": false,
+  "checks": [
+    "Parsed CHECK_P0_ENV.ps1",
+    "Parsed OPEN_P0_TERMINAL.ps1",
+    "Parsed P0_ENV_COMMON.ps1",
+    "Node range v22.11.0",
+    "Node range v22.12.0",
+    "Node range v24.22.1",
+    "Node range v20.19.0",
+    "Node range not-a-version",
+    "Real Python version and module discovery",
+    "Store alias skipped without execution",
+    "Nonzero process exit preserved",
+    "Space/Unicode executable path and Python string argument"
+  ]
+}

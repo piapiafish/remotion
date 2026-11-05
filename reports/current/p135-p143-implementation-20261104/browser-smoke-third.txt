@@ -1,0 +1,10 @@
+PASS two-real-models-ready
+PASS solid-selected-outline-and-axis-controls
+PASS solid-cannot-cross-fixed-floor
+PASS empty-object-row-is-compact
+PASS phone-really-removed-from-scene
+PASS phone-reattaches-at-start
+PASS phone-removed-at-exclusive-end
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"smoke","status":"PASS"}],"checks":9}

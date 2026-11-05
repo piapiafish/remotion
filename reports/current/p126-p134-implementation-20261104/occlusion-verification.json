@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "source": "regression-visual-verified",
+  "region": {
+    "x": 880,
+    "y": 350,
+    "width": 160,
+    "height": 280
+  },
+  "comparisons": [
+    {
+      "name": "sticker-front",
+      "ssim": 0.762364,
+      "status": "PASS"
+    },
+    {
+      "name": "sticker-back",
+      "ssim": 1.0,
+      "status": "PASS"
+    },
+    {
+      "name": "solid-occluded",
+      "ssim": 1.0,
+      "status": "PASS"
+    },
+    {
+      "name": "solid-in-front",
+      "ssim": 0.748666,
+      "status": "PASS"
+    }
+  ]
+}

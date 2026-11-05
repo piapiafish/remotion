@@ -1,0 +1,10 @@
+PASS video-speed-setting-is-shared-with-clock
+PASS loop-setting-removed
+PASS negative-start-identifies-error-and-preserves-value
+PASS left-video-trim-keeps-its-end-fixed
+PASS video-trim-does-not-touch-motion
+PASS inactive-video-decoders-are-released
+PASS video-decoder-restores-on-backward-seek
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"media","status":"PASS"}],"checks":9}

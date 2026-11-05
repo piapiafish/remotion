@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "all_364_actual_D_source_files_unchanged",
+      "status": "PASS",
+      "files": 364
+    },
+    {
+      "name": "payload_hashes",
+      "status": "PASS",
+      "files": 289
+    },
+    {
+      "name": "no_browser_UI_screenshots_or_dependencies",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_D_readonly_preflight",
+      "status": "PASS",
+      "result": {
+        "status": "READY",
+        "pending_files": 289,
+        "target": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio"
+      }
+    },
+    {
+      "name": "p102_preflight_no_writes",
+      "status": "PASS",
+      "result": {
+        "status": "READY",
+        "pending_files": 289,
+        "target": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\verify-p102-cmrq89q_\\project"
+      }
+    },
+    {
+      "name": "p102_installation",
+      "status": "PASS",
+      "result": {
+        "status": "APPLIED",
+        "installed": 289,
+        "backup": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\verify-p102-cmrq89q_\\project\\reports\\archive\\p106-before-20261102-074253-630180",
+        "receipt": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\verify-p102-cmrq89q_\\project\\reports\\current\\p106-20261102\\writeback-receipt.json"
+      }
+    },
+    {
+      "name": "p102_installed_hashes",
+      "status": "PASS"
+    },
+    {
+      "name": "p102_exact_original_backups",
+      "status": "PASS",
+      "files": 36
+    },
+    {
+      "name": "p102_idempotent_no_rewrites",
+      "status": "PASS",
+      "result": {
+        "status": "ALREADY_APPLIED",
+        "pending_files": 0
+      }
+    },
+    {
+      "name": "p105_preflight_no_writes",
+      "status": "PASS",
+      "result": {
+        "status": "READY",
+        "pending_files": 178,
+        "target": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\verify-p105-vuxr6kyd\\project"
+      }
+    },
+    {
+      "name": "p105_installation",
+      "status": "PASS",
+      "result": {
+        "status": "APPLIED",
+        "installed": 178,
+        "backup": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\verify-p105-vuxr6kyd\\project\\reports\\archive\\p106-before-20261102-074256-464184",
+        "receipt": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\verify-p105-vuxr6kyd\\project\\reports\\current\\p106-20261102\\writeback-receipt.json"
+      }
+    },
+    {
+      "name": "p105_installed_hashes",
+      "status": "PASS"
+    },
+    {
+      "name": "p105_exact_original_backups",
+      "status": "PASS",
+      "files": 27
+    },
+    {
+      "name": "p105_idempotent_no_rewrites",
+      "status": "PASS",
+      "result": {
+        "status": "ALREADY_APPLIED",
+        "pending_files": 0
+      }
+    },
+    {
+      "name": "unknown_local_edits_refuse_all_writes",
+      "status": "PASS",
+      "result": {
+        "status": "CONFLICT",
+        "files": [
+          "src/store/project.ts"
+        ]
+      }
+    },
+    {
+      "name": "fourth_write_failure_rolls_back_all_installed_files",
+      "status": "PASS",
+      "calls": 7
+    },
+    {
+      "name": "tampered_payload_refused_before_writing",
+      "status": "PASS",
+      "result": {
+        "status": "ERROR",
+        "error": "Payload integrity error: DEVELOPMENT_LOG.md"
+      }
+    },
+    {
+      "name": "escaping_payload_path_refused",
+      "status": "PASS",
+      "result": {
+        "status": "ERROR",
+        "error": "Path escapes project: ../outside.txt"
+      }
+    },
+    {
+      "name": "changed_markdown_links_resolve_in_installed_project",
+      "status": "PASS",
+      "documents": 10,
+      "errors": []
+    },
+    {
+      "name": "portable_browser_runner_syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "installer_python_compile",
+      "status": "PASS"
+    },
+    {
+      "name": "final_frontend_and_browser_results",
+      "status": "PASS"
+    }
+  ],
+  "scope": "No writes to D; all mutations use checked private C temporary targets. Installation simulations accept both known source baselines."
+}

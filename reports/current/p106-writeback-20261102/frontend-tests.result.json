@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-02T01:06:42.273265+00:00",
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "npm.cmd",
+    "test"
+  ],
+  "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "exitCode": 0,
+  "seconds": 2.703,
+  "log": "frontend-tests.txt",
+  "status": "PASS"
+}

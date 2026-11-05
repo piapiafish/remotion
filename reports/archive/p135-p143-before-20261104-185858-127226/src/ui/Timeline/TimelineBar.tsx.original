@@ -1,0 +1,94 @@
+import { useEffect, useRef, useState, type PointerEvent, type KeyboardEvent } from 'react'
+import { Play, Pause, Plus } from 'lucide-react'
+import { useProjectStore } from '../../store/project'
+import { targetTracks, sameTime, type TrackTarget, type KeySelection } from '../../timeline/editing'
+import { objectPoses, animationEnabled, poseMatches } from '../../timeline/objectEditing'
+import { displayRange } from '../../timeline/displayRange'
+import { normalizePlayback } from '../../media/videoTiming'
+import { NAMED_EASINGS } from '../../timeline/easing'
+import { easeLabels, motionLabels } from '../../app/labels'
+import { MOTION_PRESETS, type MotionPresetId } from '../../timeline/presets'
+
+const ownerEqual=(a:TrackTarget,b:TrackTarget)=>a.kind===b.kind&&(a.kind==='camera'||b.kind!=='camera'&&a.instanceId===b.instanceId)
+export function TimelineBar(){
+  const s=useProjectStore(),p=s.project,[zoom,setZoom]=useState(1),root=useRef<HTMLElement>(null)
+  const rows:{target:TrackTarget;name:string}[]=[...p.devices.map((d,i)=>({target:{kind:'device' as const,instanceId:d.instanceId},name:d.name||`手机 ${i+1}`})),...(p.texts??[]).map(t=>({target:{kind:'text' as const,instanceId:t.instanceId},name:t.name}))]
+  if(animationEnabled(p,{kind:'camera'}))rows.push({target:{kind:'camera'},name:'相机'})
+  const target:TrackTarget=s.activeObject??{kind:'camera'},selection=s.keySelection,tracks=selection?targetTracks(p,selection.target):undefined
+  const first=Object.values(tracks??{}).flatMap(t=>t.keys).find(k=>!!selection&&poseMatches(k,selection.t,selection.poseId))
+  const ease=Object.values(tracks??{}).some(t=>t.interpolation==='continuous')?'continuous':Object.entries(NAMED_EASINGS).find(([,v])=>v.every((n,i)=>n===first?.ease[i]))?.[0]??'linear'
+  const focus=()=>root.current?.focus({preventScroll:true})
+  const navigate=(direction:number)=>{const poses=objectPoses(p,target),current=poses.findIndex(k=>selection?.poseId===k.id);const next=current>=0?poses[current+direction]:direction>0?poses.find(k=>k.t>s.playhead+1e-6):[...poses].reverse().find(k=>k.t<s.playhead-1e-6);if(next)s.selectKey({target,channel:'*',t:next.t,poseId:next.id});focus()}
+  function keyboard(e:KeyboardEvent<HTMLElement>){
+    if(/INPUT|SELECT|TEXTAREA/.test((e.target as HTMLElement).tagName)||e.nativeEvent.isComposing)return
+    if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();e.stopPropagation();s.deleteTimelineKey();return}
+    if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))return
+    e.preventDefault();e.stopPropagation();const step=(e.key==='ArrowDown'||e.key==='ArrowLeft'?-1:1)*(e.shiftKey?10:1)/p.fps
+    if(selection){if(!s.editingGesture)s.beginEditGesture();s.moveTimelineKey(selection,selection.t+step)}else s.setPlayhead(s.playhead+step)
+  }
+  useEffect(()=>{const end=()=>{if(root.current?.contains(document.activeElement)||document.activeElement===root.current)useProjectStore.getState().endEditGesture()};window.addEventListener('keyup',end);window.addEventListener('blur',end);return()=>{window.removeEventListener('keyup',end);window.removeEventListener('blur',end)}},[])
+  return <section ref={root} tabIndex={0} className="object-timeline" data-testid="object-timeline" aria-label="对象时间轴，上下键微调所选关键帧" onKeyDown={keyboard}>
+    <div className="timeline-mainbar"><button className="icon-btn" aria-label={s.playing?'暂停':'播放'} onClick={()=>s.setPlaying(!s.playing)}>{s.playing?<Pause size={16}/>:<Play size={16}/>}</button><label><input aria-label="当前时间" type="number" min={0} max={p.duration} step={1/p.fps} value={Number(s.playhead.toFixed(3))} onChange={e=>{s.setPlaying(false);s.setPlayhead(Number(e.target.value))}}/> / <input aria-label="总时长" type="number" min={.1} step={.5} value={p.duration} onChange={e=>{const n=Number(e.target.value);if(Number.isFinite(n)&&n>=.1)s.setDuration(n)}}/> 秒</label><span className="spacer"/><button className="ghost-btn" title="选择同一对象的上一个关键帧" onClick={()=>navigate(-1)}>上一个关键帧</button><button className="ghost-btn" title="选择同一对象的下一个关键帧" onClick={()=>navigate(1)}>下一个关键帧</button><button className="primary-btn" onClick={()=>s.activeObject?s.addObjectKey(target):s.setEditorPage('camera')}><Plus size={14}/>{s.activeObject?'添加关键帧':'录制相机运动'}</button></div>
+    <div className="timeline-legend">粗条：对象显示时间 · 细条：屏幕视频 · 菱形：姿态 · 上下键：逐帧微调 · 同刻可叠放</div>
+    <div className="timeline-scroll"><div className="timeline-sheet" style={{minWidth:Math.max(520,zoom*650)}}><TimeRuler duration={p.duration} zoom={zoom}/>{rows.map(row=><ObjectRow key={row.target.kind==='camera'?'camera':row.target.instanceId} {...row} focus={focus}/>)}{!rows.length&&<p className="hint timeline-empty">添加对象后，它们的动画会显示在这里。</p>}</div></div>
+    <div className="timeline-footer">{selection?<><span>{selection.t.toFixed(3)} 秒 · 姿态关键帧</span><CommitNumber label="关键帧时间" value={selection.t} step={1/p.fps} onCommit={v=>{s.beginEditGesture();s.moveTimelineKey(selection,v);s.endEditGesture()}}/><select aria-label="关键帧过渡" value={ease} onChange={e=>{if(e.target.value==='continuous')s.setKeyContinuous();else s.setTimelineKeyEase(NAMED_EASINGS[e.target.value as keyof typeof NAMED_EASINGS])}}>{Object.entries(easeLabels).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select><button className="link-btn" title="删除所选姿态，初始关键帧保留" onClick={s.deleteTimelineKey}>删除关键帧</button><KeyProperties/></>:<span className="hint">点选菱形后可上下键微调。拖动条两端裁切，拖整条平移。</span>}<span className="spacer"/>{s.activeObject?.kind==='device'&&<select aria-label="添加动作预设" value="" onChange={e=>s.setMotionPreset(e.target.value as MotionPresetId)}><option value="">添加动作…</option>{MOTION_PRESETS.filter(m=>m.id!=='orbit').map(m=><option key={m.id} value={m.id}>{motionLabels[m.id]??m.label}</option>)}</select>}<button className="ghost-btn" aria-label="缩小时间轴" onClick={()=>setZoom(Math.max(1,zoom/1.4))}>− 缩小时间轴</button><button className="ghost-btn" aria-label="放大时间轴" onClick={()=>setZoom(Math.min(12,zoom*1.4))}>＋ 放大时间轴</button></div>
+  </section>
+}
+function seekAt(el:HTMLElement,x:number){const s=useProjectStore.getState(),r=el.getBoundingClientRect();if(r.width){s.setPlaying(false);s.setPlayhead((x-r.left)/r.width*s.project.duration)}}
+function TimeRuler({duration,zoom}:{duration:number;zoom:number}){
+  const active=useRef<number|null>(null),raw=duration/(10*zoom),base=10**Math.floor(Math.log10(raw)),step=[1,2,5,10].map(n=>n*base).find(n=>n>=raw)??base*10
+  const ticks=Array.from({length:Math.floor(duration/step)+1},(_,i)=>i*step);if(ticks[ticks.length-1]<duration-1e-6)ticks.push(duration)
+  useEffect(()=>{const end=()=>{active.current=null};window.addEventListener('blur',end);return()=>window.removeEventListener('blur',end)},[])
+  return <div className="time-ruler-wrap"><span>对象</span><div className="time-ruler" aria-label="拖动时间尺" onPointerDown={e=>{if(e.button!==0)return;e.preventDefault();active.current=e.pointerId;e.currentTarget.setPointerCapture(e.pointerId);seekAt(e.currentTarget,e.clientX)}} onPointerMove={e=>{if(active.current===e.pointerId)seekAt(e.currentTarget,e.clientX)}} onPointerUp={()=>{active.current=null}} onPointerCancel={()=>{active.current=null}} onLostPointerCapture={()=>{active.current=null}}>{ticks.map(t=><small key={t} style={{left:`${t/duration*100}%`}}>{Number(t.toFixed(3))}</small>)}</div></div>
+}
+type Drag={pointer:number;x:number;width:number;scroll:number;duration:number;selection:KeySelection|null;moved:boolean;kind:string;range:{start:number;end:number};media:ReturnType<typeof normalizePlayback>|null;sourceDuration:number}
+function ObjectRow({target,name,focus}:{target:TrackTarget;name:string;focus:()=>void}){
+  const s=useProjectStore(),p=s.project,lane=useRef<HTMLDivElement>(null),drag=useRef<Drag|null>(null),[stack,setStack]=useState<number|null>(null)
+  const item=target.kind==='device'?p.devices.find(d=>d.instanceId===target.instanceId):target.kind==='text'?p.texts?.find(t=>t.instanceId===target.instanceId):null
+  const range=displayRange(item??{},p.duration),device=target.kind==='device'?p.devices.find(d=>d.instanceId===target.instanceId):null,media=device?.screen?.kind==='video'?normalizePlayback(device.screen.duration??0,device.screenPlayback):null
+  const poses=animationEnabled(p,target)?objectPoses(p,target):[],current=s.keySelection
+  const choose=()=>s.selectObject(target.kind==='camera'?null:target)
+  const finish=(e:PointerEvent<HTMLDivElement>,cancel=false)=>{const d=drag.current;if(!d||d.pointer!==e.pointerId)return;drag.current=null;if(d.moved&&d.kind!=='seek')s.endEditGesture(cancel);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId)}
+  useEffect(()=>{const cancel=()=>{const d=drag.current;drag.current=null;if(d?.moved&&d.kind!=='seek')useProjectStore.getState().endEditGesture(true)};const key=(e:globalThis.KeyboardEvent)=>{if(e.key==='Escape')cancel()};window.addEventListener('blur',cancel);window.addEventListener('keydown',key);return()=>{window.removeEventListener('blur',cancel);window.removeEventListener('keydown',key);cancel()}},[])
+  const active=s.activeObject?ownerEqual(s.activeObject,target):target.kind==='camera'&&current?.target.kind==='camera'
+  const percent=(time:number)=>`${time/p.duration*100}%`
+  return <div className={`object-track ${active?'active':''}`} data-testid={`track-${target.kind==='camera'?'camera':target.instanceId}`} onPointerDown={e=>{
+    if(e.button!==0||!lane.current||!(e.target as HTMLElement).closest('.object-lane')||(e.target as HTMLElement).closest('.stack-menu,.stack-count'))return
+    e.preventDefault();e.stopPropagation();focus();const control=(e.target as HTMLElement).closest<HTMLElement>('[data-drag]'),kind=control?.dataset.drag??'seek'
+    const pose=kind==='key'?poses.find(k=>k.id===control?.dataset.pose):undefined,selection=pose?{target,channel:'*',t:pose.t,poseId:pose.id}:null
+    const rect=lane.current.getBoundingClientRect(),scroll=e.currentTarget.closest('.timeline-scroll')?.scrollLeft??0
+    if(selection)s.selectKey(selection);else if(kind!=='seek')choose();else seekAt(lane.current,e.clientX)
+    drag.current={pointer:e.pointerId,x:e.clientX,width:rect.width,scroll,duration:p.duration,selection,moved:false,kind,range,media,sourceDuration:device?.screen?.duration??0};e.currentTarget.setPointerCapture(e.pointerId)
+  }} onPointerMove={e=>{
+    const d=drag.current,el=lane.current;if(!d||d.pointer!==e.pointerId||!el||d.width<=0)return
+    const scroll=e.currentTarget.closest('.timeline-scroll');if(scroll){const r=scroll.getBoundingClientRect();if(e.clientX>r.right-16)scroll.scrollLeft+=16;else if(e.clientX<r.left+115)scroll.scrollLeft-=16}
+    if(d.kind==='seek'){seekAt(el,e.clientX);return}
+    const dx=e.clientX-d.x+((scroll?.scrollLeft??0)-d.scroll);if(!d.moved&&Math.abs(dx)<4)return
+    if(!d.moved){s.beginEditGesture();d.moved=true}
+    if(!useProjectStore.getState().editingGesture){drag.current=null;return}
+    const dt=Math.round(dx/d.width*d.duration*p.fps)/p.fps,min=1/p.fps
+    if(d.selection){s.moveTimelineKey(d.selection,d.selection.t+dt);return}
+    if(d.kind.startsWith('range')){let a=d.range.start,b=d.range.end;if(d.kind==='range-start')a=Math.max(0,Math.min(b-min,a+dt));else if(d.kind==='range-end')b=Math.max(a+min,b+dt);else {const delta=Math.max(-a,dt);a+=delta;b+=delta}s.setDisplayRange(target,{start:a,end:b},d.kind==='range'?a-d.range.start:0);return}
+    if(d.media){const m=d.media,rate=m.rate??1;if(d.kind==='media')s.setScreenPlayback({start:Math.max(0,m.start+dt)});else if(d.kind==='media-start'){const delta=Math.max(-m.start,-m.in/rate,Math.min((m.out-m.in)/rate-min,dt));s.setScreenPlayback({in:m.in+delta*rate,start:m.start+delta})}else s.setScreenPlayback({out:Math.max(m.in+Math.min(min*rate,.001),Math.min(d.sourceDuration,m.out+dt*rate))})}
+  }} onPointerUp={e=>finish(e)} onPointerCancel={e=>finish(e,true)} onLostPointerCapture={e=>finish(e)}>
+    <button className="object-track-name" onClick={choose} title={`${name} · 显示 ${range.start.toFixed(2)}～${range.end.toFixed(2)} 秒`}>{name}</button><div className="object-lane" ref={lane}>
+      {target.kind!=='camera'&&<div className="display-clip" data-drag="range" style={{left:percent(range.start),width:percent(range.end-range.start)}} title="对象显示时间：拖两端调整出现/消失，拖整条平移动作"><button data-drag="range-start" aria-label={`${name}出现时间`} className="clip-handle start"/><span>显示 {range.start.toFixed(1)}～{range.end.toFixed(1)} 秒</span><button data-drag="range-end" aria-label={`${name}消失时间`} className="clip-handle end"/></div>}
+      {media&&<div className="media-clip" data-drag="media" style={{left:percent(media.start),width:percent((media.out-media.in)/(media.rate??1))}} title={`屏幕视频 · ${media.rate??1} 倍 · 拖两端裁切，拖整条改开始时间`}><button data-drag="media-start" aria-label={`${name}视频片头`} className="clip-handle start"/><span>视频 · {media.rate??1}×</span><button data-drag="media-end" aria-label={`${name}视频片尾`} className="clip-handle end"/></div>}
+      {poses.map(pose=><button key={pose.id} data-drag="key" data-pose={pose.id} className={`pose-key ${current&&ownerEqual(current.target,target)&&(current.poseId?current.poseId===pose.id:sameTime(current.t,pose.t))?'selected':''} ${pose.t<range.start||pose.t>=range.end?'outside-range':''}`} style={{left:percent(pose.t)}} aria-label={`${name}关键帧 ${Number(pose.t.toFixed(3))}秒`} title={`${pose.t.toFixed(3)} 秒${pose.initial?' · 首关键帧':''} · 拖动改时，上下键微调`}><i/></button>)}
+      {[...new Set(poses.map(k=>k.t))].map(time=>{const group=poses.filter(k=>sameTime(k.t,time));return group.length>1?<button key={time} className="stack-count" style={{left:percent(time)}} aria-label={`${name} ${time}秒叠放${group.length}个关键帧`} onClick={()=>setStack(stack===time?null:time)}>{group.length}</button>:null})}
+      {stack!==null&&<div className="stack-menu" role="group" aria-label="叠放关键帧" style={{left:percent(Math.min(stack,p.duration*.75))}}>{poses.filter(k=>sameTime(k.t,stack)).reverse().map((pose,i)=><button key={pose.id} onClick={()=>{s.selectKey({target,channel:'*',t:pose.t,poseId:pose.id});setStack(null);focus()}}>{i===0?'上层 · 有效':'下层 · 保留'}{pose.initial?' · 首键':''}</button>)}<button onClick={()=>setStack(null)}>收起</button></div>}
+      <div className="object-playhead" style={{left:percent(s.playhead)}}/><button className="playhead-handle" data-drag="seek" style={{left:percent(s.playhead)}} aria-label={`拖动播放头 ${name}`} title="拖动查看画面"/>
+    </div>
+  </div>
+}
+function KeyProperties(){
+  const s=useProjectStore(),selection=s.keySelection;if(!selection)return null
+  const target=selection.target,tracks=targetTracks(s.project,target)??{},text=target.kind==='text'?s.project.texts?.find(t=>t.instanceId===target.instanceId):null
+  const names:Record<string,string>={'position.x':'水平位置','position.y':'垂直位置','position.z':'纵深位置','rotation.x':'俯仰角','rotation.y':'偏航角','rotation.z':'倾斜角','target.x':'观察点 X','target.y':'观察点 Y','target.z':'观察点 Z',scale:'缩放',opacity:'透明度',depth:'厚度',fov:'镜头视角'}
+  return <details className="key-properties"><summary>展开关键帧属性</summary><div role="group" aria-label="关键帧属性">{Object.entries(tracks).map(([channel,track])=>{const key=track.keys.find(k=>poseMatches(k,selection.t,selection.poseId));if(!key)return null;const factor=channel.startsWith('rotation.')?180/Math.PI:channel==='opacity'||text&&text.textKind!=='solid'&&channel.startsWith('position.')?100:1;return <label key={channel}>{names[channel]??channel}<CommitNumber label={`关键帧${names[channel]??channel}`} value={key.v*factor} onCommit={v=>s.setTimelineKeyValue(v/factor,channel)}/></label>})}</div></details>
+}
+function CommitNumber({value,label,onCommit,step=1}:{value:number;label:string;onCommit:(value:number)=>void;step?:number}){
+  const [draft,setDraft]=useState(String(value)),focused=useRef(false),cancelled=useRef(false)
+  useEffect(()=>{if(!focused.current)setDraft(String(Number(value.toFixed(4))))},[value])
+  return <input aria-label={label} type="number" step={step} value={draft} onFocus={()=>{focused.current=true;cancelled.current=false}} onChange={e=>setDraft(e.target.value)} onBlur={()=>{focused.current=false;const n=Number(draft);if(!cancelled.current&&draft.trim()&&Number.isFinite(n)&&Math.abs(n-value)>1e-8)onCommit(n);else setDraft(String(value))}} onKeyDown={e=>{if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();e.stopPropagation();const n=(Number(draft)||0)+(e.key==='ArrowUp'?1:-1)*step*(e.shiftKey?10:1);setDraft(String(n));onCommit(n)}if(e.key==='Enter')e.currentTarget.blur();if(e.key==='Escape'){cancelled.current=true;setDraft(String(value));focused.current=false;e.currentTarget.blur()}}}/>
+}

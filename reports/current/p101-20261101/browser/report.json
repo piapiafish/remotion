@@ -1,0 +1,345 @@
+{
+  "date": "2026-11-01T09:59:09.006Z",
+  "source": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "method": "Unmodified current production build; existing Playwright JS SDK; localhost-origin requests fulfilled from local dist files, without TCP network. UI actions, file inputs and browser downloads exercise the real application. This does not validate Vite or studio API networking.",
+  "checks": [
+    {
+      "id": "startup-default-project",
+      "status": "PASS"
+    },
+    {
+      "id": "device-add",
+      "status": "PASS"
+    },
+    {
+      "id": "MAN-004-added-device-visible-position",
+      "status": "FAIL",
+      "positions": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "issue": "MAN-004"
+    },
+    {
+      "id": "device-duplicate",
+      "status": "PASS"
+    },
+    {
+      "id": "device-remove",
+      "status": "PASS"
+    },
+    {
+      "id": "ordinary-edit-targets-selected-device",
+      "status": "PASS"
+    },
+    {
+      "id": "MAN-005-single-device-preset-isolation",
+      "status": "FAIL",
+      "keyCounts": [
+        2,
+        2
+      ],
+      "issue": "MAN-005",
+      "note": "Preset action currently affects all devices."
+    },
+    {
+      "id": "MAN-003-undo-keeps-editor-usable",
+      "status": "FAIL",
+      "fieldCount": 0,
+      "deviceRows": 0,
+      "pageErrors": 1,
+      "issue": "MAN-003"
+    },
+    {
+      "id": "redo-after-undo-crash",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "MAN-001-manual-animation-start",
+      "status": "FAIL",
+      "keys": [
+        {
+          "t": 0,
+          "v": 0.45,
+          "ease": [
+            0.33,
+            0,
+            0.15,
+            1
+          ]
+        }
+      ],
+      "issue": "MAN-001",
+      "note": "This static-track behavior is intentional; explicit add-key/enable-animation UI is missing."
+    },
+    {
+      "id": "MAN-002-drag-changes-key-time",
+      "status": "FAIL",
+      "before": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "t": 4,
+          "v": 6.283185307179586,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "after": [
+        {
+          "t": 0,
+          "v": 0,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "t": 4,
+          "v": 6.283185307179586,
+          "ease": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "issue": "MAN-002"
+    },
+    {
+      "id": "MAN-002-delete-key",
+      "status": "FAIL",
+      "issue": "MAN-002"
+    },
+    {
+      "id": "timeline-click-seek",
+      "status": "PASS",
+      "actual": 2.6,
+      "expected": 2.6
+    },
+    {
+      "id": "timeline-drag-seek",
+      "status": "PASS",
+      "actual": 3.2,
+      "expected": 3.2
+    },
+    {
+      "id": "video-media-import",
+      "status": "PASS",
+      "source": "assets/demo.mp4"
+    },
+    {
+      "id": "image-media-import",
+      "status": "PASS",
+      "source": "assets/demo-screen.png"
+    },
+    {
+      "id": "multi-device-independent-media",
+      "status": "PASS",
+      "models": [
+        "iphone-17-pro",
+        "pixel-9-pro-xl"
+      ],
+      "kinds": [
+        "video",
+        "image"
+      ],
+      "mediaEntries": [
+        "media/a3529158-c18b-4ca8-8167-ca931181e2d6",
+        "media/10064706-0941-4da8-af10-ca963c406fd5"
+      ]
+    },
+    {
+      "id": "saved-project-embeds-media-without-session-urls",
+      "status": "PASS"
+    },
+    {
+      "id": "fresh-session-project-and-media-roundtrip",
+      "status": "PASS",
+      "projectEqual": true,
+      "mediaBytesEqual": true,
+      "storageIsolation": "new browser context with empty OPFS/IndexedDB"
+    },
+    {
+      "id": "reopened-animation-scrubs",
+      "status": "PASS",
+      "rotationYDegrees": 180
+    },
+    {
+      "id": "cancel-restores-editing",
+      "status": "PASS",
+      "editable": true,
+      "downloads": 0
+    },
+    {
+      "id": "1080p30-mp4-export",
+      "status": "PASS",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "frames": "60",
+      "duration": "2.000000",
+      "size": 1468085,
+      "artifact": "P1-01-1080p30.mp4",
+      "project": "06-export-project.mockup"
+    },
+    {
+      "id": "editing-after-successful-export",
+      "status": "PASS"
+    },
+    {
+      "id": "no-codec-fallback-is-visible",
+      "status": "PASS",
+      "simulation": "VideoEncoder absent in isolated context"
+    },
+    {
+      "id": "no-codec-png-sequence-works",
+      "status": "PASS",
+      "frames": 15,
+      "width": 320,
+      "height": 180
+    },
+    {
+      "id": "MAN-008-encoding-failure-has-visible-feedback",
+      "status": "FAIL",
+      "simulation": "VideoEncoder.configure throws a deliberate diagnostic error",
+      "visibleAlerts": [],
+      "pageErrors": [
+        {
+          "case": "08-encoding-failure-feedback",
+          "error": "NotSupportedError: P1-01 deliberately simulated encoder configuration failure"
+        }
+      ],
+      "busy": 0,
+      "issue": "MAN-008"
+    },
+    {
+      "id": "encoding-failure-clears-busy-state",
+      "status": "PASS"
+    },
+    {
+      "id": "MAN-008-invalid-project-visible-error",
+      "status": "FAIL",
+      "visibleAlerts": [],
+      "pageErrors": [
+        {
+          "case": "09-invalid-project-feedback",
+          "error": "Error: Not a .mockup file — project.json is missing"
+        }
+      ],
+      "issue": "MAN-008"
+    },
+    {
+      "id": "invalid-project-preserves-editor",
+      "status": "PASS"
+    }
+  ],
+  "cases": [
+    {
+      "id": "01-device-lifecycle",
+      "execution": "COMPLETED",
+      "seconds": 2.772
+    },
+    {
+      "id": "02-undo-selection",
+      "execution": "COMPLETED",
+      "seconds": 1.783
+    },
+    {
+      "id": "03-manual-animation",
+      "execution": "COMPLETED",
+      "seconds": 2.703
+    },
+    {
+      "id": "04-media-and-save",
+      "execution": "COMPLETED",
+      "seconds": 5.274
+    },
+    {
+      "id": "05-fresh-context-reopen",
+      "execution": "COMPLETED",
+      "seconds": 3.273
+    },
+    {
+      "id": "06-export-cancel-and-mp4",
+      "execution": "COMPLETED",
+      "seconds": 9.457
+    },
+    {
+      "id": "07-no-encoder-fallback",
+      "execution": "COMPLETED",
+      "seconds": 1.667
+    },
+    {
+      "id": "08-encoding-failure-feedback",
+      "execution": "COMPLETED",
+      "seconds": 2.203
+    },
+    {
+      "id": "09-invalid-project-feedback",
+      "execution": "COMPLETED",
+      "seconds": 1.945
+    }
+  ],
+  "pageErrors": [
+    {
+      "case": "02-undo-selection",
+      "error": "TypeError: Cannot read properties of undefined (reading 'name')"
+    },
+    {
+      "case": "08-encoding-failure-feedback",
+      "error": "NotSupportedError: P1-01 deliberately simulated encoder configuration failure"
+    },
+    {
+      "case": "09-invalid-project-feedback",
+      "error": "Error: Not a .mockup file — project.json is missing"
+    }
+  ],
+  "requestFailures": [],
+  "status": "COMPLETED_WITH_FINDINGS",
+  "browser": "156.0.8078.76",
+  "previewReferences": [
+    {
+      "frame": 0,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\evidence\\browser\\06-reference-00.png",
+      "sha256": "deeeef0925876b8d9f7ad1dc554e3fc642a38045d5584271e00f2ee764439a22",
+      "size": 1729282
+    },
+    {
+      "frame": 30,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\evidence\\browser\\06-reference-30.png",
+      "sha256": "95a1dd638fbdfb8c675c612b7cdab312e05e3c49b7a507fc0c45754eff6f2ab9",
+      "size": 1699436
+    },
+    {
+      "frame": 59,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\evidence\\browser\\06-reference-59.png",
+      "sha256": "92f379de85020104ffb97737b91d7f7c000a1b8acf1e4f0167b9463a1276d109",
+      "size": 1724749
+    }
+  ]
+}

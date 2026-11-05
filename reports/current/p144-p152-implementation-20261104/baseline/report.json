@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-04T13:42:10.108Z",
+  "checks": [
+    {
+      "name": "baseline-shrinking-phone-changes-x",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "position": [
+            0.8,
+            0.4,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.92,
+          "visible": true
+        },
+        "after": {
+          "position": [
+            0.5311511049438573,
+            0.3146511444266214,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.7236976321812292,
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "baseline-selected-object-blocks-wasd",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline-repeated-playhead-heads",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline-packing-ignores-overlapping-playback",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline-one-frame-play-handles-overlap",
+      "status": "PASS",
+      "detail": {
+        "handles": [
+          {
+            "left": 689.5,
+            "right": 703.5,
+            "top": 772,
+            "bottom": 786
+          },
+          {
+            "left": 696.53125,
+            "right": 710.53125,
+            "top": 772,
+            "bottom": 786
+          }
+        ]
+      }
+    }
+  ],
+  "scenarios": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "navigation": [
+    {
+      "time": "2026-11-04T13:42:10.515Z",
+      "url": "http://127.0.0.1:50250/?automation=1"
+    },
+    {
+      "time": "2026-11-04T13:42:11.010Z",
+      "url": "http://127.0.0.1:50250/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T13:42:11.705Z",
+      "url": "http://127.0.0.1:50250/?automation=1#editor"
+    }
+  ]
+}

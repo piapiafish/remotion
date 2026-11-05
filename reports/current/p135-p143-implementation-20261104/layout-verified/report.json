@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-04T12:37:13.540Z",
+  "checks": [
+    {
+      "name": "escape-stops-held-camera-key-and-restores-gesture",
+      "status": "PASS"
+    },
+    {
+      "name": "blur-stops-held-camera-motion",
+      "status": "PASS"
+    },
+    {
+      "name": "number-field-keeps-arrow-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "timeline-keeps-arrow-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "typing-wasd-does-not-move-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-layout-1366x768",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-layout-1920x1080",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-layout-1000x800",
+      "status": "PASS"
+    },
+    {
+      "name": "recorder-at-125-percent-display-scale",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "keyboard-focus",
+      "status": "PASS"
+    },
+    {
+      "name": "layout",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "navigation": [
+    {
+      "time": "2026-11-04T12:37:13.901Z",
+      "url": "http://127.0.0.1:59639/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:37:14.397Z",
+      "url": "http://127.0.0.1:59639/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:37:15.042Z",
+      "url": "http://127.0.0.1:59639/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:37:20.133Z",
+      "url": "http://127.0.0.1:59639/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:37:20.617Z",
+      "url": "http://127.0.0.1:59639/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:37:21.320Z",
+      "url": "http://127.0.0.1:59639/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:37:22.831Z",
+      "url": "http://127.0.0.1:59639/?automation=1#camera"
+    },
+    {
+      "time": "2026-11-04T12:37:27.309Z",
+      "url": "http://127.0.0.1:59639/?automation=1"
+    },
+    {
+      "time": "2026-11-04T12:37:27.974Z",
+      "url": "http://127.0.0.1:59639/?automation=1#templates"
+    },
+    {
+      "time": "2026-11-04T12:37:28.629Z",
+      "url": "http://127.0.0.1:59639/?automation=1#editor"
+    },
+    {
+      "time": "2026-11-04T12:37:29.888Z",
+      "url": "http://127.0.0.1:59639/?automation=1#camera"
+    }
+  ]
+}

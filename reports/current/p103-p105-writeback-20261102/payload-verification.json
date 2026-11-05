@@ -1,0 +1,733 @@
+{
+  "Status": "PASS",
+  "Date": "2026-11-02",
+  "VerifiedFiles": 121,
+  "Hashes": [
+    {
+      "Path": "DEVELOPMENT_LOG.md",
+      "Expected": "c71b7e8e733076fa505dd19d00d7235c2a1935ac1bc2329fb6a27c3e2e9916ee",
+      "Actual": "c71b7e8e733076fa505dd19d00d7235c2a1935ac1bc2329fb6a27c3e2e9916ee",
+      "Status": "PASS"
+    },
+    {
+      "Path": "docs/ARCHITECTURE.md",
+      "Expected": "0675abe85a77b11ddd0588014f4b058baf1c27d3d1ffb6dc939dbb58ceabc2d5",
+      "Actual": "0675abe85a77b11ddd0588014f4b058baf1c27d3d1ffb6dc939dbb58ceabc2d5",
+      "Status": "PASS"
+    },
+    {
+      "Path": "docs/MANUAL_ANIMATION_GUIDE.md",
+      "Expected": "6959ddcb6ab26bdd4c74b247426dce671a9cb6f73a0a28e01bc77991f02a08d6",
+      "Actual": "6959ddcb6ab26bdd4c74b247426dce671a9cb6f73a0a28e01bc77991f02a08d6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "docs/TESTING.md",
+      "Expected": "64f2763eb92a1dfde6fe0779525dcd149dc0a2bfcd3ad431880cd88be60a1da2",
+      "Actual": "64f2763eb92a1dfde6fe0779525dcd149dc0a2bfcd3ad431880cd88be60a1da2",
+      "Status": "PASS"
+    },
+    {
+      "Path": "IMPLEMENTATION_ROADMAP.md",
+      "Expected": "e88c19b0edccd418230afe676e12eaae0a12494d38e482ea2413567beb9c43ac",
+      "Actual": "e88c19b0edccd418230afe676e12eaae0a12494d38e482ea2413567beb9c43ac",
+      "Status": "PASS"
+    },
+    {
+      "Path": "ISSUES_LOG.md",
+      "Expected": "ed55683ed8418188d422340e9afcefe112cbb6fe4cb0409e9504db148bb80152",
+      "Actual": "ed55683ed8418188d422340e9afcefe112cbb6fe4cb0409e9504db148bb80152",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-720.mockup",
+      "Expected": "40e3f5dfb784654bf02db82d74d00e022a4273b0248d5d8759bbb627639f734c",
+      "Actual": "40e3f5dfb784654bf02db82d74d00e022a4273b0248d5d8759bbb627639f734c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-base.mockup",
+      "Expected": "9b540926dcdd02d96476ab0c9c6fe5e9257c5241242be6b4a534267ba6fec8a3",
+      "Actual": "9b540926dcdd02d96476ab0c9c6fe5e9257c5241242be6b4a534267ba6fec8a3",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-deleted.mockup",
+      "Expected": "f8ae43b544b68dd49cbfc19d56e1a4c1eac2c78166ee67e2640dfca01ea4d8c2",
+      "Actual": "f8ae43b544b68dd49cbfc19d56e1a4c1eac2c78166ee67e2640dfca01ea4d8c2",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-dragged.mockup",
+      "Expected": "11c5400fa2c8a6779bfaed6d3e4fddc0d3e377d9637c1de1ad8113d90dc396b1",
+      "Actual": "11c5400fa2c8a6779bfaed6d3e4fddc0d3e377d9637c1de1ad8113d90dc396b1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-easing.mockup",
+      "Expected": "48a501eb9e5222f543184889fde5f87ca320621bd89c666bc73e3ee8ca560c0a",
+      "Actual": "48a501eb9e5222f543184889fde5f87ca320621bd89c666bc73e3ee8ca560c0a",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-entry-hold-exit.mockup",
+      "Expected": "d496228a51f10c1461bf6ed036a18ba803a4a9dbf8ec02f2328d773f2aef13e6",
+      "Actual": "d496228a51f10c1461bf6ed036a18ba803a4a9dbf8ec02f2328d773f2aef13e6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-manual-frame.png",
+      "Expected": "abae74469b5ffe25e653bd6af225ef7241f346f74c38fa1b76c8c8b99362c244",
+      "Actual": "abae74469b5ffe25e653bd6af225ef7241f346f74c38fa1b76c8c8b99362c244",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-manually-authored.mockup",
+      "Expected": "dd10b5ef13d9dc8e63cc992208ca05126756e8151f0665890c24288500a71aca",
+      "Actual": "dd10b5ef13d9dc8e63cc992208ca05126756e8151f0665890c24288500a71aca",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-redone.mockup",
+      "Expected": "11c5400fa2c8a6779bfaed6d3e4fddc0d3e377d9637c1de1ad8113d90dc396b1",
+      "Actual": "11c5400fa2c8a6779bfaed6d3e4fddc0d3e377d9637c1de1ad8113d90dc396b1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/01-undone.mockup",
+      "Expected": "40e3f5dfb784654bf02db82d74d00e022a4273b0248d5d8759bbb627639f734c",
+      "Actual": "40e3f5dfb784654bf02db82d74d00e022a4273b0248d5d8759bbb627639f734c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-after-camera.mockup",
+      "Expected": "bce4b348032a8cf7f83f29e629edfa8642fe5ad3cdcda7b6f1f84117e8335f99",
+      "Actual": "bce4b348032a8cf7f83f29e629edfa8642fe5ad3cdcda7b6f1f84117e8335f99",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-after-move.mockup",
+      "Expected": "b3141c8d8f3e09e8ebb3bc317c94725427a1c9ea08a55f6a5ddc49b26cd8b949",
+      "Actual": "b3141c8d8f3e09e8ebb3bc317c94725427a1c9ea08a55f6a5ddc49b26cd8b949",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-after-rotate.mockup",
+      "Expected": "838058353fd092081a8461febb55707e871dd00efaf88a9ce21e1d1e035af838",
+      "Actual": "838058353fd092081a8461febb55707e871dd00efaf88a9ce21e1d1e035af838",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-after-scale.mockup",
+      "Expected": "50fbce2db4695d0cdc9a9880414cbbd2f3f2a2992d78b3782e19933996df534f",
+      "Actual": "50fbce2db4695d0cdc9a9880414cbbd2f3f2a2992d78b3782e19933996df534f",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-animated-fixture.mockup",
+      "Expected": "8573bd294601291928b63c97aa7e2e9f50a6ed409a817e4108cb764732ab1948",
+      "Actual": "8573bd294601291928b63c97aa7e2e9f50a6ed409a817e4108cb764732ab1948",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-animated-moved.mockup",
+      "Expected": "2e5c5b198706a7f73b536fd6a781bf45f8497fb184f0b953b4a505d31d3354c3",
+      "Actual": "2e5c5b198706a7f73b536fd6a781bf45f8497fb184f0b953b4a505d31d3354c3",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-animated-undone.mockup",
+      "Expected": "85557200f92d1839c7ce6966453015b347c61ac357ae93f4e399cf994fe895f3",
+      "Actual": "85557200f92d1839c7ce6966453015b347c61ac357ae93f4e399cf994fe895f3",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-before-camera.mockup",
+      "Expected": "26e65ed25e98ae3a827ae14eaaa43e2495e3fba897d302ee338f47038632985d",
+      "Actual": "26e65ed25e98ae3a827ae14eaaa43e2495e3fba897d302ee338f47038632985d",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-before-move.mockup",
+      "Expected": "2c36ee777fb007806ec625323ce6bf75ffb080b2aad81179a769b91187511120",
+      "Actual": "2c36ee777fb007806ec625323ce6bf75ffb080b2aad81179a769b91187511120",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-before-rotate.mockup",
+      "Expected": "cb51b64f9fa05aec911fa791471b328979d90e943b8eba24c29892f71ce50453",
+      "Actual": "cb51b64f9fa05aec911fa791471b328979d90e943b8eba24c29892f71ce50453",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-camera-undone.mockup",
+      "Expected": "26e65ed25e98ae3a827ae14eaaa43e2495e3fba897d302ee338f47038632985d",
+      "Actual": "26e65ed25e98ae3a827ae14eaaa43e2495e3fba897d302ee338f47038632985d",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-cancel-fixture.mockup",
+      "Expected": "b69b5554c020498041cfe03cd53026a310069146d6e713c22ddb41051bc19958",
+      "Actual": "b69b5554c020498041cfe03cd53026a310069146d6e713c22ddb41051bc19958",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-cancelled.mockup",
+      "Expected": "0161c3594e1bf44c7c7c6aefb0b9851d7bb93e371662005dd45d53caaf2090f6",
+      "Actual": "0161c3594e1bf44c7c7c6aefb0b9851d7bb93e371662005dd45d53caaf2090f6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-fixture.mockup",
+      "Expected": "9271e0f6cdd626d7623594b1daa35f54c724fe5b61fada2792ee276ca54ec258",
+      "Actual": "9271e0f6cdd626d7623594b1daa35f54c724fe5b61fada2792ee276ca54ec258",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-gizmo-clean.png",
+      "Expected": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36",
+      "Actual": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-gizmo-reference.png",
+      "Expected": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36",
+      "Actual": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-move-probe-32.mockup",
+      "Expected": "b3141c8d8f3e09e8ebb3bc317c94725427a1c9ea08a55f6a5ddc49b26cd8b949",
+      "Actual": "b3141c8d8f3e09e8ebb3bc317c94725427a1c9ea08a55f6a5ddc49b26cd8b949",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-move-undone.mockup",
+      "Expected": "2c36ee777fb007806ec625323ce6bf75ffb080b2aad81179a769b91187511120",
+      "Actual": "2c36ee777fb007806ec625323ce6bf75ffb080b2aad81179a769b91187511120",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-number-drag.mockup",
+      "Expected": "5f82788eb82a054fc89ca36ee76406335c597ae381a772c8b0caf9c0b0fb0b00",
+      "Actual": "5f82788eb82a054fc89ca36ee76406335c597ae381a772c8b0caf9c0b0fb0b00",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-number-undone.mockup",
+      "Expected": "85557200f92d1839c7ce6966453015b347c61ac357ae93f4e399cf994fe895f3",
+      "Actual": "85557200f92d1839c7ce6966453015b347c61ac357ae93f4e399cf994fe895f3",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-orbit-clean.png",
+      "Expected": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36",
+      "Actual": "671e22dfeaad8c17a51e1b684354096f4647d81c4dfc2c4769e665065aa75d36",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-overlay-fixture.mockup",
+      "Expected": "2ce9f7a8a452b580d7856f5cfe5e8d2341b4a60195b0acd63e60af029b4c9354",
+      "Actual": "2ce9f7a8a452b580d7856f5cfe5e8d2341b4a60195b0acd63e60af029b4c9354",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-rotate-fixture.mockup",
+      "Expected": "9271e0f6cdd626d7623594b1daa35f54c724fe5b61fada2792ee276ca54ec258",
+      "Actual": "9271e0f6cdd626d7623594b1daa35f54c724fe5b61fada2792ee276ca54ec258",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-rotate-probe-52.mockup",
+      "Expected": "838058353fd092081a8461febb55707e871dd00efaf88a9ce21e1d1e035af838",
+      "Actual": "838058353fd092081a8461febb55707e871dd00efaf88a9ce21e1d1e035af838",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-scale-fixture.mockup",
+      "Expected": "b69b5554c020498041cfe03cd53026a310069146d6e713c22ddb41051bc19958",
+      "Actual": "b69b5554c020498041cfe03cd53026a310069146d6e713c22ddb41051bc19958",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/02-scale-probe-32.mockup",
+      "Expected": "50fbce2db4695d0cdc9a9880414cbbd2f3f2a2992d78b3782e19933996df534f",
+      "Actual": "50fbce2db4695d0cdc9a9880414cbbd2f3f2a2992d78b3782e19933996df534f",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-before-orbit.mockup",
+      "Expected": "75bba688ebd150911649cf0d6233358c76b59ae42cb8635cf92fa2766fe35bec",
+      "Actual": "75bba688ebd150911649cf0d6233358c76b59ae42cb8635cf92fa2766fe35bec",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-before-preset.mockup",
+      "Expected": "2892b323e25697b10ce4439ff4e11d879d40b2dbe8b4f83f4e1124ba24a73490",
+      "Actual": "2892b323e25697b10ce4439ff4e11d879d40b2dbe8b4f83f4e1124ba24a73490",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-dual-independent-animation-media.mockup",
+      "Expected": "633ccea00f983882b00cea0acdde3832213b6323359bd1874998d5bea46cdb9c",
+      "Actual": "633ccea00f983882b00cea0acdde3832213b6323359bd1874998d5bea46cdb9c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-first-float.mockup",
+      "Expected": "75bba688ebd150911649cf0d6233358c76b59ae42cb8635cf92fa2766fe35bec",
+      "Actual": "75bba688ebd150911649cf0d6233358c76b59ae42cb8635cf92fa2766fe35bec",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-fixture.mockup",
+      "Expected": "c3ca15738e570a6dac9209acec98bae6d37f19744657f5045be9451d9b72f008",
+      "Actual": "c3ca15738e570a6dac9209acec98bae6d37f19744657f5045be9451d9b72f008",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-orbited.mockup",
+      "Expected": "19f4727d34330293c1f6adae38b5f4f625d88a298f7bc6a1adfbf08a3f36fd33",
+      "Actual": "19f4727d34330293c1f6adae38b5f4f625d88a298f7bc6a1adfbf08a3f36fd33",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-preset-undone.mockup",
+      "Expected": "4994c9de28eb316926f532381ce7d9a1053152c5d23e884351c463d7ecba2974",
+      "Actual": "4994c9de28eb316926f532381ce7d9a1053152c5d23e884351c463d7ecba2974",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-real-models.mockup",
+      "Expected": "2892b323e25697b10ce4439ff4e11d879d40b2dbe8b4f83f4e1124ba24a73490",
+      "Actual": "2892b323e25697b10ce4439ff4e11d879d40b2dbe8b4f83f4e1124ba24a73490",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/03-second-spun.mockup",
+      "Expected": "4994c9de28eb316926f532381ce7d9a1053152c5d23e884351c463d7ecba2974",
+      "Actual": "4994c9de28eb316926f532381ce7d9a1053152c5d23e884351c463d7ecba2974",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-dual-decoded-0.png",
+      "Expected": "417986052694957bf6a07b1bfe1ecfa148ee38aa4647b67067dfe17e6a961628",
+      "Actual": "417986052694957bf6a07b1bfe1ecfa148ee38aa4647b67067dfe17e6a961628",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-dual-decoded-30.png",
+      "Expected": "55c7fdcf0be86817031b497c2c4665aeea197ba41bf1a5e1772f00b924bf334c",
+      "Actual": "55c7fdcf0be86817031b497c2c4665aeea197ba41bf1a5e1772f00b924bf334c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-dual-decoded-59.png",
+      "Expected": "df161ee829c3fb2b31deba7d5726b565d6e45f421c2abc6fe331396135fd4615",
+      "Actual": "df161ee829c3fb2b31deba7d5726b565d6e45f421c2abc6fe331396135fd4615",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-dual-ssim-0.txt",
+      "Expected": "4dc8dfaabee92d4ccba4488a84ef5e9b93e5398f0b562594197a600bc5f595a5",
+      "Actual": "4dc8dfaabee92d4ccba4488a84ef5e9b93e5398f0b562594197a600bc5f595a5",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-dual-ssim-30.txt",
+      "Expected": "5ca7290b076526f00ea7a72bf91411c349c39ff83a3b831eb3139c629899f2db",
+      "Actual": "5ca7290b076526f00ea7a72bf91411c349c39ff83a3b831eb3139c629899f2db",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-dual-ssim-59.txt",
+      "Expected": "c21a3b36ec0277d3a1c57fe29887ebed3961606abf178a61bfb7534c8d21f480",
+      "Actual": "c21a3b36ec0277d3a1c57fe29887ebed3961606abf178a61bfb7534c8d21f480",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-edited-after-export.mockup",
+      "Expected": "54f7747cdec27a4499556fef27c6e588d09e2253260386fe14e26cacc6acb6f1",
+      "Actual": "54f7747cdec27a4499556fef27c6e588d09e2253260386fe14e26cacc6acb6f1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-ffprobe.json",
+      "Expected": "990a1017c3ae26ba138eeaf392aa532bc75b307c058980637b32910b462d0516",
+      "Actual": "990a1017c3ae26ba138eeaf392aa532bc75b307c058980637b32910b462d0516",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-decoded-0.png",
+      "Expected": "bd2e7a482e94a5a1460fb45661156cde07c06dd5b6a80e40aee41ebe70f61628",
+      "Actual": "bd2e7a482e94a5a1460fb45661156cde07c06dd5b6a80e40aee41ebe70f61628",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-decoded-15.png",
+      "Expected": "0bc020d11fc7e92f6490a407583d13e79cb4bb1f56cdf4b273672d06bcf1d416",
+      "Actual": "0bc020d11fc7e92f6490a407583d13e79cb4bb1f56cdf4b273672d06bcf1d416",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-decoded-59.png",
+      "Expected": "c324dad3cb2950636dcffcff7a1b7235d9a9e4fbc1c07c6efc146801121f102a",
+      "Actual": "c324dad3cb2950636dcffcff7a1b7235d9a9e4fbc1c07c6efc146801121f102a",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-ffprobe.json",
+      "Expected": "ace4a77378cf36b5440851851a084dfc64d0466df7d2ebe02e9fd5176d869e4a",
+      "Actual": "ace4a77378cf36b5440851851a084dfc64d0466df7d2ebe02e9fd5176d869e4a",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-reference-0.png",
+      "Expected": "a46d9ed344e3513c3b4137bd828e713c9260fe1d8c04b8117f8902ad3c6baed1",
+      "Actual": "a46d9ed344e3513c3b4137bd828e713c9260fe1d8c04b8117f8902ad3c6baed1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-reference-15.png",
+      "Expected": "abae74469b5ffe25e653bd6af225ef7241f346f74c38fa1b76c8c8b99362c244",
+      "Actual": "abae74469b5ffe25e653bd6af225ef7241f346f74c38fa1b76c8c8b99362c244",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-reference-59.png",
+      "Expected": "ca27597281902d13c9a676170e2fa2569eda237e3b572dec17de5e0e9673a90f",
+      "Actual": "ca27597281902d13c9a676170e2fa2569eda237e3b572dec17de5e0e9673a90f",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-reopened.mockup",
+      "Expected": "fa6bf2bd0d22318ccf81136ea5dca29fce54835cfb78a96bcfc23ba921837cda",
+      "Actual": "fa6bf2bd0d22318ccf81136ea5dca29fce54835cfb78a96bcfc23ba921837cda",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-ssim-0.txt",
+      "Expected": "951eabf2c1686be70b30340da5272a256f7563de8ba17e83ce623d19dfe2ba19",
+      "Actual": "951eabf2c1686be70b30340da5272a256f7563de8ba17e83ce623d19dfe2ba19",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-ssim-15.txt",
+      "Expected": "65c418a5d9dc8b1da30b8ee4f91346134ad08ed9d43e480c172516a4c5f27864",
+      "Actual": "65c418a5d9dc8b1da30b8ee4f91346134ad08ed9d43e480c172516a4c5f27864",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-manual-ssim-59.txt",
+      "Expected": "2d196feb9939f6dd07b4104ae53be4f8b38e2915ada03310a79d9b9ffcf89dc1",
+      "Actual": "2d196feb9939f6dd07b4104ae53be4f8b38e2915ada03310a79d9b9ffcf89dc1",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-reference-0.png",
+      "Expected": "8e220c734603ba89e93ac81598fafa93bbbfcce674b68fda740235326efc3e1c",
+      "Actual": "8e220c734603ba89e93ac81598fafa93bbbfcce674b68fda740235326efc3e1c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-reference-30.png",
+      "Expected": "b1cb9b5fee1c068ae19afd5b258b5d3d72a4c3365f1495f9d236a87cbbde33d8",
+      "Actual": "b1cb9b5fee1c068ae19afd5b258b5d3d72a4c3365f1495f9d236a87cbbde33d8",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-reference-59.png",
+      "Expected": "bdb34d8d97bf3ec80d7ef3efae535e5f1ce09ba68424131fb3b741b84a1d7c5f",
+      "Actual": "bdb34d8d97bf3ec80d7ef3efae535e5f1ce09ba68424131fb3b741b84a1d7c5f",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/04-reopened.mockup",
+      "Expected": "2c80355dcf8a47d9e85daee44d8e8c15c3797655f6ff059a22bc2cac94abdfd4",
+      "Actual": "2c80355dcf8a47d9e85daee44d8e8c15c3797655f6ff059a22bc2cac94abdfd4",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/frame-comparison.json",
+      "Expected": "70c154cefdb47fbd432ae3563e5213633d871d88f960de42dc3739047e03d9ef",
+      "Actual": "70c154cefdb47fbd432ae3563e5213633d871d88f960de42dc3739047e03d9ef",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/P1-03-05-dual-animation-1080p30.mp4",
+      "Expected": "60d3037151e596d7e1e1666345d441b39046f81c2b7d9b92979e8e8c743cea46",
+      "Actual": "60d3037151e596d7e1e1666345d441b39046f81c2b7d9b92979e8e8c743cea46",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/P1-03-manual-720-1080p30.mp4",
+      "Expected": "e2606dacced4bca56a1055111f8aca2424afebc3908dd8e5800df30f7e206e31",
+      "Actual": "e2606dacced4bca56a1055111f8aca2424afebc3908dd8e5800df30f7e206e31",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser/report.json",
+      "Expected": "98cdec951804b87842a5fc79387a15598d5a9005b42147cb0e5cd13409d8eb7d",
+      "Actual": "98cdec951804b87842a5fc79387a15598d5a9005b42147cb0e5cd13409d8eb7d",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/browser-final.txt",
+      "Expected": "17124d61718fd68a697bcac653d2bb7c08374f4ac09b09e2105f63e67a2fc25c",
+      "Actual": "17124d61718fd68a697bcac653d2bb7c08374f4ac09b09e2105f63e67a2fc25c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/build-final.txt",
+      "Expected": "c41ff05c80197f11a1761c4c7ac38a28fd3eb9547be55dd1c736e357f8dbeb8d",
+      "Actual": "c41ff05c80197f11a1761c4c7ac38a28fd3eb9547be55dd1c736e357f8dbeb8d",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/checks-final.json",
+      "Expected": "66cdac679893abf51f8519c9b3dd621eb1bb985f896b9a26bded17de08d5c58b",
+      "Actual": "66cdac679893abf51f8519c9b3dd621eb1bb985f896b9a26bded17de08d5c58b",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/diagnostics/browser-030405.txt",
+      "Expected": "fb8c4aa783d9f0833732c4e904934421caa0468b0059385ce77cc9f64881aedd",
+      "Actual": "fb8c4aa783d9f0833732c4e904934421caa0468b0059385ce77cc9f64881aedd",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/diagnostics/browser-full-01.txt",
+      "Expected": "da3e98e5fe451f41ab1da971e2e7e1a90ae946f4b585c1456046e717daf2aa32",
+      "Actual": "da3e98e5fe451f41ab1da971e2e7e1a90ae946f4b585c1456046e717daf2aa32",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/diagnostics/browser-initial.txt",
+      "Expected": "c7520938da788d007d4b8e66939006fc3226240edb4a195ffec010d80e0d1467",
+      "Actual": "c7520938da788d007d4b8e66939006fc3226240edb4a195ffec010d80e0d1467",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/diagnostics/first-full-run.json",
+      "Expected": "6850ed179542734e3c16cdc20cb3a056680d20cd76ef886572a782704ed4ea5d",
+      "Actual": "6850ed179542734e3c16cdc20cb3a056680d20cd76ef886572a782704ed4ea5d",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/diagnostics/p104-build.txt",
+      "Expected": "45957a164caa5fbb20f44ee21ee41f1755d8cbc977765a6c263c1831ba55f634",
+      "Actual": "45957a164caa5fbb20f44ee21ee41f1755d8cbc977765a6c263c1831ba55f634",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/diagnostics/procedural-fixture.json",
+      "Expected": "36620c71a556ffc0c41fa83348c2aa7bd5ca8b11e516506db8e989f8777df75c",
+      "Actual": "36620c71a556ffc0c41fa83348c2aa7bd5ca8b11e516506db8e989f8777df75c",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/export-verification.txt",
+      "Expected": "5ed3a31460c24175090439a4ba6b3674b45d8bea2619708b07afdab2ca513f50",
+      "Actual": "5ed3a31460c24175090439a4ba6b3674b45d8bea2619708b07afdab2ca513f50",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/lint-final.txt",
+      "Expected": "bda9a06d60419dfd811a799a31e76b04c7a019b4766e3b67442d8a92af6fe946",
+      "Actual": "bda9a06d60419dfd811a799a31e76b04c7a019b4766e3b67442d8a92af6fe946",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/README.md",
+      "Expected": "24be1783199093d97978b0df02b689e3076463c923d52dbcce6c2e256a298291",
+      "Actual": "24be1783199093d97978b0df02b689e3076463c923d52dbcce6c2e256a298291",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/reproduce/audit-editing-original.cjs",
+      "Expected": "31abcba57f7ffffd1fd37c4881a66398c5d4a57e7fbb3dbf9caa7057fdcac5fb",
+      "Actual": "31abcba57f7ffffd1fd37c4881a66398c5d4a57e7fbb3dbf9caa7057fdcac5fb",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/reproduce/secondary-recording.mp4",
+      "Expected": "b35969c23cb8d313f16a411bb7cbfec202455741cfcb1e0f8edf0b539a21e4fb",
+      "Actual": "b35969c23cb8d313f16a411bb7cbfec202455741cfcb1e0f8edf0b539a21e4fb",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/reproduce/verify-export-original.py",
+      "Expected": "d42ea4f19d150e60cf4304950c97f237054ca3d18ba009e24f357b6746240ff4",
+      "Actual": "d42ea4f19d150e60cf4304950c97f237054ca3d18ba009e24f357b6746240ff4",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/results.json",
+      "Expected": "0e057ec4f20275daaa45d5ab0f055b0b0bc4dd63e31a2fa64f30c159779717c6",
+      "Actual": "0e057ec4f20275daaa45d5ab0f055b0b0bc4dd63e31a2fa64f30c159779717c6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/source-baseline.json",
+      "Expected": "d13df9b75a37f1832ce753f4e3b2b2860a9abf88287a4909b5494a56ba63024d",
+      "Actual": "d13df9b75a37f1832ce753f4e3b2b2860a9abf88287a4909b5494a56ba63024d",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/source-changes.patch",
+      "Expected": "fff012a45ef48b316c1c4a1affca31592708251b77b8dcf3d3fc4181d11b071b",
+      "Actual": "fff012a45ef48b316c1c4a1affca31592708251b77b8dcf3d3fc4181d11b071b",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/tests-final.txt",
+      "Expected": "17e0b59d7263ad9b7941314ae95e2006f6924c1a2777d158028a8aa3832eda5e",
+      "Actual": "17e0b59d7263ad9b7941314ae95e2006f6924c1a2777d158028a8aa3832eda5e",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/README.md",
+      "Expected": "8ed4be3ac13d259f4095886d397bb50f21c7f371ed72812492df3b94eca36d8f",
+      "Actual": "8ed4be3ac13d259f4095886d397bb50f21c7f371ed72812492df3b94eca36d8f",
+      "Status": "PASS"
+    },
+    {
+      "Path": "scripts/test-editor-interactions.cjs",
+      "Expected": "da50a59a2c7bb97ed820860ed9a8e15733dd47db90f0ff242de5f8545b73a741",
+      "Actual": "da50a59a2c7bb97ed820860ed9a8e15733dd47db90f0ff242de5f8545b73a741",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/app/useShortcuts.ts",
+      "Expected": "45ceb47213551f6e2d33c7424551e512ae701e718935b31357388f52392ae3bd",
+      "Actual": "45ceb47213551f6e2d33c7424551e512ae701e718935b31357388f52392ae3bd",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/App.css",
+      "Expected": "fbf9d200a09169818719544ddc760f8d6678117242d7ecc79aa8dd35f6e99926",
+      "Actual": "fbf9d200a09169818719544ddc760f8d6678117242d7ecc79aa8dd35f6e99926",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/automation/bridge.ts",
+      "Expected": "0893ecccb0eb923f061c62bbee70ec38c23500603cd0592e740ffc3b2e3e06c2",
+      "Actual": "0893ecccb0eb923f061c62bbee70ec38c23500603cd0592e740ffc3b2e3e06c2",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/export/frameRenderer.ts",
+      "Expected": "da2ac9e72b2258a16d15d88bf8cfa90d6cd6a5c75b5fe021c6dc4fc2f718e429",
+      "Actual": "da2ac9e72b2258a16d15d88bf8cfa90d6cd6a5c75b5fe021c6dc4fc2f718e429",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/DeviceControls.tsx",
+      "Expected": "513c239e56e2868b1ccd9318fd83000a4e2564c0e83d26c75cee67893deca1e4",
+      "Actual": "513c239e56e2868b1ccd9318fd83000a4e2564c0e83d26c75cee67893deca1e4",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/editorHelpers.ts",
+      "Expected": "e2008914089d378518d003909b29db3aeddef1d3079c6152e1c851dffb59f731",
+      "Actual": "e2008914089d378518d003909b29db3aeddef1d3079c6152e1c851dffb59f731",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/editorInteraction.test.ts",
+      "Expected": "00a512f6ac0595be700253e1b77f206629660eecd8b71b3360b8cfcd5318a0c6",
+      "Actual": "00a512f6ac0595be700253e1b77f206629660eecd8b71b3360b8cfcd5318a0c6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/Stage.tsx",
+      "Expected": "bbc2cfa9e7fd9e3c5c9a01ef3685b8397d83f30a648aef61a8d65e45804ffb19",
+      "Actual": "bbc2cfa9e7fd9e3c5c9a01ef3685b8397d83f30a648aef61a8d65e45804ffb19",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/scene/transformValues.ts",
+      "Expected": "a5e878b93ed85aab755335006d284b9dc36475b8fb95bc13494ed1bc1862ab5e",
+      "Actual": "a5e878b93ed85aab755335006d284b9dc36475b8fb95bc13494ed1bc1862ab5e",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/keyframeEditing.test.ts",
+      "Expected": "b1b286916074167006eb56152480005cc820dc03c0f9b498c4060281245ffdc6",
+      "Actual": "b1b286916074167006eb56152480005cc820dc03c0f9b498c4060281245ffdc6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/store/project.ts",
+      "Expected": "2984bb939f1e38a0e927cbb59503145da5b8b10be98b73688bacea5e8635ae84",
+      "Actual": "2984bb939f1e38a0e927cbb59503145da5b8b10be98b73688bacea5e8635ae84",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/editing.ts",
+      "Expected": "4fcc21f596e6404e8a07c1332ecfa40132c9654bd11854864c8785ff56cbd8e6",
+      "Actual": "4fcc21f596e6404e8a07c1332ecfa40132c9654bd11854864c8785ff56cbd8e6",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/presets.ts",
+      "Expected": "e257fc64888ce71cd3446e1b4e4de66fe5b741e3147272bdcbe20327c1bba68b",
+      "Actual": "e257fc64888ce71cd3446e1b4e4de66fe5b741e3147272bdcbe20327c1bba68b",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/scopedPresets.test.ts",
+      "Expected": "7c97e34369ed188a33b513c0c5485363380605d9112b209462106c6a67e5f851",
+      "Actual": "7c97e34369ed188a33b513c0c5485363380605d9112b209462106c6a67e5f851",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/timeline/templates.test.ts",
+      "Expected": "e143f99ac64be6fb4f85dbe0ab491a6c60463989c6292e5bc74c3a4bcf7b26ce",
+      "Actual": "e143f99ac64be6fb4f85dbe0ab491a6c60463989c6292e5bc74c3a4bcf7b26ce",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Artboard/Artboard.tsx",
+      "Expected": "f0480e207d23ec25ed969715e120134debb3833d387132efac304d6899f4052b",
+      "Actual": "f0480e207d23ec25ed969715e120134debb3833d387132efac304d6899f4052b",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/controls/NumberField.tsx",
+      "Expected": "6d8b4466277eddc026e4c05d6276d56bb38cfe2809e606d28262fddf813afa68",
+      "Actual": "6d8b4466277eddc026e4c05d6276d56bb38cfe2809e606d28262fddf813afa68",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/CameraSection.tsx",
+      "Expected": "8258f4d360e09b5644de5b5bd429196017e3ac3103060dc389b207449e5b8bac",
+      "Actual": "8258f4d360e09b5644de5b5bd429196017e3ac3103060dc389b207449e5b8bac",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Inspector/TransformSection.tsx",
+      "Expected": "4e2f745af319e9b8006bffae4f89e079d4a8322dc7c9fc6fde80b370aec7147e",
+      "Actual": "4e2f745af319e9b8006bffae4f89e079d4a8322dc7c9fc6fde80b370aec7147e",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Timeline/PresetControls.tsx",
+      "Expected": "4444184175c2359faeb709f418789e80e28c81717f653a93814cd2865a3c7efd",
+      "Actual": "4444184175c2359faeb709f418789e80e28c81717f653a93814cd2865a3c7efd",
+      "Status": "PASS"
+    },
+    {
+      "Path": "src/ui/Timeline/TimelineBar.tsx",
+      "Expected": "6668a0875de06b4f6637b2d427e97dd86d0e7b43cfd20813391c929504366f79",
+      "Actual": "6668a0875de06b4f6637b2d427e97dd86d0e7b43cfd20813391c929504366f79",
+      "Status": "PASS"
+    },
+    {
+      "Path": "reports/current/p103-p105-20261102/delivery-validation.json",
+      "Expected": "2a7ad15dd88ff740ca97da592b9279ab6118f16b7e954c2ce85d8519ca07e444",
+      "Actual": "2a7ad15dd88ff740ca97da592b9279ab6118f16b7e954c2ce85d8519ca07e444",
+      "Status": "PASS"
+    }
+  ]
+}

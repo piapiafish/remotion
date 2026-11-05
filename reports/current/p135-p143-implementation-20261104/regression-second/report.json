@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-04T11:40:51.401Z",
+  "checks": [
+    {
+      "name": "D02-legacy-time-boundaries-remain-correct",
+      "status": "PASS",
+      "detail": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4.999999,
+          4
+        ],
+        [
+          4.999999,
+          5
+        ],
+        [
+          4.999999,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "D03-shared-source-retains-independent-decoders",
+      "status": "PASS",
+      "detail": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "E01-ordinary-edits-stay-static",
+      "status": "PASS"
+    },
+    {
+      "name": "E02-pose-animation-has-correct-two-second-midpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "E03-retiming-fills-the-new-six-second-span",
+      "status": "PASS"
+    },
+    {
+      "name": "E04-hold-and-exit-remain-separate",
+      "status": "PASS"
+    },
+    {
+      "name": "E05-multi-turn-rotation-survives-save-and-nonuniform-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "G01-device-preset-keeps-other-object-unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "H02-sticker-position-and-opacity-remain-animated",
+      "status": "PASS"
+    },
+    {
+      "name": "H04-pure-text-and-portrait-project-reopen",
+      "status": "PASS"
+    },
+    {
+      "name": "I01-four-background-types-still-render-and-save",
+      "status": "PASS"
+    },
+    {
+      "name": "I02-environment-controls-still-apply",
+      "status": "PASS"
+    },
+    {
+      "name": "I03-effects-remain-opt-in",
+      "status": "PASS"
+    },
+    {
+      "name": "I03-effect-change-undo-restores-settings",
+      "status": "PASS"
+    },
+    {
+      "name": "G02-numeric-instructions-preserve-before-range-and-position",
+      "status": "PASS",
+      "detail": [
+        [
+          0,
+          0.2,
+          0,
+          0.8
+        ],
+        [
+          1,
+          0.3,
+          29.999999999999996,
+          0.8
+        ],
+        [
+          2,
+          0.4,
+          59.99999999999999,
+          0.8
+        ],
+        [
+          6,
+          0.6,
+          299.99999999999994,
+          0.8
+        ],
+        [
+          8,
+          0.8,
+          419.99999999999994,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "G02-instructions-preserve-other-object",
+      "status": "PASS"
+    },
+    {
+      "name": "G02-undo-restores-previous-end-angle",
+      "status": "PASS"
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "media-regression",
+      "status": "PASS"
+    },
+    {
+      "name": "authoring-regression",
+      "status": "PASS"
+    },
+    {
+      "name": "g02",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

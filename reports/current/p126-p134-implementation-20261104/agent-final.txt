@@ -1,0 +1,37 @@
+
+> mockup-web@0.0.0 agent:test
+> node --test tests/*.test.mjs
+
+✔ quiet bundled music becomes audible without changing the source or clipping (1289.8924ms)
+✔ shot cache tracks media/model/engine/pose, while subtitle-only edits keep it reusable (18.6363ms)
+✔ missing asset fails with a readable report and no output MP4 (204.2602ms)
+✔ illegal device exits before starting any renderer (151.5268ms)
+✔ real ffprobe inspection rejects incorrect resolution/fps/audio expectations (866.2022ms)
+✔ Remotion keeps readable interfaces and falls back only on denied enumeration (1.7847ms)
+✔ safe relative media path rejects traversal/URL/absolute (1.3617ms)
+✔ planner generates valid 3 shot Video DSL (1.4628ms)
+✔ unknown phone is rejected (0.6143ms)
+✔ compiler generates exact video frame duration and nonempty model tracks (0.715ms)
+✔ time is deterministic: compilation stable except explicit instance identifiers (5.8691ms)
+✔ overlay beyond film length rejected (0.2456ms)
+✔ AI reply import accepts raw/BOM/fenced/prose/wrapped JSON and preserves quoted braces (3.019ms)
+✔ AI reply import rejects malformed, ambiguous, oversized and illegal-device content (13.2133ms)
+✔ local import saves unique UTF-8 work files and preserves the previous default storyboard (192.3692ms)
+✔ offline planning uses the existing validated planner without a model call (48.9994ms)
+✔ missing media and unsafe paths fail before a storyboard or renderer is created (21.3288ms)
+✔ local API rejects foreign origins, missing explicit header, malformed/oversized JSON and invalid IDs (38.8683ms)
+✔ concurrent render clicks are idempotent and different storyboards render serially (107.4168ms)
+✔ failure logs stay visible, no failed video link is exposed, and retry is allowed (93.9332ms)
+✔ an exit code of zero without a verified final MP4 is still a failure (56.6906ms)
+✔ completed work survives restart and the video endpoint supports download, HEAD and byte ranges (63.863ms)
+✔ stopping the local service marks the active task interrupted (60.533ms)
+✔ symlinks cannot write work files or read media outside the project (21.6614ms)
+✔ rendering prefers the project Python environment over a changed global Python (5.3594ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1593.0719

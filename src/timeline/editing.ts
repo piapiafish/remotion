@@ -1,0 +1,72 @@
+import type { EaseHandle, Project, Track, TrackSet } from '../store/schema'
+import { sampleTrack } from './sample'
+import { setKey, staticTrack } from './tracks'
+
+export type TrackTarget = { kind: 'camera' } | { kind: 'device' | 'text'; instanceId: string }
+export type KeySelection = { target: TrackTarget; channel: string; t: number; poseId?: string }
+export const DEVICE_CHANNELS = ['position.x', 'position.y', 'position.z', 'rotation.x', 'rotation.y', 'rotation.z', 'scale']
+export const CAMERA_CHANNELS = ['position.x', 'position.y', 'position.z', 'target.x', 'target.y', 'target.z', 'fov']
+export const TEXT_CHANNELS = ['position.x', 'position.y', 'position.z', 'rotation.x', 'rotation.y', 'rotation.z', 'scale', 'opacity', 'depth']
+export const targetChannels = (target: TrackTarget) => target.kind === 'camera' ? CAMERA_CHANNELS : target.kind === 'text' ? TEXT_CHANNELS : DEVICE_CHANNELS
+export const sameTime = (a: number, b: number) => Math.abs(a - b) < 1e-6
+
+export function targetTracks(project: Project, target: TrackTarget): TrackSet | undefined {
+  return target.kind === 'camera' ? project.camera.tracks
+    : target.kind === 'text' ? project.texts?.find(d => d.instanceId === target.instanceId)?.transform
+    : project.devices.find(d => d.instanceId === target.instanceId)?.transform
+}
+export function channelFallback(project: Project, target: TrackTarget, channel: string): number {
+  if (channel === 'scale' || channel === 'opacity') return 1
+  if (channel === 'depth') return .08
+  if (target.kind === 'camera' && channel === 'fov') return project.camera.fov
+  if (target.kind === 'camera' && channel === 'position.z') return 3.2
+  return 0
+}
+export function editChannel(project: Project, target: TrackTarget, channel: string, update: (track: Track | undefined) => Track): Project {
+  if (!targetChannels(target).includes(channel)) return project
+  const tracks = targetTracks(project, target)
+  if (!tracks) return project
+  const track = update(tracks[channel])
+  if (track === tracks[channel]) return project
+  const next = { ...tracks, [channel]: track }
+  return target.kind === 'camera'
+    ? { ...project, camera: { ...project.camera, preset: null, tracks: next } }
+    : target.kind === 'text' ? { ...project, texts: project.texts?.map(d => d.instanceId === target.instanceId ? { ...d, transform: next } : d) }
+    : { ...project, devices: project.devices.map(d => d.instanceId === target.instanceId ? { ...d, transform: next } : d) }
+}
+export function validSelection(project: Project, selection: KeySelection | null): KeySelection | null {
+  if(selection && (selection.t<0 || selection.t>project.duration))return null
+  const matches = (k: {t:number;poseId?:string}) => selection?.poseId ? (k.poseId ?? `time:${k.t}`) === selection.poseId : !!selection && sameTime(k.t,selection.t)
+  if (selection?.channel === '*') return Object.values(targetTracks(project, selection.target) ?? {}).some(track => track.keys.some(matches)) ? selection : null
+  return selection && targetTracks(project, selection.target)?.[selection.channel]?.keys.some(matches) ? selection : null
+}
+/** Explicit animation activation makes a second, identical anchor. Ordinary number edits stay static. */
+export function addEditableKey(project: Project, target: TrackTarget, channel: string, t: number): Project {
+  if (!Number.isFinite(t)) return project
+  const time = Math.max(0, Math.min(project.duration, t))
+  return editChannel(project, target, channel, original => {
+    const value = sampleTrack(original, time, channelFallback(project, target, channel))
+    let track = original?.keys.length ? original : staticTrack(value)
+    track = setKey(track, time, value)
+    if (track.keys.length === 1) track = setKey(track, sameTime(time, 0) ? project.duration : 0, value)
+    return track
+  })
+}
+export function moveEditableKey(track: Track | undefined, from: number, to: number): Track | undefined {
+  const key = track?.keys.find(k => sameTime(k.t, from))
+  if (!track || !key || !Number.isFinite(to) || sameTime(from, to)) return track
+  // Moving onto an occupied time replaces that key. The dragged key wins.
+  return setKey({ ...track, keys: track.keys.filter(k => !sameTime(k.t, from)) }, to, key.v, key.ease)
+}
+export function deleteEditableKey(track: Track | undefined, t: number, fallback: number): Track {
+  if (!track?.keys.some(k => sameTime(k.t, t))) return track ?? staticTrack(fallback)
+  const keys = track.keys.filter(k => !sameTime(k.t, t))
+  return keys.length <= 1 ? staticTrack(keys[0]?.v ?? fallback) : { ...track, keys }
+}
+export function easeEditableKey(track: Track | undefined, t: number, ease: EaseHandle): Track | undefined {
+  const key = track?.keys.find(k => sameTime(k.t, t))
+  if (!track || !key) return track
+  // An explicit easing choice switches a velocity-continuous channel to keyed easing.
+  const { interpolation: _interpolation, ...keyed } = track
+  return setKey(keyed, t, key.v, ease)
+}

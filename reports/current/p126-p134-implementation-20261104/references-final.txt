@@ -1,0 +1,4 @@
+PASS reference-frames-use-shared-export-session
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"references","status":"PASS"}],"checks":3}

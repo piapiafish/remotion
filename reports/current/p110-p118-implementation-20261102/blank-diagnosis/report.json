@@ -1,0 +1,346 @@
+{
+  "date": "2026-11-02T14:59:01.072Z",
+  "method": "Real local Vite HTTP, Chrome UI, native object actions, portable archives and actual encoded downloads.",
+  "checks": [
+    {
+      "name": "first-entry-is-template-page",
+      "status": "PASS"
+    },
+    {
+      "name": "template-creates-two-phones-and-opens-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-settings-are-independent",
+      "status": "PASS"
+    },
+    {
+      "name": "two-independent-recordings-and-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "selected-object-wheel-scales-even-over-blank",
+      "status": "PASS"
+    },
+    {
+      "name": "wheel-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-click-deselects",
+      "status": "FAIL",
+      "detail": {
+        "debug": {
+          "hit": true,
+          "x": 139,
+          "y": 720,
+          "hits": [
+            {
+              "name": "Z",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Z",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "Z",
+              "type": "Line",
+              "visible": false,
+              "parents": [
+                {
+                  "name": "Z",
+                  "type": "Line",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "Y",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Y",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "Y",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Y",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "",
+              "type": "Mesh",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "",
+                  "type": "Mesh",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "Y",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Y",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "Y",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Y",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "Y",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Y",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        "element": "<canvas data-engine=\"three.js r185\" width=\"856\" height=\"642\" style=\"display: block; width: 856px; height: 642px;\"></canvas>",
+        "active": {
+          "kind": "device",
+          "instanceId": "43e82514-638f-49d4-85ca-0da2c84e8ee0"
+        }
+      }
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "exports": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.76",
+  "error": "Error: blank-click-deselects\n    at check (D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:7:150)\n    at D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:40:58"
+}

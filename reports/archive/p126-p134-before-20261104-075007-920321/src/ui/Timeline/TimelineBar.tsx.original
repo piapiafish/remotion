@@ -1,0 +1,88 @@
+import { useEffect, useRef, useState, type PointerEvent, type KeyboardEvent } from 'react'
+import { Play, Pause, Plus, SkipBack, SkipForward } from 'lucide-react'
+import { useProjectStore } from '../../store/project'
+import { targetTracks, sameTime, type TrackTarget, type KeySelection } from '../../timeline/editing'
+import { objectKeyTimes, animationEnabled } from '../../timeline/objectEditing'
+import { NAMED_EASINGS } from '../../timeline/easing'
+import { easeLabels, motionLabels } from '../../app/labels'
+import { MOTION_PRESETS, type MotionPresetId } from '../../timeline/presets'
+
+const ownerEqual=(a:TrackTarget,b:TrackTarget)=>a.kind===b.kind&&(a.kind==='camera'||b.kind!=='camera'&&a.instanceId===b.instanceId)
+export function TimelineBar() {
+  const s=useProjectStore(), p=s.project, [zoom,setZoom]=useState(1)
+  const rows: {target:TrackTarget;name:string}[]=[...p.devices.map((d,i)=>({target:{kind:'device' as const,instanceId:d.instanceId},name:d.name||`手机 ${i+1}`})),...(p.texts??[]).map(t=>({target:{kind:'text' as const,instanceId:t.instanceId},name:t.name}))]
+  if(animationEnabled(p,{kind:'camera'}))rows.push({target:{kind:'camera'},name:'相机'})
+  const target:TrackTarget=s.activeObject??{kind:'camera'}, selection=s.keySelection
+  const times=objectKeyTimes(p,target), selectedTracks=selection?targetTracks(p,selection.target):undefined
+  const firstKey=selection?Object.values(selectedTracks??{}).flatMap(t=>t.keys).find(k=>sameTime(k.t,selection.t)):null
+  const ease=Object.values(selectedTracks??{}).some(t=>t.interpolation==='continuous')?'continuous':Object.entries(NAMED_EASINGS).find(([,v])=>v.every((n,i)=>n===firstKey?.ease[i]))?.[0]??'linear'
+  function seekNext(direction:number) {const t=direction>0?times.find(t=>t>s.playhead+1e-6):[...times].reverse().find(t=>t<s.playhead-1e-6);if(t!==undefined)s.selectKey({target,channel:'*',t})}
+  function keyboard(e:KeyboardEvent<HTMLDivElement>) {
+    if(/INPUT|SELECT|TEXTAREA/.test((e.target as HTMLElement).tagName)||e.nativeEvent.isComposing)return
+    if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();e.stopPropagation();s.deleteTimelineKey();return}
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return
+    e.preventDefault();e.stopPropagation();const step=(e.key==='ArrowLeft'?-1:1)*(e.shiftKey?10:1)/p.fps
+    if(selection){s.beginEditGesture();s.moveTimelineKey(selection,selection.t+step);s.endEditGesture()}else s.setPlayhead(s.playhead+step)
+  }
+  return <section className="object-timeline" data-testid="object-timeline" onKeyDown={keyboard}>
+    <div className="timeline-mainbar"><button className="icon-btn" aria-label={s.playing?'暂停':'播放'} onClick={()=>s.setPlaying(!s.playing)}>{s.playing?<Pause size={16}/>:<Play size={16}/>}</button><label><input aria-label="当前时间" type="number" min={0} max={p.duration} step={1/p.fps} value={Number(s.playhead.toFixed(3))} onChange={e=>{s.setPlaying(false);s.setPlayhead(Number(e.target.value))}}/> / <input aria-label="总时长" type="number" min={.1} step={.5} value={p.duration} onChange={e=>{const n=Number(e.target.value);if(Number.isFinite(n)&&n>=.1)s.setDuration(n)}}/> 秒</label><span className="spacer"/><button className="ghost-btn" aria-label="上一个关键帧" title="上一个关键帧" onClick={()=>seekNext(-1)}><SkipBack size={14}/></button><button className="ghost-btn" aria-label="下一个关键帧" title="下一个关键帧" onClick={()=>seekNext(1)}><SkipForward size={14}/></button><button className="primary-btn" onClick={()=>s.addObjectKey(target)}><Plus size={14}/>{s.activeObject?'添加关键帧':'相机关键帧'}</button></div>
+    <div className="timeline-scroll"><div className="timeline-sheet" style={{minWidth:Math.max(520,zoom*650)}}><TimeRuler duration={p.duration} zoom={zoom}/>{rows.map(row=><ObjectRow key={row.target.kind==='camera'?'camera':row.target.instanceId} {...row}/>)}{!rows.length&&<p className="hint timeline-empty">添加对象后，它们的动画会显示在这里。</p>}</div></div>
+    <div className="timeline-footer">{selection?<><span>{selection.t.toFixed(3)} 秒 · 姿态关键帧</span><CommitNumber label="关键帧时间" value={selection.t} onCommit={v=>{s.beginEditGesture();s.moveTimelineKey(selection,v);s.endEditGesture()}}/><select aria-label="关键帧过渡" value={ease} onChange={e=>{if(e.target.value==='continuous')s.setKeyContinuous();else s.setTimelineKeyEase(NAMED_EASINGS[e.target.value as keyof typeof NAMED_EASINGS])}}>{Object.entries(easeLabels).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select><button className="link-btn" onClick={s.deleteTimelineKey}>删除关键帧</button><KeyProperties/></>:<span className="hint">点选关键帧，拖动调整时间；同一时刻的姿态一起移动。</span>}<span className="spacer"/>{s.activeObject?.kind==='device'&&<select aria-label="添加动作预设" value="" onChange={e=>s.setMotionPreset(e.target.value as MotionPresetId)}><option value="">添加动作…</option>{MOTION_PRESETS.filter(m=>m.id!=='orbit').map(m=><option key={m.id} value={m.id}>{motionLabels[m.id]??m.label}</option>)}</select>}<button className="icon-btn" aria-label="缩小时间轴" onClick={()=>setZoom(Math.max(1,zoom/1.4))}>−</button><button className="icon-btn" aria-label="放大时间轴" onClick={()=>setZoom(Math.min(12,zoom*1.4))}>＋</button></div>
+  </section>
+}
+function seekAt(element:HTMLElement,x:number) {
+  const s=useProjectStore.getState(),r=element.getBoundingClientRect()
+  if(r.width<=0)return
+  s.setPlaying(false);s.setPlayhead((x-r.left)/r.width*s.project.duration)
+}
+function TimeRuler({duration,zoom}:{duration:number;zoom:number}) {
+  const active=useRef<number|null>(null)
+  useEffect(()=>{const stop=()=>{active.current=null};window.addEventListener('blur',stop);return()=>window.removeEventListener('blur',stop)},[])
+  const raw=duration/(10*zoom),base=10**Math.floor(Math.log10(raw)),step=[1,2,5,10].map(n=>n*base).find(n=>n>=raw)??base*10
+  const ticks=Array.from({length:Math.floor(duration/step)+1},(_,i)=>i*step)
+  if(ticks[ticks.length-1]<duration-1e-6)ticks.push(duration)
+  return <div className="time-ruler-wrap"><span>对象</span><div className="time-ruler" aria-label="拖动时间尺" onPointerDown={e=>{if(e.button!==0)return;e.preventDefault();active.current=e.pointerId;e.currentTarget.setPointerCapture(e.pointerId);seekAt(e.currentTarget,e.clientX)}} onPointerMove={e=>{if(active.current===e.pointerId)seekAt(e.currentTarget,e.clientX)}} onPointerUp={()=>{active.current=null}} onPointerCancel={()=>{active.current=null}} onLostPointerCapture={()=>{active.current=null}}>{ticks.map(t=><small key={t} style={{left:`${t/duration*100}%`}}>{Number(t.toFixed(3))}</small>)}</div></div>
+}
+function ObjectRow({target,name}:{target:TrackTarget;name:string}) {
+  const s=useProjectStore(), times=objectKeyTimes(s.project,target), lane=useRef<HTMLDivElement>(null)
+  const drag=useRef<{pointer:number;x:number;width:number;scroll:number;selection:KeySelection|null;moved:boolean}|null>(null)
+  useEffect(()=>{const cancel=()=>{const d=drag.current;drag.current=null;if(d?.moved&&d.selection)useProjectStore.getState().endEditGesture(true)};const key=(e:globalThis.KeyboardEvent)=>{if(e.key==='Escape')cancel()};window.addEventListener('blur',cancel);window.addEventListener('keydown',key);return()=>{window.removeEventListener('blur',cancel);window.removeEventListener('keydown',key);cancel()}},[])
+  const choose=()=>s.selectObject(target.kind==='camera'?null:target)
+  const finish=(e:PointerEvent<HTMLDivElement>,cancel=false)=>{const d=drag.current;if(!d||d.pointer!==e.pointerId)return;drag.current=null;if(d.moved&&d.selection)s.endEditGesture(cancel);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId)}
+  const current=s.keySelection, active=s.activeObject?ownerEqual(s.activeObject,target):target.kind==='camera'&&current?.target.kind==='camera'
+  return <div className={`object-track ${active?'active':''}`} data-testid={`track-${target.kind==='camera'?'camera':target.instanceId}`} onPointerDown={e=>{
+    if(e.button!==0||!lane.current||!(e.target as HTMLElement).closest('.object-lane'))return
+    e.preventDefault();e.stopPropagation()
+    const rect=lane.current.getBoundingClientRect(), x=e.clientX-rect.left,scroll=e.currentTarget.closest('.timeline-scroll')?.scrollLeft??0
+    const handle=!!(e.target as HTMLElement).closest('.playhead-handle')
+    const nearest=[...times].sort((a,b)=>Math.abs(a/s.project.duration*rect.width-x)-Math.abs(b/s.project.duration*rect.width-x))[0]
+    const selection=!handle&&nearest!==undefined&&Math.abs(nearest/s.project.duration*rect.width-x)<=14?{target,channel:'*',t:nearest}:null
+    drag.current={pointer:e.pointerId,x:e.clientX,width:rect.width,scroll,selection,moved:false}
+    e.currentTarget.setPointerCapture(e.pointerId)
+    if(selection)s.selectKey(selection);else seekAt(lane.current,e.clientX)
+  }} onPointerMove={e=>{
+    const d=drag.current,el=lane.current;if(!d||d.pointer!==e.pointerId||!el||d.width<=0)return
+    const scroll=e.currentTarget.closest('.timeline-scroll')
+    if(scroll){const r=scroll.getBoundingClientRect();if(e.clientX>r.right-16)scroll.scrollLeft+=16;else if(e.clientX<r.left+115)scroll.scrollLeft-=16}
+    if(!d.selection){seekAt(el,e.clientX);return}
+    const dx=e.clientX-d.x+((scroll?.scrollLeft??0)-d.scroll)
+    if(!d.moved&&Math.abs(dx)<4)return
+    if(!d.moved){s.beginEditGesture();d.moved=true}
+    if(!useProjectStore.getState().editingGesture){drag.current=null;return}
+    const t=Math.round((d.selection.t+dx/d.width*s.project.duration)*s.project.fps)/s.project.fps
+    s.moveTimelineKey(d.selection,t)
+  }} onPointerUp={e=>finish(e)} onPointerCancel={e=>finish(e,true)} onLostPointerCapture={e=>finish(e)}>
+    <button className="object-track-name" onClick={choose}>{name}</button><div className="object-lane" ref={lane}>{times.map(t=><button key={t} className={`pose-key ${current&&ownerEqual(current.target,target)&&sameTime(current.t,t)?'selected':''}`} style={{left:`${t/s.project.duration*100}%`}} aria-label={`${name}关键帧 ${Number(t.toFixed(3))}秒`} aria-pressed={!!current&&ownerEqual(current.target,target)&&sameTime(current.t,t)} title={`${t.toFixed(3)} 秒 · 拖动整体改时`} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();s.selectKey({target,channel:'*',t})}}}><i/></button>)}<div className="object-playhead" style={{left:`${s.playhead/s.project.duration*100}%`}}/><button className="playhead-handle" style={{left:`${s.playhead/s.project.duration*100}%`}} aria-label={`拖动播放头 ${name}`} title="拖动查看画面"/></div>
+  </div>
+}
+function KeyProperties() {
+  const s=useProjectStore(), selection=s.keySelection
+  if(!selection)return null
+  const tracks=targetTracks(s.project,selection.target)??{}, names:Record<string,string>={'position.x':'水平位置','position.y':'垂直位置','position.z':'纵深位置','rotation.x':'俯仰角','rotation.y':'偏航角','rotation.z':'倾斜角','target.x':'观察点 X','target.y':'观察点 Y','target.z':'观察点 Z',scale:'缩放',opacity:'透明度',fov:'镜头视角'}
+  return <details className="key-properties"><summary>属性精调</summary><div role="group" aria-label="关键帧属性">{Object.entries(tracks).map(([channel,track])=>{const key=track.keys.find(k=>sameTime(k.t,selection.t));if(!key)return null;const factor=channel.startsWith('rotation.')?180/Math.PI:channel==='opacity'||selection.target.kind==='text'&&channel.startsWith('position.')?100:1;return <label key={channel}>{names[channel]??channel}<CommitNumber label={`关键帧${names[channel]??channel}`} value={key.v*factor} onCommit={v=>s.setTimelineKeyValue(v/factor,channel)}/></label>})}</div></details>
+}
+function CommitNumber({value,label,onCommit}:{value:number;label:string;onCommit:(value:number)=>void}) {
+  const [draft,setDraft]=useState(String(value)), focused=useRef(false),cancelled=useRef(false)
+  useEffect(()=>{if(!focused.current)setDraft(String(Number(value.toFixed(3))))},[value])
+  return <input aria-label={label} type="number" step="any" value={draft} onFocus={()=>{focused.current=true;cancelled.current=false}} onChange={e=>setDraft(e.target.value)} onBlur={()=>{focused.current=false;const n=Number(draft);if(!cancelled.current&&draft.trim()&&Number.isFinite(n)&&n!==value)onCommit(n);else setDraft(String(value))}} onKeyDown={e=>{if(e.key==='Enter')e.currentTarget.blur();if(e.key==='Escape'){cancelled.current=true;setDraft(String(value));focused.current=false;e.currentTarget.blur()}}}/>
+}

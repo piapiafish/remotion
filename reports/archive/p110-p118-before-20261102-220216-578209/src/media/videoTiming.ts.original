@@ -1,0 +1,23 @@
+import type { ScreenPlayback } from '../store/schema'
+
+export function normalizePlayback(duration: number, value?: Partial<ScreenPlayback>): ScreenPlayback {
+  const end = Number.isFinite(duration) ? Math.max(0, duration) : 0
+  const finite = (n: number | undefined, fallback: number) => n !== undefined && Number.isFinite(n) ? n : fallback
+  const start = Math.max(0, finite(value?.start, 0))
+  const from = Math.max(0, Math.min(finite(value?.in, 0), Math.max(0, end - .001)))
+  const to = Math.max(Math.min(end, from + .001), Math.min(end, finite(value?.out, end)))
+  return { in: from, out: to, start, loop: value?.loop === true }
+}
+
+/** Single media clock, used by preview and exact export seeking. */
+export function videoTimeAt(t: number, duration: number, value?: Partial<ScreenPlayback>) {
+  const p = normalizePlayback(duration, value)
+  const elapsed = Math.max(0, t - p.start), length = p.out - p.in
+  const active = t >= p.start && length > 0 && (p.loop || elapsed < length)
+  let offset = p.loop && length > 0 ? elapsed % length : Math.min(elapsed, length)
+  if (p.loop && length > 0 && length - offset < 1e-9) offset = 0
+  // Seeking to duration itself can expose no decoded image. Also hold the
+  // last frame *inside* a trimmed range, never the first excluded frame.
+  const time = Math.min(p.in + offset, Math.max(p.in, p.out - 1e-6))
+  return { time, active, playback: p }
+}

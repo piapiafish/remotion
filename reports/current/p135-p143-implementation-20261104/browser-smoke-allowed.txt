@@ -1,0 +1,7 @@
+SCENARIO FAIL smoke Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: canvas not ready
+    at waitForReadyInternal (http://127.0.0.1:58942/src/automation/bridge.ts:48:18)
+    at Object.waitForReady (http://127.0.0.1:58942/src/automation/bridge.ts:41:16)
+    at async <anonymous>:316:30
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"FAIL","scenarios":[{"name":"smoke","status":"FAIL","error":"Error: page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: canvas not ready\n    at waitForReadyInternal (http://127.0.0.1:58942/src/automation/bridge.ts:48:18)\n    at Object.waitForReady (http://127.0.0.1:58942/src/automation/bridge.ts:41:16)\n    at async <anonymous>:316:30"}],"checks":2}

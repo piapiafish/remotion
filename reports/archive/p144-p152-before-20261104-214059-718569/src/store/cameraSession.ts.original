@@ -1,0 +1,23 @@
+import { create } from 'zustand'
+import type { SceneState, TrackSet } from './schema'
+
+type CameraPose = SceneState['camera']
+export const useCameraSession = create<{
+  speed:'slow'|'standard'|'fast'
+  mode:'idle'|'ready'|'countdown'|'recording'|'review'
+  view:CameraPose|null
+  draft:TrackSet
+  start:number
+  end:number
+  frame:number
+}>(()=>({speed:'standard',mode:'idle',view:null,draft:{},start:0,end:0,frame:-1}))
+export function resetCameraSession(){useCameraSession.setState({mode:'idle',view:null,draft:{},start:0,end:0,frame:-1})}
+export function captureCameraPose(pose:CameraPose,time:number,fps:number){
+  const s=useCameraSession.getState(),frame=Math.round(time*fps)
+  if(s.mode!=='recording'||frame===s.frame)return
+  const t=frame/fps,id=`camera-${frame}`,draft={...s.draft}
+  const values:Record<string,number>={fov:pose.fov}
+  for(let i=0;i<3;i++){values[`position.${'xyz'[i]}`]=pose.position[i];values[`target.${'xyz'[i]}`]=pose.target[i]}
+  for(const [c,v] of Object.entries(values))draft[c]={keys:[...(draft[c]?.keys??[]),{t,v,ease:[0,0,1,1],poseId:id,order:frame,initial:frame===Math.round(s.start*fps)}]}
+  useCameraSession.setState({draft,frame,end:t})
+}

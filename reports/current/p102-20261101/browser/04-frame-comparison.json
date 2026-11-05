@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "frames": [
+    {
+      "frame": 0,
+      "ssim": 0.992847,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\P1-02-dual-device-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,0)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-decoded-0.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-decoded-0.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-reference-0.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ],
+      "decoded": "04-decoded-0.png",
+      "reference": "04-reference-0.png"
+    },
+    {
+      "frame": 15,
+      "ssim": 0.995629,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\P1-02-dual-device-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,15)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-decoded-15.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-decoded-15.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-reference-15.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ],
+      "decoded": "04-decoded-15.png",
+      "reference": "04-reference-15.png"
+    },
+    {
+      "frame": 29,
+      "ssim": 0.993222,
+      "threshold": 0.97,
+      "status": "PASS",
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\P1-02-dual-device-1080p30.mp4",
+        "-vf",
+        "select=eq(n\\,29)",
+        "-frames:v",
+        "1",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-decoded-29.png"
+      ],
+      "compare_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-decoded-29.png",
+        "-i",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p102-20261101-4dizbre0\\evidence\\browser\\04-reference-29.png",
+        "-lavfi",
+        "ssim",
+        "-f",
+        "null",
+        "-"
+      ],
+      "decoded": "04-decoded-29.png",
+      "reference": "04-reference-29.png"
+    }
+  ],
+  "method": "Decode actual MP4 and compare frame indices 0, 15, 29 to same-project Standard-quality engine frame exports."
+}

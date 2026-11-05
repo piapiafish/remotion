@@ -1,0 +1,230 @@
+{
+  "status": "PASS",
+  "clips": [
+    {
+      "clip": "manual",
+      "video": "P1-03-manual-720-1080p30.mp4",
+      "status": "PASS",
+      "frames": [
+        {
+          "frame": 0,
+          "ssim": 0.995659,
+          "threshold": 0.97,
+          "status": "PASS",
+          "decoded": "04-manual-decoded-0.png",
+          "reference": "04-manual-reference-0.png",
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-manual-720-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,0)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-0.png"
+          ],
+          "compare_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-0.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-reference-0.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ]
+        },
+        {
+          "frame": 15,
+          "ssim": 0.995181,
+          "threshold": 0.97,
+          "status": "PASS",
+          "decoded": "04-manual-decoded-15.png",
+          "reference": "04-manual-reference-15.png",
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-manual-720-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,15)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-15.png"
+          ],
+          "compare_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-15.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-reference-15.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ]
+        },
+        {
+          "frame": 59,
+          "ssim": 0.995975,
+          "threshold": 0.97,
+          "status": "PASS",
+          "decoded": "04-manual-decoded-59.png",
+          "reference": "04-manual-reference-59.png",
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-manual-720-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,59)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-59.png"
+          ],
+          "compare_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-decoded-59.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-manual-reference-59.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ]
+        }
+      ]
+    },
+    {
+      "clip": "dual",
+      "video": "P1-03-05-dual-animation-1080p30.mp4",
+      "status": "PASS",
+      "frames": [
+        {
+          "frame": 0,
+          "ssim": 0.99399,
+          "threshold": 0.97,
+          "status": "PASS",
+          "decoded": "04-dual-decoded-0.png",
+          "reference": "04-reference-0.png",
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,0)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-0.png"
+          ],
+          "compare_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-0.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-reference-0.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ]
+        },
+        {
+          "frame": 30,
+          "ssim": 0.995337,
+          "threshold": 0.97,
+          "status": "PASS",
+          "decoded": "04-dual-decoded-30.png",
+          "reference": "04-reference-30.png",
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,30)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-30.png"
+          ],
+          "compare_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-30.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-reference-30.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ]
+        },
+        {
+          "frame": 59,
+          "ssim": 0.994777,
+          "threshold": 0.97,
+          "status": "PASS",
+          "decoded": "04-dual-decoded-59.png",
+          "reference": "04-reference-59.png",
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+            "-vf",
+            "select=eq(n\\,59)",
+            "-frames:v",
+            "1",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-59.png"
+          ],
+          "compare_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-dual-decoded-59.png",
+            "-i",
+            "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p103-p105-writeback-20261102\\browser\\04-reference-59.png",
+            "-lavfi",
+            "ssim",
+            "-f",
+            "null",
+            "-"
+          ]
+        }
+      ]
+    }
+  ],
+  "method": "FFmpeg-decoded MP4 frames compared against same-project, same-index Standard-quality engine frame exports; SSIM >=0.97."
+}

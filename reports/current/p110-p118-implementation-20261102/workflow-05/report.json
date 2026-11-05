@@ -1,0 +1,229 @@
+{
+  "date": "2026-11-02T15:07:55.052Z",
+  "method": "Real local Vite HTTP, Chrome UI, native object actions, portable archives and actual encoded downloads.",
+  "checks": [
+    {
+      "name": "first-entry-is-template-page",
+      "status": "PASS"
+    },
+    {
+      "name": "template-creates-two-phones-and-opens-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-settings-are-independent",
+      "status": "PASS"
+    },
+    {
+      "name": "two-independent-recordings-and-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "selected-object-wheel-scales-even-over-blank",
+      "status": "PASS"
+    },
+    {
+      "name": "wheel-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-click-deselects",
+      "status": "PASS",
+      "detail": {
+        "debug": {
+          "hit": false,
+          "x": 139,
+          "y": 720,
+          "hits": [
+            {
+              "name": "Z",
+              "type": "Line",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "Z",
+                  "type": "Line",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": false,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "TransformControlsGizmo",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "",
+              "type": "Mesh",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "",
+                  "type": "Mesh",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "name": "",
+              "type": "TransformControlsPlane",
+              "visible": true,
+              "parents": [
+                {
+                  "name": "",
+                  "type": "TransformControlsPlane",
+                  "visible": true,
+                  "data": {}
+                },
+                {
+                  "name": "",
+                  "type": "Object3D",
+                  "visible": true,
+                  "data": {
+                    "editorOnly": true
+                  }
+                },
+                {
+                  "name": "",
+                  "type": "Scene",
+                  "visible": true,
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        "element": "<canvas data-engine=\"three.js r185\" width=\"856\" height=\"642\" style=\"display: block; width: 856px; height: 642px;\"></canvas>",
+        "active": null
+      }
+    },
+    {
+      "name": "unselected-wheel-zooms-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-drag-orbits-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit-animation-preserves-start-and-records-new-pose",
+      "status": "PASS"
+    },
+    {
+      "name": "drag-retimes-all-pose-channels-to-six-seconds",
+      "status": "PASS"
+    },
+    {
+      "name": "six-second-transition-is-halfway-at-three-seconds",
+      "status": "PASS",
+      "detail": {
+        "a": {
+          "position": [
+            -0.46,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.92
+        },
+        "m": {
+          "position": [
+            -0.38111776110672557,
+            0.026294079631091486,
+            -4.440892098500626e-16
+          ],
+          "rotation": [
+            0,
+            6.283185307179586,
+            0
+          ],
+          "scale": 0.92
+        },
+        "b": {
+          "position": [
+            -0.3022355222134512,
+            0.05258815926218297,
+            -8.881784197001252e-16
+          ],
+          "rotation": [
+            0,
+            12.566370614359172,
+            0
+          ],
+          "scale": 0.92
+        }
+      }
+    },
+    {
+      "name": "keyframes-have-large-hit-area",
+      "status": "PASS"
+    },
+    {
+      "name": "retiming-undo-restores-all-channels",
+      "status": "PASS"
+    },
+    {
+      "name": "precise-retiming-keeps-channels-together",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-change-does-not-move-screen-title",
+      "status": "PASS"
+    },
+    {
+      "name": "five-objects-visible-in-one-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "object-delete-updates-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "object-delete-undo-restores-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "dense-key-navigation-selects-correct-time",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "exports": [],
+  "status": "FAIL",
+  "browser": "156.0.8078.76",
+  "error": "page.evaluate: Error: MODEL_OR_VIDEO_NOT_READY: timed out waiting for device meshes and decoded screen frame\n    at waitForReadyInternal (http://127.0.0.1:52861/src/automation/bridge.ts:77:8)\n    at async Object.waitForReady (http://127.0.0.1:52861/src/automation/bridge.ts:35:10)\n    at async <anonymous>:316:30\n    at ready (D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:12:19)\n    at D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\scripts\\test-beginner-workflow.cjs:55:338"
+}

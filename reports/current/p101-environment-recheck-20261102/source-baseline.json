@@ -1,0 +1,538 @@
+{
+  "Date": "2026-11-02",
+  "Project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "Files": [
+    {
+      "Path": "package.json",
+      "SHA256": "8610FB13263FFFDAB0130C59B613628C78A5BE61F941A41B116EFCF37DE754A1"
+    },
+    {
+      "Path": "package-lock.json",
+      "SHA256": "7D77DAEF42E2F86EE9E4EBEA6F70420419E9ED4F776BD49764B6F9688869E502"
+    },
+    {
+      "Path": "vite.config.ts",
+      "SHA256": "B61A2FDEC8A897FE7A8A95EFDDA4296A74313EC784AB8596BA0750D6AE11F540"
+    },
+    {
+      "Path": "src\\App.css",
+      "SHA256": "FBF9D200A09169818719544DDC760F8D6678117242D7ECC79AA8DD35F6E99926"
+    },
+    {
+      "Path": "src\\App.tsx",
+      "SHA256": "1862EB99A01DACEBE02F4C0EB7CAC44C77142AD14FBD49E38BCC7C2A0923FA13"
+    },
+    {
+      "Path": "src\\index.css",
+      "SHA256": "C29EF59793479103882D37ECC8A144CE486BBECCAB8C88267FDDF2D840884C8F"
+    },
+    {
+      "Path": "src\\main.tsx",
+      "SHA256": "4D6108FF649E92D75D6F9DFAFE935ED2FE7EAB6EB935E19823484D8016A4C0D0"
+    },
+    {
+      "Path": "src\\app\\useShortcuts.ts",
+      "SHA256": "45CEB47213551F6E2D33C7424551E512AE701E718935B31357388F52392AE3BD"
+    },
+    {
+      "Path": "src\\automation\\bridge.ts",
+      "SHA256": "0893ECCCB0EB923F061C62BBEE70EC38C23500603CD0592E740FFC3B2E3E06C2"
+    },
+    {
+      "Path": "src\\automation\\global.d.ts",
+      "SHA256": "0A78B775B0E693896DB97826BAB96176D75045CD6ADD1CC344917C856659CBFF"
+    },
+    {
+      "Path": "src\\devices\\manifest.test.ts",
+      "SHA256": "86873E6C9C0D1B669B5156178DB8D5086CCF9E32B71313B5275E9BEC6B45DFD9"
+    },
+    {
+      "Path": "src\\devices\\manifest.ts",
+      "SHA256": "0174CA3FE710233C16F185FB5199CAB0FB762B8BE08A83505DC653DEB6D7B8F7"
+    },
+    {
+      "Path": "src\\devtools\\videoProbe.ts",
+      "SHA256": "A031ACA5AA893B295F6299145AF134F8BE96E8AD1048418F96F101A34674A0AD"
+    },
+    {
+      "Path": "src\\export\\backdrop.test.ts",
+      "SHA256": "1210E1919B66CE0EC415302B44315939EB67B6CB9CF4AA6C56358FBAF0660D20"
+    },
+    {
+      "Path": "src\\export\\backdrop.ts",
+      "SHA256": "F7E5274F9CC64462794367B1C3FCABD818FEB8274BD0C252DF566D0B92D7D6BD"
+    },
+    {
+      "Path": "src\\export\\downsample.test.ts",
+      "SHA256": "0309BD62190CF2166500562A47CF0061E9A7366BC633F8E4F1EB7BF5091F40ED"
+    },
+    {
+      "Path": "src\\export\\downsample.ts",
+      "SHA256": "A2C80F49496DC39B7BE23C0402F622F3E55DCC050993DDCA202406AF17D75E1A"
+    },
+    {
+      "Path": "src\\export\\exportSize.test.ts",
+      "SHA256": "C34CE50716839EA2F09BEE3F885B4FF56FC5DABAAA12A1871BFB7373417ABF0A"
+    },
+    {
+      "Path": "src\\export\\exportSize.ts",
+      "SHA256": "B0D341826C4F7BB6FFE2E9C9E644D58F3C18AF6E9E48F16FCEC821B55B2729AD"
+    },
+    {
+      "Path": "src\\export\\frameRenderer.test.ts",
+      "SHA256": "754A772E1C9D87DBC46571FB9C725BC9F5271BE3F16626C75E3D222CEB49CB4E"
+    },
+    {
+      "Path": "src\\export\\frameRenderer.ts",
+      "SHA256": "DA2AC9E72B2258A16D15D88BF8CFA90D6CD6A5C75B5FE021C6DC4FC2F718E429"
+    },
+    {
+      "Path": "src\\export\\renderer.ts",
+      "SHA256": "CB09E62D9EDC63431F7EBB19ACAA11277CE5DE62D61ED1DCD56A6BBC24FFA7C6"
+    },
+    {
+      "Path": "src\\export\\screenCoverage.test.ts",
+      "SHA256": "2F27F7A07DF80B0396108EAB834E066B9851CFE7EBC5D1BF6DB9E7E59F3D2007"
+    },
+    {
+      "Path": "src\\export\\screenCoverage.ts",
+      "SHA256": "AE8621CFAA338CA10413384144DC6A60E09B4313271F9748BCAF3592813023B6"
+    },
+    {
+      "Path": "src\\export\\screenCoverageScene.test.ts",
+      "SHA256": "B6F20B98832969B9129769166A9EA929822FB38627D814B7FBB0BE2404FADC02"
+    },
+    {
+      "Path": "src\\export\\sequence.test.ts",
+      "SHA256": "1A6267CB61EE2520CC31797A9607BEB7EB3663AF034693438EE3967FE81AE358"
+    },
+    {
+      "Path": "src\\export\\sequence.ts",
+      "SHA256": "2985B974A994864414D15C69F5D9139DE8C401DA05ED4B5C4A3D1298712CA5B4"
+    },
+    {
+      "Path": "src\\export\\still.ts",
+      "SHA256": "0170CDBC7A1B674E8C42CB30D5D389C8BC585501A88AC8324A10F4C5DF6EFFDD"
+    },
+    {
+      "Path": "src\\export\\video.test.ts",
+      "SHA256": "4E5CC4F8A48364A82910F3BAF05F546DF4E7790854B00D8027184E75AA958A73"
+    },
+    {
+      "Path": "src\\export\\video.ts",
+      "SHA256": "1E05F8574E4921C665A140F720A133462C65FD3C9994B75A5D07FB6D625932C8"
+    },
+    {
+      "Path": "src\\media\\loadImage.ts",
+      "SHA256": "38F3FC491BF93E4DD3BB948754AFC8A5B39DE289EE40C914558E3F3E42D59A8B"
+    },
+    {
+      "Path": "src\\media\\loadMedia.ts",
+      "SHA256": "4FCBAF59FD1BD0F4DAD18FDDE90F180E89D72A1A826AD982ED4D3AEF3D3C946A"
+    },
+    {
+      "Path": "src\\media\\screenVideo.test.ts",
+      "SHA256": "5B9D61ADF2872A9A589D4E84514284306D2F77E78FD5E32E50B2C48DCB9A7A62"
+    },
+    {
+      "Path": "src\\media\\screenVideo.ts",
+      "SHA256": "E19C894849E4B7F324B7A010AAAC2859D368408B8D7E9EB1FD72E478B0C46B92"
+    },
+    {
+      "Path": "src\\media\\storage.ts",
+      "SHA256": "23301F8FE78404828FD2FAFFC417D9A5F96051B0AF963DF9AD62451BF96C221A"
+    },
+    {
+      "Path": "src\\media\\useScreenVideo.ts",
+      "SHA256": "090C0D6A1E2381D61DA31FEE4EC205D561AF7DD845520916717A8EF48A29EA7D"
+    },
+    {
+      "Path": "src\\scene\\applySceneState.ts",
+      "SHA256": "3A61B5930634287B217A4325EFC02A8E6CBCC4007F6692832934EA9A85E511BF"
+    },
+    {
+      "Path": "src\\scene\\Backdrop.tsx",
+      "SHA256": "20C03ADC957F481A70669E040581E0921B835F3C91339CC4CCBE2D0B8502F922"
+    },
+    {
+      "Path": "src\\scene\\Device.tsx",
+      "SHA256": "657F58B1A94D237D7A9EC980FC5CDD4C40D124D4A6794AFA601CDD2BF8995ADC"
+    },
+    {
+      "Path": "src\\scene\\DeviceControls.tsx",
+      "SHA256": "513C239E56E2868B1CCD9318FD83000A4E2564C0E83D26C75CEE67893DECA1E4"
+    },
+    {
+      "Path": "src\\scene\\DeviceInstanceView.tsx",
+      "SHA256": "8A72EA8361839EED7C5745D21C3835A2232979700550A744B491E652016CDB9C"
+    },
+    {
+      "Path": "src\\scene\\editorHelpers.ts",
+      "SHA256": "E2008914089D378518D003909B29DB3AEDDEF1D3079C6152E1C851DFFB59F731"
+    },
+    {
+      "Path": "src\\scene\\editorInteraction.test.ts",
+      "SHA256": "00A512F6AC0595BE700253E1B77F206629660EECD8B71B3360B8CFCD5318A0C6"
+    },
+    {
+      "Path": "src\\scene\\geometry.ts",
+      "SHA256": "F5452DB7B011E857776D6AF08175C248585ED599EB77EF156BC744AD3261F3ED"
+    },
+    {
+      "Path": "src\\scene\\GltfDevice.tsx",
+      "SHA256": "048643949CE472C82A8FA78DCCB4B8F15D3F76ED36DBB5B2B7B64110638D5141"
+    },
+    {
+      "Path": "src\\scene\\groundPlane.test.ts",
+      "SHA256": "38F10A125C68DB42256E7CD3B0120EE4250FC5C219D5C2DBAB835F45AF939E10"
+    },
+    {
+      "Path": "src\\scene\\groundPlane.ts",
+      "SHA256": "5C2736D9ADA8240820CA61526227067DA2E00146CE4C546CFB6ADF65265AD067"
+    },
+    {
+      "Path": "src\\scene\\modelReadiness.ts",
+      "SHA256": "71750DEAEEDCC14C58B0CC7182F5FA9860053A4A4EB96C94BB54645E40A1EB5E"
+    },
+    {
+      "Path": "src\\scene\\SceneDriver.tsx",
+      "SHA256": "B202DAE23865295706A267AEFA490B68FEBD9B09604A6265CDA82A0FBFFCD933"
+    },
+    {
+      "Path": "src\\scene\\screenFit.test.ts",
+      "SHA256": "C50C33F9C02DD94753EBC503698957CA1233A6474EE45F412C3E168B729D9CF6"
+    },
+    {
+      "Path": "src\\scene\\screenFit.ts",
+      "SHA256": "3B965623C4378F00B2AEF28FE0606167B632E090BBC98E3906240186B9E2F690"
+    },
+    {
+      "Path": "src\\scene\\ShadowCatcher.tsx",
+      "SHA256": "334267996A0D81A4E557DD4BABE9495C01C837EBBFC454AE43ED4FD6CA135A79"
+    },
+    {
+      "Path": "src\\scene\\Stage.tsx",
+      "SHA256": "BBC2CFA9E7FD9E3C5C9A01EF3685B8397D83F30A648AEF61A8D65E45804FFB19"
+    },
+    {
+      "Path": "src\\scene\\transformValues.ts",
+      "SHA256": "A5E878B93ED85AAB755335006D284B9DC36475B8FB95BC13494ED1BC1862AB5E"
+    },
+    {
+      "Path": "src\\scene\\materials\\index.ts",
+      "SHA256": "B03A079EDF301717EEAF9F1E7AFE2CD7D1123B8765CDE8DB97E461ADAE1A4D51"
+    },
+    {
+      "Path": "src\\scene\\materials\\screenMaterial.test.ts",
+      "SHA256": "BD5A33F00C12906BBD2391BC96C72D7B20AB47F4580EA199C24588284BAF8260"
+    },
+    {
+      "Path": "src\\scene\\materials\\screenMaterial.ts",
+      "SHA256": "A53CE418E7C112CB663B05E51DD153C91075D5EAA38412E6681C764799965A3D"
+    },
+    {
+      "Path": "src\\scene\\materials\\screenOrientation.test.ts",
+      "SHA256": "2936B76655AE21859CFC67D166030AE44AD05FDDB2024DA57A2F5CDC8ED7B16B"
+    },
+    {
+      "Path": "src\\scene\\materials\\screenTexture.ts",
+      "SHA256": "387CBA5BA4CF73B474781E5EAD05574BF61091BE5B4C30BE7CC7865C6620C5DB"
+    },
+    {
+      "Path": "src\\scene\\materials\\screenUv.test.ts",
+      "SHA256": "D51AABCAB897C55097F705BDC9F0F40115C9EFFB507F9D1A2C3A51FEE5F34D32"
+    },
+    {
+      "Path": "src\\store\\defaults.ts",
+      "SHA256": "A8DD3E2F9357C0090018E70FE7F191B8AFB546E2A881BC078AA33C5AE45A1D0A"
+    },
+    {
+      "Path": "src\\store\\deviceLifecycle.test.ts",
+      "SHA256": "A7A3A889E9D1773D67123322607EC8BBA18F4579D3654B373E401C349FCF2C46"
+    },
+    {
+      "Path": "src\\store\\devicePlacement.ts",
+      "SHA256": "B3F54F2103C0DFDB4E324232FB661B48EBB2A216D9D90AF41BF68500D01CBEA9"
+    },
+    {
+      "Path": "src\\store\\deviceTransform.test.ts",
+      "SHA256": "92A8EF2AE35E6B1F1CDCA2A138BFFE7A18ACCC954ECAD4E25D8DD3D9F3E2FD3C"
+    },
+    {
+      "Path": "src\\store\\exportPreferences.test.ts",
+      "SHA256": "19CDFCE9D24BAE483A1EFE296DDC562EE18448360C9C6857D79EDA90169CF6AF"
+    },
+    {
+      "Path": "src\\store\\history.test.ts",
+      "SHA256": "60C52E5E501019C2AE2518EB567635B89F293CABE4CBACAD6EA622FC849D43B2"
+    },
+    {
+      "Path": "src\\store\\history.ts",
+      "SHA256": "E68BA09B88B7D363491C64FDB91BEAE816C3955D82D1202F225791C0E80787AE"
+    },
+    {
+      "Path": "src\\store\\keyframeEditing.test.ts",
+      "SHA256": "B1B286916074167006EB56152480005CC820DC03C0F9B498C4060281245FFDC6"
+    },
+    {
+      "Path": "src\\store\\persist.ts",
+      "SHA256": "743930A3C0ECE5DB6CD09E66B514013B8E49FD810BDA76F5CE3D2F26EF67C595"
+    },
+    {
+      "Path": "src\\store\\project.ts",
+      "SHA256": "2984BB939F1E38A0E927CBB59503145DA5B8B10BE98B73688BACEA5E8635AE84"
+    },
+    {
+      "Path": "src\\store\\schema.ts",
+      "SHA256": "4180413D9FF80BDC04DDDA2235C25D0A42A2698710B2A85DAD88F8491CB561F7"
+    },
+    {
+      "Path": "src\\timeline\\easing.ts",
+      "SHA256": "45AEB7BD2B1EF3C1E3B7609B59B85A775692257F3AA3327D44B3219FB574F36B"
+    },
+    {
+      "Path": "src\\timeline\\editing.ts",
+      "SHA256": "4FCC21F596E6404E8A07C1332ECFA40132C9654BD11854864C8785FF56CBD8E6"
+    },
+    {
+      "Path": "src\\timeline\\motionPlan.test.ts",
+      "SHA256": "7EAC15C10D3B3160FBE745BF82C3EB0367BA09325E3EB1798121AF8CF26505D5"
+    },
+    {
+      "Path": "src\\timeline\\motionPlan.ts",
+      "SHA256": "9C74ABDB9FE9307E0A3A9296B7C6B0854A9F166092A763FF76E83C33FA9B0C7F"
+    },
+    {
+      "Path": "src\\timeline\\presets.ts",
+      "SHA256": "E257FC64888CE71CD3446E1B4E4DE66FE5B741E3147272BDCBE20327C1BBA68B"
+    },
+    {
+      "Path": "src\\timeline\\sample.test.ts",
+      "SHA256": "E97EEEAD3C7F2E6202EC29482F43282185E1D5CA6014C70C7295EB0F521985F0"
+    },
+    {
+      "Path": "src\\timeline\\sample.ts",
+      "SHA256": "CA6043C0DA7A0FB078595A79DAAFD4BB5E82FCCA8B5FB3DE8312694DF3EDAAF1"
+    },
+    {
+      "Path": "src\\timeline\\scopedPresets.test.ts",
+      "SHA256": "7C97E34369ED188A33B513C0C5485363380605D9112B209462106C6A67E5F851"
+    },
+    {
+      "Path": "src\\timeline\\templates.test.ts",
+      "SHA256": "E143F99AC64BE6FB4F85DBE0AB491A6C60463989C6292E5BC74C3A4BCF7B26CE"
+    },
+    {
+      "Path": "src\\timeline\\templates.ts",
+      "SHA256": "4C1A352815E21685D295B18BFE0EBB62A9C8711B9705CF363DB6179B76E6A87F"
+    },
+    {
+      "Path": "src\\timeline\\tracks.ts",
+      "SHA256": "B11052794910389167CC76379085866540B5E52B11BD0CF0B6E8EFDDE6C0DB8B"
+    },
+    {
+      "Path": "src\\ui\\AgentPanel\\AgentPanel.tsx",
+      "SHA256": "FCE6283294F4C633A099D2EE531FED327928F1D61FAAF3964B9AAFFF5EC9BEB4"
+    },
+    {
+      "Path": "src\\ui\\AgentPanel\\StoryboardRenderPanel.tsx",
+      "SHA256": "9283EBAE5D848C9869B90CC05CC500009140A019E5D645CBD039B914D6509046"
+    },
+    {
+      "Path": "src\\ui\\AgentPanel\\studioClient.ts",
+      "SHA256": "E46F66AB2BADCEED42BF9CDE1093B83773847ADA29763A3E2D5FFC0B0AA3ED69"
+    },
+    {
+      "Path": "src\\ui\\Artboard\\Artboard.tsx",
+      "SHA256": "F0480E207D23EC25ED969715E120134DEBB3833D387132EFAC304D6899F4052B"
+    },
+    {
+      "Path": "src\\ui\\controls\\NumberField.tsx",
+      "SHA256": "6D8B4466277EDDC026E4C05D6276D56BB38CFE2809E606D28262FDDF813AFA68"
+    },
+    {
+      "Path": "src\\ui\\controls\\Section.tsx",
+      "SHA256": "C7FD464267F979C4395BEB16D30C81BFC345E2EC5997DEEEC24E6D9378883464"
+    },
+    {
+      "Path": "src\\ui\\controls\\Segmented.tsx",
+      "SHA256": "830AFF6B61D8426B34264B143C2397A730E7BA55A7F9DB408FB89C69174E14BE"
+    },
+    {
+      "Path": "src\\ui\\controls\\SliderRow.tsx",
+      "SHA256": "A0F1477DEB07EB48C2E4EFF394D383ECA7D4F00A4C5611CEEE64517B4FD79023"
+    },
+    {
+      "Path": "src\\ui\\ExportDialog\\ExportDialog.tsx",
+      "SHA256": "2D3DEE86A928C48A183E8A0635E2E8FCCD2EC88F9A4E68301105D67B57F2F5AE"
+    },
+    {
+      "Path": "src\\ui\\Inspector\\CameraSection.tsx",
+      "SHA256": "8258F4D360E09B5644DE5B5BD429196017E3AC3103060DC389B207449E5B8BAC"
+    },
+    {
+      "Path": "src\\ui\\Inspector\\DeviceList.tsx",
+      "SHA256": "BEF3D95EA565EC13673D698316B1B3FE33B1A2CB4FEE673925CA05D70166CE94"
+    },
+    {
+      "Path": "src\\ui\\Inspector\\DeviceSection.test.ts",
+      "SHA256": "B593E2074443DBEF61DBD2155634E4DFE56CC6DFC250EF06EB314F18F4CC2EEB"
+    },
+    {
+      "Path": "src\\ui\\Inspector\\DeviceSection.tsx",
+      "SHA256": "F1F54B19D70A670527E564780343FFF3AB21525A3D9AD4FEEC9AA3330E96A19C"
+    },
+    {
+      "Path": "src\\ui\\Inspector\\Inspector.tsx",
+      "SHA256": "6311F9D66F7DF28DE3FF5057BD14E73847E4B64A1D7E18731BA43E273C003DCF"
+    },
+    {
+      "Path": "src\\ui\\Inspector\\TransformSection.tsx",
+      "SHA256": "4E2F745AF319E9B8006BFFAE4F89E079D4A8322DC7C9FC6FDE80B370AEC7147E"
+    },
+    {
+      "Path": "src\\ui\\Templates\\TemplatePicker.tsx",
+      "SHA256": "080CED28F9A1A379362826F432E53EB7B5FB2C7EA3FD4004C20AAF7C63155036"
+    },
+    {
+      "Path": "src\\ui\\Timeline\\MotionFilmstrip.tsx",
+      "SHA256": "0429CEFCA94F543B2CB4850D1AE44023C047172CB9B18AF17D70998CDE096E56"
+    },
+    {
+      "Path": "src\\ui\\Timeline\\motionThumbnails.ts",
+      "SHA256": "74027D7618E5E4818A3A637456DF4703FC67EC2E8EFD4BD49CC29F2819CCBA6B"
+    },
+    {
+      "Path": "src\\ui\\Timeline\\PresetControls.tsx",
+      "SHA256": "4444184175C2359FAEB709F418789E80E28C81717F653A93814CD2865A3C7EFD"
+    },
+    {
+      "Path": "src\\ui\\Timeline\\TimelineBar.tsx",
+      "SHA256": "6668A0875DE06B4F6637B2D427E97DD86D0E7B43CFD20813391C929504366F79"
+    },
+    {
+      "Path": "src\\ui\\TopBar\\TopBar.tsx",
+      "SHA256": "C2D6259A3C19588CC869690CCEF83EF2164244324F41F7187119EB1BE396F68F"
+    },
+    {
+      "Path": "services\\agent-orchestrator\\audio.mjs",
+      "SHA256": "86593DF09E88FE56873DD29CFB201F7EA52DAD65CC7F2FF03EDA8C4D461A3D4A"
+    },
+    {
+      "Path": "services\\agent-orchestrator\\cache.mjs",
+      "SHA256": "7A5595E1617368A722CE10229D6192C1B84D3575B66F577F0B0EE652B629395A"
+    },
+    {
+      "Path": "services\\agent-orchestrator\\cli.mjs",
+      "SHA256": "2E0CA6BA07C5AADFD2005345ED54ED90CBD9159E419D193F5AF485B2FDC6F16B"
+    },
+    {
+      "Path": "services\\agent-orchestrator\\critic.mjs",
+      "SHA256": "BF43DA52805F57B40102540DE5979C87C0739712F187FE2C8BC183DF9891E760"
+    },
+    {
+      "Path": "services\\agent-orchestrator\\planner.mjs",
+      "SHA256": "6D57A7F7F8EBDE42177FD5016974CED41DB39C840F9EB907ED8D770077FB3202"
+    },
+    {
+      "Path": "services\\agent-orchestrator\\tools.mjs",
+      "SHA256": "3105E537DDD5BDF620AAE00451B05C5EE3D08CB61960802583BE88E286F81610"
+    },
+    {
+      "Path": "services\\compiler\\compile-cli.mjs",
+      "SHA256": "F18144C944C633A6534F9360EDE273262482CA7A675431FED454CF45F3B5291B"
+    },
+    {
+      "Path": "services\\compiler\\compile.mjs",
+      "SHA256": "27ED14437BB9767BED6B343FA101E7915D3C1CA5CC9FF1662404FD5C72B54AC3"
+    },
+    {
+      "Path": "services\\render-worker\\requirements.txt",
+      "SHA256": "EBEB483138ED507C6D6D57C4006B13A2BAFBDE6B20ABC9829B0FD160059C368D"
+    },
+    {
+      "Path": "services\\render-worker\\worker.py",
+      "SHA256": "777E62F2F79E2639ACB779E9401C70C44751FEA2938C07AFF118038E3A9942A1"
+    },
+    {
+      "Path": "services\\studio-api\\index.d.mts",
+      "SHA256": "7DF162BE2A4EA1D4415B350C0A12876BF0841C3090779CDC3ECBCDD1B8AA7564"
+    },
+    {
+      "Path": "services\\studio-api\\index.mjs",
+      "SHA256": "5F5A3B69D73CF1669A878330655D0CCE476E8D290F8AEA02F889884CAE13F005"
+    },
+    {
+      "Path": "packages\\video-schema\\index.mjs",
+      "SHA256": "0BE3E0A14AD1C59C6E914BA35C6C45F7B30A527B6B1FD2CD2059EA7A636C8EB9"
+    },
+    {
+      "Path": "packages\\video-schema\\README.md",
+      "SHA256": "E55AA3A31DF2FD6C7C53DA279CA2FB0592E5A81163A6EE4267062DF5F4058AB1"
+    },
+    {
+      "Path": "scripts\\audit-p1-01.cjs",
+      "SHA256": "D538CA52946F4F5773E4CE9DA59F63FC54F5EBA031D219D123C9BE7482920CA1"
+    },
+    {
+      "Path": "scripts\\check-project-docs.py",
+      "SHA256": "8C7714E7A71E4CD7D39C339DB6C3F048B9E3882AC84647C41EA61B248DE38CD3"
+    },
+    {
+      "Path": "scripts\\doctor.mjs",
+      "SHA256": "48665B583DB586AEF5CFD4685EF03B757C7A24EC7B51489B68C68A45A3221A89"
+    },
+    {
+      "Path": "scripts\\measure-device.mjs",
+      "SHA256": "DCBA417CD8A8DAB91FD3E8644959958AC42D84AC195A4A949531945F51410D15"
+    },
+    {
+      "Path": "scripts\\p0-smoke.mjs",
+      "SHA256": "23D9DC99AAD4701B88EBFFB2CAFE6BB521C74A3A69BD105B110AB1399321D30D"
+    },
+    {
+      "Path": "scripts\\p0-visual.py",
+      "SHA256": "B0E2E2C9DF81590BB286E6481ECB443D41841C8B68821617B9A9977603CA1AF4"
+    },
+    {
+      "Path": "scripts\\remotion-loopback.cjs",
+      "SHA256": "6AB9394091FE788BE46A2095DB130CD459E00D7BB39BD3700B7B25EB97F53D15"
+    },
+    {
+      "Path": "scripts\\run-demo.sh",
+      "SHA256": "26E6C0EF2EFBF28CC95DF901DB7BBB19C7FBF5EDCEFDAAC25753980618BC6546"
+    },
+    {
+      "Path": "scripts\\test-agent-flow.py",
+      "SHA256": "FB831AB6956734E09B617962BBF6F2628C0D8649547657CCDA7F295B407C51DE"
+    },
+    {
+      "Path": "scripts\\test-device-lifecycle.cjs",
+      "SHA256": "B8D3F863B779523261D0D236FDBA58746C69432EF3EFA2579AB0DC58002BE687"
+    },
+    {
+      "Path": "scripts\\test-editor-interactions.cjs",
+      "SHA256": "DA50A59A2C7BB97ED820860ED9A8E15733DD47DB90F0FF242DE5F8545B73A741"
+    },
+    {
+      "Path": "scripts\\test-motion-plan.py",
+      "SHA256": "478966FC8A55B6A4BDF2727729B54ED99FD73D7DF674762F69981BF3E00B194A"
+    },
+    {
+      "Path": "scripts\\test-timeline-ui.py",
+      "SHA256": "2F9188676BD6C42977359536ECBE53FD98E0F99FEE8BA7261EDC07D3E266CB1A"
+    },
+    {
+      "Path": "remotion-compositor\\src\\Film.tsx",
+      "SHA256": "E0FBEF98CC429091D6E7A1613C261D360AF6CDFA0337ECF0E2654C4140FD2587"
+    },
+    {
+      "Path": "remotion-compositor\\src\\index.ts",
+      "SHA256": "B3BB9D61BDFB9F7F8E44BEE7173C02CBD1EE0EA3F33C953EFC592189BA75B4A3"
+    },
+    {
+      "Path": "remotion-compositor\\src\\root.tsx",
+      "SHA256": "5721012A4C77B0ADB3B25C830708263761C3094C61C4628EB25269A2419F528D"
+    }
+  ]
+}

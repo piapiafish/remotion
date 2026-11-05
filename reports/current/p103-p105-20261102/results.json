@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-02T00:34:38.216829+08:00",
+  "scope": [
+    "P1-03",
+    "P1-04",
+    "P1-05"
+  ],
+  "status": "IMPLEMENTED_AND_VERIFIED_IN_WORKING_COPY_PENDING_APPLY_AND_HUMAN_REVIEW",
+  "official_project_modified": false,
+  "frontend": {
+    "exit_code": 0,
+    "files": 26,
+    "tests": 259,
+    "new_tests": 31
+  },
+  "build": {
+    "exit_code": 0
+  },
+  "lint": {
+    "exit_code": 0,
+    "warnings": 14,
+    "new_warnings": 0
+  },
+  "browser": {
+    "exit_code": 0,
+    "cases": 5,
+    "checks": 42,
+    "status": "PASS",
+    "page_errors": 0,
+    "resource_failures": 0
+  },
+  "videos": [
+    {
+      "filename": "P1-03-manual-720-1080p30.mp4",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "seconds": 2,
+      "frames": 60
+    },
+    {
+      "filename": "P1-03-05-dual-animation-1080p30.mp4",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "seconds": 2,
+      "frames": 60
+    }
+  ],
+  "frame_comparison": {
+    "status": "PASS",
+    "clips": [
+      {
+        "clip": "manual",
+        "video": "P1-03-manual-720-1080p30.mp4",
+        "status": "PASS",
+        "frames": [
+          {
+            "frame": 0,
+            "ssim": 0.995659,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-manual-decoded-0.png",
+            "reference": "04-manual-reference-0.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\P1-03-manual-720-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,0)",
+              "-frames:v",
+              "1",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-decoded-0.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-decoded-0.png",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-0.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 15,
+            "ssim": 0.995181,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-manual-decoded-15.png",
+            "reference": "04-manual-reference-15.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\P1-03-manual-720-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,15)",
+              "-frames:v",
+              "1",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-decoded-15.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-decoded-15.png",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-15.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 59,
+            "ssim": 0.995975,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-manual-decoded-59.png",
+            "reference": "04-manual-reference-59.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\P1-03-manual-720-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,59)",
+              "-frames:v",
+              "1",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-decoded-59.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-decoded-59.png",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-manual-reference-59.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          }
+        ]
+      },
+      {
+        "clip": "dual",
+        "video": "P1-03-05-dual-animation-1080p30.mp4",
+        "status": "PASS",
+        "frames": [
+          {
+            "frame": 0,
+            "ssim": 0.99399,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-dual-decoded-0.png",
+            "reference": "04-reference-0.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,0)",
+              "-frames:v",
+              "1",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-dual-decoded-0.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-dual-decoded-0.png",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-reference-0.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 30,
+            "ssim": 0.995337,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-dual-decoded-30.png",
+            "reference": "04-reference-30.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,30)",
+              "-frames:v",
+              "1",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-dual-decoded-30.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-dual-decoded-30.png",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-reference-30.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          },
+          {
+            "frame": 59,
+            "ssim": 0.994777,
+            "threshold": 0.97,
+            "status": "PASS",
+            "decoded": "04-dual-decoded-59.png",
+            "reference": "04-reference-59.png",
+            "decode_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-loglevel",
+              "error",
+              "-y",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\P1-03-05-dual-animation-1080p30.mp4",
+              "-vf",
+              "select=eq(n\\,59)",
+              "-frames:v",
+              "1",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-dual-decoded-59.png"
+            ],
+            "compare_command": [
+              "ffmpeg",
+              "-hide_banner",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-dual-decoded-59.png",
+              "-i",
+              "C:\\Users\\20153\\AppData\\Local\\Temp\\p103-p105-20261101-n3lc8n0e\\evidence\\browser\\04-reference-59.png",
+              "-lavfi",
+              "ssim",
+              "-f",
+              "null",
+              "-"
+            ]
+          }
+        ]
+      }
+    ],
+    "method": "FFmpeg-decoded MP4 frames compared against same-project, same-index Standard-quality engine frame exports; SSIM >=0.97."
+  },
+  "not_run": [
+    "Vite/API TCP",
+    "Agent/API rerun",
+    "30-second and longer export",
+    "all-model quality acceptance",
+    "user acceptance"
+  ]
+}

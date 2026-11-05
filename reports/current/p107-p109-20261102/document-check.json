@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-02T13:19:34.726774+08:00",
+  "markdownFilesChecked": 65,
+  "errors": [],
+  "historicalLinkWarnings": [
+    {
+      "file": "reports/archive/pre-20261101/docs/ai-promo/04_页面结构与交互规范.md",
+      "line": 30,
+      "target": "visual/ui/prototype/"
+    }
+  ],
+  "integrity": {
+    "status": "NOT_RUN"
+  },
+  "status": "PASS"
+}

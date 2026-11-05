@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "D:\remotion\p0\MultiAgent-3D-Promo-Studio\reports\current\p110-p118-implementation-20261102\verify-artifacts.py", line 4, in <module>
+    from PIL import Image
+ModuleNotFoundError: No module named 'PIL'

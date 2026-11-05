@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 C:/Users/20153/Documents/ChatGPT/remotion/deliveries/p107-p109-work-20261102-677c0d/project
+
+
+ Test Files  32 passed (32)
+      Tests  325 passed (325)
+   Start at  13:07:54
+   Duration  1.83s (transform 8.14s, setup 0ms, import 13.01s, tests 617ms, environment 3ms)
+

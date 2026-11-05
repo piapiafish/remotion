@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": [
+    "write-failure rollback restores existing bytes",
+    "write-failure rollback removes newly created files",
+    "write-failure preserves previous receipt",
+    "read-only preflight",
+    "normal install",
+    "repeat install has no pending files",
+    "unknown edits rejected without overwrite"
+  ],
+  "fixture": "C:\\Users\\20153\\Documents\\ChatGPT\\remotion\\environment-probes\\p106-installer-20261102",
+  "installerSha256": "050955368c61bf477c88742463b4b251c7776f2199d849f857cb87ff6f4c2d76",
+  "stdout": "{\"status\": \"READY\", \"pending_files\": 2, \"target\": \"C:\\\\Users\\\\20153\\\\Documents\\\\ChatGPT\\\\remotion\\\\environment-probes\\\\p106-installer-20261102\\\\target\"}\n{\"status\": \"APPLIED\", \"installed\": 2, \"backup\": \"C:\\\\Users\\\\20153\\\\Documents\\\\ChatGPT\\\\remotion\\\\environment-probes\\\\p106-installer-20261102\\\\target\\\\reports\\\\archive\\\\p106-before-20261102-090307-642944\", \"receipt\": \"C:\\\\Users\\\\20153\\\\Documents\\\\ChatGPT\\\\remotion\\\\environment-probes\\\\p106-installer-20261102\\\\target\\\\receipt.json\"}\n{\"status\": \"ALREADY_APPLIED\", \"pending_files\": 0}\n{\"status\": \"CONFLICT\", \"files\": [\"keep.txt\"]}\n"
+}

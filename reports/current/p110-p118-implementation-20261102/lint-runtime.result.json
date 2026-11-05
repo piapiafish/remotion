@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-02T15:54:26.695800+00:00",
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "npm.cmd",
+    "exec",
+    "--",
+    "oxlint",
+    "src",
+    "services",
+    "packages",
+    "remotion-compositor/src",
+    "scripts",
+    "vite.config.ts"
+  ],
+  "cwd": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "exitCode": 0,
+  "seconds": 1.172,
+  "log": "lint-runtime.txt",
+  "status": "PASS"
+}

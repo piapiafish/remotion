@@ -1,0 +1,114 @@
+# 验证方法与证据维护
+
+本页说明如何检查；最新结果只看 [reports/current/](../reports/current/README.md)。任务完成条件见 [工作计划](../IMPLEMENTATION_ROADMAP.md)。
+
+## P1-35～43 本轮检查
+
+scripts/test-third-feedback.cjs 在本机 Vite/Chrome 下覆盖文字选中/三轴/触地、五机型初始点缩放、多视频/双区间/分行/层级、关键帧优先、真实场景出入场、相机按键/录制、十轮资源、离线重开/缺失重绑、实际成片和取消重试。使用 STUDIO_URL 与 BEGINNER_OUT；THIRD_SCENARIOS 可选择 smoke/media/authoring/timeline/camera/resources/restore/exports/cancel/keyboard-focus/layout/legacy-fit，THIRD_PROJECT 可指定本轮生成的工程，THIRD_SKIP_LONG=1 明确跳过长片。素材来自既有自动化演示工程，不读取个人作品。
+
+核心流程、晚期焦点/窗口、旧循环填充专项分别保留证据。窗口覆盖 1366×768、1920×1080、1000×800 和 deviceScaleFactor=1.25 的显示缩放；不把它等同于所有系统和浏览器缩放组合。scripts/test-second-regression.cjs 保留旧通过场景，按新缩放语义先设缩放再填精确位置，并使用新片段引用验证共享源。
+
+thirdFeedback.test.ts 增加区间/暂停映射、稳定分行/层序、真实节点移除/恢复、字形最低点、初始锚点/下层姿态、速度及格式兼容的边界检查。旧静态姿态在片尾前保持，片尾时节点移除；旧工程循环/显示跟随有明确兼容断言。
+
+实际 1080P/30FPS 四秒效果短片与 30 秒单次输出、18 边界帧/54 次 SSIM 对照及全部命令退出码见 [本轮报告](../reports/current/p135-p143-implementation-20261104/README.md)。视频参考继续使用正式 withExportSession/逐帧准备流程。源文件变化触发 Vite 刷新时的导出不能当作最终证据；最后整合在固定源码下完成，后续仅对两个交互边界补验。
+
+## P1-26～34 本轮检查
+
+`scripts/test-second-feedback.cjs` 在真实本地 Vite/Chrome 下检查原生指针/键盘、时间轴叠放与自动延长、区间/视频裁切与倍速、资源回收及恢复、相机录制、实体文字和离线重开，最后实际输出短片及 30 秒视频。`SECOND_SCENARIOS` 可选择 timeline/ranges/media/camera/text/exports/references/cancel-retry；`SECOND_PROJECT` 供单独导出或参考图使用，`SECOND_SKIP_LONG=1` 明确跳过长片，不能据此报告长片通过。
+
+`scripts/test-second-regression.cjs` 用 media-regression/authoring-regression/occlusion/g02 分别覆盖本次已通过的 13 个场景、独立空间与贴纸遮挡、以及数字化 G02 说明。参考图也必须通过 withExportSession 唤醒非活动视频，不能让验证脚本跳过正式准备流程后将黑屏当作引擎输出。区域遮挡与编码逐帧对照在本轮报告另存结果。
+
+两个脚本共用 STUDIO_URL、BEGINNER_OUT，复用既有 Playwright/Chrome/FFmpeg；生成素材来自旧自动化示例，不使用个人作品。字体单测使用本地真实 CJK 字体，覆盖中文、字形孔洞、非零厚度与嵌入子集离线恢复。现有版本 1/2、纯文字版本 3、非法嵌入字形、准备等待取消、隐藏对焦回退和堆叠身份均有独立测试。
+
+命令、失败轮次和最终结果见 [本轮报告](../reports/current/p126-p134-implementation-20261104/README.md)，不能把旧数值期待或探针错误写成产品通过，也不能将自动检查代替人工验收。
+
+## P1-19～25 人工反馈回归
+
+`scripts/test-feedback-baseline.cjs` 记录修复前的交互和实际录屏状态，修复后不要求它继续复现旧失败。`scripts/test-feedback-fixes.cjs` 通过真实本地 Vite、鼠标、UI 对话框和下载验证连续定位、固定地面、保存分支、用户高帧率素材、四组效果及 1080P 短片；`scripts/test-fixed-floor-models.cjs` 核对五机型实际顶点最低点和分离设备的投影区域。
+
+脚本使用 `STUDIO_URL` 与独立的 `BEGINNER_OUT`，启动/停止测试服务可沿用本轮报告中的 run-browser.py。用户原工程保持只读，测试副本及录屏放在本轮报告的 private/，不加入公开交付。文件选择器成功分支在浏览器自动化中用真实 OPFS 可写句柄验证写入/关闭顺序，系统原生保存窗口仍需用户操作核验；取消/写失败为受控注入，不能表述为人工已验收。
+
+原 `test-beginner-workflow.cjs` 继续覆盖选择、复制、撤销、关键帧和异常导出；`LONG_SECONDS` 可设为 JSON 数组，例如 `[30]`，选择本轮实际长片范围。`SKIP_LONG=1` 仍明确跳过长片。实际命令、失败轮次与当前结果见 [本轮报告](../reports/current/p119-p125-implementation-20261103/README.md)。
+
+## 基础检查
+
+在项目根目录执行，现有依赖可用时不先重装：
+
+```powershell
+npm.cmd test
+npm.cmd run build
+npm.cmd run lint
+```
+
+涉及 Video DSL、编译器或本地 API 时增加：
+
+```powershell
+npm.cmd run agent:test
+```
+
+## 文件整理与文档
+
+```powershell
+.venv/Scripts/python.exe scripts/check-project-docs.py
+.venv/Scripts/python.exe scripts/check-project-docs.py --integrity
+```
+
+没有虚拟环境时，可用现有 Python 执行同一脚本；它只使用标准库。默认检查核心入口、唯一计划与当前文档的本地链接；--integrity 额外核对本轮整理前后的受保护文件和归档。完整性基线只服务这次整理，不用于禁止后续正常修改代码。
+
+## 浏览器与实际作品
+
+已有 Playwright 与本地浏览器时，可以运行原检查脚本，使用 --out 为每轮指定独立输出，避免覆盖旧证据：
+
+```powershell
+.venv/Scripts/python.exe scripts/test-timeline-ui.py --out output/validation-run/timeline
+.venv/Scripts/python.exe scripts/test-motion-plan.py --out output/validation-run/motion
+```
+
+原脚本会启动临时 Vite 与独立无界面浏览器。时间轴脚本覆盖播放头、逐帧、真实 GLB 与录屏同步，不覆盖关键帧拖动改时。运动脚本检查 JSON 编译到画布、保存重开、清除与撤销，不等于自然语言理解或完整成片验收。
+
+人工编辑器阶段还必须实际验证：从静态工程加关键帧；多设备不同素材与运动；撤销重做；关闭后在全新会话恢复 .mockup；录屏时序；1080P/30FPS MP4；导出失败、取消和继续编辑。模型正背面、屏幕清晰度、运动节奏与成片美感由用户审阅。
+
+旧自动成片链路的独立检查为 npm.cmd run agent:doctor、npm.cmd run agent:p0；需要 Python、Playwright、FFmpeg / FFprobe 与独立 Remotion 依赖，详见 [P0_WINDOWS.md](P0_WINDOWS.md)。它会产生 work/ 和 output/ 数据，不是文档整理的必跑项。
+
+## 报告规则
+
+reports/current/README.md 汇总本轮日期、范围、实际命令、结果和未验证项；机器结果及必要日志放同目录。每项区分 PASS、FAIL、NOT_RUN、INCOMPLETE，保留退出码和证据路径。历史报告引用时保留原日期、平台和局限。
+
+新一轮替换当前报告前，把有价值的旧结果及对应工程/截图归档；不要为了生成报告复制所有渲染缓存。work/、output/ 里的重要项目和个人录屏由用户备份。不得把未完成脚本里未走到的检查写成通过，也不能用单测代替用户视觉验收。
+
+## P1-03～05 编辑流程回归
+
+先 npm.cmd run build，再 node scripts/test-editor-interactions.cjs。需要 Chrome/Edge、FFprobe、项目 .venv 中的 Playwright JavaScript SDK 和现有 Node 依赖。可用 CHROME_PATH、PLAYWRIGHT_CORE_PATH 指定安装，P10305_AUDIT_ROOT 指定新一轮输出目录。脚本使用实际生产构建的本地路由供给，不验证 Vite/API TCP。
+
+默认执行五个独立上下文场景、42 项检查并实际导出两份 MP4；测试第二录屏来自本轮报告的 reproduce/secondary-recording.mp4，由现有 assets/demo.mp4 调色得到。脚本不保存浏览器界面截图。产物均写 output 独立轮次，不放入 src，避免测试副本被扫描。
+
+操作说明见 [手动动画指南](MANUAL_ANIMATION_GUIDE.md)，原始命令与限制见 [本轮报告](../reports/current/p103-p105-20261102/README.md)。FFmpeg 抽帧比较为独立检查，实际使用的脚本保留在报告 reproduce 中。
+
+## P1-06 录屏和工程回归
+
+构建后在根目录运行 `node scripts/test-media-project.cjs`。默认使用项目 .venv 中已有的 Playwright JavaScript SDK、系统 Chrome、PATH 中的 FFmpeg/FFprobe。可通过 PLAYWRIGHT_CORE_PATH、CHROME_PATH、P106_AUDIT_ROOT 和 P106_SECONDARY_VIDEO 覆盖路径；默认辅助视频位于 reports/current/p106-20261102/reproduce/secondary-recording.mp4。Windows 环境的 TEMP/TMP 需可写，运行真实 Vite 时将其放到项目外，避免浏览器临时文件占用触发 watcher 错误。输出默认放独立 output/p106-*。
+
+脚本默认通过本地路由供给实际生产构建。设置 P106_BASE_URL 为已启动的本地 Vite 地址时，使用实际 HTTP/TCP，跳过请求拦截；两种运行方式在报告中明确记录。可用 CASES 选择场景编号，默认执行 01～08。包含裁切/错峰/循环、共享素材独立解码、手工 720° 动画、新会话恢复、真实 1080P/30FPS 短片、损坏工程和素材、保存失败重试、缺失媒体重新绑定、背景恢复、实际刷新取消及异步上传跨工程保护。08 额外检查缺失背景的取消/恢复、较短源视频重新绑定后的提示、空白时序输入及普通替换的默认值和撤销。脚本保存场景截图；录屏控制截图位于 08-timing-controls.png。
+
+P1-03～05 回归脚本在专用测试上下文自动接受工程替换确认，原 42 项断言保留；默认仍使用生产构建离线路由。普通手工使用时保留真实确认。最新实际命令、结果及分批执行范围见 [本机 P1-06 报告](../reports/current/p106-writeback-20261102/README.md)。
+
+## P1-07～09 导出、模型和阶段流程
+
+新增本地浏览器脚本 scripts/test-stage-one.cjs。使用 PHASE=errors、models、workflow 分别选择受控故障、逐机型和原生编辑流程；PHASE_OUT 为独立输出目录。运行前启动本地 Vite，默认 STUDIO_URL=http://127.0.0.1:4207。MODEL_IDS 可选择机型。FOOTAGE_ROOT 可复用此前 workflow 报告中有哈希的两份录屏，避免重复录制；默认独立录屏需要已有 Playwright FFmpeg，不能把缺少该组件记成产品导出失败。
+
+受限环境可使用 scripts/test-stage-one-offline.cjs：先构建生产文件，SOURCE_MOCKUP 指向含两台独立素材/时序的已创作工程，OFFLINE_OUT 指向新输出目录。该脚本完全以本地文件供给生产构建，拦截所有页面请求并拒绝外部来源，不连接 Vite/API，不导入开发源码模块。它验证新上下文恢复、修改/撤销/重做和重导出，并尝试 30/60 秒样本。不得将这类离线证据写成实际 TCP 通过。
+
+两种脚本均可通过 PLAYWRIGHT_CORE_PATH 和 CHROME_PATH 选择已有 SDK 和浏览器；Windows 的 TEMP/TMP 放到项目外可写目录。性能记录中的 JS heap 仅为采样的页面 JavaScript 堆，不是整个 Chrome、GPU 或系统的峰值内存。头部无界面浏览器参数及机器不同，耗时不直接代表用户机器的交互速度。
+
+基础测试新增编码配置/过程/输出、队列与 flush 取消、资源回收、准备就绪、超时，以及通用模型完整 UV 覆盖。多镜头拼接通过 scripts/join-clips.py 检查实际产物。命令、轮次、通过/未完成和人工审阅边界均保存在 [本轮报告](../reports/current/p107-p109-20261102/README.md)。
+
+2026-11-02 已在 D 盘正式应用；最终版本导出异常、P1-06 录屏恢复及通用机型复核的实际命令和新结果见 [本机更新报告](../reports/current/p107-p109-writeback-20261102/README.md)。本轮升级没有运行 workflow 长片和模型下载，不将原环境中断改写为本机通过。
+
+
+## P1-10～18 新界面与效果
+
+`scripts/test-beginner-workflow.cjs` 使用实际本地 Vite 地址 STUDIO_URL，BEGINNER_OUT 指向本轮输出目录；需要已有 Node、项目 Playwright SDK、Chrome 和 FFmpeg/FFprobe。默认执行模板、独立对象设置、鼠标相机/缩放、整组改时、文字动画、多对象时间轴、保存到新会话、实际双设备效果视频、取消/重试/PNG 回退、30/60 秒连续输出及缩放窗口检查。`SKIP_LONG=1` 可跳过长片做局部回归，报告不得据此记长片通过。
+
+`scripts/test-beginner-studio.cjs` 是效果对照与恢复入口，输出无效果/景深/动态模糊/组合效果 PNG、预览恢复截图及断言。两者均通过原生 UI 与现有文档操作验证，不接入在线 AI。旧 P1-03～09 英文 UI 脚本保留历史使用方式；新界面覆盖的行为见本轮工作流及旧功能单测，不能将旧脚本未重跑写成本轮通过。
+
+验证时将 Chrome TEMP/TMP 放项目外，Vite 已忽略生成目录的监听，避免报告视频被 Windows 占用时终止服务。本轮启动/停止专用 Vite 的命令、所有断言、实际视频、抽帧和诊断见 [实施报告](../reports/current/p110-p118-implementation-20261102/README.md)。人工仍须检查运动节奏、文字排版、材质、效果强度与使用体验。

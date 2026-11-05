@@ -1,0 +1,542 @@
+--- a/src/automation/bridge.ts
++++ b/src/automation/bridge.ts
+@@ -92,7 +92,7 @@
+   async loadProject(project:Project){
+     if(!project || project.version!==1 || !Array.isArray(project.devices) || project.devices.length!==1) throw new Error('INVALID_PROJECT')
+     assertLocalUrl(project)
+-    useProjectStore.setState({project,editorMode:'movie',playhead:0,playing:false})
++    useProjectStore.setState({project,activeDevice:0,editorMode:'movie',playhead:0,playing:false})
+     // Allow the subscription to commit the newly selected GLB before probing readiness.
+     await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())))
+     return await waitForReady()
+--- a/src/store/deviceLifecycle.test.ts
++++ b/src/store/deviceLifecycle.test.ts
+@@ -0,0 +1,196 @@
++import { beforeEach, describe, expect, it } from 'vitest'
++import { createDefaultProject, createDevice } from './defaults'
++import { emptyHistory, resetCoalescing } from './history'
++import { useProjectStore } from './project'
++import { sampleTimeline } from '../timeline/sample'
++import { staticTrack } from '../timeline/tracks'
++import { EASE_LINEAR } from '../timeline/easing'
++
++const store = () => useProjectStore.getState()
++const selectedId = () => store().project.devices[store().activeDevice]?.instanceId
++const selectedPosition = () => sampleTimeline(store().project, store().playhead).devices[store().activeDevice].position
++
++beforeEach(() => {
++  resetCoalescing()
++  useProjectStore.setState({ project: createDefaultProject(), history: emptyHistory, activeDevice: 0, playhead: 0, playing: false })
++})
++
++describe('device lifecycle selection', () => {
++  it('keeps selection valid for every published add, undo and redo state', () => {
++    const invalid: number[] = []
++    const unsubscribe = useProjectStore.subscribe((s) => {
++      if (!s.project.devices[s.activeDevice]) invalid.push(s.activeDevice)
++    })
++    try {
++      store().addDevice()
++      store().undo()
++      expect(store().project.devices).toHaveLength(1)
++      expect(store().activeDevice).toBe(0)
++      store().redo()
++      expect(store().project.devices).toHaveLength(2)
++      store().setDeviceScale(0.8)
++      expect(invalid).toEqual([])
++      expect(selectedId()).toBeDefined()
++    } finally {
++      unsubscribe()
++    }
++  })
++
++  it('keeps the same selected instance when deleting and restoring an earlier row', () => {
++    store().addDevice()
++    store().addDevice()
++    const id = selectedId()
++    store().removeDevice(0)
++    expect(selectedId()).toBe(id)
++    expect(store().activeDevice).toBe(1)
++    store().undo()
++    expect(selectedId()).toBe(id)
++    expect(store().activeDevice).toBe(2)
++    store().redo()
++    expect(selectedId()).toBe(id)
++  })
++
++  it('chooses the adjacent surviving device when deleting the selected row', () => {
++    store().addDevice()
++    store().addDevice()
++    const middle = store().project.devices[1].instanceId
++    store().removeDevice(2)
++    expect(selectedId()).toBe(middle)
++    store().removeDevice(1)
++    expect(store().activeDevice).toBe(0)
++    const last = store().project
++    store().removeDevice(0)
++    expect(store().project).toBe(last)
++  })
++
++  it('ignores invalid duplicate/remove requests without changing history or selection', () => {
++    const before = store()
++    for (const index of [-1, 99, 0.5, Number.NaN]) {
++      store().duplicateDevice(index)
++      store().removeDevice(index)
++    }
++    expect(store().project).toBe(before.project)
++    expect(store().history).toBe(before.history)
++    expect(store().activeDevice).toBe(0)
++  })
++
++  it('normalizes invalid explicit selection requests', () => {
++    store().addDevice()
++    for (const index of [-1, 50, 0.5, Number.NaN, Number.POSITIVE_INFINITY]) {
++      store().setActiveDevice(index)
++      expect(Number.isInteger(store().activeDevice)).toBe(true)
++      expect(selectedId()).toBeDefined()
++    }
++  })
++
++  it('treats rapid adds and rapid duplicates as separate undoable actions', () => {
++    store().addDevice()
++    store().addDevice()
++    expect(store().history.past).toHaveLength(2)
++    store().undo()
++    expect(store().project.devices).toHaveLength(2)
++    store().undo()
++    expect(store().project.devices).toHaveLength(1)
++    store().redo()
++    store().duplicateDevice(0)
++    store().duplicateDevice(0)
++    store().undo()
++    expect(store().project.devices).toHaveLength(3)
++    store().undo()
++    expect(store().project.devices).toHaveLength(2)
++  })
++
++  it('does not coalesce transform edits across different selected devices', () => {
++    store().addDevice()
++    store().setDevicePosition([1, 0, 0])
++    store().setActiveDevice(0)
++    store().setDevicePosition([-1, 0, 0])
++    store().undo()
++    expect(sampleTimeline(store().project, 0).devices[0].position).toEqual([0, 0, 0])
++    expect(sampleTimeline(store().project, 0).devices[1].position).toEqual([1, 0, 0])
++  })
++
++  it('resets selection atomically when applying a smaller template or new project', () => {
++    store().addDevice()
++    store().addDevice()
++    const invalid: number[] = []
++    const unsubscribe = useProjectStore.subscribe((s) => {
++      if (!s.project.devices[s.activeDevice]) invalid.push(s.activeDevice)
++    })
++    try {
++      store().applyTemplate('hero-straight')
++      expect(store().activeDevice).toBe(0)
++      store().newProject()
++      expect(store().project.devices).toHaveLength(1)
++      expect(store().activeDevice).toBe(0)
++      expect(invalid).toEqual([])
++    } finally {
++      unsubscribe()
++    }
++  })
++})
++
++describe('new device placement', () => {
++  it('adds a distinct visible pose without changing the existing document data', () => {
++    const original = store().project.devices[0]
++    const camera = store().project.camera
++    store().addDevice()
++    expect(store().activeDevice).toBe(1)
++    expect(selectedPosition()).not.toEqual([0, 0, 0])
++    expect(store().project.devices[0]).toBe(original)
++    expect(store().project.camera).toBe(camera)
++    expect(new Set(store().project.devices.map((d) => d.instanceId)).size).toBe(2)
++  })
++
++  it('separates devices across the camera view even when looking along the X axis', () => {
++    store().setCameraPosition([3.2, 0, 0])
++    store().addDevice()
++    // World-X offsets alone would remain directly behind the original.
++    expect(Math.abs(selectedPosition()[2])).toBeGreaterThan(0.1)
++  })
++
++  it('avoids exact overlap over repeated additions', () => {
++    for (let i = 0; i < 4; i++) store().addDevice()
++    const positions = sampleTimeline(store().project, 0).devices.map((d) => JSON.stringify(d.position))
++    expect(new Set(positions).size).toBe(5)
++  })
++
++  it('preserves an animated duplicate, including media, easing and relative motion', () => {
++    const project = createDefaultProject()
++    const device = createDevice({
++      screen: { id: 'test-image', kind: 'image', width: 100, height: 200, url: 'blob:test' },
++      orientation: 'landscape',
++      transform: {
++        ...project.devices[0].transform,
++        'position.x': { interpolation: 'continuous', keys: [
++          { t: 0, v: -0.2, ease: EASE_LINEAR },
++          { t: 2, v: 0.4, ease: EASE_LINEAR },
++          { t: 4, v: 0.1, ease: EASE_LINEAR },
++        ] },
++        'rotation.y': { keys: [{ t: 0, v: 0, ease: EASE_LINEAR }, { t: 4, v: 4 * Math.PI, ease: EASE_LINEAR }] },
++        scale: staticTrack(0.7),
++      },
++    })
++    useProjectStore.setState({ project: { ...project, devices: [device] }, playhead: 2 })
++    const source = JSON.stringify(device)
++    store().duplicateDevice(0)
++    const copy = store().project.devices[1]
++    expect(copy.instanceId).not.toBe(device.instanceId)
++    expect(copy.screen).toEqual(device.screen)
++    expect(copy.orientation).toBe('landscape')
++    expect(copy.transform['rotation.y']).toEqual(device.transform['rotation.y'])
++    expect(copy.transform['position.x'].interpolation).toBe('continuous')
++    const reference = sampleTimeline(store().project, 0).devices
++    const offset = reference[1].position.map((v, i) => v - reference[0].position[i])
++    expect(offset.some((v) => Math.abs(v) > 0.01)).toBe(true)
++    for (const time of [0, 0.5, 2, 3.5, 4]) {
++      const sampled = sampleTimeline(store().project, time).devices
++      for (let axis = 0; axis < 3; axis++) {
++        expect(sampled[1].position[axis] - sampled[0].position[axis]).toBeCloseTo(offset[axis], 8)
++      }
++      expect(sampled[1].rotation).toEqual(sampled[0].rotation)
++    }
++    expect(JSON.stringify(store().project.devices[0])).toBe(source)
++  })
++})
++
+--- a/src/store/devicePlacement.ts
++++ b/src/store/devicePlacement.ts
+@@ -0,0 +1,98 @@
++import { Euler, PerspectiveCamera, Vector3 } from 'three'
++import { getManifest } from '../devices/manifest'
++import { sampleTimeline } from '../timeline/sample'
++import { staticTrack } from '../timeline/tracks'
++import type { DeviceInstance, DeviceState, Project, Vec3 } from './schema'
++
++type Bounds = { left: number; right: number; bottom: number; top: number }
++const viewport: Bounds = { left: -0.96, right: 0.96, bottom: -0.96, top: 0.96 }
++const area = (b: Bounds) => Math.max(0, b.right - b.left) * Math.max(0, b.top - b.bottom)
++const overlap = (a: Bounds, b: Bounds) => area({
++  left: Math.max(a.left, b.left), right: Math.min(a.right, b.right),
++  bottom: Math.max(a.bottom, b.bottom), top: Math.min(a.top, b.top),
++})
++
++/** Project measured body corners; this also accounts for landscape, pose and scale. */
++function bounds(device: DeviceInstance, pose: DeviceState, position: Vector3, camera: PerspectiveCamera): Bounds {
++  const size = getManifest(device.id).bodySize
++  const rotation = new Euler(...pose.rotation)
++  const result: Bounds = { left: Infinity, right: -Infinity, bottom: Infinity, top: -Infinity }
++  for (const x of [-1, 1]) for (const y of [-1, 1]) for (const z of [-1, 1]) {
++    const corner = new Vector3(x * size[0] / 2, y * size[1] / 2, z * size[2] / 2)
++    if (device.orientation === 'landscape') corner.applyAxisAngle(new Vector3(0, 0, 1), Math.PI / 2)
++    corner.multiplyScalar(pose.scale).applyEuler(rotation).add(position).project(camera)
++    result.left = Math.min(result.left, corner.x)
++    result.right = Math.max(result.right, corner.x)
++    result.bottom = Math.min(result.bottom, corner.y)
++    result.top = Math.max(result.top, corner.y)
++  }
++  return result
++}
++
++/**
++ * Place only the new instance, in the current camera's screen plane.
++ * Existing poses/camera stay untouched. A constant offset on every position
++ * key preserves an animated duplicate's timing, easing and relative motion.
++ */
++export function placeNewDevice(project: Project, device: DeviceInstance, time: number, anchorIndex: number): DeviceInstance {
++  const scene = sampleTimeline(project, time)
++  const pose = sampleTimeline({ ...project, devices: [device] }, time).devices[0]
++  const camera = new PerspectiveCamera(scene.camera.fov, project.output.width / project.output.height, 0.01, 1000)
++  camera.position.fromArray(scene.camera.position)
++  camera.lookAt(new Vector3(...scene.camera.target))
++  camera.updateMatrixWorld(true)
++  const right = new Vector3().setFromMatrixColumn(camera.matrixWorld, 0)
++  const up = new Vector3().setFromMatrixColumn(camera.matrixWorld, 1)
++  const forward = camera.getWorldDirection(new Vector3())
++  let anchor = new Vector3(...(scene.devices[anchorIndex]?.position ?? scene.camera.target))
++  let depth = anchor.clone().sub(camera.position).dot(forward)
++  if (depth < 0.1) {
++    anchor = new Vector3(...scene.camera.target)
++    depth = Math.max(0.1, anchor.clone().sub(camera.position).dot(forward))
++  }
++  const halfHeight = Math.tan(scene.camera.fov * Math.PI / 360) * depth
++  const halfWidth = halfHeight * camera.aspect
++  // Start near the selected instance, but pull an off-screen anchor into view.
++  const ndc = anchor.clone().project(camera)
++  anchor.addScaledVector(right, (Math.max(-0.55, Math.min(0.55, ndc.x)) - ndc.x) * halfWidth)
++  anchor.addScaledVector(up, (Math.max(-0.55, Math.min(0.55, ndc.y)) - ndc.y) * halfHeight)
++  ndc.copy(anchor).project(camera)
++
++  const initial = bounds(device, pose, anchor, camera)
++  const stepX = Math.max(0.15, (initial.right - initial.left + 0.08) * halfWidth)
++  const stepY = Math.max(0.15, (initial.top - initial.bottom + 0.08) * halfHeight)
++  const occupied = project.devices.map((d, i) => bounds(d, scene.devices[i], new Vector3(...scene.devices[i].position), camera))
++  const candidates: Vector3[] = []
++  // Prefer a free neighbour to the right, then left, before trying other rows.
++  for (const y of [0, -1, 1, -2, 2]) for (const x of [1, -1, 2, -2, 3, -3, 0]) {
++    if (x || y) candidates.push(anchor.clone().addScaledVector(right, x * stepX).addScaledVector(up, y * stepY))
++  }
++  // Crowded/narrow canvases: favour visible partial separation over leaving the frame.
++  for (const x of [0.7, -0.7, 0.35, -0.35, 0]) for (const y of [0, -0.35, 0.35]) {
++    candidates.push(anchor.clone().addScaledVector(right, (x - ndc.x) * halfWidth).addScaledVector(up, (y - ndc.y) * halfHeight))
++  }
++  let best = candidates[0]
++  let bestScore = Infinity
++  for (const candidate of candidates) {
++    const box = bounds(device, pose, candidate, camera)
++    const outside = Math.max(0, area(box) - overlap(box, viewport))
++    const covered = occupied.reduce((total, old) => total + overlap(box, old), 0)
++    const identical = scene.devices.some((old) => candidate.distanceToSquared(new Vector3(...old.position)) < 1e-8)
++    const score = (outside > 1e-6 ? 1000 : 0) + outside * 10 + covered + (identical ? 100 : 0) + candidate.distanceToSquared(anchor) * 1e-5
++    if (score < bestScore) {
++      best = candidate
++      bestScore = score
++    }
++  }
++  const offset = best.clone().sub(new Vector3(...pose.position)).toArray() as Vec3
++  const transform = { ...device.transform }
++  for (const [axis, delta] of offset.entries()) {
++    const channel = 'position.' + 'xyz'[axis]
++    const track = transform[channel]
++    transform[channel] = track?.keys.length
++      ? { ...track, keys: track.keys.map((key) => ({ ...key, v: key.v + delta })) }
++      : staticTrack(delta)
++  }
++  return { ...device, transform }
++}
++
+--- a/src/store/project.ts
++++ b/src/store/project.ts
+@@ -1,5 +1,6 @@
+ import { create } from 'zustand'
+ import { createDefaultProject, createDevice } from './defaults'
++import { placeNewDevice } from './devicePlacement'
+ import { applyTemplateToDevices, getTemplate, templateCamera } from '../timeline/templates'
+ import { emptyHistory, record, redo, resetCoalescing, undo, type History } from './history'
+ import type { ExportQuality } from '../export/frameRenderer'
+@@ -85,17 +86,45 @@
+ // Narrow selectors are used at call sites (§14 trap 10) — components should
+ // subscribe to the slice they need, not the whole project object, or every
+ // timeline scrub re-renders the scene tree.
++function clampSelection(index: number, count: number): number {
++  return Math.max(0, Math.min(Number.isFinite(index) ? Math.trunc(index) : 0, count - 1))
++}
++
++function retainSelection(previous: Project, next: Project, index: number): number {
++  const id = previous.devices[index]?.instanceId
++  const retained = id ? next.devices.findIndex((device) => device.instanceId === id) : -1
++  return retained >= 0 ? retained : clampSelection(index, next.devices.length)
++}
++
++type EditUi = Partial<Pick<ProjectStore, 'activeDevice' | 'playhead' | 'playing' | 'editorMode' | 'motionPreset'>>
++
+ export const useProjectStore = create<ProjectStore>((set, get) => {
+   /**
+    * Every document mutation goes through here, so undo coverage can't drift
+    * out of sync with the set of actions. `label` groups a continuous gesture
+    * (a field drag, a slider) into one history entry.
+    */
+-  const edit = (label: string, update: (p: Project) => Project) =>
+-    set((s) => ({
+-      project: update(s.project),
+-      history: record(s.history, s.project, label),
+-    }))
++  const edit = (label: string, update: (p: Project) => Project, ui: EditUi | ((p: Project) => EditUi) = {}) =>
++    set((s) => {
++      const project = update(s.project)
++      if (project === s.project) return s
++      const patch = typeof ui === 'function' ? ui(project) : ui
++      return {
++        ...patch,
++        project,
++        history: record(s.history, s.project, label),
++        activeDevice: patch.activeDevice === undefined
++          ? retainSelection(s.project, project, s.activeDevice)
++          : clampSelection(patch.activeDevice, project.devices.length),
++      }
++    })
++
++  // Device-list buttons are distinct actions, even when clicked within 500ms.
++  const editDevices = (label: string, update: (p: Project) => Project, ui?: (p: Project) => EditUi) => {
++    resetCoalescing()
++    edit(label, update, ui)
++    resetCoalescing()
++  }
+ 
+   /** Edit one device instance in place, leaving the rest of the list alone. */
+   const editDevice = (label: string, update: (d: DeviceInstance) => DeviceInstance) =>
+@@ -116,14 +145,18 @@
+   canUndo: () => get().history.past.length > 0,
+   canRedo: () => get().history.future.length > 0,
+   undo: () => {
+-    const s = get()
+-    const result = undo(s.history, s.project)
+-    if (result) set({ project: result.project, history: result.history })
++    resetCoalescing()
++    set((s) => {
++      const result = undo(s.history, s.project)
++      return result ? { ...result, activeDevice: retainSelection(s.project, result.project, s.activeDevice) } : s
++    })
+   },
+   redo: () => {
+-    const s = get()
+-    const result = redo(s.history, s.project)
+-    if (result) set({ project: result.project, history: result.history })
++    resetCoalescing()
++    set((s) => {
++      const result = redo(s.history, s.project)
++      return result ? { ...result, activeDevice: retainSelection(s.project, result.project, s.activeDevice) } : s
++    })
+   },
+ 
+   newProject: () => replace(createDefaultProject()),
+@@ -163,35 +196,36 @@
+   // rather than just the file.
+   setFps: (fps) => edit('fps', (p) => ({ ...p, fps })),
+ 
+-  setActiveDevice: (index) => set({ activeDevice: index }),
++  setActiveDevice: (index) => {
++    resetCoalescing()
++    set((s) => ({ activeDevice: clampSelection(index, s.project.devices.length) }))
++  },
+ 
+   addDevice: () => {
+-    // New devices land beside the current one rather than on top of it —
+-    // an added device you cannot see reads as nothing having happened.
+     const source = get().project.devices[get().activeDevice]
+-    edit('addDevice', (p) => ({
+-      ...p,
+-      devices: [...p.devices, createDevice({ id: source?.id, colorway: source?.colorway })],
+-    }))
+-    set({ activeDevice: get().project.devices.length - 1 })
++    editDevices('addDevice', (p) => {
++      const device = source
++        ? createDevice({ id: source.id, colorway: source.colorway, orientation: source.orientation })
++        : createDevice()
++      return { ...p, devices: [...p.devices, placeNewDevice(p, device, get().playhead, get().activeDevice)] }
++    }, (p) => ({ activeDevice: p.devices.length - 1 }))
+   },
+ 
+   duplicateDevice: (index) => {
+-    edit('duplicateDevice', (p) => {
++    if (!Number.isInteger(index) || !get().project.devices[index]) return
++    editDevices('duplicateDevice', (p) => {
+       const source = p.devices[index]
+       if (!source) return p
+-      const copy = { ...source, instanceId: crypto.randomUUID() }
++      const copy = placeNewDevice(p, { ...source, instanceId: crypto.randomUUID() }, get().playhead, index)
+       return { ...p, devices: [...p.devices.slice(0, index + 1), copy, ...p.devices.slice(index + 1)] }
+-    })
+-    set({ activeDevice: index + 1 })
++    }, () => ({ activeDevice: index + 1 }))
+   },
+ 
+   removeDevice: (index) => {
+     // A scene with no devices has nothing to show and no way back, so the
+     // last one can't be removed.
+-    if (get().project.devices.length <= 1) return
+-    edit('removeDevice', (p) => ({ ...p, devices: p.devices.filter((_, i) => i !== index) }))
+-    set({ activeDevice: Math.max(0, Math.min(index, get().project.devices.length - 1)) })
++    if (!Number.isInteger(index) || !get().project.devices[index] || get().project.devices.length <= 1) return
++    editDevices('removeDevice', (p) => ({ ...p, devices: p.devices.filter((_, i) => i !== index) }))
+   },
+ 
+   applyTemplate: (templateId) => {
+@@ -208,17 +242,15 @@
+         template.shadowOpacity === undefined
+           ? p.environment
+           : { ...p.environment, shadowOpacity: template.shadowOpacity },
+-    }))
+-    set({ activeDevice: 0 })
++    }), { activeDevice: 0 })
+   },
+ 
+   applyMotionPlan: (plan) => {
+     // Compile before recording history: a rejected plan must leave every key untouched.
+     const project = compileMotionPlan(get().project, plan)
+     resetCoalescing()
+-    edit('motionPlan', () => project)
+-    resetCoalescing()
+-    set({ activeDevice: 0, playhead: 0, playing: false, editorMode: 'movie', motionPreset: 'none' })
++    edit('motionPlan', () => project, { activeDevice: 0, playhead: 0, playing: false, editorMode: 'movie', motionPreset: 'none' })
++    resetCoalescing()
+   },
+ 
+   clearMotionPlan: () => {
+--- a/src/ui/Inspector/DeviceList.tsx
++++ b/src/ui/Inspector/DeviceList.tsx
+@@ -28,6 +28,7 @@
+           <div
+             key={device.instanceId}
+             className={index === active ? 'device-row active' : 'device-row'}
++            aria-current={index === active ? 'true' : undefined}
+             onClick={() => setActiveDevice(index)}
+           >
+             <span className="device-row-index">{index + 1}</span>
+--- a/src/ui/Inspector/DeviceSection.test.ts
++++ b/src/ui/Inspector/DeviceSection.test.ts
+@@ -0,0 +1,22 @@
++import { createElement } from 'react'
++import { renderToString } from 'react-dom/server'
++import { describe, expect, it, vi } from 'vitest'
++
++const state = vi.hoisted(() => ({
++  project: { devices: [{ id: 'procedural-phone' }], duration: 4 },
++  activeDevice: 99,
++}))
++vi.mock('../../store/project', () => ({
++  useProjectStore: (selector: (value: typeof state) => unknown) => selector(state),
++}))
++import { DeviceCard, ScreenContent } from './DeviceSection'
++
++describe('inspector selection protection', () => {
++  it('shows a safe device prompt when a stale selection reaches the panel', () => {
++    expect(renderToString(createElement(DeviceCard))).toContain('Select a device')
++  })
++  it('keeps media/finish controls safe when the selected device no longer exists', () => {
++    expect(renderToString(createElement(ScreenContent))).toBe('')
++  })
++})
++
+--- a/src/ui/Inspector/DeviceSection.tsx
++++ b/src/ui/Inspector/DeviceSection.tsx
+@@ -13,7 +13,7 @@
+   const setOrientation = useProjectStore((s) => s.setOrientation)
+   const [picking, setPicking] = useState(false)
+   const cardRef = useRef<HTMLDivElement>(null)
+-  const manifest = getManifest(deviceId)
++  const manifest = deviceId ? getManifest(deviceId) : undefined
+ 
+   // Dismiss on outside click and Escape. A picker that can only be closed by
+   // re-clicking the thing that opened it is a trap once it overlaps the
+@@ -33,6 +33,8 @@
+       document.removeEventListener('keydown', onKey)
+     }
+   }, [picking])
++
++  if (!manifest) return <p className="hint" role="status">Select a device to edit its properties.</p>
+ 
+   return (
+     <div className="device-card" ref={cardRef}>
+@@ -98,7 +100,7 @@
+   const setDuration = useProjectStore((s) => s.setDuration)
+   const [dragOver, setDragOver] = useState(false)
+   const inputRef = useRef<HTMLInputElement>(null)
+-  const colorways = getManifest(deviceId).colorways
++  const colorways = deviceId ? getManifest(deviceId)?.colorways : undefined
+ 
+   /*
+    * A clip longer than the timeline plays only as far as the timeline goes,
+@@ -108,6 +110,8 @@
+    */
+   const clip = screen?.kind === 'video' ? (screen.duration ?? 0) : 0
+   const clipMismatch = clip > 0 && Math.abs(clip - duration) > 0.05
++
++  if (!colorways) return null
+ 
+   async function accept(file: File | undefined) {
+     // A screen recording is just the other kind of screen media: same ref,

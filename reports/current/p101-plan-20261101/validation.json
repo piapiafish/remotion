@@ -1,0 +1,172 @@
+{
+  "date": "2026-11-01T10:24:00.629847+00:00",
+  "scope": "documentation_and_installer_only",
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
+    "project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio"
+  },
+  "commands": [
+    {
+      "name": "official-read-only-preflight",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\delivery\\apply_p101.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"status\": \"READY\", \"project\": \"D:\\\\remotion\\\\p0\\\\MultiAgent-3D-Promo-Studio\", \"filesToWrite\": 59, \"checkOnly\": true}\n",
+      "stderr": ""
+    },
+    {
+      "name": "install-into-fresh-snapshot",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-fresh"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-fresh\", \"filesToWrite\": 59, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-fresh\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-fresh\\\\reports\\\\archive\\\\p101-before-20261101-182401-413558\", \"files\": 59, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-fresh\\\\reports\\\\current\\\\p101-plan-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "repeat-is-idempotent",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-fresh"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"status\": \"ALREADY_APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-fresh\", \"filesToWrite\": 0, \"checkOnly\": false}\n",
+      "stderr": ""
+    },
+    {
+      "name": "project-document-check",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-fresh\\scripts\\check-project-docs.py"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-fresh",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\n  \"date\": \"2026-11-01T18:24:01.997413+08:00\",\n  \"markdownFilesChecked\": 69,\n  \"errors\": [],\n  \"historicalLinkWarnings\": [\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/DEVELOPMENT_LOG.md\",\n      \"line\": 3,\n      \"target\": \"reports/archive/README.md\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/DEVELOPMENT_LOG.md\",\n      \"line\": 28,\n      \"target\": \"reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/ISSUES_LOG.md\",\n      \"line\": 15,\n      \"target\": \"reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/ISSUES_LOG.md\",\n      \"line\": 30,\n      \"target\": \"docs/ARCHITECTURE.md\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/ISSUES_LOG.md\",\n      \"line\": 30,\n      \"target\": \"reports/archive/pre-20261101/CONTEXT.md\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 9,\n      \"target\": \"../archive/pre-20261101/original-documents.zip\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 9,\n      \"target\": \"file-organization.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 10,\n      \"target\": \"document-check.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 11,\n      \"target\": \"document-check.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 12,\n      \"target\": \"frontend-tests.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 13,\n      \"target\": \"build.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 14,\n      \"target\": \"lint.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 15,\n      \"target\": \"agent-tests.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 19,\n      \"target\": \"results.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 19,\n      \"target\": \"agent-tests-sandbox.txt\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 23,\n      \"target\": \"../archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 23,\n      \"target\": \"../archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 25,\n      \"target\": \"../archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json\"\n    },\n    {\n      \"file\": \"reports/archive/p101-before-20261101-182401-413558/reports/current/README.md\",\n      \"line\": 27,\n      \"target\": \"../archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md\"\n    }\n  ],\n  \"integrity\": {\n    \"status\": \"NOT_RUN\"\n  },\n  \"status\": \"PASS\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "install-prior-bundle",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-audit-20261101-174757\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-upgrade"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\", \"filesToWrite\": 57, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\\\\reports\\\\archive\\\\p101-before-20261101-182402-138999\", \"files\": 57, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\\\\reports\\\\current\\\\p101-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "upgrade-prior-bundle",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-upgrade"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"status\": \"READY\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\", \"filesToWrite\": 6, \"checkOnly\": false}\n{\"status\": \"APPLIED\", \"project\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\", \"backup\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\\\\reports\\\\archive\\\\p101-before-20261101-182402-532347\", \"files\": 6, \"receipt\": \"C:\\\\Users\\\\20153\\\\AppData\\\\Local\\\\Temp\\\\p101-plan-20261101-9r228ghc\\\\verify-upgrade\\\\reports\\\\current\\\\p101-plan-20261101\\\\writeback-receipt.json\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "refuse-unknown-local-edit",
+      "command": [
+        "C:\\Python315\\python.exe",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\delivery\\apply_p101.py",
+        "--project",
+        "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc\\verify-upgrade"
+      ],
+      "cwd": "C:\\Users\\20153\\AppData\\Local\\Temp\\p101-plan-20261101-9r228ghc",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "ERROR: Project file changed since the audit; preserving it: IMPLEMENTATION_ROADMAP.md\n"
+    }
+  ],
+  "checks": {
+    "installer_syntax": "PASS",
+    "issue_assignments": {
+      "status": "PASS",
+      "mapping": {
+        "P1-02": [
+          "MAN-003",
+          "MAN-004"
+        ],
+        "P1-03": [
+          "MAN-001",
+          "MAN-002"
+        ],
+        "P1-04": [
+          "MAN-007"
+        ],
+        "P1-05": [
+          "MAN-005"
+        ],
+        "P1-06": [
+          "MAN-006",
+          "MAN-008",
+          "MAN-009"
+        ],
+        "P1-07": [
+          "MAN-008",
+          "MAN-009"
+        ],
+        "P1-08": [],
+        "P1-09": [
+          "MAN-009",
+          "MAN-010"
+        ]
+      },
+      "issue_count": 10,
+      "task_count": 9
+    },
+    "phase_two_and_three_unchanged": "PASS",
+    "source_integrity": {
+      "status": "PASS",
+      "files": 193
+    },
+    "original_audit_evidence": {
+      "status": "PASS",
+      "files": 52
+    },
+    "document_links": {
+      "status": "PASS",
+      "markdown_files": 69,
+      "errors": [],
+      "historical_warning_count": 19,
+      "note": "Historical backup documents retain original relative links; warnings are not current entry errors."
+    },
+    "unknown_changes_preserved": "PASS",
+    "official_documents_unchanged": "PASS"
+  },
+  "productTests": "NOT_RUN; reused P1-01 evidence only",
+  "officialProjectWritten": false,
+  "status": "PASS"
+}

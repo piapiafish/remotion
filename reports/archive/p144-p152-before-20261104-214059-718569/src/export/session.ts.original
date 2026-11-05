@@ -1,0 +1,43 @@
+import { create } from 'zustand'
+import { useProjectStore } from '../store/project'
+import { getExportContext } from './renderer'
+import { ExportFailure } from './exportError'
+import { waitForSceneReady } from './sceneReady'
+import { settleEffectPreview } from '../scene/sceneEffects'
+import { waitForTitleFonts } from '../scene/textOverlay'
+import { hasScreenVideos, waitForScreenVideosReady, prepareScreenVideos } from '../media/screenVideo'
+
+export const useExportSession = create<{ busy: boolean }>(() => ({ busy: false }))
+
+/** The live renderer and decoders belong to one user export at a time. */
+export async function withExportSession<T>(work: () => Promise<T>,signal?:AbortSignal): Promise<T> {
+  signal?.throwIfAborted()
+  if (useExportSession.getState().busy) throw new ExportFailure('prepare', '已有导出进行中，请等待或取消')
+  const before = useProjectStore.getState()
+  if (before.fileBusy) throw new ExportFailure('prepare', '工程仍在读取或保存，请稍后重试')
+  if (!getExportContext()) throw new ExportFailure('prepare', '画布尚未就绪，请稍后重试')
+  for (const [i, device] of before.project.devices.entries()) {
+    if(device.screenClips?.some(c=>c.media.missing||!c.media.url))throw new ExportFailure('media',`第 ${i+1} 台设备的视频片段缺失，请重新绑定`)
+    if (device.screen?.missing || (device.screen && !device.screen.url)) throw new ExportFailure('media', `第 ${i + 1} 台设备素材缺失，请重新绑定`)
+  }
+  useExportSession.setState({ busy: true })
+  before.setPlaying(false)
+  try {
+    await settleEffectPreview()
+    getExportContext()!.applyAt(before.playhead);prepareScreenVideos(before.playhead)
+    await waitForSceneReady(getExportContext()!.scene,before.project,10000,signal,before.playhead)
+    if(hasScreenVideos() && !await waitForScreenVideosReady(12000,before.playhead,signal))throw new ExportFailure('media','屏幕录屏尚未就绪，请等待加载完成后重试')
+    await waitForTitleFonts(before.project,signal)
+    signal?.throwIfAborted()
+    return await work()
+  }
+  finally {
+    try {
+      const current = useProjectStore.getState()
+      if (current.documentEpoch === before.documentEpoch) {
+        getExportContext()?.applyAt(current.playhead)
+        current.setPlaying(before.playing)
+      }
+    } finally { useExportSession.setState({ busy: false }) }
+  }
+}

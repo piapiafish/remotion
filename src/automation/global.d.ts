@@ -1,0 +1,2 @@
+export {}
+declare global { interface Window { __PROMO_BRIDGE__?: {ping():object;listDevices():object[];loadProject(project: import('../store/schema').Project): Promise<object>;waitForReady(ms?:number):Promise<object>;previewFrame(frameIndex?:number,quality?:'standard'|'high'|'max'):Promise<string>;renderDownload(filename?:string,quality?:'standard'|'high'|'max'):Promise<object>;framesDownload(filename?:string,quality?:'standard'|'high'|'max'):Promise<object>;} } }

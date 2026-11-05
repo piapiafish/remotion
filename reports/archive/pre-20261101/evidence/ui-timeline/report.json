@@ -1,0 +1,361 @@
+{
+  "platform": "Windows-10-10.0.26200-SP0",
+  "checks": [
+    {
+      "name": "1440x960-dpr1: preset still generates keyframes",
+      "status": "PASS"
+    },
+    {
+      "name": "1440x960-dpr1: track click alignment",
+      "status": "PASS",
+      "samples": [
+        {
+          "expectedTime": 0.0019646365422396855,
+          "actualTime": 0.0,
+          "offsetPixels": -0.015625
+        },
+        {
+          "expectedTime": 0.4,
+          "actualTime": 0.4,
+          "offsetPixels": -0.0031250000000113687
+        },
+        {
+          "expectedTime": 2.0,
+          "actualTime": 2.0,
+          "offsetPixels": 0.0
+        },
+        {
+          "expectedTime": 3.6,
+          "actualTime": 3.6,
+          "offsetPixels": -0.012500000000045475
+        },
+        {
+          "expectedTime": 3.99803536345776,
+          "actualTime": 4.0,
+          "offsetPixels": 0.0
+        }
+      ]
+    },
+    {
+      "name": "1440x960-dpr1: ruler click alignment",
+      "status": "PASS",
+      "samples": [
+        {
+          "expectedTime": 0.6,
+          "actualTime": 0.6,
+          "offsetPixels": -0.012499999999988631
+        },
+        {
+          "expectedTime": 2.6,
+          "actualTime": 2.6,
+          "offsetPixels": -0.012500000000045475
+        }
+      ]
+    },
+    {
+      "name": "1440x960-dpr1: continuous mouse scrubbing",
+      "status": "PASS",
+      "endTime": 3.2
+    },
+    {
+      "name": "1440x960-dpr1: drag visible grip",
+      "status": "PASS",
+      "endTime": 2.8
+    },
+    {
+      "name": "1440x960-dpr1: capture outside track, clamp ends, release",
+      "status": "PASS",
+      "endTime": 4.0
+    },
+    {
+      "name": "1440x960-dpr1: ignore right button",
+      "status": "PASS",
+      "endTime": 1.6
+    },
+    {
+      "name": "1440x960-dpr1: labels do not seek",
+      "status": "PASS",
+      "endTime": 1.6
+    },
+    {
+      "name": "1440x960-dpr1: pointercancel ends scrub",
+      "status": "PASS",
+      "endTime": 1.2
+    },
+    {
+      "name": "1440x960-dpr1: lostpointercapture ends scrub",
+      "status": "PASS",
+      "endTime": 1.2
+    },
+    {
+      "name": "1440x960-dpr1: touch scrubbing",
+      "status": "PASS",
+      "endTime": 3.0
+    },
+    {
+      "name": "1440x960-dpr1: frame stepping and Home/End",
+      "status": "PASS"
+    },
+    {
+      "name": "1440x960-dpr1: scrubbing pauses playback",
+      "status": "PASS",
+      "endTime": 2.0
+    },
+    {
+      "name": "1440x960-dpr1: changed duration alignment",
+      "status": "PASS",
+      "expectedTime": 4.5,
+      "actualTime": 4.5,
+      "offsetPixels": -0.0031249999999545253
+    },
+    {
+      "name": "1440x960-dpr1: readable native options",
+      "status": "PASS",
+      "scheme": "dark",
+      "options": [
+        {
+          "label": "Add animation",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Float",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Spin 360°",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Tilt In",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Slide In",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Hero Reveal",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Orbit",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        }
+      ]
+    },
+    {
+      "name": "1440x960-dpr1: real GLB pose and decoded recording follow scrub",
+      "status": "PASS",
+      "states": [
+        {
+          "rotationY": 1.2566370991073512,
+          "video": {
+            "currentTime": 0.8,
+            "paused": true,
+            "readyState": 4,
+            "videoWidth": 480
+          }
+        },
+        {
+          "rotationY": 4.3982295643399745,
+          "video": {
+            "currentTime": 2.799999,
+            "paused": true,
+            "readyState": 1,
+            "videoWidth": 480
+          }
+        }
+      ]
+    },
+    {
+      "name": "1440x960-dpr1: no browser page errors",
+      "status": "PASS"
+    },
+    {
+      "name": "1024x768-dpr1.25: preset still generates keyframes",
+      "status": "PASS"
+    },
+    {
+      "name": "1024x768-dpr1.25: track click alignment",
+      "status": "PASS",
+      "samples": [
+        {
+          "expectedTime": 0.0033222591362126247,
+          "actualTime": 0.0,
+          "offsetPixels": -0.015625
+        },
+        {
+          "expectedTime": 0.3999999999999999,
+          "actualTime": 0.4,
+          "offsetPixels": -0.012499999999988631
+        },
+        {
+          "expectedTime": 2.0,
+          "actualTime": 2.0,
+          "offsetPixels": 0.0
+        },
+        {
+          "expectedTime": 3.6000000000000005,
+          "actualTime": 3.6,
+          "offsetPixels": -0.003125000000068212
+        },
+        {
+          "expectedTime": 3.9966777408637872,
+          "actualTime": 4.0,
+          "offsetPixels": 0.0
+        }
+      ]
+    },
+    {
+      "name": "1024x768-dpr1.25: ruler click alignment",
+      "status": "PASS",
+      "samples": [
+        {
+          "expectedTime": 0.6000000000000001,
+          "actualTime": 0.6,
+          "offsetPixels": -0.0031250000000113687
+        },
+        {
+          "expectedTime": 2.6,
+          "actualTime": 2.6,
+          "offsetPixels": -0.0031250000000113687
+        }
+      ]
+    },
+    {
+      "name": "1024x768-dpr1.25: continuous mouse scrubbing",
+      "status": "PASS",
+      "endTime": 3.2
+    },
+    {
+      "name": "1024x768-dpr1.25: drag visible grip",
+      "status": "PASS",
+      "endTime": 2.8
+    },
+    {
+      "name": "1024x768-dpr1.25: capture outside track, clamp ends, release",
+      "status": "PASS",
+      "endTime": 4.0
+    },
+    {
+      "name": "1024x768-dpr1.25: ignore right button",
+      "status": "PASS",
+      "endTime": 1.6
+    },
+    {
+      "name": "1024x768-dpr1.25: labels do not seek",
+      "status": "PASS",
+      "endTime": 1.6
+    },
+    {
+      "name": "1024x768-dpr1.25: pointercancel ends scrub",
+      "status": "PASS",
+      "endTime": 1.2
+    },
+    {
+      "name": "1024x768-dpr1.25: lostpointercapture ends scrub",
+      "status": "PASS",
+      "endTime": 1.2
+    },
+    {
+      "name": "1024x768-dpr1.25: touch scrubbing",
+      "status": "PASS",
+      "endTime": 3.0
+    },
+    {
+      "name": "1024x768-dpr1.25: frame stepping and Home/End",
+      "status": "PASS"
+    },
+    {
+      "name": "1024x768-dpr1.25: scrubbing pauses playback",
+      "status": "PASS",
+      "endTime": 2.0
+    },
+    {
+      "name": "1024x768-dpr1.25: changed duration alignment",
+      "status": "PASS",
+      "expectedTime": 4.5,
+      "actualTime": 4.5,
+      "offsetPixels": -0.012499999999988631
+    },
+    {
+      "name": "1024x768-dpr1.25: readable native options",
+      "status": "PASS",
+      "scheme": "dark",
+      "options": [
+        {
+          "label": "Add animation",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Float",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Spin 360°",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Tilt In",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Slide In",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Hero Reveal",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        },
+        {
+          "label": "Orbit",
+          "colour": "rgb(236, 236, 240)",
+          "background": "rgb(26, 26, 30)"
+        }
+      ]
+    },
+    {
+      "name": "1024x768-dpr1.25: real GLB pose and decoded recording follow scrub",
+      "status": "PASS",
+      "states": [
+        {
+          "rotationY": 1.2566369977323963,
+          "video": {
+            "currentTime": 0.799999,
+            "paused": true,
+            "readyState": 4,
+            "videoWidth": 480
+          }
+        },
+        {
+          "rotationY": 4.39822965132219,
+          "video": {
+            "currentTime": 2.799999,
+            "paused": true,
+            "readyState": 4,
+            "videoWidth": 480
+          }
+        }
+      ]
+    },
+    {
+      "name": "1024x768-dpr1.25: no browser page errors",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "browser": "156.0.8078.73"
+}

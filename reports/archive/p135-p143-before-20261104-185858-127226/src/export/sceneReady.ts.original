@@ -1,0 +1,39 @@
+import type { Mesh, Scene, ShaderMaterial, Texture } from 'three'
+import type { Project } from '../store/schema'
+import { getManifest } from '../devices/manifest'
+import { isModelReady } from '../scene/modelReadiness'
+import { ExportFailure } from './exportError'
+
+/** Do not turn a still-loading model or texture into a successful blank file. */
+export function assertSceneReady(scene: Scene, project: Project) {
+  const ready = new Set<number>()
+  scene.traverse(group => {
+    const index = group.userData.deviceIndex
+    if (typeof index !== 'number') return
+    const device = project.devices[index]
+    if (!device) return
+    const manifest = getManifest(device.id)
+    let modelReady = !manifest.glb, screenReady = !device.screen
+    group.traverse(obj => {
+      if (manifest.glb && isModelReady(obj, manifest.glb)) modelReady = true
+      if (!(obj as Mesh).isMesh) return
+      const m = (obj as Mesh).material
+      for (const mat of Array.isArray(m) ? m : [m]) {
+        const material = mat as ShaderMaterial & { map?: Texture }
+        const texture = material.uniforms?.map?.value ?? material.map
+        const image = texture?.image
+        if (!device.screen || !image || (image.currentSrc || image.src) !== device.screen.url) continue
+        if (device.screen.kind === 'video' ? image.readyState >= 2 && image.videoWidth > 0 : image.width > 0 && image.height > 0) screenReady = true
+      }
+    })
+    if (modelReady && screenReady) ready.add(index)
+  })
+  if (ready.size !== project.devices.length) throw new ExportFailure('prepare', '模型或屏幕素材尚未就绪，请等待加载完成后重试')
+}
+
+/** Export wakes dormant decoders through React; wait for their material commit. */
+export async function waitForSceneReady(scene:Scene,project:Project,timeoutMs=10000,signal?:AbortSignal){
+  const start=performance.now()
+  for(;;){signal?.throwIfAborted();try{assertSceneReady(scene,project);return}catch(error){if(performance.now()-start>=timeoutMs)throw error;await new Promise(resolve=>setTimeout(resolve,30))}}
+}
+

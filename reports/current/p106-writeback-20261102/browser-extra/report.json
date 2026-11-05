@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-02T01:13:12.003Z",
+  "method": "Actual local Vite HTTP/TCP in Chrome without route interception; UI edits, isolated contexts, portable archives and actual MP4 downloads.",
+  "checks": [
+    {
+      "id": "cancel-missing-background-preserves-current-project",
+      "status": "PASS"
+    },
+    {
+      "id": "missing-background-is-visible-and-blocks-incomplete-save",
+      "status": "PASS"
+    },
+    {
+      "id": "background-relink-preserves-device-and-embeds-bytes",
+      "status": "PASS"
+    },
+    {
+      "id": "shorter-source-relink-shows-clamped-range",
+      "status": "PASS"
+    },
+    {
+      "id": "shorter-source-relink-keeps-animation-and-background",
+      "status": "PASS"
+    },
+    {
+      "id": "empty-timing-input-is-visible-and-keeps-valid-document",
+      "status": "PASS"
+    },
+    {
+      "id": "shorter-relinked-source-uses-preserved-delay",
+      "status": "PASS"
+    },
+    {
+      "id": "ordinary-recording-replacement-resets-timing",
+      "status": "PASS"
+    },
+    {
+      "id": "source-replacement-undo-restores-timing-and-media",
+      "status": "PASS"
+    },
+    {
+      "id": "no-unhandled-page-errors",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "no-missing-build-resources",
+      "status": "PASS",
+      "requests": []
+    }
+  ],
+  "cases": [
+    {
+      "label": "08-background-and-shorter-source-recovery",
+      "status": "COMPLETED",
+      "seconds": 5.499
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [],
+  "dialogs": [
+    {
+      "label": "08-background-and-shorter-source-recovery",
+      "type": "confirm",
+      "message": "该工程的 背景图片 缺少素材。确定：继续打开并重新绑定素材。取消：保留当前工程。",
+      "accepted": false
+    },
+    {
+      "label": "08-background-and-shorter-source-recovery",
+      "type": "confirm",
+      "message": "该工程的 背景图片 缺少素材。确定：继续打开并重新绑定素材。取消：保留当前工程。",
+      "accepted": true
+    },
+    {
+      "label": "08-background-and-shorter-source-recovery",
+      "type": "confirm",
+      "message": "该工程的 设备 1（procedural-phone） 缺少素材。确定：继续打开并重新绑定素材。取消：保留当前工程。",
+      "accepted": true
+    }
+  ],
+  "status": "PASS",
+  "browser": "156.0.8078.76"
+}

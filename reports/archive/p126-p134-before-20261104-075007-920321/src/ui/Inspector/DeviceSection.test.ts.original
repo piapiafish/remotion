@@ -1,0 +1,22 @@
+import { createElement } from 'react'
+import { renderToString } from 'react-dom/server'
+import { describe, expect, it, vi } from 'vitest'
+
+const state = vi.hoisted(() => ({
+  project: { devices: [{ id: 'procedural-phone' }], duration: 4 },
+  activeDevice: 99,
+}))
+vi.mock('../../store/project', () => ({
+  useProjectStore: (selector: (value: typeof state) => unknown) => selector(state),
+}))
+import { DeviceCard, ScreenContent } from './DeviceSection'
+
+describe('inspector selection protection', () => {
+  it('shows a safe device prompt when a stale selection reaches the panel', () => {
+    expect(renderToString(createElement(DeviceCard))).toContain('请选择一个手机对象')
+  })
+  it('keeps media/finish controls safe when the selected device no longer exists', () => {
+    expect(renderToString(createElement(ScreenContent))).toBe('')
+  })
+})
+

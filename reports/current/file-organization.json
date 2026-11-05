@@ -1,0 +1,651 @@
+{
+  "date": "2026-11-01",
+  "projectRoot": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio",
+  "scope": "documentation, navigation and ignore rules only",
+  "protectedFilesBefore": {
+    "src/App.css": "d49022509e3bede7e7ad4344ddc9daf38978f91d2550ca5b3a1cf7693234d3a6",
+    "src/App.tsx": "1862eb99a01dacebe02f4c0eb7cac44c77142ad14fbd49e38bcc7c2a0923fa13",
+    "src/index.css": "c29ef59793479103882d37ecc8a144ce486bbeccab8c88267fddf2d840884c8f",
+    "src/main.tsx": "4d6108ff649e92d75d6f9dfafe935ed2fe7eab6eb935e19823484d8016a4c0d0",
+    "src/app/useShortcuts.ts": "7659ea58e1e1b5ff43ace40372a32fe8e53cabeddf652fd5605589727e94313b",
+    "src/automation/bridge.ts": "16aec8ae9e62feb5539b78103b996d0b778182a51be67da5d536c1089e7d9b5e",
+    "src/automation/global.d.ts": "0a78b775b0e693896db97826bab96176d75045cd6add1cc344917c856659cbff",
+    "src/devices/manifest.test.ts": "86873e6c9c0d1b669b5156178db8d5086ccf9e32b71313b5275e9bec6b45dfd9",
+    "src/devices/manifest.ts": "0174ca3fe710233c16f185fb5199cab0fb762b8be08a83505dc653deb6d7b8f7",
+    "src/devtools/videoProbe.ts": "a031aca5aa893b295f6299145af134f8be96e8ad1048418f96f101a34674a0ad",
+    "src/export/backdrop.test.ts": "1210e1919b66ce0ec415302b44315939eb67b6cb9cf4aa6c56358fbaf0660d20",
+    "src/export/backdrop.ts": "f7e5274f9cc64462794367b1c3fcabd818feb8274bd0c252df566d0b92d7d6bd",
+    "src/export/downsample.test.ts": "0309bd62190cf2166500562a47cf0061e9a7366bc633f8e4f1eb7bf5091f40ed",
+    "src/export/downsample.ts": "a2c80f49496dc39b7be23c0402f622f3e55dcc050993ddca202406af17d75e1a",
+    "src/export/exportSize.test.ts": "c34ce50716839ea2f09bee3f885b4ff56fc5dabaaa12a1871bfb7373417abf0a",
+    "src/export/exportSize.ts": "b0d341826c4f7bb6ffe2e9c9e644d58f3c18af6e9e48f16fcec821b55b2729ad",
+    "src/export/frameRenderer.test.ts": "754a772e1c9d87dbc46571fb9c725bc9f5271be3f16626c75e3d222ceb49cb4e",
+    "src/export/frameRenderer.ts": "fba36872467cb6a819621bbd62fac7f83eb6df5c29afd85fb203a214365535b4",
+    "src/export/renderer.ts": "cb09e62d9edc63431f7ebb19acaa11277ce5de62d61ed1dcd56a6bbc24ffa7c6",
+    "src/export/screenCoverage.test.ts": "2f27f7a07df80b0396108eab834e066b9851cfe7ebc5d1bf6db9e7e59f3d2007",
+    "src/export/screenCoverage.ts": "ae8621cfaa338ca10413384144dc6a60e09b4313271f9748bcaf3592813023b6",
+    "src/export/screenCoverageScene.test.ts": "b6f20b98832969b9129769166a9ea929822fb38627d814b7fbb0be2404fadc02",
+    "src/export/sequence.test.ts": "1a6267cb61ee2520cc31797a9607beb7eb3663af034693438ee3967fe81ae358",
+    "src/export/sequence.ts": "2985b974a994864414d15c69f5d9139de8c401da05ed4b5c4a3d1298712ca5b4",
+    "src/export/still.ts": "0170cdbc7a1b674e8c42cb30d5d389c8bc585501a88ac8324a10f4c5df6effdd",
+    "src/export/video.test.ts": "4e5cc4f8a48364a82910f3baf05f546df4e7790854b00d8027184e75aa958a73",
+    "src/export/video.ts": "1e05f8574e4921c665a140f720a133462c65fd3c9994b75a5d07fb6d625932c8",
+    "src/media/loadImage.ts": "38f3fc491bf93e4dd3bb948754afc8a5b39de289ee40c914558e3f3e42d59a8b",
+    "src/media/loadMedia.ts": "4fcbaf59fd1bd0f4dad18fdde90f180e89d72a1a826ad982ed4d3aef3d3c946a",
+    "src/media/screenVideo.test.ts": "5b9d61adf2872a9a589d4e84514284306d2f77e78fd5e32e50b2c48dcb9a7a62",
+    "src/media/screenVideo.ts": "e19c894849e4b7f324b7a010aaac2859d368408b8d7e9eb1fd72e478b0c46b92",
+    "src/media/storage.ts": "23301f8fe78404828fd2faffc417d9a5f96051b0af963df9ad62451bf96c221a",
+    "src/media/useScreenVideo.ts": "090c0d6a1e2381d61da31fee4ec205d561af7dd845520916717a8ef48a29ea7d",
+    "src/scene/Backdrop.tsx": "20c03adc957f481a70669e040581e0921b835f3c91339cc4ccbe2d0b8502f922",
+    "src/scene/Device.tsx": "657f58b1a94d237d7a9ec980fc5cdd4c40d124d4a6794afa601cdd2bf8995adc",
+    "src/scene/DeviceInstanceView.tsx": "8a72ea8361839eed7c5745d21c3835a2232979700550a744b491e652016cdb9c",
+    "src/scene/GltfDevice.tsx": "048643949ce472c82a8fa78dccb4b8f15d3f76ed36dbb5b2b7b64110638d5141",
+    "src/scene/SceneDriver.tsx": "b202dae23865295706a267aefa490b68febd9b09604a6265cda82a0fbffcd933",
+    "src/scene/ShadowCatcher.tsx": "334267996a0d81a4e557dd4babe9495c01c837ebbfc454ae43ed4fd6ca135a79",
+    "src/scene/Stage.tsx": "be7cea542bf8a6ef7aaebe73f14466e80c715c671ddf9b49fe0ac10557f13f03",
+    "src/scene/applySceneState.ts": "3a61b5930634287b217a4325efc02a8e6cbcc4007f6692832934ea9a85e511bf",
+    "src/scene/geometry.ts": "f5452db7b011e857776d6af08175c248585ed599eb77ef156bc744ad3261f3ed",
+    "src/scene/groundPlane.test.ts": "38f10a125c68db42256e7cd3b0120ee4250fc5c219d5c2dbab835f45af939e10",
+    "src/scene/groundPlane.ts": "5c2736d9ada8240820ca61526227067da2e00146ce4c546cfb6adf65265ad067",
+    "src/scene/modelReadiness.ts": "71750deaeedcc14c58b0cc7182f5fa9860053a4a4eb96c94bb54645e40a1eb5e",
+    "src/scene/screenFit.test.ts": "c50c33f9c02dd94753ebc503698957ca1233a6474ee45f412c3e168b729d9cf6",
+    "src/scene/screenFit.ts": "3b965623c4378f00b2aef28fe0606167b632e090bbc98e3906240186b9e2f690",
+    "src/scene/materials/index.ts": "b03a079edf301717eeaf9f1e7afe2cd7d1123b8765cde8db97e461adae1a4d51",
+    "src/scene/materials/screenMaterial.test.ts": "bd5a33f00c12906bbd2391bc96c72d7b20ab47f4580ea199c24588284baf8260",
+    "src/scene/materials/screenMaterial.ts": "a53ce418e7c112cb663b05e51dd153c91075d5eaa38412e6681c764799965a3d",
+    "src/scene/materials/screenOrientation.test.ts": "2936b76655ae21859cfc67d166030ae44ad05fddb2024da57a2f5cdc8ed7b16b",
+    "src/scene/materials/screenTexture.ts": "387cba5ba4cf73b474781e5ead05574bf61091be5b4c30be7cc7865c6620c5db",
+    "src/scene/materials/screenUv.test.ts": "d51aabcab897c55097f705bdc9f0f40115c9effb507f9d1a2c3a51fee5f34d32",
+    "src/store/defaults.ts": "a8dd3e2f9357c0090018e70fe7f191b8afb546e2a881bc078aa33c5ae45a1d0a",
+    "src/store/deviceTransform.test.ts": "92a8ef2ae35e6b1f1cdca2a138bffe7a18accc954ecad4e25d8dd3d9f3e2fd3c",
+    "src/store/exportPreferences.test.ts": "19cdfce9d24bae483a1efe296ddc562ee18448360c9c6857d79eda90169cf6af",
+    "src/store/history.test.ts": "60c52e5e501019c2ae2518eb567635b89f293cabe4cbacad6ea622fc849d43b2",
+    "src/store/history.ts": "e68ba09b88b7d363491c64fdb91beae816c3955d82d1202f225791c0e80787ae",
+    "src/store/persist.ts": "743930a3c0ece5db6cd09e66b514013b8e49fd810bda76f5ce3d2f26ef67c595",
+    "src/store/project.ts": "0e68678b4c834d81edc547052c5435cfeae6f6625ef9ab8ed5aeb8b35b061bd5",
+    "src/store/schema.ts": "4180413d9ff80bdc04ddda2235c25d0a42a2698710b2a85dad88f8491cb561f7",
+    "src/timeline/easing.ts": "45aeb7bd2b1ef3c1e3b7609b59b85a775692257f3aa3327d44b3219fb574f36b",
+    "src/timeline/motionPlan.test.ts": "7eac15c10d3b3160fbe745bf82c3eb0367ba09325e3eb1798121af8cf26505d5",
+    "src/timeline/motionPlan.ts": "9c74abdb9fe9307e0a3a9296b7c6b0854a9f166092a763ff76e83c33fa9b0c7f",
+    "src/timeline/presets.ts": "7c2ef37e7ae505e53b83c0108607dfaf13824f6215a27c77d56d8526d07b7dd0",
+    "src/timeline/sample.test.ts": "e97eeead3c7f2e6202ec29482f43282185e1d5ca6014c70c7295eb0f521985f0",
+    "src/timeline/sample.ts": "ca6043c0da7a0fb078595a79daafd4bb5e82fcca8b5fb3de8312694df3edaaf1",
+    "src/timeline/templates.test.ts": "2d6f0a8f96107e618df32d66068d5ce0ee39ea58c1d3fb9058858a52ec63cdeb",
+    "src/timeline/templates.ts": "4c1a352815e21685d295b18bfe0ebb62a9c8711b9705cf363db6179b76e6a87f",
+    "src/timeline/tracks.ts": "b11052794910389167cc76379085866540b5e52b11bd0cf0b6e8efdde6c0db8b",
+    "src/ui/AgentPanel/AgentPanel.tsx": "fce6283294f4c633a099d2ee531fed327928f1d61faaf3964b9aafff5ec9beb4",
+    "src/ui/AgentPanel/StoryboardRenderPanel.tsx": "9283ebae5d848c9869b90cc05cc500009140a019e5d645cbd039b914d6509046",
+    "src/ui/AgentPanel/studioClient.ts": "e46f66ab2badceed42bf9cde1093b83773847ada29763a3e2d5ffc0b0aa3ed69",
+    "src/ui/Artboard/Artboard.tsx": "a9b85259937eb85b4195ce6e099e3ea2ddb0f8240297630c0f0c4eafcd486878",
+    "src/ui/ExportDialog/ExportDialog.tsx": "2d3dee86a928c48a183e8a0635e2e8fccd2ec88f9a4e68301105d67b57f2f5ae",
+    "src/ui/Inspector/CameraSection.tsx": "88041dbbb2e2c23edd97544a93f1b7749ac0c5513f2420f57f0f249060ae5b7e",
+    "src/ui/Inspector/DeviceList.tsx": "5fcf54134beb8ac7b956959677bd42f269b5ad28798eae7f368bdbfe273b03af",
+    "src/ui/Inspector/DeviceSection.tsx": "35acda4323cdd27d3db49f82a57d8b86dc01761128dcdddfa932258f8986d0e8",
+    "src/ui/Inspector/Inspector.tsx": "6311f9d66f7df28de3ff5057bd14e73847e4b64a1d7e18731ba43e273c003dcf",
+    "src/ui/Inspector/TransformSection.tsx": "245f97c3a3f1ab5629dbee5965935382ac60cce28d3868708140dc3b07d28f8d",
+    "src/ui/Templates/TemplatePicker.tsx": "080ced28f9a1a379362826f432e53eb7b5fb2c7ea3fd4004c20aaf7c63155036",
+    "src/ui/Timeline/MotionFilmstrip.tsx": "0429cefca94f543b2cb4850d1ae44023c047172cb9b18af17d70998cde096e56",
+    "src/ui/Timeline/TimelineBar.tsx": "acc80b6d3f9c1f8b845797114d3ec3fc3175a31822e56d3d567c5c3b2b4ec3e5",
+    "src/ui/Timeline/motionThumbnails.ts": "74027d7618e5e4818a3a637456df4703fc67ec2e8efd4bd49cc29f2819ccba6b",
+    "src/ui/TopBar/TopBar.tsx": "c2d6259a3c19588cc869690ccef83ef2164244324f41f7187119eb1be396f68f",
+    "src/ui/controls/NumberField.tsx": "d416eb266f4c8375c25132adc592e103c5b7e312da2e39fab7087e5bab82ddbc",
+    "src/ui/controls/Section.tsx": "c7fd464267f979c4395beb16d30c81bfc345e2ec5997deeec24e6d9378883464",
+    "src/ui/controls/Segmented.tsx": "830aff6b61d8426b34264b143c2397a730e7ba55a7f9db408fb89c69174e14be",
+    "src/ui/controls/SliderRow.tsx": "a0f1477deb07eb48c2e4eff394d383eca7d4f00a4c5611ceee64517b4fd79023",
+    "services/agent-orchestrator/audio.mjs": "86593df09e88fe56873dd29cfb201f7ea52dad65cc7f2ff03eda8c4d461a3d4a",
+    "services/agent-orchestrator/cache.mjs": "7a5595e1617368a722ce10229d6192c1b84d3575b66f577f0b0ee652b629395a",
+    "services/agent-orchestrator/cli.mjs": "2e0ca6ba07c5aadfd2005345ed54ed90cbd9159e419d193f5af485b2fdc6f16b",
+    "services/agent-orchestrator/critic.mjs": "bf43da52805f57b40102540de5979c87c0739712f187fe2c8bc183df9891e760",
+    "services/agent-orchestrator/planner.mjs": "6d57a7f7f8ebde42177fd5016974ced41db39c840f9eb907ed8d770077fb3202",
+    "services/agent-orchestrator/tools.mjs": "3105e537ddd5bdf620aae00451b05c5ee3d08cb61960802583be88e286f81610",
+    "services/compiler/compile-cli.mjs": "f18144c944c633a6534f9360ede273262482ca7a675431fed454cf45f3b5291b",
+    "services/compiler/compile.mjs": "27ed14437bb9767bed6b343fa101e7915d3c1ca5cc9ff1662404fd5c72b54ac3",
+    "services/render-worker/requirements.txt": "ebeb483138ed507c6d6d57c4006b13a2bafbde6b20abc9829b0fd160059c368d",
+    "services/render-worker/worker.py": "777e62f2f79e2639acb779e9401c70c44751fea2938c07aff118038e3a9942a1",
+    "services/studio-api/index.d.mts": "7df162be2a4ea1d4415b350c0a12876bf0841c3090779cdc3ecbcdd1b8aa7564",
+    "services/studio-api/index.mjs": "5f5a3b69d73cf1669a878330655d0cce476e8d290f8aea02f889884cae13f005",
+    "packages/video-schema/README.md": "e55aa3a31df2fd6c7c53da279ca2fb0592e5a81163a6ee4267062df5f4058ab1",
+    "packages/video-schema/index.mjs": "0be3e0a14ad1c59c6e914ba35c6c45f7b30a527b6b1fd2cd2059ea7a636c8eb9",
+    "tests/audio.test.mjs": "b04181f654f74889f188659e0e52a377855e92a00b9fc12dea520323663eb5d0",
+    "tests/cache.test.mjs": "ed8385fcced89d74028874c91ad76d0e86d4e77ac85b9efc731c9ff4357c158a",
+    "tests/errors.test.mjs": "d079b955e6924300c9ce01081c667760e8a87bea596f8dcb9e4d77a2b6edf7f9",
+    "tests/remotion-local.test.mjs": "3d430b4b507a8a33f18aefbc7669f9d75f195058e470978e396dd21b9598f9ca",
+    "tests/schema.test.mjs": "eb69dffac198422ab759e7920e39c947a8b8ba9fa094507e8fe8242dc247a890",
+    "tests/studio-api.test.mjs": "fbeb8dbd8259fde9fd56e5c84f367a642e41b3f6135203cdf4e10296e30cedd8",
+    "tests/worker_test.py": "addf6e5de9b32caafbee141409c688cee4fe58e4a29b9ec3d5455b70cb5471c1",
+    "scripts/doctor.mjs": "48665b583db586aef5cfd4685ef03b757c7a24ec7b51489b68c68a45a3221a89",
+    "scripts/measure-device.mjs": "dcba417cd8a8dab91fd3e8644959958ac42d84ac195a4a949531945f51410d15",
+    "scripts/p0-smoke.mjs": "23d9dc99aad4701b88ebffb2cafe6bb521c74a3a69bd105b110ab1399321d30d",
+    "scripts/p0-visual.py": "b0e2e2c9df81590bb286e6481ecb443d41841c8b68821617b9a9977603ca1af4",
+    "scripts/remotion-loopback.cjs": "6ab9394091fe788be46a2095db130cd459e00d7bb39bd3700b7b25eb97f53d15",
+    "scripts/run-demo.sh": "26e6c0ef2efbf28cc95df901db7bbb19c7fbf5edcefdaac25753980618bc6546",
+    "scripts/test-agent-flow.py": "fb831ab6956734e09b617962bbf6f2628c0d8649547657ccda7f295b407c51de",
+    "scripts/test-motion-plan.py": "478966fc8a55b6a4bdf2727729b54ed99fd73d7df674762f69981bf3e00b194a",
+    "scripts/test-timeline-ui.py": "2f9188676bd6c42977359536ecbe53fd98e0f99fee8ba7261edc07d3e266cb1a",
+    "public/favicon.svg": "018105a89f4ca99b2a13dcbc3865372cdbfc6f3622082e90c555a8bb586d4a71",
+    "public/devices/galaxy-s26-ultra.glb": "6355b5b819b89a2d77b52c9e2802d6e89098f5bfb98b3fbb0948fa92c81a07a0",
+    "public/devices/iphone-17-pro-max.glb": "cc32d7479d48f93b320a36cb70fd8354b4f6eb3f939304f65b54f9803a557d17",
+    "public/devices/iphone-17-pro.glb": "d7089ce39b8e09fe857ab41bc9105e39beb72171bbd8b7e81008afb7e0ad0c4c",
+    "public/devices/pixel-9-pro-xl.glb": "f885feb957a3f86e4836af7c7d3100b769cf21a150f4b32f521076b229109684",
+    "public/draco/DRACO-LICENSE.txt": "d3709b0fb4b8a94bbb1d02b8a2e484f258b0d9c5c5a01f940391f3fe662cd1a4",
+    "public/draco/README.md": "0059a894c97f501d0e95aef2c5a502f9f9234649529a0f1accfb22ed85296415",
+    "public/draco/THREE-LICENSE.txt": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+    "public/draco/draco_decoder.js": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+    "public/draco/draco_decoder.wasm": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+    "public/draco/draco_wasm_wrapper.js": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+    "public/environments/README.md": "f6d81165bf1005f7bcc82c4edd1b332592c1f348a0b77d56a9aaa6f38245b198",
+    "public/environments/city.hdr": "7afe4c2f9700ee78c7477c53fa355463d7dda1fdede401432d6b5f9ff0a95696",
+    "public/environments/sources.json": "c9a47540ef179834c72d96ad2102866944cf8b8606ae39dd21913b2b09a2f6d7",
+    "public/environments/studio.hdr": "29267a4aa8c10de26cae758e4e3c4daadde88673798666ad657724bab7224a35",
+    "public/environments/sunset.hdr": "0e72ed46b5316cb5fb67fc81ff85b024a09146fd89ef3811a8d2299647ada118",
+    "public/environments/warehouse.hdr": "9b3d611cadc32c3a0c7e084ce5611c0650293881c4a041e7fa13748fe0dc6451",
+    "public/examples/phone-motion.json": "0d792ae1339a03a22eb19427060347829832ae978d9321bc0eac77604ad94319",
+    "assets/demo-screen.png": "77070dc7731d5c992524df5aaefc9231231548e978f05b7d403ae6a0a039be68",
+    "assets/demo.mp4": "21be84909a07a4b534d343fb091a3d25a8261155e773836c0ecd6f760c8f1a7f",
+    "assets/music-demo.mp3": "496fdf03ae95bf8123acee5f6603bb63520f270221bbec10217e9870a393b587",
+    "remotion-compositor/README.md": "8f56d3297e6a3071d32d3c7800e333ce3c62a33b2cbd735d5363575537e1bb8a",
+    "remotion-compositor/package-lock.json": "7cf866c21664bb586a1a00c1737dc34b17138b0bf97c1cb6d5b8004279b16ffd",
+    "remotion-compositor/package.json": "0f4cdfb31cce3e43a1c8393a48e4d13be7e9f5372ab30c1bb7bb6836beb16e6a",
+    "remotion-compositor/public/media/.gitkeep": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "remotion-compositor/src/Film.tsx": "e0fbef98cc429091d6e7a1613c261d360af6cdfa0337ecf0e2654c4140fd2587",
+    "remotion-compositor/src/index.ts": "b3bb9d61bdfb9f7f8e44bee7173c02cbd1ee0ea3f33c953efc592189ba75b4a3",
+    "remotion-compositor/src/root.tsx": "5721012a4c77b0adb3b25c830708263761c3094c61c4628eb25269a2419f528d",
+    "work/.gitkeep": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "work/p0-film.json": "3a4af22766b3804f5fbaafd52efb88576fe1d1687b352cc577a9fb14a84b7b87",
+    "work/p0-single.json": "de1185fec94078701b3d499b0109465f7440b08046d94f3cd494294858cbb083",
+    "work/storyboard.json": "71119741049af4c51296c05910dfd1e57f72470568f7fabad67accd5da578052",
+    "work/studio/04029816-bee9-420b-8f33-158ffdf78e93/state.json": "8e4576e3144259a19bb1aeab20752773fe8ce401f7144e2ac724474d805fe609",
+    "work/studio/04029816-bee9-420b-8f33-158ffdf78e93/storyboard.json": "167599d3382ba7101ec46c3edd67b52dfe6f08450a9be07d13edbf9e7680a0e4",
+    "work/studio/4108a61a-5a23-4484-bdd2-5ad8a4d77f35/state.json": "14c00d96209e668da983caebcafc6b2b1976d192b8e14a4fcc4f13d8a7a4bd81",
+    "work/studio/4108a61a-5a23-4484-bdd2-5ad8a4d77f35/storyboard.json": "167599d3382ba7101ec46c3edd67b52dfe6f08450a9be07d13edbf9e7680a0e4",
+    "work/studio/5f4cbe14-b8e1-4d99-858f-0c8cb0a216de/state.json": "8c6f60faa514a80aa5f54d6af5603e7c131b327c9d561fbafb3d0d40a7e232c7",
+    "work/studio/5f4cbe14-b8e1-4d99-858f-0c8cb0a216de/storyboard.json": "167599d3382ba7101ec46c3edd67b52dfe6f08450a9be07d13edbf9e7680a0e4",
+    "work/studio/72f507c4-52cb-48d3-bda3-398592acf040/state.json": "258c37d356d81effd0b75b7e3a588da534675f6151afa6e86966066db927d4a2",
+    "work/studio/72f507c4-52cb-48d3-bda3-398592acf040/storyboard.json": "167599d3382ba7101ec46c3edd67b52dfe6f08450a9be07d13edbf9e7680a0e4",
+    "output/.gitkeep": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "output/manual-editor-audit-20261030/initial-editor.png": "40ce436d134a2d8adaf8baaba4656f7ca2a9a3faebba04f92cf1f5defc81f8c4",
+    "output/manual-editor-audit-20261030/inspect_manual.py": "b259bce47f61594efd1f8158cb22b799ccb8c7c7ec20b31049c4f5c94527420c",
+    "output/manual-editor-audit-20261030/manual-audit.json": "297971a9afe009b4f495632cc85f25400c64eff8ed681d653319d231dac0b900",
+    "output/manual-editor-audit-20261030/undo-add.png": "c47575b32b7e0009c4fcb326ab557a7c7a539ca5af7402f066319764f3855de9",
+    "output/manual-editor-audit-20261030/vite.log": "c822ab7f66a016ad1cb6ea3b28a927ed9d78172fd1d819fbd1b8502090f8600e",
+    "output/manual-editor-audit-20261030/timeline/1024x768-dpr1.25-menu.png": "e9bdc3dd18424af9fad7b6231ce2cfaf6d041a062edcc7fb8bc9283fb45a3803",
+    "output/manual-editor-audit-20261030/timeline/1024x768-dpr1.25-video.png": "375ffe4bda54ba629312b61a09afe9216c75f2935f8ffcd1b602055bfc9d0065",
+    "output/manual-editor-audit-20261030/timeline/1440x960-dpr1-menu.png": "4ed91069d732b7302a875de0173b364b9b08e5b86575d22d1f5c5a3fe04d7e1d",
+    "output/manual-editor-audit-20261030/timeline/1440x960-dpr1-video.png": "89a298405710327c36fb42f0244e50316ab5327408e53b669cf717d5e202f4ae",
+    "output/manual-editor-audit-20261030/timeline/report.json": "835918141200abbbc2ac706112d81f81a5a76eda37f30fe9110c337a86899308",
+    "output/manual-editor-audit-20261030/timeline/vite.log": "844e3158582e7c91eb99efe57ba6413bbf65b8c1aaa5f72f6daeb4c1d5023ef5",
+    "output/motion-plan-test/custom-motion.json": "9de6cc0aa8d903fca2c3010909c308af61753f4dfafb85bcb70f7dc927bf32ce",
+    "output/motion-plan-test/failure-page.png": "ceb88cba671647ab373a7257ad866c1d500b3bc992ab2d3eac812db7cf5fbe6b",
+    "output/motion-plan-test/motion-cleared-compact.png": "3686f8e8289b7504d967ebb9b50aded3c003f2e28a621ae94fb0cb8c595ffa04",
+    "output/motion-plan-test/motion-plan-compact.png": "6f293314e02742c8b56bf6e1780e2b36ec5f8141714dc80327ab0ce5f07c5b5e",
+    "output/motion-plan-test/motion-plan-desktop.png": "e0d5867910a9ff3675472f0c67ed46ea88ae008b6721494142986a3f5019d7f2",
+    "output/motion-plan-test/motion-project.mockup": "6dd2f3d154459e0bd0f8958453c514b578ba1e08702c1393293620bafcd26c3a",
+    "output/motion-plan-test/report.json": "510141d26e3604cb33c0fb72950c5ab67dfaa1f7b09531d0751277ca6cb9b105",
+    "output/motion-plan-test/vite.log": "90fc98aeb66d7a0d7ed977eb2f1b664383b95124d2bf000aff9d8c72620f4e5e",
+    "output/ui-timeline/1024x768-dpr1.25-menu.png": "13e666a6ba917205f14c78710ec12a41cdc0901a55fd90af417626973fe74469",
+    "output/ui-timeline/1024x768-dpr1.25-video.png": "72cc6ab6b3385a277fe4019b1c4cf21db9bba7672f9d2938e628318394f68dd0",
+    "output/ui-timeline/1440x960-dpr1-menu.png": "9659ecb358d9a39c25d1ce1afc8ade435a0c8432bbb36b7760b787bc926fe47c",
+    "output/ui-timeline/1440x960-dpr1-video.png": "d4b9556d1e3599dc73ac5e9015a1e3bd53408108cb3341d5ae610ca47ef83939",
+    "output/ui-timeline/report.json": "c2a55ea10ef32602bc661fc0edab946b886c76354e816213dcdeac7f50f753c5",
+    "output/ui-timeline/vite.log": "a689bcc3d92d3f4e9d1f716140bbb8bdde7413533a5f91b637b2f5fb3c37cc36",
+    "update-backups/20261030-200748/AI_PROMO_START_HERE.md": "22b4865e5fe34353f9d24cffa63a5b000cd8515ef3060553e8bae38658eec214",
+    "update-backups/20261030-200748/changes.json": "d15b8248912fb3d079461080922aaa47a35938601121a80e953c3510d5f3685f",
+    "update-backups/20261030-200748/vite.config.ts": "4d36db3522a7b2dd10e0936e1004373c7ee65f10f7cd7920cd76410459c15a45",
+    "update-backups/20261030-200748/src/App.css": "794636e61e64795d1c20e0e900ce6407953cef0d334be8394c90706ce3632ad2",
+    "update-backups/20261030-200748/src/ui/AgentPanel/AgentPanel.tsx": "3309546822ce9de9bc2a1c7297d1b4e28eac05834f975dc80d6f82a9d6ffef5a",
+    "update-backups/20261030-200748/src/ui/Timeline/TimelineBar.tsx": "9f1d4de863590f158d362d22f5dd0a13fd0e97bed10bed0f562e590c87129337",
+    ".oxlintrc.json": "35f9d795af154edf1c46178241987bdb5695612e39426364c481b9c3123a43e1",
+    "CHECK_P0_ENV.cmd": "48a285668bfdfca5915f9648f84a56c89d4e7e6ec1243f75fbf1635f1c8a086c",
+    "CHECK_P0_ENV.ps1": "63ec703fe9b223ccf6682981dea82d16413a79ca9fa3dc52646d5f7cb1a2bff8",
+    "DEMO_WINDOWS.bat": "33e136f177d2993258321db2e9877cd0efbb7b688c60146139d57ac53dca57b6",
+    "index.html": "7595bad83f8b1c176a6349bc8ce3c6083e430a2428172507db600b18496671df",
+    "MODEL_VERIFICATION.json": "e259a10f4b7bd0666a9a5370fb2c1a01251af6f323ccd9da82d45dba3a7b89a2",
+    "OPEN_P0_TERMINAL.cmd": "ea694e000a72c836da8c393f6370ba4ce0445ea19084f0a5578602182e2ab909",
+    "OPEN_P0_TERMINAL.ps1": "c04d41dc02ff725731c03826d609fccfea7133daf770b39b78265ea994c4da4b",
+    "P0_ENV_COMMON.ps1": "a7890d06045ae6b746600e01dff49f92833382490553262786d7e42ca093b05d",
+    "package-lock.json": "7d77daef42e2f86ee9e4ebea6f70420419e9ed4f776bd49764b6f9688869e502",
+    "package.json": "8610fb13263fffdab0130c59b613628c78a5be61f941a41b116efcf37de754a1",
+    "SETUP_WINDOWS.bat": "bc352e0136659c61ec098919e743d4f237d287e6b8ff326fc1a9a58843fa2600",
+    "START_STUDIO.bat": "a14f58adc6cd5123d7e3c5249f4a7ae398d117afa28bcf48db3d3f2340a00f9c",
+    "tsconfig.app.json": "8e5d12ba330e7d86409edec74b95451e0db22ee09b9426c94b5bf817571eddb0",
+    "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+    "tsconfig.node.json": "d366cc0827139db39c61815f22491bbfda56c654354a42ad7795143d314e45e8",
+    "verification.json": "dc3054cf3b1e08b00acfdedcf5f82f6552afacb9d84396dcca3eb6a382e8be70",
+    "vite.config.ts": "b61a2fdec8a897fe7a8a95efdda4296a74313ec784ab8596ba0750d6ae11f540",
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "ASSETS.md": "265ddaebc93f490f3f2a97493ddf508a1a589bbd9e83ade25c652934874ea8ef",
+    "THIRD_PARTY_NOTICES.md": "93d4c720e8ad0d4cc945d5dddfa88cfcbe0ea5a5d0fee9e30c200da9b36a6065",
+    "CODE_OF_CONDUCT.md": "1f4565d590ff00d19488a21a8c93fb41e5573d78f3058bdf33f47a3575eefb25",
+    "SECURITY.md": "7ffdb93d803aebb455348ae8e67d70091127847e6ee46c70682c411be25e57ce"
+  },
+  "operations": [
+    {
+      "action": "archive_before_update",
+      "from": "README.md",
+      "to": "reports/archive/pre-20261101/README.md",
+      "sha256Before": "289c840654cf6cfdd3d2975c54b35d1addc4a89b046ce81d8eb4fc2a3e534a95"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "README.zh-CN.md",
+      "to": "reports/archive/pre-20261101/README.zh-CN.md",
+      "sha256Before": "ccf32db54c0db868dce0c28e5eed6ca5f09542e3ff0c266a8878dc1774234630"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "current_plan.md",
+      "to": "reports/archive/pre-20261101/current_plan.md",
+      "sha256Before": "e73887ab08d0495f7108156af1980c5e7e0822ce7f485f50bb51fc92aebc26f5"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "CONTEXT.md",
+      "to": "reports/archive/pre-20261101/CONTEXT.md",
+      "sha256Before": "7dba18d547a2e78eb528001571889afcc12e1eba8a079a16b0efe55e2adf1a9d"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "AI_PROMO_START_HERE.md",
+      "to": "reports/archive/pre-20261101/AI_PROMO_START_HERE.md",
+      "sha256Before": "98a2bcefb4b383d1622c68943bec0b7155c3e3041c9178f880a4e9c10ff4a7b5"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "P0-Windows-Guide.md",
+      "to": "reports/archive/pre-20261101/P0-Windows-Guide.md",
+      "sha256Before": "213535ce1a59238661e8600a19ef07ffe8a6c7d0fecf76d5d6e0714263a8da6e"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/ARCHITECTURE.md",
+      "to": "reports/archive/pre-20261101/docs/ARCHITECTURE.md",
+      "sha256Before": "a58b2921558bbf963add97016f31724a684517ae6aff7449c47660b4d37fd743"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/TESTING.md",
+      "to": "reports/archive/pre-20261101/docs/TESTING.md",
+      "sha256Before": "0bea47acd9bcd173b3decaabbb8a092ea887e941c1cc13c3b05fd8d858894b01"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/WORK_PLAN.md",
+      "to": "reports/archive/pre-20261101/docs/WORK_PLAN.md",
+      "sha256Before": "eddcbbe68a414e6dfd03c4f887bc2a6010e61d34ea40a7cba685d62c2e581846"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/DELIVERY_STATUS.md",
+      "to": "reports/archive/pre-20261101/docs/DELIVERY_STATUS.md",
+      "sha256Before": "e0e8e9a8a7ff8883edb9b5f4317fd45de379992d203313c228c304cb30992059"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/TOOLS.md",
+      "to": "reports/archive/pre-20261101/docs/TOOLS.md",
+      "sha256Before": "a29134aeb06e4bd97eac1603b6586a791be7bab0973de6d386ab83a17592db11"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/PHONE_MOTION_PLAN.md",
+      "to": "reports/archive/pre-20261101/docs/PHONE_MOTION_PLAN.md",
+      "sha256Before": "77766ed98e7de02318ca42b1bacaa883c09c29061b46fbf7ecc43e44f386f853"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "docs/AUTOMATED_STORYBOARD_FLOW.md",
+      "to": "reports/archive/pre-20261101/docs/AUTOMATED_STORYBOARD_FLOW.md",
+      "sha256Before": "d0de0b0fc391e4b8e29b90ac544d5da10c922b684cd40274de1b939d13de0e9f"
+    },
+    {
+      "action": "archive_before_update",
+      "from": "CONTRIBUTING.md",
+      "to": "reports/archive/pre-20261101/CONTRIBUTING.md",
+      "sha256Before": "5ccd26c0ddbb13f99fdaca2812454c018f78317ea8291929fb89cc51d7a90344"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/00_从这里开始.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/00_从这里开始.md",
+      "sha256Before": "903734d88aa06891fd4290e3be3ed6f5914ab04fe8182a0f1af6d7527da66119"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/01_需求与问题总结.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/01_需求与问题总结.md",
+      "sha256Before": "20992c2b6e7666dd01211f49e72fd282b66378cccff65dd0f5cd15a3b2c80dee"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/02_后续执行计划_V3.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/02_后续执行计划_V3.md",
+      "sha256Before": "b809987e48dce1470a4e2133db65df3a5c0c5082f4ca30de28c2a91873d4ec12"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/03_智能构图引擎技术设计.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/03_智能构图引擎技术设计.md",
+      "sha256Before": "48fbb25158770725eff66107b6471bb7178f3d2d28a461c0f317045b187f0d12"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/04_页面结构与交互规范.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/04_页面结构与交互规范.md",
+      "sha256Before": "49c32416de7d9d98ac12658a8e19e48ec971dc7bf5d5e7d35f09fb3d25e59ef3"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/05_AI源码分析_录屏指导_模板系统.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/05_AI源码分析_录屏指导_模板系统.md",
+      "sha256Before": "7a48807e692e31ace4cc2b4bcc50a4777dcc63d340c908bf3527bf8654fe9331"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/06_Remotion与风格系统分工.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/06_Remotion与风格系统分工.md",
+      "sha256Before": "e4b9367a7cc1874ddcbe4932ce20e13fcce3e330657312f8f88dfc17a172cf11"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/07_视频案例拆解与设计规则.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/07_视频案例拆解与设计规则.md",
+      "sha256Before": "cc671cbbce14da15ae49464785420477dd4c33f5877fdf9f70e02e67b8870c71"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/08_验收清单与测试计划.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/08_验收清单与测试计划.md",
+      "sha256Before": "fb763314236e800b4dea1e7c917ae28b6966ba9b9310d6b35984e8dd778de1eb"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/09_来源授权与版本说明.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/09_来源授权与版本说明.md",
+      "sha256Before": "72b94a799ea08b77363f78bcd30bfd0e6a8b8b45ef939911c7138281ae6e9ec3"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/bundle_manifest.json",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/bundle_manifest.json",
+      "sha256Before": "fa825dae7244ef792453836187b379c688aa7ace4a4eeb6630c5436e09b04405"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/archive/旧版工作规划_V1_仅供对照.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/archive/旧版工作规划_V1_仅供对照.md",
+      "sha256Before": "eddcbbe68a414e6dfd03c4f887bc2a6010e61d34ea40a7cba685d62c2e581846"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/多手机演示/151s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/多手机演示/151s.jpg",
+      "sha256Before": "b5f3fcd56ecab632e20df5d490d0794839b6d3a4a5975cc7aaec6a590c9ebb34"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/多手机演示/273s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/多手机演示/273s.jpg",
+      "sha256Before": "2ccc2ae9fe8f20a2268bf53792d02b7598aef43d4f78514d525e3c07332ec39f"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/多手机演示/8s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/多手机演示/8s.jpg",
+      "sha256Before": "765d5791a7c64df44fdc1c1d7ddbd32dda818ff19e47593fa5388a2f64eaff15"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/织界/20s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/织界/20s.jpg",
+      "sha256Before": "3cec14e1030d55de8225c7703e95a0def6936d382b827b27b809bf1df43e9567"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/织界/26s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/织界/26s.jpg",
+      "sha256Before": "edf2d621d51b390f5bc90c21a5fa8b098aed2bd638460ce813c5895633f53d5c"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/织界/42s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/织界/42s.jpg",
+      "sha256Before": "bbfa53992e781bb145b46fd9f8c678b43b1547436c47be57bd97690f893b526d"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/keyframes/织界/56s.jpg",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/keyframes/织界/56s.jpg",
+      "sha256Before": "4931df873c459ac31f0b26b197e405a42d49ec763012ccbe8522b19e6f0e27ee"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/videos/多手机功能演示参考.mp4",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/videos/多手机功能演示参考.mp4",
+      "sha256Before": "d10cba4b204521118186abf010239a7a6c161567e6eacdad2fa32627165cc649"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/references/videos/织界演示视频.mp4",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/references/videos/织界演示视频.mp4",
+      "sha256Before": "4cb798e527e3e9de52aeb18c7eecf50c5473ef94ace5a63c4575a6f07e023abc"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/archived-not-for-implementation/README.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/archived-not-for-implementation/README.md",
+      "sha256Before": "da85035159028673654256384aacae2b986d2f48ebb34ca5d408c684889566d5"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/archived-not-for-implementation/旧版拥挤单页稿.png",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/archived-not-for-implementation/旧版拥挤单页稿.png",
+      "sha256Before": "0a7f6abb1d0d5c8c7160a1e3e7790ead25de9136fab2c24a57d6c57f99916dff"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/README.md",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/README.md",
+      "sha256Before": "35a2cee172510735c64a16e84efce27a32c0837e58e2e46a93784a27ffee5a98"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/editor.html",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/editor.html",
+      "sha256Before": "ea0bae9a8a399d69e661cf0900b04827ee42c3d39ece8e98f3a7806ff620d374"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/project.html",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/project.html",
+      "sha256Before": "fc6b164c16e4103310b65ee10e2d04b1ecf2a89f9a4505041f526547494edac4"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/recording.html",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/recording.html",
+      "sha256Before": "6f48d15300ed40dc7f558f4f7e2526bfb637b8052cf51303dcba24907c0c4c31"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/script.js",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/script.js",
+      "sha256Before": "8fb14b1ab3255953ad1b134767c35ddd226c2b4a07254f203eb0f039614334f9"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/style.css",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/style.css",
+      "sha256Before": "ece24ac229aefdceb7f8bf61e1adc23d70379b37ad3453b64d7c2db89afdaa01"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/prototype/templates.html",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/templates.html",
+      "sha256Before": "e7124e8478a4a4a099c335e6640b880840f8a140562ff1ab85d5c4c1c1cfd8d7"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/screenshots/01_视频片段列表.png",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/screenshots/01_视频片段列表.png",
+      "sha256Before": "3f41174b584f933c31bc4c65526395f2eb84cb8a64c37f99d7fe9417720c49ab"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/screenshots/02_录屏指导.png",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/screenshots/02_录屏指导.png",
+      "sha256Before": "980caa4bf22af703e6316b7c3d7371dd287298e01ef5e01d025102b112c57d0d"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/screenshots/03_简洁剪辑器.png",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/screenshots/03_简洁剪辑器.png",
+      "sha256Before": "e9e24d45c0dede63860a68393bb76340b64842cf1c73dd02c9a5a812730fba1b"
+    },
+    {
+      "action": "move",
+      "from": "docs/ai-promo/visual/ui/screenshots/04_模板与收藏.png",
+      "to": "reports/archive/pre-20261101/docs/ai-promo/visual/ui/screenshots/04_模板与收藏.png",
+      "sha256Before": "1a5ce48d4d10e06ba57b319551fe52022666c06bedd684c5c7d6f044f872df0c"
+    },
+    {
+      "action": "move",
+      "from": "docs/P0_ACCEPTANCE_REPORT.md",
+      "to": "reports/archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md",
+      "sha256Before": "e3df7f53d78f90ff1f321cec6fc237e8b739c2a2c41f54878fa08781abcfd917"
+    },
+    {
+      "action": "move",
+      "from": "docs/P0_CODE_CHANGES.patch",
+      "to": "reports/archive/pre-20261101/docs/P0_CODE_CHANGES.patch",
+      "sha256Before": "03a9be406c0cd401e05ce05bfd675bb99259ffe475052b52fed4398f84004419"
+    },
+    {
+      "action": "move",
+      "from": "docs/P0_FILE_CHANGES.json",
+      "to": "reports/archive/pre-20261101/docs/P0_FILE_CHANGES.json",
+      "sha256Before": "e3c88ceae8ac2a3dfb0875041b35c6c212574e44baa58312119f2ac77221b338"
+    },
+    {
+      "action": "move",
+      "from": "docs/P0_SOURCE_PRESERVATION.json",
+      "to": "reports/archive/pre-20261101/docs/P0_SOURCE_PRESERVATION.json",
+      "sha256Before": "cf5061377741dc222b28f6b6fbde33387bf6a9bb1ddb1db81527737faba59fdf"
+    },
+    {
+      "action": "move",
+      "from": "docs/AGENT_FLOW_VALIDATION.json",
+      "to": "reports/archive/pre-20261101/docs/AGENT_FLOW_VALIDATION.json",
+      "sha256Before": "0561ff27214b02276a5f1f82fdabd5b463bffa11565b56c1d5bbb87c264700f9"
+    },
+    {
+      "action": "move",
+      "from": "docs/UI_TIMELINE_VALIDATION.json",
+      "to": "reports/archive/pre-20261101/docs/UI_TIMELINE_VALIDATION.json",
+      "sha256Before": "591d1783cbc44aedde9da0f5266fb875f93b8b706825670acb8030e0ccffc54d"
+    },
+    {
+      "action": "move",
+      "from": "docs/PHONE_MOTION_VALIDATION.json",
+      "to": "reports/archive/pre-20261101/docs/PHONE_MOTION_VALIDATION.json",
+      "sha256Before": "569b91ccb423befb1e090044cc13fae8807f0ae7775cecf95ecb4ca962c56243"
+    },
+    {
+      "action": "move",
+      "from": "docs/UI_TIMELINE_FIXES.md",
+      "to": "reports/archive/pre-20261101/docs/UI_TIMELINE_FIXES.md",
+      "sha256Before": "ae4fc3a1fd9fa2e5b1d1266a056cabef9bdccf684543f5e222aa3d1bc61a47fe"
+    },
+    {
+      "action": "move",
+      "from": "README_UPSTREAM.md",
+      "to": "docs/reference/README_UPSTREAM.md",
+      "sha256Before": "0a80bf8fe5187043fa78f329e6457e2432b762fcf3a00a1b29aee13588af88df"
+    },
+    {
+      "action": "move",
+      "from": "mockup-app-spec.md",
+      "to": "docs/reference/mockup-app-spec.md",
+      "sha256Before": "deb9512e62f77ea80a9e5026fb4c1c299ce6c12e53cdb7c2e66d9627cf852ab2"
+    },
+    {
+      "action": "copy_evidence",
+      "from": "output/motion-plan-test/report.json",
+      "to": "reports/archive/pre-20261101/evidence/motion-plan-test/report.json",
+      "sha256Before": "510141d26e3604cb33c0fb72950c5ab67dfaa1f7b09531d0751277ca6cb9b105"
+    },
+    {
+      "action": "copy_evidence",
+      "from": "output/ui-timeline/report.json",
+      "to": "reports/archive/pre-20261101/evidence/ui-timeline/report.json",
+      "sha256Before": "c2a55ea10ef32602bc661fc0edab946b886c76354e816213dcdeac7f50f753c5"
+    },
+    {
+      "action": "copy_evidence",
+      "from": "output/manual-editor-audit-20261030/manual-audit.json",
+      "to": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/manual-audit.json",
+      "sha256Before": "297971a9afe009b4f495632cc85f25400c64eff8ed681d653319d231dac0b900"
+    },
+    {
+      "action": "copy_evidence",
+      "from": "output/manual-editor-audit-20261030/initial-editor.png",
+      "to": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/initial-editor.png",
+      "sha256Before": "40ce436d134a2d8adaf8baaba4656f7ca2a9a3faebba04f92cf1f5defc81f8c4"
+    },
+    {
+      "action": "copy_evidence",
+      "from": "output/manual-editor-audit-20261030/undo-add.png",
+      "to": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/undo-add.png",
+      "sha256Before": "c47575b32b7e0009c4fcb326ab557a7c7a539ca5af7402f066319764f3855de9"
+    },
+    {
+      "action": "copy_evidence",
+      "from": "output/manual-editor-audit-20261030/timeline/report.json",
+      "to": "reports/archive/pre-20261101/evidence/manual-editor-audit-20261030/timeline/report.json",
+      "sha256Before": "835918141200abbbc2ac706112d81f81a5a76eda37f30fe9110c337a86899308"
+    }
+  ],
+  "dependenciesRemoved": false,
+  "userMediaRemoved": false,
+  "gitRepositoryPresent": false,
+  "originalDocumentsBackup": {
+    "path": "reports/archive/pre-20261101/original-documents.zip",
+    "sha256": "7abdb8d9c9c57f6301355270284da6fb7eebfb733eca6ff7f74c350dec3be12a",
+    "files": 44
+  },
+  "status": "COMPLETE",
+  "validationReport": "reports/current/document-check.json",
+  "productSourceChanged": false,
+  "readableArchiveLinksRepaired": [
+    "docs/PHONE_MOTION_PLAN.md",
+    "docs/reference/README_UPSTREAM.md",
+    "reports/archive/pre-20261101/AI_PROMO_START_HERE.md",
+    "reports/archive/pre-20261101/CONTEXT.md",
+    "reports/archive/pre-20261101/CONTRIBUTING.md",
+    "reports/archive/pre-20261101/P0-Windows-Guide.md",
+    "reports/archive/pre-20261101/README.md",
+    "reports/archive/pre-20261101/README.zh-CN.md",
+    "reports/archive/pre-20261101/current_plan.md",
+    "reports/archive/pre-20261101/docs/ARCHITECTURE.md",
+    "reports/archive/pre-20261101/docs/AUTOMATED_STORYBOARD_FLOW.md",
+    "reports/archive/pre-20261101/docs/DELIVERY_STATUS.md",
+    "reports/archive/pre-20261101/docs/P0_ACCEPTANCE_REPORT.md",
+    "reports/archive/pre-20261101/docs/PHONE_MOTION_PLAN.md",
+    "reports/archive/pre-20261101/docs/TESTING.md",
+    "reports/archive/pre-20261101/docs/TOOLS.md",
+    "reports/archive/pre-20261101/docs/UI_TIMELINE_FIXES.md",
+    "reports/archive/pre-20261101/docs/WORK_PLAN.md",
+    "reports/archive/pre-20261101/docs/ai-promo/00_从这里开始.md",
+    "reports/archive/pre-20261101/docs/ai-promo/01_需求与问题总结.md",
+    "reports/archive/pre-20261101/docs/ai-promo/02_后续执行计划_V3.md",
+    "reports/archive/pre-20261101/docs/ai-promo/03_智能构图引擎技术设计.md",
+    "reports/archive/pre-20261101/docs/ai-promo/04_页面结构与交互规范.md",
+    "reports/archive/pre-20261101/docs/ai-promo/05_AI源码分析_录屏指导_模板系统.md",
+    "reports/archive/pre-20261101/docs/ai-promo/06_Remotion与风格系统分工.md",
+    "reports/archive/pre-20261101/docs/ai-promo/07_视频案例拆解与设计规则.md",
+    "reports/archive/pre-20261101/docs/ai-promo/08_验收清单与测试计划.md",
+    "reports/archive/pre-20261101/docs/ai-promo/09_来源授权与版本说明.md",
+    "reports/archive/pre-20261101/docs/ai-promo/archive/旧版工作规划_V1_仅供对照.md",
+    "reports/archive/pre-20261101/docs/ai-promo/visual/archived-not-for-implementation/README.md",
+    "reports/archive/pre-20261101/docs/ai-promo/visual/ui/prototype/README.md"
+  ]
+}

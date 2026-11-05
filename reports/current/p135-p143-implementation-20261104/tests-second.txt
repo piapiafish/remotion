@@ -1,0 +1,201 @@
+
+> mockup-web@0.0.0 test
+> vitest run src
+
+
+ RUN  v4.1.11 D:/remotion/p0/MultiAgent-3D-Promo-Studio
+
+ ❯ src/media/videoTiming.test.ts (9 tests | 1 failed) 11ms
+     × uses the same source mapping for exact export seeking 5ms
+ ❯ src/timeline/motionPlan.test.ts (24 tests | 1 failed) 88ms
+     × retains motion and annotations through a saved .mockup round trip 24ms
+ ❯ src/store/persistSafety.test.ts (34 tests | 1 failed) 135ms
+     × packages background bytes, strips session URLs, and restores timing with tracks 21ms
+ ❯ src/media/screenVideo.test.ts (15 tests | 6 failed) 11078ms
+     × exact export targeting replaces any queued preview target 2035ms
+     × waits for seeked and uploads exactly the requested frame 4ms
+     × fails instead of encoding a stale frame after a timeout 5004ms
+     × allows metadata state during an in-flight seek instead of rejecting a valid decoder 1ms
+     × rejects a decoder error 2024ms
+     × holds the final decodable frame and removes disposed registrations 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/media/screenVideo.test.ts > preview decoder scheduling > exact export targeting replaces any queued preview target
+Error: SCREEN_VIDEO_NOT_READY
+ ❯ seekScreenVideos src/media/screenVideo.ts:177:64
+    175| export async function seekScreenVideos(t: number, timeoutMs = 2000, si…
+    176|   prepareScreenVideos(t)
+    177|   if(!await waitForScreenVideosReady(timeoutMs,t,signal))throw new Err…
+       |                                                                ^
+    178|   await Promise.all([...registry].map((entry) => entry.activeAt?.(t)==…
+    179|   paintScreenVideos(t)
+ ❯ src/media/screenVideo.test.ts:72:94
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/media/screenVideo.test.ts > exact export video seek > waits for seeked and uploads exactly the requested frame
+AssertionError: expected +0 to be 1.25 // Object.is equality
+
+- Expected
++ Received
+
+- 1.25
++ 0
+
+ ❯ src/media/screenVideo.test.ts:98:28
+     96|     const el = video()
+     97|     const pending = seekScreenVideos(1.25)
+     98|     expect(el.currentTime).toBe(1.25)
+       |                            ^
+     99|     el.dispatchEvent(new Event('seeked'))
+    100|     await pending
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/media/screenVideo.test.ts > exact export video seek > fails instead of encoding a stale frame after a timeout
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/media/screenVideo.test.ts:103:3
+    101|     expect(entry!.texture.version).toBeGreaterThan(0)
+    102|   })
+    103|   it('fails instead of encoding a stale frame after a timeout', async …
+       |   ^
+    104|     vi.useFakeTimers(); video()
+    105|     const check = expect(seekScreenVideos(2, 20)).rejects.toThrow('SCR…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/media/screenVideo.test.ts > exact export video seek > allows metadata state during an in-flight seek instead of rejecting a valid decoder
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/media/screenVideo.test.ts:115:28
+    113|     const el=video();el.readyState=1;el.seeking=true
+    114|     const pending=seekScreenVideos(2)
+    115|     expect(el.currentTime).toBe(2)
+       |                            ^
+    116|     el.readyState=2;el.seeking=false;el.dispatchEvent(new Event('seeke…
+    117|     await pending
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/media/screenVideo.test.ts > exact export video seek > rejects a decoder error
+AssertionError: expected [Function] to throw error including 'SCREEN_VIDEO_DECODE_FAILED' but got 'SCREEN_VIDEO_NOT_READY'
+
+Expected: "SCREEN_VIDEO_DECODE_FAILED"
+Received: "SCREEN_VIDEO_NOT_READY"
+
+ ❯ src/media/screenVideo.test.ts:121:66
+    119|   })
+    120|   it('rejects a decoder error', async () => {
+    121|     const el = video(); const check = expect(seekScreenVideos(2)).reje…
+       |                                                                  ^
+    122|     el.dispatchEvent(new Event('error')); await check
+    123|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/media/screenVideo.test.ts > exact export video seek > holds the final decodable frame and removes disposed registrations
+AssertionError: expected 0 to be greater than 7.99
+ ❯ src/media/screenVideo.test.ts:127:28
+    125|     const el = video(); const pending = seekScreenVideos(100)
+    126|     expect(el.currentTime).toBeLessThan(8)
+    127|     expect(el.currentTime).toBeGreaterThan(7.99)
+       |                            ^
+    128|     el.dispatchEvent(new Event('seeked')); await pending
+    129|     entry!.dispose(); expect(hasScreenVideos()).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  src/media/videoTiming.test.ts > actual preview/export consumers > uses the same source mapping for exact export seeking
+AssertionError: expected +0 to be 2.5 // Object.is equality
+
+- Expected
++ Received
+
+- 2.5
++ 0
+
+ ❯ src/media/videoTiming.test.ts:77:30
+     75|     const b = add({ in: 6, out: 9, start: 2, loop: false })
+     76|     const pending = seekScreenVideos(3.5)
+     77|     expect(a.el.currentTime).toBe(2.5); expect(b.el.currentTime).toBe(…
+       |                              ^
+     78|     a.el.dispatchEvent(new Event('seeked')); b.el.dispatchEvent(new Ev…
+     79|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  src/store/persistSafety.test.ts > complete portable project archives > packages background bytes, strips session URLs, and restores timing with tracks
+AssertionError: expected '{"version":4,"name":"未命名工程","duration…' to be '{"version":3,"name":"未命名工程","duration…' // Object.is equality
+
+Expected: "{"version":3,"name":"未命名工程","duration":4,"fps":30,"output":{"width":1920,"height":1080},"devices":[{"instanceId":"d0e407f8-36a1-4ecf-82c6-de95fc8dcb9a","id":"procedural-phone","colorway":"graphite","orientation":"portrait","screen":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"screenFit":"contain","transform":{"position.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"scale":{"keys":[{"t":0,"v":1,"ease":[0.33,0,0.15,1]}]}},"screenPlayback":{"in":2,"out":7,"start":1,"loop":true}}],"background":{"type":"image","ref":{"id":"back","kind":"image","width":100,"height":200},"fit":"cover"},"environment":{"hdri":"studio","intensity":1,"rotation":0,"shadowOpacity":0.3,"shadowBlur":14,"groundY":-0.76},"camera":{"fov":32,"preset":"three-quarter-left","tracks":{"position.x":{"keys":[{"t":0,"v":-2.2,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0.9,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":2.4,"ease":[0.33,0,0.15,1]}]},"target.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"fov":{"keys":[{"t":0,"v":32,"ease":[0.33,0,0.15,1]}]}}}}"
+Received: "{"version":4,"name":"未命名工程","duration":4,"fps":30,"output":{"width":1920,"height":1080},"devices":[{"instanceId":"d0e407f8-36a1-4ecf-82c6-de95fc8dcb9a","id":"procedural-phone","colorway":"graphite","orientation":"portrait","screen":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"screenFit":"contain","transform":{"position.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"rotation.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"scale":{"keys":[{"t":0,"v":1,"ease":[0.33,0,0.15,1]}]}},"screenPlayback":{"in":2,"out":7,"start":1,"loop":true},"screenClips":[{"clipId":"legacy-d0e407f8-36a1-4ecf-82c6-de95fc8dcb9a","name":"屏幕视频","media":{"id":"clip","kind":"video","width":100,"height":200,"duration":10},"displayRange":{"start":0,"end":4},"playback":{"in":2,"out":7,"start":1,"loop":true},"fit":"contain"}]}],"background":{"type":"image","ref":{"id":"back","kind":"image","width":100,"height":200},"fit":"cover"},"environment":{"hdri":"studio","intensity":1,"rotation":0,"shadowOpacity":0.3,"shadowBlur":14,"groundY":-0.76},"camera":{"fov":32,"preset":"three-quarter-left","tracks":{"position.x":{"keys":[{"t":0,"v":-2.2,"ease":[0.33,0,0.15,1]}]},"position.y":{"keys":[{"t":0,"v":0.9,"ease":[0.33,0,0.15,1]}]},"position.z":{"keys":[{"t":0,"v":2.4,"ease":[0.33,0,0.15,1]}]},"target.x":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.y":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"target.z":{"keys":[{"t":0,"v":0,"ease":[0.33,0,0.15,1]}]},"fov":{"keys":[{"t":0,"v":32,"ease":[0.33,0,0.15,1]}]}}}}"
+
+ ❯ src/store/persistSafety.test.ts:38:42
+     36|     storage.blobs.clear()
+     37|     const reopened = await deserializeProject(archive)
+     38|     expect(projectFingerprint(reopened)).toBe(projectFingerprint({...e…
+       |                                          ^
+     39|     expect(reopened.background.type === 'image' && reopened.background…
+     40|     expect(reopened.devices[0].transform).toEqual(p.devices[0].transfo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  src/timeline/motionPlan.test.ts > motion JSON -> native phone tracks > retains motion and annotations through a saved .mockup round trip
+AssertionError: expected { version: 4, …(9) } to deeply equal { version: 3, …(9) }
+
+- Expected
++ Received
+
+@@ -1359,7 +1359,7 @@
+    "name": "手机运动 · 入场、旋转与悬停",
+    "output": {
+      "height": 1920,
+      "width": 1080,
+    },
+-   "version": 3,
++   "version": 4,
+  }
+
+ ❯ src/timeline/motionPlan.test.ts:139:22
+    137|     expect(migrate(project).motionPlan).toEqual(project.motionPlan)
+    138|     const restored = await deserializeProject(await serializeProject(p…
+    139|     expect(restored).toEqual({...ensureFixedGround(project),version:3})
+       |                      ^
+    140|     expect(sampleTimeline(restored, 8)).toEqual(sampleTimeline(project…
+    141|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: SCREEN_VIDEO_NOT_READY
+ ❯ seekScreenVideos src/media/screenVideo.ts:177:64
+    175| export async function seekScreenVideos(t: number, timeoutMs = 2000, si…
+    176|   prepareScreenVideos(t)
+    177|   if(!await waitForScreenVideosReady(timeoutMs,t,signal))throw new Err…
+       |                                                                ^
+    178|   await Promise.all([...registry].map((entry) => entry.activeAt?.(t)==…
+    179|   paintScreenVideos(t)
+
+This error originated in "src/media/screenVideo.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  4 failed | 34 passed (38)
+      Tests  9 failed | 380 passed (389)
+     Errors  1 error
+   Start at  19:16:42
+   Duration  12.58s (transform 13.31s, setup 0ms, import 21.44s, tests 12.42s, environment 3ms)
+

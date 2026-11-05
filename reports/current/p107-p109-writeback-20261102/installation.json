@@ -1,0 +1,33 @@
+{
+  "steps": [
+    {
+      "step": "preflight",
+      "exitCode": 0,
+      "result": {
+        "status": "READY",
+        "pending_files": 159,
+        "target": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio"
+      }
+    },
+    {
+      "step": "install",
+      "exitCode": 0,
+      "result": {
+        "status": "APPLIED",
+        "installed": 159,
+        "backup": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\archive\\p10709-before-20261102-174227-421716",
+        "receipt": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p107-p109-20261102\\writeback-receipt.json"
+      }
+    },
+    {
+      "step": "repeat-check",
+      "exitCode": 0,
+      "result": {
+        "status": "ALREADY_APPLIED",
+        "pending_files": 0
+      }
+    }
+  ],
+  "verifiedFiles": 159,
+  "testBackupRestoreMap": {}
+}

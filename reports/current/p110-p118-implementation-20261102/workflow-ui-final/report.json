@@ -1,0 +1,253 @@
+{
+  "date": "2026-11-02T15:59:06.463Z",
+  "method": "Real local Vite HTTP, Chrome UI, native object actions, portable archives and actual encoded downloads.",
+  "checks": [
+    {
+      "name": "first-entry-is-template-page",
+      "status": "PASS"
+    },
+    {
+      "name": "template-creates-two-phones-and-opens-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "phone-settings-are-independent",
+      "status": "PASS"
+    },
+    {
+      "name": "two-independent-recordings-and-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "selected-object-wheel-scales-even-over-blank",
+      "status": "PASS"
+    },
+    {
+      "name": "wheel-is-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-click-deselects",
+      "status": "PASS",
+      "detail": {
+        "element": "<canvas data-engine=\"three.js r185\" width=\"808\" height=\"606\" style=\"display: block; width: 808px; height: 606px;\"></canvas>",
+        "active": null
+      }
+    },
+    {
+      "name": "unselected-wheel-zooms-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "blank-drag-orbits-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit-animation-preserves-start-and-records-new-pose",
+      "status": "PASS"
+    },
+    {
+      "name": "drag-retimes-all-pose-channels-to-six-seconds",
+      "status": "PASS"
+    },
+    {
+      "name": "six-second-transition-is-halfway-at-three-seconds",
+      "status": "PASS",
+      "detail": {
+        "a": {
+          "position": [
+            -0.46,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 0.92
+        },
+        "m": {
+          "position": [
+            -0.3764316875091056,
+            0.027856104163631636,
+            -3.9968028886505635e-15
+          ],
+          "rotation": [
+            0,
+            6.283185307179586,
+            0
+          ],
+          "scale": 0.92
+        },
+        "b": {
+          "position": [
+            -0.29286337501821125,
+            0.05571220832726327,
+            -7.993605777301127e-15
+          ],
+          "rotation": [
+            0,
+            12.566370614359172,
+            0
+          ],
+          "scale": 0.92
+        }
+      }
+    },
+    {
+      "name": "keyframes-have-large-hit-area",
+      "status": "PASS"
+    },
+    {
+      "name": "retiming-undo-restores-all-channels",
+      "status": "PASS"
+    },
+    {
+      "name": "precise-retiming-keeps-channels-together",
+      "status": "PASS"
+    },
+    {
+      "name": "title-can-be-dragged-without-moving-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "camera-change-does-not-move-screen-title",
+      "status": "PASS"
+    },
+    {
+      "name": "five-objects-visible-in-one-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "object-delete-updates-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "object-delete-undo-restores-timeline",
+      "status": "PASS"
+    },
+    {
+      "name": "dense-key-navigation-selects-correct-time",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-project-includes-v2-text-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh-session-restores-text-effects-media-and-keyframes",
+      "status": "PASS"
+    },
+    {
+      "name": "reopened-text-remains-editable-and-undoable",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-dual-video-with-titles-and-effects",
+      "status": "PASS",
+      "detail": {
+        "name": "beginner-1080p30",
+        "file": "beginner-1080p30.mp4",
+        "seconds": 21.166,
+        "bytes": 1728952,
+        "width": 1920,
+        "height": 1080,
+        "frames": 120,
+        "duration": 4
+      }
+    },
+    {
+      "name": "preview-returns-after-effects-export",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-open-preserves-current-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "export-locks-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "stalled-flush-cancel-releases-resources",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel-then-retry-exports",
+      "status": "PASS"
+    },
+    {
+      "name": "encoding-error-has-visible-retry",
+      "status": "PASS"
+    },
+    {
+      "name": "error-retry-produces-file",
+      "status": "PASS"
+    },
+    {
+      "name": "png-fallback-keeps-text-and-effects",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop-scale-1.25-export-accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop-scale-1.5-export-accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "small-desktop-controls-fit",
+      "status": "PASS"
+    },
+    {
+      "name": "return-to-template-keeps-scene",
+      "status": "PASS"
+    },
+    {
+      "name": "resume-current-editor",
+      "status": "PASS"
+    },
+    {
+      "name": "no-page-exceptions",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-render-console-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "vite-server-survived-output-downloads",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "exports": [
+    {
+      "name": "beginner-1080p30",
+      "file": "beginner-1080p30.mp4",
+      "seconds": 21.166,
+      "bytes": 1728952,
+      "width": 1920,
+      "height": 1080,
+      "frames": 120,
+      "duration": 4
+    },
+    {
+      "name": "after-cancel",
+      "file": "after-cancel.mp4",
+      "seconds": 0.47,
+      "bytes": 60131,
+      "width": 640,
+      "height": 360,
+      "frames": 6,
+      "duration": 0.2
+    }
+  ],
+  "status": "PASS",
+  "browser": "156.0.8078.76"
+}

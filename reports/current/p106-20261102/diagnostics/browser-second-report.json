@@ -1,0 +1,503 @@
+{
+  "date": "2026-11-01T23:31:22.998Z",
+  "method": "Actual production build in Chrome, local route fulfillment; UI edits, isolated contexts, .mockup bytes and actual MP4 downloads. Vite/API TCP not tested.",
+  "checks": [
+    {
+      "id": "per-device-trims-starts-and-loop",
+      "status": "PASS"
+    },
+    {
+      "id": "timing-one-step-undo-keeps-other-device",
+      "status": "PASS"
+    },
+    {
+      "id": "timing-redo-restores-document",
+      "status": "PASS"
+    },
+    {
+      "id": "invalid-trim-is-visible-and-does-not-edit",
+      "status": "PASS"
+    },
+    {
+      "id": "media-controls-preserve-hand-authored-720-animation",
+      "status": "PASS"
+    },
+    {
+      "id": "archive-contains-two-different-source-bytes",
+      "status": "PASS"
+    },
+    {
+      "id": "paused-source-mapping-0",
+      "status": "PASS",
+      "timeline": 0,
+      "actual": [
+        {
+          "time": 1,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 1,
+            "out": 2.2,
+            "start": 0.4,
+            "loop": false
+          }
+        },
+        {
+          "time": 4,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.3,
+            "start": 1.1,
+            "loop": true
+          }
+        }
+      ],
+      "expected": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "paused-source-mapping-0.4",
+      "status": "PASS",
+      "timeline": 0.4,
+      "actual": [
+        {
+          "time": 1,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 1,
+            "out": 2.2,
+            "start": 0.4,
+            "loop": false
+          }
+        },
+        {
+          "time": 4,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.3,
+            "start": 1.1,
+            "loop": true
+          }
+        }
+      ],
+      "expected": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "paused-source-mapping-1",
+      "status": "PASS",
+      "timeline": 1,
+      "actual": [
+        {
+          "time": 1.6,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 1,
+            "out": 2.2,
+            "start": 0.4,
+            "loop": false
+          }
+        },
+        {
+          "time": 4,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.3,
+            "start": 1.1,
+            "loop": true
+          }
+        }
+      ],
+      "expected": [
+        1.6,
+        4
+      ]
+    },
+    {
+      "id": "paused-source-mapping-1.7",
+      "status": "PASS",
+      "timeline": 1.7,
+      "actual": [
+        {
+          "time": 2.199999,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 1,
+            "out": 2.2,
+            "start": 0.4,
+            "loop": false
+          }
+        },
+        {
+          "time": 4.6,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.3,
+            "start": 1.1,
+            "loop": true
+          }
+        }
+      ],
+      "expected": [
+        2.199999,
+        4.6
+      ]
+    },
+    {
+      "id": "paused-source-mapping-2.4",
+      "status": "PASS",
+      "timeline": 2.4,
+      "actual": [
+        {
+          "time": 2.199999,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 1,
+            "out": 2.2,
+            "start": 0.4,
+            "loop": false
+          }
+        },
+        {
+          "time": 4,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.3,
+            "start": 1.1,
+            "loop": true
+          }
+        }
+      ],
+      "expected": [
+        2.199999,
+        4
+      ]
+    },
+    {
+      "id": "paused-source-mapping-3.8",
+      "status": "PASS",
+      "timeline": 3.8,
+      "actual": [
+        {
+          "time": 2.199999,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 1,
+            "out": 2.2,
+            "start": 0.4,
+            "loop": false
+          }
+        },
+        {
+          "time": 4.099999,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.3,
+            "start": 1.1,
+            "loop": true
+          }
+        }
+      ],
+      "expected": [
+        2.199999,
+        4.1
+      ]
+    },
+    {
+      "id": "both-video-elements-remain-paused-while-scrubbing",
+      "status": "PASS"
+    },
+    {
+      "id": "new-session-exact-timing-tracks-and-media-recovery",
+      "status": "PASS"
+    },
+    {
+      "id": "real-dual-trimmed-delayed-looping-1080p30-mp4",
+      "status": "PASS",
+      "frames": "120",
+      "duration": "4.000000"
+    },
+    {
+      "id": "reopened-project-remains-editable-after-export",
+      "status": "PASS"
+    },
+    {
+      "id": "visible-not-zip-keeps-existing-document",
+      "status": "PASS"
+    },
+    {
+      "id": "visible-missing-json-keeps-existing-document",
+      "status": "PASS"
+    },
+    {
+      "id": "visible-bad-json-keeps-existing-document",
+      "status": "PASS"
+    },
+    {
+      "id": "visible-bad-root-keeps-existing-document",
+      "status": "PASS"
+    },
+    {
+      "id": "visible-bad-model-keeps-existing-document",
+      "status": "PASS"
+    },
+    {
+      "id": "corrupt-embedded-media-does-not-replace-project",
+      "status": "PASS"
+    },
+    {
+      "id": "bad-recording-has-visible-error-and-keeps-source",
+      "status": "PASS"
+    },
+    {
+      "id": "failed-save-is-visible-and-remains-dirty",
+      "status": "PASS"
+    },
+    {
+      "id": "save-retry-preserves-original-media-bytes",
+      "status": "PASS"
+    },
+    {
+      "id": "editing-continues-after-failed-open-and-save",
+      "status": "PASS"
+    },
+    {
+      "id": "missing-source-identifies-device-and-preserves-timing",
+      "status": "PASS"
+    },
+    {
+      "id": "missing-source-blocks-incomplete-save",
+      "status": "PASS"
+    },
+    {
+      "id": "relink-keeps-timing-tracks-and-other-device",
+      "status": "PASS"
+    },
+    {
+      "id": "background-image-bytes-are-portable",
+      "status": "PASS"
+    },
+    {
+      "id": "background-restores-with-new-session-url",
+      "status": "PASS"
+    },
+    {
+      "id": "editing-shows-dirty-state",
+      "status": "PASS"
+    },
+    {
+      "id": "refresh-close-listener-protects-unsaved-work",
+      "status": "PASS"
+    },
+    {
+      "id": "actual-browser-reload-can-be-cancelled",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-new-preserves-unsaved-project",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-open-preserves-unsaved-project",
+      "status": "PASS"
+    },
+    {
+      "id": "download-handoff-clears-dirty-state",
+      "status": "PASS"
+    },
+    {
+      "id": "saved-document-does-not-block-close",
+      "status": "PASS"
+    },
+    {
+      "id": "new-after-save-creates-clean-default-project",
+      "status": "PASS"
+    },
+    {
+      "id": "confirmed-open-replaces-with-validated-project",
+      "status": "PASS"
+    },
+    {
+      "id": "procedural-phone-video-ready-probe-works",
+      "status": "PASS"
+    },
+    {
+      "id": "shared-source-uses-independent-device-decoders",
+      "status": "PASS"
+    },
+    {
+      "id": "shared-source-is-saved-once-with-two-independent-clocks",
+      "status": "PASS"
+    },
+    {
+      "id": "paused-one-frame-scrub-updates-source",
+      "status": "PASS"
+    },
+    {
+      "id": "numeric-enter-is-one-undo-step",
+      "status": "PASS"
+    },
+    {
+      "id": "numeric-escape-cancels-draft",
+      "status": "PASS"
+    },
+    {
+      "id": "live-playback-keeps-delayed-device-paused",
+      "status": "PASS",
+      "playhead": 0.467,
+      "clocks": [
+        {
+          "time": 0.662,
+          "paused": false,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 0.2,
+            "out": 1.5,
+            "start": 0,
+            "loop": false
+          }
+        },
+        {
+          "time": 4,
+          "paused": true,
+          "readyState": 4,
+          "duration": 8,
+          "playback": {
+            "in": 4,
+            "out": 5.5,
+            "start": 3,
+            "loop": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "procedural-video-can-render-a-real-frame",
+      "status": "PASS"
+    },
+    {
+      "id": "no-unhandled-page-errors",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "no-missing-build-resources",
+      "status": "PASS",
+      "requests": []
+    }
+  ],
+  "cases": [
+    {
+      "label": "01-independent-device-clocks",
+      "status": "COMPLETED",
+      "seconds": 6.868
+    },
+    {
+      "label": "02-new-session-restoration-and-export",
+      "status": "COMPLETED",
+      "seconds": 16.596
+    },
+    {
+      "label": "03-errors-and-retry-keep-current-project",
+      "status": "COMPLETED",
+      "seconds": 4.39
+    },
+    {
+      "label": "04-missing-media-relink-and-background",
+      "status": "COMPLETED",
+      "seconds": 3.895
+    },
+    {
+      "label": "05-unsaved-work-protection",
+      "status": "COMPLETED",
+      "seconds": 6.277
+    },
+    {
+      "label": "06-shared-source-and-procedural-readiness",
+      "status": "COMPLETED",
+      "seconds": 3.862
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [],
+  "dialogs": [
+    {
+      "label": "05-unsaved-work-protection",
+      "type": "beforeunload",
+      "message": "",
+      "accepted": false
+    },
+    {
+      "label": "05-unsaved-work-protection",
+      "type": "confirm",
+      "message": "当前工程有未保存的修改。继续会丢弃这些修改，是否继续？",
+      "accepted": false
+    },
+    {
+      "label": "05-unsaved-work-protection",
+      "type": "confirm",
+      "message": "当前工程有未保存的修改。继续会丢弃这些修改，是否继续？",
+      "accepted": false
+    },
+    {
+      "label": "05-unsaved-work-protection",
+      "type": "confirm",
+      "message": "当前工程有未保存的修改。继续会丢弃这些修改，是否继续？",
+      "accepted": true
+    }
+  ],
+  "status": "PASS",
+  "browser": "156.0.8078.76",
+  "references": [
+    {
+      "frame": 0,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-0.png"
+    },
+    {
+      "frame": 30,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-30.png"
+    },
+    {
+      "frame": 72,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-72.png"
+    },
+    {
+      "frame": 114,
+      "file": "C:\\Users\\20153\\AppData\\Local\\Temp\\p106-20261102-5ipog_47\\evidence\\browser\\02-reference-114.png"
+    }
+  ]
+}

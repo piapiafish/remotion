@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-04T00:18:13.254Z",
+  "checks": [
+    {
+      "name": "real-effects-1080p30-video",
+      "status": "PASS"
+    },
+    {
+      "name": "single-30-second-900-frame-video",
+      "status": "PASS",
+      "detail": {
+        "file": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p126-p134-implementation-20261104\\exports-first\\second-feedback-30s.mp4",
+        "project": "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\reports\\current\\p126-p134-implementation-20261104\\exports-first\\second-feedback-30s.mockup"
+      }
+    },
+    {
+      "name": "no-unhandled-page-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "no-console-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "exports",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "status": "PASS",
+  "browser": "156.0.8078.80"
+}

@@ -1,0 +1,73 @@
+PASS two-real-models-ready
+PASS solid-selected-outline-and-axis-controls
+PASS solid-cannot-cross-fixed-floor
+PASS empty-object-row-is-compact
+PASS phone-really-removed-from-scene
+PASS phone-reattaches-at-start
+PASS phone-removed-at-exclusive-end
+PASS one-phone-has-three-independent-clips
+PASS repeated-source-deduplicates-by-content
+PASS overlapping-video-expands-only-its-object-row
+PASS nonoverlapping-videos-auto-share-one-row
+PASS two-intervals-edit-independently
+PASS pause-holds-identical-decoded-screen
+PASS moving-video-up-changes-composited-screen
+PASS layer-undo-preserves-all-clip-times
+PASS blue-handle-only-changes-visibility
+PASS orange-handle-only-changes-play-window
+PASS version-four-saves-all-clips-and-fonts
+PASS fixed-initial-anchor-procedural-phone
+PASS scale-one-undo-procedural-phone
+PASS fixed-initial-anchor-iphone-17-pro
+PASS scale-one-undo-iphone-17-pro
+PASS fixed-initial-anchor-iphone-17-pro-max
+PASS scale-one-undo-iphone-17-pro-max
+PASS fixed-initial-anchor-pixel-9-pro-xl
+PASS scale-one-undo-pixel-9-pro-xl
+PASS fixed-initial-anchor-galaxy-s26-ultra
+PASS scale-one-undo-galaxy-s26-ultra
+PASS actual-extruded-glyph-never-crosses-ground
+PASS solid-z-axis-responds-to-real-mouse-drag
+PASS overlap-drags-key-before-video
+PASS selected-key-keeps-arrow-focus
+PASS object-base-edge-controls-existence
+PASS object-label-has-large-colored-hit-area
+PASS object-label-remains-visible-while-scrolling
+PASS compact-page-does-not-overflow-horizontally
+PASS wasd-pans-camera-at-faster-default-speed
+PASS keyboard-pan-is-one-undo
+PASS arrow-left-orbits-around-scene-center
+PASS arrow-up-moves-forward
+PASS countdown-keeps-playhead-still
+PASS new-camera-keys-produce-continuous-recorded-track
+PASS recorder-keeps-objects-locked
+PASS compact-recorder-adopt-remains-visible
+PASS recording-can-be-adopted-and-undone
+PASS adopt-one-undo-restores-camera
+PASS ten-cycles-remove-all-object-nodes-and-decoders
+PASS repeated-entry-has-bounded-gpu-resource-counts
+PASS arbitrary-export-time-restores-future-object-and-video
+PASS offline-restores-all-media-clocks-layers-and-anchors
+PASS offline-solid-glyphs-and-contact-restore
+PASS missing-source-identifies-both-references-without-masking-cache
+PASS rebind-repairs-one-clip-without-overwriting-other-clock
+PASS rebind-is-undoable
+PASS actual-multivideo-effects-1080p30-120-frame-export
+PASS all-boundary-references-use-formal-export-preparation
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:26:20.510Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 107 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:26:30.510Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 188 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:26:40.480Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 271 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:26:50.531Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 347 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:27:00.513Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 411 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:27:10.519Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 482 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:27:20.602Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 568 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:27:30.523Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 649 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:27:40.538Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 760 / 900 帧"}
+LONG EXPORT {"url":"http://127.0.0.1:63879/?automation=1#editor","time":"2026-11-04T12:27:50.612Z","duration":30,"dialog":"导出作品\n关闭\n作品类型\n视频\n图片\n宽度\n×\n高度\n画质\n标准\n高清\n精细\n\n输出 1920 × 1080。高画质可保留更多屏幕细节。\n\n屏幕细节与输出设置\n导出 PNG 图片\n帧率\n30 帧/秒\n60 帧/秒\n\n30 秒，共 900 帧。\n\n视频格式\nWebM\nMP4 (H.264)\n取消导出 · 872 / 900 帧"}
+PASS single-30-second-900-frame-export
+PASS cancel-releases-multiple-decoder-export-session
+PASS actual-two-second-retry-after-cancel
+PASS editing-restored-after-retry
+PASS no-unhandled-page-errors
+PASS no-console-errors
+{"status":"PASS","scenarios":[{"name":"smoke","status":"PASS"},{"name":"media","status":"PASS"},{"name":"authoring","status":"PASS"},{"name":"timeline","status":"PASS"},{"name":"camera","status":"PASS"},{"name":"resources","status":"PASS"},{"name":"restore","status":"PASS"},{"name":"exports","status":"PASS"},{"name":"cancel","status":"PASS"}],"checks":62}

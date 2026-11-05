@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-04T11:38:36.954072+00:00",
+  "url": "http://127.0.0.1:59997",
+  "serverCommand": [
+    "D:\\Node.js\\node.exe",
+    "D:\\remotion\\p0\\MultiAgent-3D-Promo-Studio\\node_modules\\vite\\bin\\vite.js",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "59997",
+    "--strictPort"
+  ],
+  "command": [
+    "D:\\Node.js\\node.exe",
+    "scripts/test-second-regression.cjs"
+  ],
+  "status": "FAIL",
+  "exitCode": 1,
+  "serverStopped": true,
+  "seconds": 20.359
+}
